@@ -133,7 +133,7 @@ animate();
 
 // Click logo -> explanation page
 logoButton.addEventListener("click", () => {
-  window.location.href = "/explanation.html";
+  window.location.href = "explanation.html";
 });
 
 // AI image generation
