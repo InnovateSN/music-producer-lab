@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 4 · 16th-note groove · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="explanation.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <span class="mpl-nav-logo-dot"></span>
+            <span>MUSIC PRODUCER LAB</span>
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 4 · 16th groove">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lezione 4 · Pattern di batteria</div>
+            <h1 class="hero-title">Groove a sedicesimi: <span>più movimento</span>.</h1>
+            <p class="hero-subtitle">
+              Aggiungi hi-hat in sedicesimi o ghost notes selettivi per creare movimento e variazione dentro la battuta.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-3.html"><span>Indietro a Lezione 3</span></a>
+              <a class="btn btn-primary" href="lesson-drums-5.html" style="margin-left:0.6rem;"><span>Prossima: Lezione 5 →</span></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- New Section for Sequencer -->
+        <section class="sections-grid" aria-label="Interactive sequencer exercise">
+          <article class="section">
+            <div class="section-eyebrow">Step 3 · Esercizio</div>
+            <h2 class="section-title">Programma Hi-Hat 1/16.</h2>
+            <p class="section-body">
+              Ora aggiungiamo un po' di "swing" e groove usando le suddivisioni in sedicesimi (1/16). Mantieni Kick e Snare, e usa l'Hi-Hat per creare un ritmo più complesso, posizionando note selezionate sui sedicesimi.
+            </p>
+            <p class="section-body" style="margin-top:0.6rem;">
+              Target Hi-Hat: <strong>1, 3, 5, 7, 8, 9, 11, 13, 15</strong> (aggiungendo la 8 per un po' di shuffle).
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Interactive sequencers</div>
+            <h2 class="section-title">Griglia a 16 step (Kick, Snare, Hi-Hat)</h2>
+            <div class="sequencer" id="mpl-sequencer-collection">
+              <!-- Sequencers will be created here -->
+            </div>
+
+            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
+              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+                <span>Play</span>
+              </button>
+              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+                <span>Stop</span>
+              </button>
+              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+                <span>Check exercise</span>
+              </button>
+
+              <div id="mpl-seq-nav-wrap" style="margin-left:auto; display: flex; gap: 0.6rem;">
+                 <a class="btn btn-outline" href="lesson-drums-3.html"><span>← Back to Lesson 3</span></a>
+                 <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next lesson →</span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="sequencer-status"
+              id="mpl-seq-status"
+              aria-live="polite"
+              style="margin-top:0.8rem;"
+            >
+              Programma l'Hi-Hat a sedicesimi per sbloccare la prossima lezione.
+            </div>
+          </article>
+        </section>
+        <!-- End New Section for Sequencer -->
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 4</div>
+          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+        </footer>
+      </div>
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
+
+        const LESSON_KEY = "mpl-lesson4-progress";
+        const NEXT_LESSON_URL = "lesson-drums-5.html";
+        
+        // Instruments
+        const instruments = [
+          {
+            id: "kick",
+            label: "Kick",
+            color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
+            target: [0,4,8,12], 
+            instructions: "Kick: Pattern 4 on the floor (bloccato)."
+          },
+          {
+            id: "snare",
+            label: "Snare",
+            color: "linear-gradient(135deg,#5f4dff,#8a9bff)", 
+            target: [4,12], 
+            instructions: "Snare: Backbeat su 2 e 4 (bloccato)."
+          },
+          {
+            id: "hihat",
+            label: "Hi-Hat",
+            color: "linear-gradient(135deg,#00d4ff,#b8ffdd)",
+            // 1, 3, 5, 7, 'e' of 2, 9, 11, 13, 15
+            target: [0, 2, 4, 6, 7, 8, 10, 12, 14], 
+            instructions:
+              "Hi-Hat: Aggiungi note di sedicesimo selettive per un groove più mosso. Target: 1, 3, 5, 7, la 'e' di 2 (step 8), 9, 11, 13, 15."
+          }
+        ];
+
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        
+      </script>
+    </div>
+  </body>
+</html>
+

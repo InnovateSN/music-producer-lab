@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 5 · Variation &amp; fills · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="explanation.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <span class="mpl-nav-logo-dot"></span>
+            <span>MUSIC PRODUCER LAB</span>
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 5 · Variation & fills">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 5 · Drum pattern</div>
+            <h1 class="hero-title">Variation &amp; fills: <span>end of loop</span>.</h1>
+            <p class="hero-subtitle">
+              Create a small fill in the last bar to make the loop feel like it breathes before repeating.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-4.html"><span>Back to Lesson 4</span></a>
+              <a class="btn btn-primary" href="explanation.html" style="margin-left:0.6rem;"><span>Back to overview</span></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- New Section for Sequencer -->
+        <section class="sections-grid" aria-label="Interactive sequencer exercise">
+          <article class="section">
+            <div class="section-eyebrow">Step 3 · Exercise</div>
+            <h2 class="section-title">Programma un Fill nel 4° Bar.</h2>
+            <p class="section-body">
+              Un drum fill (variazione) nell'ultima battuta aiuta la transizione quando il loop ricomincia. Mantieni il groove K+S+HH delle lezioni precedenti per le prime tre battute, e poi crea un breve fill di cassa/rullante nell'ultima battuta (step 13-16).
+            </p>
+            <p class="section-body" style="margin-top:0.6rem;">
+              Per semplicità, useremo un 16-step grid che rappresenta solo l'ultima battuta (Beat 4, steps 13-16), ma dovrai programmare l'intero pattern.
+            </p>
+            <p class="section-body" style="margin-top:0.6rem;">
+              Target: Libero. Concentrati sul posizionare i colpi di Kick e Snare negli ultimi 4 step (13, 14, 15, 16) in modo che suonino come un breve break prima che il loop ricominci da 1.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Interactive sequencers</div>
+            <h2 class="section-title">16-step grid (Kick, Snare, Hi-Hat)</h2>
+            <div class="sequencer" id="mpl-sequencer-collection">
+              <!-- Sequencers will be created here -->
+            </div>
+
+            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
+              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+                <span>Play</span>
+              </button>
+              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+                <span>Stop</span>
+              </button>
+              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+                <span>Check exercise</span>
+              </button>
+
+              <div id="mpl-seq-nav-wrap" style="margin-left:auto; display: flex; gap: 0.6rem;">
+                 <a class="btn btn-outline" href="lesson-drums-4.html"><span>← Back to Lesson 4</span></a>
+                 <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Torna all'overview">
+                  <span>Overview →</span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="sequencer-status"
+              id="mpl-seq-status"
+              aria-live="polite"
+              style="margin-top:0.8rem;"
+            >
+              Programma un fill ritmico nel quarto bar per completare la serie di lezioni.
+            </div>
+          </article>
+        </section>
+        <!-- End New Section for Sequencer -->
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 5</div>
+          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+        </footer>
+      </div>
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
+
+        const LESSON_KEY = "mpl-lesson5-progress";
+        const NEXT_LESSON_URL = "explanation.html"; // Final lesson navigates back to overview
+
+        // Instruments (All tracks are interactive in L5)
+        const instruments = [
+          {
+            id: "kick",
+            label: "Kick",
+            color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
+            // KICK target: 4/4 in beats 1, 2, 3 + fill elements in beat 4
+            target: [0, 4, 8, 12, 14], 
+            instructions: "Kick: Program 4/4 (steps 1, 5, 9) e crea un fill con gli step 13-16. Target suggerito: 1, 5, 9, 13, 15."
+          },
+          {
+            id: "snare",
+            label: "Snare",
+            color: "linear-gradient(135deg,#5f4dff,#8a9bff)",
+            // SNARE target: Backbeat + fill elements
+            target: [4, 12, 15], 
+            instructions: "Snare: Programma Backbeat (steps 5, 13) e aggiungi un colpo finale sul 16 (step 16). Target suggerito: 5, 13, 16."
+          },
+          {
+            id: "hihat",
+            label: "Hi-Hat",
+            color: "linear-gradient(135deg,#00d4ff,#b8ffdd)",
+            // HIHAT target: 8th notes, stopping before the end fill
+            target: [0, 2, 4, 6, 8, 10], // Stop at step 11
+            instructions: "Hi-Hat: Programma ottavi dritti per i primi 3 beat (step 1-12), lasciando spazio al fill."
+          }
+        ];
+
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        
+      </script>
+    </div>
+  </body>
+</html>
+

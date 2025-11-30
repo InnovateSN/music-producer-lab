@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="landing.css" />
+  </head>
+  <body>
+    <div class="landing">
+      <div class="bg">
+        <div class="bg-layer bg-layer-back">
+          <img id="bg-back" alt="Futuristic music production lab sfondo" />
+        </div>
+        <div class="bg-layer bg-layer-front">
+          <img id="bg-front" alt="Futuristic music production lab dettaglio" />
+        </div>
+        <div class="bg-noise"></div>
+      </div>
+
+      <main class="content">
+        <button class="logo-button" id="logoButton" aria-label="Entra in Music Producer Lab">
+          <div class="logo glitch" data-text="MUSIC PRODUCER LAB">
+            MUSIC PRODUCER LAB
+          </div>
+        </button>
+      </main>
+
+      <div class="loading" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
+

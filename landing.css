@@ -1,0 +1,458 @@
+.landing {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  overflow: hidden;
+}
+
+/* Background */
+
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #171818 0, #050607 55%);
+}
+
+.bg-layer {
+  position: absolute;
+  inset: -4vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, filter;
+  transition: filter 0.4s ease;
+}
+
+.bg-layer img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+.bg-layer-back {
+  filter: blur(16px);
+  opacity: 0.9;
+}
+
+.bg-layer-front {
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  opacity: 0.85;
+}
+
+.bg-noise {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  mix-blend-mode: soft-light;
+}
+
+/* Content */
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo button */
+
+.logo-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.logo-button::before,
+.logo-button::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
+  filter: blur(10px);
+}
+
+/* Outer neon aura */
+
+.logo-button::before {
+  background:
+    conic-gradient(
+      from 140deg,
+      rgba(255, 74, 61, 0.8),
+      rgba(255, 205, 135, 0.45),
+      rgba(255, 74, 61, 0.9),
+      rgba(255, 120, 90, 0.6)
+    );
+  mix-blend-mode: screen;
+}
+
+/* Subtle circuit-like scan */
+
+.logo-button::after {
+  background:
+    repeating-linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.16) 0,
+      rgba(255, 255, 255, 0.16) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0;
+}
+
+.logo-button:focus-visible {
+  outline: none;
+}
+
+.logo-button:focus-visible::before {
+  opacity: 0.9;
+  filter: blur(14px);
+}
+
+/* Core pill */
+
+.logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.04em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  padding: 1.15rem 1.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.16), transparent 55%)
+      border-box,
+    linear-gradient(135deg, rgba(255, 74, 61, 0.55), rgba(255, 205, 135, 0.18))
+      border-box,
+    rgba(5, 5, 5, 0.8);
+  box-shadow:
+    0 0 55px rgba(0, 0, 0, 0.95),
+    0 0 130px rgba(255, 74, 61, 0.45),
+    0 0 210px rgba(255, 178, 138, 0.34);
+  backdrop-filter: blur(26px) saturate(1.4);
+  -webkit-backdrop-filter: blur(26px) saturate(1.4);
+  font-size: clamp(1.05rem, 2.3vw, 1.7rem);
+  transform: translate3d(0, 0, 0);
+  will-change: transform, text-shadow, filter;
+  text-shadow:
+    0 0 14px rgba(0, 0, 0, 1),
+    0 0 32px rgba(255, 74, 61, 0.75);
+  overflow: hidden;
+}
+
+/* Individual character styling */
+
+.logo-char {
+  display: inline-block;
+  will-change: transform, opacity, text-shadow, filter;
+  transition:
+    transform 80ms ease-out,
+    opacity 80ms ease-out,
+    filter 80ms ease-out;
+}
+
+/* Preserve spacing on mobile */
+
+.logo-char-space {
+  width: 0.25em;
+}
+
+/* Futuristic font variants for random swap */
+
+.font-a {
+  font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", "Roboto", sans-serif;
+}
+
+.font-b {
+  font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.26em;
+}
+
+.font-c {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Roboto Condensed", sans-serif;
+  letter-spacing: 0.22em;
+}
+
+/* Per-letter glitch state */
+
+.glitch-char-active {
+  animation: charGlitch var(--char-glitch-duration, 180ms)
+    steps(2, end) alternate;
+}
+
+/* Inner scanline + shine */
+
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.2),
+      transparent 45%,
+      transparent 55%,
+      rgba(255, 255, 255, 0.08)
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.4;
+  pointer-events: none;
+  transform: translate3d(-15%, 0, 0);
+  animation: logoScan 5s linear infinite;
+}
+
+/* Glitch layers */
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Red / magenta offset */
+
+.glitch::before {
+  color: rgba(255, 70, 70, 1);
+  text-shadow:
+    -2px 0 6px rgba(255, 107, 95, 0.9),
+    0 0 14px rgba(255, 70, 70, 0.95);
+}
+
+/* Cyan / warm offset */
+
+.glitch::after {
+  color: rgba(255, 248, 232, 1);
+  text-shadow:
+    2px 0 10px rgba(255, 215, 170, 0.9),
+    0 0 18px rgba(255, 230, 200, 0.85);
+}
+
+/* Baseline subtle glitch */
+
+.glitch::before,
+.glitch::after {
+  animation: glitchFlicker 2.1s infinite steps(2, end);
+}
+
+/* Hover / press intensifies everything */
+
+.logo-button:hover .logo,
+.logo-button:active .logo {
+  animation: logoPulse 1.2s ease-out infinite;
+}
+
+.logo-button:hover::before {
+  opacity: 0.95;
+  filter: blur(16px);
+  transform: scale(1.02);
+}
+
+.logo-button:hover::after {
+  opacity: 0.35;
+}
+
+.logo-button:hover .glitch::before,
+.logo-button:hover .glitch::after {
+  animation: glitchShift 520ms infinite steps(3, end);
+}
+
+/* Animations */
+
+@keyframes logoPulse {
+  0% {
+    box-shadow:
+      0 0 55px rgba(0, 0, 0, 0.95),
+      0 0 130px rgba(255, 74, 61, 0.45),
+      0 0 210px rgba(255, 178, 138, 0.34);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  35% {
+    box-shadow:
+      0 0 40px rgba(0, 0, 0, 0.9),
+      0 0 170px rgba(255, 74, 61, 0.8),
+      0 0 260px rgba(255, 178, 138, 0.52);
+    transform: translate3d(0, -2px, 0) scale(1.03);
+  }
+  55% {
+    transform: translate3d(0, 1px, 0) scale(1.01);
+  }
+  100% {
+    box-shadow:
+      0 0 55px rgba(0, 0, 0, 0.95),
+      0 0 130px rgba(255, 74, 61, 0.45),
+      0 0 210px rgba(255, 178, 138, 0.34);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes glitchShift {
+  0% {
+    opacity: 0.55;
+    clip-path: inset(8% 0 72% 0);
+    transform: translate3d(1px, -1px, 0) skewX(2deg);
+  }
+  12% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate3d(-2px, 1px, 0) skewX(-2deg);
+  }
+  28% {
+    clip-path: inset(18% 0 61% 0);
+    transform: translate3d(1px, 0, 0);
+  }
+  46% {
+    clip-path: inset(33% 0 40% 0);
+    transform: translate3d(-1px, 0, 0);
+  }
+  64% {
+    clip-path: inset(4% 0 82% 0);
+    transform: translate3d(0, 1px, 0);
+  }
+  82% {
+    clip-path: inset(72% 0 4% 0);
+    transform: translate3d(2px, -1px, 0);
+  }
+  100% {
+    opacity: 0.5;
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes glitchFlicker {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  6% {
+    opacity: 0.35;
+    transform: translate3d(-1px, 0, 0);
+  }
+  7% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  34% {
+    opacity: 0.45;
+    transform: translate3d(1px, 0, 0);
+  }
+  36% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  63% {
+    opacity: 0.28;
+    transform: translate3d(0, -1px, 0);
+  }
+  65% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Per-letter flicker + distortion */
+
+@keyframes charGlitch {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    text-shadow:
+      0 0 10px rgba(255, 74, 61, 0.4),
+      0 0 18px rgba(255, 205, 135, 0.3);
+  }
+  30% {
+    opacity: 0.15;
+    transform: translate3d(-1px, -1px, 0) skewX(-4deg);
+    filter: blur(0.3px);
+    text-shadow:
+      -2px 0 6px rgba(255, 74, 61, 0.9),
+      0 0 14px rgba(255, 205, 135, 0.7);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translate3d(1px, 0, 0) skewX(3deg);
+    filter: blur(0.2px);
+    text-shadow:
+      2px 0 8px rgba(255, 205, 135, 0.9),
+      0 0 18px rgba(255, 120, 90, 0.7);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    text-shadow:
+      0 0 10px rgba(255, 74, 61, 0.6),
+      0 0 20px rgba(255, 178, 138, 0.5);
+  }
+}
+
+/* Scanline move across the logo */
+
+@keyframes logoScan {
+  0% {
+    transform: translate3d(-20%, 0, 0);
+    opacity: 0.25;
+  }
+  40% {
+    transform: translate3d(10%, 0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(35%, 0, 0);
+    opacity: 0.2;
+  }
+}
+
+/* Mobile tweaks */
+
+@media (max-width: 600px) {
+  .logo {
+    padding-inline: 1.25rem;
+    letter-spacing: 0.18em;
+  }
+
+  .bg-layer img {
+    width: 140%;
+    height: 140%;
+  }
+}
