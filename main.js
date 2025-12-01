@@ -164,7 +164,7 @@ async function generateBackgrounds() {
       loadingOverlay.classList.add("hidden");
     }, 400);
   } catch (err) {
-    console.error("Errore nella generazione delle immagini:", err);
+    console.error("Error generating background images:", err);
     // If something fails, still hide overlay after a delay
     setTimeout(() => {
       loadingOverlay.classList.add("hidden");
