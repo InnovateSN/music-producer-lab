@@ -68,6 +68,13 @@ export function initExplanationPage() {
       plan: null
     };
 
+    const billingState = {
+      hasPremiumAccess: false,
+      checked: false,
+      error: null,
+      plan: null
+    };
+
     const AUTH_ENDPOINTS = {
       signup: "/api/auth/signup",
       login: "/api/auth/login",

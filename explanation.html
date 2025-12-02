@@ -474,39 +474,34 @@
         </div>
 
         <!--
-          ========================= STRIPE INTEGRATION HOOK =========================
+          ========================= GUMROAD INTEGRATION HOOK =========================
           NOTE FOR DEVELOPER:
-          - Use the following elements as the main Stripe entry points:
+          - Use the following elements as the main Gumroad entry points:
               #mpl-nav-stripe-cta        (top-right "Join the waitlist")
               #mpl-hero-stripe-primary   (primary "Get early access")
               #mpl-hero-stripe-secondary (secondary "See how it works" – optional)
 
-          EXAMPLE: Stripe Checkout / Payment Link binding (pseudo-code)
+          EXAMPLE: Gumroad overlay / redirect binding (pseudo-code)
           ----------------------------------------------------------------
-          <script src="https://js.stripe.com/v3"></script>
+          <script src="https://gumroad.com/js/gumroad.js"></script>
           <script>
-            // Replace with your real Stripe publishable key
-            const stripe = Stripe("pk_live_YOUR_PUBLISHABLE_KEY");
-
             document.getElementById("mpl-hero-stripe-primary")
               .addEventListener("click", () => {
-                // Option A: redirect to a pre-configured Stripe Payment Link
-                window.location.href = "https://buy.stripe.com/YOUR_PAYMENT_LINK";
+                // Option A: redirect to your Gumroad product or pre-launch page
+                window.location.href = "https://gum.co/YOUR_PRODUCT";
 
-                // Option B: or call your backend to create a Checkout Session:
-                // fetch("/create-checkout-session", { method: "POST" })
-                //   .then(res => res.json())
-                //   .then(({ id }) => stripe.redirectToCheckout({ sessionId: id }));
+                // Option B: trigger the overlay instead of a redirect (requires gumroad.js)
+                // window.GumroadOverlay.open('YOUR_PRODUCT');
               });
 
             document.getElementById("mpl-nav-stripe-cta")
               .addEventListener("click", () => {
-                // Reuse the same behavior or a different Stripe flow if needed
-                window.location.href = "https://buy.stripe.com/YOUR_WAITLIST_LINK";
+                // Reuse the same behavior or a waitlist/pre-launch Gumroad URL
+                window.location.href = "https://gum.co/YOUR_WAITLIST";
               });
           </script>
 
-          You can safely remove or replace this comment block once Stripe is wired.
+          You can safely remove or replace this comment block once Gumroad is wired.
           ========================================================================
         -->
 
