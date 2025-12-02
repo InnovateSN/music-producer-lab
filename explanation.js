@@ -1,3 +1,10 @@
+import {
+  clearPendingLesson,
+  consumePendingLesson,
+  markPendingLesson,
+  persistPremiumStatus
+} from "./lesson-access.js";
+
 export function initExplanationPage() {
     const STRIPE_CONFIG = {
       publishableKey: "pk_test_51Nf2Example5gYc8cE8oXcQ4yVQfPOf0zYvWfY7kHqkMtxX8YxV8b7Yz3P7xYzExample",
@@ -58,15 +65,8 @@ export function initExplanationPage() {
         document.getElementById("lesson-5-link"),
     ].filter(Boolean);
 
-    let targetLessonUrl = null;
+    let targetLessonUrl = consumePendingLesson(null);
     let stripeClient = null;
-
-    const billingState = {
-      hasPremiumAccess: false,
-      checked: false,
-      error: null,
-      plan: null
-    };
 
     const billingState = {
       hasPremiumAccess: false,
@@ -126,10 +126,21 @@ export function initExplanationPage() {
       window.mplAuthState = authState;
       persistToken(token || null);
       persistUser(user || null);
+
+      if (authState.user?.isGuest) {
+        setBillingBanner(
+          "info",
+          "Guest session active. Create a free account to save progress and unlock more lessons."
+        );
+      }
     }
 
     function clearAuthState() {
       setAuthState({ user: null, token: null });
+      persistPremiumStatus(null);
+      billingState.hasPremiumAccess = false;
+      billingState.checked = false;
+      billingState.plan = null;
     }
 
     function setBillingBanner(type, message) {
@@ -219,6 +230,12 @@ export function initExplanationPage() {
         billingState.error = null;
         billingState.checked = true;
 
+        persistPremiumStatus({
+          hasAccess: billingState.hasPremiumAccess,
+          plan: billingState.plan,
+          checkedAt: Date.now()
+        });
+
         if (billingState.hasPremiumAccess) {
           setBillingBanner(
             "success",
@@ -227,6 +244,12 @@ export function initExplanationPage() {
         }
       } catch (err) {
         billingState.error = err.message;
+        persistPremiumStatus({
+          hasAccess: false,
+          plan: null,
+          checkedAt: Date.now(),
+          error: err.message
+        });
       }
       return billingState;
     }
@@ -431,10 +454,10 @@ export function initExplanationPage() {
           `Unable to verify your premium access (${status.error}). Please try again.`
         );
       } else {
-      setBillingBanner(
-        "error",
-        "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
-      );
+        setBillingBanner(
+          "error",
+          "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
+        );
       }
       openAuth("signup", targetHref);
     }
@@ -468,7 +491,8 @@ export function initExplanationPage() {
         setStatus(formLogin, "success", message);
       }
       closeAuth();
-      const redirectUrl = targetLessonUrl || "lesson-drums-1.html";
+      const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
+      targetLessonUrl = null;
       if (redirectUrl) {
         window.location.href = redirectUrl;
       }
@@ -477,13 +501,16 @@ export function initExplanationPage() {
     // Helper: open modal with initial mode
     function openAuth(initialMode = "signup", targetUrl = null) {
       targetLessonUrl = targetUrl;
+      if (targetLessonUrl) {
+        markPendingLesson(targetLessonUrl);
+      }
       backdrop.classList.remove("mpl-auth-hidden");
       backdrop.setAttribute("aria-hidden", "false");
       
       if (targetLessonUrl) {
-          guestBtn.querySelector('span').textContent = "Continue as guest";
+        guestBtn.querySelector('span').textContent = "Continue as guest";
       } else {
-          guestBtn.querySelector('span').textContent = "Enter as guest";
+        guestBtn.querySelector('span').textContent = "Enter as guest";
       }
 
       setMode(initialMode);
@@ -556,10 +583,18 @@ export function initExplanationPage() {
     // Guest entry goes directly to lesson page
     if (guestBtn) {
       guestBtn.addEventListener("click", () => {
+        setAuthState({
+          user: {
+            name: "Guest session",
+            email: null,
+            isGuest: true
+          },
+          token: null
+        });
         closeAuth();
-        // Always send guests to Lesson 1 regardless of which lesson link opened the modal
-        // (prevents guests from jumping directly to later lessons)
-        window.location.href = "lesson-drums-1.html";
+        const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
+        targetLessonUrl = null;
+        window.location.href = redirectUrl;
       });
     }
 
@@ -568,6 +603,7 @@ export function initExplanationPage() {
         const redirect =
           btn.getAttribute("data-mpl-logout-redirect") || "index.html";
         clearAuthState();
+        clearPendingLesson();
         window.location.href = redirect;
       });
     });
