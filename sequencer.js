@@ -1,3 +1,11 @@
+import {
+  isPersistenceEnabled,
+  loadLessonState,
+  persistLessonCompletion,
+  persistLessonProgress,
+  persistCurrentLessonIndex,
+} from "./state.js";
+
 // Sequencer dependencies and global state definitions
 
 const BPM = 120;
@@ -26,7 +34,7 @@ function arraysEqual(a, b) {
   return true;
 }
 
-const USE_PERSISTENT_STORAGE = false; // Assuming all current users are guests
+const USE_PERSISTENT_STORAGE = isPersistenceEnabled();
 
 // ---------------- WebAudio Sound Functions ----------------
 
@@ -170,7 +178,7 @@ function stopScheduling() {
 
 // --- Sequencer Factory Function ---
 
-function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLessonBtn) {
+function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLessonBtn, persistMeta = {}) {
   const wrapper = document.createElement("div");
   wrapper.className = "sequencer enhanced";
   wrapper.style.marginTop = index === 0 ? "0.8rem" : "0.6rem";
@@ -306,8 +314,8 @@ function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLesso
     instr.target.forEach(idx => currentActive[idx] = true);
   } else {
     // If interactive, load from storage or initialize empty
-    currentActive = 
-      (USE_PERSISTENT_STORAGE && progress[instr.id]?.pattern) 
+    currentActive =
+      (USE_PERSISTENT_STORAGE && progress[instr.id]?.pattern)
       ? progress[instr.id].pattern
       : new Array(16).fill(false);
   }
@@ -363,16 +371,23 @@ function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLesso
       btn.classList.toggle("seq-step-active", currentActive[i]);
 
       // Clear solved state if pattern changes
-      if (progress[instr.id]?.solved) {
-          progress[instr.id].solved = false;
-          if (USE_PERSISTENT_STORAGE) {
-            localStorage.setItem(LESSON_KEY, JSON.stringify(progress));
-          }
-          wrapper.classList.remove("completed");
-          if (nextLessonBtn) {
-             nextLessonBtn.disabled = true;
-             nextLessonBtn.title = "Complete exercise to unlock";
-          }
+      if (!progress[instr.id]) {
+        progress[instr.id] = { solved: false, pattern: currentActive };
+      } else {
+        progress[instr.id].pattern = currentActive;
+        progress[instr.id].solved = false;
+      }
+
+      if (USE_PERSISTENT_STORAGE) {
+        persistLessonProgress(LESSON_KEY, progress, persistMeta);
+      }
+
+      if (progress[instr.id]?.solved === false) {
+        wrapper.classList.remove("completed");
+        if (nextLessonBtn) {
+          nextLessonBtn.disabled = true;
+          nextLessonBtn.title = "Complete exercise to unlock";
+        }
       }
     });
 
@@ -417,7 +432,7 @@ function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLesso
     // Save state
     progress[instr.id] = { solved: isCorrect, pattern: currentActive };
     if (USE_PERSISTENT_STORAGE) {
-        localStorage.setItem(LESSON_KEY, JSON.stringify(progress));
+        persistLessonProgress(LESSON_KEY, progress, persistMeta);
     }
 
     if (isCorrect) {
@@ -457,10 +472,15 @@ function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLesso
  * @param {Array<Object>} instruments - Configuration for tracks.
  * @param {string} lessonKey - Local storage key.
  * @param {string} nextLessonUrl - URL for the next lesson.
+ * @param {Object} options - Additional metadata.
+ * @param {number} [options.lessonIndex] - Numeric lesson index for persistence.
  */
-export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
+export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
     const seqContainer = document.getElementById("mpl-sequencer-collection");
     if (!seqContainer) return;
+
+    const lessonIndex = options.lessonIndex || null;
+    const persistMeta = { lessonIndex };
 
     const statusEl = document.getElementById("mpl-seq-status");
     const playAllBtn = document.getElementById("mpl-seq-play-all");
@@ -470,7 +490,14 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
 
     let progress = {};
     if (USE_PERSISTENT_STORAGE) {
-        progress = JSON.parse(localStorage.getItem(lessonKey) || "{}");
+        const stored = loadLessonState(lessonKey);
+        progress = stored.progress || {};
+        if (!lessonIndex && stored.currentLessonIndex) {
+            persistMeta.lessonIndex = stored.currentLessonIndex;
+        }
+        if (lessonIndex) {
+            persistCurrentLessonIndex(lessonIndex);
+        }
     }
 
     // Clear previous sequencer instances
@@ -479,7 +506,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
 
     // Create sequencers 
     sequencers = instruments.map((instr, i) => {
-        const seq = createSequencer(instr, i, progress, lessonKey, statusEl, nextLessonBtn);
+        const seq = createSequencer(instr, i, progress, lessonKey, statusEl, nextLessonBtn, persistMeta);
         seqContainer.appendChild(seq.el);
         return seq;
     });
@@ -525,6 +552,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
             if (allSolved) {
                  nextLessonBtn.title = "Back to overview";
             }
+        }
+
+        if (USE_PERSISTENT_STORAGE) {
+            persistLessonCompletion(lessonKey, allSolved, { progress, ...persistMeta });
         }
 
         return allSolved;

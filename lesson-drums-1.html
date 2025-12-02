@@ -216,6 +216,7 @@
 
         const LESSON_KEY = "mpl-lesson1-progress";
         const NEXT_LESSON_URL = "lesson-drums-2.html";
+        const LESSON_INDEX = 1;
 
         // Instruments (only Kick for Lesson 1)
         const instruments = [
@@ -229,7 +230,7 @@
           }
         ];
 
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL, { lessonIndex: LESSON_INDEX });
       </script>
     </div>
   </body>

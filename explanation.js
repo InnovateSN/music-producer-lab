@@ -1,3 +1,5 @@
+import { getCurrentLessonIndex, getLessonUrlFromIndex } from "./state.js";
+
 export function initExplanationPage() {
     const STRIPE_CONFIG = {
       publishableKey: "pk_test_51Nf2Example5gYc8cE8oXcQ4yVQfPOf0zYvWfY7kHqkMtxX8YxV8b7Yz3P7xYzExample",
@@ -58,7 +60,9 @@ export function initExplanationPage() {
         document.getElementById("lesson-5-link"),
     ].filter(Boolean);
 
-    let targetLessonUrl = null;
+    const restoredLessonUrl = getLessonUrlFromIndex(getCurrentLessonIndex()) || null;
+
+    let targetLessonUrl = restoredLessonUrl;
     let stripeClient = null;
 
     const billingState = {
@@ -461,7 +465,7 @@ export function initExplanationPage() {
         setStatus(formLogin, "success", message);
       }
       closeAuth();
-      const redirectUrl = targetLessonUrl || "lesson-drums-1.html";
+      const redirectUrl = targetLessonUrl || restoredLessonUrl || "lesson-drums-1.html";
       if (redirectUrl) {
         window.location.href = redirectUrl;
       }

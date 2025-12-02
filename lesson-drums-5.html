@@ -101,6 +101,7 @@
 
         const LESSON_KEY = "mpl-lesson5-progress";
         const NEXT_LESSON_URL = "explanation.html"; // Final lesson navigates back to overview
+        const LESSON_INDEX = 5;
 
         // Instruments (All tracks are interactive in L5)
         const instruments = [
@@ -130,8 +131,8 @@
           }
         ];
 
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-        
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL, { lessonIndex: LESSON_INDEX });
+
       </script>
     </div>
   </body>

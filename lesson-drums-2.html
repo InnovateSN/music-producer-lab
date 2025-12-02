@@ -165,9 +165,10 @@
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       <script type="module">
         import { initDrumSequencer } from './sequencer.js';
-        
-        const LESSON_KEY = "mpl-lesson2-progress"; 
+
+        const LESSON_KEY = "mpl-lesson2-progress";
         const NEXT_LESSON_URL = "lesson-drums-3.html";
+        const LESSON_INDEX = 2;
 
         // Instruments
         const instruments = [
@@ -189,8 +190,8 @@
           }
         ];
         
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-        
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL, { lessonIndex: LESSON_INDEX });
+
       </script>
     </div>
   </body>
