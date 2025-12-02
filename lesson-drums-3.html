@@ -167,41 +167,52 @@
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       <!-- Sequencer Script Integration -->
       <script type="module">
+        import { ensureLessonAccess, renderLessonLock } from './lesson-access.js';
         import { initDrumSequencer } from './sequencer.js';
 
-        const LESSON_KEY = "mpl-lesson3-progress";
-        const NEXT_LESSON_URL = "lesson-drums-4.html";
-        
-        // Instruments
-        const instruments = [
-          {
-            id: "kick",
-            label: "Kick",
-            color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
-            target: [0,4,8,12], // 1, 5, 9, 13
-            instructions:
-              "Kick: 4 on the floor pattern (locked from L2)."
-          },
-          {
-            id: "snare",
-            label: "Snare",
-            color: "linear-gradient(135deg,#5f4dff,#8a9bff)", // Snare color (blueish/purple)
-            target: [4,12], // 5, 13 (Beats 2 and 4)
-            instructions:
-              "Snare: Backbeat on 2 and 4 (locked from L2)."
-          },
-          {
-            id: "hihat",
-            label: "Hi-Hat",
-            color: "linear-gradient(135deg,#00d4ff,#b8ffdd)", // Hi-Hat color (cyan/green)
-            target: [0, 2, 4, 6, 8, 10, 12, 14], // All odd steps (1, 3, 5, 7, 9, 11, 13, 15)
-            instructions:
-              "Hi-Hat: Program the eighth-note pattern (1 & 2 & 3 & 4 &). It should hit every odd step."
-          }
-        ];
+        const lessonUrl = window.location.pathname.split("/").pop() || "lesson-drums-3.html";
+        const access = ensureLessonAccess({
+          lessonUrl,
+          requiresPremium: true,
+          fallbackUrl: "explanation.html"
+        });
 
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-        
+        if (!access.allowed) {
+          renderLessonLock(access.reason, access.fallbackUrl);
+        } else {
+          const LESSON_KEY = "mpl-lesson3-progress";
+          const NEXT_LESSON_URL = "lesson-drums-4.html";
+
+          // Instruments
+          const instruments = [
+            {
+              id: "kick",
+              label: "Kick",
+              color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
+              target: [0,4,8,12], // 1, 5, 9, 13
+              instructions:
+                "Kick: 4 on the floor pattern (locked from L2)."
+            },
+            {
+              id: "snare",
+              label: "Snare",
+              color: "linear-gradient(135deg,#5f4dff,#8a9bff)", // Snare color (blueish/purple)
+              target: [4,12], // 5, 13 (Beats 2 and 4)
+              instructions:
+                "Snare: Backbeat on 2 and 4 (locked from L2)."
+            },
+            {
+              id: "hihat",
+              label: "Hi-Hat",
+              color: "linear-gradient(135deg,#00d4ff,#b8ffdd)", // Hi-Hat color (cyan/green)
+              target: [0, 2, 4, 6, 8, 10, 12, 14], // All odd steps (1, 3, 5, 7, 9, 11, 13, 15)
+              instructions:
+                "Hi-Hat: Program the eighth-note pattern (1 & 2 & 3 & 4 &). It should hit every odd step."
+            }
+          ];
+
+          initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        }
       </script>
     </div>
   </body>

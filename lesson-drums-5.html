@@ -97,41 +97,52 @@
       </div>
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       <script type="module">
+        import { ensureLessonAccess, renderLessonLock } from './lesson-access.js';
         import { initDrumSequencer } from './sequencer.js';
 
-        const LESSON_KEY = "mpl-lesson5-progress";
-        const NEXT_LESSON_URL = "explanation.html"; // Final lesson navigates back to overview
+        const lessonUrl = window.location.pathname.split("/").pop() || "lesson-drums-5.html";
+        const access = ensureLessonAccess({
+          lessonUrl,
+          requiresPremium: true,
+          fallbackUrl: "explanation.html"
+        });
 
-        // Instruments (All tracks are interactive in L5)
-        const instruments = [
-          {
-            id: "kick",
-            label: "Kick",
-            color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
-            // KICK target: 4/4 in beats 1, 2, 3 + fill elements in beat 4
-            target: [0, 4, 8, 12, 14], 
-            instructions: "Kick: Program 4/4 (steps 1, 5, 9) and create a fill with steps 13–16. Suggested target: 1, 5, 9, 13, 15."
-          },
-          {
-            id: "snare",
-            label: "Snare",
-            color: "linear-gradient(135deg,#5f4dff,#8a9bff)",
-            // SNARE target: Backbeat + fill elements
-            target: [4, 12, 15], 
-            instructions: "Snare: Program the backbeat (steps 5, 13) and add a final hit on step 16. Suggested target: 5, 13, 16."
-          },
-          {
-            id: "hihat",
-            label: "Hi-Hat",
-            color: "linear-gradient(135deg,#00d4ff,#b8ffdd)",
-            // HIHAT target: 8th notes, stopping before the end fill
-            target: [0, 2, 4, 6, 8, 10], // Stop at step 11
-            instructions: "Hi-Hat: Program straight eighths for the first 3 beats (steps 1–12), leaving space for the fill."
-          }
-        ];
+        if (!access.allowed) {
+          renderLessonLock(access.reason, access.fallbackUrl);
+        } else {
+          const LESSON_KEY = "mpl-lesson5-progress";
+          const NEXT_LESSON_URL = "explanation.html"; // Final lesson navigates back to overview
 
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-        
+          // Instruments (All tracks are interactive in L5)
+          const instruments = [
+            {
+              id: "kick",
+              label: "Kick",
+              color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
+              // KICK target: 4/4 in beats 1, 2, 3 + fill elements in beat 4
+              target: [0, 4, 8, 12, 14],
+              instructions: "Kick: Program 4/4 (steps 1, 5, 9) and create a fill with steps 13–16. Suggested target: 1, 5, 9, 13, 15."
+            },
+            {
+              id: "snare",
+              label: "Snare",
+              color: "linear-gradient(135deg,#5f4dff,#8a9bff)",
+              // SNARE target: Backbeat + fill elements
+              target: [4, 12, 15],
+              instructions: "Snare: Program the backbeat (steps 5, 13) and add a final hit on step 16. Suggested target: 5, 13, 16."
+            },
+            {
+              id: "hihat",
+              label: "Hi-Hat",
+              color: "linear-gradient(135deg,#00d4ff,#b8ffdd)",
+              // HIHAT target: 8th notes, stopping before the end fill
+              target: [0, 2, 4, 6, 8, 10], // Stop at step 11
+              instructions: "Hi-Hat: Program straight eighths for the first 3 beats (steps 1–12), leaving space for the fill."
+            }
+          ];
+
+          initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        }
       </script>
     </div>
   </body>
