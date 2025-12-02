@@ -509,13 +509,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
         const totalChecks = finalTracksToCheck.length;
 
         if (allSolved) {
-            statusEl.textContent = `Congratulazioni! Tutti i pattern sono corretti. Puoi procedere alla prossima lezione.`;
+            statusEl.textContent = `Congrats! All patterns are correct. You can proceed to the next lesson.`;
             nextLessonBtn.disabled = false;
-            nextLessonBtn.title = nextLessonUrl && nextLessonUrl !== 'explanation.html' ? "Vai alla prossima lezione" : "Torna all'overview";
+            nextLessonBtn.title = nextLessonUrl && nextLessonUrl !== 'explanation.html' ? "Go to next lesson" : "Back to overview";
         } else {
-             statusEl.textContent = `Progresso: ${solvedCount}/${totalChecks} pattern corretti. Riprova.`;
+             statusEl.textContent = `Progress: ${solvedCount}/${totalChecks} patterns correct. Keep going.`;
              nextLessonBtn.disabled = true;
-             nextLessonBtn.title = "Completa l'esercizio per sbloccare";
+             nextLessonBtn.title = "Complete the exercise to unlock";
         }
 
         // Handle Lesson 5 nav explicitly as it links back to overview
@@ -523,7 +523,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
             const nextSpan = nextLessonBtn.querySelector('span');
             if (nextSpan) nextSpan.textContent = 'Overview →';
             if (allSolved) {
-                 nextLessonBtn.title = "Torna all'overview";
+                 nextLessonBtn.title = "Back to overview";
             }
         }
 
@@ -539,13 +539,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     stopAllBtn.addEventListener("click", () => {
         stopAll();
         checkCompletionState();
-        statusEl.textContent = "Riproduzione interrotta.";
+        statusEl.textContent = "Playback stopped.";
     });
 
     playAllBtn.addEventListener("click", () => {
         startScheduling();
         const playingTracks = instruments.map(i => i.label).join(', ');
-        statusEl.textContent = `Riproduzione ${playingTracks} in sync.`;
+        statusEl.textContent = `Playing ${playingTracks} in sync.`;
     });
 
     checkAllBtn.addEventListener("click", () => {
