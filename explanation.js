@@ -407,7 +407,7 @@ export function initExplanationPage() {
         tabSignup.classList.add("mpl-auth-tab-active");
         formSignup.classList.remove("mpl-auth-hidden");
         pill.textContent = "Create your account";
-        title.textContent = "Welcome to Music Producer Lab";
+        title.textContent = "Welcome to BeatVault";
         subtitle.textContent =
           "Create a free account to save your progress and access upcoming labs.";
       } else if (mode === "login") {

@@ -3,13 +3,15 @@ const frontImg = document.getElementById("bg-front");
 const bgBackLayer = document.querySelector(".bg-layer-back");
 const bgFrontLayer = document.querySelector(".bg-layer-front");
 const logo = document.querySelector(".logo");
+const glitchLayer = logo.querySelector(".logo-glitch-layer") || logo;
 const loadingOverlay = document.getElementById("loadingOverlay");
 const logoButton = document.getElementById("logoButton");
 
 // Turn logo into per-letter spans with data-text preserved for glitch layers
-const originalLogoText = logo.textContent.trim();
-logo.setAttribute("data-text", originalLogoText);
-logo.innerHTML = originalLogoText
+const originalLogoText =
+  (logo.dataset.text || glitchLayer.textContent || "BEATVAULT").trim();
+glitchLayer.setAttribute("data-text", originalLogoText);
+glitchLayer.innerHTML = originalLogoText
   .split("")
   .map((ch) =>
     ch === " "
@@ -18,7 +20,7 @@ logo.innerHTML = originalLogoText
   )
   .join("");
 
-const logoChars = Array.from(logo.querySelectorAll(".logo-char"));
+const logoChars = Array.from(glitchLayer.querySelectorAll(".logo-char"));
 
 // Random per-letter glitch + font swap
 const fontClasses = ["font-a", "font-b", "font-c"];
