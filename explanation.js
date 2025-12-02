@@ -4,6 +4,7 @@ import {
   markPendingLesson,
   persistPremiumStatus
 } from "./lesson-access.js";
+import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const STRIPE_CONFIG = {
@@ -56,14 +57,9 @@ export function initExplanationPage() {
 
     const billingBanner = document.getElementById("mpl-billing-banner");
 
-    // Collect lesson links to force auth/guest selection
-    const lessonLinks = [
-        document.getElementById("lesson-1-link"),
-        document.getElementById("lesson-2-link"),
-        document.getElementById("lesson-3-link"),
-        document.getElementById("lesson-4-link"),
-        document.getElementById("lesson-5-link"),
-    ].filter(Boolean);
+    const labCardsContainer = document.getElementById("mpl-lab-cards");
+
+    let lessonLinks = [];
 
     let targetLessonUrl = consumePendingLesson(null);
     let stripeClient = null;
@@ -90,7 +86,62 @@ export function initExplanationPage() {
     };
 
     hydrateAuthFromStorage();
+    renderLabCards();
+    lessonLinks = Array.from(
+      document.querySelectorAll("[data-mpl-lesson-link]")
+    );
     checkEntitlement();
+
+    function renderLabCards() {
+      if (!labCardsContainer) return;
+
+      labCardsContainer.innerHTML = "";
+
+      LABS.forEach((lab) => {
+        const card = document.createElement("div");
+        card.className = "lab-card";
+        card.innerHTML = `
+          <div class="lab-tags">
+            <span class="lab-tag ${lab.access === "premium" ? "premium" : ""}">${lab.access === "premium" ? "Premium" : "Free"}</span>
+            <span class="lab-tag">${lab.hero.focus}</span>
+          </div>
+          <h3>${lab.title}</h3>
+          <div class="lab-meta">
+            <span>${lab.level}</span>
+            <span>·</span>
+            <span>${lab.duration}</span>
+          </div>
+          <p class="section-body" style="margin:0;">${lab.hero.subhead}</p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "lab-actions";
+
+        const openBtn = document.createElement("a");
+        openBtn.className = lab.access === "premium" ? "btn btn-outline" : "btn btn-primary";
+        openBtn.href = lab.lessonUrl;
+        openBtn.setAttribute("data-mpl-lesson-link", "");
+        if (lab.access === "premium") {
+          openBtn.setAttribute("data-mpl-access", "premium");
+        }
+        openBtn.innerHTML = `<span>Open lab</span>`;
+
+        const flowNote = document.createElement("div");
+        flowNote.className = "section-body";
+        flowNote.style.margin = "0";
+        flowNote.style.fontSize = "0.95rem";
+        const nextLesson = lab.nextSlug && LABS.find((item) => item.slug === lab.nextSlug);
+        flowNote.textContent = nextLesson
+          ? `Next: ${nextLesson.title}`
+          : "Final step before release-ready.";
+
+        actions.appendChild(openBtn);
+        actions.appendChild(flowNote);
+
+        card.appendChild(actions);
+        labCardsContainer.appendChild(card);
+      });
+    }
 
     function hydrateAuthFromStorage() {
       try {

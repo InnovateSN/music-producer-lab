@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arrangement Lab | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="explanation.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <span class="mpl-nav-logo-dot"></span>
+            <span>MUSIC PRODUCER LAB</span>
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" id="lesson-hero" aria-label="Arrangement Lab"></section>
+
+        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
+
+        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
+
+        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
+
+        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Arrangement Lab</div>
+          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+        </footer>
+      </div>
+    </div>
+
+    <script type="module">
+      import { renderLessonPage } from './lesson-template.js';
+      renderLessonPage('arrangement');
+    </script>
+  </body>
+</html>

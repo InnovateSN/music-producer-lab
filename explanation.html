@@ -295,15 +295,35 @@
             </p>
             <!-- NEW: Buttons to open each lesson page -->
             <div style="display:flex;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;">
-              <a class="btn btn-primary" href="lesson-drums-1.html" id="lesson-1-link"><span>Lesson 1 · 4 on the floor</span></a>
-              <a class="btn btn-primary" href="lesson-drums-2.html" id="lesson-2-link"><span>Lesson 2 · Add the snare</span></a>
-              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link" data-mpl-access="premium"><span>Lesson 3 · 8th hi-hats · Premium</span></a>
-              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link" data-mpl-access="premium"><span>Lesson 4 · 16th groove · Premium</span></a>
-              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link" data-mpl-access="premium"><span>Lesson 5 · Variation &amp; fills · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-1.html" id="lesson-1-link" data-mpl-lesson-link><span>Lesson 1 · 4 on the floor</span></a>
+              <a class="btn btn-primary" href="lesson-drums-2.html" id="lesson-2-link" data-mpl-lesson-link><span>Lesson 2 · Add the snare</span></a>
+              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 3 · 8th hi-hats · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 4 · 16th groove · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 5 · Variation &amp; fills · Premium</span></a>
             </div>
           </article>
         </section>
         <!-- END free drum-pattern lessons -->
+
+        <section id="mpl-core-labs" class="sections-grid" aria-label="Core production labs">
+          <article class="section">
+            <div class="section-eyebrow">Next up</div>
+            <h2 class="section-title">Arrangement → Mixing → Sound design → Vocals → Mastering.</h2>
+            <p class="section-body">
+              After the drum path, move through the core labs in order. Each lesson hands off to the next so you keep momentum without losing context.
+            </p>
+            <ul class="section-list">
+              <li>One hero lab per topic so you don’t drown in options.</li>
+              <li>Access control is baked in: free labs open instantly, premium labs prompt for unlock.</li>
+              <li>Navigation buttons at the bottom of every lab keep sequencing tight.</li>
+            </ul>
+          </article>
+          <article class="section">
+            <div class="section-eyebrow">Open a lab</div>
+            <h2 class="section-title">Choose your next module.</h2>
+            <div id="mpl-lab-cards" class="lab-card-grid" aria-label="Lab navigation"></div>
+          </article>
+        </section>
 
         <!-- Authentication modal -->
         <div
