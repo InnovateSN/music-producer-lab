@@ -31,6 +31,10 @@ export function initExplanationPage() {
     const howItWorksSection = document.getElementById("mpl-how-it-works");
 
     const guestBtn = document.getElementById("mpl-auth-guest");
+
+    const logoutTriggers = document.querySelectorAll(
+      '[data-mpl-action="logout"]'
+    );
     
     // Collect lesson links to force auth/guest selection
     const lessonLinks = [
@@ -43,6 +47,62 @@ export function initExplanationPage() {
 
     let targetLessonUrl = null;
 
+    const AUTH_ENDPOINTS = {
+      signup: "/api/auth/signup",
+      login: "/api/auth/login",
+      reset: "/api/auth/reset"
+    };
+
+    const AUTH_USER_KEY = "mpl_auth_user";
+    const AUTH_TOKEN_COOKIE = "mpl_auth_token";
+
+    const authState = {
+      user: null,
+      token: null
+    };
+
+    hydrateAuthFromStorage();
+
+    function hydrateAuthFromStorage() {
+      try {
+        const storedUser = localStorage.getItem(AUTH_USER_KEY);
+        if (storedUser) {
+          authState.user = JSON.parse(storedUser);
+        }
+      } catch (err) {
+        console.warn("Unable to read auth from storage", err);
+      }
+      window.mplAuthState = authState;
+    }
+
+    function persistToken(token) {
+      if (token) {
+        document.cookie = `${AUTH_TOKEN_COOKIE}=${token}; path=/; secure; samesite=strict`;
+      } else {
+        document.cookie = `${AUTH_TOKEN_COOKIE}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`; // expire
+      }
+    }
+
+    function persistUser(user) {
+      if (!user) {
+        localStorage.removeItem(AUTH_USER_KEY);
+        return;
+      }
+      localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+    }
+
+    function setAuthState({ user, token }) {
+      authState.user = user || null;
+      authState.token = token || null;
+      window.mplAuthState = authState;
+      persistToken(token || null);
+      persistUser(user || null);
+    }
+
+    function clearAuthState() {
+      setAuthState({ user: null, token: null });
+    }
+
 
     // Helper: switch between signup / login / forgot views
     function setMode(mode) {
@@ -54,6 +114,9 @@ export function initExplanationPage() {
       formSignup.classList.add("mpl-auth-hidden");
       formLogin.classList.add("mpl-auth-hidden");
       formForgot.classList.add("mpl-auth-hidden");
+      clearStatus(formSignup);
+      clearStatus(formLogin);
+      clearStatus(formForgot);
 
       if (mode === "signup") {
         tabSignup.classList.add("mpl-auth-tab-active");
@@ -77,6 +140,101 @@ export function initExplanationPage() {
         title.textContent = "Reset your password";
         subtitle.textContent =
           "Enter your email and we'll send you a link to reset your password.";
+      }
+    }
+
+    function getStatusEl(form) {
+      let el = form.querySelector(".mpl-auth-status");
+      if (!el) {
+        el = document.createElement("div");
+        el.className = "mpl-auth-status mpl-auth-hidden";
+        form.appendChild(el);
+      }
+      return el;
+    }
+
+    function setStatus(form, type, message) {
+      const statusEl = getStatusEl(form);
+      statusEl.textContent = message;
+      statusEl.dataset.state = type;
+      statusEl.classList.remove("mpl-auth-hidden");
+    }
+
+    function clearStatus(form) {
+      const statusEl = form.querySelector(".mpl-auth-status");
+      if (statusEl) {
+        statusEl.textContent = "";
+        statusEl.classList.add("mpl-auth-hidden");
+        delete statusEl.dataset.state;
+      }
+    }
+
+    function setButtonLoading(button, isLoading, loadingText = "Working…") {
+      if (!button) return;
+      const label = button.querySelector("span") || button;
+      if (isLoading) {
+        button.dataset.originalText = label.textContent;
+        label.textContent = loadingText;
+        button.disabled = true;
+      } else {
+        label.textContent = button.dataset.originalText || label.textContent;
+        button.disabled = false;
+        delete button.dataset.originalText;
+      }
+    }
+
+    function validateEmail(email) {
+      if (!email) return "Email is required.";
+      const emailRegex = /.+@.+\..+/;
+      if (!emailRegex.test(email)) return "Enter a valid email address.";
+      return "";
+    }
+
+    function validatePassword(password) {
+      if (!password) return "Password is required.";
+      if (password.length < 8)
+        return "Password must be at least 8 characters long.";
+      return "";
+    }
+
+    function validateName(name) {
+      if (!name) return "Name is required.";
+      if (name.length < 2) return "Please enter your full name.";
+      return "";
+    }
+
+    async function callAuth(endpoint, payload) {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response
+        .clone()
+        .json()
+        .catch(() => ({}));
+
+      if (!response.ok) {
+        const message = data?.message || "Unable to complete the request.";
+        throw new Error(message);
+      }
+
+      return data;
+    }
+
+    function handleAuthSuccess({ user, token, message }) {
+      setAuthState({ user: user || authState.user, token: token || authState.token });
+      if (message) {
+        setStatus(formLogin, "success", message);
+      }
+      closeAuth();
+      const redirectUrl = targetLessonUrl || "lesson-drums-1.html";
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
       }
     }
 
@@ -154,40 +312,113 @@ export function initExplanationPage() {
       });
     }
 
+    logoutTriggers.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const redirect =
+          btn.getAttribute("data-mpl-logout-redirect") || "index.html";
+        clearAuthState();
+        window.location.href = redirect;
+      });
+    });
+
     // ---------------- BACKEND INTEGRATION HOOKS ----------------
-    formSignup.addEventListener("submit", (e) => {
+    formSignup.addEventListener("submit", async (e) => {
       e.preventDefault();
+      clearStatus(formSignup);
       const payload = {
         name: e.target.name.value.trim(),
         email: e.target.email.value.trim(),
         password: e.target.password.value
       };
-      console.log("[AUTH] Signup payload (wire this to backend):", payload);
-      // TODO: call your signup endpoint here
-      closeAuth();
+
+      const nameError = validateName(payload.name);
+      const emailError = validateEmail(payload.email);
+      const passwordError = validatePassword(payload.password);
+      const errors = [nameError, emailError, passwordError].filter(Boolean);
+
+      if (errors.length) {
+        setStatus(formSignup, "error", errors[0]);
+        return;
+      }
+
+      const submitBtn = formSignup.querySelector(".mpl-auth-submit");
+
+      try {
+        setButtonLoading(submitBtn, true, "Creating account…");
+        const data = await callAuth(AUTH_ENDPOINTS.signup, payload);
+        handleAuthSuccess({
+          user: data.user || { name: payload.name, email: payload.email },
+          token: data.token,
+          message: data.message || "Account created."
+        });
+      } catch (err) {
+        setStatus(formSignup, "error", err.message || "Signup failed.");
+      } finally {
+        setButtonLoading(submitBtn, false);
+      }
     });
 
-    formLogin.addEventListener("submit", (e) => {
+    formLogin.addEventListener("submit", async (e) => {
       e.preventDefault();
+      clearStatus(formLogin);
       const payload = {
         email: e.target.email.value.trim(),
         password: e.target.password.value
       };
-      console.log("[AUTH] Login payload (wire this to backend):", payload);
-      // TODO: call your login endpoint here
-      closeAuth();
+
+      const emailError = validateEmail(payload.email);
+      const passwordError = validatePassword(payload.password);
+      const errors = [emailError, passwordError].filter(Boolean);
+
+      if (errors.length) {
+        setStatus(formLogin, "error", errors[0]);
+        return;
+      }
+
+      const submitBtn = formLogin.querySelector(".mpl-auth-submit");
+
+      try {
+        setButtonLoading(submitBtn, true, "Logging in…");
+        const data = await callAuth(AUTH_ENDPOINTS.login, payload);
+        handleAuthSuccess({
+          user: data.user || authState.user || { email: payload.email },
+          token: data.token,
+          message: data.message || "Logged in successfully."
+        });
+      } catch (err) {
+        setStatus(formLogin, "error", err.message || "Login failed.");
+      } finally {
+        setButtonLoading(submitBtn, false);
+      }
     });
 
-    formForgot.addEventListener("submit", (e) => {
+    formForgot.addEventListener("submit", async (e) => {
       e.preventDefault();
+      clearStatus(formForgot);
       const payload = {
         email: e.target.email.value.trim()
       };
-      console.log(
-        "[AUTH] Forgot-password payload (wire this to backend):",
-        payload
-      );
-      // TODO: call your password-reset endpoint here
-      closeAuth();
+
+      const emailError = validateEmail(payload.email);
+      if (emailError) {
+        setStatus(formForgot, "error", emailError);
+        return;
+      }
+
+      const submitBtn = formForgot.querySelector(".mpl-auth-submit");
+
+      try {
+        setButtonLoading(submitBtn, true, "Sending reset…");
+        const data = await callAuth(AUTH_ENDPOINTS.reset, payload);
+        setStatus(
+          formForgot,
+          "success",
+          data.message || "Check your email for reset instructions."
+        );
+      } catch (err) {
+        setStatus(formForgot, "error", err.message || "Reset failed.");
+      } finally {
+        setButtonLoading(submitBtn, false);
+      }
     });
-}
+  }
