@@ -56,6 +56,7 @@ export function initExplanationPage() {
     );
 
     const billingBanner = document.getElementById("mpl-billing-banner");
+    const paymentStatusEl = document.getElementById("mpl-payment-status");
 
     const labCardsContainer = document.getElementById("mpl-lab-cards");
 
@@ -63,6 +64,7 @@ export function initExplanationPage() {
 
     let targetLessonUrl = consumePendingLesson(null);
     let stripeClient = null;
+    let entitlementTracked = false;
 
     const billingState = {
       hasPremiumAccess: false,
@@ -83,6 +85,10 @@ export function initExplanationPage() {
     const authState = {
       user: null,
       token: null
+    };
+
+    const toastState = {
+      stack: null,
     };
 
     hydrateAuthFromStorage();
@@ -207,6 +213,64 @@ export function initExplanationPage() {
       billingBanner.classList.remove("mpl-auth-hidden");
     }
 
+    function trackEvent(eventName, detail = {}) {
+      try {
+        if (window.dataLayer) {
+          window.dataLayer.push({ event: eventName, ...detail });
+        }
+        if (typeof window.mplAnalytics === "function") {
+          window.mplAnalytics(eventName, detail);
+        }
+      } catch (err) {
+        console.warn("Analytics hook failed", err);
+      }
+      console.info(`[analytics] ${eventName}`, detail);
+    }
+
+    function getToastStack() {
+      if (toastState.stack) return toastState.stack;
+      const stack = document.createElement("div");
+      stack.className = "mpl-toast-stack";
+      document.body.appendChild(stack);
+      toastState.stack = stack;
+      return stack;
+    }
+
+    function showToast(type, message, duration = 4200) {
+      if (!message) return;
+      const stack = getToastStack();
+      const toast = document.createElement("div");
+      toast.className = "mpl-toast";
+      toast.dataset.state = type;
+      toast.textContent = message;
+      stack.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add("mpl-auth-hidden");
+        setTimeout(() => toast.remove(), 400);
+      }, duration);
+    }
+
+    function setPaymentStatus(type, message) {
+      if (!paymentStatusEl || !message) return;
+      paymentStatusEl.textContent = message;
+      paymentStatusEl.dataset.state = type;
+      paymentStatusEl.classList.remove("mpl-auth-hidden");
+
+      clearTimeout(paymentStatusEl.dismissTimer);
+      paymentStatusEl.dismissTimer = setTimeout(() => {
+        paymentStatusEl.classList.add("mpl-auth-hidden");
+      }, type === "error" ? 7000 : 4500);
+    }
+
+    function clearPaymentStatus() {
+      if (!paymentStatusEl) return;
+      paymentStatusEl.textContent = "";
+      paymentStatusEl.classList.add("mpl-auth-hidden");
+      delete paymentStatusEl.dataset.state;
+      clearTimeout(paymentStatusEl.dismissTimer);
+    }
+
     function parseBillingStatusFromQuery() {
       const params = new URLSearchParams(window.location.search);
       const billingStatus = params.get("billing");
@@ -218,18 +282,25 @@ export function initExplanationPage() {
           "success",
           billingMessage || "Payment confirmed. Premium content unlocked."
         );
+        showToast("success", billingMessage || "Payment confirmed. Premium content unlocked.");
+        trackEvent("payment_completion", { status: "success", source: "query" });
       } else if (billingStatus === "waitlist") {
         setBillingBanner("success", billingMessage || "You're on the waitlist.");
+        showToast("success", billingMessage || "You're on the waitlist.");
+        trackEvent("payment_waitlist", { status: "waitlist", source: "query" });
       } else if (billingStatus === "cancel") {
         setBillingBanner(
           "info",
           billingMessage || "Checkout canceled. You can try again anytime."
         );
+        setPaymentStatus("info", billingMessage || "Checkout canceled. You can try again anytime.");
       } else if (billingStatus === "error") {
         setBillingBanner(
           "error",
           billingMessage || "We couldn't verify your payment status."
         );
+        setPaymentStatus("error", billingMessage || "We couldn't verify your payment status.");
+        trackEvent("payment_completion", { status: "error", source: "query" });
       }
     }
 
@@ -292,6 +363,17 @@ export function initExplanationPage() {
             "success",
             data?.message || "Premium access active. Enjoy the full curriculum."
           );
+          setPaymentStatus("success", data?.message || "Premium access active. Enjoy the full curriculum.");
+          if (!entitlementTracked) {
+            trackEvent("payment_entitlement_confirmed", {
+              plan: billingState.plan || "unknown",
+            });
+            showToast(
+              "success",
+              data?.message || "Premium access active. Enjoy the full curriculum."
+            );
+            entitlementTracked = true;
+          }
         }
       } catch (err) {
         billingState.error = err.message;
@@ -301,6 +383,7 @@ export function initExplanationPage() {
           checkedAt: Date.now(),
           error: err.message
         });
+        setPaymentStatus("error", err.message || "Unable to verify premium access.");
       }
       return billingState;
     }
@@ -378,9 +461,21 @@ export function initExplanationPage() {
         button.dataset.originalText = label.textContent;
         label.textContent = loadingText;
         button.disabled = true;
+        button.classList.add("is-loading");
+        if (!button.querySelector(".btn-spinner")) {
+          const spinner = document.createElement("span");
+          spinner.className = "btn-spinner";
+          spinner.setAttribute("aria-hidden", "true");
+          button.insertBefore(spinner, label);
+        }
       } else {
         label.textContent = button.dataset.originalText || label.textContent;
         button.disabled = false;
+        button.classList.remove("is-loading");
+        const spinner = button.querySelector(".btn-spinner");
+        if (spinner) {
+          spinner.remove();
+        }
         delete button.dataset.originalText;
       }
     }
@@ -432,11 +527,18 @@ export function initExplanationPage() {
       try {
         const payload = buildWaitlistPayload(source);
         setButtonLoading(button, true, "Joining…");
+        setPaymentStatus("info", "Submitting your waitlist request…");
         const data = await callBilling(STRIPE_CONFIG.endpoints.waitlist, payload);
         setBillingBanner(
           "success",
           data?.message || "You're on the list. We'll reach out with early access."
         );
+        setPaymentStatus(
+          "success",
+          data?.message || "You're on the list. We'll reach out with early access."
+        );
+        showToast("success", data?.message || "Waitlist joined successfully.");
+        trackEvent("payment_waitlist_joined", { source });
 
         if (data?.redirectUrl) {
           window.location.href = data.redirectUrl;
@@ -445,6 +547,8 @@ export function initExplanationPage() {
         }
       } catch (err) {
         setBillingBanner("error", err.message || "Unable to join the waitlist.");
+        setPaymentStatus("error", err.message || "Unable to join the waitlist.");
+        trackEvent("payment_waitlist_failed", { source, message: err.message });
       } finally {
         setButtonLoading(button, false);
       }
@@ -455,7 +559,9 @@ export function initExplanationPage() {
 
       try {
         setBillingBanner("info", "Contacting server for secure checkout…");
+        setPaymentStatus("info", "Contacting server for secure checkout…");
         setButtonLoading(button, true, "Opening Stripe…");
+        trackEvent("payment_checkout_started", { source });
 
         const data = await callBilling(STRIPE_CONFIG.endpoints.checkout, {
           source,
@@ -471,15 +577,18 @@ export function initExplanationPage() {
           if (error) {
             throw new Error(error.message || "Stripe redirection failed.");
           }
+          setPaymentStatus("success", "Redirecting to secure checkout…");
           return;
         }
 
         if (data?.url) {
+          setPaymentStatus("success", "Redirecting to secure checkout…");
           window.location.href = data.url;
           return;
         }
 
         if (STRIPE_CONFIG.paymentLinkUrl) {
+          setPaymentStatus("success", "Redirecting to secure checkout…");
           window.location.href = STRIPE_CONFIG.paymentLinkUrl;
           return;
         }
@@ -487,6 +596,8 @@ export function initExplanationPage() {
         throw new Error("Checkout link unavailable. Try again later.");
       } catch (err) {
         setBillingBanner("error", err.message || "Unable to start checkout.");
+        setPaymentStatus("error", err.message || "Unable to start checkout.");
+        trackEvent("payment_checkout_failed", { source, message: err.message });
       } finally {
         setButtonLoading(button, false);
       }
@@ -504,8 +615,16 @@ export function initExplanationPage() {
           "error",
           `Unable to verify your premium access (${status.error}). Please try again.`
         );
+        setPaymentStatus(
+          "error",
+          `Unable to verify your premium access (${status.error}). Please try again.`
+        );
       } else {
         setBillingBanner(
+          "error",
+          "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
+        );
+        setPaymentStatus(
           "error",
           "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
         );
@@ -536,11 +655,14 @@ export function initExplanationPage() {
       return data;
     }
 
-    function handleAuthSuccess({ user, token, message }) {
+    function handleAuthSuccess({ user, token, message, mode, form }) {
       setAuthState({ user: user || authState.user, token: token || authState.token });
-      if (message) {
-        setStatus(formLogin, "success", message);
-      }
+      const successMessage = message || "Logged in successfully.";
+      const targetForm = form || formLogin;
+      setStatus(targetForm, "success", successMessage);
+      showToast("success", successMessage);
+      trackEvent("auth_conversion", { mode: mode || "unknown", email: user?.email });
+
       closeAuth();
       const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
       targetLessonUrl = null;
@@ -642,6 +764,8 @@ export function initExplanationPage() {
           },
           token: null
         });
+        showToast("success", "Guest session started. Progress won't be saved.");
+        trackEvent("auth_conversion", { mode: "guest" });
         closeAuth();
         const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
         targetLessonUrl = null;
@@ -687,7 +811,9 @@ export function initExplanationPage() {
         handleAuthSuccess({
           user: data.user || { name: payload.name, email: payload.email },
           token: data.token,
-          message: data.message || "Account created."
+          message: data.message || "Account created.",
+          mode: "signup",
+          form: formSignup
         });
       } catch (err) {
         setStatus(formSignup, "error", err.message || "Signup failed.");
@@ -721,7 +847,9 @@ export function initExplanationPage() {
         handleAuthSuccess({
           user: data.user || authState.user || { email: payload.email },
           token: data.token,
-          message: data.message || "Logged in successfully."
+          message: data.message || "Logged in successfully.",
+          mode: "login",
+          form: formLogin
         });
       } catch (err) {
         setStatus(formLogin, "error", err.message || "Login failed.");
@@ -753,6 +881,7 @@ export function initExplanationPage() {
           "success",
           data.message || "Check your email for reset instructions."
         );
+        showToast("success", data.message || "Reset link sent to your inbox.");
       } catch (err) {
         setStatus(formForgot, "error", err.message || "Reset failed.");
       } finally {

@@ -104,10 +104,31 @@
     border-color 0.2s ease,
     transform 0.12s ease,
     box-shadow 0.2s ease;
+  position: relative;
 }
 
 .btn span {
   font-size: 1.05em;
+}
+
+.btn .btn-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-top-color: rgba(0, 0, 0, 0.45);
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.btn.is-loading {
+  opacity: 0.82;
+  cursor: wait;
 }
 
 .btn-primary {
@@ -710,16 +731,34 @@
   color: rgba(245, 245, 245, 0.82);
 }
 
+.mpl-inline-status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.mpl-inline-status[data-state="success"],
+.mpl-auth-status[data-state="success"] {
+  border-color: rgba(0, 200, 120, 0.7);
+  background: rgba(0, 200, 120, 0.12);
+  color: #c8ffe4;
+}
+
+.mpl-inline-status[data-state="error"],
 .mpl-auth-status[data-state="error"] {
   border-color: rgba(255, 74, 61, 0.7);
   background: rgba(255, 74, 61, 0.12);
   color: #ffd6d2;
 }
 
-.mpl-auth-status[data-state="success"] {
-  border-color: rgba(0, 200, 120, 0.7);
-  background: rgba(0, 200, 120, 0.12);
-  color: #c8ffe4;
+.mpl-inline-status[data-state="info"] {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(245, 245, 245, 0.86);
 }
 
 .mpl-auth-submit:disabled {
@@ -741,6 +780,40 @@
 .mpl-auth-link-inline {
   align-self: flex-start;
   margin-top: 0.4rem;
+}
+
+.mpl-toast-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 80;
+}
+
+.mpl-toast {
+  min-width: 240px;
+  max-width: min(360px, 90vw);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 6, 8, 0.92);
+  color: rgba(245, 245, 245, 0.92);
+  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.7);
+  font-size: 0.95rem;
+}
+
+.mpl-toast[data-state="success"] {
+  border-color: rgba(0, 200, 120, 0.8);
+  background: rgba(0, 200, 120, 0.12);
+  color: #c8ffe4;
+}
+
+.mpl-toast[data-state="error"] {
+  border-color: rgba(255, 74, 61, 0.8);
+  background: rgba(255, 74, 61, 0.12);
+  color: #ffd6d2;
 }
 
 /* Responsive */
@@ -790,6 +863,33 @@
 
   .mpl-auth-modal {
     padding: 1.4rem 1.2rem 1.6rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mpl-auth-field-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mpl-auth-backdrop {
+    align-items: flex-start;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .mpl-auth-modal {
+    max-width: 520px;
+    width: min(520px, calc(100% - 1rem));
+  }
+
+  .mpl-toast-stack {
+    left: 0.75rem;
+    right: 0.75rem;
   }
 }
 /* ---------- END AUTH MODAL ---------- */
