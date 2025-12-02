@@ -51,6 +51,8 @@
           </div>
         </header>
 
+        <div class="mpl-billing-banner mpl-auth-hidden" id="mpl-billing-banner" role="status"></div>
+
         <section class="hero">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Interactive music production experience</div>
@@ -295,9 +297,9 @@
             <div style="display:flex;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;">
               <a class="btn btn-primary" href="lesson-drums-1.html" id="lesson-1-link"><span>Lesson 1 · 4 on the floor</span></a>
               <a class="btn btn-primary" href="lesson-drums-2.html" id="lesson-2-link"><span>Lesson 2 · Add the snare</span></a>
-              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link"><span>Lesson 3 · 8th hi-hats</span></a>
-              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link"><span>Lesson 4 · 16th groove</span></a>
-              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link"><span>Lesson 5 · Variation &amp; fills</span></a>
+              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link" data-mpl-access="premium"><span>Lesson 3 · 8th hi-hats · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link" data-mpl-access="premium"><span>Lesson 4 · 16th groove · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link" data-mpl-access="premium"><span>Lesson 5 · Variation &amp; fills · Premium</span></a>
             </div>
           </article>
         </section>
@@ -519,6 +521,7 @@
         </footer>
       </div>
 
+      <script src="https://js.stripe.com/v3"></script>
       <script type="module">
         import { initExplanationPage } from './explanation.js';
         initExplanationPage();
