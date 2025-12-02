@@ -205,7 +205,7 @@ export function renderLessonPage(slug) {
     return;
   }
 
-  document.title = `${lesson.title} | Music Producer Lab`;
+  document.title = `${lesson.title} | BeatVault`;
   const yearEl = document.getElementById("mpl-year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();

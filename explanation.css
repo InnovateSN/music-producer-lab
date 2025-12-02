@@ -3,7 +3,7 @@
 .page {
   min-height: 100vh;
   width: 100%;
-  background: radial-gradient(circle at top, #111111 0, #050607 55%);
+  background: radial-gradient(circle at 16% 14%, #121f45 0, #040611 58%);
   color: var(--text-main);
   display: flex;
   flex-direction: column;
@@ -34,18 +34,16 @@
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   color: var(--text-main);
 }
 
-.mpl-nav-logo-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: radial-gradient(circle, #ffb28a 0, #ff4a3d 52%, #57120f 100%);
-  box-shadow:
-    0 0 18px rgba(255, 74, 61, 0.9),
-    0 0 36px rgba(255, 178, 138, 0.7);
+.mpl-nav-logo-img {
+  height: 28px;
+  width: auto;
+  filter:
+    drop-shadow(0 0 12px rgba(78, 243, 255, 0.8))
+    drop-shadow(0 0 18px rgba(255, 58, 212, 0.55));
 }
 
 .mpl-nav-actions {
@@ -60,21 +58,21 @@
   padding: 0.9rem 1rem;
   font-size: 0.95rem;
   line-height: 1.4;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(145deg, rgba(14, 14, 16, 0.95), rgba(6, 6, 8, 0.92));
-  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-glow);
+  background: linear-gradient(145deg, rgba(12, 16, 33, 0.9), rgba(7, 9, 24, 0.92));
+  box-shadow: 0 12px 38px rgba(36, 187, 255, 0.15);
 }
 
 .mpl-billing-banner[data-state="success"] {
-  border-color: rgba(74, 222, 128, 0.45);
-  background: linear-gradient(145deg, rgba(9, 32, 18, 0.9), rgba(6, 14, 10, 0.95));
-  color: #b8f4d0;
+  border-color: rgba(78, 243, 255, 0.6);
+  background: linear-gradient(145deg, rgba(10, 34, 38, 0.9), rgba(6, 18, 22, 0.95));
+  color: #c8f9ff;
 }
 
 .mpl-billing-banner[data-state="error"] {
-  border-color: rgba(255, 74, 61, 0.55);
-  background: linear-gradient(145deg, rgba(38, 10, 10, 0.92), rgba(18, 6, 6, 0.9));
-  color: #ffc8c0;
+  border-color: rgba(255, 58, 212, 0.55);
+  background: linear-gradient(145deg, rgba(44, 10, 34, 0.92), rgba(20, 8, 18, 0.92));
+  color: #ffd6f8;
 }
 
 .mpl-billing-banner[data-state="info"] {
@@ -86,7 +84,7 @@
 
 .btn {
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--border-glow);
   padding: 0.5rem 1.1rem;
   font-size: 0.86rem;
   font-weight: 500;
@@ -97,7 +95,7 @@
   justify-content: center;
   gap: 0.4rem;
   cursor: pointer;
-  background: rgba(6, 6, 7, 0.9);
+  background: rgba(8, 10, 24, 0.9);
   color: var(--text-main);
   transition:
     background 0.2s ease,
@@ -134,16 +132,16 @@
 .btn-primary {
   background:
     radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.14), transparent 55%),
-    linear-gradient(135deg, #ff4a3d, #ffb28a);
-  color: #050607;
-  border-color: transparent;
+    linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #040611;
+  border-color: rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.9),
-    0 0 42px rgba(255, 74, 61, 0.65);
+    0 0 22px rgba(40, 186, 255, 0.26),
+    0 0 52px rgba(255, 58, 212, 0.4);
 }
 
 .btn-outline {
-  background: rgba(7, 7, 8, 0.9);
+  background: rgba(12, 14, 30, 0.9);
 }
 
 .btn:hover {
@@ -152,13 +150,13 @@
 
 .btn-primary:hover {
   box-shadow:
-    0 0 26px rgba(0, 0, 0, 0.9),
-    0 0 55px rgba(255, 74, 61, 0.95);
+    0 0 32px rgba(78, 243, 255, 0.48),
+    0 0 66px rgba(255, 58, 212, 0.75);
 }
 
 .btn-outline:hover {
-  background: rgba(16, 16, 18, 0.98);
-  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(18, 20, 42, 0.98);
+  border-color: rgba(126, 240, 255, 0.6);
 }
 
 /* Hero section */
@@ -185,13 +183,13 @@
 }
 
 .hero-title span {
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .hero-subtitle {
   font-size: 0.98rem;
   line-height: 1.6;
-  color: rgba(245, 245, 245, 0.8);
+  color: var(--text-muted);
   margin-bottom: 1.4rem;
 }
 
@@ -635,8 +633,8 @@
   gap: 0.15rem;
   padding: 0.2rem;
   border-radius: 999px;
-  background: rgba(8, 8, 10, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 14, 30, 0.96);
+  border: 1px solid var(--border-glow);
   margin-bottom: 1rem;
 }
 
@@ -654,8 +652,8 @@
 }
 
 .mpl-auth-tab-active {
-  background: linear-gradient(135deg, #ff4a3d, #ffb28a);
-  color: #050607;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #040611;
 }
 
 .mpl-auth-form {
@@ -743,16 +741,16 @@
 
 .mpl-inline-status[data-state="success"],
 .mpl-auth-status[data-state="success"] {
-  border-color: rgba(0, 200, 120, 0.7);
-  background: rgba(0, 200, 120, 0.12);
-  color: #c8ffe4;
+  border-color: rgba(78, 243, 255, 0.7);
+  background: rgba(78, 243, 255, 0.12);
+  color: #d6fbff;
 }
 
 .mpl-inline-status[data-state="error"],
 .mpl-auth-status[data-state="error"] {
-  border-color: rgba(255, 74, 61, 0.7);
-  background: rgba(255, 74, 61, 0.12);
-  color: #ffd6d2;
+  border-color: rgba(255, 58, 212, 0.7);
+  background: rgba(255, 58, 212, 0.12);
+  color: #ffd6f8;
 }
 
 .mpl-inline-status[data-state="info"] {
@@ -805,15 +803,15 @@
 }
 
 .mpl-toast[data-state="success"] {
-  border-color: rgba(0, 200, 120, 0.8);
-  background: rgba(0, 200, 120, 0.12);
-  color: #c8ffe4;
+  border-color: rgba(78, 243, 255, 0.8);
+  background: rgba(78, 243, 255, 0.12);
+  color: #d6fbff;
 }
 
 .mpl-toast[data-state="error"] {
-  border-color: rgba(255, 74, 61, 0.8);
-  background: rgba(255, 74, 61, 0.12);
-  color: #ffd6d2;
+  border-color: rgba(255, 58, 212, 0.8);
+  background: rgba(255, 58, 212, 0.12);
+  color: #ffd6f8;
 }
 
 /* Responsive */
@@ -984,9 +982,12 @@
 
 /* active step (instrument placed) */
 .seq-step-active {
-  background: linear-gradient(135deg,#ff7a56, #ffd5b8);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   border-color: transparent;
-  box-shadow: 0 6px 20px rgba(255,120,90,0.18), inset 0 -6px 18px rgba(0,0,0,0.22);
+  box-shadow:
+    0 6px 20px rgba(78, 243, 255, 0.22),
+    0 12px 32px rgba(255, 58, 212, 0.16),
+    inset 0 -6px 18px rgba(0, 0, 0, 0.22);
 }
 
 .seq-step-active span {
@@ -1016,23 +1017,26 @@
 
 /* highlight correct (target) steps so students can see them clearly */
 .seq-step.correct-step {
-  box-shadow: inset 0 -6px 18px rgba(255,178,138,0.06);
-  border: 1px dashed rgba(255,178,138,0.18);
-  /* subtle warmer tint when not active */
-  background: linear-gradient(180deg, rgba(255,178,138,0.03), rgba(10,10,12,0.92));
+  box-shadow: inset 0 -6px 18px rgba(126, 240, 255, 0.12);
+  border: 1px dashed rgba(126, 240, 255, 0.35);
+  /* subtle cooler tint when not active */
+  background: linear-gradient(180deg, rgba(126, 240, 255, 0.06), rgba(10,10,18,0.92));
 }
 
 .seq-step.correct-step span {
-  color: rgba(255,178,138,0.9);
+  color: rgba(126, 240, 255, 0.92);
   font-weight: 700;
 }
 
 /* Ensure correct-step uses the same active styling as other active steps when toggled */
 .seq-step.correct-step.seq-step-active,
 .seq-step.seq-step-active.correct-step {
-  background: linear-gradient(135deg,#ff7a56, #ffd5b8);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   border-color: transparent;
-  box-shadow: 0 6px 20px rgba(255,120,90,0.18), inset 0 -6px 18px rgba(0,0,0,0.22);
+  box-shadow:
+    0 6px 20px rgba(78, 243, 255, 0.22),
+    0 12px 32px rgba(255, 58, 212, 0.16),
+    inset 0 -6px 18px rgba(0,0,0,0.22);
 }
 
 .seq-step.correct-step.seq-step-active span,
@@ -1080,8 +1084,8 @@
 }
 
 .lab-card .lab-tag {
-  background: linear-gradient(135deg, #ff5a3d, #ffb28a);
-  color: #0f111a;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #040611;
   padding: 0.28rem 0.55rem;
   border-radius: 999px;
   font-size: 0.78rem;
@@ -1090,8 +1094,8 @@
 
 .lab-card .lab-tag.premium {
   background: #1c2030;
-  color: #ffb28a;
-  border: 1px solid #3b3f53;
+  color: #ffd6f8;
+  border: 1px solid rgba(126, 240, 255, 0.3);
 }
 
 .lab-card .lab-actions {
