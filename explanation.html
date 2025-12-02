@@ -516,22 +516,7 @@
         </footer>
       </div>
 
-      <script>
-        // Configure Gumroad links and (optionally) backend endpoints without editing JS.
-        // Replace the purchase/waitlist links with your live or pre-launch Gumroad URLs.
-        window.MPL_BILLING_CONFIG = {
-          provider: 'gumroad',
-          purchaseLinkUrl: 'https://gumroad.com/l/YOUR_PRODUCT_OR_PRICE',
-          waitlistLinkUrl: 'https://gumroad.com/l/YOUR_WAITLIST_OR_PRELAUNCH',
-          endpoints: {
-            // Leave these as-is if your backend handles entitlement + redirects.
-            // Set to null to skip the backend and redirect directly to the Gumroad links above.
-            waitlist: '/api/payments/waitlist',
-            checkout: '/api/payments/create-checkout-session',
-            entitlement: '/api/payments/entitlement'
-          }
-        };
-      </script>
+      <script src="https://js.stripe.com/v3"></script>
       <script type="module">
         import { initExplanationPage } from './explanation.js';
         initExplanationPage();

@@ -1,18 +1,14 @@
 export function initExplanationPage() {
-    const DEFAULT_BILLING_CONFIG = {
-      provider: "gumroad",
-      purchaseLinkUrl: null,
-      waitlistLinkUrl: null,
+    const STRIPE_CONFIG = {
+      publishableKey: "pk_test_51Nf2Example5gYc8cE8oXcQ4yVQfPOf0zYvWfY7kHqkMtxX8YxV8b7Yz3P7xYzExample",
+      paymentLinkUrl: "https://buy.stripe.com/test_8wM28ncYp5rE1hC288",
+      waitlistLinkUrl: "https://buy.stripe.com/test_bIY3f2gkM2yU9Qw9AA",
       endpoints: {
-        waitlist: null,
-        checkout: null,
-        entitlement: null
+        waitlist: "/api/payments/waitlist",
+        checkout: "/api/payments/create-checkout-session",
+        entitlement: "/api/payments/entitlement"
       }
     };
-
-    const BILLING_CONFIG = normalizeBillingConfig(
-      window.MPL_BILLING_CONFIG || DEFAULT_BILLING_CONFIG
-    );
 
     // Simple dynamic year in footer
     document.getElementById("mpl-year").textContent =
@@ -63,6 +59,14 @@ export function initExplanationPage() {
     ].filter(Boolean);
 
     let targetLessonUrl = null;
+    let stripeClient = null;
+
+    const billingState = {
+      hasPremiumAccess: false,
+      checked: false,
+      error: null,
+      plan: null
+    };
 
     const billingState = {
       hasPremiumAccess: false,
@@ -87,31 +91,6 @@ export function initExplanationPage() {
 
     hydrateAuthFromStorage();
     checkEntitlement();
-
-    function normalizeBillingConfig(config) {
-      const merged = {
-        ...DEFAULT_BILLING_CONFIG,
-        ...config,
-        endpoints: {
-          ...DEFAULT_BILLING_CONFIG.endpoints,
-          ...(config?.endpoints || {})
-        }
-      };
-
-      if (!merged.purchaseLinkUrl) {
-        console.info(
-          "Set window.MPL_BILLING_CONFIG.purchaseLinkUrl to your Gumroad product/price link."
-        );
-      }
-
-      if (!merged.waitlistLinkUrl) {
-        console.info(
-          "Set window.MPL_BILLING_CONFIG.waitlistLinkUrl to your Gumroad waitlist/pre-launch link."
-        );
-      }
-
-      return merged;
-    }
 
     function hydrateAuthFromStorage() {
       try {
@@ -192,6 +171,18 @@ export function initExplanationPage() {
       }
     }
 
+    function getStripeClient() {
+      if (stripeClient) return stripeClient;
+      if (!window.Stripe) {
+        throw new Error("Stripe.js failed to load. Please disable blockers and retry.");
+      }
+      if (!STRIPE_CONFIG.publishableKey) {
+        throw new Error("Stripe publishable key missing in config.");
+      }
+      stripeClient = window.Stripe(STRIPE_CONFIG.publishableKey);
+      return stripeClient;
+    }
+
     async function callBilling(endpoint, payload = null, method = "POST") {
       const opts = {
         method,
@@ -222,15 +213,7 @@ export function initExplanationPage() {
     async function checkEntitlement(force = false) {
       if (billingState.checked && !force) return billingState;
       try {
-        if (!BILLING_CONFIG.endpoints?.entitlement) {
-          billingState.hasPremiumAccess = false;
-          billingState.plan = null;
-          billingState.error = null;
-          billingState.checked = true;
-          return billingState;
-        }
-
-        const data = await callBilling(BILLING_CONFIG.endpoints.entitlement, null, "GET");
+        const data = await callBilling(STRIPE_CONFIG.endpoints.entitlement, null, "GET");
         billingState.hasPremiumAccess = !!data?.hasAccess;
         billingState.plan = data?.plan || null;
         billingState.error = null;
@@ -375,17 +358,7 @@ export function initExplanationPage() {
       try {
         const payload = buildWaitlistPayload(source);
         setButtonLoading(button, true, "Joining…");
-        if (!BILLING_CONFIG.endpoints?.waitlist) {
-          if (BILLING_CONFIG.waitlistLinkUrl) {
-            window.location.href = BILLING_CONFIG.waitlistLinkUrl;
-            return;
-          }
-          throw new Error(
-            "Waitlist link not configured. Set window.MPL_BILLING_CONFIG.waitlistLinkUrl."
-          );
-        }
-
-        const data = await callBilling(BILLING_CONFIG.endpoints.waitlist, payload);
+        const data = await callBilling(STRIPE_CONFIG.endpoints.waitlist, payload);
         setBillingBanner(
           "success",
           data?.message || "You're on the list. We'll reach out with early access."
@@ -393,8 +366,8 @@ export function initExplanationPage() {
 
         if (data?.redirectUrl) {
           window.location.href = data.redirectUrl;
-        } else if (BILLING_CONFIG.waitlistLinkUrl) {
-          window.location.href = BILLING_CONFIG.waitlistLinkUrl;
+        } else if (STRIPE_CONFIG.waitlistLinkUrl) {
+          window.location.href = STRIPE_CONFIG.waitlistLinkUrl;
         }
       } catch (err) {
         setBillingBanner("error", err.message || "Unable to join the waitlist.");
@@ -408,31 +381,32 @@ export function initExplanationPage() {
 
       try {
         setBillingBanner("info", "Contacting server for secure checkout…");
-        setButtonLoading(button, true, "Opening Gumroad…");
+        setButtonLoading(button, true, "Opening Stripe…");
 
-        if (!BILLING_CONFIG.endpoints?.checkout) {
-          if (BILLING_CONFIG.purchaseLinkUrl) {
-            window.location.href = BILLING_CONFIG.purchaseLinkUrl;
-            return;
-          }
-          throw new Error(
-            "Checkout link not configured. Set window.MPL_BILLING_CONFIG.purchaseLinkUrl."
-          );
-        }
-
-        const data = await callBilling(BILLING_CONFIG.endpoints.checkout, {
+        const data = await callBilling(STRIPE_CONFIG.endpoints.checkout, {
           source,
           returnUrl: window.location.href,
           cancelUrl: `${window.location.origin}${window.location.pathname}?billing=cancel`
         });
+
+        if (data?.sessionId) {
+          const stripe = getStripeClient();
+          const { error } = await stripe.redirectToCheckout({
+            sessionId: data.sessionId
+          });
+          if (error) {
+            throw new Error(error.message || "Stripe redirection failed.");
+          }
+          return;
+        }
 
         if (data?.url) {
           window.location.href = data.url;
           return;
         }
 
-        if (BILLING_CONFIG.purchaseLinkUrl) {
-          window.location.href = BILLING_CONFIG.purchaseLinkUrl;
+        if (STRIPE_CONFIG.paymentLinkUrl) {
+          window.location.href = STRIPE_CONFIG.paymentLinkUrl;
           return;
         }
 
