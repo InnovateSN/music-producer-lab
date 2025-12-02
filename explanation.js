@@ -4,9 +4,9 @@ export function initExplanationPage() {
       purchaseLinkUrl: null,
       waitlistLinkUrl: null,
       endpoints: {
-        waitlist: "/api/payments/waitlist",
-        checkout: "/api/payments/create-checkout-session",
-        entitlement: "/api/payments/entitlement"
+        waitlist: null,
+        checkout: null,
+        entitlement: null
       }
     };
 
@@ -222,6 +222,14 @@ export function initExplanationPage() {
     async function checkEntitlement(force = false) {
       if (billingState.checked && !force) return billingState;
       try {
+        if (!BILLING_CONFIG.endpoints?.entitlement) {
+          billingState.hasPremiumAccess = false;
+          billingState.plan = null;
+          billingState.error = null;
+          billingState.checked = true;
+          return billingState;
+        }
+
         const data = await callBilling(BILLING_CONFIG.endpoints.entitlement, null, "GET");
         billingState.hasPremiumAccess = !!data?.hasAccess;
         billingState.plan = data?.plan || null;
