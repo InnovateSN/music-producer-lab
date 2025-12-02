@@ -51,6 +51,8 @@
           </div>
         </header>
 
+        <div class="mpl-billing-banner mpl-auth-hidden" id="mpl-billing-banner" role="status"></div>
+
         <section class="hero">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Interactive music production experience</div>
@@ -295,9 +297,9 @@
             <div style="display:flex;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;">
               <a class="btn btn-primary" href="lesson-drums-1.html" id="lesson-1-link"><span>Lesson 1 · 4 on the floor</span></a>
               <a class="btn btn-primary" href="lesson-drums-2.html" id="lesson-2-link"><span>Lesson 2 · Add the snare</span></a>
-              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link"><span>Lesson 3 · 8th hi-hats</span></a>
-              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link"><span>Lesson 4 · 16th groove</span></a>
-              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link"><span>Lesson 5 · Variation &amp; fills</span></a>
+              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link" data-mpl-access="premium"><span>Lesson 3 · 8th hi-hats · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link" data-mpl-access="premium"><span>Lesson 4 · 16th groove · Premium</span></a>
+              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link" data-mpl-access="premium"><span>Lesson 5 · Variation &amp; fills · Premium</span></a>
             </div>
           </article>
         </section>
@@ -472,39 +474,34 @@
         </div>
 
         <!--
-          ========================= STRIPE INTEGRATION HOOK =========================
+          ========================= GUMROAD INTEGRATION HOOK =========================
           NOTE FOR DEVELOPER:
-          - Use the following elements as the main Stripe entry points:
+          - Use the following elements as the main Gumroad entry points:
               #mpl-nav-stripe-cta        (top-right "Join the waitlist")
               #mpl-hero-stripe-primary   (primary "Get early access")
               #mpl-hero-stripe-secondary (secondary "See how it works" – optional)
 
-          EXAMPLE: Stripe Checkout / Payment Link binding (pseudo-code)
+          EXAMPLE: Gumroad overlay / redirect binding (pseudo-code)
           ----------------------------------------------------------------
-          <script src="https://js.stripe.com/v3"></script>
+          <script src="https://gumroad.com/js/gumroad.js"></script>
           <script>
-            // Replace with your real Stripe publishable key
-            const stripe = Stripe("pk_live_YOUR_PUBLISHABLE_KEY");
-
             document.getElementById("mpl-hero-stripe-primary")
               .addEventListener("click", () => {
-                // Option A: redirect to a pre-configured Stripe Payment Link
-                window.location.href = "https://buy.stripe.com/YOUR_PAYMENT_LINK";
+                // Option A: redirect to your Gumroad product or pre-launch page
+                window.location.href = "https://gum.co/YOUR_PRODUCT";
 
-                // Option B: or call your backend to create a Checkout Session:
-                // fetch("/create-checkout-session", { method: "POST" })
-                //   .then(res => res.json())
-                //   .then(({ id }) => stripe.redirectToCheckout({ sessionId: id }));
+                // Option B: trigger the overlay instead of a redirect (requires gumroad.js)
+                // window.GumroadOverlay.open('YOUR_PRODUCT');
               });
 
             document.getElementById("mpl-nav-stripe-cta")
               .addEventListener("click", () => {
-                // Reuse the same behavior or a different Stripe flow if needed
-                window.location.href = "https://buy.stripe.com/YOUR_WAITLIST_LINK";
+                // Reuse the same behavior or a waitlist/pre-launch Gumroad URL
+                window.location.href = "https://gum.co/YOUR_WAITLIST";
               });
           </script>
 
-          You can safely remove or replace this comment block once Stripe is wired.
+          You can safely remove or replace this comment block once Gumroad is wired.
           ========================================================================
         -->
 
@@ -519,6 +516,22 @@
         </footer>
       </div>
 
+      <script>
+        // Configure Gumroad links and (optionally) backend endpoints without editing JS.
+        // Replace the purchase/waitlist links with your live or pre-launch Gumroad URLs.
+        window.MPL_BILLING_CONFIG = {
+          provider: 'gumroad',
+          purchaseLinkUrl: 'https://gumroad.com/l/YOUR_PRODUCT_OR_PRICE',
+          waitlistLinkUrl: 'https://gumroad.com/l/YOUR_WAITLIST_OR_PRELAUNCH',
+          endpoints: {
+            // Leave these as-is if your backend handles entitlement + redirects.
+            // Set to null to skip the backend and redirect directly to the Gumroad links above.
+            waitlist: '/api/payments/waitlist',
+            checkout: '/api/payments/create-checkout-session',
+            entitlement: '/api/payments/entitlement'
+          }
+        };
+      </script>
       <script type="module">
         import { initExplanationPage } from './explanation.js';
         initExplanationPage();

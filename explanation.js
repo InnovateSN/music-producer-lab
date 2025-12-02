@@ -1,4 +1,19 @@
 export function initExplanationPage() {
+    const DEFAULT_BILLING_CONFIG = {
+      provider: "gumroad",
+      purchaseLinkUrl: null,
+      waitlistLinkUrl: null,
+      endpoints: {
+        waitlist: "/api/payments/waitlist",
+        checkout: "/api/payments/create-checkout-session",
+        entitlement: "/api/payments/entitlement"
+      }
+    };
+
+    const BILLING_CONFIG = normalizeBillingConfig(
+      window.MPL_BILLING_CONFIG || DEFAULT_BILLING_CONFIG
+    );
+
     // Simple dynamic year in footer
     document.getElementById("mpl-year").textContent =
       new Date().getFullYear();
@@ -35,7 +50,9 @@ export function initExplanationPage() {
     const logoutTriggers = document.querySelectorAll(
       '[data-mpl-action="logout"]'
     );
-    
+
+    const billingBanner = document.getElementById("mpl-billing-banner");
+
     // Collect lesson links to force auth/guest selection
     const lessonLinks = [
         document.getElementById("lesson-1-link"),
@@ -46,6 +63,13 @@ export function initExplanationPage() {
     ].filter(Boolean);
 
     let targetLessonUrl = null;
+
+    const billingState = {
+      hasPremiumAccess: false,
+      checked: false,
+      error: null,
+      plan: null
+    };
 
     const AUTH_ENDPOINTS = {
       signup: "/api/auth/signup",
@@ -62,6 +86,32 @@ export function initExplanationPage() {
     };
 
     hydrateAuthFromStorage();
+    checkEntitlement();
+
+    function normalizeBillingConfig(config) {
+      const merged = {
+        ...DEFAULT_BILLING_CONFIG,
+        ...config,
+        endpoints: {
+          ...DEFAULT_BILLING_CONFIG.endpoints,
+          ...(config?.endpoints || {})
+        }
+      };
+
+      if (!merged.purchaseLinkUrl) {
+        console.info(
+          "Set window.MPL_BILLING_CONFIG.purchaseLinkUrl to your Gumroad product/price link."
+        );
+      }
+
+      if (!merged.waitlistLinkUrl) {
+        console.info(
+          "Set window.MPL_BILLING_CONFIG.waitlistLinkUrl to your Gumroad waitlist/pre-launch link."
+        );
+      }
+
+      return merged;
+    }
 
     function hydrateAuthFromStorage() {
       try {
@@ -101,6 +151,93 @@ export function initExplanationPage() {
 
     function clearAuthState() {
       setAuthState({ user: null, token: null });
+    }
+
+    function setBillingBanner(type, message) {
+      if (!billingBanner) return;
+      if (!message) {
+        billingBanner.classList.add("mpl-auth-hidden");
+        delete billingBanner.dataset.state;
+        billingBanner.textContent = "";
+        return;
+      }
+      billingBanner.textContent = message;
+      billingBanner.dataset.state = type;
+      billingBanner.classList.remove("mpl-auth-hidden");
+    }
+
+    function parseBillingStatusFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const billingStatus = params.get("billing");
+      const billingMessage = params.get("billing_message");
+      if (!billingStatus) return;
+
+      if (billingStatus === "success") {
+        setBillingBanner(
+          "success",
+          billingMessage || "Payment confirmed. Premium content unlocked."
+        );
+      } else if (billingStatus === "waitlist") {
+        setBillingBanner("success", billingMessage || "You're on the waitlist.");
+      } else if (billingStatus === "cancel") {
+        setBillingBanner(
+          "info",
+          billingMessage || "Checkout canceled. You can try again anytime."
+        );
+      } else if (billingStatus === "error") {
+        setBillingBanner(
+          "error",
+          billingMessage || "We couldn't verify your payment status."
+        );
+      }
+    }
+
+    async function callBilling(endpoint, payload = null, method = "POST") {
+      const opts = {
+        method,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      };
+
+      if (payload && method !== "GET") {
+        opts.body = JSON.stringify(payload);
+      }
+
+      const response = await fetch(endpoint, opts);
+      const data = await response
+        .clone()
+        .json()
+        .catch(() => ({}));
+
+      if (!response.ok) {
+        const message = data?.message || "Unable to complete the request.";
+        throw new Error(message);
+      }
+
+      return data;
+    }
+
+    async function checkEntitlement(force = false) {
+      if (billingState.checked && !force) return billingState;
+      try {
+        const data = await callBilling(BILLING_CONFIG.endpoints.entitlement, null, "GET");
+        billingState.hasPremiumAccess = !!data?.hasAccess;
+        billingState.plan = data?.plan || null;
+        billingState.error = null;
+        billingState.checked = true;
+
+        if (billingState.hasPremiumAccess) {
+          setBillingBanner(
+            "success",
+            data?.message || "Premium access active. Enjoy the full curriculum."
+          );
+        }
+      } catch (err) {
+        billingState.error = err.message;
+      }
+      return billingState;
     }
 
 
@@ -203,6 +340,123 @@ export function initExplanationPage() {
       return "";
     }
 
+    function buildWaitlistPayload(source) {
+      const emailFromUser = authState.user?.email;
+      const nameFromUser = authState.user?.name;
+      const emailInput = emailFromUser || window.prompt("Enter your email to join the waitlist");
+
+      if (!emailInput) {
+        throw new Error("Email is required to join the waitlist.");
+      }
+
+      const emailError = validateEmail(emailInput.trim());
+      if (emailError) {
+        throw new Error(emailError);
+      }
+
+      return {
+        email: emailInput.trim(),
+        name: nameFromUser || null,
+        source,
+        returnUrl: window.location.href
+      };
+    }
+
+    async function joinWaitlistFlow(source = "nav") {
+      const button = source === "nav" ? navStripeCta : heroPrimaryCta;
+      try {
+        const payload = buildWaitlistPayload(source);
+        setButtonLoading(button, true, "Joining…");
+        if (!BILLING_CONFIG.endpoints?.waitlist) {
+          if (BILLING_CONFIG.waitlistLinkUrl) {
+            window.location.href = BILLING_CONFIG.waitlistLinkUrl;
+            return;
+          }
+          throw new Error(
+            "Waitlist link not configured. Set window.MPL_BILLING_CONFIG.waitlistLinkUrl."
+          );
+        }
+
+        const data = await callBilling(BILLING_CONFIG.endpoints.waitlist, payload);
+        setBillingBanner(
+          "success",
+          data?.message || "You're on the list. We'll reach out with early access."
+        );
+
+        if (data?.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else if (BILLING_CONFIG.waitlistLinkUrl) {
+          window.location.href = BILLING_CONFIG.waitlistLinkUrl;
+        }
+      } catch (err) {
+        setBillingBanner("error", err.message || "Unable to join the waitlist.");
+      } finally {
+        setButtonLoading(button, false);
+      }
+    }
+
+    async function startCheckoutFlow(source = "hero") {
+      const button = source === "nav" ? navStripeCta : heroPrimaryCta;
+
+      try {
+        setBillingBanner("info", "Contacting server for secure checkout…");
+        setButtonLoading(button, true, "Opening Gumroad…");
+
+        if (!BILLING_CONFIG.endpoints?.checkout) {
+          if (BILLING_CONFIG.purchaseLinkUrl) {
+            window.location.href = BILLING_CONFIG.purchaseLinkUrl;
+            return;
+          }
+          throw new Error(
+            "Checkout link not configured. Set window.MPL_BILLING_CONFIG.purchaseLinkUrl."
+          );
+        }
+
+        const data = await callBilling(BILLING_CONFIG.endpoints.checkout, {
+          source,
+          returnUrl: window.location.href,
+          cancelUrl: `${window.location.origin}${window.location.pathname}?billing=cancel`
+        });
+
+        if (data?.url) {
+          window.location.href = data.url;
+          return;
+        }
+
+        if (BILLING_CONFIG.purchaseLinkUrl) {
+          window.location.href = BILLING_CONFIG.purchaseLinkUrl;
+          return;
+        }
+
+        throw new Error("Checkout link unavailable. Try again later.");
+      } catch (err) {
+        setBillingBanner("error", err.message || "Unable to start checkout.");
+      } finally {
+        setButtonLoading(button, false);
+      }
+    }
+
+    async function handlePremiumLesson(link, targetHref) {
+      const status = await checkEntitlement();
+      if (status?.hasPremiumAccess) {
+        window.location.href = targetHref;
+        return;
+      }
+
+      if (status?.error) {
+        setBillingBanner(
+          "error",
+          `Unable to verify your premium access (${status.error}). Please try again.`
+        );
+      } else {
+      setBillingBanner(
+        "error",
+        "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
+      );
+      }
+      openAuth("signup", targetHref);
+    }
+
     async function callAuth(endpoint, payload) {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -259,19 +513,34 @@ export function initExplanationPage() {
       backdrop.setAttribute("aria-hidden", "true");
     }
 
-    // Open modal from main CTAs (default to signup)
-    const ctas = [navStripeCta, heroPrimaryCta].filter(Boolean);
-    ctas.forEach((el) => {
-      el.addEventListener("click", () => openAuth("signup"));
-    });
+    parseBillingStatusFromQuery();
 
-    // Intercept Lesson Links to require Auth/Guest selection
-    lessonLinks.forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const url = link.getAttribute('href');
-            openAuth("signup", url);
-        });
+    // Stripe / waitlist CTAs
+    if (navStripeCta) {
+      navStripeCta.addEventListener("click", () => joinWaitlistFlow("nav"));
+    }
+
+    if (heroPrimaryCta) {
+      heroPrimaryCta.addEventListener("click", () => startCheckoutFlow("hero"));
+    }
+
+    // Intercept Lesson Links to require Auth/Guest selection + premium gating
+    lessonLinks.forEach((link) => {
+      const targetHref = link.getAttribute("href");
+      const requiresPremium = link.dataset.mplAccess === "premium";
+
+      link.addEventListener("click", async (e) => {
+        if (requiresPremium) {
+          e.preventDefault();
+          await handlePremiumLesson(link, targetHref);
+          return;
+        }
+
+        if (!authState.user) {
+          e.preventDefault();
+          openAuth("signup", targetHref);
+        }
+      });
     });
 
     // "See how it works" scrolls to the explanation section
