@@ -27,6 +27,8 @@ export function initExplanationPage() {
       },
     };
 
+    let gumroadOverlayFailed = false;
+
     // Simple dynamic year in footer
     document.getElementById("mpl-year").textContent =
       new Date().getFullYear();
@@ -574,50 +576,95 @@ export function initExplanationPage() {
       const overlayAvailable = Boolean(
         window.GumroadOverlay && (productUrl || gumroadProduct)
       );
+      const overlayReady = overlayAvailable && !gumroadOverlayFailed;
 
       const hasNativeHref = Boolean(
         event?.currentTarget?.getAttribute?.("href")
       );
 
-      if (!overlayAvailable && hasNativeHref) {
+      if (!overlayReady && hasNativeHref && event) {
         return;
       }
 
       if (!button) return;
 
-      if (event) {
+      if (event && overlayReady) {
         event.preventDefault();
       }
 
-      try {
-        setBillingBanner("info", "Opening Gumroad checkout…");
-        setPaymentStatus("info", "Opening Gumroad checkout…");
-        setButtonLoading(button, true, "Opening Gumroad…");
-        trackEvent("payment_checkout_started", { source, provider: "gumroad" });
+      const fallbackMessage =
+        "Opening Gumroad checkout in a new tab automatically…";
 
-        if (overlayAvailable) {
-          window.GumroadOverlay.open(productUrl || gumroadProduct);
-        } else if (productUrl) {
+      const openFallbackTab = () => {
+        setBillingBanner("info", fallbackMessage);
+        setPaymentStatus("info", fallbackMessage);
+        setButtonLoading(button, false);
+
+        if (productUrl) {
           window.open(productUrl, "_blank", "noopener,noreferrer");
+          setPaymentStatus(
+            "success",
+            "Checkout opened in a new tab. Complete your Gumroad unlock to access Music Producer Lab Premium."
+          );
         } else {
-          throw new Error("Gumroad product link unavailable.");
+          const errorMessage = "Gumroad product link unavailable.";
+          setBillingBanner("error", errorMessage);
+          setPaymentStatus("error", errorMessage);
         }
+      };
 
+      setBillingBanner(
+        "info",
+        overlayReady ? "Opening Gumroad checkout…" : fallbackMessage
+      );
+      setPaymentStatus(
+        "info",
+        overlayReady ? "Opening Gumroad checkout…" : fallbackMessage
+      );
+      setButtonLoading(
+        button,
+        true,
+        overlayReady ? "Opening Gumroad…" : "Opening new tab…"
+      );
+      trackEvent("payment_checkout_started", { source, provider: "gumroad" });
+
+      if (!overlayReady) {
+        openFallbackTab();
+        return;
+      }
+
+      try {
+        window.GumroadOverlay.open(productUrl || gumroadProduct);
         setPaymentStatus(
           "success",
           "Checkout opened. Complete your Gumroad unlock to access Music Producer Lab Premium."
         );
       } catch (err) {
-        setBillingBanner("error", err.message || "Unable to open Gumroad checkout.");
-        setPaymentStatus("error", err.message || "Unable to open Gumroad checkout.");
+        gumroadOverlayFailed = true;
+        setButtonLoading(button, false);
+        const errorMessage =
+          err?.message || "Unable to open Gumroad checkout with overlay.";
+        setBillingBanner("error", errorMessage);
+        setPaymentStatus("info", fallbackMessage);
         trackEvent("payment_checkout_failed", {
           source,
-          message: err.message,
+          message: errorMessage,
           provider: "gumroad",
         });
-      } finally {
-        setButtonLoading(button, false);
+
+        if (productUrl) {
+          window.open(productUrl, "_blank", "noopener,noreferrer");
+          setPaymentStatus(
+            "success",
+            "Checkout opened in a new tab. Complete your Gumroad unlock to access Music Producer Lab Premium."
+          );
+        } else {
+          setPaymentStatus("error", errorMessage);
+        }
+        return;
       }
+
+      setButtonLoading(button, false);
     }
 
     async function handlePremiumLesson(link, targetHref) {
