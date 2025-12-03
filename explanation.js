@@ -8,11 +8,14 @@ import {
 import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
+    const API_BASE_URL = (window.mplApiBaseUrl || "").replace(/\/$/, "");
+    const BACKEND_AVAILABLE = Boolean(window.mplBackendEnabled);
+
     const PAYMENTS_CONFIG = {
       gumroadProduct: "jzeck",
       productUrl: "https://innovatesol.gumroad.com/l/jzeck",
       endpoints: {
-        entitlement: "/api/payments/entitlement"
+        entitlement: `${API_BASE_URL}/api/payments/entitlement`
       }
     };
 
@@ -72,9 +75,9 @@ export function initExplanationPage() {
     };
 
     const AUTH_ENDPOINTS = {
-      signup: "/api/auth/signup",
-      login: "/api/auth/login",
-      reset: "/api/auth/reset"
+      signup: `${API_BASE_URL}/api/auth/signup`,
+      login: `${API_BASE_URL}/api/auth/login`,
+      reset: `${API_BASE_URL}/api/auth/reset`
     };
 
     const AUTH_USER_KEY = "mpl_auth_user";
@@ -305,6 +308,14 @@ export function initExplanationPage() {
     }
 
     async function callBilling(endpoint, payload = null, method = "POST") {
+      if (!BACKEND_AVAILABLE) {
+        return {
+          hasAccess: false,
+          plan: null,
+          message: "Billing services are unavailable in this demo environment.",
+        };
+      }
+
       const opts = {
         method,
         headers: {
@@ -333,6 +344,14 @@ export function initExplanationPage() {
 
     async function checkEntitlement(force = false) {
       if (billingState.checked && !force) return billingState;
+      if (!BACKEND_AVAILABLE) {
+        billingState.checked = true;
+        billingState.hasPremiumAccess = false;
+        billingState.plan = null;
+        billingState.entitlementToken = null;
+        billingState.error = null;
+        return billingState;
+      }
       try {
         const data = await callBilling(PAYMENTS_CONFIG.endpoints.entitlement, null, "GET");
         billingState.hasPremiumAccess = !!data?.hasAccess;
@@ -554,6 +573,12 @@ export function initExplanationPage() {
     }
 
     async function callAuth(endpoint, payload) {
+      if (!BACKEND_AVAILABLE) {
+        throw new Error(
+          "Account sync is disabled in this demo. Continue as a guest or open Gumroad checkout."
+        );
+      }
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
