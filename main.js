@@ -6,6 +6,13 @@ const logo = document.querySelector(".logo");
 const loadingOverlay = document.getElementById("loadingOverlay");
 const logoButton = document.getElementById("logoButton");
 
+const FALLBACK_IMAGES = {
+  back:
+    "https://images.unsplash.com/photo-1506094868230-bb9d95c24759?auto=format&fit=crop&w=900&q=80",
+  front:
+    "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=80"
+};
+
 let centerX = window.innerWidth / 2;
 let centerY = window.innerHeight / 2;
 let pointerX = centerX;
@@ -95,18 +102,57 @@ logoButton.addEventListener("click", () => {
 
 // AI image generation
 
-async function generateBackgrounds() {
-  try {
-    // Show loading overlay
-    loadingOverlay.classList.remove("hidden");
+function applyFallbackImages() {
+  backImg.src = FALLBACK_IMAGES.back;
+  frontImg.src = FALLBACK_IMAGES.front;
+}
 
+function hideLoadingOverlay(delay = 0) {
+  setTimeout(() => {
+    loadingOverlay.classList.add("hidden");
+  }, delay);
+}
+
+async function resolveImageGen() {
+  if (window.websim && typeof window.websim.imageGen === "function") {
+    return window.websim.imageGen.bind(window.websim);
+  }
+
+  if (window.websimReady instanceof Promise) {
+    try {
+      await window.websimReady;
+    } catch (error) {
+      console.warn("websimReady failed to load:", error);
+    }
+
+    if (window.websim && typeof window.websim.imageGen === "function") {
+      return window.websim.imageGen.bind(window.websim);
+    }
+  }
+
+  return null;
+}
+
+async function generateBackgrounds() {
+  loadingOverlay.classList.remove("hidden");
+
+  const imageGen = await resolveImageGen();
+
+  if (!imageGen) {
+    console.warn("websim.imageGen is not available, using fallback images.");
+    applyFallbackImages();
+    hideLoadingOverlay(200);
+    return;
+  }
+
+  try {
     const [backResult, frontResult] = await Promise.all([
-      websim.imageGen({
+      imageGen({
         prompt:
           "Ultra realistic futuristic music production laboratory, wide cinematic shot, warm tungsten and subtle red lighting, advanced mixing consoles, holographic sound interfaces, depth of field, filmic, 4K",
         aspect_ratio: "9:16"
       }),
-      websim.imageGen({
+      imageGen({
         prompt:
           "Ultra realistic futuristic detail of a music producer workstation, close-up of mixing desk, glowing pads, holographic waveforms, cinematic lighting, shallow depth of field, 4K",
         aspect_ratio: "9:16"
@@ -116,16 +162,11 @@ async function generateBackgrounds() {
     backImg.src = backResult.url;
     frontImg.src = frontResult.url;
 
-    // Give a moment for images to render before hiding overlay
-    setTimeout(() => {
-      loadingOverlay.classList.add("hidden");
-    }, 400);
+    hideLoadingOverlay(400);
   } catch (err) {
     console.error("Error generating background images:", err);
-    // If something fails, still hide overlay after a delay
-    setTimeout(() => {
-      loadingOverlay.classList.add("hidden");
-    }, 800);
+    applyFallbackImages();
+    hideLoadingOverlay(800);
   }
 }
 
