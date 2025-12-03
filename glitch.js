@@ -25,7 +25,7 @@ function drawVerticalSlices(ctx, width, height, palette) {
 }
 
 function drawScanline(ctx, width, height, time) {
-  const y = (time * 0.35) % height;
+  const y = (time * 0.15) % height;
   ctx.fillStyle = "rgba(255,255,255,0.07)";
   ctx.fillRect(0, y, width, 2);
   ctx.fillStyle = "rgba(0,0,0,0.22)";
@@ -46,6 +46,8 @@ export function initGlitchOverlay(options = {}) {
   let width = 0;
   let height = 0;
   let dpr = window.devicePixelRatio || 1;
+  let lastDrawTime = 0;
+  const MIN_FRAME_INTERVAL = 400;
 
   function resize() {
     width = window.innerWidth;
@@ -60,6 +62,12 @@ export function initGlitchOverlay(options = {}) {
 
   function drawFrame(time = 0) {
     if (motionQuery.matches) return;
+    if (time - lastDrawTime < MIN_FRAME_INTERVAL) {
+      rafId = requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    lastDrawTime = time;
     ctx.clearRect(0, 0, width, height);
     drawVerticalSlices(ctx, width, height, palette);
     drawScanline(ctx, width, height, time);
