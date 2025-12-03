@@ -1,3 +1,5 @@
+import { initGlitchOverlay } from "./glitch.js";
+
 const backImg = document.getElementById("bg-back");
 const frontImg = document.getElementById("bg-front");
 const bgBackLayer = document.querySelector(".bg-layer-back");
@@ -6,6 +8,7 @@ const logo = document.querySelector(".logo");
 const glitchLayer = logo.querySelector(".logo-glitch-layer") || logo;
 const loadingOverlay = document.getElementById("loadingOverlay");
 const logoButton = document.getElementById("logoButton");
+const _teardownGlitchOverlay = initGlitchOverlay();
 
 // Turn logo into per-letter spans with data-text preserved for glitch layers
 const originalLogoText =

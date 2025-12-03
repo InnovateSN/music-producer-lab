@@ -22,7 +22,10 @@
     <div class="page">
       <div class="page-inner">
         <header class="mpl-nav">
-          <div class="mpl-nav-logo">
+          <div
+            class="mpl-nav-logo glitch-rgb glitch-scanlines"
+            data-glitch-text="BeatVault"
+          >
             <img src="beatvault-logo.svg" alt="BeatVault" class="mpl-nav-logo-img" />
           </div>
           <div class="mpl-nav-actions">
@@ -42,8 +45,9 @@
             </a>
             <button
               id="mpl-nav-stripe-cta"
-              class="btn btn-primary"
+              class="btn btn-primary glitch-rgb glitch-jitter"
               type="button"
+              data-glitch-text="Unlock BeatVault"
             >
               <span>Unlock BeatVault</span>
             </button>
@@ -55,7 +59,10 @@
         <section class="hero">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Neon interactive music lab</div>
-            <h1 class="hero-title">
+            <h1
+              class="hero-title glitch-rgb glitch-scanlines"
+              data-glitch-text="Learn computer music production inside BeatVault."
+            >
               Learn computer music production inside
               <span>BeatVault</span>.
             </h1>
@@ -76,15 +83,17 @@
             <div class="hero-cta-row">
               <button
                 id="mpl-hero-stripe-primary"
-                class="btn btn-primary"
+                class="btn btn-primary glitch-rgb glitch-jitter"
                 type="button"
+                data-glitch-text="Unlock early access"
               >
                 <span>Unlock early access</span>
               </button>
               <button
                 id="mpl-hero-stripe-secondary"
-                class="btn btn-outline"
+                class="btn btn-outline glitch-rgb glitch-jitter"
                 type="button"
+                data-glitch-text="See the vault flow"
               >
                 <span>See the vault flow</span>
               </button>
@@ -556,7 +565,12 @@
 
       <script src="https://js.stripe.com/v3"></script>
       <script type="module">
+        import { initGlitchOverlay } from './glitch.js';
         import { initExplanationPage } from './explanation.js';
+
+        initGlitchOverlay({
+          palette: { cyan: "#4EF3FF", magenta: "#FF3AD4", amber: "#FFC46B" }
+        });
         initExplanationPage();
       </script>
     </div>
