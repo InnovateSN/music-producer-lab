@@ -9,14 +9,12 @@ import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const API_BASE_URL = (window.mplApiBaseUrl || "").replace(/\/$/, "");
-   const BACKEND_AVAILABLE = false;
-  
+    const BACKEND_AVAILABLE = false;
 
     const PAYMENTS_CONFIG = {
       gumroadProduct: "jzeck",
-      productUrl: "https://innovatesol.gumroad.com/l/jzeck"?wanted=true,
-       endpoints: {},
-
+      productUrl: "https://innovatesol.gumroad.com/l/jzeck?wanted=true",
+      endpoints: {},
     };
 
     // Simple dynamic year in footer
@@ -98,6 +96,17 @@ export function initExplanationPage() {
       document.querySelectorAll("[data-mpl-lesson-link]")
     );
     checkEntitlement();
+
+    if (!BACKEND_AVAILABLE) {
+      if (backdrop) {
+        backdrop.classList.add("mpl-auth-hidden");
+        backdrop.setAttribute("aria-hidden", "true");
+      }
+
+      [tabSignup, tabLogin, forgotTrigger, backToLogin, guestBtn, closeBtn]
+        .filter(Boolean)
+        .forEach((el) => el.setAttribute("hidden", "true"));
+    }
 
     function renderLabCards() {
       if (!labCardsContainer) return;
@@ -518,8 +527,8 @@ export function initExplanationPage() {
         trackEvent("payment_checkout_started", { source, provider: "gumroad" });
 
         const { gumroadProduct, productUrl } = PAYMENTS_CONFIG;
-        if (window.GumroadOverlay && gumroadProduct) {
-          window.GumroadOverlay.open(gumroadProduct);
+        if (window.GumroadOverlay && (productUrl || gumroadProduct)) {
+          window.GumroadOverlay.open(productUrl || gumroadProduct);
         } else if (productUrl) {
           window.open(productUrl, "_blank", "noopener,noreferrer");
         } else {
@@ -569,7 +578,7 @@ export function initExplanationPage() {
           "Music Producer Lab Premium required. Complete your Gumroad unlock to enter this lab."
         );
       }
-      openAuth("signup", targetHref);
+      openGumroadProduct("lesson");
     }
 
     async function callAuth(endpoint, payload) {
@@ -624,17 +633,26 @@ export function initExplanationPage() {
 
     // Helper: open modal with initial mode
     function openAuth(initialMode = "signup", targetUrl = null) {
+      if (!BACKEND_AVAILABLE) {
+        setBillingBanner(
+          "info",
+          "Account creation is disabled in this demo. Use the Gumroad checkout to unlock full access."
+        );
+        openGumroadProduct("auth");
+        return;
+      }
+
       targetLessonUrl = targetUrl;
       if (targetLessonUrl) {
         markPendingLesson(targetLessonUrl);
       }
       backdrop.classList.remove("mpl-auth-hidden");
       backdrop.setAttribute("aria-hidden", "false");
-      
+
       if (targetLessonUrl) {
-        guestBtn.querySelector('span').textContent = "Continue as guest";
+        guestBtn?.querySelector("span").textContent = "Continue as guest";
       } else {
-        guestBtn.querySelector('span').textContent = "Enter as guest";
+        guestBtn?.querySelector("span").textContent = "Enter as guest";
       }
 
       setMode(initialMode);
@@ -657,22 +675,16 @@ export function initExplanationPage() {
       heroPrimaryCta.addEventListener("click", () => openGumroadProduct("hero"));
     }
 
-    // Intercept Lesson Links to require Auth/Guest selection + premium gating
+    // Intercept Lesson Links to handle premium gating
     lessonLinks.forEach((link) => {
       const targetHref = link.getAttribute("href");
       const requiresPremium = link.dataset.mplAccess === "premium";
 
       link.addEventListener("click", async (e) => {
-        if (requiresPremium) {
-          e.preventDefault();
-          await handlePremiumLesson(link, targetHref);
-          return;
-        }
+        if (!requiresPremium) return;
 
-        if (!authState.user) {
-          e.preventDefault();
-          openAuth("signup", targetHref);
-        }
+        e.preventDefault();
+        await handlePremiumLesson(link, targetHref);
       });
     });
 
@@ -686,157 +698,159 @@ export function initExplanationPage() {
       });
     }
 
-    // Tabs
-    tabSignup.addEventListener("click", () => setMode("signup"));
-    tabLogin.addEventListener("click", () => setMode("login"));
+    if (BACKEND_AVAILABLE) {
+      // Tabs
+      tabSignup.addEventListener("click", () => setMode("signup"));
+      tabLogin.addEventListener("click", () => setMode("login"));
 
-    // Forgot password flow
-    forgotTrigger.addEventListener("click", () => setMode("forgot"));
-    backToLogin.addEventListener("click", () => setMode("login"));
+      // Forgot password flow
+      forgotTrigger.addEventListener("click", () => setMode("forgot"));
+      backToLogin.addEventListener("click", () => setMode("login"));
 
-    // Close behavior
-    closeBtn.addEventListener("click", closeAuth);
-    backdrop.addEventListener("click", (e) => {
-      if (e.target === backdrop) closeAuth();
-    });
+      // Close behavior
+      closeBtn.addEventListener("click", closeAuth);
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeAuth();
+      });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAuth();
-    });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAuth();
+      });
 
-    // Guest entry goes directly to lesson page
-    if (guestBtn) {
-      guestBtn.addEventListener("click", () => {
-        setAuthState({
-          user: {
-            name: "Guest session",
-            email: null,
-            isGuest: true
-          },
-          token: null
+      // Guest entry goes directly to lesson page
+      if (guestBtn) {
+        guestBtn.addEventListener("click", () => {
+          setAuthState({
+            user: {
+              name: "Guest session",
+              email: null,
+              isGuest: true
+            },
+            token: null
+          });
+          showToast("success", "Guest session started. Progress won't be saved.");
+          trackEvent("auth_conversion", { mode: "guest" });
+          closeAuth();
+          const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
+          targetLessonUrl = null;
+          window.location.href = redirectUrl;
         });
-        showToast("success", "Guest session started. Progress won't be saved.");
-        trackEvent("auth_conversion", { mode: "guest" });
-        closeAuth();
-        const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
-        targetLessonUrl = null;
-        window.location.href = redirectUrl;
+      }
+
+      logoutTriggers.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const redirect =
+            btn.getAttribute("data-mpl-logout-redirect") || "index.html";
+          clearAuthState();
+          clearPendingLesson();
+          window.location.href = redirect;
+        });
+      });
+
+      // ---------------- BACKEND INTEGRATION HOOKS ----------------
+      formSignup.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearStatus(formSignup);
+        const payload = {
+          name: e.target.name.value.trim(),
+          email: e.target.email.value.trim(),
+          password: e.target.password.value
+        };
+
+        const nameError = validateName(payload.name);
+        const emailError = validateEmail(payload.email);
+        const passwordError = validatePassword(payload.password);
+        const errors = [nameError, emailError, passwordError].filter(Boolean);
+
+        if (errors.length) {
+          setStatus(formSignup, "error", errors[0]);
+          return;
+        }
+
+        const submitBtn = formSignup.querySelector(".mpl-auth-submit");
+
+        try {
+          setButtonLoading(submitBtn, true, "Creating account…");
+          const data = await callAuth(AUTH_ENDPOINTS.signup, payload);
+          handleAuthSuccess({
+            user: data.user || { name: payload.name, email: payload.email },
+            token: data.token,
+            message: data.message || "Account created.",
+            mode: "signup",
+            form: formSignup
+          });
+        } catch (err) {
+          setStatus(formSignup, "error", err.message || "Signup failed.");
+        } finally {
+          setButtonLoading(submitBtn, false);
+        }
+      });
+
+      formLogin.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearStatus(formLogin);
+        const payload = {
+          email: e.target.email.value.trim(),
+          password: e.target.password.value
+        };
+
+        const emailError = validateEmail(payload.email);
+        const passwordError = validatePassword(payload.password);
+        const errors = [emailError, passwordError].filter(Boolean);
+
+        if (errors.length) {
+          setStatus(formLogin, "error", errors[0]);
+          return;
+        }
+
+        const submitBtn = formLogin.querySelector(".mpl-auth-submit");
+
+        try {
+          setButtonLoading(submitBtn, true, "Logging in…");
+          const data = await callAuth(AUTH_ENDPOINTS.login, payload);
+          handleAuthSuccess({
+            user: data.user || authState.user || { email: payload.email },
+            token: data.token,
+            message: data.message || "Logged in successfully.",
+            mode: "login",
+            form: formLogin
+          });
+        } catch (err) {
+          setStatus(formLogin, "error", err.message || "Login failed.");
+        } finally {
+          setButtonLoading(submitBtn, false);
+        }
+      });
+
+      formForgot.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearStatus(formForgot);
+        const payload = {
+          email: e.target.email.value.trim()
+        };
+
+        const emailError = validateEmail(payload.email);
+        if (emailError) {
+          setStatus(formForgot, "error", emailError);
+          return;
+        }
+
+        const submitBtn = formForgot.querySelector(".mpl-auth-submit");
+
+        try {
+          setButtonLoading(submitBtn, true, "Sending reset…");
+          const data = await callAuth(AUTH_ENDPOINTS.reset, payload);
+          setStatus(
+            formForgot,
+            "success",
+            data.message || "Check your email for reset instructions."
+          );
+          showToast("success", data.message || "Reset link sent to your inbox.");
+        } catch (err) {
+          setStatus(formForgot, "error", err.message || "Reset failed.");
+        } finally {
+          setButtonLoading(submitBtn, false);
+        }
       });
     }
-
-    logoutTriggers.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const redirect =
-          btn.getAttribute("data-mpl-logout-redirect") || "index.html";
-        clearAuthState();
-        clearPendingLesson();
-        window.location.href = redirect;
-      });
-    });
-
-    // ---------------- BACKEND INTEGRATION HOOKS ----------------
-    formSignup.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      clearStatus(formSignup);
-      const payload = {
-        name: e.target.name.value.trim(),
-        email: e.target.email.value.trim(),
-        password: e.target.password.value
-      };
-
-      const nameError = validateName(payload.name);
-      const emailError = validateEmail(payload.email);
-      const passwordError = validatePassword(payload.password);
-      const errors = [nameError, emailError, passwordError].filter(Boolean);
-
-      if (errors.length) {
-        setStatus(formSignup, "error", errors[0]);
-        return;
-      }
-
-      const submitBtn = formSignup.querySelector(".mpl-auth-submit");
-
-      try {
-        setButtonLoading(submitBtn, true, "Creating account…");
-        const data = await callAuth(AUTH_ENDPOINTS.signup, payload);
-        handleAuthSuccess({
-          user: data.user || { name: payload.name, email: payload.email },
-          token: data.token,
-          message: data.message || "Account created.",
-          mode: "signup",
-          form: formSignup
-        });
-      } catch (err) {
-        setStatus(formSignup, "error", err.message || "Signup failed.");
-      } finally {
-        setButtonLoading(submitBtn, false);
-      }
-    });
-
-    formLogin.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      clearStatus(formLogin);
-      const payload = {
-        email: e.target.email.value.trim(),
-        password: e.target.password.value
-      };
-
-      const emailError = validateEmail(payload.email);
-      const passwordError = validatePassword(payload.password);
-      const errors = [emailError, passwordError].filter(Boolean);
-
-      if (errors.length) {
-        setStatus(formLogin, "error", errors[0]);
-        return;
-      }
-
-      const submitBtn = formLogin.querySelector(".mpl-auth-submit");
-
-      try {
-        setButtonLoading(submitBtn, true, "Logging in…");
-        const data = await callAuth(AUTH_ENDPOINTS.login, payload);
-        handleAuthSuccess({
-          user: data.user || authState.user || { email: payload.email },
-          token: data.token,
-          message: data.message || "Logged in successfully.",
-          mode: "login",
-          form: formLogin
-        });
-      } catch (err) {
-        setStatus(formLogin, "error", err.message || "Login failed.");
-      } finally {
-        setButtonLoading(submitBtn, false);
-      }
-    });
-
-    formForgot.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      clearStatus(formForgot);
-      const payload = {
-        email: e.target.email.value.trim()
-      };
-
-      const emailError = validateEmail(payload.email);
-      if (emailError) {
-        setStatus(formForgot, "error", emailError);
-        return;
-      }
-
-      const submitBtn = formForgot.querySelector(".mpl-auth-submit");
-
-      try {
-        setButtonLoading(submitBtn, true, "Sending reset…");
-        const data = await callAuth(AUTH_ENDPOINTS.reset, payload);
-        setStatus(
-          formForgot,
-          "success",
-          data.message || "Check your email for reset instructions."
-        );
-        showToast("success", data.message || "Reset link sent to your inbox.");
-      } catch (err) {
-        setStatus(formForgot, "error", err.message || "Reset failed.");
-      } finally {
-        setButtonLoading(submitBtn, false);
-      }
-    });
   }
