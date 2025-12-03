@@ -1,17 +1,15 @@
 :root {
   color-scheme: dark;
-  --bg-color: #040611;
-  --bg-panel: rgba(12, 16, 33, 0.85);
-  --accent: #4ef3ff;
-  --accent-strong: #ff3ad4;
-  --accent-soft: #7ef0ff;
-  --text-main: #eaf6ff;
-  --text-muted: rgba(234, 246, 255, 0.75);
-  --border-glow: rgba(78, 243, 255, 0.4);
+  --bg-color: #0b1024;
+  --bg-panel: #0f162f;
+  --accent: #0ec6d5;
+  --accent-strong: #6d7bff;
+  --accent-soft: #b184ff;
+  --text-main: #e9edf7;
+  --text-muted: rgba(233, 237, 247, 0.75);
+  --border-color: rgba(233, 237, 247, 0.16);
+  --border-glow: rgba(14, 198, 213, 0.35);
 }
-
-/* Futuristic fonts for glitch swapping */
-@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Space+Grotesk:wght@500;700&family=Share+Tech+Mono&display=swap");
 
 *,
 *::before,
@@ -25,33 +23,13 @@ html,
 body {
   width: 100%;
   height: 100%;
-  /* Allow vertical scrolling across pages */
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--bg-color);
-  font-family: "Chakra Petch", "Space Grotesk", system-ui, -apple-system,
-    BlinkMacSystemFont, "SF Pro Text", "Roboto", sans-serif;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
-}
-
-/* Shared canvas overlay used by the glitch module */
-.glitch-overlay-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-  opacity: 0.18;
-  transition: opacity 0.25s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .glitch-overlay-canvas {
-    opacity: 0.08;
-  }
+  color: var(--text-main);
 }

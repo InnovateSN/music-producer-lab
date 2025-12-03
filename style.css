@@ -1,7 +1,7 @@
 /*
   Legacy bundle for BeatVault. This file now re-exports the themed layers
   (base, landing, explanation) so any page that still loads style.css
-  automatically inherits the neon cyan/magenta palette, glitch-forward fonts,
+  automatically inherits the restored Music Producer Lab palette, fonts,
   and CTA/header/footer updates without maintaining duplicate definitions.
 */
 

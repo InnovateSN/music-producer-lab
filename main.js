@@ -1,58 +1,10 @@
-import { initGlitchOverlay } from "./glitch.js";
-
 const backImg = document.getElementById("bg-back");
 const frontImg = document.getElementById("bg-front");
 const bgBackLayer = document.querySelector(".bg-layer-back");
 const bgFrontLayer = document.querySelector(".bg-layer-front");
 const logo = document.querySelector(".logo");
-const glitchLayer = logo.querySelector(".logo-glitch-layer") || logo;
 const loadingOverlay = document.getElementById("loadingOverlay");
 const logoButton = document.getElementById("logoButton");
-const _teardownGlitchOverlay = initGlitchOverlay();
-
-// Turn logo into per-letter spans with data-text preserved for glitch layers
-const originalLogoText =
-  (logo.dataset.text || glitchLayer.textContent || "BEATVAULT").trim();
-glitchLayer.setAttribute("data-text", originalLogoText);
-glitchLayer.innerHTML = originalLogoText
-  .split("")
-  .map((ch) =>
-    ch === " "
-      ? '<span class="logo-char logo-char-space">&nbsp;</span>'
-      : `<span class="logo-char">${ch}</span>`
-  )
-  .join("");
-
-const logoChars = Array.from(glitchLayer.querySelectorAll(".logo-char"));
-
-// Random per-letter glitch + font swap
-const fontClasses = ["font-a", "font-b", "font-c"];
-
-function randomizeLogoChars() {
-  for (const char of logoChars) {
-    // Skip spaces
-    if (char.classList.contains("logo-char-space")) continue;
-
-    // Clear previous state
-    char.classList.remove("glitch-char-active", ...fontClasses);
-
-    // Small chance this frame to glitch
-    if (Math.random() < 0.28) {
-      char.classList.add("glitch-char-active");
-
-      // Random font variant
-      const fontClass =
-        fontClasses[Math.floor(Math.random() * fontClasses.length)];
-      char.classList.add(fontClass);
-
-      // Slightly staggered animation duration
-      const dur = 60 + Math.random() * 240; // 60–300ms
-      char.style.setProperty("--char-glitch-duration", `${dur}ms`);
-    }
-  }
-}
-
-setInterval(randomizeLogoChars, 90);
 
 let centerX = window.innerWidth / 2;
 let centerY = window.innerHeight / 2;
