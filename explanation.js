@@ -9,8 +9,8 @@ import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const PAYMENTS_CONFIG = {
-      gumroadProduct: "complete-course",
-      productUrl: "https://beatvault.gumroad.com/l/complete-course",
+      gumroadProduct: "jzeck",
+      productUrl: "https://innovatesol.gumroad.com/l/jzeck",
       endpoints: {
         entitlement: "/api/payments/entitlement"
       }
