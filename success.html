@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to Music Producer Lab</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0 1.5rem;
+        background: #05060a;
+        color: #f5f6f9;
+        text-align: center;
+      }
+      .card {
+        max-width: 420px;
+        padding: 1.5rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      }
+      h1 {
+        margin: 0 0 0.25rem;
+        font-size: 1.4rem;
+      }
+      p {
+        margin: 0;
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" role="status">
+      <h1>Redirecting you to Music Producer Lab…</h1>
+      <p id="mpl-billing-message">Finalizing your Gumroad unlock.</p>
+    </div>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const fallbackMessage = "Gumroad payment confirmed. Music Producer Lab Premium unlocked.";
+        const billingMessage =
+          params.get("message") ||
+          params.get("note") ||
+          params.get("success_message") ||
+          params.get("alert") ||
+          fallbackMessage;
+
+        const basePath = window.location.pathname.replace(/[^/]+$/, "");
+        const explanationUrl = new URL("explanation.html", `${window.location.origin}${basePath}`);
+        explanationUrl.searchParams.set("billing", "success");
+        explanationUrl.searchParams.set("billing_message", billingMessage);
+
+        const messageEl = document.getElementById("mpl-billing-message");
+        if (messageEl) messageEl.textContent = billingMessage;
+
+        window.location.replace(explanationUrl.toString());
+      })();
+    </script>
+  </body>
+</html>
