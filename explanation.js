@@ -9,8 +9,8 @@ import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const PAYMENTS_CONFIG = {
-      gumroadProduct: "beatvault-premium",
-      productUrl: "https://beatvault.gumroad.com/l/beatvault-premium",
+      gumroadProduct: "complete-course",
+      productUrl: "https://beatvault.gumroad.com/l/complete-course",
       endpoints: {
         entitlement: "/api/payments/entitlement"
       }
@@ -498,11 +498,11 @@ export function initExplanationPage() {
         setButtonLoading(button, true, "Opening Gumroad…");
         trackEvent("payment_checkout_started", { source, provider: "gumroad" });
 
-        const url = PAYMENTS_CONFIG.productUrl;
-        if (window.GumroadOverlay && PAYMENTS_CONFIG.gumroadProduct) {
-          window.GumroadOverlay.open(PAYMENTS_CONFIG.gumroadProduct);
-        } else if (url) {
-          window.open(url, "_blank", "noopener,noreferrer");
+        const { gumroadProduct, productUrl } = PAYMENTS_CONFIG;
+        if (window.GumroadOverlay && gumroadProduct) {
+          window.GumroadOverlay.open(gumroadProduct);
+        } else if (productUrl) {
+          window.open(productUrl, "_blank", "noopener,noreferrer");
         } else {
           throw new Error("Gumroad product link unavailable.");
         }
