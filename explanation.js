@@ -2,6 +2,7 @@ import {
   clearPendingLesson,
   consumePendingLesson,
   markPendingLesson,
+  getStoredPremiumStatus,
   persistPremiumEntitlement,
   clearPremiumEntitlement
 } from "./lesson-access.js";
@@ -9,12 +10,21 @@ import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const API_BASE_URL = (window.mplApiBaseUrl || "").replace(/\/$/, "");
-    const BACKEND_AVAILABLE = false;
+    const ENTITLEMENT_MAX_AGE_MS = 1000 * 60 * 30;
+    const BACKEND_AVAILABLE = Boolean(
+      window.mplBackendAvailable ??
+        window.__MPL_BACKEND_ENABLED__ ??
+        (API_BASE_URL && API_BASE_URL.length > 0)
+    );
 
     const PAYMENTS_CONFIG = {
       gumroadProduct: "tekpsy",
       productUrl: "https://innovatesol.gumroad.com/l/tekpsy?wanted=true",
-      endpoints: {},
+      endpoints: {
+        entitlement: `${API_BASE_URL}/api/payments/entitlement`,
+        redeem: `${API_BASE_URL}/api/payments/redeem`,
+        callback: `${API_BASE_URL}/api/payments/gumroad/return`,
+      },
     };
 
     // Simple dynamic year in footer
@@ -71,6 +81,14 @@ export function initExplanationPage() {
       plan: null,
       entitlementToken: null
     };
+
+    const cachedEntitlement = getStoredPremiumStatus();
+    if (cachedEntitlement?.hasAccess) {
+      billingState.hasPremiumAccess = true;
+      billingState.plan = cachedEntitlement.plan || null;
+      billingState.entitlementToken = cachedEntitlement.entitlementToken || null;
+      billingState.checked = true;
+    }
 
     const AUTH_ENDPOINTS = {
       signup: `${API_BASE_URL}/api/auth/signup`,
@@ -287,6 +305,9 @@ export function initExplanationPage() {
       const params = new URLSearchParams(window.location.search);
       const billingStatus = params.get("billing");
       const billingMessage = params.get("billing_message");
+      const entitlementToken =
+        params.get("entitlement_token") || params.get("access_token");
+      const plan = params.get("plan") || "gumroad";
       if (!billingStatus) return;
 
       if (billingStatus === "success") {
@@ -296,6 +317,22 @@ export function initExplanationPage() {
         );
         showToast("success", billingMessage || "Gumroad payment confirmed. Music Producer Lab Premium unlocked.");
         trackEvent("payment_completion", { status: "success", source: "query" });
+
+        billingState.hasPremiumAccess = true;
+        billingState.plan = plan;
+        billingState.entitlementToken = entitlementToken;
+        billingState.checked = true;
+        billingState.error = null;
+
+        persistPremiumEntitlement({
+          token: billingState.entitlementToken,
+          status: {
+            hasAccess: billingState.hasPremiumAccess,
+            plan: billingState.plan,
+            checkedAt: Date.now(),
+            entitlementToken: billingState.entitlementToken
+          }
+        });
       } else if (billingStatus === "waitlist") {
         setBillingBanner("success", billingMessage || "You're on the priority list.");
         showToast("success", billingMessage || "You're on the priority list.");
@@ -352,12 +389,27 @@ export function initExplanationPage() {
     }
 
     async function checkEntitlement(force = false) {
-      if (billingState.checked && !force) return billingState;
+      const stored = getStoredPremiumStatus();
+      const storedFresh = Boolean(
+        stored?.checkedAt && Date.now() - stored.checkedAt < ENTITLEMENT_MAX_AGE_MS
+      );
+
+      if (!force && (billingState.checked || (storedFresh && stored?.hasAccess))) {
+        if (storedFresh && stored?.hasAccess) {
+          billingState.hasPremiumAccess = true;
+          billingState.plan = stored.plan || billingState.plan;
+          billingState.entitlementToken =
+            stored.entitlementToken || billingState.entitlementToken;
+        }
+        billingState.checked = true;
+        return billingState;
+      }
+
       if (!BACKEND_AVAILABLE) {
         billingState.checked = true;
-        billingState.hasPremiumAccess = false;
-        billingState.plan = null;
-        billingState.entitlementToken = null;
+        billingState.hasPremiumAccess = Boolean(stored?.hasAccess);
+        billingState.plan = stored?.plan || null;
+        billingState.entitlementToken = stored?.entitlementToken || null;
         billingState.error = null;
         return billingState;
       }
