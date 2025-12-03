@@ -12,8 +12,8 @@ export function initExplanationPage() {
     const BACKEND_AVAILABLE = false;
 
     const PAYMENTS_CONFIG = {
-      gumroadProduct: "jzeck",
-      productUrl: "https://innovatesol.gumroad.com/l/jzeck?wanted=true",
+      gumroadProduct: "tekpsy",
+      productUrl: "https://innovatesol.gumroad.com/l/tekpsy?wanted=true",
       endpoints: {},
     };
 
