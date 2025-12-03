@@ -132,7 +132,7 @@ export function ensureLessonAccess({
 
   const reason = isGuest
     ? "Guest sessions cannot open premium lessons yet. Create a free account to continue."
-    : "BeatVault premium lab. Sign in or unlock access via Gumroad to continue.";
+    : "Music Producer Lab premium lesson. Sign in or unlock access via Gumroad to continue.";
 
   return {
     allowed: false,

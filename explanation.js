@@ -280,9 +280,9 @@ export function initExplanationPage() {
       if (billingStatus === "success") {
         setBillingBanner(
           "success",
-          billingMessage || "Gumroad payment confirmed. BeatVault Premium unlocked."
+          billingMessage || "Gumroad payment confirmed. Music Producer Lab Premium unlocked."
         );
-        showToast("success", billingMessage || "Gumroad payment confirmed. BeatVault Premium unlocked.");
+        showToast("success", billingMessage || "Gumroad payment confirmed. Music Producer Lab Premium unlocked.");
         trackEvent("payment_completion", { status: "success", source: "query" });
       } else if (billingStatus === "waitlist") {
         setBillingBanner("success", billingMessage || "You're on the priority list.");
@@ -354,16 +354,16 @@ export function initExplanationPage() {
         if (billingState.hasPremiumAccess) {
           setBillingBanner(
             "success",
-            data?.message || "Gumroad purchase verified. BeatVault Premium is active."
+            data?.message || "Gumroad purchase verified. Music Producer Lab Premium is active."
           );
-          setPaymentStatus("success", data?.message || "Gumroad purchase verified. BeatVault Premium is active.");
+          setPaymentStatus("success", data?.message || "Gumroad purchase verified. Music Producer Lab Premium is active.");
           if (!entitlementTracked) {
             trackEvent("payment_entitlement_confirmed", {
               plan: billingState.plan || "unknown",
             });
             showToast(
               "success",
-              data?.message || "BeatVault Premium active. Enjoy the full curriculum."
+              data?.message || "Music Producer Lab Premium active. Enjoy the full curriculum."
             );
             entitlementTracked = true;
           }
@@ -395,7 +395,7 @@ export function initExplanationPage() {
         tabSignup.classList.add("mpl-auth-tab-active");
         formSignup.classList.remove("mpl-auth-hidden");
         pill.textContent = "Create your account";
-        title.textContent = "Welcome to BeatVault";
+        title.textContent = "Welcome to Music Producer Lab";
         subtitle.textContent =
           "Create a free account to save your progress and access upcoming labs.";
       } else if (mode === "login") {
@@ -509,7 +509,7 @@ export function initExplanationPage() {
 
         setPaymentStatus(
           "success",
-          "Checkout opened. Complete your Gumroad unlock to access BeatVault."
+          "Checkout opened. Complete your Gumroad unlock to access Music Producer Lab Premium."
         );
       } catch (err) {
         setBillingBanner("error", err.message || "Unable to open Gumroad checkout.");
@@ -543,11 +543,11 @@ export function initExplanationPage() {
       } else {
         setBillingBanner(
           "error",
-          "BeatVault Premium required. Complete your Gumroad unlock to enter this lab."
+          "Music Producer Lab Premium required. Complete your Gumroad unlock to enter this lab."
         );
         setPaymentStatus(
           "error",
-          "BeatVault Premium required. Complete your Gumroad unlock to enter this lab."
+          "Music Producer Lab Premium required. Complete your Gumroad unlock to enter this lab."
         );
       }
       openAuth("signup", targetHref);
