@@ -9,14 +9,14 @@ import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
     const API_BASE_URL = (window.mplApiBaseUrl || "").replace(/\/$/, "");
-    const BACKEND_AVAILABLE = Boolean(window.mplBackendEnabled);
+   const BACKEND_AVAILABLE = false;
+  
 
     const PAYMENTS_CONFIG = {
       gumroadProduct: "jzeck",
-      productUrl: "https://innovatesol.gumroad.com/l/jzeck",
-      endpoints: {
-        entitlement: `${API_BASE_URL}/api/payments/entitlement`
-      }
+      productUrl: "https://innovatesol.gumroad.com/l/jzeck"?wanted=true,
+       endpoints: {},
+
     };
 
     // Simple dynamic year in footer
