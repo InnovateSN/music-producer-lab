@@ -2,18 +2,16 @@ import {
   clearPendingLesson,
   consumePendingLesson,
   markPendingLesson,
-  persistPremiumStatus
+  persistPremiumEntitlement,
+  clearPremiumEntitlement
 } from "./lesson-access.js";
 import { LABS } from "./lessons-data.js";
 
 export function initExplanationPage() {
-    const STRIPE_CONFIG = {
-      publishableKey: "pk_test_51Nf2Example5gYc8cE8oXcQ4yVQfPOf0zYvWfY7kHqkMtxX8YxV8b7Yz3P7xYzExample",
-      paymentLinkUrl: "https://buy.stripe.com/test_8wM28ncYp5rE1hC288",
-      waitlistLinkUrl: "https://buy.stripe.com/test_bIY3f2gkM2yU9Qw9AA",
+    const PAYMENTS_CONFIG = {
+      gumroadProduct: "beatvault-premium",
+      productUrl: "https://beatvault.gumroad.com/l/beatvault-premium",
       endpoints: {
-        waitlist: "/api/payments/waitlist",
-        checkout: "/api/payments/create-checkout-session",
         entitlement: "/api/payments/entitlement"
       }
     };
@@ -40,7 +38,7 @@ export function initExplanationPage() {
     );
     const backToLogin = document.getElementById("mpl-auth-back-to-login");
 
-    const navStripeCta = document.getElementById("mpl-nav-stripe-cta");
+    const navPurchaseCta = document.getElementById("mpl-nav-stripe-cta");
     const heroPrimaryCta = document.getElementById(
       "mpl-hero-stripe-primary"
     );
@@ -63,14 +61,14 @@ export function initExplanationPage() {
     let lessonLinks = [];
 
     let targetLessonUrl = consumePendingLesson(null);
-    let stripeClient = null;
     let entitlementTracked = false;
 
     const billingState = {
       hasPremiumAccess: false,
       checked: false,
       error: null,
-      plan: null
+      plan: null,
+      entitlementToken: null
     };
 
     const AUTH_ENDPOINTS = {
@@ -194,10 +192,12 @@ export function initExplanationPage() {
 
     function clearAuthState() {
       setAuthState({ user: null, token: null });
-      persistPremiumStatus(null);
+      clearPremiumEntitlement();
       billingState.hasPremiumAccess = false;
       billingState.checked = false;
       billingState.plan = null;
+      billingState.entitlementToken = null;
+      billingState.error = null;
     }
 
     function setBillingBanner(type, message) {
@@ -280,20 +280,20 @@ export function initExplanationPage() {
       if (billingStatus === "success") {
         setBillingBanner(
           "success",
-          billingMessage || "Payment confirmed. Premium content unlocked."
+          billingMessage || "Gumroad payment confirmed. BeatVault Premium unlocked."
         );
-        showToast("success", billingMessage || "Payment confirmed. Premium content unlocked.");
+        showToast("success", billingMessage || "Gumroad payment confirmed. BeatVault Premium unlocked.");
         trackEvent("payment_completion", { status: "success", source: "query" });
       } else if (billingStatus === "waitlist") {
-        setBillingBanner("success", billingMessage || "You're on the waitlist.");
-        showToast("success", billingMessage || "You're on the waitlist.");
+        setBillingBanner("success", billingMessage || "You're on the priority list.");
+        showToast("success", billingMessage || "You're on the priority list.");
         trackEvent("payment_waitlist", { status: "waitlist", source: "query" });
       } else if (billingStatus === "cancel") {
         setBillingBanner(
           "info",
-          billingMessage || "Checkout canceled. You can try again anytime."
+          billingMessage || "Gumroad checkout canceled. You can try again anytime."
         );
-        setPaymentStatus("info", billingMessage || "Checkout canceled. You can try again anytime.");
+        setPaymentStatus("info", billingMessage || "Gumroad checkout canceled. You can try again anytime.");
       } else if (billingStatus === "error") {
         setBillingBanner(
           "error",
@@ -302,18 +302,6 @@ export function initExplanationPage() {
         setPaymentStatus("error", billingMessage || "We couldn't verify your payment status.");
         trackEvent("payment_completion", { status: "error", source: "query" });
       }
-    }
-
-    function getStripeClient() {
-      if (stripeClient) return stripeClient;
-      if (!window.Stripe) {
-        throw new Error("Stripe.js failed to load. Please disable blockers and retry.");
-      }
-      if (!STRIPE_CONFIG.publishableKey) {
-        throw new Error("Stripe publishable key missing in config.");
-      }
-      stripeClient = window.Stripe(STRIPE_CONFIG.publishableKey);
-      return stripeClient;
     }
 
     async function callBilling(endpoint, payload = null, method = "POST") {
@@ -346,43 +334,43 @@ export function initExplanationPage() {
     async function checkEntitlement(force = false) {
       if (billingState.checked && !force) return billingState;
       try {
-        const data = await callBilling(STRIPE_CONFIG.endpoints.entitlement, null, "GET");
+        const data = await callBilling(PAYMENTS_CONFIG.endpoints.entitlement, null, "GET");
         billingState.hasPremiumAccess = !!data?.hasAccess;
         billingState.plan = data?.plan || null;
+        billingState.entitlementToken = data?.accessToken || data?.token || null;
         billingState.error = null;
         billingState.checked = true;
 
-        persistPremiumStatus({
-          hasAccess: billingState.hasPremiumAccess,
-          plan: billingState.plan,
-          checkedAt: Date.now()
+        persistPremiumEntitlement({
+          token: billingState.entitlementToken,
+          status: {
+            hasAccess: billingState.hasPremiumAccess,
+            plan: billingState.plan,
+            checkedAt: Date.now(),
+            entitlementToken: billingState.entitlementToken
+          }
         });
 
         if (billingState.hasPremiumAccess) {
           setBillingBanner(
             "success",
-            data?.message || "Premium access active. Enjoy the full curriculum."
+            data?.message || "Gumroad purchase verified. BeatVault Premium is active."
           );
-          setPaymentStatus("success", data?.message || "Premium access active. Enjoy the full curriculum.");
+          setPaymentStatus("success", data?.message || "Gumroad purchase verified. BeatVault Premium is active.");
           if (!entitlementTracked) {
             trackEvent("payment_entitlement_confirmed", {
               plan: billingState.plan || "unknown",
             });
             showToast(
               "success",
-              data?.message || "Premium access active. Enjoy the full curriculum."
+              data?.message || "BeatVault Premium active. Enjoy the full curriculum."
             );
             entitlementTracked = true;
           }
         }
       } catch (err) {
         billingState.error = err.message;
-        persistPremiumStatus({
-          hasAccess: false,
-          plan: null,
-          checkedAt: Date.now(),
-          error: err.message
-        });
+        clearPremiumEntitlement();
         setPaymentStatus("error", err.message || "Unable to verify premium access.");
       }
       return billingState;
@@ -500,104 +488,37 @@ export function initExplanationPage() {
       return "";
     }
 
-    function buildWaitlistPayload(source) {
-      const emailFromUser = authState.user?.email;
-      const nameFromUser = authState.user?.name;
-      const emailInput = emailFromUser || window.prompt("Enter your email to join the waitlist");
+    function openGumroadProduct(source = "hero") {
+      const button = source === "nav" ? navPurchaseCta : heroPrimaryCta;
+      if (!button) return;
 
-      if (!emailInput) {
-        throw new Error("Email is required to join the waitlist.");
-      }
-
-      const emailError = validateEmail(emailInput.trim());
-      if (emailError) {
-        throw new Error(emailError);
-      }
-
-      return {
-        email: emailInput.trim(),
-        name: nameFromUser || null,
-        source,
-        returnUrl: window.location.href
-      };
-    }
-
-    async function joinWaitlistFlow(source = "nav") {
-      const button = source === "nav" ? navStripeCta : heroPrimaryCta;
       try {
-        const payload = buildWaitlistPayload(source);
-        setButtonLoading(button, true, "Joining…");
-        setPaymentStatus("info", "Submitting your waitlist request…");
-        const data = await callBilling(STRIPE_CONFIG.endpoints.waitlist, payload);
-        setBillingBanner(
-          "success",
-          data?.message || "You're on the list. We'll reach out with early access."
-        );
+        setBillingBanner("info", "Opening Gumroad checkout…");
+        setPaymentStatus("info", "Opening Gumroad checkout…");
+        setButtonLoading(button, true, "Opening Gumroad…");
+        trackEvent("payment_checkout_started", { source, provider: "gumroad" });
+
+        const url = PAYMENTS_CONFIG.productUrl;
+        if (window.GumroadOverlay && PAYMENTS_CONFIG.gumroadProduct) {
+          window.GumroadOverlay.open(PAYMENTS_CONFIG.gumroadProduct);
+        } else if (url) {
+          window.open(url, "_blank", "noopener,noreferrer");
+        } else {
+          throw new Error("Gumroad product link unavailable.");
+        }
+
         setPaymentStatus(
           "success",
-          data?.message || "You're on the list. We'll reach out with early access."
+          "Checkout opened. Complete your Gumroad unlock to access BeatVault."
         );
-        showToast("success", data?.message || "Waitlist joined successfully.");
-        trackEvent("payment_waitlist_joined", { source });
-
-        if (data?.redirectUrl) {
-          window.location.href = data.redirectUrl;
-        } else if (STRIPE_CONFIG.waitlistLinkUrl) {
-          window.location.href = STRIPE_CONFIG.waitlistLinkUrl;
-        }
       } catch (err) {
-        setBillingBanner("error", err.message || "Unable to join the waitlist.");
-        setPaymentStatus("error", err.message || "Unable to join the waitlist.");
-        trackEvent("payment_waitlist_failed", { source, message: err.message });
-      } finally {
-        setButtonLoading(button, false);
-      }
-    }
-
-    async function startCheckoutFlow(source = "hero") {
-      const button = source === "nav" ? navStripeCta : heroPrimaryCta;
-
-      try {
-        setBillingBanner("info", "Contacting server for secure checkout…");
-        setPaymentStatus("info", "Contacting server for secure checkout…");
-        setButtonLoading(button, true, "Opening Stripe…");
-        trackEvent("payment_checkout_started", { source });
-
-        const data = await callBilling(STRIPE_CONFIG.endpoints.checkout, {
+        setBillingBanner("error", err.message || "Unable to open Gumroad checkout.");
+        setPaymentStatus("error", err.message || "Unable to open Gumroad checkout.");
+        trackEvent("payment_checkout_failed", {
           source,
-          returnUrl: window.location.href,
-          cancelUrl: `${window.location.origin}${window.location.pathname}?billing=cancel`
+          message: err.message,
+          provider: "gumroad",
         });
-
-        if (data?.sessionId) {
-          const stripe = getStripeClient();
-          const { error } = await stripe.redirectToCheckout({
-            sessionId: data.sessionId
-          });
-          if (error) {
-            throw new Error(error.message || "Stripe redirection failed.");
-          }
-          setPaymentStatus("success", "Redirecting to secure checkout…");
-          return;
-        }
-
-        if (data?.url) {
-          setPaymentStatus("success", "Redirecting to secure checkout…");
-          window.location.href = data.url;
-          return;
-        }
-
-        if (STRIPE_CONFIG.paymentLinkUrl) {
-          setPaymentStatus("success", "Redirecting to secure checkout…");
-          window.location.href = STRIPE_CONFIG.paymentLinkUrl;
-          return;
-        }
-
-        throw new Error("Checkout link unavailable. Try again later.");
-      } catch (err) {
-        setBillingBanner("error", err.message || "Unable to start checkout.");
-        setPaymentStatus("error", err.message || "Unable to start checkout.");
-        trackEvent("payment_checkout_failed", { source, message: err.message });
       } finally {
         setButtonLoading(button, false);
       }
@@ -622,11 +543,11 @@ export function initExplanationPage() {
       } else {
         setBillingBanner(
           "error",
-          "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
+          "BeatVault Premium required. Complete your Gumroad unlock to enter this lab."
         );
         setPaymentStatus(
           "error",
-          "This lesson is premium. Complete checkout to unlock it, or join the waitlist."
+          "BeatVault Premium required. Complete your Gumroad unlock to enter this lab."
         );
       }
       openAuth("signup", targetHref);
@@ -663,6 +584,11 @@ export function initExplanationPage() {
       showToast("success", successMessage);
       trackEvent("auth_conversion", { mode: mode || "unknown", email: user?.email });
 
+      // Refresh entitlement with the authenticated session to capture premium tokens
+      checkEntitlement(true).catch(() => {
+        /* Silent refresh */
+      });
+
       closeAuth();
       const redirectUrl = consumePendingLesson(targetLessonUrl || "lesson-drums-1.html");
       targetLessonUrl = null;
@@ -697,13 +623,13 @@ export function initExplanationPage() {
 
     parseBillingStatusFromQuery();
 
-    // Stripe / waitlist CTAs
-    if (navStripeCta) {
-      navStripeCta.addEventListener("click", () => joinWaitlistFlow("nav"));
+    // Gumroad CTA hooks
+    if (navPurchaseCta) {
+      navPurchaseCta.addEventListener("click", () => openGumroadProduct("nav"));
     }
 
     if (heroPrimaryCta) {
-      heroPrimaryCta.addEventListener("click", () => startCheckoutFlow("hero"));
+      heroPrimaryCta.addEventListener("click", () => openGumroadProduct("hero"));
     }
 
     // Intercept Lesson Links to require Auth/Guest selection + premium gating
