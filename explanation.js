@@ -568,9 +568,26 @@ export function initExplanationPage() {
       return "";
     }
 
-    function openGumroadProduct(source = "hero") {
+    function openGumroadProduct(source = "hero", event = null) {
       const button = source === "nav" ? navPurchaseCta : heroPrimaryCta;
+      const { gumroadProduct, productUrl } = PAYMENTS_CONFIG;
+      const overlayAvailable = Boolean(
+        window.GumroadOverlay && (productUrl || gumroadProduct)
+      );
+
+      const hasNativeHref = Boolean(
+        event?.currentTarget?.getAttribute?.("href")
+      );
+
+      if (!overlayAvailable && hasNativeHref) {
+        return;
+      }
+
       if (!button) return;
+
+      if (event) {
+        event.preventDefault();
+      }
 
       try {
         setBillingBanner("info", "Opening Gumroad checkout…");
@@ -578,8 +595,7 @@ export function initExplanationPage() {
         setButtonLoading(button, true, "Opening Gumroad…");
         trackEvent("payment_checkout_started", { source, provider: "gumroad" });
 
-        const { gumroadProduct, productUrl } = PAYMENTS_CONFIG;
-        if (window.GumroadOverlay && (productUrl || gumroadProduct)) {
+        if (overlayAvailable) {
           window.GumroadOverlay.open(productUrl || gumroadProduct);
         } else if (productUrl) {
           window.open(productUrl, "_blank", "noopener,noreferrer");
@@ -720,11 +736,15 @@ export function initExplanationPage() {
 
     // Gumroad CTA hooks
     if (navPurchaseCta) {
-      navPurchaseCta.addEventListener("click", () => openGumroadProduct("nav"));
+      navPurchaseCta.addEventListener("click", (event) =>
+        openGumroadProduct("nav", event)
+      );
     }
 
     if (heroPrimaryCta) {
-      heroPrimaryCta.addEventListener("click", () => openGumroadProduct("hero"));
+      heroPrimaryCta.addEventListener("click", (event) =>
+        openGumroadProduct("hero", event)
+      );
     }
 
     // Intercept Lesson Links to handle premium gating
