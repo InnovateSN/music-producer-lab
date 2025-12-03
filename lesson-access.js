@@ -1,6 +1,8 @@
 const AUTH_USER_KEY = "mpl_auth_user";
 const PREMIUM_STATUS_KEY = "mpl_premium_status";
+const PREMIUM_TOKEN_COOKIE = "mpl_premium_token";
 const PENDING_LESSON_KEY = "mpl_pending_lesson";
+const ENTITLEMENT_MAX_AGE_MS = 1000 * 60 * 30; // 30 minutes freshness window
 
 function safeParse(json, fallback = null) {
   try {
@@ -28,6 +30,46 @@ export function persistPremiumStatus(status) {
 
 export function getStoredPremiumStatus() {
   return safeParse(localStorage.getItem(PREMIUM_STATUS_KEY));
+}
+
+function persistPremiumToken(token) {
+  try {
+    if (!token) {
+      document.cookie = `${PREMIUM_TOKEN_COOKIE}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      return;
+    }
+
+    // Keep the token short-lived so entitlement checks remain fresh
+    const maxAge = 60 * 60; // 1 hour
+    document.cookie = `${PREMIUM_TOKEN_COOKIE}=${token}; path=/; secure; samesite=strict; max-age=${maxAge}`;
+  } catch (err) {
+    console.warn("Unable to persist premium token", err);
+  }
+}
+
+function getPremiumToken() {
+  try {
+    const cookies = document.cookie.split(";");
+    for (const cookie of cookies) {
+      const [key, value] = cookie.trim().split("=");
+      if (key === PREMIUM_TOKEN_COOKIE && value) {
+        return value;
+      }
+    }
+  } catch (err) {
+    console.warn("Unable to read premium token", err);
+  }
+  return null;
+}
+
+export function persistPremiumEntitlement({ status, token }) {
+  persistPremiumStatus(status);
+  persistPremiumToken(token);
+}
+
+export function clearPremiumEntitlement() {
+  persistPremiumStatus(null);
+  persistPremiumToken(null);
 }
 
 export function markPendingLesson(url) {
@@ -66,15 +108,21 @@ export function ensureLessonAccess({
   fallbackUrl = "explanation.html",
 } = {}) {
   const premium = getStoredPremiumStatus();
+  const token = getPremiumToken() || premium?.entitlementToken;
   const user = getStoredUser();
   const isGuest = !!user?.isGuest;
-  const hasPremium = !!premium?.hasAccess;
+  const isFresh = Boolean(
+    premium?.hasAccess &&
+      token &&
+      premium?.checkedAt &&
+      Date.now() - premium.checkedAt < ENTITLEMENT_MAX_AGE_MS
+  );
 
   if (!requiresPremium) {
     return { allowed: true };
   }
 
-  if (hasPremium) {
+  if (isFresh) {
     return { allowed: true };
   }
 
@@ -84,7 +132,7 @@ export function ensureLessonAccess({
 
   const reason = isGuest
     ? "Guest sessions cannot open premium lessons yet. Create a free account to continue."
-    : "This is a premium lesson. Log in or join to unlock it.";
+    : "BeatVault premium lab. Sign in or unlock access via Gumroad to continue.";
 
   return {
     allowed: false,
