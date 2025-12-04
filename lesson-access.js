@@ -28,8 +28,21 @@ export function persistPremiumStatus(status) {
   }
 }
 
-export function getStoredPremiumStatus() {
-  return safeParse(localStorage.getItem(PREMIUM_STATUS_KEY));
+export function getStoredPremiumStatus({ validate = true } = {}) {
+  const stored = safeParse(localStorage.getItem(PREMIUM_STATUS_KEY));
+
+  if (!validate || !stored) return stored;
+
+  const now = Date.now();
+  const isExpired = stored?.expiresAt && now > stored.expiresAt;
+  const isRevoked = stored?.revoked === true;
+
+  if (isExpired || isRevoked) {
+    clearPremiumEntitlement();
+    return null;
+  }
+
+  return stored;
 }
 
 function persistPremiumToken(token) {
@@ -111,12 +124,21 @@ export function ensureLessonAccess({
   const token = getPremiumToken() || premium?.entitlementToken;
   const user = getStoredUser();
   const isGuest = !!user?.isGuest;
+  const now = Date.now();
+  const isExpired = premium?.expiresAt && now > premium.expiresAt;
+  const isRevoked = premium?.revoked === true;
   const isFresh = Boolean(
     premium?.hasAccess &&
       token &&
       premium?.checkedAt &&
-      Date.now() - premium.checkedAt < ENTITLEMENT_MAX_AGE_MS
+      now - premium.checkedAt < ENTITLEMENT_MAX_AGE_MS &&
+      !isExpired &&
+      !isRevoked
   );
+
+  if ((isExpired || isRevoked) && premium) {
+    clearPremiumEntitlement();
+  }
 
   if (!requiresPremium) {
     return { allowed: true };
