@@ -201,10 +201,12 @@ function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLesso
   const pill = document.createElement("div");
   pill.textContent = instr.label;
   pill.className = "hero-visual-pill";
-  pill.style.padding = "0.25rem 0.6rem";
-  pill.style.border = "1px solid rgba(255,255,255,0.06)";
-  pill.style.background = instr.color;
-  pill.style.color = "#050607";
+  pill.style.padding = "0.3rem 0.8rem";
+  pill.style.borderRadius = "14px";
+  pill.style.border = "1.5px solid rgba(62,242,255,0.8)";
+  pill.style.background = `linear-gradient(135deg, ${instr.color}, rgba(62,242,255,0.24))`;
+  pill.style.color = "#040611";
+  pill.style.boxShadow = "0 0 0 1px rgba(62,242,255,0.18), 0 0 18px rgba(62,242,255,0.24)";
   pill.style.fontWeight = 700;
   pill.style.minWidth = "86px";
   left.appendChild(pill);

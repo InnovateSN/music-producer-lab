@@ -9,6 +9,9 @@
   --text-muted: rgba(233, 237, 247, 0.75);
   --border-color: rgba(233, 237, 247, 0.16);
   --border-glow: rgba(14, 198, 213, 0.35);
+  --neon-border: #3ef2ff;
+  --neon-border-strong: #a681ff;
+  --neon-surface: rgba(14, 24, 46, 0.9);
 }
 
 *,

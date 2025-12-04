@@ -73,9 +73,10 @@
 }
 
 .logo-button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--neon-border);
   outline-offset: 6px;
-  border-radius: 999px;
+  border-radius: 16px;
+  box-shadow: 0 0 0 4px rgba(62, 242, 255, 0.18);
 }
 
 .logo {
@@ -90,9 +91,9 @@
   font-weight: 700;
   text-align: center;
   white-space: nowrap;
-  padding: 1.05rem 1.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-color);
+  padding: 1.05rem 1.9rem;
+  border-radius: 16px;
+  border: 1.5px solid var(--neon-border);
   background:
     radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.12), transparent 55%)
       border-box,
@@ -100,8 +101,9 @@
     var(--bg-panel);
   box-shadow:
     0 0 55px rgba(0, 0, 0, 0.8),
-    0 0 120px rgba(13, 198, 213, 0.35),
-    0 0 190px rgba(109, 123, 255, 0.32);
+    0 0 120px rgba(13, 198, 213, 0.45),
+    0 0 190px rgba(109, 123, 255, 0.4),
+    0 0 0 1px rgba(62, 242, 255, 0.35);
   backdrop-filter: blur(22px) saturate(1.25);
   -webkit-backdrop-filter: blur(22px) saturate(1.25);
   font-size: clamp(1.05rem, 2.3vw, 1.6rem);
@@ -139,6 +141,25 @@
   transform: translate3d(-12%, 0, 0);
 }
 
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    from 120deg,
+    transparent 10%,
+    rgba(255, 255, 255, 0.3) 35%,
+    transparent 55%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 90%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate3d(-20%, -10%, 0) rotate(8deg);
+  transition: opacity 0.4s ease, transform 0.7s ease;
+  pointer-events: none;
+}
+
 .logo-image {
   position: relative;
   z-index: 1;
@@ -153,9 +174,17 @@
 .logo-button:active .logo {
   box-shadow:
     0 0 65px rgba(0, 0, 0, 0.85),
-    0 0 140px rgba(14, 198, 213, 0.4),
-    0 0 210px rgba(109, 123, 255, 0.4);
+    0 0 160px rgba(14, 198, 213, 0.5),
+    0 0 230px rgba(109, 123, 255, 0.5),
+    0 0 0 2px rgba(62, 242, 255, 0.4);
   transform: translate3d(0, 0, 0) scale(1.02);
+}
+
+.logo-button:hover .logo::after,
+.logo-button:active .logo::after,
+.logo-button:focus-visible .logo::after {
+  opacity: 0.6;
+  transform: translate3d(20%, 10%, 0) rotate(24deg);
 }
 
 .loading {
