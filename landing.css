@@ -4,7 +4,7 @@
   height: 100%;
   touch-action: none;
   overflow: hidden;
-  background: radial-gradient(circle at 22% 18%, #12193a 0, #0b1024 55%);
+  background: var(--bg-hero);
 }
 
 .bg {
@@ -91,28 +91,28 @@
   font-weight: 700;
   text-align: center;
   white-space: nowrap;
-  padding: 1.05rem 1.9rem;
-  border-radius: 16px;
-  border: 1.5px solid var(--neon-border);
+  padding: 1rem 1.8rem;
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
   background:
-    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.12), transparent 55%)
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.14), transparent 55%)
       border-box,
-    linear-gradient(135deg, var(--accent), var(--accent-strong)) border-box,
+    var(--gradient-primary) border-box,
     var(--bg-panel);
   box-shadow:
     0 0 55px rgba(0, 0, 0, 0.8),
-    0 0 120px rgba(13, 198, 213, 0.45),
-    0 0 190px rgba(109, 123, 255, 0.4),
-    0 0 0 1px rgba(62, 242, 255, 0.35);
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+    0 0 110px rgba(99, 255, 244, 0.4),
+    0 0 170px rgba(197, 141, 255, 0.35),
+    0 0 0 1px rgba(99, 255, 244, 0.3);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
   font-size: clamp(1.05rem, 2.3vw, 1.6rem);
   transform: translate3d(0, 0, 0);
   will-change: transform, text-shadow, filter;
   text-shadow:
     0 0 14px rgba(0, 0, 0, 0.85),
-    0 0 32px rgba(14, 198, 213, 0.6),
-    0 0 52px rgba(109, 123, 255, 0.52);
+    0 0 32px rgba(99, 255, 244, 0.5),
+    0 0 52px rgba(197, 141, 255, 0.48);
   overflow: hidden;
 }
 
@@ -163,11 +163,11 @@
 .logo-image {
   position: relative;
   z-index: 1;
-  width: clamp(200px, 32vw, 340px);
+  width: clamp(220px, 32vw, 360px);
   height: auto;
   filter:
-    drop-shadow(0 0 14px rgba(14, 198, 213, 0.65))
-    drop-shadow(0 0 20px rgba(109, 123, 255, 0.5));
+    drop-shadow(0 0 16px rgba(99, 255, 244, 0.62))
+    drop-shadow(0 0 22px rgba(197, 141, 255, 0.46));
 }
 
 .logo-button:hover .logo,

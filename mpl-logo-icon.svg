@@ -1,0 +1,39 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Music Producer Lab neon icon</title>
+  <desc id="desc">Hexagon neon frame with stylized waveform ribbon.</desc>
+  <defs>
+    <linearGradient id="iconGrad" x1="12" y1="8" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63FFF4" />
+      <stop offset="0.45" stop-color="#5CC4FF" />
+      <stop offset="1" stop-color="#C58DFF" />
+    </linearGradient>
+    <linearGradient id="iconPulse" x1="20" y1="26" x2="94" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD86B" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#63FFF4" stop-opacity="0.95" />
+    </linearGradient>
+  </defs>
+  <g filter="url(#iconGlow)">
+    <path
+      d="M24 36.5C24 29.0442 30.0442 23 37.5 23H82.5C89.9558 23 96 29.0442 96 36.5V83.5C96 90.9558 89.9558 97 82.5 97H37.5C30.0442 97 24 90.9558 24 83.5V36.5Z"
+      fill="#0B1126"
+      stroke="url(#iconGrad)"
+      stroke-width="2.6"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M36 72L48 52L62 70L74 50L86 70"
+      stroke="url(#iconPulse)"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="40" cy="79" r="3" fill="#63FFF4" />
+    <circle cx="74" cy="79" r="3" fill="#C58DFF" />
+  </g>
+  <defs>
+    <filter id="iconGlow" x="14" y="13" width="92" height="94" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="rgba(99,255,244,0.45)" />
+      <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="rgba(197,141,255,0.38)" />
+    </filter>
+  </defs>
+</svg>
