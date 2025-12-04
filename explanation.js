@@ -11,6 +11,22 @@ import { LABS } from "./lessons-data.js";
 export function initExplanationPage() {
     const API_BASE_URL = (window.mplApiBaseUrl || "").replace(/\/$/, "");
     const ENTITLEMENT_MAX_AGE_MS = 1000 * 60 * 30;
+    const OFFLINE_ENTITLEMENT_TOKEN =
+      window.__MPL_OFFLINE_ENTITLEMENT_TOKEN__ ||
+      window.__MPL_OFFLINE_PREMIUM_TOKEN__ ||
+      window.mplOfflineEntitlementToken ||
+      null;
+    const OFFLINE_PREMIUM_PLAN =
+      window.__MPL_OFFLINE_PREMIUM_PLAN__ || "offline-demo";
+    const OFFLINE_PREMIUM_TTL_MS = Number(
+      window.__MPL_OFFLINE_PREMIUM_TTL_MS__
+    );
+    const OFFLINE_PREMIUM_EXPIRES_AT = Number(
+      window.__MPL_OFFLINE_PREMIUM_EXPIRES_AT__
+    );
+    const OFFLINE_PREMIUM_ENABLED = Boolean(
+      window.__MPL_OFFLINE_PREMIUM__ ?? OFFLINE_ENTITLEMENT_TOKEN
+    );
     const BACKEND_AVAILABLE = Boolean(
       window.mplBackendAvailable ??
         window.__MPL_BACKEND_ENABLED__ ??
@@ -259,6 +275,23 @@ export function initExplanationPage() {
       console.info(`[analytics] ${eventName}`, detail);
     }
 
+    function getOfflineEntitlementExpiry() {
+      if (Number.isFinite(OFFLINE_PREMIUM_EXPIRES_AT)) {
+        return OFFLINE_PREMIUM_EXPIRES_AT;
+      }
+
+      if (Number.isFinite(OFFLINE_PREMIUM_TTL_MS)) {
+        return Date.now() + Math.max(0, OFFLINE_PREMIUM_TTL_MS);
+      }
+
+      if (OFFLINE_ENTITLEMENT_TOKEN) {
+        // Default to a 30-day offline token window unless overridden
+        return Date.now() + 1000 * 60 * 60 * 24 * 30;
+      }
+
+      return null;
+    }
+
     function getToastStack() {
       if (toastState.stack) return toastState.stack;
       const stack = document.createElement("div");
@@ -310,6 +343,12 @@ export function initExplanationPage() {
       const entitlementToken =
         params.get("entitlement_token") || params.get("access_token");
       const plan = params.get("plan") || "gumroad";
+      const entitlementExpiresAt = parseInt(
+        params.get("entitlement_expires_at") || params.get("expires_at"),
+        10
+      );
+      const entitlementRevoked =
+        params.get("entitlement_revoked") === "true";
       if (!billingStatus) return;
 
       if (billingStatus === "success") {
@@ -332,7 +371,11 @@ export function initExplanationPage() {
             hasAccess: billingState.hasPremiumAccess,
             plan: billingState.plan,
             checkedAt: Date.now(),
-            entitlementToken: billingState.entitlementToken
+            entitlementToken: billingState.entitlementToken,
+            expiresAt: Number.isFinite(entitlementExpiresAt)
+              ? entitlementExpiresAt
+              : null,
+            revoked: entitlementRevoked
           }
         });
       } else if (billingStatus === "waitlist") {
@@ -392,8 +435,13 @@ export function initExplanationPage() {
 
     async function checkEntitlement(force = false) {
       const stored = getStoredPremiumStatus();
+      const now = Date.now();
       const storedFresh = Boolean(
-        stored?.checkedAt && Date.now() - stored.checkedAt < ENTITLEMENT_MAX_AGE_MS
+        stored?.hasAccess &&
+          stored?.checkedAt &&
+          now - stored.checkedAt < ENTITLEMENT_MAX_AGE_MS &&
+          (!stored?.expiresAt || now < stored.expiresAt) &&
+          !stored?.revoked
       );
 
       if (!force && (billingState.checked || (storedFresh && stored?.hasAccess))) {
@@ -408,11 +456,39 @@ export function initExplanationPage() {
       }
 
       if (!BACKEND_AVAILABLE) {
+        const offlineToken =
+          OFFLINE_ENTITLEMENT_TOKEN || stored?.entitlementToken || null;
+
+        if (OFFLINE_PREMIUM_ENABLED || (stored?.hasAccess && storedFresh)) {
+          billingState.hasPremiumAccess = true;
+          billingState.plan = stored?.plan || OFFLINE_PREMIUM_PLAN;
+          billingState.entitlementToken = offlineToken;
+          billingState.error = null;
+          billingState.checked = true;
+
+          persistPremiumEntitlement({
+            token: offlineToken,
+            status: {
+              hasAccess: true,
+              plan: billingState.plan,
+              checkedAt: Date.now(),
+              entitlementToken: offlineToken,
+              expiresAt: stored?.expiresAt || getOfflineEntitlementExpiry(),
+              revoked: stored?.revoked || false,
+            },
+          });
+          return billingState;
+        }
+
         billingState.checked = true;
         billingState.hasPremiumAccess = Boolean(stored?.hasAccess);
         billingState.plan = stored?.plan || null;
         billingState.entitlementToken = stored?.entitlementToken || null;
-        billingState.error = null;
+        billingState.error = stored?.revoked
+          ? "Entitlement revoked"
+          : stored?.expiresAt && now > stored.expiresAt
+            ? "Entitlement expired"
+            : null;
         return billingState;
       }
       try {
@@ -429,7 +505,9 @@ export function initExplanationPage() {
             hasAccess: billingState.hasPremiumAccess,
             plan: billingState.plan,
             checkedAt: Date.now(),
-            entitlementToken: billingState.entitlementToken
+            entitlementToken: billingState.entitlementToken,
+            expiresAt: data?.expiresAt || null,
+            revoked: data?.revoked === true
           }
         });
 
