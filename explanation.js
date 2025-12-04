@@ -887,11 +887,15 @@ export function initExplanationPage() {
 
     // "See how it works" scrolls to the explanation section
     if (heroSecondaryCta && howItWorksSection) {
-      heroSecondaryCta.addEventListener("click", () => {
+      heroSecondaryCta.addEventListener("click", (event) => {
+        event.preventDefault();
         howItWorksSection.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
+        if (typeof howItWorksSection.focus === "function") {
+          howItWorksSection.focus({ preventScroll: true });
+        }
       });
     }
 
