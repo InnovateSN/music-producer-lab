@@ -1,43 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
   <title id="title">Music Producer Lab logo</title>
-  <desc id="desc">Modern wordmark with a luminous audio icon for Music Producer Lab.</desc>
-  <defs>
-    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#63f6ff" />
-      <stop offset="50%" stop-color="#9e7bff" />
-      <stop offset="100%" stop-color="#26d6a5" />
-    </linearGradient>
-    <linearGradient id="bar" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#dff6ff" />
-      <stop offset="100%" stop-color="#63f6ff" />
-    </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
+  <desc id="desc">Minimal wordmark with a circular equalizer icon for Music Producer Lab.</desc>
+  <style>
+    :root {
+      --bg: transparent;
+      --text: #f5f7fb;
+      --accent: #67f6ff;
+      --accent-strong: #c19cff;
+    }
+    text {
+      font-family: "Inter", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      fill: var(--text);
+    }
+  </style>
 
-  <rect width="480" height="160" rx="20" fill="none" />
+  <rect width="440" height="140" rx="20" fill="var(--bg)" />
 
-  <g transform="translate(30 28)">
-    <circle cx="54" cy="52" r="46" fill="rgba(18,28,52,0.45)" stroke="rgba(255,255,255,0.08)" stroke-width="2.5" />
-    <circle cx="54" cy="52" r="46" fill="none" stroke="url(#ring)" stroke-width="6" filter="url(#glow)" />
-    <g fill="url(#bar)" shape-rendering="crispEdges">
-      <rect x="36" y="34" width="10" height="36" rx="5" />
-      <rect x="52" y="22" width="10" height="58" rx="5" />
-      <rect x="68" y="30" width="10" height="42" rx="5" />
+  <g transform="translate(26 30)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="44" cy="44" r="42" stroke="rgba(255,255,255,0.12)" stroke-width="4" />
+    <circle cx="44" cy="44" r="30" stroke="rgba(103,246,255,0.35)" stroke-width="3" />
+
+    <g stroke-width="10">
+      <line x1="20" y1="32" x2="20" y2="56" stroke="var(--accent)" />
+      <line x1="44" y1="20" x2="44" y2="68" stroke="var(--text)" />
+      <line x1="68" y1="28" x2="68" y2="60" stroke="var(--accent-strong)" />
     </g>
-    <circle cx="54" cy="18" r="4" fill="#e9f2ff" />
-    <circle cx="82" cy="60" r="4" fill="#9e7bff" />
+
+    <g fill="var(--accent-strong)">
+      <circle cx="44" cy="26" r="5" />
+      <circle cx="68" cy="52" r="5" />
+    </g>
+
+    <circle cx="20" cy="58" r="5" fill="var(--accent)" />
   </g>
 
-  <g transform="translate(150 58)" fill="#e9eef9">
-    <text x="0" y="0" font-family="'Inter','SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="800" letter-spacing="0.04em" text-rendering="optimizeLegibility">
-      Music Producer Lab
-    </text>
-    <rect x="0" y="12" width="252" height="6" rx="3" fill="rgba(99,246,255,0.16)" />
-  </g>
+  <text x="132" y="78" font-size="30">Music Producer Lab</text>
 </svg>
