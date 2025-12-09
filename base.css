@@ -79,3 +79,7 @@ code,
 pre {
   font-family: var(--font-mono);
 }
+
+.nowrap {
+  white-space: nowrap;
+}
