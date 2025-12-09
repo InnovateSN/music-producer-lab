@@ -613,6 +613,13 @@
   color: rgba(226, 240, 255, 0.88);
 }
 
+.section-list .instruction-line {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
 .section-list li::before {
   content: "◎";
   font-size: 0.6rem;
