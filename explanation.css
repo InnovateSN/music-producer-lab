@@ -614,9 +614,19 @@
 }
 
 .section-list .instruction-line {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.4rem;
+  display: block;
+}
+
+.section-list .instruction {
+  margin: 0;
+  display: block;
+}
+
+.section-list .instruction strong {
+  margin-right: 0.4em;
+}
+
+.section-list .instruction .count {
   white-space: nowrap;
 }
 
