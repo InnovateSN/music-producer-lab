@@ -37,9 +37,13 @@ function enableDemoAdminFromQuery() {
     const params = new URLSearchParams(window.location?.search || "");
     const adminFlag = params.get("admin");
     const isDemoAdmin =
-      typeof adminFlag === "string" && adminFlag.toLowerCase() === "true";
+      typeof adminFlag === "string" &&
+      ["true", "1", "demo"].includes(adminFlag.toLowerCase());
 
     if (!isDemoAdmin) return;
+
+    const existingUser = getStoredUser();
+    if (existingUser?.role === "admin") return;
 
     const adminUser = {
       name: "Demo Admin",
@@ -68,6 +72,7 @@ function enableDemoAdminFromQuery() {
 
     // Optional visual confirmation for debugging/demo purposes only
     console.info("[mpl] Demo admin access enabled via URL parameter.");
+    document.body?.setAttribute("data-mpl-demo-admin", "true");
   } catch (err) {
     console.warn("Unable to apply demo admin access", err);
   }
