@@ -61,6 +61,47 @@
   padding: 1.5rem;
 }
 
+.landing-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.25rem 1.5rem;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.landing-login {
+  pointer-events: auto;
+  padding: 0.55rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #0b0f24;
+  background: linear-gradient(120deg, #e8f2ff, #8af7ff);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.38),
+    0 0 24px rgba(99, 255, 244, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.landing-login:hover,
+.landing-login:focus-visible {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 45px rgba(0, 0, 0, 0.4),
+    0 0 32px rgba(197, 141, 255, 0.45);
+}
+
+.landing-login:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
 .logo-button {
   border: none;
   background: transparent;

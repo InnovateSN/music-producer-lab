@@ -74,6 +74,7 @@ export function initExplanationPage() {
     const heroSecondaryCta = document.getElementById(
       "mpl-hero-stripe-secondary"
     );
+    const navLoginTrigger = document.getElementById("mpl-nav-login");
     const howItWorksSection = document.getElementById("mpl-how-it-works");
 
     const guestBtn = document.getElementById("mpl-auth-guest");
@@ -911,6 +912,10 @@ export function initExplanationPage() {
       );
     }
 
+    if (navLoginTrigger) {
+      navLoginTrigger.addEventListener("click", () => openAuth("login"));
+    }
+
     // Intercept Lesson Links to handle premium gating
     lessonLinks.forEach((link) => {
       const targetHref = link.getAttribute("href");
@@ -936,6 +941,13 @@ export function initExplanationPage() {
           howItWorksSection.focus({ preventScroll: true });
         }
       });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const authIntent =
+      (urlParams.get("auth") || urlParams.get("login") || "").toLowerCase();
+    if (authIntent === "login" || authIntent === "sign-in" || authIntent === "signin") {
+      openAuth("login");
     }
 
     if (BACKEND_AVAILABLE) {
