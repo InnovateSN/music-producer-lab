@@ -2,6 +2,7 @@ const AUTH_USER_KEY = "mpl_auth_user";
 const PREMIUM_STATUS_KEY = "mpl_premium_status";
 const PREMIUM_TOKEN_COOKIE = "mpl_premium_token";
 const PENDING_LESSON_KEY = "mpl_pending_lesson";
+const ACCESS_PLAN_KEY = "mpl-access-plan";
 const ENTITLEMENT_MAX_AGE_MS = 1000 * 60 * 30; // 30 minutes freshness window
 
 function safeParse(json, fallback = null) {
@@ -12,8 +13,64 @@ function safeParse(json, fallback = null) {
   }
 }
 
+function isBackendAvailable() {
+  try {
+    const apiBaseUrl = (window.mplApiBaseUrl || "").replace(/\/$/, "");
+    return Boolean(
+      window.mplBackendAvailable ??
+        window.__MPL_BACKEND_ENABLED__ ??
+        (apiBaseUrl && apiBaseUrl.length > 0)
+    );
+  } catch (err) {
+    return false;
+  }
+}
+
 export function getStoredUser() {
   return safeParse(localStorage.getItem(AUTH_USER_KEY));
+}
+
+function enableDemoAdminFromQuery() {
+  if (isBackendAvailable()) return;
+
+  try {
+    const params = new URLSearchParams(window.location?.search || "");
+    const adminFlag = params.get("admin");
+    const isDemoAdmin =
+      typeof adminFlag === "string" && adminFlag.toLowerCase() === "true";
+
+    if (!isDemoAdmin) return;
+
+    const adminUser = {
+      name: "Demo Admin",
+      email: "admin@mpl.local",
+      username: "admin",
+      role: "admin",
+      isAdmin: true,
+    };
+
+    const entitlementToken = "mpl-demo-admin";
+
+    localStorage.setItem(AUTH_USER_KEY, JSON.stringify(adminUser));
+    localStorage.setItem(ACCESS_PLAN_KEY, "admin");
+
+    persistPremiumEntitlement({
+      token: entitlementToken,
+      status: {
+        hasAccess: true,
+        plan: "admin",
+        checkedAt: Date.now(),
+        entitlementToken,
+        expiresAt: null,
+        revoked: false,
+      },
+    });
+
+    // Optional visual confirmation for debugging/demo purposes only
+    console.info("[mpl] Demo admin access enabled via URL parameter.");
+  } catch (err) {
+    console.warn("Unable to apply demo admin access", err);
+  }
 }
 
 export function persistPremiumStatus(status) {
@@ -203,3 +260,5 @@ export function renderLessonLock(message, fallbackUrl = "explanation.html") {
 
   document.body.appendChild(lock);
 }
+
+enableDemoAdminFromQuery();
