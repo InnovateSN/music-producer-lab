@@ -56,17 +56,11 @@ export async function syncSupabasePremiumStatus() {
 
   const isPremium = profile?.has_paid === true;
 
-  persistPremiumEntitlement({
-    status: {
-      hasAccess: isPremium,
-      plan: isPremium ? "premium" : "free",
-      checkedAt: Date.now(),
-      entitlementToken: session.access_token,
-      expiresAt: null,
-      revoked: !isPremium,
-    },
-    token: session.access_token,
-  });
+  if (isPremium) {
+    persistPremiumEntitlement();
+  } else {
+    clearPremiumEntitlement();
+  }
 
   return { synced: true, session, isPremium, profile };
 }

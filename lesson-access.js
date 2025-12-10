@@ -8,6 +8,23 @@ function safeParse(json, fallback = null) {
   }
 }
 
+function normalizeSlug(slugOrUrl = "") {
+  if (typeof slugOrUrl !== "string") return "";
+
+  const fileName = slugOrUrl.split("/").pop() || "";
+  return fileName.replace(/\.html$/i, "");
+}
+
+const premiumSlugs = [
+  "lesson-drums-6",
+  "lesson-arrangement",
+  "lesson-mixing",
+  "lesson-mastering",
+  "lesson-distribution",
+  "lesson-sound-design",
+  "lesson-vocals",
+];
+
 export function getStoredUser() {
   return safeParse(localStorage.getItem(AUTH_USER_KEY));
 }
@@ -18,29 +35,33 @@ export function setStoredUser(user) {
     return;
   }
 
-  localStorage.setItem(
-    AUTH_USER_KEY,
-    JSON.stringify({ ...user, hasPaid: Boolean(user.hasPaid) })
-  );
+  const normalizedUser = { ...user, hasPaid: Boolean(user.hasPaid) };
+  localStorage.setItem(AUTH_USER_KEY, JSON.stringify(normalizedUser));
 }
 
-export function isLessonProtected(lessonUrl = "") {
-  const fileName = lessonUrl.split("/").pop() || "";
+export function isLessonProtected(slugOrUrl = "") {
+  const slug = normalizeSlug(slugOrUrl);
 
-  const drumLessonMatch = fileName.match(/lesson-drums-(\d+)\.html/i);
+  if (!slug) return false;
+
+  const drumLessonMatch = slug.match(/^lesson-drums-(\d+)$/i);
   if (drumLessonMatch) {
     const lessonNumber = Number(drumLessonMatch[1]);
-    return Number.isFinite(lessonNumber) && lessonNumber >= 6;
+    if (Number.isFinite(lessonNumber) && lessonNumber <= 5) return false;
   }
 
-  return true;
+  return premiumSlugs.includes(slug);
 }
 
-export function ensureLessonAccess({
-  lessonUrl = "",
-  requiresPaid = false,
-  fallbackUrl = "/signup",
-} = {}) {
+export function ensureLessonAccess(options = {}) {
+  const slugOrUrl = typeof options === "string" ? options : options.lessonUrl || options.slug || "";
+  const fallbackUrl =
+    typeof options === "object" && options.fallbackUrl ? options.fallbackUrl : "/signup.html";
+  const requiresPaid =
+    typeof options === "object" && "requiresPaid" in options
+      ? options.requiresPaid
+      : isLessonProtected(slugOrUrl);
+
   if (!requiresPaid) {
     return { allowed: true };
   }
@@ -58,6 +79,20 @@ export function ensureLessonAccess({
   return {
     allowed: false,
     redirectUrl: fallbackUrl,
-    lessonUrl,
+    lessonUrl: slugOrUrl,
   };
+}
+
+export function persistPremiumEntitlement() {
+  const user = getStoredUser() || {};
+  user.hasPaid = true;
+  setStoredUser(user);
+}
+
+export function clearPremiumEntitlement() {
+  const user = getStoredUser();
+  if (user) {
+    user.hasPaid = false;
+    setStoredUser(user);
+  }
 }
