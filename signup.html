@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up | Music Producer Lab</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="explanation.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <a class="btn btn-outline" href="explanation.html"><span>Back to overview</span></a>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Unlock full access</div>
+            <h1 class="hero-title">Create your account to continue.</h1>
+            <p class="hero-subtitle">
+              Lessons 6 and beyond are reserved for members. Enter your email to claim your spot
+              and we'll confirm your purchase before unlocking paid lessons.
+            </p>
+            <form class="mpl-auth-form" id="mpl-signup-form">
+              <label for="mpl-signup-email">Email</label>
+              <input id="mpl-signup-email" name="email" type="email" required placeholder="you@example.com" />
+              <button class="btn btn-primary" type="submit"><span>Send login link</span></button>
+              <div class="mpl-auth-status" id="mpl-signup-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Members</div>
+              <div class="hero-visual-pill">Paid lessons</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Skip the gate and keep producing</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Access</span>
+                    <strong>Lessons 6+</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Status</span>
+                    <strong>Paid members</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Need help?</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Email support@musicproducerlab.com</div>
+                  <div class="hero-visual-pill-tag">Confirm your Gumroad receipt</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Already paid?</span>
+                  <span>Use the email from your receipt.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import { setStoredUser } from './lesson-access.js';
+
+      const form = document.getElementById('mpl-signup-form');
+      const status = document.getElementById('mpl-signup-status');
+
+      function setStatus(message, state = 'info') {
+        status.textContent = message || '';
+        status.dataset.state = state;
+      }
+
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = new FormData(form).get('email');
+        if (!email) return;
+
+        setStoredUser({ email, hasPaid: false });
+        setStatus('Check your inbox for the login link after purchase.', 'success');
+      });
+    </script>
+  </body>
+</html>

@@ -46,7 +46,7 @@ export async function syncSupabasePremiumStatus() {
   const userId = session.user.id;
   const { data: profile, error } = await supabase
     .from("users")
-    .select("is_premium, email")
+    .select("has_paid, email")
     .eq("id", userId)
     .single();
 
@@ -54,7 +54,7 @@ export async function syncSupabasePremiumStatus() {
     console.warn("[mpl] Unable to fetch premium status", error.message);
   }
 
-  const isPremium = profile?.is_premium === true;
+  const isPremium = profile?.has_paid === true;
 
   persistPremiumEntitlement({
     status: {
