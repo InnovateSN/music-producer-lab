@@ -1,5 +1,4 @@
-import { ensureLessonAccess, renderLessonLock } from "./lesson-access.js";
-import { syncSupabasePremiumStatus } from "./supabase-access.js";
+import { ensureLessonAccess, isLessonProtected } from "./lesson-access.js";
 import { LABS } from "./lessons-data.js";
 
 function findLesson(slug) {
@@ -195,19 +194,13 @@ export async function renderLessonPage(slug) {
     return;
   }
 
-  // If Supabase credentials are present, refresh the entitlement before gating.
-  await syncSupabasePremiumStatus();
-
+  const requiresPaid = lesson.access === "premium" || isLessonProtected(lesson.lessonUrl);
   const access = ensureLessonAccess({
     lessonUrl: lesson.lessonUrl,
-    requiresPremium: lesson.access === "premium",
-    fallbackUrl: "explanation.html"
+    requiresPaid,
   });
 
-  if (!access.allowed) {
-    renderLessonLock(access.reason, access.fallbackUrl);
-    return;
-  }
+  if (!access.allowed) return;
 
   document.title = `${lesson.title} | Music Producer Lab`;
   const yearEl = document.getElementById("mpl-year");
@@ -227,21 +220,18 @@ export async function renderLessonPage(slug) {
 
   navLinks.forEach((link) => {
     const targetHref = link.getAttribute("href");
-    const requiresPremium = link.dataset.mplAccess === "premium";
+    const requiresPaid =
+      link.dataset.mplAccess === "premium" || isLessonProtected(targetHref);
 
     link.addEventListener("click", (e) => {
-      if (!requiresPremium) return;
+      if (!requiresPaid) return;
 
       const gate = ensureLessonAccess({
         lessonUrl: targetHref,
-        requiresPremium: true,
-        fallbackUrl: "explanation.html"
+        requiresPaid: true,
       });
 
-      if (!gate.allowed) {
-        e.preventDefault();
-        renderLessonLock(gate.reason, gate.fallbackUrl);
-      }
+      if (!gate.allowed) e.preventDefault();
     });
   });
 }
