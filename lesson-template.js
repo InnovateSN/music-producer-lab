@@ -1,4 +1,5 @@
 import { ensureLessonAccess, renderLessonLock } from "./lesson-access.js";
+import { syncSupabasePremiumStatus } from "./supabase-access.js";
 import { LABS } from "./lessons-data.js";
 
 function findLesson(slug) {
@@ -187,12 +188,15 @@ function renderNavigation(container, lesson) {
   container.appendChild(nav);
 }
 
-export function renderLessonPage(slug) {
+export async function renderLessonPage(slug) {
   const lesson = findLesson(slug);
   if (!lesson) {
     console.error(`Lesson not found for slug: ${slug}`);
     return;
   }
+
+  // If Supabase credentials are present, refresh the entitlement before gating.
+  await syncSupabasePremiumStatus();
 
   const access = ensureLessonAccess({
     lessonUrl: lesson.lessonUrl,
