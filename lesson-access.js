@@ -123,6 +123,7 @@ export function ensureLessonAccess({
   const premium = getStoredPremiumStatus();
   const token = getPremiumToken() || premium?.entitlementToken;
   const user = getStoredUser();
+  const isAdmin = user?.role === "admin" || user?.isAdmin;
   const isGuest = !!user?.isGuest;
   const now = Date.now();
   const isExpired = premium?.expiresAt && now > premium.expiresAt;
@@ -138,6 +139,10 @@ export function ensureLessonAccess({
 
   if ((isExpired || isRevoked) && premium) {
     clearPremiumEntitlement();
+  }
+
+  if (isAdmin) {
+    return { allowed: true };
   }
 
   if (!requiresPremium) {

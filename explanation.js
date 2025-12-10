@@ -100,6 +100,13 @@ export function initExplanationPage() {
       entitlementToken: null
     };
 
+    const ADMIN_CREDENTIALS = {
+      username: "admin",
+      password: "b3tt3rd4y5",
+      token: "mpl-admin-session",
+      entitlementToken: "mpl-admin-entitlement"
+    };
+
     const cachedEntitlement = getStoredPremiumStatus();
     if (cachedEntitlement?.hasAccess) {
       billingState.hasPremiumAccess = true;
@@ -259,6 +266,39 @@ export function initExplanationPage() {
       billingBanner.textContent = message;
       billingBanner.dataset.state = type;
       billingBanner.classList.remove("mpl-auth-hidden");
+    }
+
+    function grantAdminAccess() {
+      const adminUser = {
+        name: "Admin",
+        email: "admin@mpl.local",
+        username: ADMIN_CREDENTIALS.username,
+        role: "admin",
+        isAdmin: true,
+      };
+
+      billingState.hasPremiumAccess = true;
+      billingState.checked = true;
+      billingState.error = null;
+      billingState.plan = "admin";
+      billingState.entitlementToken = ADMIN_CREDENTIALS.entitlementToken;
+
+      persistPremiumEntitlement({
+        token: billingState.entitlementToken,
+        status: {
+          hasAccess: true,
+          plan: billingState.plan,
+          checkedAt: Date.now(),
+          entitlementToken: billingState.entitlementToken,
+          expiresAt: null,
+          revoked: false,
+        },
+      });
+
+      setAuthState({ user: adminUser, token: ADMIN_CREDENTIALS.token });
+      setBillingBanner("success", "Admin access enabled. All lessons unlocked.");
+      setPaymentStatus("success", "Admin access enabled.");
+      return adminUser;
     }
 
     function trackEvent(eventName, detail = {}) {
@@ -829,10 +869,9 @@ export function initExplanationPage() {
       if (!BACKEND_AVAILABLE) {
         setBillingBanner(
           "info",
-          "Account creation is disabled in this demo. Use the Gumroad checkout to unlock full access."
+          "Account creation is disabled in this demo. Use the Gumroad checkout to unlock full access or log in as admin."
         );
-        openGumroadProduct("auth");
-        return;
+        initialMode = "login";
       }
 
       targetLessonUrl = targetUrl;
@@ -994,6 +1033,22 @@ export function initExplanationPage() {
           email: e.target.email.value.trim(),
           password: e.target.password.value
         };
+
+        const isAdminLogin =
+          payload.email.toLowerCase() === ADMIN_CREDENTIALS.username &&
+          payload.password === ADMIN_CREDENTIALS.password;
+
+        if (isAdminLogin) {
+          const adminUser = grantAdminAccess();
+          handleAuthSuccess({
+            user: adminUser,
+            token: ADMIN_CREDENTIALS.token,
+            message: "Admin access granted.",
+            mode: "admin",
+            form: formLogin,
+          });
+          return;
+        }
 
         const emailError = validateEmail(payload.email);
         const passwordError = validatePassword(payload.password);
