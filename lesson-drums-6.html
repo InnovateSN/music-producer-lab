@@ -162,10 +162,10 @@
 
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       <script type="module">
-        import { ensureLessonAccess } from './lesson-access.js';
+        import { guardPageAccess } from './guard.js';
         import { initDrumSequencer } from './sequencer.js';
 
-        const gate = ensureLessonAccess({ requiresPaid: true, lessonUrl: 'lesson-drums-6.html' });
+        const gate = await guardPageAccess({ requiresPremium: true, lessonUrl: 'lesson-drums-6.html' });
         if (!gate.allowed) return;
 
         const LESSON_KEY = "mpl-lesson6-progress";

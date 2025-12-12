@@ -1,4 +1,5 @@
 import { ensureLessonAccess, isLessonProtected } from "./lesson-access.js";
+import { guardPageAccess } from "./guard.js";
 import { LABS } from "./lessons-data.js";
 
 function findLesson(slug) {
@@ -195,9 +196,9 @@ export async function renderLessonPage(slug) {
   }
 
   const requiresPaid = lesson.access === "premium" || isLessonProtected(lesson.lessonUrl);
-  const access = ensureLessonAccess({
+  const access = await guardPageAccess({
+    requiresPremium: requiresPaid,
     lessonUrl: lesson.lessonUrl,
-    requiresPaid,
   });
 
   if (!access.allowed) return;

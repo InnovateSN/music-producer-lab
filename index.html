@@ -19,7 +19,11 @@
   <body>
     <div class="landing">
       <header class="landing-nav">
-        <a href="explanation.html?auth=login" class="landing-login">Log in</a>
+        <div class="landing-status" id="landingAccessStatus" aria-live="polite">Stato: Free</div>
+        <div class="landing-nav-actions">
+          <a href="explanation.html?auth=login" class="landing-login" id="landingCta">Log in</a>
+          <a href="signup.html" class="landing-login" id="landingSecondaryCta">Acquista</a>
+        </div>
       </header>
       <div class="bg">
         <div class="bg-layer bg-layer-back">

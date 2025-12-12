@@ -1,3 +1,5 @@
+import { getAuthState, onAuthStateChange, refreshAuthState } from "./auth.js";
+
 const backImg = document.getElementById("bg-back");
 const frontImg = document.getElementById("bg-front");
 const bgBackLayer = document.querySelector(".bg-layer-back");
@@ -22,6 +24,10 @@ let pointerY = centerY;
 const depthBack = 0.04;
 const depthFront = 0.09;
 const depthLogo = 0.03;
+
+const landingStatus = document.getElementById("landingAccessStatus");
+const landingCta = document.getElementById("landingCta");
+const landingSecondaryCta = document.getElementById("landingSecondaryCta");
 
 // Simple interpolation for smooth motion
 let curBackX = 0,
@@ -94,6 +100,53 @@ function animate() {
 }
 
 animate();
+
+function renderLandingAuth(state) {
+  if (landingStatus) {
+    const label =
+      state.status === "premium"
+        ? "Stato: Premium attivo"
+        : state.status === "logged"
+          ? "Stato: Logged · contenuti premium bloccati"
+          : "Stato: Free · accedi per continuare";
+    landingStatus.textContent = label;
+  }
+
+  if (landingCta) {
+    if (state.status === "premium") {
+      landingCta.textContent = "Entra nel lab";
+      landingCta.href = "explanation.html";
+    } else if (state.status === "logged") {
+      landingCta.textContent = "Sblocca Premium";
+      landingCta.href = "signup.html";
+    } else {
+      landingCta.textContent = "Log in";
+      landingCta.href = "explanation.html?auth=login";
+    }
+  }
+
+  if (landingSecondaryCta) {
+    const hideSecondary = state.status === "premium";
+    landingSecondaryCta.toggleAttribute("hidden", hideSecondary);
+
+    if (!hideSecondary) {
+      landingSecondaryCta.textContent =
+        state.status === "logged" ? "Vai alle lezioni free" : "Acquista l'accesso";
+      landingSecondaryCta.href = state.status === "logged" ? "explanation.html" : "signup.html";
+    }
+  }
+}
+
+function hydrateLandingAuth() {
+  const state = getAuthState();
+  renderLandingAuth(state);
+
+  refreshAuthState()
+    .then(renderLandingAuth)
+    .catch(() => renderLandingAuth(getAuthState()));
+
+  onAuthStateChange(renderLandingAuth);
+}
 
 // Click logo -> explanation page
 logoButton.addEventListener("click", () => {
@@ -169,6 +222,8 @@ async function generateBackgrounds() {
     hideLoadingOverlay(800);
   }
 }
+
+hydrateLandingAuth();
 
 // Start generation immediately
 generateBackgrounds();
