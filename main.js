@@ -1,4 +1,5 @@
 import { getAuthState, onAuthStateChange, refreshAuthState } from "./auth.js";
+import { PREMIUM_CHECKOUT_URL } from "./lesson-access.js";
 
 const backImg = document.getElementById("bg-back");
 const frontImg = document.getElementById("bg-front");
@@ -28,6 +29,8 @@ const depthLogo = 0.03;
 const landingStatus = document.getElementById("landingAccessStatus");
 const landingCta = document.getElementById("landingCta");
 const landingSecondaryCta = document.getElementById("landingSecondaryCta");
+const searchParams = new URLSearchParams(window.location.search);
+const premiumRedirected = searchParams.get("premium") === "required";
 
 // Simple interpolation for smooth motion
 let curBackX = 0,
@@ -102,9 +105,12 @@ function animate() {
 animate();
 
 function renderLandingAuth(state) {
+  const showPremiumNotice = premiumRedirected && state.status !== "premium";
+
   if (landingStatus) {
-    const label =
-      state.status === "premium"
+    const label = showPremiumNotice
+      ? "Premium richiesto per questo lab. Attiva l'accesso per continuare."
+      : state.status === "premium"
         ? "Stato: Premium attivo"
         : state.status === "logged"
           ? "Stato: Logged · contenuti premium bloccati"
@@ -113,26 +119,29 @@ function renderLandingAuth(state) {
   }
 
   if (landingCta) {
-    if (state.status === "premium") {
-      landingCta.textContent = "Entra nel lab";
-      landingCta.href = "explanation.html";
-    } else if (state.status === "logged") {
-      landingCta.textContent = "Sblocca Premium";
-      landingCta.href = "signup.html";
-    } else {
-      landingCta.textContent = "Log in";
-      landingCta.href = "explanation.html?auth=login";
-    }
+    landingCta.textContent = "Vai all'overview";
+    landingCta.href = "explanation.html";
+    landingCta.removeAttribute("target");
   }
 
   if (landingSecondaryCta) {
-    const hideSecondary = state.status === "premium";
+    const hideSecondary = state.status === "premium" && !showPremiumNotice;
     landingSecondaryCta.toggleAttribute("hidden", hideSecondary);
 
     if (!hideSecondary) {
-      landingSecondaryCta.textContent =
-        state.status === "logged" ? "Vai alle lezioni free" : "Acquista l'accesso";
-      landingSecondaryCta.href = state.status === "logged" ? "explanation.html" : "signup.html";
+      landingSecondaryCta.textContent = showPremiumNotice
+        ? "Attiva Premium"
+        : "Guarda le lezioni free";
+      landingSecondaryCta.href = showPremiumNotice
+        ? PREMIUM_CHECKOUT_URL
+        : "explanation.html#mpl-free-drums";
+      if (showPremiumNotice) {
+        landingSecondaryCta.target = "_blank";
+        landingSecondaryCta.rel = "noopener noreferrer";
+      } else {
+        landingSecondaryCta.removeAttribute("target");
+        landingSecondaryCta.removeAttribute("rel");
+      }
     }
   }
 }

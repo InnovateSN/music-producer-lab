@@ -1,4 +1,9 @@
-import { ensureLessonAccess, getStoredUser, isLessonProtected } from "./lesson-access.js";
+import {
+  ensureLessonAccess,
+  getStoredUser,
+  isLessonProtected,
+  PREMIUM_CHECKOUT_URL,
+} from "./lesson-access.js";
 import { LABS } from "./lessons-data.js";
 
 function updateYear() {
@@ -88,10 +93,37 @@ function hydrateAuthUi() {
   const navLogin = document.getElementById("mpl-nav-login");
 
   if (navLogin) {
-    navLogin.textContent = user ? "Account" : "Log in";
-    navLogin.addEventListener("click", () => {
-      window.location.href = user ? "/account" : "/signup";
-    });
+    if (user) {
+      navLogin.textContent = "Account (coming soon)";
+      navLogin.setAttribute("aria-disabled", "true");
+      navLogin.title = "Account coming soon";
+    } else {
+      navLogin.textContent = "Log in";
+      navLogin.addEventListener("click", () => {
+        window.location.href = "/explanation.html?auth=login";
+      });
+    }
+  }
+}
+
+function showPremiumNotice() {
+  const params = new URLSearchParams(window.location.search);
+  const premiumRequired = params.get("premium") === "required";
+
+  if (!premiumRequired) return;
+
+  const banner = document.getElementById("mpl-billing-banner");
+  if (banner) {
+    banner.textContent =
+      "Questo lab richiede Premium. Attiva l'accesso o continua con le lezioni gratuite.";
+    banner.classList.remove("mpl-auth-hidden");
+  }
+
+  const heroCta = document.getElementById("mpl-hero-stripe-primary");
+  if (heroCta) {
+    heroCta.href = PREMIUM_CHECKOUT_URL;
+    heroCta.target = "_blank";
+    heroCta.rel = "noopener noreferrer";
   }
 }
 
@@ -100,4 +132,5 @@ export function initExplanationPage() {
   renderLabCards();
   hydrateNavigation();
   hydrateAuthUi();
+  showPremiumNotice();
 }
