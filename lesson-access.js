@@ -1,3 +1,7 @@
+export const PREMIUM_CHECKOUT_URL =
+  "https://innovatesol.gumroad.com/l/tekpsy?wanted=true";
+export const PREMIUM_GATE_URL = "/index.html?premium=required";
+
 const AUTH_USER_KEY = "mpl_auth_user";
 
 function safeParse(json, fallback = null) {
@@ -56,7 +60,9 @@ export function isLessonProtected(slugOrUrl = "") {
 export function ensureLessonAccess(options = {}) {
   const slugOrUrl = typeof options === "string" ? options : options.lessonUrl || options.slug || "";
   const fallbackUrl =
-    typeof options === "object" && options.fallbackUrl ? options.fallbackUrl : "/signup.html";
+    typeof options === "object" && options.fallbackUrl
+      ? options.fallbackUrl
+      : PREMIUM_GATE_URL;
   const requiresPaid =
     typeof options === "object" && "requiresPaid" in options
       ? options.requiresPaid

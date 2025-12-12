@@ -1,10 +1,14 @@
 import { getAuthState, onAuthStateChange, refreshAuthState } from "./auth.js";
-import { ensureLessonAccess } from "./lesson-access.js";
+import {
+  ensureLessonAccess,
+  PREMIUM_CHECKOUT_URL,
+  PREMIUM_GATE_URL,
+} from "./lesson-access.js";
 
 // Minimal guards to block premium sections/pages without changing layout.
 
 export async function guardPageAccess(options = {}) {
-  const { requiresPremium = false, fallbackUrl = "/signup.html", lessonUrl } = options;
+  const { requiresPremium = false, fallbackUrl = PREMIUM_GATE_URL, lessonUrl } = options;
   const currentState = getAuthState();
 
   if (requiresPremium) {
@@ -40,7 +44,7 @@ export function guardPremiumSections(options = {}) {
   const selector = options.selector || "[data-mpl-premium]";
   const statusSelector = options.statusSelector || "[data-mpl-premium-status]";
   const loginUrl = options.loginUrl || "/explanation.html?auth=login";
-  const purchaseUrl = options.purchaseUrl || "/signup.html";
+  const purchaseUrl = options.purchaseUrl || PREMIUM_CHECKOUT_URL;
 
   const sections = Array.from(document.querySelectorAll(selector));
   if (!sections.length) return getAuthState();
