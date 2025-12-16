@@ -109,7 +109,7 @@ function renderLandingAuth(state) {
 
   if (landingStatus) {
     const label = showPremiumNotice
-      ? "Premium richiesto per questo lab. Attiva l'accesso per continuare."
+      ? "Premium access required. This lab is part of the full production path (drums, arrangement, mixing, sound design, vocals, mastering). Most users complete the core labs in 1–2 months."
       : state.status === "premium"
         ? "Stato: Premium attivo"
         : state.status === "logged"
@@ -130,7 +130,7 @@ function renderLandingAuth(state) {
 
     if (!hideSecondary) {
       landingSecondaryCta.textContent = showPremiumNotice
-        ? "Attiva Premium"
+        ? "Unlock all labs — £18.99/month · Cancel anytime. No long-term commitment."
         : "Guarda le lezioni free";
       landingSecondaryCta.href = showPremiumNotice
         ? PREMIUM_CHECKOUT_URL
