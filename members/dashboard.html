@@ -9,6 +9,7 @@
 <body>
   <main class="membership-dashboard">
     <p id="dashboardUser" class="dashboard-user"></p>
+    <button type="button" id="mplLogoutBtn" class="btn btn-outline">Logout</button>
     <h1>Welcome to the Complete Course Membership</h1>
     <p>This is your central hub for all things Music Producer Lab.</p>
     <a href="/lessons" class="btn btn-primary">Start Learning</a>
@@ -33,6 +34,7 @@
 
     const supabaseUrl = window.__SUPABASE_URL__;
     const supabaseAnonKey = window.__SUPABASE_ANON_KEY__;
+    let supabase;
 
     const dashboardUser =
       document.getElementById('dashboardUser') ?? document.querySelector('.dashboard-user') ?? (() => {
@@ -47,7 +49,7 @@
       dashboardUser.textContent = 'Benvenuto! (configurazione Supabase mancante)';
       dashboardUser.setAttribute('aria-live', 'polite');
     } else {
-      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+      supabase = createClient(supabaseUrl, supabaseAnonKey);
 
       (async () => {
         try {
@@ -67,6 +69,19 @@
         }
       })();
     }
+
+    const logoutButton = document.getElementById('mplLogoutBtn');
+    const handleLogout = async () => {
+      try {
+        await supabase?.auth.signOut();
+      } catch (err) {
+        console.error('[mpl] Unable to sign out', err);
+      }
+      localStorage.removeItem('mpl_session');
+      window.location.href = '../index.html';
+    };
+
+    logoutButton?.addEventListener('click', handleLogout);
   </script>
 </body>
 </html>
