@@ -119,9 +119,16 @@ function renderLandingAuth(state) {
   }
 
   if (landingCta) {
-    landingCta.textContent = "Vai all'overview";
-    landingCta.href = "explanation.html";
-    landingCta.removeAttribute("target");
+    const isAuthenticated = state.status === "premium" || state.status === "logged";
+
+    if (isAuthenticated) {
+      landingCta.textContent = "Vai all'overview";
+      landingCta.href = "explanation.html";
+      landingCta.removeAttribute("target");
+    } else {
+      landingCta.textContent = "Log in";
+      landingCta.href = "login.html";
+    }
   }
 
   if (landingSecondaryCta) {
