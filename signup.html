@@ -6,96 +6,166 @@
     <title>Sign up | Music Producer Lab</title>
     <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="explanation.css" />
+    <style>
+      .mpl-login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0c0c12;
+      }
+
+      .mpl-login-card {
+        width: min(420px, 90vw);
+        background: #101018;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        color: #e9ecf5;
+      }
+
+      .mpl-login-card h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+
+      .mpl-login-card p {
+        margin: 0 0 24px;
+        color: #c7cbe0;
+      }
+
+      .mpl-login-form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .mpl-login-form input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: #0b0b11;
+        color: #f4f6ff;
+        margin-bottom: 16px;
+      }
+
+      .mpl-login-form input:focus {
+        outline: 2px solid #7b5dff;
+        border-color: transparent;
+      }
+
+      .mpl-login-form button {
+        width: 100%;
+        padding: 12px 14px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #7b5dff, #c86dd7);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+
+      .mpl-login-form button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 30px rgba(123, 93, 255, 0.35);
+      }
+
+      .mpl-login-status {
+        margin-top: 16px;
+        min-height: 20px;
+        font-size: 14px;
+      }
+
+      .mpl-login-status[data-state="error"] {
+        color: #ffb4c0;
+      }
+
+      .mpl-login-status[data-state="success"] {
+        color: #b6f3c4;
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-          </div>
-          <div class="mpl-nav-actions">
-            <a class="btn btn-outline" href="explanation.html"><span>Back to overview</span></a>
-          </div>
-        </header>
+    <div class="mpl-login-page">
+      <div class="mpl-login-card">
+        <img src="mpl-logo-full.svg" alt="Music Producer Lab" style="height: 32px; margin-bottom: 20px" />
+        <h1>Crea il tuo account</h1>
+        <p>Registrati per accedere ai contenuti premium di Music Producer Lab.</p>
+        <form id="mpl-signup-form" class="mpl-login-form">
+          <label for="mpl-signup-email">Email</label>
+          <input id="mpl-signup-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
 
-        <section class="hero">
-          <div class="hero-copy">
-            <div class="hero-copy-eyebrow">Unlock full access</div>
-            <h1 class="hero-title">Create your account to continue.</h1>
-            <p class="hero-subtitle">
-              Lessons 6 and beyond are reserved for members. Enter your email to claim your spot
-              and we'll confirm your purchase before unlocking paid lessons.
-            </p>
-            <form class="mpl-auth-form" id="mpl-signup-form">
-              <label for="mpl-signup-email">Email</label>
-              <input id="mpl-signup-email" name="email" type="email" required placeholder="you@example.com" />
-              <button class="btn btn-primary" type="submit"><span>Send login link</span></button>
-              <div class="mpl-auth-status" id="mpl-signup-status" role="status" aria-live="polite"></div>
-            </form>
-          </div>
-          <aside class="hero-visual" aria-hidden="true">
-            <div class="hero-visual-header">
-              <div class="hero-visual-title">Members</div>
-              <div class="hero-visual-pill">Paid lessons</div>
-            </div>
-            <div class="hero-visual-grid">
-              <div class="hero-visual-main">
-                <div class="hero-visual-main-title">Skip the gate and keep producing</div>
-                <div class="hero-visual-waves">
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                </div>
-                <div class="hero-visual-metrics">
-                  <div class="hero-visual-metric">
-                    <span>Access</span>
-                    <strong>Lessons 6+</strong>
-                  </div>
-                  <div class="hero-visual-metric">
-                    <span>Status</span>
-                    <strong>Paid members</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-visual-side-card">
-                <div class="hero-visual-side-label">Need help?</div>
-                <div class="hero-visual-pill-list">
-                  <div class="hero-visual-pill-tag">Email support@musicproducerlab.com</div>
-                  <div class="hero-visual-pill-tag">Confirm your Gumroad receipt</div>
-                </div>
-                <div class="hero-visual-footer">
-                  <span>Already paid?</span>
-                  <span>Use the email from your receipt.</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </section>
+          <label for="mpl-signup-password">Password</label>
+          <input
+            id="mpl-signup-password"
+            name="password"
+            type="password"
+            placeholder="Crea una password"
+            autocomplete="new-password"
+            required
+          />
+
+          <button type="submit">Crea account</button>
+          <div class="mpl-login-status" id="mpl-signup-status" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
 
+    <script src="./supabase-config.js"></script>
     <script type="module">
-      import { setStoredUser } from './lesson-access.js';
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
       const form = document.getElementById('mpl-signup-form');
       const status = document.getElementById('mpl-signup-status');
 
+      const SUPABASE_URL = window.__SUPABASE_URL__;
+      const SUPABASE_ANON_KEY = window.__SUPABASE_ANON_KEY__;
+      const supabase = SUPABASE_URL && SUPABASE_ANON_KEY ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
       function setStatus(message, state = 'info') {
+        if (!status) return;
         status.textContent = message || '';
         status.dataset.state = state;
       }
 
-      form?.addEventListener('submit', (event) => {
+      async function handleSignup(event) {
         event.preventDefault();
-        const email = new FormData(form).get('email');
-        if (!email) return;
 
-        setStoredUser({ email, hasPaid: false });
-        setStatus('Check your inbox for the login link after purchase.', 'success');
-      });
+        if (!supabase) {
+          setStatus('Supabase non configurato. Controlla le chiavi.', 'error');
+          return;
+        }
+
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        if (!email || !password) {
+          setStatus('Inserisci email e password.', 'error');
+          return;
+        }
+
+        setStatus('Creazione account in corso...');
+
+        const { data, error } = await supabase.auth.signUp({ email, password });
+
+        if (error) {
+          setStatus(error.message || 'Impossibile creare l\'account.', 'error');
+          return;
+        }
+
+        if (data?.user) {
+          setStatus('Account creato, accedi per continuare', 'success');
+          form.reset();
+        } else {
+          setStatus('Registrazione completata. Accedi per continuare.', 'success');
+        }
+      }
+
+      form?.addEventListener('submit', handleSignup);
     </script>
   </body>
 </html>
