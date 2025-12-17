@@ -8,6 +8,7 @@
 </head>
 <body>
   <main class="membership-dashboard">
+    <p id="dashboardUser" class="dashboard-user"></p>
     <h1>Welcome to the Complete Course Membership</h1>
     <p>This is your central hub for all things Music Producer Lab.</p>
     <a href="/lessons" class="btn btn-primary">Start Learning</a>
@@ -20,5 +21,52 @@
     </section>
     <a href="https://app.gumroad.com/library" class="btn btn-outline">Manage Subscription</a>
   </main>
+  <script src="../supabase-config.js"></script>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const session = localStorage.getItem('mpl_session');
+    if (!session) {
+      window.location.href = '../login.html';
+      return;
+    }
+
+    const supabaseUrl = window.__SUPABASE_URL__;
+    const supabaseAnonKey = window.__SUPABASE_ANON_KEY__;
+
+    const dashboardUser =
+      document.getElementById('dashboardUser') ?? document.querySelector('.dashboard-user') ?? (() => {
+        const container = document.createElement('p');
+        container.id = 'dashboardUser';
+        container.className = 'dashboard-user';
+        document.querySelector('.membership-dashboard')?.prepend(container);
+        return container;
+      })();
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      dashboardUser.textContent = 'Benvenuto! (configurazione Supabase mancante)';
+      dashboardUser.setAttribute('aria-live', 'polite');
+    } else {
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+      (async () => {
+        try {
+          const { data, error } = await supabase.auth.getUser();
+          if (error) throw error;
+
+          const email = data?.user?.email;
+          if (email) {
+            dashboardUser.textContent = `Benvenuto, ${email}`;
+          } else {
+            dashboardUser.textContent = 'Benvenuto!';
+          }
+          dashboardUser.setAttribute('aria-live', 'polite');
+        } catch (err) {
+          console.error('[mpl] Unable to load user', err);
+          dashboardUser.textContent = 'Benvenuto!';
+        }
+      })();
+    }
+  </script>
 </body>
 </html>
