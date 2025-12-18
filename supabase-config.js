@@ -7,8 +7,8 @@
     anon: scriptEl?.dataset?.supabaseAnonKey,
   };
 
-  const fallbackUrl = "https://la-tua-instanza.supabase.co";
-  const fallbackAnon = "la-tua-anon-key";
+  const fallbackUrl = "https://nmhmrucvsrhfnajagdyy.supabase.co";
+  const fallbackAnon = "sb_publishable_fjqU019-eH-tUIVBdXSEfA_0334QZeA";
 
   window.__SUPABASE_URL__ = fromDataset.url || window.__SUPABASE_URL__ || fallbackUrl;
   window.__SUPABASE_ANON_KEY__ = fromDataset.anon || window.__SUPABASE_ANON_KEY__ || fallbackAnon;
