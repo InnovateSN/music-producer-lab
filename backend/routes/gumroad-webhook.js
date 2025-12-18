@@ -2,9 +2,9 @@ import express from "express";
 import { supabase } from "../supabaseClient.js";
 
 const router = express.Router();
-const webhookSecret = process.env.GUMROAD_SECRET || process.env.GUMROAD_WEBHOOK_SECRET;
+const webhookSecret = process.env.GUMROAD_SECRET;
 
-router.post("/gumroad-webhook", express.urlencoded({ extended: true }), async (req, res) => {
+router.post("/api/gumroad-webhook", express.urlencoded({ extended: true }), async (req, res) => {
   console.log("[gumroad] incoming payload", req.body);
 
   if (req.body?.test) {
