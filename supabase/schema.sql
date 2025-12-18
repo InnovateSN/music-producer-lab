@@ -6,6 +6,8 @@ create table if not exists public.users (
   id uuid primary key default gen_random_uuid(),
   email text unique not null,
   has_paid boolean not null default false,
+  plan_tier text not null default 'free',
+  purchase_id text,
   created_at timestamptz not null default timezone('utc', now()),
   updated_at timestamptz not null default timezone('utc', now())
 );

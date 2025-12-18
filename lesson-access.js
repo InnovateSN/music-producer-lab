@@ -39,7 +39,8 @@ export function setStoredUser(user) {
     return;
   }
 
-  const normalizedUser = { ...user, hasPaid: Boolean(user.hasPaid) };
+  const planTier = user.planTier || user.tier || (user.hasPaid ? "premium" : "free");
+  const normalizedUser = { ...user, hasPaid: Boolean(user.hasPaid), planTier };
   localStorage.setItem(AUTH_USER_KEY, JSON.stringify(normalizedUser));
 }
 

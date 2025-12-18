@@ -5,7 +5,7 @@ This repository includes a minimal Supabase + Express backend to track paid unlo
 ## Database schema
 Run `supabase/schema.sql` in your Supabase project (SQL Editor → New query) to create the `users` table and policies:
 
-- `public.users`: `id (uuid)`, `email (text, unique)`, `has_paid (boolean)`, timestamps.
+- `public.users`: `id (uuid)`, `email (text, unique)`, `has_paid (boolean)`, `plan_tier (text)`, `purchase_id (text)`, timestamps.
 - Trigger `handle_new_auth_user` mirrors new Supabase Auth users into the `users` table so the auth UID and profile stay in sync.
 - Row Level Security: authenticated users can read/update only their own row. Service role key (used by the webhook) bypasses RLS.
 
@@ -21,11 +21,13 @@ npm install
 npm run dev
 ```
 
-3. Expose the server to Gumroad (e.g., `ngrok http 3001`) and register the webhook URL: `https://<your-ngrok-domain>/api/gumroad-webhook`.
+3. Expose the server to Gumroad (e.g., `ngrok http 3001`) and register the webhook URL: `https://<your-ngrok-domain>/gumroad-webhook`.
 
-### Endpoint: `/api/gumroad-webhook`
-- Accepts `POST` JSON payloads with `email` and `purchase_id`.
-- Creates the user if they do not exist and sets `has_paid = true` for that email.
+### Endpoint: `/gumroad-webhook`
+- Accepts `POST` JSON payloads with `email` and `purchase_id` (or `sale_id`).
+- Optional shared secret: set `GUMROAD_SECRET` and include `secret` in the Gumroad payload.
+- Creates or updates the user with `has_paid = true`, `plan_tier = 'premium'` (or `offer_name`/`product_name`) and
+  `purchase_id`.
 
 ### Health check
 `GET /api/health` returns a simple JSON object for uptime monitors.

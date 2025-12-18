@@ -2,18 +2,26 @@ import express from "express";
 import { supabase } from "../supabaseClient.js";
 
 const router = express.Router();
+const webhookSecret = process.env.GUMROAD_SECRET || process.env.GUMROAD_WEBHOOK_SECRET;
 
-router.post("/api/gumroad-webhook", express.urlencoded({ extended: true }), async (req, res) => {
+router.post("/gumroad-webhook", express.urlencoded({ extended: true }), async (req, res) => {
+  console.log("[gumroad] incoming payload", req.body);
+
+  if (req.body?.test) {
+    return res.status(200).send("pong");
+  }
+
   try {
     const providedSecret = req.body.secret;
 
-    if (!process.env.GUMROAD_WEBHOOK_SECRET || providedSecret !== process.env.GUMROAD_WEBHOOK_SECRET) {
+    if (webhookSecret && providedSecret !== webhookSecret) {
       console.warn("Invalid webhook secret received.");
       return res.status(403).send("Forbidden");
     }
 
     const email = req.body.email?.toLowerCase();
-    const purchaseId = req.body.purchase_id;
+    const purchaseId = req.body.purchase_id || req.body.sale_id;
+    const planTier = req.body.offer_name || req.body.product_name || "premium";
 
     if (!email || !purchaseId) {
       return res.status(400).send("Missing email or purchase_id.");
@@ -41,6 +49,7 @@ router.post("/api/gumroad-webhook", express.urlencoded({ extended: true }), asyn
         {
           email,
           has_paid: true,
+          plan_tier: planTier,
           purchase_id: purchaseId,
           updated_at: new Date().toISOString(),
         },
