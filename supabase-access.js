@@ -46,7 +46,7 @@ export async function syncSupabasePremiumStatus() {
   const userId = session.user.id;
   const { data: profile, error } = await supabase
     .from("users")
-    .select("has_paid, email")
+    .select("has_paid, email, plan_tier")
     .eq("id", userId)
     .single();
 
