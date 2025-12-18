@@ -37,10 +37,18 @@ Variabili richieste:
 
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (service role key per bypassare RLS nel webhook)
-- `GUMROAD_SECRET` (opzionale, se definito deve combaciare con il campo `secret` della chiamata Gumroad)
+- `GUMROAD_SECRET` (obbligatorio, usato per firmare e verificare il webhook Gumroad)
+- `GUMROAD_ACCESS_TOKEN` (token API Gumroad per validare l'acquisto via `/v2/sales`)
 - `PORT` (facoltativo, default 3001)
 
 Endpoint da registrare in Gumroad: `https://<tuo-dominio>/gumroad-webhook`.
+
+### Deploy sicuro suggerito
+
+- **Frontend**: Vercel, configurando `SUPABASE_URL` e `SUPABASE_ANON_KEY` come environment variables e valorizzando i data-attribute
+  `data-supabase-url` e `data-supabase-anon-key` sul tag di inclusione di `supabase-config.js`.
+- **Backend**: Render o Railway, con le variabili `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `GUMROAD_SECRET` e
+  `GUMROAD_ACCESS_TOKEN` impostate a livello di servizio.
 
 ## Flussi front-end
 

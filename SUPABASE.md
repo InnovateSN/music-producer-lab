@@ -24,8 +24,9 @@ npm run dev
 3. Expose the server to Gumroad (e.g., `ngrok http 3001`) and register the webhook URL: `https://<your-ngrok-domain>/gumroad-webhook`.
 
 ### Endpoint: `/gumroad-webhook`
-- Accepts `POST` JSON payloads with `email` and `purchase_id` (or `sale_id`).
-- Optional shared secret: set `GUMROAD_SECRET` and include `secret` in the Gumroad payload.
+- Accepts `POST` form payloads with `email` and `purchase_id` (or `sale_id`).
+- Requires `GUMROAD_SECRET`: used to validate the HMAC signature provided in the `X-Gumroad-Signature` header.
+- Requires `GUMROAD_ACCESS_TOKEN`: used to call Gumroad `/v2/sales/{purchase_id}` and confirm the sale email/id pair.
 - Creates or updates the user with `has_paid = true`, `plan_tier = 'premium'` (or `offer_name`/`product_name`) and
   `purchase_id`.
 

@@ -7,9 +7,14 @@
     anon: scriptEl?.dataset?.supabaseAnonKey,
   };
 
-  const fallbackUrl = "https://nmhmrucvsrhfnajagdyy.supabase.co";
-  const fallbackAnon = "sb_publishable_fjqU019-eH-tUIVBdXSEfA_0334QZeA";
+  const supabaseUrl = fromDataset.url || window.__SUPABASE_URL__;
+  const supabaseAnon = fromDataset.anon || window.__SUPABASE_ANON_KEY__;
 
-  window.__SUPABASE_URL__ = fromDataset.url || window.__SUPABASE_URL__ || fallbackUrl;
-  window.__SUPABASE_ANON_KEY__ = fromDataset.anon || window.__SUPABASE_ANON_KEY__ || fallbackAnon;
+  if (!supabaseUrl || !supabaseAnon) {
+    console.error("Supabase configuration missing. Please provide data-supabase-url and data-supabase-anon-key on the script tag.");
+    return;
+  }
+
+  window.__SUPABASE_URL__ = supabaseUrl;
+  window.__SUPABASE_ANON_KEY__ = supabaseAnon;
 })();
