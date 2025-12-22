@@ -10,6 +10,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  console.log('🔥 Ricevuto da Gumroad:', JSON.stringify(req.body, null, 2));
+
   const gumroadSecret = process.env.GUMROAD_SECRET;
   const providedSecret = req.body?.secret;
 
