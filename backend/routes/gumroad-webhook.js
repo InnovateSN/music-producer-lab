@@ -100,6 +100,7 @@ router.post(
             email,
             has_paid: true,
             plan_tier: planTier,
+                      price: sale.price || null,
             purchase_id: purchaseId,
             updated_at: new Date().toISOString(),
           },
