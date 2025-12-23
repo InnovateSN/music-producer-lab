@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     const gumroadSecret = process.env.GUMROAD_SECRET;
     const providedSecret = parsedBody?.secret;
 
-    if (gumroadSecret && providedSecret !== gumroadSecret) {
+    if (providedSecret && providedSecret !== gumroadSecret) {
       return res.status(401).json({ error: 'Unauthorized: invalid secret' });
     }
 
