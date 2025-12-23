@@ -52,18 +52,25 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Unauthorized: invalid secret' });
     }
 
-    const purchaserEmail = parsedBody.purchaser_email || parsedBody.email;
-    const purchaseId = parsedBody.purchase_id;
-    const planTier = parsedBody.plan_tier || parsedBody.product_name;
-    const price = parsedBody.price;
-    const createdAt = parsedBody.created_at;
+    const {
+      purchaser_email: purchaserEmail,
+      email,
+      purchase_id: purchaseId,
+      plan_tier: planTier,
+      product_name: productName,
+      price,
+      created_at: createdAt
+    } = parsedBody;
+
+    const resolvedEmail = purchaserEmail || email;
+    const resolvedPlanTier = planTier || productName;
 
     const { error } = await supabase.from('users').insert([
       {
-        email: purchaserEmail,
+        email: resolvedEmail,
         has_paid: true,
         purchase_id: purchaseId,
-        plan_tier: planTier,
+        plan_tier: resolvedPlanTier,
         price,
         created_at: createdAt
       }
