@@ -40,9 +40,33 @@
           <div class="logo">
   <img src="assets/logo-clean.svg" alt="Music Producer Lab Logo" class="portal-logo" />
   
-     
+
           </div>
         </button>
+        <section class="magic-link-card" aria-labelledby="magicLinkTitle">
+          <div>
+            <p class="magic-link-kicker">Accedi con un clic</p>
+            <h2 id="magicLinkTitle">Ricevi il Magic Link via email</h2>
+            <p class="magic-link-copy">
+              Inserisci la tua email: ti invieremo un link magico per accedere subito, senza password.
+            </p>
+          </div>
+          <form class="magic-link-form" data-magic-link-form>
+            <label class="sr-only" for="magicLinkEmail">Email</label>
+            <div class="magic-link-inputs">
+              <input
+                id="magicLinkEmail"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+              <button type="submit">Invia Magic Link</button>
+            </div>
+            <p class="magic-link-status" data-magic-link-status aria-live="polite"></p>
+          </form>
+        </section>
       </main>
 
       <div class="loading" id="loadingOverlay">
@@ -55,7 +79,12 @@
       data-websim-src="https://cdn.websim.ai/websim.min.js"
       defer
     ></script>
+    <script src="./supabase-config.js"></script>
     <script type="module" src="main.js"></script>
+    <script type="module">
+      import { initMagicLinkRequest } from "./magic-link-auth.js";
+      initMagicLinkRequest();
+    </script>
   </body>
 </html>
 
