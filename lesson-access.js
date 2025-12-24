@@ -1,5 +1,5 @@
-export const PREMIUM_CHECKOUT_URL =
-  "https://innovatesol.gumroad.com/l/tekpsy?wanted=true";
+// Stripe Checkout URL - will redirect to checkout.html which handles Stripe session
+export const PREMIUM_CHECKOUT_URL = "/checkout.html";
 export const PREMIUM_GATE_URL = "/index.html?premium=required";
 
 const AUTH_USER_KEY = "mpl_auth_user";

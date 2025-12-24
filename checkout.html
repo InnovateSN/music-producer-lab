@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Music Producer Lab</title>
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+  <link rel="stylesheet" href="portal.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+    }
+  }
+  </script>
+  <style>
+    .checkout-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .pricing-cards {
+      display: grid;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .pricing-card {
+      background: var(--mpl-card);
+      border: 1px solid var(--mpl-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    .pricing-card.featured {
+      border-color: var(--mpl-accent);
+      position: relative;
+    }
+    
+    .pricing-card.featured::before {
+      content: 'Più popolare';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--mpl-accent);
+      color: #000;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    
+    .pricing-tier {
+      font-size: 14px;
+      color: var(--mpl-subtle);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .pricing-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+    
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--mpl-accent);
+    }
+    
+    .pricing-price span {
+      font-size: 1rem;
+      color: var(--mpl-subtle);
+      font-weight: 400;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    
+    .pricing-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--mpl-accent);
+    }
+    
+    .checkout-btn {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .checkout-btn-primary {
+      background: var(--mpl-accent);
+      color: #000;
+    }
+    
+    .checkout-btn-primary:hover {
+      background: #fff;
+    }
+    
+    .checkout-btn-secondary {
+      background: transparent;
+      border: 1px solid var(--mpl-border);
+      color: #fff;
+    }
+    
+    .checkout-btn-secondary:hover {
+      border-color: var(--mpl-accent);
+    }
+    
+    .checkout-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .checkout-status {
+      text-align: center;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+    
+    .checkout-status.error {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      color: #ff6b6b;
+    }
+    
+    .checkout-status.success {
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px solid rgba(0, 255, 0, 0.3);
+      color: #69db7c;
+    }
+    
+    .checkout-status.loading {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--mpl-border);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--mpl-subtle);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: #fff;
+    }
+    
+    .user-info {
+      background: var(--mpl-card);
+      border: 1px solid var(--mpl-border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .user-info-label {
+      font-size: 12px;
+      color: var(--mpl-subtle);
+    }
+    
+    .user-info-email {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="checkout-container">
+    <a href="index.html" class="back-link">← Torna alla home</a>
+    
+    <header style="text-align: center; margin-bottom: 2rem;">
+      <h1 style="margin: 0;">Scegli il tuo piano</h1>
+      <p style="color: var(--mpl-subtle); margin-top: 0.5rem;">
+        Sblocca tutti i contenuti premium di Music Producer Lab
+      </p>
+    </header>
+    
+    <div class="user-info" id="userInfo" hidden>
+      <div class="user-info-label">Checkout come</div>
+      <div class="user-info-email" id="userEmail"></div>
+    </div>
+    
+    <div id="checkoutStatus" class="checkout-status" hidden></div>
+    
+    <div class="pricing-cards">
+      <!-- Monthly Plan -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Mensile</div>
+        <div class="pricing-name">Pro Monthly</div>
+        <div class="pricing-price">€9.99<span>/mese</span></div>
+        <ul class="pricing-features">
+          <li>Accesso a tutte le lezioni</li>
+          <li>Aggiornamenti mensili</li>
+          <li>Supporto community</li>
+          <li>Cancella quando vuoi</li>
+        </ul>
+        <button 
+          class="checkout-btn checkout-btn-secondary" 
+          data-plan="monthly"
+          data-price-id="price_monthly"
+          onclick="handleCheckout('monthly')"
+        >
+          Abbonati ora
+        </button>
+      </div>
+      
+      <!-- Yearly Plan - Featured -->
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Annuale</div>
+        <div class="pricing-name">Pro Yearly</div>
+        <div class="pricing-price">€79<span>/anno</span></div>
+        <p style="color: var(--mpl-accent); font-size: 14px; margin: 0;">Risparmi €40!</p>
+        <ul class="pricing-features">
+          <li>Accesso a tutte le lezioni</li>
+          <li>Aggiornamenti per 12 mesi</li>
+          <li>Supporto prioritario</li>
+          <li>Contenuti esclusivi</li>
+          <li>2 mesi gratis</li>
+        </ul>
+        <button 
+          class="checkout-btn checkout-btn-primary" 
+          data-plan="yearly"
+          data-price-id="price_yearly"
+          onclick="handleCheckout('yearly')"
+        >
+          Abbonati ora
+        </button>
+      </div>
+      
+      <!-- Lifetime Plan -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Lifetime</div>
+        <div class="pricing-name">Pro Forever</div>
+        <div class="pricing-price">€197<span> una tantum</span></div>
+        <ul class="pricing-features">
+          <li>Accesso illimitato per sempre</li>
+          <li>Tutti gli aggiornamenti futuri</li>
+          <li>Supporto VIP</li>
+          <li>Sessioni 1-to-1 (2x/anno)</li>
+          <li>Nessun rinnovo</li>
+        </ul>
+        <button 
+          class="checkout-btn checkout-btn-secondary" 
+          data-plan="lifetime"
+          data-price-id="price_lifetime"
+          onclick="handleCheckout('lifetime')"
+        >
+          Acquista ora
+        </button>
+      </div>
+    </div>
+    
+    <p style="text-align: center; color: var(--mpl-subtle); font-size: 14px;">
+      Pagamento sicuro con Stripe. Puoi cancellare in qualsiasi momento.
+    </p>
+  </main>
+
+  <script
+    src="./supabase-config.js"
+    data-supabase-url=""
+    data-supabase-anon-key=""
+  ></script>
+  
+  <script type="module">
+    import { getSupabaseClient } from './supabase-access.js';
+    
+    // Stripe configuration - will be set from environment or config
+    const STRIPE_PUBLISHABLE_KEY = window.__STRIPE_PUBLISHABLE_KEY__ || 'pk_test_placeholder';
+    
+    // Price IDs - these should be configured in Stripe Dashboard
+    const PRICE_IDS = {
+      monthly: window.__STRIPE_PRICE_MONTHLY__ || 'price_monthly_placeholder',
+      yearly: window.__STRIPE_PRICE_YEARLY__ || 'price_yearly_placeholder',
+      lifetime: window.__STRIPE_PRICE_LIFETIME__ || 'price_lifetime_placeholder',
+    };
+    
+    let stripe = null;
+    let currentUser = null;
+    
+    // Initialize Stripe
+    function initStripe() {
+      if (STRIPE_PUBLISHABLE_KEY && STRIPE_PUBLISHABLE_KEY !== 'pk_test_placeholder') {
+        stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+      }
+    }
+    
+    // Show status message
+    function showStatus(message, type = 'loading') {
+      const statusEl = document.getElementById('checkoutStatus');
+      statusEl.textContent = message;
+      statusEl.className = `checkout-status ${type}`;
+      statusEl.hidden = false;
+    }
+    
+    // Hide status
+    function hideStatus() {
+      document.getElementById('checkoutStatus').hidden = true;
+    }
+    
+    // Check current user session
+    async function checkUserSession() {
+      try {
+        const supabase = await getSupabaseClient();
+        if (!supabase) return null;
+        
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          currentUser = session.user;
+          document.getElementById('userInfo').hidden = false;
+          document.getElementById('userEmail').textContent = currentUser.email;
+          return currentUser;
+        }
+      } catch (err) {
+        console.warn('[checkout] Session check failed:', err);
+      }
+      return null;
+    }
+    
+    // Handle checkout button click
+    window.handleCheckout = async function(plan) {
+      const buttons = document.querySelectorAll('.checkout-btn');
+      buttons.forEach(btn => btn.disabled = true);
+      
+      showStatus('Preparazione checkout...', 'loading');
+      
+      try {
+        // Ensure user is logged in
+        if (!currentUser) {
+          await checkUserSession();
+        }
+        
+        if (!currentUser) {
+          showStatus('Devi essere loggato per procedere al checkout. Reindirizzamento...', 'error');
+          setTimeout(() => {
+            window.location.href = `/login.html?redirect=${encodeURIComponent('/checkout.html')}`;
+          }, 2000);
+          return;
+        }
+        
+        // Check if Stripe is configured
+        if (!stripe) {
+          showStatus('Sistema di pagamento non configurato. Contatta il supporto.', 'error');
+          buttons.forEach(btn => btn.disabled = false);
+          return;
+        }
+        
+        const priceId = PRICE_IDS[plan];
+        if (!priceId || priceId.includes('placeholder')) {
+          showStatus('Piano non disponibile. Contatta il supporto.', 'error');
+          buttons.forEach(btn => btn.disabled = false);
+          return;
+        }
+        
+        showStatus('Creazione sessione di pagamento...', 'loading');
+        
+        // Create checkout session via API
+        const response = await fetch('/api/stripe/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            priceId,
+            plan,
+            email: currentUser.email,
+            userId: currentUser.id,
+            successUrl: `${window.location.origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancelUrl: `${window.location.origin}/checkout.html?canceled=true`,
+          }),
+        });
+        
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || 'Errore nella creazione del checkout');
+        }
+        
+        const { sessionId, url } = await response.json();
+        
+        // Redirect to Stripe Checkout
+        if (url) {
+          window.location.href = url;
+        } else if (sessionId) {
+          const { error } = await stripe.redirectToCheckout({ sessionId });
+          if (error) {
+            throw error;
+          }
+        }
+        
+      } catch (err) {
+        console.error('[checkout] Error:', err);
+        showStatus(`Errore: ${err.message}`, 'error');
+        buttons.forEach(btn => btn.disabled = false);
+      }
+    };
+    
+    // Check for canceled checkout
+    function checkUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('canceled') === 'true') {
+        showStatus('Checkout annullato. Puoi riprovare quando vuoi.', 'error');
+        // Clean up URL
+        window.history.replaceState({}, '', '/checkout.html');
+      }
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+      initStripe();
+      await checkUserSession();
+      checkUrlParams();
+    });
+  </script>
+</body>
+</html>
