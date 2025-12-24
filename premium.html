@@ -66,7 +66,7 @@
         data-supabase-anon-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5taG1ydWN2c3JoZm5hamFnZHl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwMTYxNjIsImV4cCI6MjA4MTU5MjE2Mn0.kHqe6kz1AhJ5l_4Gh5aSk4B5s6ip_IdUQfqNwWiPjb4"
     ></script>    <script type="module">
       import { initPremiumGate } from "./magic-link-auth.js";
-      import enforcePremiumAccessAfterLogin from "./supabase-login-guard.js";
+      import { enforcePremiumAccessAfterLogin } from "./supabase-login-guard.js";
       
       // Enforce premium access check after login
       enforcePremiumAccessAfterLogin();
