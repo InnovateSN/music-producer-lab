@@ -1,29 +1,60 @@
 # 🔧 Configurazione Environment Variables Vercel
 
-## Step 1: Ottieni SUPABASE_ANON_KEY
+## Variabili Richieste
+
+### Supabase (Frontend)
+| Variabile | Valore | Descrizione |
+|-----------|--------|-------------|
+| `SUPABASE_URL` | `https://nmhmrucvsrhfnajagdyy.supabase.co` | URL progetto Supabase |
+| `SUPABASE_ANON_KEY` | `[da Supabase Dashboard]` | Chiave pubblica anon |
+
+### Supabase (Backend/Serverless)
+| Variabile | Valore | Descrizione |
+|-----------|--------|-------------|
+| `SUPABASE_SERVICE_ROLE_KEY` | `[da Supabase Dashboard]` | Chiave service role (⚠️ segreta!) |
+
+### Stripe (Pagamenti)
+| Variabile | Valore | Descrizione |
+|-----------|--------|-------------|
+| `STRIPE_SECRET_KEY` | `sk_test_xxx` o `sk_live_xxx` | Chiave segreta Stripe |
+| `STRIPE_WEBHOOK_SECRET` | `whsec_xxx` | Secret per webhook |
+| `STRIPE_PRICE_MONTHLY` | `price_xxx` | Price ID piano mensile |
+| `STRIPE_PRICE_YEARLY` | `price_xxx` | Price ID piano annuale |
+
+### Altro
+| Variabile | Valore | Descrizione |
+|-----------|--------|-------------|
+| `FRONTEND_URL` | `https://music-producer-lab.vercel.app` | URL frontend |
+
+---
+
+## Step 1: Ottieni le chiavi Supabase
 
 1. Vai su: https://supabase.com/dashboard/project/nmhmrucvsrhfnajagdyy/settings/api
 2. Cerca la sezione "Project API keys"
-3. Copia il valore di `anon` `public` key
-   - **NON usare** la `service_role` key (solo per backend!)
-   - La anon key è sicura da usare in frontend
+3. Copia:
+   - `anon` `public` key → per frontend
+   - `service_role` key → per backend (⚠️ mai esporre!)
 
-## Step 2: Configura su Vercel
+## Step 2: Ottieni le chiavi Stripe
+
+1. Vai su: https://dashboard.stripe.com/test/apikeys (test) o /live/apikeys (produzione)
+2. Copia `Secret key`
+3. Per webhook secret:
+   - Vai su https://dashboard.stripe.com/webhooks
+   - Crea endpoint: `https://music-producer-lab.vercel.app/api/stripe/webhook`
+   - Copia il `Signing secret`
+4. Per Price IDs:
+   - Vai su https://dashboard.stripe.com/products
+   - Crea prodotto con prezzi Monthly e Yearly
+   - Copia i `Price ID` (iniziano con `price_`)
+
+## Step 3: Configura su Vercel
 
 1. Vai su: https://vercel.com/innovatesn/music-producer-lab/settings/environment-variables
-2. Aggiungi queste 2 variabili:
-
-### Variabile 1:
-- **Key:** `SUPABASE_URL`
-- **Value:** `https://nmhmrucvsrhfnajagdyy.supabase.co`
-- **Environment:** ✅ Production, ✅ Preview, ✅ Development
-
-### Variabile 2:
-- **Key:** `SUPABASE_ANON_KEY`
-- **Value:** `[la chiave copiata da Supabase]`
-- **Environment:** ✅ Production, ✅ Preview, ✅ Development
-
-3. Clicca "Save" per ogni variabile
+2. Aggiungi tutte le variabili elencate sopra
+3. Per ogni variabile seleziona: ✅ Production, ✅ Preview, ✅ Development
+4. Clicca "Save" per ogni variabile
 
 ## Step 3: Redeploy
 
