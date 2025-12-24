@@ -12,9 +12,16 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Setup client from env or fallback to null
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+// Setup client from window globals (set by supabase-config.js) or fallback to null
+// In browser environments, use window.__SUPABASE_URL__ and window.__SUPABASE_ANON_KEY__
+// In Node.js environments (SSR/tests), use process.env
+const isBrowser = typeof window !== 'undefined';
+const supabaseUrl = isBrowser 
+  ? (window.__SUPABASE_URL__ || '') 
+  : (typeof process !== 'undefined' ? process.env?.SUPABASE_URL || '' : '');
+const supabaseAnonKey = isBrowser 
+  ? (window.__SUPABASE_ANON_KEY__ || '') 
+  : (typeof process !== 'undefined' ? process.env?.SUPABASE_ANON_KEY || '' : '');
 const supabase = supabaseUrl && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
