@@ -10,7 +10,7 @@ function deriveState(user) {
     return { status: "free", user: null };
   }
 
-  const hasPaid = Boolean(user.hasPaid);
+  const hasPaid = Boolean(user.hasPaid || user.userHasValidAccess);
   const planTier = user.planTier || user.tier || (hasPaid ? "premium" : "free");
   return {
     status: hasPaid ? "premium" : "logged",
@@ -62,6 +62,7 @@ export async function refreshAuthState() {
         ...(storedUser || {}),
         email: sync.session.user.email,
         hasPaid: sync.isPremium === true,
+        userHasValidAccess: sync.userHasValidAccess === true,
         planTier: sync.profile?.plan_tier || (sync.isPremium ? "premium" : "free"),
       };
       setStoredUser(syncedUser);
@@ -69,6 +70,7 @@ export async function refreshAuthState() {
       setStoredUser({
         ...storedUser,
         hasPaid: sync?.isPremium ?? storedUser.hasPaid ?? false,
+        userHasValidAccess: sync?.userHasValidAccess ?? storedUser.userHasValidAccess ?? false,
         planTier: sync?.profile?.plan_tier || storedUser.planTier || "free",
       });
     }

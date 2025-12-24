@@ -1,4 +1,5 @@
-import { getSupabaseClient } from "./supabase-access.js";
+import { PREMIUM_CHECKOUT_URL } from "./lesson-access.js";
+import { deriveAccessFromProfile, getSupabaseClient } from "./supabase-access.js";
 
 function setStatus(element, message, state = "info") {
   if (!element) return;
@@ -56,7 +57,11 @@ export async function initMagicLinkRequest() {
 }
 
 function showLockedMessage(messageEl, contentEl, message) {
-  messageEl.textContent = message;
+  const target =
+    messageEl.querySelector("[data-premium-locked-message]") ||
+    messageEl.querySelector("p") ||
+    messageEl;
+  target.textContent = message;
   messageEl.removeAttribute("hidden");
   contentEl.setAttribute("hidden", "true");
 }
@@ -96,7 +101,7 @@ export async function initPremiumGate() {
 
   const { data: profile, error } = await supabase
     .from("users")
-    .select("email, tier, price, plan_tier")
+    .select("email, subscription_type, access_until")
     .eq("email", email)
     .maybeSingle();
 
@@ -106,19 +111,35 @@ export async function initPremiumGate() {
     return;
   }
 
-  const tier = profile?.tier || profile?.plan_tier;
-  const price = profile?.price;
-  const isActive = Boolean(tier) || Boolean(price);
+  const { accessUntil, userHasValidAccess } = deriveAccessFromProfile(profile);
+  window.userHasValidAccess = userHasValidAccess;
 
-  if (!isActive) {
-    setStatus(statusEl, "Profilo free", "error");
+  const upgradeCta = lockedEl.querySelector("[data-upgrade-btn]") || document.createElement("a");
+  upgradeCta.textContent = "Upgrade";
+  upgradeCta.href = PREMIUM_CHECKOUT_URL;
+  upgradeCta.className = "mpl-button";
+  upgradeCta.setAttribute("data-upgrade-btn", "true");
+  upgradeCta.target = "_blank";
+  upgradeCta.rel = "noopener noreferrer";
+
+  if (!lockedEl.querySelector("[data-upgrade-btn]")) {
+    lockedEl.appendChild(upgradeCta);
+  }
+
+  if (!userHasValidAccess) {
+    setStatus(statusEl, "Profilo free o scaduto", "error");
     showLockedMessage(
       lockedEl,
       contentEl,
       "Accesso riservato solo ai membri attivi. Torna alla home o effettua l'acquisto."
     );
   } else {
-    setStatus(statusEl, "Accesso Premium attivo", "success");
+    const expiryLabel = accessUntil ? new Date(accessUntil).toLocaleDateString() : "";
+    setStatus(
+      statusEl,
+      expiryLabel ? `Accesso Premium attivo · valido fino al ${expiryLabel}` : "Accesso Premium attivo",
+      "success"
+    );
     lockedEl.setAttribute("hidden", "true");
     contentEl.removeAttribute("hidden");
   }

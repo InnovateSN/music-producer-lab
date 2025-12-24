@@ -2,6 +2,14 @@ import { clearPremiumEntitlement, persistPremiumEntitlement } from "./lesson-acc
 
 let supabaseClient = null;
 
+function computeAccessState(profile) {
+  const accessUntilRaw = profile?.access_until;
+  const accessUntil = accessUntilRaw ? new Date(accessUntilRaw) : null;
+  const userHasValidAccess = Boolean(accessUntil && accessUntil.getTime() > Date.now());
+
+  return { accessUntil, userHasValidAccess };
+}
+
 async function loadSupabase() {
   if (supabaseClient) return supabaseClient;
 
@@ -43,18 +51,19 @@ export async function syncSupabasePremiumStatus() {
     return { synced: true, session: null, isPremium: false };
   }
 
-  const userId = session.user.id;
+  const email = session.user.email;
   const { data: profile, error } = await supabase
     .from("users")
-    .select("has_paid, email, plan_tier")
-    .eq("id", userId)
-    .single();
+    .select("has_paid, email, plan_tier, subscription_type, access_until")
+    .eq("email", email)
+    .maybeSingle();
 
   if (error) {
     console.warn("[mpl] Unable to fetch premium status", error.message);
   }
 
-  const isPremium = profile?.has_paid === true;
+  const { userHasValidAccess } = computeAccessState(profile);
+  const isPremium = userHasValidAccess || profile?.has_paid === true;
 
   if (isPremium) {
     persistPremiumEntitlement();
@@ -62,5 +71,9 @@ export async function syncSupabasePremiumStatus() {
     clearPremiumEntitlement();
   }
 
-  return { synced: true, session, isPremium, profile };
+  return { synced: true, session, isPremium, profile, userHasValidAccess };
+}
+
+export function deriveAccessFromProfile(profile) {
+  return computeAccessState(profile);
 }
