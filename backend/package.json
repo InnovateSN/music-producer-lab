@@ -1,6 +1,7 @@
 {
   "name": "music-producer-lab-backend",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Backend server for Music Producer Lab with Stripe integration",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -10,6 +11,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "stripe": "^14.0.0"
   }
 }
