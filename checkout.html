@@ -259,27 +259,7 @@
         </button>
       </div>
       
-      <!-- Lifetime Plan -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Lifetime</div>
-        <div class="pricing-name">Pro Forever</div>
-        <div class="pricing-price">€197<span> una tantum</span></div>
-        <ul class="pricing-features">
-          <li>Accesso illimitato per sempre</li>
-          <li>Tutti gli aggiornamenti futuri</li>
-          <li>Supporto VIP</li>
-          <li>Sessioni 1-to-1 (2x/anno)</li>
-          <li>Nessun rinnovo</li>
-        </ul>
-        <button 
-          class="checkout-btn checkout-btn-secondary" 
-          data-plan="lifetime"
-          data-price-id="price_lifetime"
-          onclick="handleCheckout('lifetime')"
-        >
-          Acquista ora
-        </button>
-      </div>
+
     </div>
     
     <p style="text-align: center; color: var(--mpl-subtle); font-size: 14px;">
@@ -287,10 +267,10 @@
     </p>
   </main>
 
-  <script
+  <script 
     src="./supabase-config.js"
-    data-supabase-url=""
-    data-supabase-anon-key=""
+    data-supabase-url="https://nmhmrucvsrhfnajagdyv.supabase.co"
+    data-supabase-anon-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5taG1ydWN2c3JoZm5hamFnZHl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwMTYxNjIsImV4cCI6MjA4MTU5MjE2Mn0.kHqe6kz1AhJ5l_4Gh5aSk4B5s6ip_IdUQfqNwWiPjb4"
   ></script>
   
   <script type="module">
@@ -303,7 +283,6 @@
     const PRICE_IDS = {
       monthly: window.__STRIPE_PRICE_MONTHLY__ || 'price_monthly_placeholder',
       yearly: window.__STRIPE_PRICE_YEARLY__ || 'price_yearly_placeholder',
-      lifetime: window.__STRIPE_PRICE_LIFETIME__ || 'price_lifetime_placeholder',
     };
     
     let stripe = null;
