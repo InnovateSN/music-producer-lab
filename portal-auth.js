@@ -1,6 +1,6 @@
 import { setAuthState } from "./auth.js";
 import { PREMIUM_CHECKOUT_URL } from "./lesson-access.js";
-import { getSupabaseClient, syncSupabasePremiumStatus } from "./supabase-access.js";
+import { deriveAccessFromProfile, getSupabaseClient, syncSupabasePremiumStatus } from "./supabase-access.js";
 
 function setStatus(element, message, state = "info") {
   if (!element) return;
@@ -119,8 +119,8 @@ export async function initDashboardPage() {
 
   const { data: profile, error } = await supabase
     .from("users")
-    .select("has_paid, plan_tier")
-    .eq("id", session.user.id)
+    .select("has_paid, plan_tier, subscription_type, access_until")
+    .eq("email", session.user.email)
     .maybeSingle();
 
   if (error) {
@@ -128,12 +128,17 @@ export async function initDashboardPage() {
     return;
   }
 
-  const hasPaid = profile?.has_paid === true;
+  const { userHasValidAccess, accessUntil } = deriveAccessFromProfile(profile);
+  const hasPaid = userHasValidAccess || profile?.has_paid === true;
   const planTier = profile?.plan_tier || (hasPaid ? "premium" : "free");
-  setAuthState({ email, hasPaid, planTier });
+  setAuthState({ email, hasPaid, planTier, userHasValidAccess });
 
-  if (hasPaid) {
-    setStatus(statusEl, `Accesso Premium (${formatPlan(planTier)}) attivo.`, "success");
+  if (hasPaid && userHasValidAccess) {
+    const expiryLabel = accessUntil ? new Date(accessUntil).toLocaleDateString() : null;
+    const statusLabel = expiryLabel
+      ? `Accesso Premium (${formatPlan(planTier)}) attivo · valido fino al ${expiryLabel}.`
+      : `Accesso Premium (${formatPlan(planTier)}) attivo.`;
+    setStatus(statusEl, statusLabel, "success");
     upgradeBanner?.setAttribute("hidden", "true");
     premiumBlocks.forEach((block) => block.classList.remove("mpl-locked"));
   } else {

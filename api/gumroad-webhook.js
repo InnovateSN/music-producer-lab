@@ -41,15 +41,41 @@ export default async function handler(req, res) {
     const email = sale.email;
     const purchaseId = sale.id;
     const price = sale.price;
+    const paymentTimestamp = sale.created_at || sale.sale_timestamp || new Date().toISOString();
 
-    // Determine plan tier
+    // Determine subscription type from Gumroad metadata/variants
+    const rawDuration =
+      sale.subscription_duration ||
+      sale.recurrence ||
+      sale.variants?.[0] ||
+      sale.product_name ||
+      '';
+    const normalized = String(rawDuration).toLowerCase();
+    let subscriptionType = 'lifetime';
+    if (normalized.includes('month')) subscriptionType = 'monthly';
+    else if (normalized.includes('year') || normalized.includes('annual')) subscriptionType = 'yearly';
+    else if (normalized.includes('life')) subscriptionType = 'lifetime';
+
+    // Calculate access_until based on subscription type
+    const now = new Date();
+    const accessUntil = new Date(now);
+    if (subscriptionType === 'monthly') {
+      accessUntil.setDate(accessUntil.getDate() + 30);
+    } else if (subscriptionType === 'yearly') {
+      accessUntil.setFullYear(accessUntil.getFullYear() + 1);
+    } else {
+      // Lifetime or unknown → long-term access window
+      accessUntil.setFullYear(accessUntil.getFullYear() + 100);
+    }
+
+    // Determine plan tier for backward compatibility with existing UI code
     let planTier = 'free';
     const priceNum = parseInt(price) / 100;
-    if (priceNum >= 97) planTier = 'premium';
+    if (priceNum >= 97 || subscriptionType === 'lifetime') planTier = 'premium';
     else if (priceNum >= 47) planTier = 'pro';
     else if (priceNum >= 27) planTier = 'basic';
 
-    // Upsert user
+    // Upsert user access info
     const { error } = await supabase
       .from('users')
       .upsert({
@@ -58,6 +84,9 @@ export default async function handler(req, res) {
         plan_tier: planTier,
         purchase_id: purchaseId,
         price: price,
+        subscription_type: subscriptionType,
+        access_until: accessUntil.toISOString(),
+        payment_timestamp: paymentTimestamp,
         updated_at: new Date().toISOString()
       }, {
         onConflict: 'email'
