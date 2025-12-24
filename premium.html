@@ -56,6 +56,12 @@
     <script src="./supabase-config.js"></script>
     <script type="module">
       import { initPremiumGate } from "./magic-link-auth.js";
+      import enforcePremiumAccessAfterLogin from "./supabase-login-guard.js";
+      
+      // Enforce premium access check after login
+      enforcePremiumAccessAfterLogin();
+      
+      // Initialize the premium gate UI
       initPremiumGate();
     </script>
   </body>
