@@ -2,45 +2,298 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Arrangement Lab | Music Producer Lab</title>
+    <title>Arrangement Lab · Song Structure 101 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the fundamentals of song arrangement. Understand bars, sections, and how to create a roadmap for your track." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+      .lesson-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: var(--space-md) 0;
+        background: rgba(5, 8, 16, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .lesson-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+      }
+      .lesson-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .lesson-nav-logo img { height: 32px; }
+      .lesson-content { padding-top: 80px; }
+      
+      .arrangement-visual {
+        display: grid;
+        gap: var(--space-sm);
+        margin: var(--space-lg) 0;
+      }
+      .arrangement-section {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--accent-cyan);
+      }
+      .arrangement-section.intro { border-color: var(--accent-green); }
+      .arrangement-section.verse { border-color: var(--accent-cyan); }
+      .arrangement-section.chorus { border-color: var(--accent-purple); }
+      .arrangement-section.bridge { border-color: var(--accent-pink); }
+      .arrangement-section.outro { border-color: var(--accent-amber); }
+      .arrangement-section-bars {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        min-width: 60px;
+      }
+      .arrangement-section-name {
+        font-weight: 600;
+        flex: 1;
+      }
+      .arrangement-section-energy {
+        font-size: 0.75rem;
+        padding: var(--space-xs) var(--space-sm);
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <a href="labs.html#arrangement" class="btn btn-secondary btn-sm">Back to Labs</a>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Arrangement Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Song Structure 101:
+              <span>Build your roadmap</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn how to structure your tracks for maximum impact. Understand the building blocks of a song—<strong>intro</strong>, <strong>verse</strong>, <strong>chorus</strong>, <strong>bridge</strong>, and <strong>outro</strong>—and how they create tension and release.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
-            </button>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Arrangement basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Song structure overview</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Structure</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>10–15 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Song sections</div>
+                  <div class="hero-visual-pill-tag">Energy flow</div>
+                  <div class="hero-visual-pill-tag">Bar counting</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works in any DAW</span>
+                  <span>Ableton · FL · Logic · others</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Understanding song sections">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Understanding the building blocks.</h2>
+            <p class="section-body">
+              Most songs—from pop to EDM to hip-hop—follow similar structural patterns. Each section serves a purpose in the listener's journey.
+            </p>
+            <ul class="section-list">
+              <li><strong>Intro</strong> — Sets the mood, introduces key elements gradually (4-8 bars)</li>
+              <li><strong>Verse</strong> — Tells the story, lower energy than chorus (8-16 bars)</li>
+              <li><strong>Chorus</strong> — The hook, highest energy, most memorable (8-16 bars)</li>
+              <li><strong>Bridge</strong> — Contrast section, breaks repetition (4-8 bars)</li>
+              <li><strong>Outro</strong> — Winds down, resolves the track (4-8 bars)</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Bars and counting.</h2>
+            <p class="section-body">
+              In 4/4 time, most sections are built in <strong>4-bar or 8-bar phrases</strong>. This creates a natural sense of resolution and keeps listeners engaged.
+            </p>
+            <ul class="section-list">
+              <li>A <strong>bar</strong> has 4 beats in 4/4 time</li>
+              <li>Most sections are <strong>4, 8, or 16 bars</strong> long</li>
+              <li>Changes usually happen on <strong>even bar numbers</strong> (bar 4, 8, 16, etc.)</li>
+              <li class="instruction-line">
+                <p class="instruction">
+                  <strong>Listen to your favorite tracks</strong> and count the bars. You'll notice most transitions happen on 4s and 8s.
+                </p>
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Energy and arrangement">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">Energy flow and tension.</h2>
+            <p class="section-body">
+              Great arrangements aren't flat—they breathe. Think of your song as a journey with peaks and valleys.
+            </p>
+            <ul class="section-list">
+              <li><strong>Build tension</strong> — Remove elements, use filters, risers</li>
+              <li><strong>Create release</strong> — Drop everything at once for impact</li>
+              <li><strong>Contrast matters</strong> — Quiet verses make loud choruses hit harder</li>
+              <li><strong>Automation</strong> — Filters, volume, effects create movement</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Example structure</div>
+            <h2 class="section-title">A typical EDM arrangement.</h2>
+            <div class="arrangement-visual">
+              <div class="arrangement-section intro">
+                <span class="arrangement-section-bars">8 bars</span>
+                <span class="arrangement-section-name">Intro</span>
+                <span class="arrangement-section-energy">Low energy</span>
+              </div>
+              <div class="arrangement-section verse">
+                <span class="arrangement-section-bars">16 bars</span>
+                <span class="arrangement-section-name">Buildup</span>
+                <span class="arrangement-section-energy">Rising</span>
+              </div>
+              <div class="arrangement-section chorus">
+                <span class="arrangement-section-bars">16 bars</span>
+                <span class="arrangement-section-name">Drop</span>
+                <span class="arrangement-section-energy">High energy</span>
+              </div>
+              <div class="arrangement-section bridge">
+                <span class="arrangement-section-bars">8 bars</span>
+                <span class="arrangement-section-name">Breakdown</span>
+                <span class="arrangement-section-energy">Low energy</span>
+              </div>
+              <div class="arrangement-section verse">
+                <span class="arrangement-section-bars">8 bars</span>
+                <span class="arrangement-section-name">Buildup 2</span>
+                <span class="arrangement-section-energy">Rising</span>
+              </div>
+              <div class="arrangement-section chorus">
+                <span class="arrangement-section-bars">16 bars</span>
+                <span class="arrangement-section-name">Drop 2</span>
+                <span class="arrangement-section-energy">High energy</span>
+              </div>
+              <div class="arrangement-section outro">
+                <span class="arrangement-section-bars">8 bars</span>
+                <span class="arrangement-section-name">Outro</span>
+                <span class="arrangement-section-energy">Fading</span>
+              </div>
+            </div>
+            <p class="section-body" style="margin-top:0.8rem;">
+              Total: <strong>~80 bars</strong> or about <strong>3:30</strong> at 120 BPM. This is a template—feel free to modify it to suit your style.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Practical exercise">
+          <article class="section">
+            <div class="section-eyebrow">Your task</div>
+            <h2 class="section-title">Create your arrangement template.</h2>
+            <p class="section-body">
+              Open your DAW and create a song structure using markers or empty clips. Don't write any music yet—just plan the roadmap.
+            </p>
+            <ul class="section-list">
+              <li>Create markers for each section: Intro, Buildup, Drop, Breakdown, etc.</li>
+              <li>Set the length of each section in bars</li>
+              <li>Think about energy levels for each part</li>
+              <li>Reference a track you like and copy its structure</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Songs are built from sections: intro, verse, chorus, bridge, outro</li>
+              <li>Most sections are 4, 8, or 16 bars long</li>
+              <li>Energy contrast between sections creates interest</li>
+              <li>Planning your structure before writing helps maintain momentum</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#arrangement" class="btn btn-primary">
+                Back to Arrangement Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#arrangement">Back to Arrangement Labs</a>
+              </div>
+            </div>
           </div>
-        </header>
-
-        <section class="hero" id="lesson-hero" aria-label="Arrangement Lab"></section>
-
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
-
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
-
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
-
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Arrangement Lab</div>
-          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('arrangement');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
