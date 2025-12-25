@@ -1,7 +1,15 @@
 /**
  * Music Producer Lab - Interactive Drum Sequencer
- * A simple 16-step sequencer for the interactive lessons
+ * A modular 16/8/32-step sequencer for the interactive lessons
  * Full-width horizontal layout with step numbers
+ * 
+ * Features:
+ * - Variable step count (8, 16, 32)
+ * - Swing support
+ * - Tempo control
+ * - Sandbox mode (no target validation)
+ * - Preset save/load
+ * - Responsive design
  */
 
 // Audio Context (Web Audio API)
@@ -136,6 +144,43 @@ const drumSounds = {
     gain.connect(ctx.destination);
     
     noise.start(ctx.currentTime);
+  },
+  
+  tom: () => {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(200, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.3);
+    
+    gain.gain.setValueAtTime(0.8, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.3);
+  },
+  
+  rim: () => {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(500, ctx.currentTime);
+    
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.05);
   }
 };
 
@@ -154,17 +199,40 @@ let isPlaying = false;
 let currentStep = 0;
 let intervalId = null;
 let tempo = 120;
+let swing = 0;
+let stepCount = 16;
 
-// Initialize drum sequencer
-export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
+// Store references for external control
+let sequencerState = null;
+let sequencerInstruments = null;
+
+/**
+ * Initialize drum sequencer
+ * @param {Array} instruments - Array of instrument objects
+ * @param {string} lessonKey - LocalStorage key for progress
+ * @param {string} nextLessonUrl - URL for next lesson
+ * @param {Object} options - Additional options (tempo, stepCount, swing, messages, sandbox)
+ */
+export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
   const container = document.getElementById('mpl-sequencer-collection');
   if (!container) return;
+  
+  // Apply options
+  tempo = options.tempo || 120;
+  stepCount = options.stepCount || 16;
+  swing = options.swing || 0;
+  const messages = options.messages || {};
+  const isSandbox = options.sandbox || false;
   
   // Track state for each instrument
   const state = {};
   instruments.forEach(inst => {
-    state[inst.id] = new Array(16).fill(false);
+    state[inst.id] = new Array(stepCount).fill(false);
   });
+  
+  // Store for external access
+  sequencerState = state;
+  sequencerInstruments = instruments;
   
   // Build UI - Full width horizontal layout
   container.innerHTML = '';
@@ -214,16 +282,18 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     gap: 2px;
   `;
   
-  for (let i = 0; i < 16; i++) {
+  const stepsPerBeat = stepCount / 4; // For 16 steps = 4 per beat
+  
+  for (let i = 0; i < stepCount; i++) {
     const stepNum = document.createElement('div');
     stepNum.className = 'sequencer-step-number';
-    const beatStart = i % 4 === 0;
+    const beatStart = i % stepsPerBeat === 0;
     stepNum.style.cssText = `
       flex: 1;
-      min-width: 36px;
+      min-width: ${stepCount > 16 ? '28px' : '36px'};
       text-align: center;
       font-family: var(--font-mono, monospace);
-      font-size: 0.7rem;
+      font-size: ${stepCount > 16 ? '0.6rem' : '0.7rem'};
       font-weight: ${beatStart ? '700' : '400'};
       color: ${beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)'};
       padding: 4px 0;
@@ -270,11 +340,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       gap: 2px;
     `;
     
-    for (let sub = 0; sub < 4; sub++) {
+    for (let sub = 0; sub < stepsPerBeat; sub++) {
       const marker = document.createElement('div');
       marker.style.cssText = `
         flex: 1;
-        min-width: 36px;
+        min-width: ${stepCount > 16 ? '28px' : '36px'};
         height: 4px;
         background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
         border-radius: 2px;
@@ -321,7 +391,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       gap: 2px;
     `;
     
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < stepCount; i++) {
       const step = document.createElement('button');
       step.type = 'button';
       step.className = 'sequencer-step';
@@ -329,11 +399,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       step.dataset.step = i;
       step.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
       
-      const beatStart = i % 4 === 0;
+      const beatStart = i % stepsPerBeat === 0;
       step.style.cssText = `
         flex: 1;
-        min-width: 36px;
-        height: 44px;
+        min-width: ${stepCount > 16 ? '28px' : '36px'};
+        height: ${stepCount > 16 ? '38px' : '44px'};
         border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
         border-radius: 6px;
         background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
@@ -344,7 +414,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       
       step.addEventListener('click', () => {
         state[inst.id][i] = !state[inst.id][i];
-        const beatStart = i % 4 === 0;
+        const beatStart = i % stepsPerBeat === 0;
         step.style.background = state[inst.id][i] 
           ? inst.color 
           : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
@@ -354,6 +424,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
         
         if (state[inst.id][i]) {
           playSound(inst.id);
+        }
+        
+        // Auto-save if enabled
+        if (options.autoSave !== false) {
+          savePatternState(lessonKey + '-pattern', state);
         }
       });
       
@@ -366,7 +441,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       
       step.addEventListener('mouseleave', () => {
         if (!state[inst.id][i]) {
-          const beatStart = i % 4 === 0;
+          const beatStart = i % stepsPerBeat === 0;
           step.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
         }
       });
@@ -417,22 +492,31 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
   `;
   container.appendChild(legend);
   
-  // Play button
+  // Get control elements
   const playBtn = document.getElementById('mpl-seq-play-all');
   const stopBtn = document.getElementById('mpl-seq-stop-all');
+  const clearBtn = document.getElementById('mpl-seq-clear-all');
   const checkBtn = document.getElementById('mpl-seq-check-all');
   const statusEl = document.getElementById('mpl-seq-status');
   const nextBtn = document.getElementById('mpl-next-lesson');
   
+  // Play button
   if (playBtn) {
     playBtn.addEventListener('click', () => {
       if (isPlaying) return;
       isPlaying = true;
       currentStep = 0;
       
-      const stepTime = (60 / tempo) * 1000 / 4; // 16th note duration
+      const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
       
-      intervalId = setInterval(() => {
+      const playStep = () => {
+        // Calculate swing delay for off-beat steps
+        let stepDelay = baseStepTime;
+        if (swing > 0 && currentStep % 2 === 1) {
+          // Apply swing to off-beat notes
+          stepDelay = baseStepTime * (1 + (swing / 100) * 0.5);
+        }
+        
         // Highlight current step
         document.querySelectorAll('.sequencer-step').forEach((el) => {
           const stepIdx = parseInt(el.dataset.step);
@@ -451,7 +535,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
             el.style.color = 'var(--accent-cyan, #00f0ff)';
             el.style.fontWeight = '700';
           } else {
-            const beatStart = i % 4 === 0;
+            const beatStart = i % (stepCount / 4) === 0;
             el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
             el.style.fontWeight = beatStart ? '700' : '400';
           }
@@ -464,36 +548,43 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
           }
         });
         
-        currentStep = (currentStep + 1) % 16;
-      }, stepTime);
+        currentStep = (currentStep + 1) % stepCount;
+        
+        if (isPlaying) {
+          intervalId = setTimeout(playStep, stepDelay);
+        }
+      };
+      
+      playStep();
     });
   }
   
+  // Stop button
   if (stopBtn) {
-    stopBtn.addEventListener('click', () => {
-      isPlaying = false;
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-      currentStep = 0;
-      
-      // Remove highlights
-      document.querySelectorAll('.sequencer-step').forEach(el => {
-        el.style.boxShadow = 'none';
-        el.style.transform = 'scale(1)';
+    stopBtn.addEventListener('click', stopSequencer);
+  }
+  
+  // Clear button (sandbox mode)
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      instruments.forEach(inst => {
+        for (let i = 0; i < stepCount; i++) {
+          state[inst.id][i] = false;
+        }
       });
       
-      // Reset step number colors
-      document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
-        const beatStart = i % 4 === 0;
-        el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
-        el.style.fontWeight = beatStart ? '700' : '400';
+      // Reset UI
+      document.querySelectorAll('.sequencer-step').forEach((el) => {
+        const stepIdx = parseInt(el.dataset.step);
+        const beatStart = stepIdx % (stepCount / 4) === 0;
+        el.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
+        el.style.borderColor = beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)';
       });
     });
   }
   
-  if (checkBtn) {
+  // Check button
+  if (checkBtn && !isSandbox) {
     checkBtn.addEventListener('click', () => {
       let allCorrect = true;
       
@@ -502,7 +593,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
         const current = state[inst.id];
         
         // Check if pattern matches
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < stepCount; i++) {
           const shouldBeActive = target.includes(i);
           if (current[i] !== shouldBeActive) {
             allCorrect = false;
@@ -513,7 +604,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       
       if (allCorrect) {
         if (statusEl) {
-          statusEl.textContent = '🎉 Correct! Great job! You can now proceed to the next lesson.';
+          statusEl.textContent = messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.';
           statusEl.style.color = 'var(--accent-green, #00ff9d)';
         }
         if (nextBtn) {
@@ -527,7 +618,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
         } catch (e) {}
       } else {
         if (statusEl) {
-          statusEl.textContent = 'Not quite right. Check the pattern and try again!';
+          statusEl.textContent = messages.error || 'Not quite right. Check the pattern and try again!';
           statusEl.style.color = 'var(--accent-amber, #ffcc00)';
         }
         
@@ -549,6 +640,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     });
   }
   
+  // Next lesson button
   if (nextBtn && nextLessonUrl) {
     nextBtn.addEventListener('click', () => {
       window.location.href = nextLessonUrl;
@@ -560,11 +652,140 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
         nextBtn.disabled = false;
         nextBtn.style.opacity = '1';
         if (statusEl) {
-          statusEl.textContent = 'You\'ve already completed this exercise. Feel free to practice or move to the next lesson!';
+          statusEl.textContent = messages.alreadyCompleted || 'You\'ve already completed this exercise. Feel free to practice or move to the next lesson!';
         }
       }
     } catch (e) {}
   }
+  
+  // Listen for tempo changes
+  window.addEventListener('mpl-tempo-change', (e) => {
+    tempo = e.detail.tempo;
+    // If playing, restart with new tempo
+    if (isPlaying) {
+      stopSequencer();
+      playBtn?.click();
+    }
+  });
+  
+  // Listen for swing changes
+  window.addEventListener('mpl-swing-change', (e) => {
+    swing = e.detail.swing;
+  });
+  
+  // Listen for preset save
+  window.addEventListener('mpl-preset-save', () => {
+    const presetData = {
+      state: state,
+      tempo: tempo,
+      swing: swing,
+      stepCount: stepCount
+    };
+    const presetJson = JSON.stringify(presetData);
+    const presetName = prompt('Enter preset name:', 'My Pattern');
+    if (presetName) {
+      try {
+        const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
+        presets[presetName] = presetData;
+        localStorage.setItem('mpl-presets', JSON.stringify(presets));
+        alert(`Preset "${presetName}" saved!`);
+      } catch (e) {
+        console.error('Failed to save preset:', e);
+      }
+    }
+  });
+  
+  // Listen for preset load
+  window.addEventListener('mpl-preset-load', () => {
+    try {
+      const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
+      const presetNames = Object.keys(presets);
+      if (presetNames.length === 0) {
+        alert('No presets saved yet!');
+        return;
+      }
+      const presetName = prompt(`Available presets:\n${presetNames.join('\n')}\n\nEnter preset name to load:`);
+      if (presetName && presets[presetName]) {
+        const preset = presets[presetName];
+        // Apply preset state
+        Object.keys(preset.state).forEach(instId => {
+          if (state[instId]) {
+            preset.state[instId].forEach((val, i) => {
+              state[instId][i] = val;
+            });
+          }
+        });
+        // Update UI
+        updateSequencerUI(state, instruments, stepCount);
+        alert(`Preset "${presetName}" loaded!`);
+      }
+    } catch (e) {
+      console.error('Failed to load preset:', e);
+    }
+  });
+  
+  // Load saved pattern state if exists
+  try {
+    const savedPattern = localStorage.getItem(lessonKey + '-pattern');
+    if (savedPattern) {
+      const parsed = JSON.parse(savedPattern);
+      Object.keys(parsed).forEach(instId => {
+        if (state[instId]) {
+          parsed[instId].forEach((val, i) => {
+            if (i < stepCount) state[instId][i] = val;
+          });
+        }
+      });
+      updateSequencerUI(state, instruments, stepCount);
+    }
+  } catch (e) {}
+}
+
+// Stop the sequencer
+function stopSequencer() {
+  isPlaying = false;
+  if (intervalId) {
+    clearTimeout(intervalId);
+    intervalId = null;
+  }
+  currentStep = 0;
+  
+  // Remove highlights
+  document.querySelectorAll('.sequencer-step').forEach(el => {
+    el.style.boxShadow = 'none';
+    el.style.transform = 'scale(1)';
+  });
+  
+  // Reset step number colors
+  const stepsPerBeat = stepCount / 4;
+  document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
+    const beatStart = i % stepsPerBeat === 0;
+    el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
+    el.style.fontWeight = beatStart ? '700' : '400';
+  });
+}
+
+// Update sequencer UI from state
+function updateSequencerUI(state, instruments, stepCount) {
+  const stepsPerBeat = stepCount / 4;
+  instruments.forEach(inst => {
+    document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
+      const beatStart = i % stepsPerBeat === 0;
+      el.style.background = state[inst.id][i] 
+        ? inst.color 
+        : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
+      el.style.borderColor = state[inst.id][i]
+        ? 'transparent'
+        : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
+    });
+  });
+}
+
+// Save pattern state to localStorage
+function savePatternState(key, state) {
+  try {
+    localStorage.setItem(key, JSON.stringify(state));
+  } catch (e) {}
 }
 
 // Export for use in lesson pages
