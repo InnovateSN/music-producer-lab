@@ -36,57 +36,48 @@
         </section>
 
         <!-- New Section for Sequencer -->
-        <section class="sections-grid" aria-label="Interactive sequencer exercise">
-          <article class="section">
-            <div class="section-eyebrow">Step 3 · Exercise</div>
-            <h2 class="section-title">Program a fill in the 4th bar.</h2>
-            <p class="section-body">
-              A drum fill in the last bar helps the loop transition when it restarts. Keep the K+S+HH groove from previous lessons for the first three bars, then create a short kick/snare fill in the final bar (steps 13–16).
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              For simplicity, we’ll use a 16-step grid that represents only the last bar (Beat 4, steps 13–16), but you should imagine programming the full pattern.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Target: open-ended. Focus on placing Kick and Snare hits in the last four steps
-              (<span class="nowrap">13, 14, 15, 16</span>) so they feel like a brief break before the loop restarts at 1.
-            </p>
-          </article>
+        <!-- Exercise Instructions -->
+        <section class="section" style="margin-top: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-xl);">
+          <div class="section-eyebrow">Exercise</div>
+          <h2 class="section-title">Practice the pattern in the sequencer.</h2>
+          <p class="section-body">
+            Use the 16-step grid below to program the drum pattern. Click on steps to toggle them on/off.
+            Use Play to hear your pattern, and Check Exercise when you think you have it right.
+          </p>
+        </section>
 
-          <article class="section">
-            <div class="section-eyebrow">Interactive sequencers</div>
-            <h2 class="section-title">16-step grid (Kick, Snare, Hi-Hat)</h2>
-            <div class="sequencer" id="mpl-sequencer-collection">
-              <!-- Sequencers will be created here -->
-            </div>
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
 
-            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
-              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-                <span>Play</span>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
               </button>
-              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-                <span>Stop</span>
-              </button>
-              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-                <span>Check exercise</span>
-              </button>
-
-              <div id="mpl-seq-nav-wrap" style="margin-left:auto; display: flex; gap: 0.6rem;">
-                 <a class="btn btn-outline" href="lesson-drums-4.html"><span>← Back to Lesson 4</span></a>
-                 <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Back to overview">
-                  <span>Overview →</span>
-                </button>
-              </div>
             </div>
+          </div>
 
-            <div
-              class="sequencer-status"
-              id="mpl-seq-status"
-              aria-live="polite"
-              style="margin-top:0.8rem;"
-            >
-              Program a rhythmic fill in the fourth bar to complete the lesson series.
-            </div>
-          </article>
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
+          </div>
         </section>
         <!-- End New Section for Sequencer -->
 

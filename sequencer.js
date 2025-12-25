@@ -1,6 +1,7 @@
 /**
  * Music Producer Lab - Interactive Drum Sequencer
  * A simple 16-step sequencer for the interactive lessons
+ * Full-width horizontal layout with step numbers
  */
 
 // Audio Context (Web Audio API)
@@ -165,17 +166,136 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     state[inst.id] = new Array(16).fill(false);
   });
   
-  // Build UI
+  // Build UI - Full width horizontal layout
   container.innerHTML = '';
   
+  // Create wrapper with CSS
+  const wrapper = document.createElement('div');
+  wrapper.className = 'sequencer-wrapper';
+  wrapper.style.cssText = `
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  `;
+  
+  // Main grid container
+  const grid = document.createElement('div');
+  grid.className = 'sequencer-grid';
+  grid.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: fit-content;
+  `;
+  
+  // Step numbers header row
+  const headerRow = document.createElement('div');
+  headerRow.className = 'sequencer-header-row';
+  headerRow.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4px;
+  `;
+  
+  // Empty space for label column
+  const headerLabel = document.createElement('div');
+  headerLabel.style.cssText = `
+    width: 70px;
+    flex-shrink: 0;
+  `;
+  headerRow.appendChild(headerLabel);
+  
+  // Step numbers container
+  const stepNumbersContainer = document.createElement('div');
+  stepNumbersContainer.style.cssText = `
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  `;
+  
+  for (let i = 0; i < 16; i++) {
+    const stepNum = document.createElement('div');
+    stepNum.className = 'sequencer-step-number';
+    const beatStart = i % 4 === 0;
+    stepNum.style.cssText = `
+      flex: 1;
+      min-width: 36px;
+      text-align: center;
+      font-family: var(--font-mono, monospace);
+      font-size: 0.7rem;
+      font-weight: ${beatStart ? '700' : '400'};
+      color: ${beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)'};
+      padding: 4px 0;
+    `;
+    stepNum.textContent = i + 1;
+    stepNumbersContainer.appendChild(stepNum);
+  }
+  
+  headerRow.appendChild(stepNumbersContainer);
+  grid.appendChild(headerRow);
+  
+  // Beat markers row (1, 2, 3, 4)
+  const beatRow = document.createElement('div');
+  beatRow.className = 'sequencer-beat-row';
+  beatRow.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 8px;
+  `;
+  
+  const beatLabel = document.createElement('div');
+  beatLabel.style.cssText = `
+    width: 70px;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-muted, #7a8ba8);
+  `;
+  beatLabel.textContent = 'Beat';
+  beatRow.appendChild(beatLabel);
+  
+  const beatMarkersContainer = document.createElement('div');
+  beatMarkersContainer.style.cssText = `
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  `;
+  
+  for (let beat = 1; beat <= 4; beat++) {
+    const beatGroup = document.createElement('div');
+    beatGroup.style.cssText = `
+      flex: 1;
+      display: flex;
+      gap: 2px;
+    `;
+    
+    for (let sub = 0; sub < 4; sub++) {
+      const marker = document.createElement('div');
+      marker.style.cssText = `
+        flex: 1;
+        min-width: 36px;
+        height: 4px;
+        background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
+        border-radius: 2px;
+      `;
+      beatGroup.appendChild(marker);
+    }
+    
+    beatMarkersContainer.appendChild(beatGroup);
+  }
+  
+  beatRow.appendChild(beatMarkersContainer);
+  grid.appendChild(beatRow);
+  
+  // Instrument rows
   instruments.forEach(inst => {
     const row = document.createElement('div');
     row.className = 'sequencer-row';
     row.style.cssText = `
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 0;
     `;
     
     // Label
@@ -183,20 +303,22 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     label.className = 'sequencer-label';
     label.textContent = inst.label;
     label.style.cssText = `
-      width: 60px;
+      width: 70px;
+      flex-shrink: 0;
       font-weight: 600;
       font-size: 0.85rem;
       color: var(--text-secondary, #b8c4e0);
+      padding-right: 8px;
     `;
     row.appendChild(label);
     
-    // Steps
+    // Steps container - full width, no wrap
     const stepsContainer = document.createElement('div');
     stepsContainer.className = 'sequencer-steps';
     stepsContainer.style.cssText = `
       display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
+      flex: 1;
+      gap: 2px;
     `;
     
     for (let i = 0; i < 16; i++) {
@@ -205,30 +327,47 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       step.className = 'sequencer-step';
       step.dataset.instrument = inst.id;
       step.dataset.step = i;
+      step.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
+      
+      const beatStart = i % 4 === 0;
       step.style.cssText = `
-        width: 32px;
-        height: 32px;
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 4px;
-        background: ${i % 4 === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.03)'};
+        flex: 1;
+        min-width: 36px;
+        height: 44px;
+        border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
+        border-radius: 6px;
+        background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
         cursor: pointer;
         transition: all 0.15s ease;
-        min-height: auto;
+        padding: 0;
       `;
-      
-      // Beat markers (every 4 steps)
-      if (i % 4 === 0) {
-        step.title = `Beat ${(i / 4) + 1}`;
-      }
       
       step.addEventListener('click', () => {
         state[inst.id][i] = !state[inst.id][i];
+        const beatStart = i % 4 === 0;
         step.style.background = state[inst.id][i] 
           ? inst.color 
-          : (i % 4 === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.03)');
+          : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
+        step.style.borderColor = state[inst.id][i]
+          ? 'transparent'
+          : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
         
         if (state[inst.id][i]) {
           playSound(inst.id);
+        }
+      });
+      
+      // Hover effect
+      step.addEventListener('mouseenter', () => {
+        if (!state[inst.id][i]) {
+          step.style.background = 'rgba(255,255,255,0.1)';
+        }
+      });
+      
+      step.addEventListener('mouseleave', () => {
+        if (!state[inst.id][i]) {
+          const beatStart = i % 4 === 0;
+          step.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
         }
       });
       
@@ -236,8 +375,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     }
     
     row.appendChild(stepsContainer);
-    container.appendChild(row);
+    grid.appendChild(row);
   });
+  
+  wrapper.appendChild(grid);
+  container.appendChild(wrapper);
   
   // Instructions
   if (instruments.length > 0 && instruments[0].instructions) {
@@ -251,6 +393,29 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
     instructionsDiv.textContent = instruments[0].instructions;
     container.appendChild(instructionsDiv);
   }
+  
+  // Legend
+  const legend = document.createElement('div');
+  legend.className = 'sequencer-legend';
+  legend.style.cssText = `
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--text-muted, #7a8ba8);
+  `;
+  legend.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <div style="width: 16px; height: 16px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 3px;"></div>
+      <span>Beat start (downbeat)</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <div style="width: 16px; height: 16px; background: ${instruments[0]?.color || 'linear-gradient(135deg,#ff5a3d,#ffb28a)'}; border-radius: 3px;"></div>
+      <span>Active step</span>
+    </div>
+  `;
+  container.appendChild(legend);
   
   // Play button
   const playBtn = document.getElementById('mpl-seq-play-all');
@@ -269,12 +434,26 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       
       intervalId = setInterval(() => {
         // Highlight current step
-        document.querySelectorAll('.sequencer-step').forEach((el, idx) => {
-          const stepIdx = idx % 16;
+        document.querySelectorAll('.sequencer-step').forEach((el) => {
+          const stepIdx = parseInt(el.dataset.step);
           if (stepIdx === currentStep) {
-            el.style.boxShadow = '0 0 10px rgba(0, 240, 255, 0.5)';
+            el.style.boxShadow = '0 0 12px rgba(0, 240, 255, 0.6), inset 0 0 8px rgba(0, 240, 255, 0.3)';
+            el.style.transform = 'scale(1.05)';
           } else {
             el.style.boxShadow = 'none';
+            el.style.transform = 'scale(1)';
+          }
+        });
+        
+        // Update step numbers highlight
+        document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
+          if (i === currentStep) {
+            el.style.color = 'var(--accent-cyan, #00f0ff)';
+            el.style.fontWeight = '700';
+          } else {
+            const beatStart = i % 4 === 0;
+            el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
+            el.style.fontWeight = beatStart ? '700' : '400';
           }
         });
         
@@ -302,6 +481,14 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
       // Remove highlights
       document.querySelectorAll('.sequencer-step').forEach(el => {
         el.style.boxShadow = 'none';
+        el.style.transform = 'scale(1)';
+      });
+      
+      // Reset step number colors
+      document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
+        const beatStart = i % 4 === 0;
+        el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
+        el.style.fontWeight = beatStart ? '700' : '400';
       });
     });
   }
@@ -349,9 +536,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
           const target = inst.target || [];
           document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
             if (target.includes(i) && !state[inst.id][i]) {
-              el.style.outline = '2px solid rgba(0, 240, 255, 0.5)';
+              el.style.outline = '2px solid rgba(0, 240, 255, 0.7)';
+              el.style.outlineOffset = '2px';
               setTimeout(() => {
                 el.style.outline = 'none';
+                el.style.outlineOffset = '0';
               }, 2000);
             }
           });

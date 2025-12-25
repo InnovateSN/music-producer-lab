@@ -1743,6 +1743,75 @@ p {
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   margin-top: var(--space-md);
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sequencer-wrapper {
+  width: 100%;
+  min-width: max-content;
+}
+
+.sequencer-grid {
+  width: 100%;
+}
+
+.sequencer-row,
+.sequencer-header-row,
+.sequencer-beat-row {
+  width: 100%;
+}
+
+.sequencer-steps {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+}
+
+.sequencer-step {
+  flex: 1;
+  min-width: 36px;
+  height: 44px;
+  touch-action: manipulation;
+}
+
+/* Mobile sequencer adjustments */
+@media (max-width: 768px) {
+  .sequencer {
+    padding: var(--space-md);
+    margin-left: calc(-1 * var(--space-md));
+    margin-right: calc(-1 * var(--space-md));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .sequencer-step {
+    min-width: 32px;
+    height: 40px;
+  }
+  
+  .sequencer-label {
+    width: 50px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sequencer-step {
+    min-width: 28px;
+    height: 36px;
+  }
+  
+  .sequencer-label {
+    width: 40px !important;
+  }
+  
+  .sequencer-step-number {
+    font-size: 0.6rem !important;
+    min-width: 28px !important;
+  }
 }
 
 .sequencer-status {
