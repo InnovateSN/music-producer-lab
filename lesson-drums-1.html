@@ -169,62 +169,48 @@
           </article>
         </section>
 
-        <section class="sections-grid" aria-label="Interactive 4 on the floor sequencer">
-          <article class="section">
-            <div class="section-eyebrow">Step 5 · Exercise</div>
-            <h2 class="section-title">Place the kicks in a 16-step bar.</h2>
-            <p class="section-body">
-              Now you’ll program the kick pattern in a <strong>16-step</strong>
-              bar, divided into <strong>four beats</strong>. Each beat has
-              <strong>four 1/16 notes</strong>, so the full bar has 16 slots.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Your task: place the kick drums so that you get a classic
-              <strong>4 on the floor</strong> loop in 16th-note view.
-              Imagine the steps are numbered from 1 to 16 across the bar.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Think in <strong>beats</strong>: beat 1 is steps 1–4, beat 2 is
-              5–8, beat 3 is 9–12, beat 4 is 13–16. Put the kicks where they
-              would normally land in a 4 on the floor groove. When you’re ready,
-              hit <strong>Check pattern</strong> to see the solution.
-            </p>
-          </article>
+        <!-- Exercise Instructions -->
+        <section class="section" style="margin-top: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-xl);">
+          <div class="section-eyebrow">Step 3 · Exercise</div>
+          <h2 class="section-title">Place the kicks in a 16-step bar.</h2>
+          <p class="section-body">
+            Program the kick pattern in a <strong>16-step</strong> bar divided into <strong>four beats</strong>.
+            Each beat has 4 subdivisions (1/16 notes). Put kicks on steps <strong>1, 5, 9, 13</strong> for the classic 4-on-the-floor.
+          </p>
+        </section>
 
-          <article class="section">
-            <div class="section-eyebrow">Interactive sequencer</div>
-            <h2 class="section-title">16-step instrument grid (Kick)</h2>
-            <div class="sequencer" id="mpl-sequencer-collection">
-              <!-- Kick sequencer will be created here -->
-            </div>
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
 
-            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
-              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-                <span>Play</span>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
               </button>
-              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-                <span>Stop</span>
-              </button>
-              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-                <span>Check exercise</span>
-              </button>
-
-              <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                  <span>Next lesson →</span>
-                </button>
-              </div>
             </div>
+          </div>
 
-            <div
-              class="sequencer-status"
-              id="mpl-seq-status"
-              aria-live="polite"
-              style="margin-top:0.8rem;"
-            >
-              Complete the kick exercise to unlock the next lesson.
-            </div>
-          </article>
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the kick exercise to unlock the next lesson.
+          </div>
         </section>
 
         <footer class="footer" style="margin-top: var(--space-3xl);">

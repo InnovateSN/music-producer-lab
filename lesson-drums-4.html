@@ -36,55 +36,48 @@
         </section>
 
         <!-- New Section for Sequencer -->
-        <section class="sections-grid" aria-label="Interactive sequencer exercise">
-          <article class="section">
-            <div class="section-eyebrow">Step 3 · Exercise</div>
-            <h2 class="section-title">Program the 1/16 Hi-Hat.</h2>
-            <p class="section-body">
-              Now add some “swing” and groove using 16th subdivisions. Keep Kick and Snare, and use the Hi-Hat to create a more complex rhythm by placing selective notes on the sixteenth notes.
-            </p>
-              <p class="section-body" style="margin-top:0.6rem;">
-                Hi-Hat target:
-                <strong><span class="nowrap">1, 3, 5, 7, 8, 9, 11, 13, 15</span></strong>
-                (adding step 8 for a touch of shuffle).
-              </p>
-          </article>
+        <!-- Exercise Instructions -->
+        <section class="section" style="margin-top: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-xl);">
+          <div class="section-eyebrow">Exercise</div>
+          <h2 class="section-title">Practice the pattern in the sequencer.</h2>
+          <p class="section-body">
+            Use the 16-step grid below to program the drum pattern. Click on steps to toggle them on/off.
+            Use Play to hear your pattern, and Check Exercise when you think you have it right.
+          </p>
+        </section>
 
-          <article class="section">
-            <div class="section-eyebrow">Interactive sequencers</div>
-            <h2 class="section-title">16-step grid (Kick, Snare, Hi-Hat)</h2>
-            <div class="sequencer" id="mpl-sequencer-collection">
-              <!-- Sequencers will be created here -->
-            </div>
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
 
-            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
-              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-                <span>Play</span>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
               </button>
-              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-                <span>Stop</span>
-              </button>
-              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-                <span>Check exercise</span>
-              </button>
-
-              <div id="mpl-seq-nav-wrap" style="margin-left:auto; display: flex; gap: 0.6rem;">
-                 <a class="btn btn-outline" href="lesson-drums-3.html"><span>← Back to Lesson 3</span></a>
-                 <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                  <span>Next lesson →</span>
-                </button>
-              </div>
             </div>
+          </div>
 
-            <div
-              class="sequencer-status"
-              id="mpl-seq-status"
-              aria-live="polite"
-              style="margin-top:0.8rem;"
-            >
-              Program the 16th-note Hi-Hat to unlock the next lesson.
-            </div>
-          </article>
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
+          </div>
         </section>
         <!-- End New Section for Sequencer -->
 
