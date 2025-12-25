@@ -2,9 +2,10 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pagamento confermato | Music Producer Lab</title>
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+    <link rel="stylesheet" href="base.css" />
     <script type="importmap">
     {
       "imports": {
@@ -21,13 +22,13 @@
       }
       
       body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: var(--font-body, "Inter", system-ui, -apple-system, sans-serif);
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
         margin: 0;
-        padding: 0 1.5rem;
+        padding: 1rem;
         background: var(--mpl-bg);
         color: #f5f6f9;
         text-align: center;
@@ -35,7 +36,8 @@
       
       .card {
         max-width: 540px;
-        padding: 2rem;
+        width: min(540px, 95vw);
+        padding: clamp(1.25rem, 4vw, 2rem);
         border-radius: 16px;
         background: var(--mpl-card);
         border: 1px solid var(--mpl-border);
@@ -56,7 +58,7 @@
       
       h1 {
         margin: 0 0 0.75rem;
-        font-size: 1.75rem;
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
         color: var(--mpl-accent);
       }
       
@@ -111,13 +113,15 @@
       
       a.button {
         display: inline-block;
-        padding: 0.875rem 1.75rem;
+        padding: 0.875rem 1.5rem;
         border-radius: 8px;
         background: var(--mpl-accent);
         color: #05060a;
         font-weight: 700;
         text-decoration: none;
         transition: all 0.2s;
+        min-height: 44px;
+        min-width: 44px;
       }
       
       a.button:hover {
@@ -136,6 +140,34 @@
       
       .secondary-link:hover {
         color: #fff;
+      }
+      
+      /* Success page responsive */
+      @media (max-width: 480px) {
+        .success-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 30px;
+          margin-bottom: 1rem;
+        }
+        
+        .subscription-details {
+          padding: 0.75rem;
+          margin: 1rem 0;
+        }
+        
+        .subscription-details dt {
+          font-size: 11px;
+        }
+        
+        .subscription-details dd {
+          font-size: 0.9rem;
+        }
+        
+        a.button {
+          width: 100%;
+          text-align: center;
+        }
       }
     </style>
   </head>

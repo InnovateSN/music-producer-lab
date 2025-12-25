@@ -8,15 +8,21 @@
   --mpl-accent-2: #39c6ff;
   --mpl-success: #b6f3c4;
   --mpl-danger: #ffb3c0;
+  
+  /* Font stack consistency with base.css */
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Orbitron", "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   background: radial-gradient(circle at 20% 20%, rgba(123, 93, 255, 0.08), transparent 36%),
     radial-gradient(circle at 80% 0%, rgba(57, 198, 255, 0.08), transparent 32%), var(--mpl-bg);
   color: var(--mpl-text);
   min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .mpl-auth-shell {
@@ -27,14 +33,14 @@ body {
 }
 
 .mpl-auth-card {
-  width: min(960px, 96vw);
+  width: min(960px, 94vw);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
   border: 1px solid var(--mpl-border);
   border-radius: 20px;
-  padding: 24px;
+  padding: 1.5rem;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
@@ -94,19 +100,21 @@ body {
 .mpl-auth-form button,
 .mpl-button {
   width: 100%;
-  padding: 12px 14px;
+  padding: 0.75rem 1rem;
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg, var(--mpl-accent), var(--mpl-accent-2));
   color: #fff;
   font-weight: 700;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5rem;
+  min-height: 44px; /* Touch-friendly tap target */
 }
 
 .mpl-auth-form button:hover,
@@ -236,14 +244,149 @@ body {
   gap: 10px;
 }
 
+/* ==========================================================================
+   PORTAL RESPONSIVE STYLES
+   ========================================================================== */
+
+/* Tablet Landscape (1024px - 1180px) */
+@media (max-width: 1180px) and (min-width: 821px) {
+  .mpl-auth-card {
+    width: min(880px, 92vw);
+  }
+  
+  .mpl-dashboard-grid {
+    width: min(960px, 94vw);
+  }
+}
+
+/* Tablet Portrait (768px - 820px) */
+@media (max-width: 820px) and (min-width: 641px) {
+  .mpl-auth-shell {
+    padding: 1.5rem 1rem;
+  }
+  
+  .mpl-auth-card {
+    width: min(700px, 94vw);
+    grid-template-columns: 1fr;
+  }
+  
+  .mpl-dashboard-grid {
+    width: min(700px, 94vw);
+    padding: 1.5rem 1rem 2.5rem;
+  }
+}
+
+/* Mobile (max-width: 640px) */
 @media (max-width: 640px) {
+  .mpl-auth-shell {
+    padding: 1rem 0.75rem;
+  }
+  
+  .mpl-auth-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.25rem 1rem;
+    border-radius: 16px;
+    grid-template-columns: 1fr;
+  }
+  
+  .mpl-auth-copy h1 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+  
   .mpl-auth-footer {
     flex-direction: column;
-    gap: 6px;
+    gap: 0.375rem;
+  }
+  
+  .mpl-auth-form {
+    padding: 1rem;
   }
 
+  .mpl-dashboard-grid {
+    width: 100%;
+    padding: 1rem 0.75rem 2rem;
+  }
+  
   .mpl-dashboard-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .mpl-dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .mpl-dashboard-actions {
+    width: 100%;
+  }
+  
+  .mpl-dashboard-actions .mpl-button {
+    flex: 1;
+  }
+  
+  .mpl-panel {
+    padding: 1rem;
+  }
+  
+  .mpl-panel h2 {
+    font-size: 1.1rem;
+  }
+  
+  .mpl-premium-list {
+    gap: 0.5rem;
+  }
+  
+  .mpl-premium-list .mpl-button {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.875rem;
+  }
+  
+  .mpl-pill-actions {
+    flex-direction: column;
+  }
+  
+  .mpl-pill-actions .mpl-button {
+    width: 100%;
+  }
+}
+
+/* Very small screens (max-width: 380px) */
+@media (max-width: 380px) {
+  .mpl-auth-shell {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .mpl-auth-card {
+    padding: 1rem 0.75rem;
+    border-radius: 14px;
+  }
+  
+  .mpl-auth-copy h1 {
+    font-size: 1.15rem;
+  }
+  
+  .mpl-auth-pill {
+    font-size: 0.65rem;
+    padding: 0.375rem 0.625rem;
+  }
+  
+  .mpl-button {
+    font-size: 0.85rem;
+    padding: 0.625rem 0.75rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 844px) and (max-height: 500px) {
+  .mpl-auth-shell {
+    padding: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .mpl-auth-card {
+    grid-template-columns: 1fr 1fr;
+    max-width: 95vw;
   }
 }
