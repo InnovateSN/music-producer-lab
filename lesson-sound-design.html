@@ -41,100 +41,308 @@
       .lesson-nav-logo img { height: 32px; }
       .lesson-content { padding-top: 80px; }
       
-      .synth-component {
+      /* Interactive Synth Styles */
+      .synth-panel {
         background: var(--bg-secondary);
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-md) 0;
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
       }
-      .synth-component-header {
+      
+      .synth-header {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: var(--space-md);
-        margin-bottom: var(--space-md);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
       }
-      .synth-component-icon {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--gradient-primary);
-        border-radius: var(--radius-md);
-        font-size: 1.2rem;
+      
+      .synth-title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
       }
-      .synth-component-title {
-        font-weight: 600;
-        font-size: 1.1rem;
-      }
-      .synth-component-body {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-      .wave-types {
+      
+      .synth-controls {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-lg);
       }
-      .wave-type {
-        text-align: center;
-        padding: var(--space-md);
+      
+      .synth-section {
         background: var(--bg-tertiary);
         border-radius: var(--radius-md);
-        border: 1px solid var(--border-subtle);
+        padding: var(--space-md);
       }
-      .wave-type-visual {
-        height: 40px;
-        margin-bottom: var(--space-sm);
+      
+      .synth-section-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-md);
+      }
+      
+      .waveform-selector {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-sm);
+      }
+      
+      .waveform-btn {
+        padding: var(--space-sm);
+        background: var(--bg-card);
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .waveform-btn:hover {
+        border-color: var(--accent-cyan);
+      }
+      
+      .waveform-btn.active {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.1);
+      }
+      
+      .waveform-btn svg {
+        width: 40px;
+        height: 24px;
+      }
+      
+      .waveform-btn span {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+      }
+      
+      .knob-row {
+        display: flex;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+      }
+      
+      .knob-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .knob-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .knob-value {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+      }
+      
+      .slider-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+      
+      .slider-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+      }
+      
+      .slider-label span:first-child {
+        color: var(--text-muted);
+      }
+      
+      .slider-label span:last-child {
+        font-family: var(--font-mono);
+        color: var(--accent-cyan);
+      }
+      
+      input[type="range"] {
+        width: 100%;
+        height: 8px;
+        -webkit-appearance: none;
+        background: var(--bg-card);
+        border-radius: 4px;
+        outline: none;
+      }
+      
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
+      
+      /* ADSR Visual */
+      .adsr-display {
+        height: 80px;
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-md);
         position: relative;
         overflow: hidden;
       }
-      .wave-type-visual svg {
+      
+      .adsr-canvas {
         width: 100%;
         height: 100%;
       }
-      .wave-type-name {
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-bottom: var(--space-xs);
-      }
-      .wave-type-desc {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-      }
-      .adsr-visual {
+      
+      /* Keyboard */
+      .synth-keyboard {
         display: flex;
-        align-items: flex-end;
         gap: 2px;
-        height: 60px;
-        margin: var(--space-md) 0;
+        margin-top: var(--space-lg);
         padding: var(--space-md);
         background: var(--bg-tertiary);
         border-radius: var(--radius-md);
+        overflow-x: auto;
       }
-      .adsr-stage {
-        flex: 1;
-        background: var(--gradient-primary);
-        border-radius: 2px;
+      
+      .key {
+        width: 40px;
+        height: 120px;
+        background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
+        border-radius: 0 0 4px 4px;
+        cursor: pointer;
+        transition: all 0.1s;
         position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: var(--space-xs);
       }
-      .adsr-stage::after {
-        content: attr(data-label);
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.7rem;
+      
+      .key span {
+        font-size: 0.65rem;
+        color: #666;
+        font-weight: 500;
+      }
+      
+      .key:hover {
+        background: linear-gradient(180deg, #fff 0%, #e0e0e0 100%);
+      }
+      
+      .key:active, .key.active {
+        background: linear-gradient(180deg, var(--accent-cyan) 0%, #00a8cc 100%);
+        transform: translateY(2px);
+      }
+      
+      .key.black {
+        width: 28px;
+        height: 75px;
+        background: linear-gradient(180deg, #333 0%, #111 100%);
+        margin: 0 -14px;
+        z-index: 1;
+        border-radius: 0 0 3px 3px;
+      }
+      
+      .key.black span {
+        color: #999;
+      }
+      
+      .key.black:hover {
+        background: linear-gradient(180deg, #444 0%, #222 100%);
+      }
+      
+      .key.black:active, .key.black.active {
+        background: linear-gradient(180deg, var(--accent-purple) 0%, #6b21a8 100%);
+      }
+      
+      /* Waveform Display */
+      .waveform-display {
+        height: 100px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-top: var(--space-md);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .waveform-canvas {
+        width: 100%;
+        height: 100%;
+      }
+      
+      /* Presets */
+      .preset-buttons {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        margin-top: var(--space-md);
+      }
+      
+      .preset-btn {
+        padding: var(--space-sm) var(--space-md);
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+      }
+      
+      .preset-btn:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+      }
+      
+      /* Wave Type Cards */
+      .wave-types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .wave-type-card {
+        text-align: center;
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-subtle);
+      }
+      
+      .wave-type-card svg {
+        width: 80px;
+        height: 40px;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .wave-type-card h4 {
+        font-size: 0.9rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .wave-type-card p {
+        font-size: 0.75rem;
         color: var(--text-muted);
-        white-space: nowrap;
       }
-      .adsr-attack { height: 100%; clip-path: polygon(0 100%, 100% 0, 100% 100%); }
-      .adsr-decay { height: 100%; clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%); }
-      .adsr-sustain { height: 40%; }
-      .adsr-release { height: 40%; clip-path: polygon(0 0, 100% 100%, 0 100%); }
     </style>
   </head>
   <body>
@@ -214,47 +422,36 @@
             <p class="section-body">
               The oscillator generates the raw waveform—the basic building block of your sound. Different waveforms have different harmonic content, which affects their character.
             </p>
-            <div class="wave-types">
-              <div class="wave-type">
-                <div class="wave-type-visual">
-                  <svg viewBox="0 0 100 40">
-                    <path d="M0 20 Q25 0 50 20 T100 20" stroke="var(--accent-cyan)" fill="none" stroke-width="2"/>
-                  </svg>
-                </div>
-                <div class="wave-type-name">Sine</div>
-                <div class="wave-type-desc">Pure, smooth, no harmonics</div>
+            <div class="wave-types-grid">
+              <div class="wave-type-card">
+                <svg viewBox="0 0 100 40">
+                  <path d="M0 20 Q25 0 50 20 T100 20" stroke="var(--accent-cyan)" fill="none" stroke-width="2"/>
+                </svg>
+                <h4>Sine</h4>
+                <p>Pure, smooth, no harmonics. Perfect for sub-bass.</p>
               </div>
-              <div class="wave-type">
-                <div class="wave-type-visual">
-                  <svg viewBox="0 0 100 40">
-                    <path d="M0 35 L25 5 L25 35 L50 5 L50 35 L75 5 L75 35 L100 5" stroke="var(--accent-purple)" fill="none" stroke-width="2"/>
-                  </svg>
-                </div>
-                <div class="wave-type-name">Saw</div>
-                <div class="wave-type-desc">Bright, buzzy, all harmonics</div>
+              <div class="wave-type-card">
+                <svg viewBox="0 0 100 40">
+                  <path d="M0 35 L25 5 L25 35 L50 5 L50 35 L75 5 L75 35 L100 5" stroke="var(--accent-purple)" fill="none" stroke-width="2"/>
+                </svg>
+                <h4>Saw</h4>
+                <p>Bright, buzzy, all harmonics. Great for leads & pads.</p>
               </div>
-              <div class="wave-type">
-                <div class="wave-type-visual">
-                  <svg viewBox="0 0 100 40">
-                    <path d="M0 35 L0 5 L25 5 L25 35 L50 35 L50 5 L75 5 L75 35 L100 35 L100 5" stroke="var(--accent-pink)" fill="none" stroke-width="2"/>
-                  </svg>
-                </div>
-                <div class="wave-type-name">Square</div>
-                <div class="wave-type-desc">Hollow, odd harmonics</div>
+              <div class="wave-type-card">
+                <svg viewBox="0 0 100 40">
+                  <path d="M0 35 L0 5 L25 5 L25 35 L50 35 L50 5 L75 5 L75 35 L100 35" stroke="var(--accent-pink)" fill="none" stroke-width="2"/>
+                </svg>
+                <h4>Square</h4>
+                <p>Hollow, odd harmonics. Good for bass & retro sounds.</p>
               </div>
-              <div class="wave-type">
-                <div class="wave-type-visual">
-                  <svg viewBox="0 0 100 40">
-                    <path d="M0 20 L25 5 L50 20 L75 35 L100 20" stroke="var(--accent-green)" fill="none" stroke-width="2"/>
-                  </svg>
-                </div>
-                <div class="wave-type-name">Triangle</div>
-                <div class="wave-type-desc">Soft, odd harmonics</div>
+              <div class="wave-type-card">
+                <svg viewBox="0 0 100 40">
+                  <path d="M0 20 L25 5 L50 20 L75 35 L100 20" stroke="var(--accent-green)" fill="none" stroke-width="2"/>
+                </svg>
+                <h4>Triangle</h4>
+                <p>Soft, mellow, few harmonics. Flute-like quality.</p>
               </div>
             </div>
-            <p class="section-body">
-              <strong>Tip:</strong> Saw waves are great for pads and leads. Square waves work well for bass. Sine waves are perfect for sub-bass.
-            </p>
           </article>
 
           <article class="section">
@@ -263,38 +460,182 @@
             <p class="section-body">
               Filters remove frequencies from your sound. The most common is the <strong>low-pass filter (LPF)</strong>, which removes high frequencies—essential for creating movement and warmth.
             </p>
-            <div class="synth-component">
-              <div class="synth-component-header">
-                <div class="synth-component-icon">🎚️</div>
-                <div class="synth-component-title">Key Filter Parameters</div>
-              </div>
-              <div class="synth-component-body">
-                <ul class="section-list" style="margin-top: 0;">
-                  <li><strong>Cutoff</strong> — The frequency where the filter starts working</li>
-                  <li><strong>Resonance</strong> — Boosts frequencies around the cutoff (creates that classic synth "squelch")</li>
-                  <li><strong>Filter type</strong> — LPF (bright→dark), HPF (dark→bright), BPF (removes both ends)</li>
-                </ul>
-              </div>
+            <ul class="section-list">
+              <li><strong>Cutoff</strong> — The frequency where the filter starts working</li>
+              <li><strong>Resonance</strong> — Boosts frequencies around the cutoff (creates that classic synth "squelch")</li>
+              <li><strong>Filter types:</strong> LPF (bright→dark), HPF (dark→bright), BPF (removes both ends)</li>
+            </ul>
+            <div class="instruction-line" style="margin-top: var(--space-md);">
+              <p class="instruction">
+                <strong>Try this:</strong> In the synth below, sweep the cutoff from high to low while playing a note. Listen to how the sound changes from bright to dark!
+              </p>
             </div>
-            <p class="section-body">
-              <strong>Exercise:</strong> Load a saw wave and slowly sweep the LPF cutoff from high to low. Listen to how the sound changes from bright to dark.
-            </p>
           </article>
         </section>
 
-        <section class="sections-grid" aria-label="Envelopes">
+        <!-- Interactive Exercise Section -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Play the Interactive Synth</h2>
+            <p class="section-body">
+              Use the synthesizer below to experiment with <strong>waveforms</strong>, <strong>filters</strong>, and <strong>ADSR envelopes</strong>. 
+              Click the keyboard keys or press your computer keyboard (A-K) to play notes.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Select different waveforms</strong> (Sine, Saw, Square, Triangle) and hear how they sound different.</li>
+                <li><strong>Adjust the Filter Cutoff</strong> — move it low to make the sound darker, high to make it brighter.</li>
+                <li><strong>Modify the ADSR envelope</strong> — try fast attack for plucks, slow attack for pads.</li>
+                <li><strong>Try the presets</strong> at the bottom to hear classic synth sounds!</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> A plucky lead uses fast attack (0ms), short decay (~200ms), and zero sustain. A pad uses slow attack (~500ms), high sustain (~70%), and long release (~1000ms).
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Synth Panel -->
+        <section class="synth-panel">
+          <div class="synth-header">
+            <div class="synth-title">🎹 MPL Mini Synth</div>
+            <div style="display: flex; gap: var(--space-sm);">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Press A-K keys or click piano</span>
+            </div>
+          </div>
+          
+          <div class="synth-controls">
+            <!-- Oscillator Section -->
+            <div class="synth-section">
+              <div class="synth-section-title">Oscillator</div>
+              <div class="waveform-selector">
+                <button class="waveform-btn active" data-wave="sine">
+                  <svg viewBox="0 0 40 24">
+                    <path d="M0 12 Q10 0 20 12 T40 12" stroke="var(--accent-cyan)" fill="none" stroke-width="2"/>
+                  </svg>
+                  <span>Sine</span>
+                </button>
+                <button class="waveform-btn" data-wave="sawtooth">
+                  <svg viewBox="0 0 40 24">
+                    <path d="M0 20 L10 4 L10 20 L20 4 L20 20 L30 4 L30 20 L40 4" stroke="var(--accent-purple)" fill="none" stroke-width="2"/>
+                  </svg>
+                  <span>Saw</span>
+                </button>
+                <button class="waveform-btn" data-wave="square">
+                  <svg viewBox="0 0 40 24">
+                    <path d="M0 20 L0 4 L10 4 L10 20 L20 20 L20 4 L30 4 L30 20 L40 20" stroke="var(--accent-pink)" fill="none" stroke-width="2"/>
+                  </svg>
+                  <span>Square</span>
+                </button>
+                <button class="waveform-btn" data-wave="triangle">
+                  <svg viewBox="0 0 40 24">
+                    <path d="M0 12 L10 4 L20 12 L30 20 L40 12" stroke="var(--accent-green)" fill="none" stroke-width="2"/>
+                  </svg>
+                  <span>Triangle</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Filter Section -->
+            <div class="synth-section">
+              <div class="synth-section-title">Filter (Low-Pass)</div>
+              <div class="slider-container">
+                <div class="slider-label">
+                  <span>Cutoff</span>
+                  <span id="cutoff-value">2000 Hz</span>
+                </div>
+                <input type="range" id="filter-cutoff" min="100" max="8000" value="2000">
+              </div>
+              <div class="slider-container" style="margin-top: var(--space-md);">
+                <div class="slider-label">
+                  <span>Resonance</span>
+                  <span id="resonance-value">1.0</span>
+                </div>
+                <input type="range" id="filter-resonance" min="0.1" max="20" step="0.1" value="1">
+              </div>
+            </div>
+            
+            <!-- ADSR Section -->
+            <div class="synth-section">
+              <div class="synth-section-title">Envelope (ADSR)</div>
+              <div class="adsr-display">
+                <canvas class="adsr-canvas" id="adsr-canvas"></canvas>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm);">
+                <div class="slider-container">
+                  <div class="slider-label"><span>A</span><span id="attack-value">10</span></div>
+                  <input type="range" id="attack" min="0" max="1000" value="10">
+                </div>
+                <div class="slider-container">
+                  <div class="slider-label"><span>D</span><span id="decay-value">100</span></div>
+                  <input type="range" id="decay" min="10" max="1000" value="100">
+                </div>
+                <div class="slider-container">
+                  <div class="slider-label"><span>S</span><span id="sustain-value">0.7</span></div>
+                  <input type="range" id="sustain" min="0" max="1" step="0.01" value="0.7">
+                </div>
+                <div class="slider-container">
+                  <div class="slider-label"><span>R</span><span id="release-value">200</span></div>
+                  <input type="range" id="release" min="10" max="2000" value="200">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Volume -->
+            <div class="synth-section">
+              <div class="synth-section-title">Output</div>
+              <div class="slider-container">
+                <div class="slider-label">
+                  <span>Volume</span>
+                  <span id="volume-value">70%</span>
+                </div>
+                <input type="range" id="volume" min="0" max="100" value="70">
+              </div>
+              <div class="waveform-display">
+                <canvas class="waveform-canvas" id="waveform-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Keyboard -->
+          <div class="synth-keyboard" id="synth-keyboard">
+            <div class="key" data-note="C4"><span>A</span></div>
+            <div class="key black" data-note="C#4"><span>W</span></div>
+            <div class="key" data-note="D4"><span>S</span></div>
+            <div class="key black" data-note="D#4"><span>E</span></div>
+            <div class="key" data-note="E4"><span>D</span></div>
+            <div class="key" data-note="F4"><span>F</span></div>
+            <div class="key black" data-note="F#4"><span>T</span></div>
+            <div class="key" data-note="G4"><span>G</span></div>
+            <div class="key black" data-note="G#4"><span>Y</span></div>
+            <div class="key" data-note="A4"><span>H</span></div>
+            <div class="key black" data-note="A#4"><span>U</span></div>
+            <div class="key" data-note="B4"><span>J</span></div>
+            <div class="key" data-note="C5"><span>K</span></div>
+          </div>
+          
+          <!-- Presets -->
+          <div class="preset-buttons">
+            <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: var(--space-sm);">Presets:</span>
+            <button class="preset-btn" data-preset="pluck">Pluck Lead</button>
+            <button class="preset-btn" data-preset="pad">Warm Pad</button>
+            <button class="preset-btn" data-preset="bass">Sub Bass</button>
+            <button class="preset-btn" data-preset="squelch">Filter Squelch</button>
+            <button class="preset-btn" data-preset="init">Init (Reset)</button>
+          </div>
+        </section>
+
+        <section class="sections-grid" aria-label="ADSR" style="margin-top: var(--space-2xl);">
           <article class="section">
             <div class="section-eyebrow">Step 3</div>
             <h2 class="section-title">ADSR Envelopes: Shape over time.</h2>
             <p class="section-body">
-              Envelopes control how a parameter changes over time. The most common is the <strong>amplitude envelope</strong>, which shapes how your sound starts, holds, and ends.
+              Envelopes control how a parameter changes over time. The amplitude envelope shapes how your sound starts, holds, and ends.
             </p>
-            <div class="adsr-visual">
-              <div class="adsr-stage adsr-attack" data-label="Attack"></div>
-              <div class="adsr-stage adsr-decay" data-label="Decay"></div>
-              <div class="adsr-stage adsr-sustain" data-label="Sustain"></div>
-              <div class="adsr-stage adsr-release" data-label="Release"></div>
-            </div>
             <ul class="section-list">
               <li><strong>Attack</strong> — How fast the sound reaches full volume (0ms = instant, 500ms = slow fade in)</li>
               <li><strong>Decay</strong> — Time to drop from peak to sustain level</li>
@@ -304,64 +645,11 @@
           </article>
 
           <article class="section">
-            <div class="section-eyebrow">Sound recipes</div>
-            <h2 class="section-title">Common envelope settings.</h2>
-            <div class="synth-component">
-              <div class="synth-component-header">
-                <div class="synth-component-icon">🎹</div>
-                <div class="synth-component-title">Pluck / Lead</div>
-              </div>
-              <div class="synth-component-body">
-                Attack: 0ms • Decay: 200ms • Sustain: 0% • Release: 100ms<br>
-                <em>Fast attack, quick decay, no sustain = snappy, percussive</em>
-              </div>
-            </div>
-            <div class="synth-component">
-              <div class="synth-component-header">
-                <div class="synth-component-icon">🌊</div>
-                <div class="synth-component-title">Pad</div>
-              </div>
-              <div class="synth-component-body">
-                Attack: 500ms • Decay: 500ms • Sustain: 70% • Release: 1000ms<br>
-                <em>Slow attack, long release = smooth, atmospheric</em>
-              </div>
-            </div>
-            <div class="synth-component">
-              <div class="synth-component-header">
-                <div class="synth-component-icon">🔊</div>
-                <div class="synth-component-title">Bass</div>
-              </div>
-              <div class="synth-component-body">
-                Attack: 0ms • Decay: 50ms • Sustain: 80% • Release: 50ms<br>
-                <em>Instant attack, high sustain = punchy, solid</em>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section class="sections-grid" aria-label="Practical exercise">
-          <article class="section">
-            <div class="section-eyebrow">Your task</div>
-            <h2 class="section-title">Build a basic patch.</h2>
-            <p class="section-body">
-              Open any synth (Vital, Serum, or your DAW's built-in synth) and create these three sounds:
-            </p>
-            <ul class="section-list">
-              <li><strong>A plucky lead:</strong> Saw wave, fast attack/decay, filter modulated by envelope</li>
-              <li><strong>A warm pad:</strong> Two detuned saw waves, slow attack/release, low-pass filter</li>
-              <li><strong>A solid bass:</strong> Square or saw wave, short envelope, low-pass filter to taste</li>
-            </ul>
-            <p class="section-body" style="margin-top: var(--space-md);">
-              <strong>Bonus:</strong> Try modulating the filter cutoff with a second envelope for more movement.
-            </p>
-          </article>
-
-          <article class="section">
             <div class="section-eyebrow">Key takeaways</div>
             <h2 class="section-title">What you've learned.</h2>
             <ul class="section-list">
               <li>Oscillators generate raw waveforms with different harmonic content</li>
-              <li>Filters shape the tone by removing frequencies</li>
+              <li>Filters shape the tone by removing frequencies (cutoff & resonance)</li>
               <li>ADSR envelopes control how sounds change over time</li>
               <li>Combining these three elements creates infinite possibilities</li>
             </ul>
@@ -390,6 +678,342 @@
 
     <script>
       document.getElementById("mpl-year").textContent = new Date().getFullYear();
+      
+      // Audio Context
+      let audioCtx = null;
+      let analyser = null;
+      let activeOscillators = {};
+      
+      // Synth Settings
+      let synthSettings = {
+        waveform: 'sine',
+        cutoff: 2000,
+        resonance: 1,
+        attack: 10,
+        decay: 100,
+        sustain: 0.7,
+        release: 200,
+        volume: 0.7
+      };
+      
+      // Note frequencies
+      const noteFrequencies = {
+        'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13,
+        'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
+        'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88,
+        'C5': 523.25
+      };
+      
+      // Key mapping
+      const keyMap = {
+        'a': 'C4', 'w': 'C#4', 's': 'D4', 'e': 'D#4', 'd': 'E4',
+        'f': 'F4', 't': 'F#4', 'g': 'G4', 'y': 'G#4', 'h': 'A4',
+        'u': 'A#4', 'j': 'B4', 'k': 'C5'
+      };
+      
+      // Initialize Audio
+      function initAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 2048;
+        analyser.connect(audioCtx.destination);
+        drawWaveform();
+      }
+      
+      // Play Note
+      function playNote(note) {
+        initAudio();
+        if (activeOscillators[note]) return;
+        
+        const freq = noteFrequencies[note];
+        if (!freq) return;
+        
+        // Create oscillator
+        const osc = audioCtx.createOscillator();
+        osc.type = synthSettings.waveform;
+        osc.frequency.value = freq;
+        
+        // Create filter
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = synthSettings.cutoff;
+        filter.Q.value = synthSettings.resonance;
+        
+        // Create gain for envelope
+        const gainNode = audioCtx.createGain();
+        const now = audioCtx.currentTime;
+        const attackTime = synthSettings.attack / 1000;
+        const decayTime = synthSettings.decay / 1000;
+        
+        // ADSR Attack & Decay
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(synthSettings.volume, now + attackTime);
+        gainNode.gain.linearRampToValueAtTime(
+          synthSettings.volume * synthSettings.sustain,
+          now + attackTime + decayTime
+        );
+        
+        // Connect
+        osc.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(analyser);
+        
+        osc.start();
+        
+        activeOscillators[note] = { osc, gainNode, filter };
+        
+        // Visual feedback
+        const key = document.querySelector(`[data-note="${note}"]`);
+        if (key) key.classList.add('active');
+      }
+      
+      // Stop Note
+      function stopNote(note) {
+        const noteData = activeOscillators[note];
+        if (!noteData) return;
+        
+        const { osc, gainNode } = noteData;
+        const now = audioCtx.currentTime;
+        const releaseTime = synthSettings.release / 1000;
+        
+        // Release
+        gainNode.gain.cancelScheduledValues(now);
+        gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+        gainNode.gain.linearRampToValueAtTime(0, now + releaseTime);
+        
+        // Stop after release
+        osc.stop(now + releaseTime + 0.1);
+        
+        delete activeOscillators[note];
+        
+        // Visual feedback
+        const key = document.querySelector(`[data-note="${note}"]`);
+        if (key) key.classList.remove('active');
+      }
+      
+      // Waveform selector
+      document.querySelectorAll('.waveform-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.waveform-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          synthSettings.waveform = btn.dataset.wave;
+        });
+      });
+      
+      // Sliders
+      document.getElementById('filter-cutoff').addEventListener('input', (e) => {
+        synthSettings.cutoff = parseInt(e.target.value);
+        document.getElementById('cutoff-value').textContent = synthSettings.cutoff + ' Hz';
+        // Update active notes
+        Object.values(activeOscillators).forEach(({ filter }) => {
+          filter.frequency.value = synthSettings.cutoff;
+        });
+      });
+      
+      document.getElementById('filter-resonance').addEventListener('input', (e) => {
+        synthSettings.resonance = parseFloat(e.target.value);
+        document.getElementById('resonance-value').textContent = synthSettings.resonance.toFixed(1);
+        Object.values(activeOscillators).forEach(({ filter }) => {
+          filter.Q.value = synthSettings.resonance;
+        });
+      });
+      
+      document.getElementById('attack').addEventListener('input', (e) => {
+        synthSettings.attack = parseInt(e.target.value);
+        document.getElementById('attack-value').textContent = synthSettings.attack;
+        drawADSR();
+      });
+      
+      document.getElementById('decay').addEventListener('input', (e) => {
+        synthSettings.decay = parseInt(e.target.value);
+        document.getElementById('decay-value').textContent = synthSettings.decay;
+        drawADSR();
+      });
+      
+      document.getElementById('sustain').addEventListener('input', (e) => {
+        synthSettings.sustain = parseFloat(e.target.value);
+        document.getElementById('sustain-value').textContent = synthSettings.sustain.toFixed(2);
+        drawADSR();
+      });
+      
+      document.getElementById('release').addEventListener('input', (e) => {
+        synthSettings.release = parseInt(e.target.value);
+        document.getElementById('release-value').textContent = synthSettings.release;
+        drawADSR();
+      });
+      
+      document.getElementById('volume').addEventListener('input', (e) => {
+        synthSettings.volume = parseInt(e.target.value) / 100;
+        document.getElementById('volume-value').textContent = e.target.value + '%';
+      });
+      
+      // Keyboard mouse events
+      document.querySelectorAll('.key').forEach(key => {
+        key.addEventListener('mousedown', () => playNote(key.dataset.note));
+        key.addEventListener('mouseup', () => stopNote(key.dataset.note));
+        key.addEventListener('mouseleave', () => stopNote(key.dataset.note));
+        key.addEventListener('touchstart', (e) => { e.preventDefault(); playNote(key.dataset.note); });
+        key.addEventListener('touchend', () => stopNote(key.dataset.note));
+      });
+      
+      // Computer keyboard events
+      document.addEventListener('keydown', (e) => {
+        if (e.repeat) return;
+        const note = keyMap[e.key.toLowerCase()];
+        if (note) playNote(note);
+      });
+      
+      document.addEventListener('keyup', (e) => {
+        const note = keyMap[e.key.toLowerCase()];
+        if (note) stopNote(note);
+      });
+      
+      // Presets
+      const presets = {
+        pluck: { waveform: 'sawtooth', cutoff: 3000, resonance: 2, attack: 0, decay: 200, sustain: 0, release: 100, volume: 0.7 },
+        pad: { waveform: 'sawtooth', cutoff: 1500, resonance: 1, attack: 500, decay: 500, sustain: 0.7, release: 1000, volume: 0.6 },
+        bass: { waveform: 'sine', cutoff: 500, resonance: 1, attack: 0, decay: 50, sustain: 0.8, release: 50, volume: 0.8 },
+        squelch: { waveform: 'sawtooth', cutoff: 800, resonance: 15, attack: 0, decay: 300, sustain: 0.3, release: 200, volume: 0.6 },
+        init: { waveform: 'sine', cutoff: 2000, resonance: 1, attack: 10, decay: 100, sustain: 0.7, release: 200, volume: 0.7 }
+      };
+      
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const preset = presets[btn.dataset.preset];
+          if (!preset) return;
+          
+          synthSettings = { ...preset };
+          
+          // Update UI
+          document.querySelectorAll('.waveform-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.wave === preset.waveform);
+          });
+          
+          document.getElementById('filter-cutoff').value = preset.cutoff;
+          document.getElementById('cutoff-value').textContent = preset.cutoff + ' Hz';
+          
+          document.getElementById('filter-resonance').value = preset.resonance;
+          document.getElementById('resonance-value').textContent = preset.resonance.toFixed(1);
+          
+          document.getElementById('attack').value = preset.attack;
+          document.getElementById('attack-value').textContent = preset.attack;
+          
+          document.getElementById('decay').value = preset.decay;
+          document.getElementById('decay-value').textContent = preset.decay;
+          
+          document.getElementById('sustain').value = preset.sustain;
+          document.getElementById('sustain-value').textContent = preset.sustain.toFixed(2);
+          
+          document.getElementById('release').value = preset.release;
+          document.getElementById('release-value').textContent = preset.release;
+          
+          document.getElementById('volume').value = preset.volume * 100;
+          document.getElementById('volume-value').textContent = Math.round(preset.volume * 100) + '%';
+          
+          drawADSR();
+        });
+      });
+      
+      // Draw ADSR visualization
+      function drawADSR() {
+        const canvas = document.getElementById('adsr-canvas');
+        const ctx = canvas.getContext('2d');
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * 2;
+        canvas.height = rect.height * 2;
+        ctx.scale(2, 2);
+        
+        const w = rect.width;
+        const h = rect.height;
+        const padding = 10;
+        
+        ctx.clearRect(0, 0, w, h);
+        
+        // Normalize values
+        const totalTime = synthSettings.attack + synthSettings.decay + 500 + synthSettings.release;
+        const attackW = (synthSettings.attack / totalTime) * (w - padding * 2);
+        const decayW = (synthSettings.decay / totalTime) * (w - padding * 2);
+        const sustainW = (500 / totalTime) * (w - padding * 2);
+        const releaseW = (synthSettings.release / totalTime) * (w - padding * 2);
+        
+        const sustainH = (1 - synthSettings.sustain) * (h - padding * 2);
+        
+        ctx.beginPath();
+        ctx.moveTo(padding, h - padding);
+        ctx.lineTo(padding + attackW, padding); // Attack
+        ctx.lineTo(padding + attackW + decayW, padding + sustainH); // Decay
+        ctx.lineTo(padding + attackW + decayW + sustainW, padding + sustainH); // Sustain
+        ctx.lineTo(padding + attackW + decayW + sustainW + releaseW, h - padding); // Release
+        
+        ctx.strokeStyle = 'url(#gradient)';
+        ctx.lineWidth = 3;
+        
+        // Create gradient
+        const gradient = ctx.createLinearGradient(0, 0, w, 0);
+        gradient.addColorStop(0, '#00f0ff');
+        gradient.addColorStop(1, '#a855f7');
+        ctx.strokeStyle = gradient;
+        ctx.stroke();
+        
+        // Fill
+        ctx.lineTo(padding, h - padding);
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.1)';
+        ctx.fill();
+      }
+      
+      // Draw waveform
+      function drawWaveform() {
+        if (!analyser) return;
+        
+        const canvas = document.getElementById('waveform-canvas');
+        const ctx = canvas.getContext('2d');
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * 2;
+        canvas.height = rect.height * 2;
+        ctx.scale(2, 2);
+        
+        const w = rect.width;
+        const h = rect.height;
+        
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        
+        function draw() {
+          requestAnimationFrame(draw);
+          analyser.getByteTimeDomainData(dataArray);
+          
+          ctx.fillStyle = 'rgba(15, 20, 30, 0.3)';
+          ctx.fillRect(0, 0, w, h);
+          
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#00f0ff';
+          ctx.beginPath();
+          
+          const sliceWidth = w / bufferLength;
+          let x = 0;
+          
+          for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = (v * h) / 2;
+            
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+            x += sliceWidth;
+          }
+          
+          ctx.lineTo(w, h / 2);
+          ctx.stroke();
+        }
+        
+        draw();
+      }
+      
+      // Initial ADSR draw
+      drawADSR();
     </script>
   </body>
 </html>
