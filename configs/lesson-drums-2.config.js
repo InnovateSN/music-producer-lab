@@ -3,6 +3,8 @@
  * Lesson: Drums 2 - Adding the Snare (Backbeat)
  */
 
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+
 export const lessonConfig = {
   lessonKey: "mpl-lesson2-progress",
   lessonNumber: 2,
@@ -13,7 +15,7 @@ export const lessonConfig = {
   overviewUrl: "labs.html",
   
   hero: {
-    eyebrow: "Lesson 2 · Drum pattern",
+    eyebrow: buildHeroEyebrow({ lessonNumber: 2, categoryLabel: "Drum pattern" }),
     title: "The backbeat:",
     titleHighlight: "adding the snare",
     subtitle: "Learn about the <strong>backbeat</strong> - one of the most important concepts in popular music. The snare on beats 2 and 4 defines the groove."
@@ -61,12 +63,11 @@ export const lessonConfig = {
     note: "Kick on every beat, Snare on beats 2 and 4"
   },
   
-  messages: {
+  messages: applyMessagePreset("drums", {
     initial: "Add the snare backbeat to unlock the next lesson.",
-    alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
     success: "🎉 Correct! You've mastered the backbeat. Proceed to the next lesson.",
     error: "Not quite right. Check both the kick (1, 5, 9, 13) and snare (5, 13) patterns!"
-  },
+  }),
   
   mode: {
     sandbox: false,

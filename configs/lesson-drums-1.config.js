@@ -3,6 +3,8 @@
  * Lesson: Drums 1 - 4 on the floor
  */
 
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+
 export const lessonConfig = {
   // ====================
   // LESSON METADATA
@@ -22,7 +24,7 @@ export const lessonConfig = {
   // HERO SECTION
   // ====================
   hero: {
-    eyebrow: "Lesson 1 · Drum pattern",
+    eyebrow: buildHeroEyebrow({ lessonNumber: 1, categoryLabel: "Drum pattern" }),
     title: "4 on the floor:",
     titleHighlight: "your first full beat",
     subtitle: "In this lesson you build the classic 4 on the floor rhythm and learn what <strong>bars</strong>, <strong>beats</strong> and <strong>subdivisions</strong> (1/4, 1/8, 1/16) are."
@@ -79,12 +81,11 @@ export const lessonConfig = {
   // ====================
   // COMPLETION MESSAGES
   // ====================
-  messages: {
+  messages: applyMessagePreset("drums", {
     initial: "Complete the kick exercise to unlock the next lesson.",
-    alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
     success: "🎉 Correct! Great job! You can now proceed to the next lesson.",
     error: "Not quite right. Make sure you have kicks on steps 1, 5, 9, and 13!"
-  },
+  }),
   
   // ====================
   // MODE FLAGS

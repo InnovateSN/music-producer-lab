@@ -1,10 +1,12 @@
 /**
  * Music Producer Lab - Lesson Configuration
  * Lesson: Drums 5 - Variation & Fills
- * 
+ *
  * This config file defines all lesson parameters that can be used
  * by the lesson template to generate a fully functional lesson page.
  */
+
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   // ====================
@@ -25,7 +27,7 @@ export const lessonConfig = {
   // HERO SECTION
   // ====================
   hero: {
-    eyebrow: "Lesson 5 · Drum pattern",
+    eyebrow: buildHeroEyebrow({ lessonNumber: 5, categoryLabel: "Drum pattern" }),
     title: "Variation & fills:",
     titleHighlight: "end of loop",
     subtitle: "Create a small fill in the last bar to make the loop feel like it breathes before repeating."
@@ -109,12 +111,7 @@ export const lessonConfig = {
   // ====================
   // COMPLETION MESSAGES
   // ====================
-  messages: {
-    initial: "Complete the exercise to unlock the next lesson.",
-    alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
-    success: "Correct! Great job! You can now proceed to the next lesson.",
-    error: "Not quite right. Check the pattern and try again!"
-  },
+  messages: applyMessagePreset("drums"),
   
   // ====================
   // MODE FLAGS
