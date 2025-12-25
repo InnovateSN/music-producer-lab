@@ -359,14 +359,14 @@
                   Royalty-free
                 </span>
               </div>
-              <a href="#" class="download-btn" onclick="alert('Download link coming soon!'); return false;">
+              <button type="button" class="download-btn" data-download="drum-kit">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
                 Download Free
-              </a>
+              </button>
             </div>
           </article>
           
@@ -408,14 +408,14 @@
                   Royalty-free
                 </span>
               </div>
-              <a href="#" class="download-btn" onclick="alert('Download link coming soon!'); return false;">
+              <button type="button" class="download-btn" data-download="synth-oneshots">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
                 Download Free
-              </a>
+              </button>
             </div>
           </article>
           
@@ -439,7 +439,7 @@
                 <span>64 samples</span>
                 <span>Coming Q1 2026</span>
               </div>
-              <span class="download-btn">Coming Soon</span>
+              <span class="download-btn" aria-disabled="true">Coming Soon</span>
             </div>
           </article>
         </div>
@@ -491,14 +491,14 @@
                   2 pages
                 </span>
               </div>
-              <a href="#" class="download-btn" onclick="alert('Download link coming soon!'); return false;">
+              <button type="button" class="download-btn" data-download="drum-cheatsheet">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
                 Download Free
-              </a>
+              </button>
             </div>
           </article>
           
@@ -531,14 +531,14 @@
                   1 page
                 </span>
               </div>
-              <a href="#" class="download-btn" onclick="alert('Download link coming soon!'); return false;">
+              <button type="button" class="download-btn" data-download="eq-guide">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
                 Download Free
-              </a>
+              </button>
             </div>
           </article>
           
@@ -623,6 +623,103 @@
       if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
       localStorage.setItem('theme', next);
     });
+    
+    // Download buttons - show toast notification
+    document.querySelectorAll('.download-btn[data-download]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        showDownloadToast(btn.dataset.download);
+      });
+    });
+    
+    function showDownloadToast(id) {
+      // Remove existing toast
+      const existing = document.querySelector('.download-toast');
+      if (existing) existing.remove();
+      
+      const toast = document.createElement('div');
+      toast.className = 'download-toast';
+      toast.innerHTML = `
+        <div class="download-toast-icon">📦</div>
+        <div class="download-toast-content">
+          <strong>Coming Soon!</strong>
+          <p>This download will be available shortly. Subscribe to get notified when it's ready.</p>
+        </div>
+        <button class="download-toast-close" aria-label="Close">&times;</button>
+      `;
+      document.body.appendChild(toast);
+      
+      // Animate in
+      requestAnimationFrame(() => toast.classList.add('show'));
+      
+      // Close button
+      toast.querySelector('.download-toast-close').addEventListener('click', () => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      });
+      
+      // Auto dismiss
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
   </script>
+  
+  <style>
+    .download-toast {
+      position: fixed;
+      bottom: var(--space-xl);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      max-width: 400px;
+      width: calc(100% - var(--space-xl) * 2);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg), var(--glow-cyan);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .download-toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .download-toast-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .download-toast-content {
+      flex: 1;
+    }
+    .download-toast-content strong {
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .download-toast-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .download-toast-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      min-height: auto;
+    }
+    .download-toast-close:hover {
+      color: var(--text-primary);
+    }
+  </style>
 </body>
 </html>

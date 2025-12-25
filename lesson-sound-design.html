@@ -2,45 +2,394 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Sound Design Lab | Music Producer Lab</title>
+    <title>Sound Design Lab · Synthesis Basics | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the fundamentals of synthesis. Oscillators, filters, envelopes, and how they shape your sound from scratch." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+      .lesson-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: var(--space-md) 0;
+        background: rgba(5, 8, 16, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .lesson-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+      }
+      .lesson-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .lesson-nav-logo img { height: 32px; }
+      .lesson-content { padding-top: 80px; }
+      
+      .synth-component {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-md) 0;
+      }
+      .synth-component-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+      }
+      .synth-component-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gradient-primary);
+        border-radius: var(--radius-md);
+        font-size: 1.2rem;
+      }
+      .synth-component-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+      .synth-component-body {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .wave-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      .wave-type {
+        text-align: center;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-subtle);
+      }
+      .wave-type-visual {
+        height: 40px;
+        margin-bottom: var(--space-sm);
+        position: relative;
+        overflow: hidden;
+      }
+      .wave-type-visual svg {
+        width: 100%;
+        height: 100%;
+      }
+      .wave-type-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: var(--space-xs);
+      }
+      .wave-type-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      .adsr-visual {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 60px;
+        margin: var(--space-md) 0;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      .adsr-stage {
+        flex: 1;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+        position: relative;
+      }
+      .adsr-stage::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+      .adsr-attack { height: 100%; clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+      .adsr-decay { height: 100%; clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%); }
+      .adsr-sustain { height: 40%; }
+      .adsr-release { height: 40%; clip-path: polygon(0 0, 100% 100%, 0 100%); }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <a href="labs.html#sound-design" class="btn btn-secondary btn-sm">Back to Labs</a>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Sound Design Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Sound Design Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Synthesis Basics:
+              <span>Create from scratch</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn the fundamental building blocks of synthesis. Understand <strong>oscillators</strong>, <strong>filters</strong>, and <strong>envelopes</strong>—the three pillars that shape every synthesized sound.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
-            </button>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Synthesis 101</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Signal flow</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Subtractive</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Oscillators</div>
+                  <div class="hero-visual-pill-tag">Filters</div>
+                  <div class="hero-visual-pill-tag">ADSR Envelopes</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works with any synth</span>
+                  <span>Serum · Vital · Wavetable</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Oscillators">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Oscillators: The sound source.</h2>
+            <p class="section-body">
+              The oscillator generates the raw waveform—the basic building block of your sound. Different waveforms have different harmonic content, which affects their character.
+            </p>
+            <div class="wave-types">
+              <div class="wave-type">
+                <div class="wave-type-visual">
+                  <svg viewBox="0 0 100 40">
+                    <path d="M0 20 Q25 0 50 20 T100 20" stroke="var(--accent-cyan)" fill="none" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="wave-type-name">Sine</div>
+                <div class="wave-type-desc">Pure, smooth, no harmonics</div>
+              </div>
+              <div class="wave-type">
+                <div class="wave-type-visual">
+                  <svg viewBox="0 0 100 40">
+                    <path d="M0 35 L25 5 L25 35 L50 5 L50 35 L75 5 L75 35 L100 5" stroke="var(--accent-purple)" fill="none" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="wave-type-name">Saw</div>
+                <div class="wave-type-desc">Bright, buzzy, all harmonics</div>
+              </div>
+              <div class="wave-type">
+                <div class="wave-type-visual">
+                  <svg viewBox="0 0 100 40">
+                    <path d="M0 35 L0 5 L25 5 L25 35 L50 35 L50 5 L75 5 L75 35 L100 35 L100 5" stroke="var(--accent-pink)" fill="none" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="wave-type-name">Square</div>
+                <div class="wave-type-desc">Hollow, odd harmonics</div>
+              </div>
+              <div class="wave-type">
+                <div class="wave-type-visual">
+                  <svg viewBox="0 0 100 40">
+                    <path d="M0 20 L25 5 L50 20 L75 35 L100 20" stroke="var(--accent-green)" fill="none" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="wave-type-name">Triangle</div>
+                <div class="wave-type-desc">Soft, odd harmonics</div>
+              </div>
+            </div>
+            <p class="section-body">
+              <strong>Tip:</strong> Saw waves are great for pads and leads. Square waves work well for bass. Sine waves are perfect for sub-bass.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Filters: Shape the tone.</h2>
+            <p class="section-body">
+              Filters remove frequencies from your sound. The most common is the <strong>low-pass filter (LPF)</strong>, which removes high frequencies—essential for creating movement and warmth.
+            </p>
+            <div class="synth-component">
+              <div class="synth-component-header">
+                <div class="synth-component-icon">🎚️</div>
+                <div class="synth-component-title">Key Filter Parameters</div>
+              </div>
+              <div class="synth-component-body">
+                <ul class="section-list" style="margin-top: 0;">
+                  <li><strong>Cutoff</strong> — The frequency where the filter starts working</li>
+                  <li><strong>Resonance</strong> — Boosts frequencies around the cutoff (creates that classic synth "squelch")</li>
+                  <li><strong>Filter type</strong> — LPF (bright→dark), HPF (dark→bright), BPF (removes both ends)</li>
+                </ul>
+              </div>
+            </div>
+            <p class="section-body">
+              <strong>Exercise:</strong> Load a saw wave and slowly sweep the LPF cutoff from high to low. Listen to how the sound changes from bright to dark.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Envelopes">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">ADSR Envelopes: Shape over time.</h2>
+            <p class="section-body">
+              Envelopes control how a parameter changes over time. The most common is the <strong>amplitude envelope</strong>, which shapes how your sound starts, holds, and ends.
+            </p>
+            <div class="adsr-visual">
+              <div class="adsr-stage adsr-attack" data-label="Attack"></div>
+              <div class="adsr-stage adsr-decay" data-label="Decay"></div>
+              <div class="adsr-stage adsr-sustain" data-label="Sustain"></div>
+              <div class="adsr-stage adsr-release" data-label="Release"></div>
+            </div>
+            <ul class="section-list">
+              <li><strong>Attack</strong> — How fast the sound reaches full volume (0ms = instant, 500ms = slow fade in)</li>
+              <li><strong>Decay</strong> — Time to drop from peak to sustain level</li>
+              <li><strong>Sustain</strong> — The level held while key is pressed (not time!)</li>
+              <li><strong>Release</strong> — How long the sound fades after key release</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Sound recipes</div>
+            <h2 class="section-title">Common envelope settings.</h2>
+            <div class="synth-component">
+              <div class="synth-component-header">
+                <div class="synth-component-icon">🎹</div>
+                <div class="synth-component-title">Pluck / Lead</div>
+              </div>
+              <div class="synth-component-body">
+                Attack: 0ms • Decay: 200ms • Sustain: 0% • Release: 100ms<br>
+                <em>Fast attack, quick decay, no sustain = snappy, percussive</em>
+              </div>
+            </div>
+            <div class="synth-component">
+              <div class="synth-component-header">
+                <div class="synth-component-icon">🌊</div>
+                <div class="synth-component-title">Pad</div>
+              </div>
+              <div class="synth-component-body">
+                Attack: 500ms • Decay: 500ms • Sustain: 70% • Release: 1000ms<br>
+                <em>Slow attack, long release = smooth, atmospheric</em>
+              </div>
+            </div>
+            <div class="synth-component">
+              <div class="synth-component-header">
+                <div class="synth-component-icon">🔊</div>
+                <div class="synth-component-title">Bass</div>
+              </div>
+              <div class="synth-component-body">
+                Attack: 0ms • Decay: 50ms • Sustain: 80% • Release: 50ms<br>
+                <em>Instant attack, high sustain = punchy, solid</em>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Practical exercise">
+          <article class="section">
+            <div class="section-eyebrow">Your task</div>
+            <h2 class="section-title">Build a basic patch.</h2>
+            <p class="section-body">
+              Open any synth (Vital, Serum, or your DAW's built-in synth) and create these three sounds:
+            </p>
+            <ul class="section-list">
+              <li><strong>A plucky lead:</strong> Saw wave, fast attack/decay, filter modulated by envelope</li>
+              <li><strong>A warm pad:</strong> Two detuned saw waves, slow attack/release, low-pass filter</li>
+              <li><strong>A solid bass:</strong> Square or saw wave, short envelope, low-pass filter to taste</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Bonus:</strong> Try modulating the filter cutoff with a second envelope for more movement.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Oscillators generate raw waveforms with different harmonic content</li>
+              <li>Filters shape the tone by removing frequencies</li>
+              <li>ADSR envelopes control how sounds change over time</li>
+              <li>Combining these three elements creates infinite possibilities</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#sound-design" class="btn btn-primary">
+                Back to Sound Design Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#sound-design">Back to Sound Design Labs</a>
+              </div>
+            </div>
           </div>
-        </header>
-
-        <section class="hero" id="lesson-hero" aria-label="Sound Design Lab"></section>
-
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
-
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
-
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
-
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Sound Design Lab</div>
-          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('sound-design');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

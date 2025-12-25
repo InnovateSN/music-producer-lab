@@ -2,45 +2,429 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Mastering Lab | Music Producer Lab</title>
+    <title>Mastering Lab · Essentials | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the mastering basics. Limiting, loudness targets, and preparing your track for streaming platforms." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+      .lesson-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: var(--space-md) 0;
+        background: rgba(5, 8, 16, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .lesson-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+      }
+      .lesson-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .lesson-nav-logo img { height: 32px; }
+      .lesson-content { padding-top: 80px; }
+      
+      .lufs-meter {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-lg);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        margin: var(--space-lg) 0;
+      }
+      .lufs-meter-bar {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+      .lufs-meter-label {
+        width: 100px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      .lufs-meter-track {
+        flex: 1;
+        height: 12px;
+        background: var(--bg-tertiary);
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+      }
+      .lufs-meter-fill {
+        height: 100%;
+        background: var(--gradient-primary);
+        border-radius: 6px;
+      }
+      .lufs-meter-value {
+        width: 80px;
+        text-align: right;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--accent-cyan);
+      }
+      
+      .platform-card {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        margin: var(--space-sm) 0;
+      }
+      .platform-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        font-size: 1.2rem;
+      }
+      .platform-name {
+        flex: 1;
+        font-weight: 600;
+      }
+      .platform-target {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        color: var(--accent-cyan);
+      }
+      
+      .chain-visual {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      .chain-block {
+        flex: 1;
+        min-width: 150px;
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        text-align: center;
+        position: relative;
+      }
+      .chain-block::after {
+        content: "→";
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent-cyan);
+        font-size: 1.2rem;
+      }
+      .chain-block:last-child::after {
+        display: none;
+      }
+      .chain-block-icon {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-sm);
+      }
+      .chain-block-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <a href="labs.html#mastering" class="btn btn-secondary btn-sm">Back to Labs</a>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Mastering Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Mastering Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Mastering Essentials:
+              <span>The final polish</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn the fundamentals of mastering: <strong>limiting</strong>, <strong>loudness targets</strong>, and preparing your track for <strong>streaming platforms</strong>. Make your tracks sound professional and competitive.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
-            </button>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Mastering 101</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Loudness metering</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>LUFS</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Limiting</div>
+                  <div class="hero-visual-pill-tag">LUFS targets</div>
+                  <div class="hero-visual-pill-tag">Export settings</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Ready for streaming</span>
+                  <span>Spotify · Apple · YouTube</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="What is mastering">
+          <article class="section">
+            <div class="section-eyebrow">Overview</div>
+            <h2 class="section-title">What is mastering?</h2>
+            <p class="section-body">
+              Mastering is the final step before distribution. It ensures your track sounds consistent, polished, and competitive when played alongside other commercial releases.
+            </p>
+            <ul class="section-list">
+              <li><strong>Consistency:</strong> Make sure the track sounds good on any system</li>
+              <li><strong>Loudness:</strong> Match the loudness of commercial releases</li>
+              <li><strong>Polish:</strong> Final EQ and enhancement for a professional sheen</li>
+              <li><strong>Formatting:</strong> Correct file format, sample rate, and metadata</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Important:</strong> Mastering can't fix a bad mix. If your mix doesn't sound good, go back and fix it there first.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">The chain</div>
+            <h2 class="section-title">Basic mastering chain.</h2>
+            <p class="section-body">
+              A minimal mastering chain for beginners. Each step is optional—only add what your track needs.
+            </p>
+            <div class="chain-visual">
+              <div class="chain-block">
+                <div class="chain-block-icon">🎚️</div>
+                <div class="chain-block-name">EQ</div>
+              </div>
+              <div class="chain-block">
+                <div class="chain-block-icon">🔊</div>
+                <div class="chain-block-name">Compression</div>
+              </div>
+              <div class="chain-block">
+                <div class="chain-block-icon">📊</div>
+                <div class="chain-block-name">Limiter</div>
+              </div>
+              <div class="chain-block">
+                <div class="chain-block-icon">📏</div>
+                <div class="chain-block-name">Meter</div>
+              </div>
+            </div>
+            <p class="section-body">
+              For many modern productions, you might only need <strong>EQ and a limiter</strong>. Don't over-process.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Loudness and limiting">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Understanding LUFS.</h2>
+            <p class="section-body">
+              LUFS (Loudness Units Full Scale) is how streaming platforms measure loudness. Each platform has a target—if your track is louder, it will be turned down.
+            </p>
+            <div class="platform-card">
+              <div class="platform-icon">🎵</div>
+              <div class="platform-name">Spotify</div>
+              <div class="platform-target">-14 LUFS</div>
+            </div>
+            <div class="platform-card">
+              <div class="platform-icon">🍎</div>
+              <div class="platform-name">Apple Music</div>
+              <div class="platform-target">-16 LUFS</div>
+            </div>
+            <div class="platform-card">
+              <div class="platform-icon">▶️</div>
+              <div class="platform-name">YouTube</div>
+              <div class="platform-target">-14 LUFS</div>
+            </div>
+            <div class="platform-card">
+              <div class="platform-icon">🎧</div>
+              <div class="platform-name">SoundCloud</div>
+              <div class="platform-target">No normalization</div>
+            </div>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Practical target:</strong> -14 LUFS integrated is a good all-around target for streaming.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Using a limiter.</h2>
+            <p class="section-body">
+              The limiter is your final tool. It prevents clipping (distortion) while allowing you to increase overall loudness.
+            </p>
+            <ul class="section-list">
+              <li><strong>Ceiling:</strong> Set to -1 dB (leaves headroom for encoding)</li>
+              <li><strong>Threshold/Input:</strong> Push until you hit your target LUFS</li>
+              <li><strong>Gain reduction:</strong> 3-6 dB is normal. More than 10 dB = problem</li>
+            </ul>
+            <div class="lufs-meter">
+              <div class="lufs-meter-bar">
+                <span class="lufs-meter-label">Integrated</span>
+                <div class="lufs-meter-track">
+                  <div class="lufs-meter-fill" style="width: 65%;"></div>
+                </div>
+                <span class="lufs-meter-value">-14.2 LUFS</span>
+              </div>
+              <div class="lufs-meter-bar">
+                <span class="lufs-meter-label">Short-term</span>
+                <div class="lufs-meter-track">
+                  <div class="lufs-meter-fill" style="width: 70%;"></div>
+                </div>
+                <span class="lufs-meter-value">-12.8 LUFS</span>
+              </div>
+              <div class="lufs-meter-bar">
+                <span class="lufs-meter-label">True Peak</span>
+                <div class="lufs-meter-track">
+                  <div class="lufs-meter-fill" style="width: 95%;"></div>
+                </div>
+                <span class="lufs-meter-value">-1.0 dBTP</span>
+              </div>
+            </div>
+            <p class="section-body">
+              <strong>True peak</strong> shows the actual peak level after digital-to-analog conversion. Keep it at -1 dBTP or lower.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="EQ and export">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">Mastering EQ.</h2>
+            <p class="section-body">
+              Mastering EQ should be subtle—we're enhancing, not fixing. Use broad strokes and gentle moves.
+            </p>
+            <ul class="section-list">
+              <li><strong>High-pass at 20-30 Hz:</strong> Remove inaudible sub-rumble</li>
+              <li><strong>Low shelf boost (60-100 Hz):</strong> Add weight if needed (0.5-1.5 dB)</li>
+              <li><strong>Cut mud (200-400 Hz):</strong> Very gentle if mix is muddy (0.5-1 dB)</li>
+              <li><strong>High shelf boost (10-16 kHz):</strong> Add air and sparkle (0.5-2 dB)</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Golden rule:</strong> If you're moving more than 2-3 dB on any band, there's probably a mix problem to fix first.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 4</div>
+            <h2 class="section-title">Export settings.</h2>
+            <p class="section-body">
+              Use the right format for your destination. Here are the standard settings for streaming distribution.
+            </p>
+            <ul class="section-list">
+              <li><strong>Format:</strong> WAV (lossless) or high-quality MP3 (320 kbps)</li>
+              <li><strong>Sample rate:</strong> 44.1 kHz (CD standard, accepted everywhere)</li>
+              <li><strong>Bit depth:</strong> 16-bit for final masters, 24-bit for archives</li>
+              <li><strong>Dithering:</strong> Enable when converting from 24-bit to 16-bit</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>For distributors (DistroKid, TuneCore, etc.):</strong> WAV, 44.1 kHz, 16 or 24-bit is standard.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Practical exercise">
+          <article class="section">
+            <div class="section-eyebrow">Your task</div>
+            <h2 class="section-title">Master a finished mix.</h2>
+            <p class="section-body">
+              Take a finished mix (or export your own project as a stereo file) and apply basic mastering:
+            </p>
+            <ul class="section-list">
+              <li>Add a high-pass filter at 25-30 Hz</li>
+              <li>Add subtle high-shelf boost at 12 kHz (+1 dB)</li>
+              <li>Add a limiter with ceiling at -1 dB</li>
+              <li>Push the limiter until you hit around -14 LUFS integrated</li>
+              <li>A/B compare with the unmastered version</li>
+              <li>Export as WAV, 44.1 kHz, 16-bit with dithering</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Mastering is the final polish—it can't fix a bad mix</li>
+              <li>LUFS is how streaming platforms measure loudness (-14 LUFS is a good target)</li>
+              <li>Limiters increase loudness while preventing clipping</li>
+              <li>Mastering EQ should be subtle—think 0.5-2 dB moves</li>
+              <li>Export settings: WAV, 44.1 kHz, 16-bit for streaming</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#mastering" class="btn btn-primary">
+                Back to Mastering Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#mastering">Back to Mastering Labs</a>
+              </div>
+            </div>
           </div>
-        </header>
-
-        <section class="hero" id="lesson-hero" aria-label="Mastering Lab"></section>
-
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
-
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
-
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
-
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Mastering Lab</div>
-          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('mastering');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

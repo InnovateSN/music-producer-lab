@@ -2,45 +2,359 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Mixing Lab | Music Producer Lab</title>
+    <title>Mixing Lab · Fundamentals | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the basics of mixing. Levels, panning, EQ, and creating space for each element in your track." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+      .lesson-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: var(--space-md) 0;
+        background: rgba(5, 8, 16, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .lesson-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+      }
+      .lesson-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .lesson-nav-logo img { height: 32px; }
+      .lesson-content { padding-top: 80px; }
+      
+      .mixer-visual {
+        display: flex;
+        gap: var(--space-md);
+        padding: var(--space-lg);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        margin: var(--space-lg) 0;
+        overflow-x: auto;
+      }
+      .channel-strip {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+        min-width: 60px;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      .channel-name {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      .channel-fader {
+        width: 8px;
+        height: 80px;
+        background: var(--bg-card);
+        border-radius: 4px;
+        position: relative;
+      }
+      .channel-fader-level {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--gradient-primary);
+        border-radius: 4px;
+      }
+      .channel-pan {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 2px solid var(--border-light);
+        position: relative;
+      }
+      .channel-pan::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 10px;
+        background: var(--accent-cyan);
+        transform-origin: bottom center;
+      }
+      
+      .eq-band {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        margin: var(--space-sm) 0;
+      }
+      .eq-band-freq {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--accent-cyan);
+        min-width: 80px;
+      }
+      .eq-band-desc {
+        flex: 1;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <a href="labs.html#mixing" class="btn btn-secondary btn-sm">Back to Labs</a>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Mixing Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Mixing Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Mixing Fundamentals:
+              <span>Balance and space</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn the essential tools of mixing: <strong>levels</strong>, <strong>panning</strong>, and <strong>EQ</strong>. These three elements form the foundation of every professional mix.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
-            </button>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Mixing basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Mixer overview</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Balance</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Level balancing</div>
+                  <div class="hero-visual-pill-tag">Panning</div>
+                  <div class="hero-visual-pill-tag">Basic EQ</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works in any DAW</span>
+                  <span>Ableton · FL · Logic · Pro Tools</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Level balancing">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Level balancing: The foundation.</h2>
+            <p class="section-body">
+              Before reaching for any plugins, get your levels right. A good mix starts with proper gain staging—every element at the right volume relative to others.
+            </p>
+            <ul class="section-list">
+              <li><strong>Start with everything at -inf (off)</strong> — Build up, don't cut down</li>
+              <li><strong>Bring in the most important element first</strong> — Usually kick or vocal</li>
+              <li><strong>Add elements one at a time</strong> — Listen for how each affects the balance</li>
+              <li><strong>Keep your master below 0 dB</strong> — Leave headroom for mastering (-6 dB is safe)</li>
+            </ul>
+            <div class="mixer-visual" aria-hidden="true">
+              <div class="channel-strip">
+                <div class="channel-name">Kick</div>
+                <div class="channel-fader"><div class="channel-fader-level" style="height: 70%;"></div></div>
+                <div class="channel-pan"></div>
+              </div>
+              <div class="channel-strip">
+                <div class="channel-name">Snare</div>
+                <div class="channel-fader"><div class="channel-fader-level" style="height: 60%;"></div></div>
+                <div class="channel-pan"></div>
+              </div>
+              <div class="channel-strip">
+                <div class="channel-name">HiHat</div>
+                <div class="channel-fader"><div class="channel-fader-level" style="height: 45%;"></div></div>
+                <div class="channel-pan"></div>
+              </div>
+              <div class="channel-strip">
+                <div class="channel-name">Bass</div>
+                <div class="channel-fader"><div class="channel-fader-level" style="height: 65%;"></div></div>
+                <div class="channel-pan"></div>
+              </div>
+              <div class="channel-strip">
+                <div class="channel-name">Lead</div>
+                <div class="channel-fader"><div class="channel-fader-level" style="height: 55%;"></div></div>
+                <div class="channel-pan"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Panning: Create width.</h2>
+            <p class="section-body">
+              Panning places elements in the stereo field—left, right, or center. This creates space and separation between instruments.
+            </p>
+            <ul class="section-list">
+              <li><strong>Keep center for important elements:</strong> Kick, snare, bass, lead vocal</li>
+              <li><strong>Pan supporting elements:</strong> Guitars, synth layers, percussion</li>
+              <li><strong>Create symmetry:</strong> If something's panned left, balance with something right</li>
+              <li><strong>Use automation:</strong> Movement in the stereo field adds interest</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Golden rule:</strong> Low frequencies (sub-bass, kick) should stay in the center. Panning bass creates phase issues on mono systems.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="EQ basics">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">EQ: Carve your space.</h2>
+            <p class="section-body">
+              EQ (equalization) lets you boost or cut specific frequencies. The goal: make room so every element can be heard clearly.
+            </p>
+            <div class="eq-band">
+              <span class="eq-band-freq">20-60 Hz</span>
+              <span class="eq-band-desc"><strong>Sub bass</strong> — Kick and bass territory. Cut from other instruments.</span>
+            </div>
+            <div class="eq-band">
+              <span class="eq-band-freq">60-250 Hz</span>
+              <span class="eq-band-desc"><strong>Bass / Warmth</strong> — Body of kick, bass, vocals. Watch for mud.</span>
+            </div>
+            <div class="eq-band">
+              <span class="eq-band-freq">250-500 Hz</span>
+              <span class="eq-band-desc"><strong>Low mids</strong> — Often muddy. Cut here to clean up mixes.</span>
+            </div>
+            <div class="eq-band">
+              <span class="eq-band-freq">500-2k Hz</span>
+              <span class="eq-band-desc"><strong>Mids</strong> — Presence and clarity. Most instruments live here.</span>
+            </div>
+            <div class="eq-band">
+              <span class="eq-band-freq">2-8k Hz</span>
+              <span class="eq-band-desc"><strong>High mids</strong> — Attack, presence, vocal clarity. Can be harsh.</span>
+            </div>
+            <div class="eq-band">
+              <span class="eq-band-freq">8-20k Hz</span>
+              <span class="eq-band-desc"><strong>Air / Brightness</strong> — Sparkle and shimmer. Hi-hats, cymbals.</span>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">EQ Tips</div>
+            <h2 class="section-title">Cut first, boost later.</h2>
+            <p class="section-body">
+              It's usually better to cut frequencies you don't want than to boost frequencies you do. This keeps your mix cleaner and prevents buildup.
+            </p>
+            <ul class="section-list">
+              <li><strong>High-pass filter everything except bass:</strong> Remove rumble below 30-80 Hz</li>
+              <li><strong>Cut competing frequencies:</strong> If kick is at 60 Hz, cut bass there slightly</li>
+              <li><strong>Use narrow cuts:</strong> Surgical EQ to remove problem frequencies</li>
+              <li><strong>Use wide boosts:</strong> Gentle, musical enhancement</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>The "sweep" technique:</strong> Boost a narrow band, sweep through frequencies to find problems, then cut.
+            </p>
+          </article>
+        </section>
+
+        <section class="sections-grid" aria-label="Practical exercise">
+          <article class="section">
+            <div class="section-eyebrow">Your task</div>
+            <h2 class="section-title">Balance a simple mix.</h2>
+            <p class="section-body">
+              Take any project with at least 4-5 tracks and practice these fundamentals:
+            </p>
+            <ul class="section-list">
+              <li>Turn all faders down. Bring them up one at a time starting with kick/bass.</li>
+              <li>Pan elements to create width—keep bass and kick center.</li>
+              <li>Add a high-pass filter to everything except bass elements.</li>
+              <li>Make one EQ cut per track to reduce muddiness (usually 200-400 Hz).</li>
+            </ul>
+            <p class="section-body" style="margin-top: var(--space-md);">
+              <strong>Tip:</strong> Compare your mix to a reference track in the same genre. Match the overall loudness and compare the balance.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Start mixing with levels—get the balance right before adding plugins</li>
+              <li>Use panning to create width and separation</li>
+              <li>EQ carves space for each element in the frequency spectrum</li>
+              <li>Cut problematic frequencies rather than boosting what's missing</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#mixing" class="btn btn-primary">
+                Back to Mixing Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#mixing">Back to Mixing Labs</a>
+              </div>
+            </div>
           </div>
-        </header>
-
-        <section class="hero" id="lesson-hero" aria-label="Mixing Lab"></section>
-
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
-
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
-
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
-
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Mixing Lab</div>
-          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('mixing');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
