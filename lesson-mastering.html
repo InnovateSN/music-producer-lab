@@ -41,55 +41,129 @@
       .lesson-nav-logo img { height: 32px; }
       .lesson-content { padding-top: 80px; }
       
-      .lufs-meter {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-sm);
-        padding: var(--space-lg);
-        background: var(--bg-secondary);
+      /* Mastering Console Styles */
+      .mastering-console {
+        background: linear-gradient(180deg, #1a1f2e 0%, #0f1219 100%);
+        border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        margin: var(--space-lg) 0;
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
       }
-      .lufs-meter-bar {
+      
+      .console-header {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
       }
+      
+      .console-title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      
+      /* LUFS Meter */
+      .lufs-meter-panel {
+        background: var(--bg-dark);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+      
+      .lufs-display {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+      
+      .lufs-meter {
+        text-align: center;
+      }
+      
       .lufs-meter-label {
-        width: 100px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: var(--text-muted);
+        text-transform: uppercase;
+        margin-bottom: var(--space-sm);
       }
-      .lufs-meter-track {
-        flex: 1;
-        height: 12px;
-        background: var(--bg-tertiary);
-        border-radius: 6px;
-        overflow: hidden;
-        position: relative;
-      }
-      .lufs-meter-fill {
-        height: 100%;
-        background: var(--gradient-primary);
-        border-radius: 6px;
-      }
+      
       .lufs-meter-value {
-        width: 80px;
-        text-align: right;
         font-family: var(--font-mono);
-        font-size: 0.85rem;
+        font-size: 2rem;
+        font-weight: 700;
         color: var(--accent-cyan);
       }
       
-      .platform-card {
-        display: flex;
-        align-items: center;
+      .lufs-meter-value.warning {
+        color: var(--accent-amber);
+      }
+      
+      .lufs-meter-value.danger {
+        color: var(--accent-pink);
+      }
+      
+      .lufs-meter-unit {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      
+      .lufs-bar-container {
+        height: 20px;
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        margin-top: var(--space-sm);
+      }
+      
+      .lufs-bar {
+        height: 100%;
+        background: var(--gradient-primary);
+        transition: width 0.3s;
+        border-radius: 10px;
+      }
+      
+      .lufs-target-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--accent-green);
+      }
+      
+      /* Platform Targets */
+      .platform-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .platform-card {
         padding: var(--space-md);
         background: var(--bg-secondary);
         border-radius: var(--radius-md);
-        margin: var(--space-sm) 0;
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid transparent;
       }
+      
+      .platform-card:hover {
+        border-color: var(--border-light);
+      }
+      
+      .platform-card.selected {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.05);
+      }
+      
       .platform-icon {
         width: 40px;
         height: 40px;
@@ -100,50 +174,189 @@
         border-radius: var(--radius-md);
         font-size: 1.2rem;
       }
-      .platform-name {
+      
+      .platform-info {
         flex: 1;
-        font-weight: 600;
       }
-      .platform-target {
-        font-family: var(--font-mono);
+      
+      .platform-name {
+        font-weight: 600;
         font-size: 0.9rem;
+      }
+      
+      .platform-lufs {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
         color: var(--accent-cyan);
       }
       
-      .chain-visual {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      .chain-block {
-        flex: 1;
-        min-width: 150px;
-        padding: var(--space-md);
+      /* Limiter Controls */
+      .limiter-panel {
         background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+      
+      .limiter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-lg);
+      }
+      
+      .limiter-title {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .limiter-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-lg);
+      }
+      
+      .limiter-control {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      
+      .control-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .control-value {
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        color: var(--accent-cyan);
+        margin-bottom: var(--space-xs);
+      }
+      
+      /* Gain Reduction Meter */
+      .gr-meter {
+        height: 30px;
+        background: var(--bg-dark);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        position: relative;
+        margin-top: var(--space-md);
+      }
+      
+      .gr-bar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, var(--accent-amber), var(--accent-pink));
+        transition: width 0.1s;
+      }
+      
+      .gr-scale {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        margin-top: var(--space-xs);
+      }
+      
+      /* Export Settings */
+      .export-panel {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+      }
+      
+      .export-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-md);
+      }
+      
+      .export-option {
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
         border-radius: var(--radius-md);
         text-align: center;
-        position: relative;
       }
-      .chain-block::after {
-        content: "→";
-        position: absolute;
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--accent-cyan);
-        font-size: 1.2rem;
+      
+      .export-option-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
       }
-      .chain-block:last-child::after {
-        display: none;
-      }
-      .chain-block-icon {
-        font-size: 1.5rem;
-        margin-bottom: var(--space-sm);
-      }
-      .chain-block-name {
+      
+      .export-option-value {
         font-weight: 600;
+        color: var(--text-primary);
+      }
+      
+      /* Status Panel */
+      .status-panel {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-top: var(--space-lg);
+      }
+      
+      .status-item {
+        text-align: center;
+      }
+      
+      .status-label {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .status-value {
+        font-family: var(--font-mono);
         font-size: 0.9rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+      }
+      
+      .status-value.good { color: var(--accent-green); }
+      .status-value.warning { color: var(--accent-amber); }
+      .status-value.danger { color: var(--accent-pink); }
+      
+      /* Interactive Controls */
+      .interactive-row {
+        display: flex;
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+        flex-wrap: wrap;
+      }
+      
+      .sim-btn {
+        padding: var(--space-sm) var(--space-lg);
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+      }
+      
+      .sim-btn:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+      }
+      
+      .sim-btn.active {
+        background: var(--accent-cyan);
+        border-color: var(--accent-cyan);
+        color: var(--bg-dark);
       }
     </style>
   </head>
@@ -230,116 +443,225 @@
               <li><strong>Polish:</strong> Final EQ and enhancement for a professional sheen</li>
               <li><strong>Formatting:</strong> Correct file format, sample rate, and metadata</li>
             </ul>
-            <p class="section-body" style="margin-top: var(--space-md);">
-              <strong>Important:</strong> Mastering can't fix a bad mix. If your mix doesn't sound good, go back and fix it there first.
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">The chain</div>
-            <h2 class="section-title">Basic mastering chain.</h2>
-            <p class="section-body">
-              A minimal mastering chain for beginners. Each step is optional—only add what your track needs.
-            </p>
-            <div class="chain-visual">
-              <div class="chain-block">
-                <div class="chain-block-icon">🎚️</div>
-                <div class="chain-block-name">EQ</div>
-              </div>
-              <div class="chain-block">
-                <div class="chain-block-icon">🔊</div>
-                <div class="chain-block-name">Compression</div>
-              </div>
-              <div class="chain-block">
-                <div class="chain-block-icon">📊</div>
-                <div class="chain-block-name">Limiter</div>
-              </div>
-              <div class="chain-block">
-                <div class="chain-block-icon">📏</div>
-                <div class="chain-block-name">Meter</div>
-              </div>
+            <div class="instruction-line" style="margin-top: var(--space-md);">
+              <p class="instruction">
+                <strong>Important:</strong> Mastering can't fix a bad mix. If your mix doesn't sound good, go back and fix it there first.
+              </p>
             </div>
-            <p class="section-body">
-              For many modern productions, you might only need <strong>EQ and a limiter</strong>. Don't over-process.
-            </p>
           </article>
-        </section>
 
-        <section class="sections-grid" aria-label="Loudness and limiting">
           <article class="section">
-            <div class="section-eyebrow">Step 1</div>
+            <div class="section-eyebrow">Key Concept</div>
             <h2 class="section-title">Understanding LUFS.</h2>
             <p class="section-body">
               LUFS (Loudness Units Full Scale) is how streaming platforms measure loudness. Each platform has a target—if your track is louder, it will be turned down.
             </p>
-            <div class="platform-card">
-              <div class="platform-icon">🎵</div>
-              <div class="platform-name">Spotify</div>
-              <div class="platform-target">-14 LUFS</div>
+            <div class="platform-grid">
+              <div class="platform-card selected" data-platform="spotify">
+                <div class="platform-icon">🎵</div>
+                <div class="platform-info">
+                  <div class="platform-name">Spotify</div>
+                  <div class="platform-lufs">-14 LUFS</div>
+                </div>
+              </div>
+              <div class="platform-card" data-platform="apple">
+                <div class="platform-icon">🍎</div>
+                <div class="platform-info">
+                  <div class="platform-name">Apple Music</div>
+                  <div class="platform-lufs">-16 LUFS</div>
+                </div>
+              </div>
+              <div class="platform-card" data-platform="youtube">
+                <div class="platform-icon">▶️</div>
+                <div class="platform-info">
+                  <div class="platform-name">YouTube</div>
+                  <div class="platform-lufs">-14 LUFS</div>
+                </div>
+              </div>
+              <div class="platform-card" data-platform="soundcloud">
+                <div class="platform-icon">🎧</div>
+                <div class="platform-info">
+                  <div class="platform-name">SoundCloud</div>
+                  <div class="platform-lufs">No limit</div>
+                </div>
+              </div>
             </div>
-            <div class="platform-card">
-              <div class="platform-icon">🍎</div>
-              <div class="platform-name">Apple Music</div>
-              <div class="platform-target">-16 LUFS</div>
-            </div>
-            <div class="platform-card">
-              <div class="platform-icon">▶️</div>
-              <div class="platform-name">YouTube</div>
-              <div class="platform-target">-14 LUFS</div>
-            </div>
-            <div class="platform-card">
-              <div class="platform-icon">🎧</div>
-              <div class="platform-name">SoundCloud</div>
-              <div class="platform-target">No normalization</div>
-            </div>
-            <p class="section-body" style="margin-top: var(--space-md);">
-              <strong>Practical target:</strong> -14 LUFS integrated is a good all-around target for streaming.
-            </p>
           </article>
+        </section>
 
+        <!-- Interactive Exercise Section -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Explore the Mastering Console</h2>
+            <p class="section-body">
+              Use the interactive mastering console below to understand how <strong>limiting</strong> and <strong>LUFS metering</strong> work together.
+              Adjust the input gain and see how it affects your loudness readings.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Click "Simulate Mix"</strong> to start the loudness simulation.</li>
+                <li><strong>Adjust the Input Gain</strong> slider — watch how it affects LUFS and gain reduction.</li>
+                <li><strong>Select different platforms</strong> to see their target LUFS levels.</li>
+                <li><strong>Try to hit -14 LUFS</strong> integrated while keeping True Peak below -1 dBTP.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> If gain reduction exceeds 6 dB, you're probably pushing too hard. Back off the input gain for a more dynamic master.
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Mastering Console -->
+        <section class="mastering-console">
+          <div class="console-header">
+            <div class="console-title">🎚️ MPL Mastering Console</div>
+            <div>
+              <button class="sim-btn" id="simulate-btn">Simulate Mix</button>
+            </div>
+          </div>
+          
+          <!-- LUFS Meters -->
+          <div class="lufs-meter-panel">
+            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-md);">
+              Loudness Metering
+            </div>
+            <div class="lufs-display">
+              <div class="lufs-meter">
+                <div class="lufs-meter-label">Integrated</div>
+                <div class="lufs-meter-value" id="lufs-integrated">-∞</div>
+                <div class="lufs-meter-unit">LUFS</div>
+                <div class="lufs-bar-container">
+                  <div class="lufs-bar" id="lufs-bar-integrated" style="width: 0%"></div>
+                  <div class="lufs-target-line" style="left: 70%"></div>
+                </div>
+              </div>
+              <div class="lufs-meter">
+                <div class="lufs-meter-label">Short-term</div>
+                <div class="lufs-meter-value" id="lufs-shortterm">-∞</div>
+                <div class="lufs-meter-unit">LUFS</div>
+                <div class="lufs-bar-container">
+                  <div class="lufs-bar" id="lufs-bar-shortterm" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="lufs-meter">
+                <div class="lufs-meter-label">True Peak</div>
+                <div class="lufs-meter-value" id="true-peak">-∞</div>
+                <div class="lufs-meter-unit">dBTP</div>
+                <div class="lufs-bar-container">
+                  <div class="lufs-bar" id="lufs-bar-peak" style="width: 0%"></div>
+                  <div class="lufs-target-line" style="left: 90%"></div>
+                </div>
+              </div>
+              <div class="lufs-meter">
+                <div class="lufs-meter-label">Loudness Range</div>
+                <div class="lufs-meter-value" id="loudness-range">0.0</div>
+                <div class="lufs-meter-unit">LU</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Limiter -->
+          <div class="limiter-panel">
+            <div class="limiter-header">
+              <div class="limiter-title">
+                <span>📊</span>
+                <span>Limiter</span>
+              </div>
+            </div>
+            
+            <div class="limiter-controls">
+              <div class="limiter-control">
+                <div class="control-label">Input Gain</div>
+                <div class="control-value" id="input-gain-value">+0.0 dB</div>
+                <input type="range" id="input-gain" min="0" max="12" step="0.1" value="0" style="width: 100%;">
+              </div>
+              <div class="limiter-control">
+                <div class="control-label">Ceiling</div>
+                <div class="control-value" id="ceiling-value">-1.0 dBTP</div>
+                <input type="range" id="ceiling" min="-3" max="0" step="0.1" value="-1" style="width: 100%;">
+              </div>
+              <div class="limiter-control">
+                <div class="control-label">Gain Reduction</div>
+                <div class="control-value" id="gr-value">0.0 dB</div>
+                <div class="gr-meter">
+                  <div class="gr-bar" id="gr-bar" style="width: 0%"></div>
+                </div>
+                <div class="gr-scale">
+                  <span>0 dB</span>
+                  <span>-6 dB</span>
+                  <span>-12 dB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Export Settings -->
+          <div class="export-panel">
+            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-md);">
+              Export Settings (Recommended)
+            </div>
+            <div class="export-options">
+              <div class="export-option">
+                <div class="export-option-label">Format</div>
+                <div class="export-option-value">WAV</div>
+              </div>
+              <div class="export-option">
+                <div class="export-option-label">Sample Rate</div>
+                <div class="export-option-value">44.1 kHz</div>
+              </div>
+              <div class="export-option">
+                <div class="export-option-label">Bit Depth</div>
+                <div class="export-option-value">16-bit</div>
+              </div>
+              <div class="export-option">
+                <div class="export-option-label">Dithering</div>
+                <div class="export-option-value">Enabled</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Status -->
+          <div class="status-panel">
+            <div class="status-item">
+              <div class="status-label">Target Platform</div>
+              <div class="status-value" id="target-platform">Spotify</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Target LUFS</div>
+              <div class="status-value" id="target-lufs">-14</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Status</div>
+              <div class="status-value" id="master-status">Ready</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Headroom</div>
+              <div class="status-value" id="headroom-value">Good</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="sections-grid" aria-label="Limiting and EQ" style="margin-top: var(--space-2xl);">
           <article class="section">
-            <div class="section-eyebrow">Step 2</div>
+            <div class="section-eyebrow">Step 1</div>
             <h2 class="section-title">Using a limiter.</h2>
             <p class="section-body">
               The limiter is your final tool. It prevents clipping (distortion) while allowing you to increase overall loudness.
             </p>
             <ul class="section-list">
-              <li><strong>Ceiling:</strong> Set to -1 dB (leaves headroom for encoding)</li>
+              <li><strong>Ceiling:</strong> Set to -1 dBTP (leaves headroom for encoding)</li>
               <li><strong>Threshold/Input:</strong> Push until you hit your target LUFS</li>
               <li><strong>Gain reduction:</strong> 3-6 dB is normal. More than 10 dB = problem</li>
+              <li><strong>True peak limiting:</strong> Prevents inter-sample peaks that cause distortion</li>
             </ul>
-            <div class="lufs-meter">
-              <div class="lufs-meter-bar">
-                <span class="lufs-meter-label">Integrated</span>
-                <div class="lufs-meter-track">
-                  <div class="lufs-meter-fill" style="width: 65%;"></div>
-                </div>
-                <span class="lufs-meter-value">-14.2 LUFS</span>
-              </div>
-              <div class="lufs-meter-bar">
-                <span class="lufs-meter-label">Short-term</span>
-                <div class="lufs-meter-track">
-                  <div class="lufs-meter-fill" style="width: 70%;"></div>
-                </div>
-                <span class="lufs-meter-value">-12.8 LUFS</span>
-              </div>
-              <div class="lufs-meter-bar">
-                <span class="lufs-meter-label">True Peak</span>
-                <div class="lufs-meter-track">
-                  <div class="lufs-meter-fill" style="width: 95%;"></div>
-                </div>
-                <span class="lufs-meter-value">-1.0 dBTP</span>
-              </div>
-            </div>
-            <p class="section-body">
-              <strong>True peak</strong> shows the actual peak level after digital-to-analog conversion. Keep it at -1 dBTP or lower.
-            </p>
           </article>
-        </section>
 
-        <section class="sections-grid" aria-label="EQ and export">
           <article class="section">
-            <div class="section-eyebrow">Step 3</div>
+            <div class="section-eyebrow">Step 2</div>
             <h2 class="section-title">Mastering EQ.</h2>
             <p class="section-body">
               Mastering EQ should be subtle—we're enhancing, not fixing. Use broad strokes and gentle moves.
@@ -350,30 +672,15 @@
               <li><strong>Cut mud (200-400 Hz):</strong> Very gentle if mix is muddy (0.5-1 dB)</li>
               <li><strong>High shelf boost (10-16 kHz):</strong> Add air and sparkle (0.5-2 dB)</li>
             </ul>
-            <p class="section-body" style="margin-top: var(--space-md);">
-              <strong>Golden rule:</strong> If you're moving more than 2-3 dB on any band, there's probably a mix problem to fix first.
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Step 4</div>
-            <h2 class="section-title">Export settings.</h2>
-            <p class="section-body">
-              Use the right format for your destination. Here are the standard settings for streaming distribution.
-            </p>
-            <ul class="section-list">
-              <li><strong>Format:</strong> WAV (lossless) or high-quality MP3 (320 kbps)</li>
-              <li><strong>Sample rate:</strong> 44.1 kHz (CD standard, accepted everywhere)</li>
-              <li><strong>Bit depth:</strong> 16-bit for final masters, 24-bit for archives</li>
-              <li><strong>Dithering:</strong> Enable when converting from 24-bit to 16-bit</li>
-            </ul>
-            <p class="section-body" style="margin-top: var(--space-md);">
-              <strong>For distributors (DistroKid, TuneCore, etc.):</strong> WAV, 44.1 kHz, 16 or 24-bit is standard.
-            </p>
+            <div class="instruction-line" style="margin-top: var(--space-md);">
+              <p class="instruction">
+                <strong>Golden rule:</strong> If you're moving more than 2-3 dB on any band, there's probably a mix problem to fix first.
+              </p>
+            </div>
           </article>
         </section>
 
-        <section class="sections-grid" aria-label="Practical exercise">
+        <section class="sections-grid" aria-label="Key takeaways" style="margin-top: var(--space-2xl);">
           <article class="section">
             <div class="section-eyebrow">Your task</div>
             <h2 class="section-title">Master a finished mix.</h2>
@@ -383,7 +690,7 @@
             <ul class="section-list">
               <li>Add a high-pass filter at 25-30 Hz</li>
               <li>Add subtle high-shelf boost at 12 kHz (+1 dB)</li>
-              <li>Add a limiter with ceiling at -1 dB</li>
+              <li>Add a limiter with ceiling at -1 dBTP</li>
               <li>Push the limiter until you hit around -14 LUFS integrated</li>
               <li>A/B compare with the unmastered version</li>
               <li>Export as WAV, 44.1 kHz, 16-bit with dithering</li>
@@ -397,6 +704,7 @@
               <li>Mastering is the final polish—it can't fix a bad mix</li>
               <li>LUFS is how streaming platforms measure loudness (-14 LUFS is a good target)</li>
               <li>Limiters increase loudness while preventing clipping</li>
+              <li>Set your ceiling to -1 dBTP to leave headroom</li>
               <li>Mastering EQ should be subtle—think 0.5-2 dB moves</li>
               <li>Export settings: WAV, 44.1 kHz, 16-bit for streaming</li>
             </ul>
@@ -425,6 +733,148 @@
 
     <script>
       document.getElementById("mpl-year").textContent = new Date().getFullYear();
+      
+      // State
+      let simulating = false;
+      let targetLufs = -14;
+      let inputGain = 0;
+      let ceiling = -1;
+      let baseLufs = -18; // Mix before limiting
+      
+      // Platform targets
+      const platforms = {
+        spotify: { name: 'Spotify', lufs: -14 },
+        apple: { name: 'Apple Music', lufs: -16 },
+        youtube: { name: 'YouTube', lufs: -14 },
+        soundcloud: { name: 'SoundCloud', lufs: -10 }
+      };
+      
+      // Platform selection
+      document.querySelectorAll('.platform-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.platform-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const platform = platforms[card.dataset.platform];
+          targetLufs = platform.lufs;
+          document.getElementById('target-platform').textContent = platform.name;
+          document.getElementById('target-lufs').textContent = platform.lufs;
+          updateMeters();
+        });
+      });
+      
+      // Simulate button
+      document.getElementById('simulate-btn').addEventListener('click', function() {
+        simulating = !simulating;
+        this.classList.toggle('active', simulating);
+        this.textContent = simulating ? 'Stop Simulation' : 'Simulate Mix';
+        if (simulating) {
+          animateMeters();
+        }
+      });
+      
+      // Input gain
+      document.getElementById('input-gain').addEventListener('input', (e) => {
+        inputGain = parseFloat(e.target.value);
+        document.getElementById('input-gain-value').textContent = '+' + inputGain.toFixed(1) + ' dB';
+        updateMeters();
+      });
+      
+      // Ceiling
+      document.getElementById('ceiling').addEventListener('input', (e) => {
+        ceiling = parseFloat(e.target.value);
+        document.getElementById('ceiling-value').textContent = ceiling.toFixed(1) + ' dBTP';
+        updateMeters();
+      });
+      
+      function updateMeters() {
+        // Calculate resulting LUFS
+        const resultLufs = baseLufs + inputGain;
+        const gainReduction = Math.max(0, resultLufs - ceiling);
+        const finalLufs = Math.min(resultLufs, ceiling + 1);
+        
+        // Update displays
+        const integratedEl = document.getElementById('lufs-integrated');
+        integratedEl.textContent = finalLufs.toFixed(1);
+        integratedEl.className = 'lufs-meter-value' + 
+          (finalLufs > -12 ? ' danger' : finalLufs > targetLufs + 1 ? ' warning' : '');
+        
+        // Bars (scale: -24 to 0 LUFS mapped to 0-100%)
+        const lufsPercent = Math.max(0, Math.min(100, ((finalLufs + 24) / 24) * 100));
+        document.getElementById('lufs-bar-integrated').style.width = lufsPercent + '%';
+        
+        // Gain reduction
+        const grPercent = Math.min(100, (gainReduction / 12) * 100);
+        document.getElementById('gr-value').textContent = '-' + gainReduction.toFixed(1) + ' dB';
+        document.getElementById('gr-bar').style.width = grPercent + '%';
+        
+        // True peak
+        const truePeak = ceiling + (gainReduction > 0 ? 0 : inputGain * 0.1);
+        const truePeakEl = document.getElementById('true-peak');
+        truePeakEl.textContent = truePeak.toFixed(1);
+        truePeakEl.className = 'lufs-meter-value' + (truePeak > -0.5 ? ' danger' : truePeak > -1 ? ' warning' : '');
+        
+        const peakPercent = Math.max(0, Math.min(100, ((truePeak + 6) / 6) * 100));
+        document.getElementById('lufs-bar-peak').style.width = peakPercent + '%';
+        
+        // Status
+        const statusEl = document.getElementById('master-status');
+        const headroomEl = document.getElementById('headroom-value');
+        
+        if (gainReduction > 10) {
+          statusEl.textContent = 'Over-limited!';
+          statusEl.className = 'status-value danger';
+        } else if (Math.abs(finalLufs - targetLufs) < 1) {
+          statusEl.textContent = 'On Target!';
+          statusEl.className = 'status-value good';
+        } else if (finalLufs < targetLufs - 2) {
+          statusEl.textContent = 'Too Quiet';
+          statusEl.className = 'status-value warning';
+        } else if (finalLufs > targetLufs + 2) {
+          statusEl.textContent = 'Too Loud';
+          statusEl.className = 'status-value warning';
+        } else {
+          statusEl.textContent = 'Good';
+          statusEl.className = 'status-value';
+        }
+        
+        if (truePeak > -0.5) {
+          headroomEl.textContent = 'Clipping!';
+          headroomEl.className = 'status-value danger';
+        } else if (truePeak > -1) {
+          headroomEl.textContent = 'Low';
+          headroomEl.className = 'status-value warning';
+        } else {
+          headroomEl.textContent = 'Good';
+          headroomEl.className = 'status-value good';
+        }
+      }
+      
+      function animateMeters() {
+        if (!simulating) return;
+        
+        // Add some variation
+        const variation = (Math.random() - 0.5) * 2;
+        const shortTermLufs = baseLufs + inputGain + variation;
+        
+        document.getElementById('lufs-shortterm').textContent = shortTermLufs.toFixed(1);
+        
+        const shorttermPercent = Math.max(0, Math.min(100, ((shortTermLufs + 24) / 24) * 100));
+        document.getElementById('lufs-bar-shortterm').style.width = shorttermPercent + '%';
+        
+        // Loudness range
+        document.getElementById('loudness-range').textContent = (5 + Math.random() * 3).toFixed(1);
+        
+        // Update GR with animation
+        const baseGr = Math.max(0, (baseLufs + inputGain) - ceiling);
+        const grVariation = baseGr > 0 ? Math.random() * 2 : 0;
+        const animGr = baseGr + grVariation;
+        document.getElementById('gr-bar').style.width = Math.min(100, (animGr / 12) * 100) + '%';
+        
+        requestAnimationFrame(animateMeters);
+      }
+      
+      // Initial update
+      updateMeters();
     </script>
   </body>
 </html>
