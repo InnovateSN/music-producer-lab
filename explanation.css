@@ -1359,4 +1359,81 @@
   .sequencer.enhanced {
     padding: 0.5rem;
   }
+  
+  .lab-card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lab-card {
+    padding: 0.875rem;
+  }
+  
+  .lab-card h3 {
+    font-size: 1rem;
+  }
+  
+  .lab-card .lab-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .lesson-nav {
+    justify-content: stretch;
+  }
+  
+  .lesson-nav .btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .page-inner {
+    padding: 1rem 0.75rem 2rem;
+    gap: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+  
+  .sequencer-grid.enhanced-grid {
+    gap: 0.1rem;
+  }
+  
+  .seq-step {
+    height: 30px;
+    border-radius: 4px;
+  }
+  
+  .seq-step span {
+    font-size: 0.6rem;
+  }
+  
+  .beat-marker {
+    font-size: 0.6rem;
+    height: 14px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .hero {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.8fr);
+    gap: 2rem;
+  }
+  
+  .sections-grid,
+  .outcomes {
+    gap: 1.5rem;
+  }
 }
