@@ -11,6 +11,7 @@
  */
 
 import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
+import { curriculum as defaultCurriculum, getLessonNavigation } from './curriculum.js';
 
 // ==========================================
 // MAIN INITIALIZATION
@@ -20,47 +21,60 @@ import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
  * Initialize a complete lesson from a configuration object
  * @param {Object} config - Lesson configuration object
  */
-export function initLessonFromConfig(config) {
+export function initLessonFromConfig(config, curriculumData = defaultCurriculum) {
   if (!config) {
     console.error('[LessonEngine] No config provided');
     return;
   }
-  
+
+  const navigation = getLessonNavigation({
+    lessonKey: config.lessonKey,
+    slug: config.slug || config.lessonSlug,
+    curriculumData
+  });
+
+  const mergedConfig = {
+    ...config,
+    overviewUrl: navigation.overviewUrl || config.overviewUrl || 'labs.html',
+    prevLessonUrl: navigation.prevLessonUrl ?? config.prevLessonUrl ?? null,
+    nextLessonUrl: navigation.nextLessonUrl ?? config.nextLessonUrl ?? null
+  };
+
   // Store config globally for access by other functions
-  window._lessonConfig = config;
+  window._lessonConfig = mergedConfig;
   
   // Set page title and meta
-  setPageMeta(config);
+  setPageMeta(mergedConfig);
   
   // Populate hero section
-  populateHero(config);
+  populateHero(mergedConfig);
   
   // Populate exercise section
-  populateExercise(config);
+  populateExercise(mergedConfig);
   
   // Generate pattern hint if enabled
-  if (config.patternHint?.enabled !== false && config.instruments?.length > 0) {
-    generatePatternHint(config);
+  if (mergedConfig.patternHint?.enabled !== false && mergedConfig.instruments?.length > 0) {
+    generatePatternHint(mergedConfig);
   }
-  
+
   // Setup navigation
-  setupNavigation(config);
+  setupNavigation(mergedConfig);
   
   // Handle mode-specific UI
-  setupModeUI(config);
+  setupModeUI(mergedConfig);
   
   // Initialize the sequencer
-  initSequencer(config);
+  initSequencer(mergedConfig);
   
   // Setup advanced controls (tempo, swing)
-  setupAdvancedControls(config);
+  setupAdvancedControls(mergedConfig);
   
   // Setup preset controls if enabled
-  if (config.mode?.enablePresets) {
-    setupPresetControls(config);
+  if (mergedConfig.mode?.enablePresets) {
+    setupPresetControls(mergedConfig);
   }
-  
-  console.log('[LessonEngine] Lesson initialized:', config.lessonKey);
+
+  console.log('[LessonEngine] Lesson initialized:', mergedConfig.lessonKey);
 }
 
 // ==========================================
@@ -411,12 +425,12 @@ export {
  * Load a lesson config from a JSON file and initialize
  * Usage: loadLessonConfig('./configs/lesson-drums-5.json')
  */
-export async function loadLessonConfig(configUrl) {
+export async function loadLessonConfig(configUrl, curriculumData = defaultCurriculum) {
   try {
     const response = await fetch(configUrl);
     if (!response.ok) throw new Error(`Failed to load config: ${response.status}`);
     const config = await response.json();
-    initLessonFromConfig(config);
+    initLessonFromConfig(config, curriculumData);
   } catch (error) {
     console.error('[LessonEngine] Error loading config:', error);
   }
