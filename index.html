@@ -85,7 +85,10 @@
       </ul>
       
       <div class="navbar-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
         <a href="labs.html" class="btn btn-primary btn-sm">Start Learning</a>
       </div>
     </div>
@@ -570,11 +573,15 @@
     
     // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
+      if (themeLabel) {
+        themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+      }
     }
     
     // Initialize theme
@@ -583,6 +590,8 @@
       setTheme(savedTheme);
     } else if (!prefersDark.matches) {
       setTheme('light');
+    } else {
+      setTheme('dark');
     }
     
     themeToggle.addEventListener('click', () => {

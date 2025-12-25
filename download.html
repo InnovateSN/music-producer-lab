@@ -287,7 +287,7 @@
       </ul>
       
       <div class="navbar-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+        <div class="theme-toggle-wrapper"><span class="theme-toggle-label" id="themeLabel">Dark</span><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button></div>
       </div>
     </div>
   </nav>
@@ -610,12 +610,17 @@
     });
     
     const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (themeLabel) themeLabel.textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+    }
     themeToggle.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
+      if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
       localStorage.setItem('theme', next);
     });
   </script>

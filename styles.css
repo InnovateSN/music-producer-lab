@@ -1218,6 +1218,20 @@ p {
 /* --------------------------------------------------------------------------
    THEME TOGGLE
    -------------------------------------------------------------------------- */
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.theme-toggle-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .theme-toggle {
   position: relative;
   width: 56px;
