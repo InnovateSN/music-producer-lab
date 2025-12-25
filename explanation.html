@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How It Works | Music Producer Lab</title>
+  
+  <meta name="description" content="Learn how Music Producer Lab helps you master music production through interactive, hands-on lessons and exercises.">
+  <meta name="theme-color" content="#030508">
+  
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .explanation-hero {
+      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .explanation-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(179, 102, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(0, 240, 255, 0.08) 0%, transparent 40%);
+    }
+    
+    .coming-soon-container {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-3xl) 0;
+    }
+    
+    .coming-soon-content {
+      max-width: 600px;
+    }
+    
+    .coming-soon-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-glow);
+      border: 2px solid var(--border-glow);
+      border-radius: 50%;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 60px rgba(0, 240, 255, 0.5), 0 0 100px rgba(179, 102, 255, 0.3);
+        transform: scale(1.05);
+      }
+    }
+    
+    .coming-soon-badge {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-lg);
+      background: rgba(255, 204, 0, 0.15);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: var(--radius-full);
+      color: var(--accent-amber);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .coming-soon-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--space-md);
+    }
+    
+    .coming-soon-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2xl);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .coming-soon-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+      text-align: left;
+    }
+    
+    .coming-soon-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+    }
+    
+    .coming-soon-feature-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-glow);
+      border-radius: var(--radius-md);
+      color: var(--accent-cyan);
+    }
+    
+    .coming-soon-feature h3 {
+      font-size: 1rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .coming-soon-feature p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .coming-soon-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="/" class="navbar-link">Home</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <li><a href="explore.html" class="navbar-link">Explore</a></li>
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="explanation-hero">
+    <div class="container" style="position: relative; z-index: 1;">
+      <span class="badge badge-primary mb-md">How It Works</span>
+      <h1 class="mb-md">Learn By Doing</h1>
+      <p style="max-width: 600px; font-size: 1.1rem;">
+        Discover how Music Producer Lab's interactive approach 
+        helps you learn music production faster and more effectively.
+      </p>
+    </div>
+  </section>
+  
+  <main>
+    <div class="coming-soon-container">
+      <div class="container">
+        <div class="coming-soon-content">
+          <div class="coming-soon-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          
+          <span class="coming-soon-badge">Coming Soon</span>
+          
+          <h2 class="coming-soon-title">Full Explanation Page</h2>
+          
+          <p class="coming-soon-description">
+            We're working on a comprehensive guide that explains our learning methodology, 
+            the science behind our interactive approach, and how to get the most out of each lab.
+          </p>
+          
+          <div class="coming-soon-features">
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Hands-On Learning</h3>
+                <p>Learn by actually producing, not watching</p>
+              </div>
+            </div>
+            
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Progressive Levels</h3>
+                <p>Start simple, build complexity gradually</p>
+              </div>
+            </div>
+            
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Instant Feedback</h3>
+                <p>Know immediately if you're on track</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coming-soon-cta">
+            <a href="labs.html" class="btn btn-primary">
+              Start Learning Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="about.html" class="btn btn-secondary">
+              Learn About Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+    });
+    
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (themeLabel) themeLabel.textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
