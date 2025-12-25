@@ -1822,6 +1822,211 @@ p {
   color: var(--text-muted);
 }
 
+/* --------------------------------------------------------------------------
+   EXERCISE INSTRUCTIONS STYLES
+   -------------------------------------------------------------------------- */
+.exercise-instructions {
+  margin-top: var(--space-2xl);
+}
+
+.exercise-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.exercise-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+}
+
+.exercise-steps {
+  margin-top: var(--space-lg);
+}
+
+.exercise-steps h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+}
+
+.exercise-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.exercise-checklist li {
+  position: relative;
+  padding-left: var(--space-xl);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.exercise-checklist li::before {
+  content: counter(list-item);
+  counter-increment: list-item;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bg-primary);
+}
+
+.exercise-tip {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(0, 240, 255, 0.08);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.exercise-tip strong {
+  color: var(--accent-cyan);
+}
+
+/* Pattern Hint Visual */
+.pattern-hint {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.pattern-hint-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+.pattern-grid-visual,
+.pattern-row-visual {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-sm);
+  align-items: center;
+}
+
+.pattern-row-visual {
+  margin-bottom: var(--space-md);
+}
+
+.instrument-label {
+  width: 60px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.step-on,
+.step-off {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.step-on {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: var(--bg-primary);
+  font-weight: 700;
+}
+
+.step-on.highlight {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+  box-shadow: 0 0 10px rgba(255, 102, 178, 0.5);
+}
+
+.step-off {
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.step-off.fill-zone {
+  background: rgba(255, 102, 178, 0.1);
+  border-color: rgba(255, 102, 178, 0.3);
+}
+
+.pattern-note {
+  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Responsive pattern grid */
+@media (max-width: 600px) {
+  .pattern-grid-visual,
+  .pattern-row-visual {
+    gap: 2px;
+  }
+  
+  .step-on,
+  .step-off {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
+  }
+  
+  .instrument-label {
+    width: 45px;
+    font-size: 0.65rem;
+  }
+  
+  .pattern-hint {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 400px) {
+  .step-on,
+  .step-off {
+    width: 18px;
+    height: 18px;
+    font-size: 0.55rem;
+  }
+  
+  .instrument-label {
+    width: 38px;
+    font-size: 0.6rem;
+  }
+}
+
 .sequencer-status.success {
   background: rgba(0, 255, 157, 0.1);
   color: var(--accent-green);
