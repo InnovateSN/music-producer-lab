@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Interactive Labs | Music Producer Lab</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore all interactive music production labs. Learn drums, arrangement, sound design, mixing, vocals, and mastering through hands-on practice.">
+  <meta name="theme-color" content="#030508">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .labs-hero {
+      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .labs-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.08) 0%, transparent 40%);
+    }
+    
+    .labs-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .lab-section {
+      padding: var(--space-3xl) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .lab-section:last-child {
+      border-bottom: none;
+    }
+    
+    .lab-section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+    
+    @media (max-width: 768px) {
+      .lab-section-header {
+        flex-direction: column;
+        gap: var(--space-lg);
+      }
+    }
+    
+    .lab-section-icon {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--glow-cyan);
+    }
+    
+    .lab-section-info {
+      flex: 1;
+    }
+    
+    .lab-section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .lab-section-description {
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+    
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .lesson-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .lesson-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg), var(--glow-cyan);
+    }
+    
+    .lesson-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    
+    .lesson-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      padding: var(--space-xs) var(--space-sm);
+      background: rgba(0, 240, 255, 0.1);
+      border-radius: var(--radius-sm);
+    }
+    
+    .lesson-badge {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+    }
+    
+    .lesson-badge-free {
+      background: rgba(0, 255, 157, 0.15);
+      color: var(--accent-green);
+    }
+    
+    .lesson-badge-new {
+      background: rgba(255, 102, 178, 0.15);
+      color: var(--accent-pink);
+    }
+    
+    .lesson-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+    
+    .lesson-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-lg);
+      flex: 1;
+    }
+    
+    .lesson-meta {
+      display: flex;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    
+    .lesson-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .lesson-meta-item svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+    
+    .lesson-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: transparent;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    
+    .lesson-cta:hover {
+      background: var(--gradient-primary);
+      border-color: transparent;
+      color: var(--bg-dark);
+    }
+    
+    .lesson-cta svg {
+      transition: transform var(--transition-fast);
+    }
+    
+    .lesson-cta:hover svg {
+      transform: translateX(4px);
+    }
+    
+    /* Coming soon state */
+    .lesson-card.coming-soon {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .lesson-card.coming-soon::after {
+      content: "Coming Soon";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: var(--space-sm) var(--space-lg);
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    
+    /* Quick nav */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+    }
+    
+    .quick-nav-link {
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    
+    .quick-nav-link:hover {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: var(--bg-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="/" class="navbar-link">Home</a></li>
+        <li><a href="labs.html" class="navbar-link active">Labs</a></li>
+        <li><a href="explore.html" class="navbar-link">Explore</a></li>
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="labs-hero">
+    <div class="container">
+      <div class="labs-hero-content">
+        <span class="badge badge-primary mb-md">All Labs</span>
+        <h1 class="mb-md">Interactive Production Labs</h1>
+        <p style="max-width: 600px; font-size: 1.1rem;">
+          Choose a module and start learning. Each lab is designed to teach you 
+          a specific skill through hands-on practice. No fluff, just production.
+        </p>
+        
+        <div class="quick-nav">
+          <a href="#drums" class="quick-nav-link">Drums & Rhythm</a>
+          <a href="#arrangement" class="quick-nav-link">Arrangement</a>
+          <a href="#sound-design" class="quick-nav-link">Sound Design</a>
+          <a href="#mixing" class="quick-nav-link">Mixing</a>
+          <a href="#vocals" class="quick-nav-link">Vocals</a>
+          <a href="#mastering" class="quick-nav-link">Mastering</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <main>
+    <!-- Drums Section -->
+    <section class="lab-section" id="drums">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Drums & Rhythm</h2>
+            <p class="lab-section-description">
+              Build solid grooves from the ground up. Master kick patterns, snare placement, 
+              hi-hat variations, and fills that drive your tracks forward.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">4 on the Floor: Kick Foundation</h3>
+            <p class="lesson-description">
+              Start with the essential 4-on-the-floor kick pattern. Learn what a bar is, 
+              how songs are counted, and why the kick is your groove's heartbeat.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>8-10 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-drums-1.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Add the Snare: Backbeat Basics</h3>
+            <p class="lesson-description">
+              Layer your snare on beats 2 and 4 to create the classic backbeat. 
+              Understand how kick and snare work together to create momentum.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>8-10 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-drums-2.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">03</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">8th-Note Hi-Hats: Feel the Pulse</h3>
+            <p class="lesson-description">
+              Add hi-hats on every 8th note to feel subdivisions. Learn how straight 
+              vs. swung hats change the groove's character.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>10-12 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-drums-3.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">04</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">16th-Note Groove: Modern Movement</h3>
+            <p class="lesson-description">
+              Add extra hats on selected 16th notes for movement and energy. 
+              Learn velocity variation for dynamic, human-feeling grooves.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>10-12 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-drums-4.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">05</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Variations & Fills: Keep It Fresh</h3>
+            <p class="lesson-description">
+              Create simple fills and variations that keep your groove interesting 
+              without losing the pocket. Build tension and release.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>12-15 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-drums-5.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">06</span>
+              <span class="lesson-badge lesson-badge-new">New</span>
+            </div>
+            <h3 class="lesson-title">Genre Grooves: House to Hip-Hop</h3>
+            <p class="lesson-description">
+              Apply your rhythm skills to different genres. See how the same 
+              elements create totally different feels in house, trap, and more.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Intermediate</span>
+              </div>
+            </div>
+            <a href="lesson-drums-6.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Arrangement Section -->
+    <section class="lab-section" id="arrangement">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Arrangement</h2>
+            <p class="lab-section-description">
+              Learn how to structure your tracks for maximum impact. Create intros, builds, 
+              drops, and outros that keep listeners engaged from start to finish.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Song Structure 101</h3>
+            <p class="lesson-description">
+              Understand the building blocks of a track. Learn about bars, sections, 
+              and how to create a roadmap for your song.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>10-15 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-arrangement.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+            </div>
+            <h3 class="lesson-title">Building Tension</h3>
+            <p class="lesson-description">
+              Master the art of the buildup. Learn filter sweeps, risers, 
+              and arrangement tricks that create anticipation.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">03</span>
+            </div>
+            <h3 class="lesson-title">The Perfect Drop</h3>
+            <p class="lesson-description">
+              Create drops that hit hard. Learn about impact sounds, 
+              element removal and reintroduction, and energy management.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Sound Design Section -->
+    <section class="lab-section" id="sound-design">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 10v3M6 6v12M10 8v8M14 4v16M18 8v8M22 10v3"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Sound Design</h2>
+            <p class="lab-section-description">
+              Create your own unique sounds. Understand synthesis, sampling, layering, 
+              and processing to craft signature tones.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Synthesis Basics</h3>
+            <p class="lesson-description">
+              Learn the fundamentals of synthesis. Oscillators, filters, envelopes, 
+              and how they shape your sound from scratch.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-sound-design.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+            </div>
+            <h3 class="lesson-title">Bass Sound Design</h3>
+            <p class="lesson-description">
+              Create powerful bass sounds. Sub bass, reese bass, FM bass, 
+              and how to make them sit in your mix.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">03</span>
+            </div>
+            <h3 class="lesson-title">Lead Synth Mastery</h3>
+            <p class="lesson-description">
+              Design leads that cut through the mix. Supersaw, plucks, 
+              and how to add movement and interest.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Mixing Section -->
+    <section class="lab-section" id="mixing">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 21v-7M12 21V3M20 21v-11"/>
+              <path d="M1 14h6M9 10h6M17 13h6"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Mixing</h2>
+            <p class="lab-section-description">
+              Balance your tracks like a pro. EQ, compression, reverb, and spatial 
+              processing to make every element shine in your mix.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Mixing Fundamentals</h3>
+            <p class="lesson-description">
+              Learn the basics of mixing. Levels, panning, and creating 
+              space for each element in your track.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-mixing.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+            </div>
+            <h3 class="lesson-title">EQ Deep Dive</h3>
+            <p class="lesson-description">
+              Master equalization. Learn to carve space, remove mud, 
+              add presence, and make elements fit together.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">03</span>
+            </div>
+            <h3 class="lesson-title">Compression Essentials</h3>
+            <p class="lesson-description">
+              Control dynamics like a pro. Attack, release, ratio, 
+              and when to use compression vs. limiting.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Vocals Section -->
+    <section class="lab-section" id="vocals">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Vocals</h2>
+            <p class="lab-section-description">
+              Process vocals to sit perfectly in your mix. Tuning, doubling, effects, 
+              and creative processing techniques.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Vocal Processing Basics</h3>
+            <p class="lesson-description">
+              Learn the essential vocal chain. EQ, compression, de-essing, 
+              and how to make vocals sit in electronic music.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-vocals.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+            </div>
+            <h3 class="lesson-title">Creative Vocal Effects</h3>
+            <p class="lesson-description">
+              Go beyond basics with delay throws, reverb automation, 
+              vocoders, and formant shifting.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Mastering Section -->
+    <section class="lab-section" id="mastering">
+      <div class="container">
+        <div class="lab-section-header">
+          <div class="lab-section-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="lab-section-info">
+            <h2 class="lab-section-title">Mastering</h2>
+            <p class="lab-section-description">
+              The final polish. Learn limiting, stereo enhancement, and loudness 
+              optimization for streaming platforms.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lessons-grid">
+          <article class="lesson-card">
+            <div class="lesson-card-header">
+              <span class="lesson-number">01</span>
+              <span class="lesson-badge lesson-badge-free">Free</span>
+            </div>
+            <h3 class="lesson-title">Mastering Essentials</h3>
+            <p class="lesson-description">
+              Learn the mastering basics. Limiting, loudness targets, 
+              and preparing your track for streaming platforms.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>15-20 min</span>
+              </div>
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+                <span>Beginner</span>
+              </div>
+            </div>
+            <a href="lesson-mastering.html" class="lesson-cta">
+              Start Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </article>
+          
+          <article class="lesson-card coming-soon">
+            <div class="lesson-card-header">
+              <span class="lesson-number">02</span>
+            </div>
+            <h3 class="lesson-title">Loudness & Dynamics</h3>
+            <p class="lesson-description">
+              Master the loudness war (and when to lose it). LUFS targets, 
+              dynamic range, and platform-specific optimization.
+            </p>
+            <div class="lesson-meta">
+              <div class="lesson-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>20-25 min</span>
+              </div>
+            </div>
+            <span class="lesson-cta">Coming Soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="mpl-logo-icon.svg" alt="" width="32" height="32">
+            <span>Music Producer Lab</span>
+          </div>
+          <p class="footer-tagline">
+            Learn music production by actually producing.
+          </p>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Labs</h4>
+          <ul class="footer-links">
+            <li><a href="#drums" class="footer-link">Drums & Rhythm</a></li>
+            <li><a href="#arrangement" class="footer-link">Arrangement</a></li>
+            <li><a href="#sound-design" class="footer-link">Sound Design</a></li>
+            <li><a href="#mixing" class="footer-link">Mixing</a></li>
+            <li><a href="#mastering" class="footer-link">Mastering</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="download.html" class="footer-link">Downloads</a></li>
+            <li><a href="explore.html" class="footer-link">Explore</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+    });
+    
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 100;
+            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: position, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
