@@ -11,15 +11,20 @@
       name="description"
       content="Free Lesson 1 from Music Producer Lab: create your first 4 on the floor drum pattern and understand bars, beats and subdivisions."
     />
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
     <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="explanation.css" />
   </head>
   <body>
     <div class="page">
       <div class="page-inner">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
         <header class="mpl-nav">
           <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+            <a href="index.html" aria-label="Music Producer Lab Home">
+              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+            </a>
           </div>
           <div class="mpl-nav-actions">
             <button
@@ -30,8 +35,28 @@
               <span>Back to overview</span>
             </button>
           </div>
+          <!-- Mobile hamburger menu -->
+          <button 
+            class="mpl-hamburger" 
+            id="mpl-hamburger"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mpl-mobile-nav"
+          >
+            <span class="mpl-hamburger-line"></span>
+            <span class="mpl-hamburger-line"></span>
+            <span class="mpl-hamburger-line"></span>
+          </button>
         </header>
+        
+        <!-- Mobile navigation overlay -->
+        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
+          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
+          <a href="explanation.html" class="btn btn-outline"><span>All lessons</span></a>
+          <a href="lesson-drums-2.html" class="btn btn-primary"><span>Next lesson</span></a>
+        </nav>
 
+        <main id="main-content">
         <section class="hero" aria-label="Lesson 1 · Drum pattern">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Lesson 1 · Drum pattern</div>
@@ -201,6 +226,7 @@
           </article>
         </section>
 
+        </main>
         <footer class="footer">
           <div>
             &copy; <span id="mpl-year"></span> Music Producer Lab ·
@@ -234,6 +260,36 @@
         ];
 
         initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+        
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('mpl-hamburger');
+        const mobileNav = document.getElementById('mpl-mobile-nav');
+        
+        if (hamburger && mobileNav) {
+          hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            mobileNav.classList.toggle('is-open');
+            document.body.style.overflow = isExpanded ? '' : 'hidden';
+          });
+          
+          mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              hamburger.setAttribute('aria-expanded', 'false');
+              mobileNav.classList.remove('is-open');
+              document.body.style.overflow = '';
+            });
+          });
+          
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+              hamburger.setAttribute('aria-expanded', 'false');
+              mobileNav.classList.remove('is-open');
+              document.body.style.overflow = '';
+              hamburger.focus();
+            }
+          });
+        }
       </script>
     </div>
   </body>

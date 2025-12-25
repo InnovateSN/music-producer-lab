@@ -23,9 +23,12 @@
   <body>
     <div class="page">
       <div class="page-inner">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
         <header class="mpl-nav">
           <div class="mpl-nav-logo">
-            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+            <a href="index.html" aria-label="Music Producer Lab Home">
+              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+            </a>
           </div>
           <div class="mpl-nav-actions">
             <button
@@ -34,13 +37,6 @@
               onclick="window.location.href='index.html'"
             >
               <span>Back to portal</span>
-            </button>
-            <button
-              class="btn btn-outline"
-              type="button"
-              id="mpl-nav-login"
-            >
-              <span>Log in</span>
             </button>
             <a
               href="#mpl-free-drums"
@@ -52,15 +48,35 @@
             <a
               id="mpl-nav-stripe-cta"
               class="btn btn-primary"
-              href="checkout.html"
+              href="lesson-drums-1.html"
             >
-              <span>Start producing — £18.99/month · Cancel anytime. No long-term commitment.</span>
+              <span>Start learning free</span>
             </a>
           </div>
+          <!-- Mobile hamburger menu -->
+          <button 
+            class="mpl-hamburger" 
+            id="mpl-hamburger"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mpl-mobile-nav"
+          >
+            <span class="mpl-hamburger-line"></span>
+            <span class="mpl-hamburger-line"></span>
+            <span class="mpl-hamburger-line"></span>
+          </button>
         </header>
+        
+        <!-- Mobile navigation overlay -->
+        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
+          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
+          <a href="#mpl-free-drums" class="btn btn-outline" id="mpl-mobile-free-lessons"><span>Free drum lessons</span></a>
+          <a href="lesson-drums-1.html" class="btn btn-primary"><span>Start learning free</span></a>
+        </nav>
 
         <div class="mpl-billing-banner mpl-auth-hidden" id="mpl-billing-banner" role="status"></div>
 
+        <main id="main-content">
         <section class="hero">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Interactive music production</div>
@@ -555,6 +571,7 @@
           </div>
         </div>
 
+        </main>
         <footer class="footer">
           <div>
             &copy; <span id="mpl-year"></span> Music Producer Lab ·
@@ -571,6 +588,38 @@
         import { initExplanationPage } from './explanation.js';
 
         initExplanationPage();
+        
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('mpl-hamburger');
+        const mobileNav = document.getElementById('mpl-mobile-nav');
+        
+        if (hamburger && mobileNav) {
+          hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            mobileNav.classList.toggle('is-open');
+            document.body.style.overflow = isExpanded ? '' : 'hidden';
+          });
+          
+          // Close mobile nav when clicking a link
+          mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              hamburger.setAttribute('aria-expanded', 'false');
+              mobileNav.classList.remove('is-open');
+              document.body.style.overflow = '';
+            });
+          });
+          
+          // Close on escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+              hamburger.setAttribute('aria-expanded', 'false');
+              mobileNav.classList.remove('is-open');
+              document.body.style.overflow = '';
+              hamburger.focus();
+            }
+          });
+        }
       </script>
     </div>
   </body>

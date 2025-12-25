@@ -236,6 +236,25 @@ body {
   gap: 10px;
 }
 
+/* ---------- Mobile Responsive (Dec 2025) ---------- */
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Touch target minimum */
+.mpl-auth-form button,
+.mpl-button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.mpl-auth-form input {
+  min-height: 44px;
+}
+
 @media (max-width: 640px) {
   .mpl-auth-footer {
     flex-direction: column;
@@ -246,4 +265,46 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
+  
+  .mpl-auth-card {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+  
+  .mpl-auth-shell {
+    padding: 16px 12px;
+  }
+  
+  .mpl-dashboard-grid {
+    padding: 16px 12px 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mpl-auth-copy h1 {
+    font-size: 22px;
+  }
+  
+  .mpl-auth-form {
+    padding: 14px;
+  }
+  
+  .mpl-auth-form input,
+  .mpl-auth-form button {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .mpl-panel {
+    padding: 14px;
+  }
+}
+
+/* Focus states for accessibility */
+.mpl-auth-form button:focus-visible,
+.mpl-button:focus-visible,
+.mpl-auth-form input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--mpl-accent);
+  outline-offset: 2px;
 }
