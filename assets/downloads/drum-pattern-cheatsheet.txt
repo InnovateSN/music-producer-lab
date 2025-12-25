@@ -1,0 +1,36 @@
+===========================================
+  DRUM PATTERN CHEATSHEET
+  Music Producer Lab
+===========================================
+
+HOUSE (4/4, 120-130 BPM)
+------------------------
+Kick:    X . . . | X . . . | X . . . | X . . .
+Snare:   . . X . | . . X . | . . X . | . . X .
+Hi-Hat:  X X X X | X X X X | X X X X | X X X X
+
+TECHNO (4/4, 125-140 BPM)
+-------------------------
+Kick:    X . . . | X . . . | X . . . | X . . .
+Clap:    . . X . | . . X . | . . X . | . . X .
+Hi-Hat:  . X . X | . X . X | . X . X | . X . X
+
+HIP-HOP (4/4, 80-100 BPM)
+-------------------------
+Kick:    X . . X | . . X . | X . . X | . . X .
+Snare:   . . X . | . . X . | . . X . | . . X .
+Hi-Hat:  X . X . | X . X . | X . X . | X . X .
+
+TRAP (4/4, 60-80 BPM)
+---------------------
+Kick:    X . . . | . X . . | X . . . | . X . .
+Snare:   . . . . | X . . . | . . . . | X . . .
+Hi-Hat:  XXXXXXXX|XXXXXXXX|XXXXXXXX|XXXXXXXX
+
+Legend:
+X = Hit
+. = Rest
+
+===========================================
+  www.musicproducerlab.com
+===========================================

@@ -1180,6 +1180,32 @@ p {
   resize: vertical;
 }
 
+/* Form select touch-friendly dropdown fix */
+.form-select {
+  min-height: 48px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237a8ba8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  background-size: 20px;
+  padding-right: calc(var(--space-md) * 2 + 20px);
+}
+
+/* Ensure select is clickable on mobile */
+.form-select option {
+  padding: var(--space-md);
+  min-height: 44px;
+}
+
+@media (max-width: 768px) {
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
 /* --------------------------------------------------------------------------
    BADGES & PILLS
    -------------------------------------------------------------------------- */
@@ -1907,4 +1933,94 @@ p {
 .btn-outline:hover {
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE OVERFLOW & SMALL SCREEN FIXES (360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+  /* Ensure no horizontal overflow */
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  /* Hero section fixes */
+  .hero-title,
+  h1 {
+    font-size: 1.75rem;
+    word-wrap: break-word;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+  }
+  
+  /* Button fixes */
+  .btn {
+    padding: var(--space-md);
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .btn-lg {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  /* Card fixes */
+  .feature-card,
+  .lesson-card,
+  .download-card {
+    padding: var(--space-md);
+  }
+  
+  /* Navbar fixes */
+  .navbar-logo span {
+    display: none;
+  }
+  
+  /* Footer fixes */
+  .footer-grid {
+    gap: var(--space-lg);
+  }
+  
+  .footer-socials {
+    flex-wrap: wrap;
+  }
+  
+  /* Form fixes */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Extra small screens (320px) */
+@media (max-width: 320px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .container {
+    padding: 0 var(--space-xs);
+  }
+}
+
+/* Hamburger menu z-index fix for overlay */
+@media (max-width: 900px) {
+  .navbar-nav.open {
+    z-index: 999;
+  }
+  
+  body.nav-open {
+    overflow: hidden;
+  }
 }

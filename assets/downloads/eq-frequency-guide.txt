@@ -1,0 +1,49 @@
+===========================================
+  EQ FREQUENCY GUIDE
+  Music Producer Lab
+===========================================
+
+SUB BASS: 20-60 Hz
+- Add weight to kicks and bass
+- Cut to reduce rumble
+- Be careful on small speakers
+
+BASS: 60-250 Hz
+- Fundamental of bass and kick
+- Cut for clarity if muddy
+- Boost for warmth
+
+LOW MIDS: 250-500 Hz
+- Body of most instruments
+- Cut to reduce mud
+- Booth for fullness
+
+MIDS: 500 Hz - 2 kHz
+- Main presence zone
+- Cut for clarity
+- Boost for forward sound
+
+UPPER MIDS: 2-4 kHz
+- Vocal presence
+- Snare attack
+- Boost for definition
+
+PRESENCE: 4-8 kHz
+- High-end clarity
+- Cymbal shimmer
+- Vocal air
+
+AIR: 8-20 kHz
+- Sparkle and brilliance
+- Boost for openness
+- Cut if harsh
+
+COMMON PROBLEM FREQUENCIES:
+- 200-300 Hz: Muddiness
+- 800 Hz: Boxy sound
+- 2-3 kHz: Harshness
+- 5-8 kHz: Sibilance
+
+===========================================
+  www.musicproducerlab.com
+===========================================
