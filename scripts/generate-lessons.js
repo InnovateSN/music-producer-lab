@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
+const { applyMessagePreset, buildHero } = require('../configs/config-presets.js');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const LESSON_TEMPLATE_PATH = path.join(ROOT_DIR, 'lesson-template.html');
@@ -168,16 +169,22 @@ function buildInstrument(inst, index) {
 function buildLessonConfig(lesson, navigation) {
   const instruments = lesson.instruments.length ? lesson.instruments : [buildInstrument({ id: 'kick', targetSteps: [0, 4, 8, 12] }, 0)];
   const lessonNumber = navigation.index + 1;
+  const categoryLabel = titleCase(lesson.categoryLabel || lesson.category);
   const patternSummary = instruments
     .map((inst) => `${titleCase(inst.label)} on steps ${inst.targetSteps.map((n) => n + 1).join(', ')}`)
     .join('; ');
 
-  const messages = {
-    initial: lesson.messages.initial || `Complete ${lesson.title} to unlock the next lab.`,
-    alreadyCompleted: lesson.messages.alreadyCompleted || "You've already completed this exercise. Feel free to practice or move to the next lesson!",
-    success: lesson.messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.',
-    error: lesson.messages.error || 'Not quite right. Double check the highlighted steps!'
+  const messageOverrides = {
+    initial: lesson.messages?.initial || `Complete ${lesson.title} to unlock the next lab.`
   };
+
+  ['alreadyCompleted', 'success', 'error'].forEach((key) => {
+    if (lesson.messages?.[key]) {
+      messageOverrides[key] = lesson.messages[key];
+    }
+  });
+
+  const messages = applyMessagePreset(lesson.category || 'default', messageOverrides);
 
   const steps = instruments.map((inst) => ({
     text: `<strong>${titleCase(inst.label)}:</strong> Add notes on steps ${inst.targetSteps.map((n) => n + 1).join(', ')}.`
@@ -196,12 +203,13 @@ function buildLessonConfig(lesson, navigation) {
     overviewUrl: navigation.overview,
 
     // HERO SECTION
-    hero: {
-      eyebrow: `Lesson ${lessonNumber} · ${titleCase(lesson.categoryLabel || lesson.category)}`,
+    hero: buildHero({
+      lessonNumber,
+      categoryLabel,
       title: lesson.title,
       titleHighlight: lesson.difficulty,
       subtitle: lesson.description || `Sequencer at ${lesson.tempo} BPM with a ${lesson.stepCount}-step grid.`
-    },
+    }),
 
     // SEQUENCER SETTINGS
     sequencer: {
