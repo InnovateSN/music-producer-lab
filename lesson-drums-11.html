@@ -389,25 +389,25 @@ H: · · X · · · X · · · X · · · X ·
             <div class="sequencer-header">
               <h3>DnB Sequencer</h3>
               <div class="sequencer-controls">
-                <button class="btn btn--primary" id="play-btn">▶ Play</button>
-                <button class="btn btn--outline" id="stop-btn">⏹ Stop</button>
-                <button class="btn btn--accent" id="check-btn">Check Exercise</button>
+                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
               </div>
             </div>
-            
+
             <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-cyan);">
               🎵 174 BPM - Standard DnB Tempo
             </div>
-            
-            <div class="sequencer-grid" id="sequencer-grid"></div>
-            
+
+            <div class="sequencer" id="mpl-sequencer-collection"></div>
+
             <div class="exercise-status">
-              <p id="status-message">Build the two-step pattern to unlock the next lesson.</p>
+              <p id="mpl-seq-status">Build the two-step pattern to unlock the next lesson.</p>
             </div>
           </div>
-          
+
           <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="next-lesson-btn" disabled>
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
               Next Lesson →
             </button>
           </div>
@@ -449,22 +449,38 @@ H: · · X · · · X · · · X · · · X ·
     </footer>
 
     <!-- Scripts -->
-    <script>
-      const LESSON_KEY = 'mpl-drums-11-progress';
-      const NEXT_LESSON_URL = 'lesson-drums-12.html';
-      
-      document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem(LESSON_KEY) === 'completed') {
-          document.getElementById('status-message').textContent = 
-            '✅ You\'ve already completed this exercise. Feel free to experiment!';
-          document.getElementById('next-lesson-btn').disabled = false;
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-11-progress";
+      const NEXT_LESSON_URL = "lesson-drums-12.html";
+
+      // DnB: fast syncopated kick, snare on 2&4, 8th hats
+      const instruments = [
+        {
+          id: "kick",
+          label: "Kick",
+          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+          target: [0, 6, 10],
+          instructions: "Syncopated kick pattern"
+        },
+        {
+          id: "snare",
+          label: "Snare",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Snare on 2 and 4 (two-step)"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "8th note hi-hats"
         }
-      });
-      
-      document.getElementById('next-lesson-btn').addEventListener('click', () => {
-        window.location.href = NEXT_LESSON_URL;
-      });
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
     </script>
-    <script src="sequencer.js" type="module"></script>
   </body>
 </html>

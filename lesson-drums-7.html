@@ -429,28 +429,28 @@ x = Ghost (25-35 velocity)
           <!-- Sequencer Component -->
           <div class="sequencer-container" id="sequencer">
             <div class="sequencer-header">
-              <h3>Drum Sequencer with Velocity</h3>
+              <h3>Drum Sequencer</h3>
               <div class="sequencer-controls">
-                <button class="btn btn--primary" id="play-btn">▶ Play</button>
-                <button class="btn btn--outline" id="stop-btn">⏹ Stop</button>
-                <button class="btn btn--accent" id="check-btn">Check Exercise</button>
+                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
               </div>
             </div>
-            
+
             <div class="sequencer-info">
-              <p>💡 <strong>Tip:</strong> Click a step to toggle it. Right-click (or long-press) to cycle velocity: Ghost → Normal → Accent</p>
+              <p>💡 <strong>Tip:</strong> Click a step to toggle it on/off. Build the pattern described in the exercise above.</p>
             </div>
-            
+
             <!-- Sequencer grid will be injected by JS -->
-            <div class="sequencer-grid" id="sequencer-grid"></div>
-            
+            <div class="sequencer" id="mpl-sequencer-collection"></div>
+
             <div class="exercise-status">
-              <p id="status-message">Complete the exercise by adding ghost notes to unlock the next lesson.</p>
+              <p id="mpl-seq-status">Complete the exercise by matching the target pattern to unlock the next lesson.</p>
             </div>
           </div>
-          
+
           <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="next-lesson-btn" disabled>
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
               Next Lesson →
             </button>
           </div>
@@ -521,46 +521,22 @@ x = Ghost (25-35 velocity)
 
     <!-- Scripts -->
     <script>
-      // Lesson key for progress tracking
-      const LESSON_KEY = 'mpl-drums-7-progress';
-      const NEXT_LESSON_URL = 'lesson-drums-8.html';
-      
-      // Velocity lane visualization
+      // Velocity lane visualization for demo
       function initVelocityDemo() {
         const flatPattern = document.getElementById('flat-pattern');
         const dynamicPattern = document.getElementById('dynamic-pattern');
-        
-        // Flat pattern (all same velocity)
+
         const flatVelocities = Array(16).fill(100);
-        
-        // Dynamic pattern with ghost notes
-        const dynamicVelocities = [
-          90,   // 1 - accent
-          25,   // e - ghost
-          70,   // & - normal
-          30,   // a - ghost
-          110,  // 2 - SNARE accent
-          25,   // e - ghost
-          70,   // & - normal
-          30,   // a - ghost
-          90,   // 3 - accent
-          25,   // e - ghost
-          70,   // & - normal
-          30,   // a - ghost
-          110,  // 4 - SNARE accent
-          25,   // e - ghost
-          70,   // & - normal
-          30    // a - ghost
-        ];
-        
-        flatVelocities.forEach((vel, i) => {
+        const dynamicVelocities = [90,25,70,30,110,25,70,30,90,25,70,30,110,25,70,30];
+
+        flatVelocities.forEach((vel) => {
           const bar = document.createElement('div');
           bar.className = 'velocity-bar';
           bar.style.height = `${vel}%`;
           flatPattern.appendChild(bar);
         });
-        
-        dynamicVelocities.forEach((vel, i) => {
+
+        dynamicVelocities.forEach((vel) => {
           const bar = document.createElement('div');
           bar.className = 'velocity-bar';
           if (vel <= 40) bar.classList.add('ghost');
@@ -570,24 +546,40 @@ x = Ghost (25-35 velocity)
           dynamicPattern.appendChild(bar);
         });
       }
-      
-      // Initialize on load
-      document.addEventListener('DOMContentLoaded', () => {
-        initVelocityDemo();
-        
-        // Check if already completed
-        if (localStorage.getItem(LESSON_KEY) === 'completed') {
-          document.getElementById('status-message').textContent = 
-            '✅ You\'ve already completed this exercise. Feel free to experiment!';
-          document.getElementById('next-lesson-btn').disabled = false;
-        }
-      });
-      
-      // Next lesson button
-      document.getElementById('next-lesson-btn').addEventListener('click', () => {
-        window.location.href = NEXT_LESSON_URL;
-      });
+      document.addEventListener('DOMContentLoaded', initVelocityDemo);
     </script>
-    <script src="sequencer.js" type="module"></script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-7-progress";
+      const NEXT_LESSON_URL = "lesson-drums-8.html";
+
+      // Ghost notes lesson: kick, snare (with ghosts), hi-hat
+      const instruments = [
+        {
+          id: "kick",
+          label: "Kick",
+          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+          target: [0, 4, 8, 12],
+          instructions: "Kick on beats 1, 2, 3, 4 (steps 1, 5, 9, 13)"
+        },
+        {
+          id: "snare",
+          label: "Snare",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Backbeat snare on beats 2 and 4 (steps 5, 13)"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "8th note hi-hats"
+        }
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+    </script>
   </body>
 </html>

@@ -313,8 +313,20 @@
           </ol>
         </div>
         
-        <!-- SEQUENCER PLACEHOLDER -->
-        <div id="sequencer-root" class="sequencer-container"></div>
+        <!-- SEQUENCER -->
+        <div class="sequencer-container">
+          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="margin:0;">Genre Fusion Sequencer</h3>
+            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
+              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+            </div>
+          </div>
+          <div class="sequencer" id="mpl-sequencer-collection"></div>
+          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
+          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
+        </div>
         
         <div class="tip-box">
           <strong>Balance is key:</strong> If it sounds like house with weird hi-hats OR trap with a weird kick, adjust the proportions until both genres shine.
@@ -352,6 +364,14 @@
       </div>
     </footer>
 
-    <script type="module" src="js/lesson-loader.js"></script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+      const instruments = [
+        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "4/4 house kick" },
+        { id: "clap", label: "Clap", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Backbeat clap" },
+        { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "Rolling hi-hats" }
+      ];
+      initDrumSequencer(instruments, "mpl-drums-18-progress", "lesson-drums-19.html");
+    </script>
   </body>
 </html>

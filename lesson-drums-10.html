@@ -463,25 +463,25 @@ HiHat: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             <div class="sequencer-header">
               <h3>Trap Sequencer</h3>
               <div class="sequencer-controls">
-                <button class="btn btn--primary" id="play-btn">▶ Play</button>
-                <button class="btn btn--outline" id="stop-btn">⏹ Stop</button>
-                <button class="btn btn--accent" id="check-btn">Check Exercise</button>
+                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
               </div>
             </div>
-            
+
             <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-purple);">
               🎵 140 BPM - Standard Trap Tempo
             </div>
-            
-            <div class="sequencer-grid" id="sequencer-grid"></div>
-            
+
+            <div class="sequencer" id="mpl-sequencer-collection"></div>
+
             <div class="exercise-status">
-              <p id="status-message">Build the trap pattern to unlock the next lesson.</p>
+              <p id="mpl-seq-status">Build the trap pattern to unlock the next lesson.</p>
             </div>
           </div>
-          
+
           <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="next-lesson-btn" disabled>
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
               Next Lesson →
             </button>
           </div>
@@ -524,65 +524,64 @@ HiHat: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     <!-- Scripts -->
     <script>
-      const LESSON_KEY = 'mpl-drums-10-progress';
-      const NEXT_LESSON_URL = 'lesson-drums-11.html';
-      
       // Initialize rolling pattern demo
       function initRollingDemo() {
         const pattern = document.getElementById('roll-pattern');
-        
-        // Pattern: mix of 16ths, triplets, and velocity variation
+        if (!pattern) return;
         const steps = [
-          { vel: 100, type: 'normal' },
-          { vel: 60, type: 'normal' },
-          { vel: 80, type: 'normal' },
-          { vel: 40, type: 'normal' },
-          { vel: 100, type: 'triplet' },
-          { vel: 70, type: 'triplet' },
-          { vel: 50, type: 'triplet' },
-          { vel: 90, type: 'normal' },
-          { vel: 50, type: 'normal' },
-          { vel: 70, type: 'normal' },
-          { vel: 40, type: 'normal' },
-          { vel: 100, type: 'normal' },
-          { vel: 60, type: 'triplet' },
-          { vel: 80, type: 'triplet' },
-          { vel: 45, type: 'triplet' },
-          { vel: 95, type: 'normal' }
+          { vel: 100, type: 'normal' }, { vel: 60, type: 'normal' }, { vel: 80, type: 'normal' }, { vel: 40, type: 'normal' },
+          { vel: 100, type: 'triplet' }, { vel: 70, type: 'triplet' }, { vel: 50, type: 'triplet' }, { vel: 90, type: 'normal' },
+          { vel: 50, type: 'normal' }, { vel: 70, type: 'normal' }, { vel: 40, type: 'normal' }, { vel: 100, type: 'normal' },
+          { vel: 60, type: 'triplet' }, { vel: 80, type: 'triplet' }, { vel: 45, type: 'triplet' }, { vel: 95, type: 'normal' }
         ];
-        
         steps.forEach((step, i) => {
           const el = document.createElement('div');
           el.className = 'roll-step' + (step.type === 'triplet' ? ' triplet' : '');
-          
           const bar = document.createElement('div');
           bar.className = 'bar';
           bar.style.height = `${step.vel}%`;
-          
           const label = document.createElement('span');
           label.className = 'label';
           label.textContent = i + 1;
-          
           el.appendChild(bar);
           el.appendChild(label);
           pattern.appendChild(el);
         });
       }
-      
-      document.addEventListener('DOMContentLoaded', () => {
-        initRollingDemo();
-        
-        if (localStorage.getItem(LESSON_KEY) === 'completed') {
-          document.getElementById('status-message').textContent = 
-            '✅ You\'ve already completed this exercise. Feel free to experiment!';
-          document.getElementById('next-lesson-btn').disabled = false;
-        }
-      });
-      
-      document.getElementById('next-lesson-btn').addEventListener('click', () => {
-        window.location.href = NEXT_LESSON_URL;
-      });
+      document.addEventListener('DOMContentLoaded', initRollingDemo);
     </script>
-    <script src="sequencer.js" type="module"></script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-10-progress";
+      const NEXT_LESSON_URL = "lesson-drums-11.html";
+
+      // Trap: 808 kick, clap, rolling hi-hats
+      const instruments = [
+        {
+          id: "kick",
+          label: "808",
+          color: "linear-gradient(135deg, #a855f7, #7c3aed)",
+          target: [0, 10],
+          instructions: "808 kick on beat 1 and the '&' of 3"
+        },
+        {
+          id: "clap",
+          label: "Clap",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Clap on beats 2 and 4"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "16th note hi-hats"
+        }
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+    </script>
   </body>
 </html>
