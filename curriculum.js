@@ -29,6 +29,28 @@ export const curriculum = [
         configPath: './configs/lesson-drums-2.config.js'
       },
       {
+        slug: 'lesson-drums-3',
+        lessonKey: 'mpl-lesson3-progress',
+        title: 'Hi-hats in 1/8: Feel Subdivisions',
+        description: 'Program hi-hats on every eighth note to hear the & subdivisions (1 & 2 & 3 & 4 &).',
+        duration: '10-12 min',
+        level: 'Beginner',
+        badge: 'Free',
+        pagePath: 'lesson-drums-3.html',
+        configPath: './configs/lesson-drums-3.config.js'
+      },
+      {
+        slug: 'lesson-drums-4',
+        lessonKey: 'mpl-lesson4-progress',
+        title: '16th-Note Groove: More Movement',
+        description: 'Add 16th-note hi-hats or selective ghost notes to create movement and variation inside the bar.',
+        duration: '10-12 min',
+        level: 'Beginner',
+        badge: 'Free',
+        pagePath: 'lesson-drums-4.html',
+        configPath: './configs/lesson-drums-4.config.js'
+      },
+      {
         slug: 'lesson-drums-5',
         lessonKey: 'mpl-lesson5-progress',
         title: 'Variation & Fills',
@@ -38,6 +60,17 @@ export const curriculum = [
         badge: 'Free',
         pagePath: 'lesson-drums-5-modular.html',
         configPath: './configs/lesson-drums-5.config.js'
+      },
+      {
+        slug: 'lesson-drums-6',
+        lessonKey: 'mpl-lesson6-progress',
+        title: 'Syncopated Kick: Break from 4/4',
+        description: 'Use syncopated kick patterns to add extra push and groove beyond the standard 4-on-the-floor.',
+        duration: '12-15 min',
+        level: 'Intermediate',
+        badge: 'Premium',
+        pagePath: 'lesson-drums-6.html',
+        configPath: './configs/lesson-drums-6.config.js'
       }
     ]
   },
@@ -47,15 +80,37 @@ export const curriculum = [
     description: 'Structure your loops into full songs with transitions, hooks, and energy flow.',
     lessons: [
       {
-        slug: 'lesson-arrangement',
-        lessonKey: 'mpl-arrangement-1',
-        title: 'Loop to Song: Expand Your 8 Bars',
-        description: 'Turn an 8-bar loop into a complete roadmap with intros, drops, and outros.',
-        duration: '12-15 min',
+        slug: 'lesson-arrangement-1',
+        lessonKey: 'mpl-arrangement-1-progress',
+        title: 'From Loop to Song: Understanding Structure',
+        description: 'Learn how to organize musical ideas into sections—intro, verse, chorus, bridge—to create complete songs.',
+        duration: '15-20 min',
         level: 'Beginner',
         badge: 'Free',
-        pagePath: 'lesson-arrangement.html',
-        configPath: null
+        pagePath: 'lesson-arrangement-1.html',
+        configPath: './configs/lesson-arrangement-1.config.js'
+      },
+      {
+        slug: 'lesson-arrangement-2',
+        lessonKey: 'mpl-arrangement-2-progress',
+        title: 'Transitions & Energy Flow',
+        description: 'Master risers, falls, filter sweeps, and drum fills to create smooth transitions between sections.',
+        duration: '15-20 min',
+        level: 'Beginner',
+        badge: 'Free',
+        pagePath: 'lesson-arrangement-2.html',
+        configPath: './configs/lesson-arrangement-2.config.js'
+      },
+      {
+        slug: 'lesson-arrangement-3',
+        lessonKey: 'mpl-arrangement-3-progress',
+        title: 'Arranging a Complete Track',
+        description: 'Put it all together: arrange a full song from start to finish using everything you have learned.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        badge: 'Free',
+        pagePath: 'lesson-arrangement-3.html',
+        configPath: './configs/lesson-arrangement-3.config.js'
       }
     ]
   },
