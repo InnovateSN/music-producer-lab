@@ -2,101 +2,878 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Mixing Lab | Music Producer Lab</title>
+    <title>Mixing Lab · Fundamentals | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="explanation.css" />
+    <meta name="description" content="Learn the basics of mixing. Levels, panning, EQ, and creating space for each element in your track." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+      /* Mixer Console Styles */
+      .mixer-console {
+        background: linear-gradient(180deg, #1a1f2e 0%, #0f1219 100%);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .mixer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .mixer-title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      
+      .mixer-transport {
+        display: flex;
+        gap: var(--space-sm);
+      }
+      
+      .transport-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--bg-tertiary);
+        border: 2px solid var(--border-subtle);
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      
+      .transport-btn:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+      }
+      
+      .transport-btn.playing {
+        background: var(--accent-green);
+        border-color: var(--accent-green);
+        color: var(--bg-dark);
+      }
+      
+      .mixer-channels {
+        display: flex;
+        gap: var(--space-md);
+        overflow-x: auto;
+        padding-bottom: var(--space-md);
+      }
+      
+      .channel-strip {
+        min-width: 100px;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      
+      .channel-strip.master {
+        background: linear-gradient(180deg, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.05) 100%);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+      }
+      
+      .channel-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+        color: var(--text-primary);
+        padding: var(--space-xs);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+      }
+      
+      .channel-meter {
+        height: 150px;
+        background: var(--bg-dark);
+        border-radius: var(--radius-sm);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .meter-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(0deg, var(--accent-green) 0%, var(--accent-green) 60%, var(--accent-amber) 80%, var(--accent-pink) 100%);
+        transition: height 0.1s;
+      }
+      
+      .meter-peak {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent-pink);
+        transition: bottom 0.05s;
+      }
+      
+      .channel-fader-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .fader-track {
+        width: 8px;
+        height: 120px;
+        background: var(--bg-dark);
+        border-radius: 4px;
+        position: relative;
+      }
+      
+      .fader-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--gradient-primary);
+        border-radius: 4px;
+        transition: height 0.1s;
+      }
+      
+      .fader-value {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--accent-cyan);
+      }
+      
+      input[type="range"].vertical-slider {
+        -webkit-appearance: slider-vertical;
+        writing-mode: bt-lr;
+        width: 30px;
+        height: 120px;
+        background: transparent;
+      }
+      
+      .channel-pan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .pan-label {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+      }
+      
+      .pan-knob {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3a3f4a 0%, #1a1f2a 100%);
+        border: 2px solid var(--border-light);
+        position: relative;
+        cursor: pointer;
+      }
+      
+      .pan-indicator {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 15px;
+        background: var(--accent-cyan);
+        transform-origin: bottom center;
+        transform: translateX(-50%);
+        border-radius: 1px;
+      }
+      
+      .channel-controls {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-xs);
+      }
+      
+      .channel-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      .channel-btn:hover {
+        border-color: var(--accent-cyan);
+      }
+      
+      .channel-btn.mute.active {
+        background: var(--accent-pink);
+        border-color: var(--accent-pink);
+        color: white;
+      }
+      
+      .channel-btn.solo.active {
+        background: var(--accent-amber);
+        border-color: var(--accent-amber);
+        color: var(--bg-dark);
+      }
+      
+      /* EQ Section */
+      .eq-section {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--border-subtle);
+      }
+      
+      .eq-display {
+        height: 120px;
+        background: var(--bg-dark);
+        border-radius: var(--radius-md);
+        position: relative;
+        margin-bottom: var(--space-md);
+        overflow: hidden;
+      }
+      
+      .eq-canvas {
+        width: 100%;
+        height: 100%;
+      }
+      
+      .eq-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: var(--space-md);
+      }
+      
+      .eq-band {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .eq-band-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+      }
+      
+      .eq-band-freq {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent-cyan);
+      }
+      
+      /* Frequency Guide */
+      .freq-guide {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-sm);
+        margin: var(--space-lg) 0;
+      }
+      
+      .freq-band {
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border-left: 3px solid;
+      }
+      
+      .freq-band.sub { border-color: #8b5cf6; }
+      .freq-band.bass { border-color: #3b82f6; }
+      .freq-band.low-mid { border-color: #10b981; }
+      .freq-band.mid { border-color: #f59e0b; }
+      .freq-band.high-mid { border-color: #ef4444; }
+      .freq-band.high { border-color: #ec4899; }
+      
+      .freq-band-range {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .freq-band-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .freq-band-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      
+      /* Mix Status */
+      .mix-status {
+        display: flex;
+        gap: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-top: var(--space-lg);
+        flex-wrap: wrap;
+      }
+      
+      .status-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+      
+      .status-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .status-value {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        color: var(--accent-cyan);
+      }
+      
+      .status-value.warning {
+        color: var(--accent-amber);
+      }
+      
+      .status-value.danger {
+        color: var(--accent-pink);
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <a href="index.html" aria-label="Music Producer Lab Home">
-              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-            </a>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav lesson-nav--pinned">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <div class="nav-actions">
+          <a href="labs.html#mixing" class="btn btn-secondary btn-sm">Back to Labs</a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Mixing Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Mixing Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Mixing Fundamentals:
+              <span>Balance and space</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn the essential tools of mixing: <strong>levels</strong>, <strong>panning</strong>, and <strong>EQ</strong>. These three elements form the foundation of every professional mix.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
-            </button>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Mixing basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Mixer overview</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Balance</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Level balancing</div>
+                  <div class="hero-visual-pill-tag">Panning</div>
+                  <div class="hero-visual-pill-tag">Basic EQ</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works in any DAW</span>
+                  <span>Ableton · FL · Logic · Pro Tools</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Level balancing">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Level balancing: The foundation.</h2>
+            <p class="section-body">
+              Before reaching for any plugins, get your levels right. A good mix starts with proper gain staging—every element at the right volume relative to others.
+            </p>
+            <ul class="section-list">
+              <li><strong>Start with everything at -inf (off)</strong> — Build up, don't cut down</li>
+              <li><strong>Bring in the most important element first</strong> — Usually kick or vocal</li>
+              <li><strong>Add elements one at a time</strong> — Listen for how each affects the balance</li>
+              <li><strong>Keep your master below 0 dB</strong> — Leave headroom for mastering (-6 dB is safe)</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Panning: Create width.</h2>
+            <p class="section-body">
+              Panning places elements in the stereo field—left, right, or center. This creates space and separation between instruments.
+            </p>
+            <ul class="section-list">
+              <li><strong>Keep center for important elements:</strong> Kick, snare, bass, lead vocal</li>
+              <li><strong>Pan supporting elements:</strong> Guitars, synth layers, percussion</li>
+              <li><strong>Create symmetry:</strong> If something's panned left, balance with something right</li>
+              <li><strong>Low frequencies stay center:</strong> Sub-bass and kick should be mono</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- Interactive Exercise Section -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Mix the Virtual Console</h2>
+            <p class="section-body">
+              Use the interactive mixer below to practice <strong>balancing levels</strong>, <strong>panning</strong>, and <strong>muting/soloing</strong> tracks.
+              Try to create a balanced mix where you can hear every element clearly.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Press Play</strong> to start the audio visualization.</li>
+                <li><strong>Adjust the faders</strong> — Kick and bass should be prominent but not overwhelming.</li>
+                <li><strong>Pan the elements</strong> — Keep kick/bass/snare centered, pan hi-hats and synths wider.</li>
+                <li><strong>Use Solo (S)</strong> to hear individual tracks, <strong>Mute (M)</strong> to remove them.</li>
+                <li><strong>Watch the Master meter</strong> — Keep it below 0 dB to avoid clipping!</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> Start with faders low and build up. A common mistake is making everything too loud. If the master is clipping (red), bring ALL faders down together!
+            </div>
           </div>
-          <!-- Mobile hamburger menu -->
-          <button 
-            class="mpl-hamburger" 
-            id="mpl-hamburger"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="mpl-mobile-nav"
-          >
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-          </button>
-        </header>
-        
-        <!-- Mobile navigation overlay -->
-        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
-          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
-          <a href="explanation.html" class="btn btn-outline"><span>All lessons</span></a>
-        </nav>
+        </section>
 
-        <main id="main-content">
+        <!-- Interactive Mixer Console -->
+        <section class="mixer-console">
+          <div class="mixer-header">
+            <div class="mixer-title">🎛️ MPL Virtual Mixer</div>
+            <div class="mixer-transport">
+              <button class="transport-btn" id="play-btn" title="Play/Stop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </button>
+              <button class="transport-btn" id="reset-btn" title="Reset Mix">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div class="mixer-channels" id="mixer-channels">
+            <!-- Channels will be generated by JS -->
+          </div>
+          
+          <div class="mix-status">
+            <div class="status-item">
+              <span class="status-label">Master Peak</span>
+              <span class="status-value" id="master-peak">-∞ dB</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Headroom</span>
+              <span class="status-value" id="headroom">+6.0 dB</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Active Tracks</span>
+              <span class="status-value" id="active-tracks">0 / 6</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Status</span>
+              <span class="status-value" id="mix-status-text">Ready</span>
+            </div>
+          </div>
+        </section>
 
-        <section class="hero" id="lesson-hero" aria-label="Mixing Lab"></section>
+        <!-- EQ Section -->
+        <section class="sections-grid" aria-label="EQ basics" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">EQ: Carve your space.</h2>
+            <p class="section-body">
+              EQ (equalization) lets you boost or cut specific frequencies. The goal: make room so every element can be heard clearly.
+            </p>
+            <div class="freq-guide">
+              <div class="freq-band sub">
+                <div class="freq-band-range">20-60 Hz</div>
+                <div class="freq-band-name">Sub Bass</div>
+                <div class="freq-band-desc">Kick and bass territory. Cut from other instruments.</div>
+              </div>
+              <div class="freq-band bass">
+                <div class="freq-band-range">60-250 Hz</div>
+                <div class="freq-band-name">Bass / Warmth</div>
+                <div class="freq-band-desc">Body of kick, bass, vocals. Watch for mud.</div>
+              </div>
+              <div class="freq-band low-mid">
+                <div class="freq-band-range">250-500 Hz</div>
+                <div class="freq-band-name">Low Mids</div>
+                <div class="freq-band-desc">Often muddy. Cut here to clean up mixes.</div>
+              </div>
+              <div class="freq-band mid">
+                <div class="freq-band-range">500-2k Hz</div>
+                <div class="freq-band-name">Mids</div>
+                <div class="freq-band-desc">Presence and clarity. Most instruments live here.</div>
+              </div>
+              <div class="freq-band high-mid">
+                <div class="freq-band-range">2-8k Hz</div>
+                <div class="freq-band-name">High Mids</div>
+                <div class="freq-band-desc">Attack, presence, vocal clarity. Can be harsh.</div>
+              </div>
+              <div class="freq-band high">
+                <div class="freq-band-range">8-20k Hz</div>
+                <div class="freq-band-name">Air / Brightness</div>
+                <div class="freq-band-desc">Sparkle and shimmer. Hi-hats, cymbals.</div>
+              </div>
+            </div>
+          </article>
 
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
+          <article class="section">
+            <div class="section-eyebrow">EQ Tips</div>
+            <h2 class="section-title">Cut first, boost later.</h2>
+            <p class="section-body">
+              It's usually better to cut frequencies you don't want than to boost frequencies you do. This keeps your mix cleaner and prevents buildup.
+            </p>
+            <ul class="section-list">
+              <li><strong>High-pass filter everything except bass:</strong> Remove rumble below 30-80 Hz</li>
+              <li><strong>Cut competing frequencies:</strong> If kick is at 60 Hz, cut bass there slightly</li>
+              <li><strong>Use narrow cuts:</strong> Surgical EQ to remove problem frequencies</li>
+              <li><strong>Use wide boosts:</strong> Gentle, musical enhancement</li>
+            </ul>
+            <div class="instruction-line" style="margin-top: var(--space-md);">
+              <p class="instruction">
+                <strong>The "sweep" technique:</strong> Boost a narrow band, sweep through frequencies to find problems, then cut.
+              </p>
+            </div>
+          </article>
+        </section>
 
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
+        <section class="sections-grid" aria-label="Key takeaways" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Your task</div>
+            <h2 class="section-title">Practice in your DAW.</h2>
+            <p class="section-body">
+              Take any project with at least 4-5 tracks and practice these fundamentals:
+            </p>
+            <ul class="section-list">
+              <li>Turn all faders down. Bring them up one at a time starting with kick/bass.</li>
+              <li>Pan elements to create width—keep bass and kick center.</li>
+              <li>Add a high-pass filter to everything except bass elements.</li>
+              <li>Make one EQ cut per track to reduce muddiness (usually 200-400 Hz).</li>
+            </ul>
+          </article>
 
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Start mixing with levels—get the balance right before adding plugins</li>
+              <li>Use panning to create width and separation</li>
+              <li>EQ carves space for each element in the frequency spectrum</li>
+              <li>Cut problematic frequencies rather than boosting what's missing</li>
+              <li>Keep your master below 0 dB to leave headroom</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#mixing" class="btn btn-primary">
+                Back to Mixing Labs
+              </a>
+            </div>
+          </article>
+        </section>
 
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        </main>
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Mixing Lab</div>
-          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#mixing">Back to Mixing Labs</a>
+              </div>
+            </div>
+          </div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('mixing');
-
-      // Mobile hamburger menu toggle
-      const hamburger = document.getElementById('mpl-hamburger');
-      const mobileNav = document.getElementById('mpl-mobile-nav');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
       
-      if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-          const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-          hamburger.setAttribute('aria-expanded', !isExpanded);
-          mobileNav.classList.toggle('is-open');
-          document.body.style.overflow = isExpanded ? '' : 'hidden';
+      // Mixer Configuration
+      const channels = [
+        { name: 'Kick', color: '#ff5a3d', defaultLevel: 75, defaultPan: 0, frequency: 'low' },
+        { name: 'Snare', color: '#5f4dff', defaultLevel: 70, defaultPan: 0, frequency: 'mid' },
+        { name: 'Hi-Hat', color: '#00d4ff', defaultLevel: 55, defaultPan: 30, frequency: 'high' },
+        { name: 'Bass', color: '#a855f7', defaultLevel: 72, defaultPan: 0, frequency: 'low' },
+        { name: 'Synth L', color: '#10b981', defaultLevel: 50, defaultPan: -50, frequency: 'mid' },
+        { name: 'Synth R', color: '#f59e0b', defaultLevel: 50, defaultPan: 50, frequency: 'mid' }
+      ];
+      
+      let mixerState = {
+        playing: false,
+        channels: channels.map(ch => ({
+          ...ch,
+          level: ch.defaultLevel,
+          pan: ch.defaultPan,
+          muted: false,
+          solo: false,
+          meter: 0,
+          peak: 0
+        }))
+      };
+      
+      // Build mixer UI
+      function buildMixer() {
+        const container = document.getElementById('mixer-channels');
+        let html = '';
+        
+        mixerState.channels.forEach((ch, i) => {
+          html += `
+            <div class="channel-strip" data-channel="${i}">
+              <div class="channel-name" style="border-left: 3px solid ${ch.color}">${ch.name}</div>
+              <div class="channel-meter">
+                <div class="meter-fill" id="meter-${i}" style="height: 0%"></div>
+                <div class="meter-peak" id="peak-${i}" style="bottom: 0%"></div>
+              </div>
+              <div class="channel-fader-container">
+                <input type="range" class="vertical-slider" id="fader-${i}" 
+                       min="0" max="100" value="${ch.level}" orient="vertical"
+                       style="height: 120px;">
+                <span class="fader-value" id="fader-value-${i}">${levelToDb(ch.level)}</span>
+              </div>
+              <div class="channel-pan">
+                <span class="pan-label">PAN</span>
+                <input type="range" id="pan-${i}" min="-100" max="100" value="${ch.pan}" 
+                       style="width: 60px;">
+                <span class="pan-label" id="pan-value-${i}">${panToText(ch.pan)}</span>
+              </div>
+              <div class="channel-controls">
+                <button class="channel-btn mute" id="mute-${i}" title="Mute">M</button>
+                <button class="channel-btn solo" id="solo-${i}" title="Solo">S</button>
+              </div>
+            </div>
+          `;
         });
         
-        mobileNav.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            hamburger.setAttribute('aria-expanded', 'false');
-            mobileNav.classList.remove('is-open');
-            document.body.style.overflow = '';
+        // Master channel
+        html += `
+          <div class="channel-strip master">
+            <div class="channel-name">MASTER</div>
+            <div class="channel-meter">
+              <div class="meter-fill" id="meter-master" style="height: 0%"></div>
+              <div class="meter-peak" id="peak-master" style="bottom: 0%"></div>
+            </div>
+            <div class="channel-fader-container">
+              <input type="range" class="vertical-slider" id="fader-master" 
+                     min="0" max="100" value="80" orient="vertical"
+                     style="height: 120px;">
+              <span class="fader-value" id="fader-value-master">-2.5 dB</span>
+            </div>
+            <div class="channel-pan">
+              <span class="pan-label">OUTPUT</span>
+            </div>
+          </div>
+        `;
+        
+        container.innerHTML = html;
+        attachMixerEvents();
+      }
+      
+      function levelToDb(level) {
+        if (level === 0) return '-∞ dB';
+        const db = 20 * Math.log10(level / 100);
+        return db.toFixed(1) + ' dB';
+      }
+      
+      function panToText(pan) {
+        if (pan === 0) return 'C';
+        if (pan < 0) return 'L' + Math.abs(pan);
+        return 'R' + pan;
+      }
+      
+      function attachMixerEvents() {
+        // Fader events
+        mixerState.channels.forEach((ch, i) => {
+          const fader = document.getElementById(`fader-${i}`);
+          const faderValue = document.getElementById(`fader-value-${i}`);
+          
+          fader.addEventListener('input', (e) => {
+            mixerState.channels[i].level = parseInt(e.target.value);
+            faderValue.textContent = levelToDb(mixerState.channels[i].level);
+          });
+          
+          const pan = document.getElementById(`pan-${i}`);
+          const panValue = document.getElementById(`pan-value-${i}`);
+          
+          pan.addEventListener('input', (e) => {
+            mixerState.channels[i].pan = parseInt(e.target.value);
+            panValue.textContent = panToText(mixerState.channels[i].pan);
+          });
+          
+          const muteBtn = document.getElementById(`mute-${i}`);
+          muteBtn.addEventListener('click', () => {
+            mixerState.channels[i].muted = !mixerState.channels[i].muted;
+            muteBtn.classList.toggle('active', mixerState.channels[i].muted);
+          });
+          
+          const soloBtn = document.getElementById(`solo-${i}`);
+          soloBtn.addEventListener('click', () => {
+            mixerState.channels[i].solo = !mixerState.channels[i].solo;
+            soloBtn.classList.toggle('active', mixerState.channels[i].solo);
           });
         });
         
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
-            hamburger.setAttribute('aria-expanded', 'false');
-            mobileNav.classList.remove('is-open');
-            document.body.style.overflow = '';
-            hamburger.focus();
-          }
+        // Master fader
+        const masterFader = document.getElementById('fader-master');
+        const masterValue = document.getElementById('fader-value-master');
+        
+        masterFader.addEventListener('input', (e) => {
+          mixerState.masterLevel = parseInt(e.target.value);
+          masterValue.textContent = levelToDb(mixerState.masterLevel);
         });
+        
+        mixerState.masterLevel = 80;
       }
+      
+      // Transport controls
+      document.getElementById('play-btn').addEventListener('click', function() {
+        mixerState.playing = !mixerState.playing;
+        this.classList.toggle('playing', mixerState.playing);
+        this.innerHTML = mixerState.playing 
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+        
+        if (mixerState.playing) {
+          animateMeters();
+        }
+      });
+      
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        mixerState.channels.forEach((ch, i) => {
+          ch.level = channels[i].defaultLevel;
+          ch.pan = channels[i].defaultPan;
+          ch.muted = false;
+          ch.solo = false;
+          
+          document.getElementById(`fader-${i}`).value = ch.level;
+          document.getElementById(`fader-value-${i}`).textContent = levelToDb(ch.level);
+          document.getElementById(`pan-${i}`).value = ch.pan;
+          document.getElementById(`pan-value-${i}`).textContent = panToText(ch.pan);
+          document.getElementById(`mute-${i}`).classList.remove('active');
+          document.getElementById(`solo-${i}`).classList.remove('active');
+        });
+        
+        document.getElementById('fader-master').value = 80;
+        document.getElementById('fader-value-master').textContent = '-2.5 dB';
+        mixerState.masterLevel = 80;
+      });
+      
+      // Animate meters
+      function animateMeters() {
+        if (!mixerState.playing) return;
+        
+        const hasSolo = mixerState.channels.some(ch => ch.solo);
+        let masterLevel = 0;
+        let activeTracks = 0;
+        
+        mixerState.channels.forEach((ch, i) => {
+          const isActive = !ch.muted && (!hasSolo || ch.solo);
+          
+          if (isActive && ch.level > 0) {
+            activeTracks++;
+            // Simulate meter movement
+            const baseLevel = ch.level * 0.7;
+            const variation = Math.random() * 20 - 10;
+            ch.meter = Math.max(0, Math.min(100, baseLevel + variation));
+            
+            // Update peak
+            if (ch.meter > ch.peak) {
+              ch.peak = ch.meter;
+            } else {
+              ch.peak = Math.max(ch.meter, ch.peak - 1);
+            }
+            
+            masterLevel += ch.meter * (ch.level / 100);
+          } else {
+            ch.meter = Math.max(0, ch.meter - 5);
+            ch.peak = Math.max(0, ch.peak - 2);
+          }
+          
+          document.getElementById(`meter-${i}`).style.height = ch.meter + '%';
+          document.getElementById(`peak-${i}`).style.bottom = ch.peak + '%';
+        });
+        
+        // Master meter
+        const masterMeterLevel = Math.min(100, (masterLevel / 3) * (mixerState.masterLevel / 100));
+        document.getElementById('meter-master').style.height = masterMeterLevel + '%';
+        
+        // Update status
+        const masterDb = masterMeterLevel > 0 ? (20 * Math.log10(masterMeterLevel / 100)).toFixed(1) : '-∞';
+        const headroom = masterMeterLevel > 0 ? (0 - parseFloat(masterDb)).toFixed(1) : '+∞';
+        
+        document.getElementById('master-peak').textContent = masterDb + ' dB';
+        document.getElementById('master-peak').className = 'status-value' + 
+          (masterMeterLevel > 95 ? ' danger' : masterMeterLevel > 85 ? ' warning' : '');
+        
+        document.getElementById('headroom').textContent = '+' + headroom + ' dB';
+        document.getElementById('headroom').className = 'status-value' + 
+          (parseFloat(headroom) < 3 ? ' danger' : parseFloat(headroom) < 6 ? ' warning' : '');
+        
+        document.getElementById('active-tracks').textContent = activeTracks + ' / ' + mixerState.channels.length;
+        
+        document.getElementById('mix-status-text').textContent = 
+          masterMeterLevel > 95 ? 'CLIPPING!' : 
+          masterMeterLevel > 85 ? 'Hot' : 
+          masterMeterLevel > 50 ? 'Good' : 
+          masterMeterLevel > 0 ? 'Low' : 'Silence';
+        document.getElementById('mix-status-text').className = 'status-value' + 
+          (masterMeterLevel > 95 ? ' danger' : masterMeterLevel > 85 ? ' warning' : '');
+        
+        requestAnimationFrame(animateMeters);
+      }
+      
+      // Initialize
+      buildMixer();
     </script>
   </body>
 </html>

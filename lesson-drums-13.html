@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 13 · Humanization & Groove Templates | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Make programmed drums feel human. Learn timing shifts, velocity curves, and groove template application." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Humanization Visualizer */
+      .humanize-demo {
+        background: linear-gradient(135deg, #2d3436, #636e72);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .timing-grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+      
+      .timing-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+      
+      .timing-row .label {
+        width: 80px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      
+      .beat-grid {
+        flex: 1;
+        display: flex;
+        gap: 4px;
+        background: var(--bg-tertiary);
+        padding: var(--space-sm);
+        border-radius: var(--radius-sm);
+        position: relative;
+      }
+      
+      .beat-grid::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--border-subtle);
+      }
+      
+      .beat-marker {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent-coral);
+        position: relative;
+        transition: transform 0.2s;
+      }
+      
+      .beat-marker.offset-early {
+        transform: translateX(-3px);
+        background: var(--accent-cyan);
+      }
+      
+      .beat-marker.offset-late {
+        transform: translateX(3px);
+        background: var(--accent-amber);
+      }
+      
+      /* Velocity Curve */
+      .velocity-curve {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .velocity-bars {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        height: 150px;
+        gap: 4px;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .velocity-bar {
+        width: 20px;
+        background: linear-gradient(to top, var(--accent-coral), var(--accent-amber));
+        border-radius: 4px 4px 0 0;
+        transition: height 0.3s;
+      }
+      
+      /* Groove Templates */
+      .groove-templates {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .groove-card {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      .groove-card:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+      
+      .groove-card.active {
+        border-color: var(--accent-coral);
+        box-shadow: 0 0 20px rgba(231, 112, 85, 0.2);
+      }
+      
+      .groove-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-xs);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .groove-card .swing-value {
+        font-family: monospace;
+        font-size: 0.75rem;
+        background: var(--accent-cyan);
+        color: #000;
+        padding: 2px 8px;
+        border-radius: var(--radius-sm);
+      }
+      
+      .groove-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .groove-visual {
+        height: 40px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 var(--space-sm);
+      }
+      
+      .groove-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent-coral);
+      }
+      
+      /* Humanization Controls */
+      .humanize-controls {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .control-group {
+        margin-bottom: var(--space-lg);
+      }
+      
+      .control-group:last-child {
+        margin-bottom: 0;
+      }
+      
+      .control-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .slider-container {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+      
+      .slider-container input[type="range"] {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--bg-tertiary);
+        cursor: pointer;
+      }
+      
+      .slider-value {
+        font-family: monospace;
+        font-size: 0.85rem;
+        min-width: 40px;
+        text-align: right;
+      }
+      
+      /* Comparison Panel */
+      .comparison-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .comparison-side {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+      }
+      
+      .comparison-side h3 {
+        font-size: 1rem;
+        margin-bottom: var(--space-md);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .comparison-side.robotic h3 {
+        color: var(--accent-coral);
+      }
+      
+      .comparison-side.humanized h3 {
+        color: var(--accent-cyan);
+      }
+      
+      @media (max-width: 768px) {
+        .comparison-panel {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SITE HEADER -->
+    <header class="site-header glass">
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
+        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <!-- HERO -->
+      <section class="hero">
+        <p class="hero-eyebrow">Lesson 13 · Drums & Rhythm</p>
+        <h1 class="hero-title">Humanization &<br><span class="highlight">Groove Templates</span></h1>
+        <p class="hero-subtitle">Make programmed drums <strong>feel human</strong>. Master <strong>micro-timing shifts</strong>, <strong>velocity curves</strong>, and <strong>groove template extraction</strong> for professional-sounding rhythms.</p>
+      </section>
+
+      <!-- WHAT IS HUMANIZATION -->
+      <section class="card">
+        <h2><span class="icon">🤖</span> The Problem with Perfect Timing</h2>
+        <p class="section-intro">
+          Perfectly quantized drums sound <strong>mechanical and lifeless</strong>. Real drummers never hit exactly on the beat—they push and pull timing, vary velocity, and create <strong>organic feel</strong>.
+        </p>
+        
+        <div class="comparison-panel">
+          <div class="comparison-side robotic">
+            <h3><span class="icon">⏰</span> Robotic (Quantized)</h3>
+            <ul class="check-list">
+              <li>Every hit exactly on grid</li>
+              <li>Identical velocity levels</li>
+              <li>No variation between bars</li>
+              <li>Sounds "fake" and sterile</li>
+            </ul>
+          </div>
+          <div class="comparison-side humanized">
+            <h3><span class="icon">🎯</span> Humanized</h3>
+            <ul class="check-list">
+              <li>Slight timing variations (±10ms)</li>
+              <li>Natural velocity curves</li>
+              <li>Subtle pattern changes</li>
+              <li>Sounds organic and alive</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMING HUMANIZATION -->
+      <section class="card">
+        <h2><span class="icon">⏱️</span> Micro-Timing Shifts</h2>
+        <p class="section-intro">
+          Small timing variations of <strong>5-20 milliseconds</strong> create a human feel without sounding sloppy. Different instruments push or pull slightly against the beat.
+        </p>
+        
+        <div class="humanize-demo">
+          <div class="timing-grid">
+            <div class="timing-row">
+              <span class="label">Kick</span>
+              <div class="beat-grid" id="kickTiming">
+                <div class="beat-marker"></div>
+                <div class="beat-marker offset-late"></div>
+                <div class="beat-marker"></div>
+                <div class="beat-marker offset-early"></div>
+              </div>
+            </div>
+            <div class="timing-row">
+              <span class="label">Snare</span>
+              <div class="beat-grid" id="snareTiming">
+                <div class="beat-marker offset-late"></div>
+                <div class="beat-marker"></div>
+                <div class="beat-marker offset-late"></div>
+                <div class="beat-marker"></div>
+              </div>
+            </div>
+            <div class="timing-row">
+              <span class="label">Hi-Hat</span>
+              <div class="beat-grid" id="hihatTiming">
+                <div class="beat-marker offset-early"></div>
+                <div class="beat-marker offset-early"></div>
+                <div class="beat-marker"></div>
+                <div class="beat-marker offset-early"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="margin-top: var(--space-lg); display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);"></div>
+              Early (push)
+            </span>
+            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-coral);"></div>
+              On Grid
+            </span>
+            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-amber);"></div>
+              Late (lay back)
+            </span>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Pro Tip:</strong> Hi-hats often push slightly ahead for drive, while snares can lay back for a relaxed feel. Kicks usually anchor close to the grid.
+        </div>
+      </section>
+
+      <!-- VELOCITY DYNAMICS -->
+      <section class="card">
+        <h2><span class="icon">📊</span> Velocity Curves</h2>
+        <p class="section-intro">
+          Real drummers don't hit every note at the same volume. <strong>Downbeats are louder</strong>, ghost notes are soft, and accents create emphasis.
+        </p>
+        
+        <div class="velocity-curve">
+          <h3 style="margin-bottom: var(--space-md);">Hi-Hat Velocity Pattern (16 steps)</h3>
+          <div class="velocity-bars" id="velocityDemo">
+            <div class="velocity-bar" style="height: 100%;"></div>
+            <div class="velocity-bar" style="height: 40%;"></div>
+            <div class="velocity-bar" style="height: 70%;"></div>
+            <div class="velocity-bar" style="height: 45%;"></div>
+            <div class="velocity-bar" style="height: 90%;"></div>
+            <div class="velocity-bar" style="height: 35%;"></div>
+            <div class="velocity-bar" style="height: 65%;"></div>
+            <div class="velocity-bar" style="height: 40%;"></div>
+            <div class="velocity-bar" style="height: 100%;"></div>
+            <div class="velocity-bar" style="height: 38%;"></div>
+            <div class="velocity-bar" style="height: 68%;"></div>
+            <div class="velocity-bar" style="height: 42%;"></div>
+            <div class="velocity-bar" style="height: 88%;"></div>
+            <div class="velocity-bar" style="height: 36%;"></div>
+            <div class="velocity-bar" style="height: 62%;"></div>
+            <div class="velocity-bar" style="height: 44%;"></div>
+          </div>
+          
+          <div style="margin-top: var(--space-md); display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+            <span>Beat 1</span>
+            <span>Beat 2</span>
+            <span>Beat 3</span>
+            <span>Beat 4</span>
+          </div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Notice how <strong>downbeats (1, 2, 3, 4)</strong> are louder, while the <strong>off-beats</strong> are softer. This creates a natural "breathing" groove.
+        </p>
+      </section>
+
+      <!-- GROOVE TEMPLATES -->
+      <section class="card">
+        <h2><span class="icon">🎼</span> Groove Templates</h2>
+        <p class="section-intro">
+          Groove templates capture the <strong>timing and velocity feel</strong> of a recorded performance. You can extract grooves from classic songs and apply them to your programmed drums.
+        </p>
+        
+        <div class="groove-templates">
+          <div class="groove-card active" data-groove="mpc60">
+            <h3>MPC 60 Swing <span class="swing-value">54%</span></h3>
+            <p>Classic hip-hop swing from the Akai MPC. Delays 16th notes slightly for that boom bap feel.</p>
+            <div class="groove-visual">
+              <div class="groove-dot"></div>
+              <div class="groove-dot" style="margin-left: 8px;"></div>
+              <div class="groove-dot"></div>
+              <div class="groove-dot" style="margin-left: 8px;"></div>
+            </div>
+          </div>
+          
+          <div class="groove-card" data-groove="tr808">
+            <h3>TR-808 Feel <span class="swing-value">50%</span></h3>
+            <p>Straight quantize with subtle velocity variation. Clean and punchy for electronic genres.</p>
+            <div class="groove-visual">
+              <div class="groove-dot"></div>
+              <div class="groove-dot"></div>
+              <div class="groove-dot"></div>
+              <div class="groove-dot"></div>
+            </div>
+          </div>
+          
+          <div class="groove-card" data-groove="motown">
+            <h3>Motown Pocket <span class="swing-value">58%</span></h3>
+            <p>Laid-back soul feel with heavy swing. Snare sits behind the beat for a relaxed groove.</p>
+            <div class="groove-visual">
+              <div class="groove-dot"></div>
+              <div class="groove-dot" style="margin-left: 12px;"></div>
+              <div class="groove-dot"></div>
+              <div class="groove-dot" style="margin-left: 12px;"></div>
+            </div>
+          </div>
+          
+          <div class="groove-card" data-groove="live">
+            <h3>Live Drummer <span class="swing-value">52%</span></h3>
+            <p>Extracted from a real drum recording. Natural variation and organic timing shifts.</p>
+            <div class="groove-visual">
+              <div class="groove-dot" style="margin-left: 2px;"></div>
+              <div class="groove-dot" style="margin-left: 5px;"></div>
+              <div class="groove-dot" style="margin-left: -2px;"></div>
+              <div class="groove-dot" style="margin-left: 3px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HUMANIZATION CONTROLS -->
+      <section class="card">
+        <h2><span class="icon">🎛️</span> Humanization Parameters</h2>
+        <p class="section-intro">
+          Most DAWs provide controls to randomize timing and velocity. Here's what each parameter does:
+        </p>
+        
+        <div class="humanize-controls">
+          <div class="control-group">
+            <label>Timing Randomization (ms)</label>
+            <div class="slider-container">
+              <input type="range" min="0" max="30" value="10" id="timingSlider">
+              <span class="slider-value" id="timingValue">10ms</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              How much notes can shift from the grid. 5-15ms is subtle, 20+ feels loose.
+            </p>
+          </div>
+          
+          <div class="control-group">
+            <label>Velocity Randomization (%)</label>
+            <div class="slider-container">
+              <input type="range" min="0" max="40" value="15" id="velocitySlider">
+              <span class="slider-value" id="velocityValue">15%</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              How much velocity can vary. 10-20% adds life without losing punch.
+            </p>
+          </div>
+          
+          <div class="control-group">
+            <label>Swing Amount (%)</label>
+            <div class="slider-container">
+              <input type="range" min="50" max="75" value="54" id="swingSlider">
+              <span class="slider-value" id="swingValue">54%</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              50% = straight, 67% = triplet feel. Hip-hop uses 54-58%, house uses 50-52%.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCISE -->
+      <section class="card exercise-card">
+        <h2><span class="icon">✏️</span> Exercise: Humanize a Beat</h2>
+        <div class="exercise-info">
+          <p><strong>Task:</strong> Apply humanization to make this robotic pattern feel alive.</p>
+          <ol class="exercise-steps">
+            <li>Start with the quantized pattern in the sequencer.</li>
+            <li>Apply 10ms timing randomization to hi-hats only.</li>
+            <li>Create a velocity curve: accents on beats, softer off-beats.</li>
+            <li>Add 54% swing for MPC-style groove.</li>
+          </ol>
+        </div>
+        
+        <!-- SEQUENCER -->
+        <div class="sequencer-container">
+          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="margin:0;">Drum Sequencer</h3>
+            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
+              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+              <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
+            </div>
+          </div>
+          <div class="sequencer" id="mpl-sequencer-collection"></div>
+          <div class="exercise-status" style="margin-top:1rem;">
+            <p id="mpl-seq-status">Complete the pattern to unlock the next lesson.</p>
+          </div>
+          <div style="margin-top:1rem;">
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>Next Lesson →</button>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Listen carefully:</strong> Compare before and after. The humanized version should feel more "alive" and less robotic.
+        </div>
+      </section>
+
+      <!-- KEY TAKEAWAYS -->
+      <section class="card">
+        <h2><span class="icon">🎓</span> Key Takeaways</h2>
+        <ul class="check-list">
+          <li><strong>Timing shifts:</strong> 5-15ms variations create human feel without sloppiness</li>
+          <li><strong>Velocity curves:</strong> Accent downbeats, soften off-beats for natural dynamics</li>
+          <li><strong>Groove templates:</strong> Extract feel from recordings and apply to programmed drums</li>
+          <li><strong>Swing:</strong> Delays off-beats for different genre feels (hip-hop, house, jazz)</li>
+          <li><strong>Less is more:</strong> Subtle humanization works better than extreme randomization</li>
+        </ul>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="lesson-nav">
+        <a href="lesson-drums-12.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
+        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
+        <a href="lesson-drums-14.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
+      </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© 2025 Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="#">Projects</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // Slider interactivity
+      document.querySelectorAll('input[type="range"]').forEach(slider => {
+        const valueDisplay = document.getElementById(slider.id.replace('Slider', 'Value'));
+        if (valueDisplay) {
+          slider.addEventListener('input', () => {
+            const unit = slider.id === 'timingSlider' ? 'ms' : '%';
+            valueDisplay.textContent = slider.value + unit;
+          });
+        }
+      });
+      // Groove card selection
+      document.querySelectorAll('.groove-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.groove-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        });
+      });
+    </script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-13-progress";
+      const NEXT_LESSON_URL = "lesson-drums-14.html";
+
+      const instruments = [
+        {
+          id: "kick",
+          label: "Kick",
+          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+          target: [0, 4, 8, 12],
+          instructions: "Basic kick pattern"
+        },
+        {
+          id: "snare",
+          label: "Snare",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Snare on 2 and 4"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "8th note hi-hats"
+        }
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+    </script>
+  </body>
+</html>

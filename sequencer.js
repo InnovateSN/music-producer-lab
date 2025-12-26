@@ -1,572 +1,811 @@
-// Sequencer dependencies and global state definitions
+/**
+ * Music Producer Lab - Interactive Drum Sequencer
+ * A modular 16/8/32-step sequencer for the interactive lessons
+ * Full-width horizontal layout with step numbers
+ * 
+ * Features:
+ * - Variable step count (8, 16, 32)
+ * - Swing support
+ * - Tempo control
+ * - Sandbox mode (no target validation)
+ * - Preset save/load
+ * - Responsive design
+ */
 
-const BPM = 120;
-const STEPS_PER_BAR = 16;
-const SCHEDULE_AHEAD_TIME = 0.1;
-const SCHEDULE_INTERVAL_MS = 25;
-const SECONDS_PER_STEP = 60.0 / BPM / 4; 
+// Audio Context (Web Audio API)
+let audioContext = null;
 
-let audioCtx = null;
-function ensureAudio() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+// Get or create audio context
+function getAudioContext() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
   }
+  return audioContext;
 }
 
-let nextNoteTime = 0.0;
-let currentStep = 0;
-let lookaheadTimer = null;
-let isPlayingGlobally = false;
-let sequencers = []; // Holds sequencer instances
-
-// Utility for array comparison
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
-  return true;
-}
-
-const USE_PERSISTENT_STORAGE = false; // Assuming all current users are guests
-
-// ---------------- WebAudio Sound Functions ----------------
-
-function makeKick(time) {
-  const ctx = audioCtx;
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.type = "sine";
-  osc.frequency.setValueAtTime(140, time);
-  osc.frequency.exponentialRampToValueAtTime(50, time + 0.12);
-  gain.gain.setValueAtTime(0.9, time);
-  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.13);
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-  osc.start(time);
-  osc.stop(time + 0.15);
-}
-
-function makeSnare(time) {
-  const ctx = audioCtx;
-  // White Noise Generator
-  const noise = ctx.createBufferSource();
-  const bufferSize = ctx.sampleRate * 0.5;
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const output = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) {
-    output[i] = Math.random() * 2 - 1;
+// Simple drum sounds using Web Audio API oscillators/noise
+const drumSounds = {
+  kick: () => {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(150, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+    
+    gain.gain.setValueAtTime(1, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.5);
+  },
+  
+  snare: () => {
+    const ctx = getAudioContext();
+    
+    // Noise component
+    const bufferSize = ctx.sampleRate * 0.2;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = 'highpass';
+    noiseFilter.frequency.value = 1000;
+    
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.3, ctx.currentTime);
+    noiseGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+    
+    noise.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    
+    // Tone component
+    const osc = ctx.createOscillator();
+    const oscGain = ctx.createGain();
+    
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(180, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+    
+    oscGain.gain.setValueAtTime(0.7, ctx.currentTime);
+    oscGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+    
+    osc.connect(oscGain);
+    oscGain.connect(ctx.destination);
+    
+    noise.start(ctx.currentTime);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.1);
+  },
+  
+  hihat: () => {
+    const ctx = getAudioContext();
+    
+    const bufferSize = ctx.sampleRate * 0.05;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'highpass';
+    filter.frequency.value = 5000;
+    
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+    
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    noise.start(ctx.currentTime);
+  },
+  
+  clap: () => {
+    const ctx = getAudioContext();
+    
+    const bufferSize = ctx.sampleRate * 0.15;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 2000;
+    filter.Q.value = 0.5;
+    
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.4, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+    
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    noise.start(ctx.currentTime);
+  },
+  
+  tom: () => {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(200, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.3);
+    
+    gain.gain.setValueAtTime(0.8, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.3);
+  },
+  
+  rim: () => {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(500, ctx.currentTime);
+    
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.05);
   }
-  noise.buffer = buffer;
-
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.5, time);
-  noiseGain.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
-
-  noise.connect(noiseGain);
-  noiseGain.connect(ctx.destination);
-
-  noise.start(time);
-  noise.stop(time + 0.15);
-
-  // Transient Tone Component (for 'pop')
-  const osc = ctx.createOscillator();
-  const oscGain = ctx.createGain();
-  osc.type = 'triangle';
-
-  osc.frequency.setValueAtTime(400, time);
-  osc.frequency.exponentialRampToValueAtTime(100, time + 0.08);
-
-  oscGain.gain.setValueAtTime(1.0, time);
-  oscGain.gain.exponentialRampToValueAtTime(0.001, time + 0.08);
-
-  osc.connect(oscGain);
-  oscGain.connect(ctx.destination);
-
-  osc.start(time);
-  osc.stop(time + 0.1);
-}
-
-function makeHiHat(time) {
-  const ctx = audioCtx;
-  // High-pass filtered noise for metallic sound
-  const bufferSize = ctx.sampleRate * 0.2;
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const output = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) {
-    output[i] = Math.random() * 2 - 1;
-  }
-  const noise = ctx.createBufferSource();
-  noise.buffer = buffer;
-
-  const filter = ctx.createBiquadFilter();
-  filter.type = 'highpass';
-  filter.frequency.setValueAtTime(7000, time);
-
-  const gain = ctx.createGain();
-  // Very short decay for closed hi-hat sound
-  gain.gain.setValueAtTime(0.6, time);
-  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
-
-  noise.connect(filter);
-  filter.connect(gain);
-  gain.connect(ctx.destination);
-
-  noise.start(time);
-  noise.stop(time + 0.1);
-}
-
-const soundMap = {
-  'kick': makeKick,
-  'snare': makeSnare,
-  'hihat': makeHiHat
 };
 
-// --- Scheduling Logic ---
-
-function scheduleNextSteps() {
-  const lookahead = audioCtx.currentTime + SCHEDULE_AHEAD_TIME;
-
-  while (nextNoteTime < lookahead) {
-    const scheduledTime = nextNoteTime;
-
-    // Trigger sounds and schedule visual updates
-    sequencers.forEach(seq => {
-      const stepActive = seq.getActiveState()[currentStep];
-      if (stepActive) {
-        seq.makeSound(scheduledTime);
-      }
-      if (seq.updatePlayhead) {
-        seq.updatePlayhead(currentStep, scheduledTime);
-      }
-    });
-
-    // Advance time and step
-    nextNoteTime += SECONDS_PER_STEP;
-    currentStep = (currentStep + 1) % STEPS_PER_BAR;
+// Play a drum sound
+function playSound(type) {
+  const sound = drumSounds[type] || drumSounds.kick;
+  try {
+    sound();
+  } catch (e) {
+    console.warn('Audio playback failed:', e);
   }
 }
 
-function startScheduling() {
-  if (isPlayingGlobally) return;
-  isPlayingGlobally = true;
-  ensureAudio();
+// Sequencer state
+let isPlaying = false;
+let currentStep = 0;
+let intervalId = null;
+let tempo = 120;
+let swing = 0;
+let stepCount = 16;
 
-  nextNoteTime = audioCtx.currentTime + 0.05;
-  currentStep = 0;
+// Store references for external control
+let sequencerState = null;
+let sequencerInstruments = null;
 
-  sequencers.forEach(s => s.updatePlayhead(-1));
-
-  lookaheadTimer = setInterval(scheduleNextSteps, SCHEDULE_INTERVAL_MS);
-  scheduleNextSteps();
-}
-
-function stopScheduling() {
-  isPlayingGlobally = false;
-  if (lookaheadTimer) {
-    clearInterval(lookaheadTimer);
-    lookaheadTimer = null;
-  }
-  sequencers.forEach(s => s.updatePlayhead(-1));
-}
-
-// --- Sequencer Factory Function ---
-
-function createSequencer(instr, index, progress, LESSON_KEY, statusEl, nextLessonBtn) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "sequencer enhanced";
-  wrapper.style.marginTop = index === 0 ? "0.8rem" : "0.6rem";
-
-  // Determine if this track is locked for the current lesson context
-  // K/S are fixed patterns in L3/L4, interactive in L1/L2 (until solved) and L5 (for fill programming)
-  let lockedExplicitly = false;
-  if (LESSON_KEY === "mpl-lesson3-progress" || LESSON_KEY === "mpl-lesson4-progress") {
-      if (instr.id === 'kick' || instr.id === 'snare') {
-          lockedExplicitly = true; // K/S are fixed patterns in L3/L4
-      }
-  }
-
-  const isInteractiveLocked = lockedExplicitly || (instr.requiredPrev && !progress[instr.requiredPrev]?.solved);
-
-  // --- Header Construction ---
-  const header = document.createElement("div");
-  header.style.display = "flex";
-  header.style.alignItems = "center";
-  header.style.justifyContent = "space-between";
-  header.style.gap = "0.6rem";
-
-  const left = document.createElement("div");
-  left.style.display = "flex";
-  left.style.alignItems = "center";
-  left.style.gap = "0.6rem";
-
-  const pill = document.createElement("div");
-  pill.textContent = instr.label;
-  pill.className = "hero-visual-pill";
-  pill.style.padding = "0.3rem 0.8rem";
-  pill.style.borderRadius = "14px";
-  pill.style.border = "1.5px solid rgba(62,242,255,0.8)";
-  pill.style.background = `linear-gradient(135deg, ${instr.color}, rgba(62,242,255,0.24))`;
-  pill.style.color = "#040611";
-  pill.style.boxShadow = "0 0 0 1px rgba(62,242,255,0.18), 0 0 18px rgba(62,242,255,0.24)";
-  pill.style.fontWeight = 700;
-  pill.style.minWidth = "86px";
-  left.appendChild(pill);
-
-  const info = document.createElement("div");
-  info.style.fontSize = "0.86rem";
-  info.style.color = "rgba(245,245,245,0.85)";
-
-  if (isInteractiveLocked) {
-      info.textContent = `Pattern corretto (bloccato)`;
-  } else {
-       info.textContent = `Target: ${instr.target.map(i=>i+1).join(', ')}`;
-  }
-  left.appendChild(info);
-
-  header.appendChild(left);
-
-  const controls = document.createElement("div");
-  controls.style.display = "flex";
-  controls.style.gap = "0.5rem";
-  controls.style.alignItems = "center";
-
-  const bpmValue = document.createElement("span");
-  bpmValue.textContent = `${BPM} BPM`;
-  bpmValue.style.fontSize = "0.86rem";
-  bpmValue.style.color = "rgba(245,245,245,0.75)";
-  controls.appendChild(bpmValue);
-
-  header.appendChild(controls);
-  wrapper.appendChild(header);
-
-  const instrBlock = document.createElement("div");
-  instrBlock.style.marginTop = "0.6rem";
-  instrBlock.style.padding = "0.6rem";
-  instrBlock.style.borderRadius = "10px";
-  instrBlock.style.background = "rgba(255,255,255,0.02)";
-  instrBlock.style.border = "1px solid rgba(255,255,255,0.04)";
-  instrBlock.style.color = "rgba(245,245,245,0.86)";
-  instrBlock.style.fontSize = "0.92rem";
-  instrBlock.textContent = instr.instructions || "";
-  wrapper.appendChild(instrBlock);
-  // --- END Header Construction ---
-
-  const grid = document.createElement("div");
-  grid.className = "sequencer-grid enhanced-grid";
-  grid.setAttribute("role", "group");
-  grid.setAttribute("aria-label", `${instr.label} 16-step sequencer`);
-
-  // Beat ruler: only on top sequencer
-  if (index === 0) {
-    const beatRow = document.createElement("div");
-    beatRow.className = "sequencer-beats";
-    for (let i = 0; i < 16; i++) {
-      const beatCell = document.createElement("div");
-      beatCell.className = "beat-marker";
-
-      let beatText = '';
-      let isMain = false;
-      let colorOpacity = 0.6; // Default opacity for secondary markers
-
-      if (i % 4 === 0) {
-        beatText = String(i / 4 + 1);
-        isMain = true;
-      } else if (LESSON_KEY === "mpl-lesson3-progress" && i % 2 !== 0) {
-        beatText = "&";
-      } else if (LESSON_KEY === "mpl-lesson4-progress" || LESSON_KEY === "mpl-lesson5-progress") {
-        // Show 1/16 markers (1 e & a)
-        const subdivision = i % 4;
-        if (subdivision === 1) beatText = 'e';
-        else if (subdivision === 2) beatText = '&';
-        else if (subdivision === 3) beatText = 'a';
-        colorOpacity = 0.4;
-      }
-
-      if (beatText) {
-          beatCell.textContent = beatText;
-          beatCell.setAttribute("data-beat", isMain ? "main" : "sub");
-          if (!isMain) {
-              beatCell.style.fontSize = "0.6rem";
-              beatCell.style.color = `rgba(255, 74, 61, ${colorOpacity})`; 
-          }
-          beatCell.setAttribute("aria-hidden", "false");
-      } else {
-        beatCell.setAttribute("aria-hidden", "true");
-      }
-
-      beatRow.appendChild(beatCell);
-    }
-    wrapper.appendChild(beatRow);
-  }
-
-
-  const steps = [];
-  let currentActive;
-
-  if (isInteractiveLocked) {
-    // If locked, force target pattern
-    currentActive = new Array(16).fill(false);
-    instr.target.forEach(idx => currentActive[idx] = true);
-  } else {
-    // If interactive, load from storage or initialize empty
-    currentActive = 
-      (USE_PERSISTENT_STORAGE && progress[instr.id]?.pattern) 
-      ? progress[instr.id].pattern
-      : new Array(16).fill(false);
-  }
-
-  // If solved previously, ensure the visual state reflects that on load (applies to non-locked tracks only)
-  if (!isInteractiveLocked && USE_PERSISTENT_STORAGE && progress[instr.id]?.solved) {
-      currentActive.fill(false);
-      instr.target.forEach(idx => currentActive[idx] = true);
-  }
-
-
-  for (let i = 0; i < 16; i++) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "seq-step";
-    btn.dataset.index = i;
-    const label = document.createElement("span");
-    label.textContent = i + 1;
-    btn.appendChild(label);
-
-    if (currentActive[i]) {
-      btn.classList.add("seq-step-active");
-    }
-
-    // Apply visual target class only to the interactive steps
-    const shouldShowTarget = !isInteractiveLocked;
-
-    if (shouldShowTarget && instr.target && instr.target.indexOf(i) !== -1) {
-      btn.classList.add("correct-step");
-      // Improve titles based on lesson context
-      let titleSuffix = '';
-      if (i % 4 === 0) titleSuffix = ' (Beat)';
-      if (instr.id === 'snare' && (i === 4 || i === 12)) titleSuffix = ' (Backbeat)';
-      if (instr.id === 'hihat' && i % 2 !== 0) titleSuffix = ' (Off-beat 8th)';
-
-      btn.setAttribute("aria-label", `Step ${i + 1}${titleSuffix}`);
-      btn.setAttribute("title", `Target position (step ${i + 1})`);
-    } else {
-      btn.setAttribute("aria-label", `Step ${i + 1}`);
-    }
-
-
-    if (isInteractiveLocked) {
-      btn.classList.add("locked");
-      if (currentActive[i]) {
-        btn.classList.add("seq-step-active");
-      }
-    }
-
-    btn.addEventListener("click", () => {
-      if (isInteractiveLocked) return;
-      currentActive[i] = !currentActive[i];
-      btn.classList.toggle("seq-step-active", currentActive[i]);
-
-      // Clear solved state if pattern changes
-      if (progress[instr.id]?.solved) {
-          progress[instr.id].solved = false;
-          if (USE_PERSISTENT_STORAGE) {
-            localStorage.setItem(LESSON_KEY, JSON.stringify(progress));
-          }
-          wrapper.classList.remove("completed");
-          if (nextLessonBtn) {
-             nextLessonBtn.disabled = true;
-             nextLessonBtn.title = "Complete exercise to unlock";
-          }
-      }
-    });
-
-    grid.appendChild(btn);
-    steps.push(btn);
-  }
-
-  wrapper.appendChild(grid);
-
-  // Visual playhead update mechanism
-  let playheadTimeout = null;
-
-  function visualUpdatePlayhead(idx, scheduledTime) {
-    if (!isPlayingGlobally) return;
-
-    if (playheadTimeout) clearTimeout(playheadTimeout);
-
-    if (idx === -1) {
-      steps.forEach((b) => b.classList.remove("seq-step-playhead"));
-      return;
-    }
-
-    const delayMs = Math.max(0, scheduledTime - audioCtx.currentTime) * 1000;
-
-    playheadTimeout = setTimeout(() => {
-      steps.forEach((b, i) => b.classList.toggle("seq-step-playhead", i === idx));
-    }, delayMs);
-  }
-
-  function doCheck() {
-    if (isInteractiveLocked) {
-      return true; // Already correct/locked
-    }
-
-    const userIndices = currentActive.map((v, i) => v ? i : -1).filter(i => i !== -1);
-
-    const userIndicesSorted = userIndices.sort((a, b) => a - b);
-    const targetIndicesSorted = instr.target.sort((a, b) => a - b);
-
-    const isCorrect = arraysEqual(userIndicesSorted, targetIndicesSorted);
-
-    // Save state
-    progress[instr.id] = { solved: isCorrect, pattern: currentActive };
-    if (USE_PERSISTENT_STORAGE) {
-        localStorage.setItem(LESSON_KEY, JSON.stringify(progress));
-    }
-
-    if (isCorrect) {
-      wrapper.classList.add("completed");
-      // Visually ensure steps match target pattern after solving
-      steps.forEach((b, i) => {
-        b.classList.remove("locked");
-        b.classList.toggle("seq-step-active", instr.target.includes(i));
-      });
-      return true;
-    } else {
-      wrapper.classList.remove("completed");
-      return false;
-    }
-  }
-
-  // Check status on load for non-locked tracks
-  if (!isInteractiveLocked && progress[instr.id]?.solved) {
-      wrapper.classList.add("completed");
-  }
-
-
-  return {
-    el: wrapper,
-    getId: () => instr.id,
-    check: doCheck,
-    isSolved: () => isInteractiveLocked || progress[instr.id]?.solved,
-    getActiveState: () => currentActive,
-    makeSound: (time) => soundMap[instr.id](time),
-    updatePlayhead: visualUpdatePlayhead,
-  };
-}
-
-
-/** 
- * Initializes the drum sequencer UI and playback logic.
- * @param {Array<Object>} instruments - Configuration for tracks.
- * @param {string} lessonKey - Local storage key.
- * @param {string} nextLessonUrl - URL for the next lesson.
+/**
+ * Initialize drum sequencer
+ * @param {Array} instruments - Array of instrument objects
+ * @param {string} lessonKey - LocalStorage key for progress
+ * @param {string} nextLessonUrl - URL for next lesson
+ * @param {Object} options - Additional options (tempo, stepCount, swing, messages, sandbox)
  */
-export function initDrumSequencer(instruments, lessonKey, nextLessonUrl) {
-    const seqContainer = document.getElementById("mpl-sequencer-collection");
-    if (!seqContainer) return;
+export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
+  const container = document.getElementById('mpl-sequencer-collection');
+  if (!container) return;
 
-    const statusEl = document.getElementById("mpl-seq-status");
-    const playAllBtn = document.getElementById("mpl-seq-play-all");
-    const stopAllBtn = document.getElementById("mpl-seq-stop-all");
-    const checkAllBtn = document.getElementById("mpl-seq-check-all");
-    const nextLessonBtn = document.getElementById("mpl-next-lesson");
+  // Apply options
+  const {
+    tempo: tempoOption = 120,
+    stepCount: stepCountOption = 16,
+    swing: swingOption = 0,
+    messages = {},
+    sandbox: isSandbox = false,
+    autoSaveState = true,
+    enablePresets = false,
+    enableExport = false
+  } = options;
 
-    let progress = {};
-    if (USE_PERSISTENT_STORAGE) {
-        progress = JSON.parse(localStorage.getItem(lessonKey) || "{}");
+  tempo = tempoOption;
+  stepCount = stepCountOption;
+  swing = swingOption;
+  
+  // Track state for each instrument
+  const state = {};
+  instruments.forEach(inst => {
+    state[inst.id] = new Array(stepCount).fill(false);
+  });
+  
+  // Store for external access
+  sequencerState = state;
+  sequencerInstruments = instruments;
+  
+  // Build UI - Full width horizontal layout
+  container.innerHTML = '';
+  
+  // Create wrapper with CSS
+  const wrapper = document.createElement('div');
+  wrapper.className = 'sequencer-wrapper';
+  wrapper.style.cssText = `
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  `;
+  
+  // Main grid container
+  const grid = document.createElement('div');
+  grid.className = 'sequencer-grid';
+  grid.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: fit-content;
+  `;
+  
+  // Step numbers header row
+  const headerRow = document.createElement('div');
+  headerRow.className = 'sequencer-header-row';
+  headerRow.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4px;
+  `;
+  
+  // Empty space for label column
+  const headerLabel = document.createElement('div');
+  headerLabel.style.cssText = `
+    width: 70px;
+    flex-shrink: 0;
+  `;
+  headerRow.appendChild(headerLabel);
+  
+  // Step numbers container
+  const stepNumbersContainer = document.createElement('div');
+  stepNumbersContainer.style.cssText = `
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  `;
+  
+  const stepsPerBeat = stepCount / 4; // For 16 steps = 4 per beat
+  
+  for (let i = 0; i < stepCount; i++) {
+    const stepNum = document.createElement('div');
+    stepNum.className = 'sequencer-step-number';
+    const beatStart = i % stepsPerBeat === 0;
+    stepNum.style.cssText = `
+      flex: 1;
+      min-width: ${stepCount > 16 ? '28px' : '36px'};
+      text-align: center;
+      font-family: var(--font-mono, monospace);
+      font-size: ${stepCount > 16 ? '0.6rem' : '0.7rem'};
+      font-weight: ${beatStart ? '700' : '400'};
+      color: ${beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)'};
+      padding: 4px 0;
+    `;
+    stepNum.textContent = i + 1;
+    stepNumbersContainer.appendChild(stepNum);
+  }
+  
+  headerRow.appendChild(stepNumbersContainer);
+  grid.appendChild(headerRow);
+  
+  // Beat markers row (1, 2, 3, 4)
+  const beatRow = document.createElement('div');
+  beatRow.className = 'sequencer-beat-row';
+  beatRow.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 8px;
+  `;
+  
+  const beatLabel = document.createElement('div');
+  beatLabel.style.cssText = `
+    width: 70px;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-muted, #7a8ba8);
+  `;
+  beatLabel.textContent = 'Beat';
+  beatRow.appendChild(beatLabel);
+  
+  const beatMarkersContainer = document.createElement('div');
+  beatMarkersContainer.style.cssText = `
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  `;
+  
+  for (let beat = 1; beat <= 4; beat++) {
+    const beatGroup = document.createElement('div');
+    beatGroup.style.cssText = `
+      flex: 1;
+      display: flex;
+      gap: 2px;
+    `;
+    
+    for (let sub = 0; sub < stepsPerBeat; sub++) {
+      const marker = document.createElement('div');
+      marker.style.cssText = `
+        flex: 1;
+        min-width: ${stepCount > 16 ? '28px' : '36px'};
+        height: 4px;
+        background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
+        border-radius: 2px;
+      `;
+      beatGroup.appendChild(marker);
     }
-
-    // Clear previous sequencer instances
-    sequencers = [];
-    seqContainer.innerHTML = '';
-
-    // Create sequencers 
-    sequencers = instruments.map((instr, i) => {
-        const seq = createSequencer(instr, i, progress, lessonKey, statusEl, nextLessonBtn);
-        seqContainer.appendChild(seq.el);
-        return seq;
-    });
-
-    // Identify which tracks require interaction/checking for this lesson
-    const interactiveTrackIds = instruments.filter(i => {
-        // A track requires interaction if it's not explicitly locked in L3/L4
-        let lockedExplicitly = false;
-        if (lessonKey === "mpl-lesson3-progress" || lessonKey === "mpl-lesson4-progress") {
-            if (i.id === 'kick' || i.id === 'snare') {
-                lockedExplicitly = true;
-            }
+    
+    beatMarkersContainer.appendChild(beatGroup);
+  }
+  
+  beatRow.appendChild(beatMarkersContainer);
+  grid.appendChild(beatRow);
+  
+  // Instrument rows
+  instruments.forEach(inst => {
+    const row = document.createElement('div');
+    row.className = 'sequencer-row';
+    row.style.cssText = `
+      display: flex;
+      align-items: center;
+      gap: 0;
+    `;
+    
+    // Label
+    const label = document.createElement('div');
+    label.className = 'sequencer-label';
+    label.textContent = inst.label;
+    label.style.cssText = `
+      width: 70px;
+      flex-shrink: 0;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-secondary, #b8c4e0);
+      padding-right: 8px;
+    `;
+    row.appendChild(label);
+    
+    // Steps container - full width, no wrap
+    const stepsContainer = document.createElement('div');
+    stepsContainer.className = 'sequencer-steps';
+    stepsContainer.style.cssText = `
+      display: flex;
+      flex: 1;
+      gap: 2px;
+    `;
+    
+    for (let i = 0; i < stepCount; i++) {
+      const step = document.createElement('button');
+      step.type = 'button';
+      step.className = 'sequencer-step';
+      step.dataset.instrument = inst.id;
+      step.dataset.step = i;
+      step.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
+      
+      const beatStart = i % stepsPerBeat === 0;
+      step.style.cssText = `
+        flex: 1;
+        min-width: ${stepCount > 16 ? '28px' : '36px'};
+        height: ${stepCount > 16 ? '38px' : '44px'};
+        border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
+        border-radius: 6px;
+        background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
+        cursor: pointer;
+        transition: all 0.15s ease;
+        padding: 0;
+      `;
+      
+      step.addEventListener('click', () => {
+        state[inst.id][i] = !state[inst.id][i];
+        const beatStart = i % stepsPerBeat === 0;
+        step.style.background = state[inst.id][i] 
+          ? inst.color 
+          : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
+        step.style.borderColor = state[inst.id][i]
+          ? 'transparent'
+          : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
+        
+        if (state[inst.id][i]) {
+          playSound(inst.id);
         }
-        return !lockedExplicitly;
-    }).map(i => i.id);
-
-    // If no tracks are explicitly interactive (L3/L4 only check hihat), we default to checking the user-editable ones.
-    const tracksToCheck = sequencers.filter(s => interactiveTrackIds.includes(s.getId()));
-
-    // If tracksToCheck is empty (shouldn't happen in the current curriculum structure but for safety), check all.
-    const finalTracksToCheck = tracksToCheck.length > 0 ? tracksToCheck : sequencers;
-
-    function checkCompletionState() {
-        const allSolved = finalTracksToCheck.every(s => s.isSolved());
-
-        const solvedCount = finalTracksToCheck.filter(s => s.isSolved()).length;
-        const totalChecks = finalTracksToCheck.length;
-
-        if (allSolved) {
-            statusEl.textContent = `Congrats! All patterns are correct. You can proceed to the next lesson.`;
-            nextLessonBtn.disabled = false;
-            nextLessonBtn.title = nextLessonUrl && nextLessonUrl !== 'explanation.html' ? "Go to next lesson" : "Back to overview";
-        } else {
-             statusEl.textContent = `Progress: ${solvedCount}/${totalChecks} patterns correct. Keep going.`;
-             nextLessonBtn.disabled = true;
-             nextLessonBtn.title = "Complete the exercise to unlock";
+        
+        // Auto-save if enabled
+        if (autoSaveState) {
+          savePatternState(lessonKey + '-pattern', state);
         }
-
-        // Handle Lesson 5 nav explicitly as it links back to overview
-        if (lessonKey === "mpl-lesson5-progress") {
-            const nextSpan = nextLessonBtn.querySelector('span');
-            if (nextSpan) nextSpan.textContent = 'Overview →';
-            if (allSolved) {
-                 nextLessonBtn.title = "Back to overview";
-            }
+      });
+      
+      // Hover effect
+      step.addEventListener('mouseenter', () => {
+        if (!state[inst.id][i]) {
+          step.style.background = 'rgba(255,255,255,0.1)';
         }
-
-        return allSolved;
+      });
+      
+      step.addEventListener('mouseleave', () => {
+        if (!state[inst.id][i]) {
+          const beatStart = i % stepsPerBeat === 0;
+          step.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
+        }
+      });
+      
+      stepsContainer.appendChild(step);
     }
+    
+    row.appendChild(stepsContainer);
+    grid.appendChild(row);
+  });
+  
+  wrapper.appendChild(grid);
+  container.appendChild(wrapper);
+  
+  // Instructions
+  if (instruments.length > 0 && instruments[0].instructions) {
+    const instructionsDiv = document.createElement('p');
+    instructionsDiv.style.cssText = `
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--text-muted, #7a8ba8);
+      line-height: 1.6;
+    `;
+    instructionsDiv.textContent = instruments[0].instructions;
+    container.appendChild(instructionsDiv);
+  }
+  
+  // Legend
+  const legend = document.createElement('div');
+  legend.className = 'sequencer-legend';
+  legend.style.cssText = `
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--text-muted, #7a8ba8);
+  `;
+  legend.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <div style="width: 16px; height: 16px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 3px;"></div>
+      <span>Beat start (downbeat)</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <div style="width: 16px; height: 16px; background: ${instruments[0]?.color || 'linear-gradient(135deg,#ff5a3d,#ffb28a)'}; border-radius: 3px;"></div>
+      <span>Active step</span>
+    </div>
+  `;
+  container.appendChild(legend);
+  
+  // Get control elements
+  const playBtn = document.getElementById('mpl-seq-play-all');
+  const stopBtn = document.getElementById('mpl-seq-stop-all');
+  const clearBtn = document.getElementById('mpl-seq-clear-all');
+  const checkBtn = document.getElementById('mpl-seq-check-all');
+  const statusEl = document.getElementById('mpl-seq-status');
+  const nextBtn = document.getElementById('mpl-next-lesson');
+  const presetControls = document.getElementById('mpl-preset-controls');
+  const exportBtn = document.getElementById('mpl-export-json');
 
-    function stopAll() {
-        stopScheduling();
-        document.querySelectorAll(".seq-step-playhead").forEach(el => el.classList.remove("seq-step-playhead"));
-    }
+  if (presetControls) {
+    presetControls.style.display = enablePresets ? 'flex' : 'none';
+  }
 
-    // Attach top-level controls
-    stopAllBtn.addEventListener("click", () => {
-        stopAll();
-        checkCompletionState();
-        statusEl.textContent = "Playback stopped.";
-    });
-
-    playAllBtn.addEventListener("click", () => {
-        startScheduling();
-        const playingTracks = instruments.map(i => i.label).join(', ');
-        statusEl.textContent = `Playing ${playingTracks} in sync.`;
-    });
-
-    checkAllBtn.addEventListener("click", () => {
-        stopAll();
-
-        finalTracksToCheck.forEach((s) => {
-            s.check && s.check();
+  if (exportBtn) {
+    exportBtn.style.display = enableExport ? 'inline-flex' : 'none';
+  }
+  
+  // Play button
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) return;
+      isPlaying = true;
+      currentStep = 0;
+      
+      const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
+      
+      const playStep = () => {
+        // Calculate swing delay for off-beat steps
+        let stepDelay = baseStepTime;
+        if (swing > 0 && currentStep % 2 === 1) {
+          // Apply swing to off-beat notes
+          stepDelay = baseStepTime * (1 + (swing / 100) * 0.5);
+        }
+        
+        // Highlight current step
+        document.querySelectorAll('.sequencer-step').forEach((el) => {
+          const stepIdx = parseInt(el.dataset.step);
+          if (stepIdx === currentStep) {
+            el.style.boxShadow = '0 0 12px rgba(0, 240, 255, 0.6), inset 0 0 8px rgba(0, 240, 255, 0.3)';
+            el.style.transform = 'scale(1.05)';
+          } else {
+            el.style.boxShadow = 'none';
+            el.style.transform = 'scale(1)';
+          }
         });
-
-        checkCompletionState(); // Updates statusEl based on new progress state
-    });
-
-    if (nextLessonBtn) {
-        nextLessonBtn.addEventListener("click", () => {
-            if (nextLessonBtn.disabled) return;
-            window.location.href = nextLessonUrl || "explanation.html";
+        
+        // Update step numbers highlight
+        document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
+          if (i === currentStep) {
+            el.style.color = 'var(--accent-cyan, #00f0ff)';
+            el.style.fontWeight = '700';
+          } else {
+            const beatStart = i % (stepCount / 4) === 0;
+            el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
+            el.style.fontWeight = beatStart ? '700' : '400';
+          }
         });
+        
+        // Play sounds for active steps
+        instruments.forEach(inst => {
+          if (state[inst.id][currentStep]) {
+            playSound(inst.id);
+          }
+        });
+        
+        currentStep = (currentStep + 1) % stepCount;
+        
+        if (isPlaying) {
+          intervalId = setTimeout(playStep, stepDelay);
+        }
+      };
+      
+      playStep();
+    });
+  }
+  
+  // Stop button
+  if (stopBtn) {
+    stopBtn.addEventListener('click', stopSequencer);
+  }
+  
+  // Clear button (sandbox mode)
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      instruments.forEach(inst => {
+        for (let i = 0; i < stepCount; i++) {
+          state[inst.id][i] = false;
+        }
+      });
+      
+      // Reset UI
+      document.querySelectorAll('.sequencer-step').forEach((el) => {
+        const stepIdx = parseInt(el.dataset.step);
+        const beatStart = stepIdx % (stepCount / 4) === 0;
+        el.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
+        el.style.borderColor = beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)';
+      });
+    });
+  }
+  
+  // Check button
+  if (checkBtn && !isSandbox) {
+    checkBtn.addEventListener('click', () => {
+      let allCorrect = true;
+      
+      instruments.forEach(inst => {
+        const target = inst.target || [];
+        const current = state[inst.id];
+        
+        // Check if pattern matches
+        for (let i = 0; i < stepCount; i++) {
+          const shouldBeActive = target.includes(i);
+          if (current[i] !== shouldBeActive) {
+            allCorrect = false;
+            break;
+          }
+        }
+      });
+      
+      if (allCorrect) {
+        if (statusEl) {
+          statusEl.textContent = messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.';
+          statusEl.style.color = 'var(--accent-green, #00ff9d)';
+        }
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.style.opacity = '1';
+        }
+        
+        // Save progress
+        try {
+          localStorage.setItem(lessonKey, 'completed');
+        } catch (e) {}
+      } else {
+        if (statusEl) {
+          statusEl.textContent = messages.error || 'Not quite right. Check the pattern and try again!';
+          statusEl.style.color = 'var(--accent-amber, #ffcc00)';
+        }
+        
+        // Show correct pattern briefly
+        instruments.forEach(inst => {
+          const target = inst.target || [];
+          document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
+            if (target.includes(i) && !state[inst.id][i]) {
+              el.style.outline = '2px solid rgba(0, 240, 255, 0.7)';
+              el.style.outlineOffset = '2px';
+              setTimeout(() => {
+                el.style.outline = 'none';
+                el.style.outlineOffset = '0';
+              }, 2000);
+            }
+          });
+        });
+      }
+    });
+  }
+  
+  // Next lesson button
+  if (nextBtn && nextLessonUrl) {
+    nextBtn.addEventListener('click', () => {
+      window.location.href = nextLessonUrl;
+    });
+    
+    // Check if already completed
+    try {
+      if (localStorage.getItem(lessonKey) === 'completed') {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
+        if (statusEl) {
+          statusEl.textContent = messages.alreadyCompleted || 'You\'ve already completed this exercise. Feel free to practice or move to the next lesson!';
+        }
+      }
+    } catch (e) {}
+  }
+  
+  // Listen for tempo changes
+  window.addEventListener('mpl-tempo-change', (e) => {
+    tempo = e.detail.tempo;
+    // If playing, restart with new tempo
+    if (isPlaying) {
+      stopSequencer();
+      playBtn?.click();
     }
-
-    // Initial state check
-    checkCompletionState();
+  });
+  
+  // Listen for swing changes
+  window.addEventListener('mpl-swing-change', (e) => {
+    swing = e.detail.swing;
+  });
+  
+  // Listen for preset save
+  window.addEventListener('mpl-preset-save', () => {
+    const presetData = {
+      state: state,
+      tempo: tempo,
+      swing: swing,
+      stepCount: stepCount
+    };
+    const presetJson = JSON.stringify(presetData);
+    const presetName = prompt('Enter preset name:', 'My Pattern');
+    if (presetName) {
+      try {
+        const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
+        presets[presetName] = presetData;
+        localStorage.setItem('mpl-presets', JSON.stringify(presets));
+        alert(`Preset "${presetName}" saved!`);
+      } catch (e) {
+        console.error('Failed to save preset:', e);
+      }
+    }
+  });
+  
+  // Listen for preset load
+  window.addEventListener('mpl-preset-load', () => {
+    try {
+      const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
+      const presetNames = Object.keys(presets);
+      if (presetNames.length === 0) {
+        alert('No presets saved yet!');
+        return;
+      }
+      const presetName = prompt(`Available presets:\n${presetNames.join('\n')}\n\nEnter preset name to load:`);
+      if (presetName && presets[presetName]) {
+        const preset = presets[presetName];
+        // Apply preset state
+        Object.keys(preset.state).forEach(instId => {
+          if (state[instId]) {
+            preset.state[instId].forEach((val, i) => {
+              state[instId][i] = val;
+            });
+          }
+        });
+        // Update UI
+        updateSequencerUI(state, instruments, stepCount);
+        alert(`Preset "${presetName}" loaded!`);
+      }
+    } catch (e) {
+      console.error('Failed to load preset:', e);
+    }
+  });
+  
+  // Load saved pattern state if exists
+  try {
+    const savedPattern = localStorage.getItem(lessonKey + '-pattern');
+    if (savedPattern) {
+      const parsed = JSON.parse(savedPattern);
+      Object.keys(parsed).forEach(instId => {
+        if (state[instId]) {
+          parsed[instId].forEach((val, i) => {
+            if (i < stepCount) state[instId][i] = val;
+          });
+        }
+      });
+      updateSequencerUI(state, instruments, stepCount);
+    }
+  } catch (e) {}
 }
+
+// Stop the sequencer
+function stopSequencer() {
+  isPlaying = false;
+  if (intervalId) {
+    clearTimeout(intervalId);
+    intervalId = null;
+  }
+  currentStep = 0;
+  
+  // Remove highlights
+  document.querySelectorAll('.sequencer-step').forEach(el => {
+    el.style.boxShadow = 'none';
+    el.style.transform = 'scale(1)';
+  });
+  
+  // Reset step number colors
+  const stepsPerBeat = stepCount / 4;
+  document.querySelectorAll('.sequencer-step-number').forEach((el, i) => {
+    const beatStart = i % stepsPerBeat === 0;
+    el.style.color = beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)';
+    el.style.fontWeight = beatStart ? '700' : '400';
+  });
+}
+
+// Update sequencer UI from state
+function updateSequencerUI(state, instruments, stepCount) {
+  const stepsPerBeat = stepCount / 4;
+  instruments.forEach(inst => {
+    document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
+      const beatStart = i % stepsPerBeat === 0;
+      el.style.background = state[inst.id][i] 
+        ? inst.color 
+        : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
+      el.style.borderColor = state[inst.id][i]
+        ? 'transparent'
+        : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
+    });
+  });
+}
+
+// Save pattern state to localStorage
+function savePatternState(key, state) {
+  try {
+    localStorage.setItem(key, JSON.stringify(state));
+  } catch (e) {}
+}
+
+// Export for use in lesson pages
+export { playSound, drumSounds };

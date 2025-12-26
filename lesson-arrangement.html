@@ -2,100 +2,658 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Arrangement Lab | Music Producer Lab</title>
+    <title>Arrangement Lab · Song Structure 101 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="explanation.css" />
+    <meta name="description" content="Learn the fundamentals of song arrangement. Understand bars, sections, and how to create a roadmap for your track." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+      /* Interactive Arrangement Builder */
+      .arrangement-builder {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .arrangement-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .section-btn {
+        padding: var(--space-sm) var(--space-md);
+        border: 2px solid transparent;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .section-btn.intro { background: rgba(0, 255, 157, 0.2); color: var(--accent-green); border-color: var(--accent-green); }
+      .section-btn.verse { background: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+      .section-btn.buildup { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); border-color: var(--accent-amber); }
+      .section-btn.chorus { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: var(--accent-purple); }
+      .section-btn.drop { background: rgba(255, 102, 178, 0.2); color: var(--accent-pink); border-color: var(--accent-pink); }
+      .section-btn.breakdown { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-color: #3b82f6; }
+      .section-btn.outro { background: rgba(107, 114, 128, 0.2); color: #9ca3af; border-color: #6b7280; }
+      
+      .section-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      .arrangement-timeline {
+        display: flex;
+        gap: 4px;
+        min-height: 100px;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        overflow-x: auto;
+        align-items: stretch;
+      }
+      
+      .timeline-section {
+        min-width: 80px;
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+      }
+      
+      .timeline-section:hover {
+        transform: scale(1.05);
+      }
+      
+      .timeline-section .section-name {
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+      
+      .timeline-section .section-bars {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        opacity: 0.8;
+      }
+      
+      .timeline-section .remove-btn {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      
+      .timeline-section:hover .remove-btn {
+        opacity: 1;
+      }
+      
+      .timeline-section.intro { background: rgba(0, 255, 157, 0.3); color: var(--accent-green); }
+      .timeline-section.verse { background: rgba(0, 240, 255, 0.3); color: var(--accent-cyan); }
+      .timeline-section.buildup { background: rgba(255, 193, 7, 0.3); color: var(--accent-amber); }
+      .timeline-section.chorus { background: rgba(168, 85, 247, 0.3); color: var(--accent-purple); }
+      .timeline-section.drop { background: rgba(255, 102, 178, 0.3); color: var(--accent-pink); }
+      .timeline-section.breakdown { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+      .timeline-section.outro { background: rgba(107, 114, 128, 0.3); color: #d1d5db; }
+      
+      .timeline-placeholder {
+        min-width: 100px;
+        padding: var(--space-lg);
+        border: 2px dashed var(--border-light);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      
+      .arrangement-stats {
+        display: flex;
+        gap: var(--space-xl);
+        margin-top: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        flex-wrap: wrap;
+      }
+      
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+      
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .stat-value {
+        font-family: var(--font-mono);
+        font-size: 1.25rem;
+        color: var(--accent-cyan);
+        font-weight: 700;
+      }
+      
+      .energy-graph {
+        margin-top: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .energy-graph-title {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-sm);
+        text-transform: uppercase;
+      }
+      
+      .energy-bars {
+        display: flex;
+        gap: 2px;
+        height: 60px;
+        align-items: flex-end;
+      }
+      
+      .energy-bar {
+        flex: 1;
+        background: var(--gradient-primary);
+        border-radius: 2px 2px 0 0;
+        transition: height 0.3s;
+      }
+
+      /* Section Info Cards */
+      .section-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .section-info-card {
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border-left: 4px solid;
+      }
+      
+      .section-info-card.intro { border-color: var(--accent-green); }
+      .section-info-card.buildup { border-color: var(--accent-amber); }
+      .section-info-card.drop { border-color: var(--accent-pink); }
+      .section-info-card.breakdown { border-color: #3b82f6; }
+      .section-info-card.outro { border-color: #6b7280; }
+      
+      .section-info-card h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .section-info-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .section-info-card .bars-badge {
+        display: inline-block;
+        padding: var(--space-xs) var(--space-sm);
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+    </style>
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <a href="index.html" aria-label="Music Producer Lab Home">
-              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-            </a>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav lesson-nav--pinned">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <div class="nav-actions">
+          <a href="labs.html#arrangement" class="btn btn-secondary btn-sm">Back to Labs</a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+
+        <section class="hero" aria-label="Arrangement Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Song Structure 101:
+              <span>Build your roadmap</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn how to structure your tracks for maximum impact. Understand the building blocks of a song—<strong>intro</strong>, <strong>buildup</strong>, <strong>drop</strong>, <strong>breakdown</strong>, and <strong>outro</strong>—and how they create tension and release.
+            </p>
           </div>
-          <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
-              <span>Back to overview</span>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Arrangement basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Song structure overview</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Structure</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>10–15 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Song sections</div>
+                  <div class="hero-visual-pill-tag">Energy flow</div>
+                  <div class="hero-visual-pill-tag">Bar counting</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works in any DAW</span>
+                  <span>Ableton · FL · Logic · others</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Understanding song sections">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">Understanding the building blocks.</h2>
+            <p class="section-body">
+              Most electronic tracks follow a similar structural pattern. Each section serves a specific purpose in the listener's journey.
+            </p>
+            <div class="section-info-grid">
+              <div class="section-info-card intro">
+                <h4>🟢 Intro</h4>
+                <p>Sets the mood, introduces key elements gradually. Often filtered or minimal.</p>
+                <span class="bars-badge">4-8 bars typical</span>
+              </div>
+              <div class="section-info-card buildup">
+                <h4>🟡 Buildup</h4>
+                <p>Creates tension with risers, snare rolls, filter sweeps. Energy increases.</p>
+                <span class="bars-badge">8-16 bars typical</span>
+              </div>
+              <div class="section-info-card drop">
+                <h4>🔴 Drop</h4>
+                <p>Maximum energy! Full arrangement with kick, bass, and main elements.</p>
+                <span class="bars-badge">16 bars typical</span>
+              </div>
+              <div class="section-info-card breakdown">
+                <h4>🔵 Breakdown</h4>
+                <p>Contrast section. Remove kick/bass. Often melodic or atmospheric.</p>
+                <span class="bars-badge">8 bars typical</span>
+              </div>
+              <div class="section-info-card outro">
+                <h4>⚫ Outro</h4>
+                <p>Winds down. Remove elements gradually. Useful for DJ mixing.</p>
+                <span class="bars-badge">8 bars typical</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Bars and counting.</h2>
+            <p class="section-body">
+              In 4/4 time, most sections are built in <strong>4-bar or 8-bar phrases</strong>. This creates a natural sense of resolution and keeps listeners engaged.
+            </p>
+            <ul class="section-list">
+              <li>A <strong>bar</strong> has 4 beats in 4/4 time</li>
+              <li>Most sections are <strong>4, 8, or 16 bars</strong> long</li>
+              <li>Changes usually happen on <strong>even bar numbers</strong> (bar 4, 8, 16, etc.)</li>
+              <li>At <strong>120 BPM</strong>: 8 bars = 16 seconds, 16 bars = 32 seconds</li>
+            </ul>
+            <div class="instruction-line" style="margin-top: var(--space-md);">
+              <p class="instruction">
+                <strong>Listen to your favorite tracks</strong> and count the bars. You'll notice most transitions happen on 4s and 8s!
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Interactive Exercise Section -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Build Your Own Arrangement</h2>
+            <p class="section-body">
+              Use the interactive builder below to create a <strong>typical EDM arrangement</strong>. Click on section buttons to add them to your timeline.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Click the section buttons</strong> to add them to your timeline (Intro, Buildup, Drop, etc.).</li>
+                <li>Try to create a structure with <strong>70-90 bars</strong> total (about 3 minutes at 120 BPM).</li>
+                <li>Notice the <strong>energy graph</strong> — it should have peaks (drops) and valleys (breakdowns).</li>
+                <li>Click on a section in the timeline to <strong>remove it</strong> if you need to change your arrangement.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> A classic EDM structure is: Intro → Buildup → Drop → Breakdown → Buildup → Drop → Outro. This creates two "peaks" of energy!
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Arrangement Builder -->
+        <section class="arrangement-builder">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Arrangement Builder</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-md);">Click sections to add them to your timeline</h2>
+          
+          <div class="arrangement-toolbar">
+            <button class="section-btn intro" data-section="intro" data-bars="8" data-energy="30">
+              <span>+ Intro</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn buildup" data-section="buildup" data-bars="16" data-energy="60">
+              <span>+ Buildup</span>
+              <small>(16 bars)</small>
+            </button>
+            <button class="section-btn drop" data-section="drop" data-bars="16" data-energy="100">
+              <span>+ Drop</span>
+              <small>(16 bars)</small>
+            </button>
+            <button class="section-btn breakdown" data-section="breakdown" data-bars="8" data-energy="40">
+              <span>+ Breakdown</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn outro" data-section="outro" data-bars="8" data-energy="20">
+              <span>+ Outro</span>
+              <small>(8 bars)</small>
             </button>
           </div>
-          <!-- Mobile hamburger menu -->
-          <button 
-            class="mpl-hamburger" 
-            id="mpl-hamburger"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="mpl-mobile-nav"
-          >
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-          </button>
-        </header>
-        
-        <!-- Mobile navigation overlay -->
-        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
-          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
-          <a href="explanation.html" class="btn btn-outline"><span>All lessons</span></a>
-        </nav>
+          
+          <div class="arrangement-timeline" id="arrangement-timeline">
+            <div class="timeline-placeholder">Click a section above to start building</div>
+          </div>
+          
+          <div class="arrangement-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Bars</span>
+              <span class="stat-value" id="total-bars">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Duration (120 BPM)</span>
+              <span class="stat-value" id="total-duration">0:00</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Sections</span>
+              <span class="stat-value" id="total-sections">0</span>
+            </div>
+          </div>
+          
+          <div class="energy-graph">
+            <div class="energy-graph-title">Energy Flow</div>
+            <div class="energy-bars" id="energy-bars">
+              <!-- Energy bars will be generated by JS -->
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: var(--space-md); margin-top: var(--space-lg); flex-wrap: wrap;">
+            <button class="btn btn-outline" id="clear-arrangement">Clear All</button>
+            <button class="btn btn-outline" id="load-template">Load Template</button>
+            <button class="btn btn-primary" id="check-arrangement">Check Arrangement</button>
+          </div>
+          
+          <div class="sequencer-status" id="arrangement-status" style="margin-top: var(--space-md);">
+            Build an arrangement with 70-90 bars to complete this exercise.
+          </div>
+        </section>
 
-        <main id="main-content">
-        <section class="hero" id="lesson-hero" aria-label="Arrangement Lab"></section>
+        <section class="sections-grid" aria-label="Energy and arrangement" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Key Concept</div>
+            <h2 class="section-title">Energy flow and tension.</h2>
+            <p class="section-body">
+              Great arrangements aren't flat—they breathe. Think of your song as a journey with peaks and valleys.
+            </p>
+            <ul class="section-list">
+              <li><strong>Build tension</strong> — Remove elements, use filters, add risers</li>
+              <li><strong>Create release</strong> — Drop everything at once for maximum impact</li>
+              <li><strong>Contrast matters</strong> — Quiet breakdowns make loud drops hit harder</li>
+              <li><strong>Two drops</strong> — Most EDM tracks have two main energy peaks</li>
+            </ul>
+          </article>
 
-        <section class="sections-grid" id="lesson-overview" aria-label="Lesson overview"></section>
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>Songs are built from sections: intro, buildup, drop, breakdown, outro</li>
+              <li>Most sections are 4, 8, or 16 bars long</li>
+              <li>Energy contrast between sections creates interest</li>
+              <li>A typical track is 70-100 bars (3-4 minutes at 120 BPM)</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#arrangement" class="btn btn-primary">
+                Back to Arrangement Labs
+              </a>
+            </div>
+          </article>
+        </section>
 
-        <section class="sections-grid" id="lesson-steps" aria-label="Lesson steps"></section>
-
-        <section class="sections-grid" id="lesson-outcomes" aria-label="Lesson outcomes"></section>
-
-        <section class="sections-grid" id="lesson-navigation" aria-label="Lesson navigation"></section>
-
-        </main>
-        <footer class="footer">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Arrangement Lab</div>
-          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#arrangement">Back to Arrangement Labs</a>
+              </div>
+            </div>
+          </div>
         </footer>
       </div>
     </div>
 
-    <script type="module">
-      import { renderLessonPage } from './lesson-template.js';
-      renderLessonPage('arrangement');
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
       
-      // Mobile hamburger menu toggle
-      const hamburger = document.getElementById('mpl-hamburger');
-      const mobileNav = document.getElementById('mpl-mobile-nav');
+      // Arrangement Builder Logic
+      const timeline = document.getElementById('arrangement-timeline');
+      const totalBarsEl = document.getElementById('total-bars');
+      const totalDurationEl = document.getElementById('total-duration');
+      const totalSectionsEl = document.getElementById('total-sections');
+      const energyBarsEl = document.getElementById('energy-bars');
+      const statusEl = document.getElementById('arrangement-status');
       
-      if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-          const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-          hamburger.setAttribute('aria-expanded', !isExpanded);
-          mobileNav.classList.toggle('is-open');
-          document.body.style.overflow = isExpanded ? '' : 'hidden';
+      let sections = [];
+      
+      // Add section buttons
+      document.querySelectorAll('.section-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const section = {
+            type: btn.dataset.section,
+            bars: parseInt(btn.dataset.bars),
+            energy: parseInt(btn.dataset.energy)
+          };
+          sections.push(section);
+          updateTimeline();
         });
+      });
+      
+      // Clear button
+      document.getElementById('clear-arrangement').addEventListener('click', () => {
+        sections = [];
+        updateTimeline();
+      });
+      
+      // Load template
+      document.getElementById('load-template').addEventListener('click', () => {
+        sections = [
+          { type: 'intro', bars: 8, energy: 30 },
+          { type: 'buildup', bars: 16, energy: 60 },
+          { type: 'drop', bars: 16, energy: 100 },
+          { type: 'breakdown', bars: 8, energy: 40 },
+          { type: 'buildup', bars: 8, energy: 70 },
+          { type: 'drop', bars: 16, energy: 100 },
+          { type: 'outro', bars: 8, energy: 20 }
+        ];
+        updateTimeline();
+      });
+      
+      // Check arrangement
+      document.getElementById('check-arrangement').addEventListener('click', () => {
+        const totalBars = sections.reduce((sum, s) => sum + s.bars, 0);
         
-        mobileNav.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            hamburger.setAttribute('aria-expanded', 'false');
-            mobileNav.classList.remove('is-open');
-            document.body.style.overflow = '';
+        if (sections.length === 0) {
+          statusEl.textContent = "Add some sections first!";
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        if (totalBars < 70) {
+          statusEl.textContent = `Almost there! Your arrangement is ${totalBars} bars. Try adding more sections to reach 70+ bars.`;
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        if (totalBars > 120) {
+          statusEl.textContent = `Your arrangement is quite long (${totalBars} bars). Consider removing some sections for a tighter track.`;
+          statusEl.className = 'sequencer-status';
+          return;
+        }
+        
+        // Check for good structure
+        const hasIntro = sections.some(s => s.type === 'intro');
+        const hasDrop = sections.some(s => s.type === 'drop');
+        const hasOutro = sections.some(s => s.type === 'outro');
+        
+        if (hasIntro && hasDrop && hasOutro && totalBars >= 70 && totalBars <= 100) {
+          statusEl.textContent = `Perfect! Your ${totalBars}-bar arrangement has great structure with intro, drop(s), and outro. Well done!`;
+          statusEl.className = 'sequencer-status success';
+        } else if (totalBars >= 70) {
+          statusEl.textContent = `Good job! ${totalBars} bars is a solid length. Consider adding an intro, drop, or outro if missing.`;
+          statusEl.className = 'sequencer-status success';
+        }
+      });
+      
+      function updateTimeline() {
+        if (sections.length === 0) {
+          timeline.innerHTML = '<div class="timeline-placeholder">Click a section above to start building</div>';
+          energyBarsEl.innerHTML = '';
+          totalBarsEl.textContent = '0';
+          totalDurationEl.textContent = '0:00';
+          totalSectionsEl.textContent = '0';
+          statusEl.textContent = 'Build an arrangement with 70-90 bars to complete this exercise.';
+          statusEl.className = 'sequencer-status';
+          return;
+        }
+        
+        // Build timeline
+        timeline.innerHTML = sections.map((section, index) => `
+          <div class="timeline-section ${section.type}" data-index="${index}">
+            <button class="remove-btn" data-index="${index}">×</button>
+            <span class="section-name">${section.type}</span>
+            <span class="section-bars">${section.bars} bars</span>
+          </div>
+        `).join('');
+        
+        // Add remove handlers
+        timeline.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const index = parseInt(btn.dataset.index);
+            sections.splice(index, 1);
+            updateTimeline();
           });
         });
         
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
-            hamburger.setAttribute('aria-expanded', 'false');
-            mobileNav.classList.remove('is-open');
-            document.body.style.overflow = '';
-            hamburger.focus();
+        // Update stats
+        const totalBars = sections.reduce((sum, s) => sum + s.bars, 0);
+        const durationSeconds = (totalBars * 4 * 60) / 120; // at 120 BPM
+        const minutes = Math.floor(durationSeconds / 60);
+        const seconds = Math.floor(durationSeconds % 60);
+        
+        totalBarsEl.textContent = totalBars;
+        totalDurationEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        totalSectionsEl.textContent = sections.length;
+        
+        // Update energy graph
+        updateEnergyGraph();
+      }
+      
+      function updateEnergyGraph() {
+        if (sections.length === 0) {
+          energyBarsEl.innerHTML = '';
+          return;
+        }
+        
+        // Create energy bars proportional to bars in each section
+        let bars = [];
+        sections.forEach(section => {
+          // Add bars proportional to the section length
+          const numBars = Math.max(1, Math.floor(section.bars / 4));
+          for (let i = 0; i < numBars; i++) {
+            bars.push(section.energy);
           }
         });
+        
+        energyBarsEl.innerHTML = bars.map(energy => 
+          `<div class="energy-bar" style="height: ${energy}%;"></div>`
+        ).join('');
       }
+      
+      // Initialize
+      updateTimeline();
     </script>
   </body>
 </html>

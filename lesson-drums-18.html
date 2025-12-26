@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 18 · Genre Fusion & Hybrid Drums | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Combine genre elements for unique sounds. Fuse electronic and acoustic, blend cultural rhythms." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Fusion Mixer */
+      .fusion-mixer {
+        background: linear-gradient(135deg, #2d3436, #1a1a2e);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .mixer-channels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .channel {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        text-align: center;
+      }
+      
+      .channel .genre-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .channel .fader {
+        width: 8px;
+        height: 100px;
+        background: var(--bg-tertiary);
+        border-radius: 4px;
+        margin: 0 auto var(--space-sm);
+        position: relative;
+      }
+      
+      .channel .fader-handle {
+        width: 20px;
+        height: 12px;
+        background: var(--accent-coral);
+        border-radius: 2px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+      }
+      
+      .channel .percentage {
+        font-family: monospace;
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+      }
+      
+      /* Fusion Cards */
+      .fusion-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .fusion-card {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      .fusion-card:hover {
+        border-color: var(--accent-cyan);
+      }
+      
+      .fusion-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .fusion-card .genres {
+        display: flex;
+        gap: var(--space-xs);
+        margin-bottom: var(--space-md);
+      }
+      
+      .fusion-card .genre-tag {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: var(--radius-sm);
+        background: var(--accent-coral);
+        color: white;
+      }
+      
+      .fusion-card .genre-tag:nth-child(2) {
+        background: var(--accent-cyan);
+      }
+      
+      .fusion-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .fusion-card .artists {
+        font-size: 0.8rem;
+        color: var(--text-primary);
+      }
+      
+      /* Hybrid Techniques */
+      .technique-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-xl) 0;
+      }
+      
+      .technique-item {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        text-align: center;
+      }
+      
+      .technique-item .icon {
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .technique-item h4 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .technique-item p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SITE HEADER -->
+    <header class="site-header glass">
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
+        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <!-- HERO -->
+      <section class="hero">
+        <p class="hero-eyebrow">Lesson 18 · Drums & Rhythm</p>
+        <h1 class="hero-title">Genre Fusion &<br><span class="highlight">Hybrid Drums</span></h1>
+        <p class="hero-subtitle">Combine <strong>genre elements</strong> for unique sounds. Blend <strong>electronic and acoustic</strong>, fuse <strong>cultural rhythms</strong>, and develop your <strong>signature style</strong>.</p>
+      </section>
+
+      <!-- WHAT IS FUSION -->
+      <section class="card">
+        <h2><span class="icon">🔀</span> The Art of Genre Fusion</h2>
+        <p class="section-intro">
+          Genre fusion takes elements from <strong>two or more styles</strong> and combines them thoughtfully. The best fusions don't feel forced—they create something <strong>new and exciting</strong> while honoring the source genres.
+        </p>
+        
+        <ul class="check-list">
+          <li><strong>Identify core elements:</strong> What makes each genre unique?</li>
+          <li><strong>Find common ground:</strong> Where do the genres naturally overlap?</li>
+          <li><strong>Balance proportions:</strong> 50/50 isn't always best—experiment with ratios</li>
+          <li><strong>Maintain groove:</strong> The fusion should still feel danceable/musical</li>
+          <li><strong>Add your voice:</strong> Personal touches make fusions authentic</li>
+        </ul>
+      </section>
+
+      <!-- FUSION EXAMPLES -->
+      <section class="card">
+        <h2><span class="icon">🎛️</span> Popular Fusion Combinations</h2>
+        <p class="section-intro">
+          These fusion styles have proven commercially successful and artistically interesting.
+        </p>
+        
+        <div class="fusion-cards">
+          <div class="fusion-card">
+            <h3>Trap House</h3>
+            <div class="genres">
+              <span class="genre-tag">Trap</span>
+              <span class="genre-tag">House</span>
+            </div>
+            <p>4/4 house kick with trap hi-hats and 808s. High energy with club appeal.</p>
+            <div class="artists">Artists: DJ Snake, Skrillex, Diplo</div>
+          </div>
+          
+          <div class="fusion-card">
+            <h3>Afro House</h3>
+            <div class="genres">
+              <span class="genre-tag">Afrobeat</span>
+              <span class="genre-tag">Deep House</span>
+            </div>
+            <p>African percussion and melodies over house framework. Warm and groovy.</p>
+            <div class="artists">Artists: Black Coffee, Keinemusik, &ME</div>
+          </div>
+          
+          <div class="fusion-card">
+            <h3>UK Garage / 2-Step</h3>
+            <div class="genres">
+              <span class="genre-tag">R&B</span>
+              <span class="genre-tag">House</span>
+            </div>
+            <p>Shuffled beats, R&B vocals, house tempos. Sophisticated and soulful.</p>
+            <div class="artists">Artists: Disclosure, Kaytranada, PinkPantheress</div>
+          </div>
+          
+          <div class="fusion-card">
+            <h3>Future Bass</h3>
+            <div class="genres">
+              <span class="genre-tag">Trap</span>
+              <span class="genre-tag">Pop</span>
+            </div>
+            <p>Trap drums, lush synths, emotional chords. Accessible yet innovative.</p>
+            <div class="artists">Artists: Flume, Odesza, San Holo</div>
+          </div>
+          
+          <div class="fusion-card">
+            <h3>Lo-Fi House</h3>
+            <div class="genres">
+              <span class="genre-tag">Lo-Fi Hip Hop</span>
+              <span class="genre-tag">House</span>
+            </div>
+            <p>Dusty samples, house drums, vinyl textures. Warm and nostalgic.</p>
+            <div class="artists">Artists: DJ Boring, Mall Grab, Ross From Friends</div>
+          </div>
+          
+          <div class="fusion-card">
+            <h3>Latin Trap</h3>
+            <div class="genres">
+              <span class="genre-tag">Reggaeton</span>
+              <span class="genre-tag">Trap</span>
+            </div>
+            <p>Dembow meets trap beats. Global hit formula.</p>
+            <div class="artists">Artists: Bad Bunny, J Balvin, Ozuna</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HYBRID TECHNIQUES -->
+      <section class="card">
+        <h2><span class="icon">🔧</span> Hybrid Drum Techniques</h2>
+        <p class="section-intro">
+          These techniques help blend acoustic and electronic elements seamlessly.
+        </p>
+        
+        <div class="technique-grid">
+          <div class="technique-item">
+            <div class="icon">🥁</div>
+            <h4>Acoustic + Electronic</h4>
+            <p>Layer sampled drums under electronic kicks for organic punch.</p>
+          </div>
+          <div class="technique-item">
+            <div class="icon">🎚️</div>
+            <h4>Parallel Processing</h4>
+            <p>Blend clean and processed versions for best of both worlds.</p>
+          </div>
+          <div class="technique-item">
+            <div class="icon">📊</div>
+            <h4>Tempo Blending</h4>
+            <p>Use half-time feels in uptempo tracks for contrast.</p>
+          </div>
+          <div class="technique-item">
+            <div class="icon">🎵</div>
+            <h4>Pattern Switching</h4>
+            <p>Alternate between genre patterns in different sections.</p>
+          </div>
+          <div class="technique-item">
+            <div class="icon">🌍</div>
+            <h4>Cultural Elements</h4>
+            <p>Add world percussion to electronic frameworks.</p>
+          </div>
+          <div class="technique-item">
+            <div class="icon">🔊</div>
+            <h4>Sound Selection</h4>
+            <p>Mix vintage and modern drum sounds for unique texture.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCISE -->
+      <section class="card exercise-card">
+        <h2><span class="icon">✏️</span> Exercise: Create a Trap House Beat</h2>
+        <div class="exercise-info">
+          <p><strong>Task:</strong> Blend trap hi-hats with a house kick pattern.</p>
+          <ol class="exercise-steps">
+            <li>Start with a 4-on-the-floor kick (house element).</li>
+            <li>Add rolling trap hi-hats with triplet variations.</li>
+            <li>Use an 808 bass instead of typical house bass.</li>
+            <li>Add a clap on beats 2 and 4 for backbeat.</li>
+          </ol>
+        </div>
+        
+        <!-- SEQUENCER -->
+        <div class="sequencer-container">
+          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="margin:0;">Genre Fusion Sequencer</h3>
+            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
+              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+            </div>
+          </div>
+          <div class="sequencer" id="mpl-sequencer-collection"></div>
+          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
+          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Balance is key:</strong> If it sounds like house with weird hi-hats OR trap with a weird kick, adjust the proportions until both genres shine.
+        </div>
+      </section>
+
+      <!-- KEY TAKEAWAYS -->
+      <section class="card">
+        <h2><span class="icon">🎓</span> Key Takeaways</h2>
+        <ul class="check-list">
+          <li><strong>Study both genres:</strong> Know what makes each one tick before fusing</li>
+          <li><strong>Find natural overlaps:</strong> Some genres blend more easily than others</li>
+          <li><strong>Experiment with ratios:</strong> 70/30 splits often work better than 50/50</li>
+          <li><strong>Layer thoughtfully:</strong> Combine acoustic and electronic elements</li>
+          <li><strong>Trust your ears:</strong> If it grooves, it works—regardless of "rules"</li>
+        </ul>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="lesson-nav">
+        <a href="lesson-drums-17.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
+        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
+        <a href="lesson-drums-19.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
+      </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© 2025 Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="#">Projects</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+      const instruments = [
+        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "4/4 house kick" },
+        { id: "clap", label: "Clap", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Backbeat clap" },
+        { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "Rolling hi-hats" }
+      ];
+      initDrumSequencer(instruments, "mpl-drums-18-progress", "lesson-drums-19.html");
+    </script>
+  </body>
+</html>

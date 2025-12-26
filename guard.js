@@ -1,84 +1,25 @@
-import { getAuthState, onAuthStateChange, refreshAuthState } from "./auth.js";
-import {
-  ensureLessonAccess,
-  PREMIUM_CHECKOUT_URL,
-  PREMIUM_GATE_URL,
-} from "./lesson-access.js";
-
-// Minimal guards to block premium sections/pages without changing layout.
+/**
+ * Page access guard
+ * Simple implementation that allows access to all pages
+ * Can be extended later for premium features
+ */
 
 export async function guardPageAccess(options = {}) {
-  const { requiresPremium = false, fallbackUrl = PREMIUM_GATE_URL, lessonUrl } = options;
-  const currentState = getAuthState();
-
-  if (requiresPremium) {
-    const gate = ensureLessonAccess({
-      lessonUrl,
-      requiresPaid: true,
-      fallbackUrl,
-    });
-
-    if (!gate.allowed) {
-      return { allowed: false, state: currentState };
-    }
-  }
-
-  let state = currentState;
-  try {
-    state = await refreshAuthState();
-  } catch (error) {
-    console.warn("[mpl] Guard refresh failed", error);
-  }
-
-  if (requiresPremium && state.status !== "premium") {
-    if (fallbackUrl) {
-      window.location.href = fallbackUrl;
-    }
-    return { allowed: false, state };
-  }
-
-  return { allowed: true, state };
+  // For now, allow access to all pages
+  // In the future, this can check for premium subscription
+  return {
+    allowed: true,
+    reason: 'access_granted'
+  };
 }
 
-export function guardPremiumSections(options = {}) {
-  const selector = options.selector || "[data-mpl-premium]";
-  const statusSelector = options.statusSelector || "[data-mpl-premium-status]";
-  const loginUrl = options.loginUrl || "/explanation.html?auth=login";
-  const purchaseUrl = options.purchaseUrl || PREMIUM_CHECKOUT_URL;
+export function isPremiumUser() {
+  // Check localStorage for premium status
+  return localStorage.getItem('mpl-premium') === 'true';
+}
 
-  const sections = Array.from(document.querySelectorAll(selector));
-  if (!sections.length) return getAuthState();
-
-  const applyState = (state) => {
-    sections.forEach((section) => {
-      const locked = state.status !== "premium";
-      section.dataset.locked = locked ? "true" : "false";
-      section.setAttribute("aria-disabled", locked ? "true" : "false");
-
-      const statusEl = section.matches(statusSelector)
-        ? section
-        : section.querySelector(statusSelector);
-
-      if (statusEl) {
-        if (!locked) {
-          statusEl.textContent = "Contenuto premium sbloccato.";
-        } else if (state.status === "logged") {
-          statusEl.textContent = "Contenuto riservato: aggiorna a Premium per continuare.";
-        } else {
-          statusEl.textContent = "Accedi o acquista per sbloccare questo contenuto.";
-        }
-      }
-
-      const loginCta = section.querySelector("[data-mpl-login-cta]");
-      const upgradeCta = section.querySelector("[data-mpl-upgrade-cta]");
-      if (loginCta) loginCta.href = loginUrl;
-      if (upgradeCta) upgradeCta.href = purchaseUrl;
-    });
-  };
-
-  applyState(getAuthState());
-  refreshAuthState().then(applyState).catch(() => applyState(getAuthState()));
-  onAuthStateChange(applyState);
-
-  return getAuthState();
+export function requiresPremium(lessonUrl) {
+  // Define which lessons require premium (none for now)
+  const premiumLessons = [];
+  return premiumLessons.includes(lessonUrl);
 }

@@ -3,60 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <title>Lesson 1 · Drum Pattern · 4 on the floor | Music Producer Lab</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="Free Lesson 1 from Music Producer Lab: create your first 4 on the floor drum pattern and understand bars, beats and subdivisions."
-    />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="explanation.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Free Lesson 1 from Music Producer Lab: create your first 4 on the floor drum pattern and understand bars, beats and subdivisions." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="page">
-      <div class="page-inner">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <a href="index.html" aria-label="Music Producer Lab Home">
-              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-            </a>
-          </div>
-          <div class="mpl-nav-actions">
-            <button
-              class="btn btn-outline"
-              type="button"
-              onclick="window.location.href='explanation.html'"
-            >
-              <span>Back to overview</span>
-            </button>
-          </div>
-          <!-- Mobile hamburger menu -->
-          <button 
-            class="mpl-hamburger" 
-            id="mpl-hamburger"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="mpl-mobile-nav"
-          >
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-          </button>
-        </header>
-        
-        <!-- Mobile navigation overlay -->
-        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
-          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
-          <a href="explanation.html" class="btn btn-outline"><span>All lessons</span></a>
-          <a href="lesson-drums-2.html" class="btn btn-primary"><span>Next lesson</span></a>
-        </nav>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <nav class="lesson-nav lesson-nav--pinned">
+      <div class="lesson-nav-inner">
+        <a href="/" class="lesson-nav-logo">
+          <img src="mpl-logo-icon.svg" alt="">
+          <span>MPL</span>
+        </a>
+        <div class="nav-actions">
+          <a href="labs.html#drums" class="btn btn-secondary btn-sm">Back to Labs</a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="lesson-content">
+      <div class="page-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
 
-        <main id="main-content">
         <section class="hero" aria-label="Lesson 1 · Drum pattern">
           <div class="hero-copy">
             <div class="hero-copy-eyebrow">Lesson 1 · Drum pattern</div>
@@ -168,75 +139,88 @@
           </article>
         </section>
 
-        <section class="sections-grid" aria-label="Interactive 4 on the floor sequencer">
-          <article class="section">
-            <div class="section-eyebrow">Step 5 · Exercise</div>
-            <h2 class="section-title">Place the kicks in a 16-step bar.</h2>
-            <p class="section-body">
-              Now you’ll program the kick pattern in a <strong>16-step</strong>
-              bar, divided into <strong>four beats</strong>. Each beat has
-              <strong>four 1/16 notes</strong>, so the full bar has 16 slots.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Your task: place the kick drums so that you get a classic
-              <strong>4 on the floor</strong> loop in 16th-note view.
-              Imagine the steps are numbered from 1 to 16 across the bar.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Think in <strong>beats</strong>: beat 1 is steps 1–4, beat 2 is
-              5–8, beat 3 is 9–12, beat 4 is 13–16. Put the kicks where they
-              would normally land in a 4 on the floor groove. When you’re ready,
-              hit <strong>Check pattern</strong> to see the solution.
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Interactive sequencer</div>
-            <h2 class="section-title">16-step instrument grid (Kick)</h2>
-            <div class="sequencer" id="mpl-sequencer-collection">
-              <!-- Kick sequencer will be created here -->
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Build the 4-on-the-Floor Kick Pattern</h2>
+            <p class="section-body">In this exercise, you'll create the classic <strong>"4 on the floor"</strong> kick pattern - the foundation of house, techno, and most dance music.</p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Click on steps 1, 5, 9, and 13</strong> in the Kick row to place your kicks.</li>
+            <li>These positions correspond to the four beats of the bar (quarter notes).</li>
+            <li>Press <strong>Play</strong> to hear your pattern loop.</li>
+            <li>When satisfied, click <strong>Check Exercise</strong> to verify your answer.</li>
+              </ol>
             </div>
 
-            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
-              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-                <span>Play</span>
-              </button>
-              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-                <span>Stop</span>
-              </button>
-              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-                <span>Check exercise</span>
-              </button>
+            <div class="exercise-tip">
+              <strong>Tip:</strong> Think of counting 1-2-3-4. Each number gets a kick drum hit!
+            </div>
 
-              <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                  <span>Next lesson →</span>
-                </button>
+            <div class="pattern-hint">
+              <div class="pattern-hint-label">Target Pattern (Kick):</div>
+              <div class="pattern-grid-visual">
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
               </div>
             </div>
-
-            <div
-              class="sequencer-status"
-              id="mpl-seq-status"
-              aria-live="polite"
-              style="margin-top:0.8rem;"
-            >
-              Complete the kick exercise to unlock the next lesson.
-            </div>
-          </article>
+          </div>
         </section>
 
-        </main>
-        <footer class="footer">
-          <div>
-            &copy; <span id="mpl-year"></span> Music Producer Lab ·
-            Lesson 1 · 4 on the floor drum pattern.
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
           </div>
-          <div>
-            <a class="footer-link" href="explanation.html">Back to overview</a>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the kick exercise to unlock the next lesson.
+          </div>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#drums">Back to Drums Labs</a>
+                <a href="lesson-drums-2.html">Next Lesson</a>
+              </div>
+            </div>
           </div>
         </footer>
       </div>
+    </div>
 
       <script type="module">
         import { initDrumSequencer } from './sequencer.js';
@@ -260,36 +244,6 @@
         ];
 
         initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-        
-        // Mobile hamburger menu toggle
-        const hamburger = document.getElementById('mpl-hamburger');
-        const mobileNav = document.getElementById('mpl-mobile-nav');
-        
-        if (hamburger && mobileNav) {
-          hamburger.addEventListener('click', () => {
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !isExpanded);
-            mobileNav.classList.toggle('is-open');
-            document.body.style.overflow = isExpanded ? '' : 'hidden';
-          });
-          
-          mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-              hamburger.setAttribute('aria-expanded', 'false');
-              mobileNav.classList.remove('is-open');
-              document.body.style.overflow = '';
-            });
-          });
-          
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
-              hamburger.setAttribute('aria-expanded', 'false');
-              mobileNav.classList.remove('is-open');
-              document.body.style.overflow = '';
-              hamburger.focus();
-            }
-          });
-        }
       </script>
     </div>
   </body>

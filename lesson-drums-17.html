@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 17 · Odd Time Signatures | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Break from 4/4 with 5/4, 7/8, and other odd meters. Create unique grooves that stand out." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Time Signature Display */
+      .time-sig-display {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .time-sig {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 3px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        min-width: 100px;
+      }
+      
+      .time-sig:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+      
+      .time-sig.active {
+        border-color: var(--accent-coral);
+        box-shadow: 0 0 20px rgba(231, 112, 85, 0.3);
+      }
+      
+      .time-sig .num {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      
+      .time-sig .divider {
+        width: 60%;
+        height: 3px;
+        background: var(--text-primary);
+        margin: var(--space-sm) auto;
+      }
+      
+      .time-sig .denom {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      
+      .time-sig .name {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: var(--space-sm);
+      }
+      
+      /* Beat Grouping Visual */
+      .beat-grouping {
+        background: linear-gradient(135deg, #2d3436, #1a1a2e);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .grouping-display {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .beat-group {
+        display: flex;
+        gap: 4px;
+        padding: var(--space-sm);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+      }
+      
+      .beat-dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      
+      .beat-dot.accent {
+        background: var(--accent-coral);
+        color: white;
+      }
+      
+      .beat-dot.normal {
+        background: var(--border-subtle);
+        color: var(--text-primary);
+      }
+      
+      /* Odd Time Examples */
+      .odd-time-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .odd-time-card {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+      }
+      
+      .odd-time-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .odd-time-card .sig-badge {
+        font-family: monospace;
+        font-size: 1rem;
+        background: var(--accent-coral);
+        color: white;
+        padding: 4px 10px;
+        border-radius: var(--radius-sm);
+      }
+      
+      .odd-time-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .odd-time-card .famous-tracks {
+        font-size: 0.8rem;
+      }
+      
+      .odd-time-card .famous-tracks li {
+        margin-bottom: 6px;
+        padding-left: var(--space-sm);
+        border-left: 2px solid var(--accent-cyan);
+      }
+      
+      /* Counting Guide */
+      .counting-guide {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .count-example {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-md);
+      }
+      
+      .count-example:last-child {
+        margin-bottom: 0;
+      }
+      
+      .count-example .sig {
+        font-family: monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        min-width: 50px;
+        color: var(--accent-coral);
+      }
+      
+      .count-example .pattern {
+        flex: 1;
+        font-family: monospace;
+        letter-spacing: 2px;
+      }
+      
+      .count-example .pattern .accent {
+        color: var(--accent-coral);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SITE HEADER -->
+    <header class="site-header glass">
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
+        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <!-- HERO -->
+      <section class="hero">
+        <p class="hero-eyebrow">Lesson 17 · Drums & Rhythm</p>
+        <h1 class="hero-title">Odd Time<br><span class="highlight">Signatures</span></h1>
+        <p class="hero-subtitle">Break from <strong>4/4</strong> with <strong>5/4, 7/8, and other odd meters</strong>. Create unique grooves that captivate listeners and stand out from the crowd.</p>
+      </section>
+
+      <!-- COMMON TIME SIGNATURES -->
+      <section class="card">
+        <h2><span class="icon">🎵</span> Beyond 4/4</h2>
+        <p class="section-intro">
+          While 4/4 dominates popular music, <strong>odd time signatures</strong> add interest and sophistication. They're not as hard as they seem—you just need to <strong>feel the pulse differently</strong>.
+        </p>
+        
+        <div class="time-sig-display">
+          <div class="time-sig">
+            <div class="num">4</div>
+            <div class="divider"></div>
+            <div class="denom">4</div>
+            <div class="name">Common Time</div>
+          </div>
+          <div class="time-sig active">
+            <div class="num">5</div>
+            <div class="divider"></div>
+            <div class="denom">4</div>
+            <div class="name">Five-Four</div>
+          </div>
+          <div class="time-sig">
+            <div class="num">7</div>
+            <div class="divider"></div>
+            <div class="denom">8</div>
+            <div class="name">Seven-Eight</div>
+          </div>
+          <div class="time-sig">
+            <div class="num">9</div>
+            <div class="divider"></div>
+            <div class="denom">8</div>
+            <div class="name">Nine-Eight</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BEAT GROUPING -->
+      <section class="card">
+        <h2><span class="icon">📊</span> Beat Grouping</h2>
+        <p class="section-intro">
+          Odd meters are usually <strong>grouped into smaller chunks</strong>. For example, 5/4 can feel like <strong>3+2</strong> or <strong>2+3</strong>. The grouping changes the feel dramatically.
+        </p>
+        
+        <div class="beat-grouping">
+          <h3 style="text-align: center; margin-bottom: var(--space-md);">5/4 as 3+2</h3>
+          <div class="grouping-display">
+            <div class="beat-group">
+              <div class="beat-dot accent">1</div>
+              <div class="beat-dot normal">2</div>
+              <div class="beat-dot normal">3</div>
+            </div>
+            <div class="beat-group">
+              <div class="beat-dot accent">4</div>
+              <div class="beat-dot normal">5</div>
+            </div>
+          </div>
+          
+          <h3 style="text-align: center; margin: var(--space-xl) 0 var(--space-md);">5/4 as 2+3</h3>
+          <div class="grouping-display">
+            <div class="beat-group">
+              <div class="beat-dot accent">1</div>
+              <div class="beat-dot normal">2</div>
+            </div>
+            <div class="beat-group">
+              <div class="beat-dot accent">3</div>
+              <div class="beat-dot normal">4</div>
+              <div class="beat-dot normal">5</div>
+            </div>
+          </div>
+          
+          <p style="text-align: center; margin-top: var(--space-lg); font-size: 0.9rem; color: var(--text-muted);">
+            The accent pattern determines how the groove feels. Try both groupings!
+          </p>
+        </div>
+      </section>
+
+      <!-- ODD TIME EXAMPLES -->
+      <section class="card">
+        <h2><span class="icon">🎸</span> Odd Time in Popular Music</h2>
+        <p class="section-intro">
+          Many hit songs use odd time signatures—often so smoothly that listeners don't even notice.
+        </p>
+        
+        <div class="odd-time-cards">
+          <div class="odd-time-card">
+            <h3><span class="sig-badge">5/4</span> Five-Four</h3>
+            <p>Feels like "one beat missing" from 4/4. Creates a compelling lopsided groove.</p>
+            <ul class="famous-tracks">
+              <li><strong>Take Five</strong> – Dave Brubeck</li>
+              <li><strong>15 Step</strong> – Radiohead</li>
+              <li><strong>Mission: Impossible Theme</strong></li>
+            </ul>
+          </div>
+          
+          <div class="odd-time-card">
+            <h3><span class="sig-badge">7/8</span> Seven-Eight</h3>
+            <p>Often grouped 4+3 or 3+2+2. Common in prog rock and Balkan music.</p>
+            <ul class="famous-tracks">
+              <li><strong>Money</strong> – Pink Floyd</li>
+              <li><strong>Solsbury Hill</strong> – Peter Gabriel</li>
+              <li><strong>Frame by Frame</strong> – King Crimson</li>
+            </ul>
+          </div>
+          
+          <div class="odd-time-card">
+            <h3><span class="sig-badge">6/8</span> Six-Eight</h3>
+            <p>Compound time: two groups of three. Creates a swaying, waltz-like feel.</p>
+            <ul class="famous-tracks">
+              <li><strong>We Are the Champions</strong> – Queen</li>
+              <li><strong>House of the Rising Sun</strong></li>
+              <li><strong>Nothing Else Matters</strong> – Metallica</li>
+            </ul>
+          </div>
+          
+          <div class="odd-time-card">
+            <h3><span class="sig-badge">9/8</span> Nine-Eight</h3>
+            <p>Three groups of three, or 4+5, or 2+2+2+3. Very versatile.</p>
+            <ul class="famous-tracks">
+              <li><strong>Blue Rondo à la Turk</strong> – Dave Brubeck</li>
+              <li><strong>Triplets</strong> – Meshuggah</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- COUNTING GUIDE -->
+      <section class="card">
+        <h2><span class="icon">🔢</span> How to Count Odd Meters</h2>
+        <p class="section-intro">
+          The secret is finding the <strong>internal grouping</strong>. Think of odd meters as combinations of 2s and 3s.
+        </p>
+        
+        <div class="counting-guide">
+          <div class="count-example">
+            <span class="sig">5/4</span>
+            <span class="pattern"><span class="accent">1</span> 2 3 <span class="accent">4</span> 5 | <span class="accent">1</span> 2 3 <span class="accent">4</span> 5</span>
+          </div>
+          <div class="count-example">
+            <span class="sig">7/8</span>
+            <span class="pattern"><span class="accent">1</span> 2 3 <span class="accent">4</span> 5 <span class="accent">6</span> 7 | <span class="accent">1</span> 2 3 <span class="accent">4</span> 5 <span class="accent">6</span> 7</span>
+          </div>
+          <div class="count-example">
+            <span class="sig">9/8</span>
+            <span class="pattern"><span class="accent">1</span> 2 3 <span class="accent">4</span> 5 6 <span class="accent">7</span> 8 9</span>
+          </div>
+          <div class="count-example">
+            <span class="sig">11/8</span>
+            <span class="pattern"><span class="accent">1</span> 2 3 <span class="accent">4</span> 5 <span class="accent">6</span> 7 <span class="accent">8</span> 9 10 11</span>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Practice Tip:</strong> Clap the accents while counting out loud. Once you internalize the grouping, odd meters feel natural.
+        </div>
+      </section>
+
+      <!-- EXERCISE -->
+      <section class="card exercise-card">
+        <h2><span class="icon">✏️</span> Exercise: Create a 5/4 Groove</h2>
+        <div class="exercise-info">
+          <p><strong>Task:</strong> Program a drum pattern in 5/4 time with clear grouping.</p>
+          <ol class="exercise-steps">
+            <li>Set sequencer to 10 steps (2 bars of 5/4).</li>
+            <li>Place kick on beats 1 and 4 (3+2 grouping).</li>
+            <li>Place snare on beat 3 and beat 5.</li>
+            <li>Add hi-hats on all 5 beats for pulse.</li>
+          </ol>
+        </div>
+        
+        <!-- SEQUENCER -->
+        <div class="sequencer-container">
+          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="margin:0;">Odd Time Sequencer</h3>
+            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
+              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+            </div>
+          </div>
+          <div class="sequencer" id="mpl-sequencer-collection"></div>
+          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
+          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Feel It:</strong> Once you have the pattern, try bobbing your head. You'll feel the natural lilt of 5/4!
+        </div>
+      </section>
+
+      <!-- KEY TAKEAWAYS -->
+      <section class="card">
+        <h2><span class="icon">🎓</span> Key Takeaways</h2>
+        <ul class="check-list">
+          <li><strong>Grouping is key:</strong> 5/4 = 3+2 or 2+3, 7/8 = 4+3 or 3+2+2</li>
+          <li><strong>Accent the grouping:</strong> Place kick/snare on group starts</li>
+          <li><strong>Combine 2s and 3s:</strong> Any odd meter is just combinations of these</li>
+          <li><strong>Practice counting:</strong> Count out loud until it's internalized</li>
+          <li><strong>Use sparingly:</strong> Odd meters are powerful—a little goes a long way</li>
+        </ul>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="lesson-nav">
+        <a href="lesson-drums-16.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
+        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
+        <a href="lesson-drums-18.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
+      </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© 2025 Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="#">Projects</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('.time-sig').forEach(sig => {
+        sig.addEventListener('click', () => {
+          document.querySelectorAll('.time-sig').forEach(s => s.classList.remove('active'));
+          sig.classList.add('active');
+        });
+      });
+    </script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+      const instruments = [
+        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 6], instructions: "5/4 kick pattern" },
+        { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 8], instructions: "Snare accents" },
+        { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8], instructions: "5/4 pulse" }
+      ];
+      initDrumSequencer(instruments, "mpl-drums-17-progress", "lesson-drums-18.html");
+    </script>
+  </body>
+</html>

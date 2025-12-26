@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 10 · Trap & 808 Patterns | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Master modern trap production drums. Program rolling hi-hats, 808 bass patterns, and signature trap rhythms." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Trap Style Elements */
+      .trap-elements {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .trap-element {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .trap-element::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+      
+      .trap-element.hihat::before {
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      }
+      
+      .trap-element.bass::before {
+        background: linear-gradient(90deg, #e17055, #d63031);
+      }
+      
+      .trap-element.snare::before {
+        background: linear-gradient(90deg, #fdcb6e, #f39c12);
+      }
+      
+      .trap-element .icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .trap-element h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .trap-element p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+      
+      /* Rolling Hi-Hat Demo */
+      .rolling-demo {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .roll-pattern {
+        display: flex;
+        gap: 2px;
+        margin: var(--space-md) 0;
+        overflow-x: auto;
+        padding-bottom: var(--space-sm);
+      }
+      
+      .roll-step {
+        min-width: 24px;
+        height: 40px;
+        background: var(--bg-tertiary);
+        border-radius: 2px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-size: 0.6rem;
+        position: relative;
+      }
+      
+      .roll-step .bar {
+        width: 80%;
+        background: var(--accent-cyan);
+        border-radius: 2px 2px 0 0;
+        transition: height 0.2s;
+      }
+      
+      .roll-step.triplet .bar {
+        background: var(--accent-purple);
+      }
+      
+      .roll-step .label {
+        position: absolute;
+        top: 2px;
+        font-size: 0.5rem;
+        color: var(--text-muted);
+      }
+      
+      /* 808 Visualization */
+      .bass-808 {
+        background: linear-gradient(135deg, #2d3436, #636e72);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-lg) 0;
+      }
+      
+      .bass-808 h4 {
+        color: #e17055;
+        margin-bottom: var(--space-md);
+        text-align: center;
+      }
+      
+      .waveform-display {
+        height: 80px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: var(--space-md);
+      }
+      
+      .waveform-display .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
+        background: linear-gradient(180deg, transparent, rgba(225, 112, 85, 0.5));
+        clip-path: polygon(
+          0% 100%, 5% 60%, 10% 80%, 15% 40%, 20% 70%, 25% 30%, 30% 60%, 
+          35% 20%, 40% 50%, 45% 10%, 50% 40%, 55% 5%, 60% 30%, 65% 15%, 
+          70% 25%, 75% 20%, 80% 22%, 85% 21%, 90% 20%, 95% 20%, 100% 20%, 
+          100% 100%
+        );
+        animation: wave-decay 2s ease-out infinite;
+      }
+      
+      @keyframes wave-decay {
+        0% { opacity: 1; transform: scaleY(1); }
+        100% { opacity: 0.3; transform: scaleY(0.3); }
+      }
+      
+      .bass-controls {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+      }
+      
+      .bass-control {
+        text-align: center;
+      }
+      
+      .bass-control label {
+        display: block;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .bass-control input[type="range"] {
+        width: 100px;
+      }
+      
+      /* Triplet Explanation */
+      .triplet-box {
+        background: var(--bg-tertiary);
+        border-left: 4px solid var(--accent-purple);
+        padding: var(--space-md);
+        margin: var(--space-lg) 0;
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      }
+      
+      .triplet-box h4 {
+        color: var(--accent-purple);
+        margin-bottom: var(--space-sm);
+      }
+      
+      /* Pattern Examples */
+      .pattern-examples {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .pattern-example {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+      }
+      
+      .pattern-example h4 {
+        font-size: 0.9rem;
+        margin-bottom: var(--space-sm);
+        color: var(--accent-cyan);
+      }
+      
+      .pattern-example pre {
+        font-family: monospace;
+        font-size: 0.75rem;
+        line-height: 1.6;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body class="lesson-page">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
+          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
+          <span class="logo-text">Music Producer Lab</span>
+        </a>
+        <a href="labs.html" class="btn btn--outline btn--sm">
+          <span class="btn-icon">←</span> Back to overview
+        </a>
+      </div>
+    </header>
+
+    <main class="lesson-main">
+      <!-- Hero Section -->
+      <section class="lesson-hero">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Lesson 10 · Drums & Rhythm · Intermediate</p>
+          <h1 class="hero-title">Trap & <span class="highlight">808 Patterns</span></h1>
+          <p class="hero-subtitle">
+            Master <strong>modern trap production</strong> drums. Program 
+            <strong>rolling hi-hats</strong>, <strong>808 bass patterns</strong>, 
+            and the signature rhythms that define contemporary hip-hop and EDM.
+          </p>
+          
+          <div class="hero-meta">
+            <span class="meta-item">⏱️ 15-18 min</span>
+            <span class="meta-item">📊 Level 5</span>
+            <span class="meta-item">🎯 Intermediate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <nav class="lesson-nav" aria-label="Lesson navigation">
+        <a href="lesson-drums-9.html" class="nav-link nav-link--prev">
+          ← Back to Lesson 9
+        </a>
+        <a href="lesson-drums-11.html" class="nav-link nav-link--next">
+          Next: DnB & Breakbeat →
+        </a>
+      </nav>
+
+      <!-- Main Content -->
+      <article class="lesson-content">
+        
+        <!-- Introduction -->
+        <section class="content-section">
+          <h2>The Sound of Modern Music</h2>
+          <p>
+            Trap emerged from Atlanta in the early 2000s and has become the 
+            <strong>dominant sound in modern music</strong>. Its signature elements—
+            rolling hi-hats, booming 808s, and sparse arrangements—have influenced 
+            everything from pop to EDM.
+          </p>
+          
+          <div class="callout callout--info">
+            <p>
+              <strong>🎯 The Trap Trinity:</strong> Rolling hi-hats + 808 bass/kick + sparse snare = instant trap beat. 
+              The space between notes is just as important as the notes themselves.
+            </p>
+          </div>
+        </section>
+
+        <!-- Key Elements -->
+        <section class="content-section">
+          <h2>The 3 Essential Elements</h2>
+          
+          <div class="trap-elements">
+            <div class="trap-element hihat">
+              <div class="icon">🥁</div>
+              <h4>Rolling Hi-Hats</h4>
+              <p>Fast 16th and 32nd note patterns with velocity variation. Often includes triplet rolls for energy.</p>
+            </div>
+            <div class="trap-element bass">
+              <div class="icon">🔊</div>
+              <h4>808 Bass</h4>
+              <p>Long, sustained bass notes that serve as both kick AND bass. The foundation of trap.</p>
+            </div>
+            <div class="trap-element snare">
+              <div class="icon">👏</div>
+              <h4>Sparse Snare/Clap</h4>
+              <p>Less frequent than other genres. Often layered clap + snare for impact.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rolling Hi-Hats -->
+        <section class="content-section">
+          <h2>Rolling Hi-Hat Patterns</h2>
+          <p>
+            The <strong>rolling hi-hat</strong> is trap's most distinctive feature. It combines:
+          </p>
+          <ul>
+            <li><strong>16th notes</strong> as the base pattern</li>
+            <li><strong>32nd note rolls</strong> for energy bursts</li>
+            <li><strong>Triplets</strong> for rhythmic variation</li>
+            <li><strong>Velocity variation</strong> for human feel</li>
+          </ul>
+          
+          <div class="rolling-demo">
+            <h4 style="margin-bottom: var(--space-md);">Hi-Hat Roll Visualization</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">
+              Notice how velocity varies and triplets break up the straight 16ths:
+            </p>
+            <div class="roll-pattern" id="roll-pattern">
+              <!-- Generated by JS -->
+            </div>
+            <p style="font-size: 0.75rem; color: var(--accent-cyan); text-align: center;">
+              🔵 = 16th notes &nbsp;&nbsp; 🟣 = Triplets
+            </p>
+          </div>
+          
+          <div class="triplet-box">
+            <h4>🎵 Understanding Triplets</h4>
+            <p>
+              Triplets divide a beat into <strong>3 equal parts</strong> instead of 2 or 4. 
+              In trap, triplet hi-hats create that signature "rolling" effect that builds energy.
+            </p>
+            <pre style="font-family: monospace; margin-top: var(--space-sm); font-size: 0.8rem;">
+Regular 16ths: |  1  e  &  a  |  2  e  &  a  |
+Triplets:      |  1  trip-let |  2  trip-let |
+            </pre>
+          </div>
+        </section>
+
+        <!-- 808 Bass -->
+        <section class="content-section">
+          <h2>The 808 Bass</h2>
+          <p>
+            In trap, the <strong>808</strong> serves as both kick drum AND bass. 
+            Unlike traditional production where kick and bass are separate, trap 808s are 
+            <strong>long, sustained bass notes</strong> with a punchy attack.
+          </p>
+          
+          <div class="bass-808">
+            <h4>🔊 808 Waveform</h4>
+            <div class="waveform-display">
+              <div class="wave"></div>
+            </div>
+            <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+              Notice the sharp attack followed by long sustain and decay
+            </p>
+            <div class="bass-controls" style="margin-top: var(--space-md);">
+              <div class="bass-control">
+                <label>Pitch Glide</label>
+                <input type="range" min="0" max="100" value="30">
+              </div>
+              <div class="bass-control">
+                <label>Decay</label>
+                <input type="range" min="0" max="100" value="70">
+              </div>
+              <div class="bass-control">
+                <label>Distortion</label>
+                <input type="range" min="0" max="100" value="40">
+              </div>
+            </div>
+          </div>
+          
+          <div class="callout callout--tip">
+            <h4>💡 808 Tips</h4>
+            <ul style="margin-top: var(--space-sm);">
+              <li><strong>Pitch your 808s:</strong> Use different notes for melodic bass lines</li>
+              <li><strong>Slide/glide:</strong> Add pitch bends between notes for that iconic sound</li>
+              <li><strong>Distortion:</strong> Add subtle saturation for presence on small speakers</li>
+              <li><strong>Side-chain:</strong> Duck other elements when the 808 hits</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Pattern Examples -->
+        <section class="content-section">
+          <h2>Common Trap Patterns</h2>
+          
+          <div class="pattern-examples">
+            <div class="pattern-example">
+              <h4>Basic Trap Beat</h4>
+              <pre>
+808:   X · · · · · · · X · · · · · · ·
+Snare: · · · · X · · · · · · · X · · ·
+HiHat: X X X X X X X X X X X X X X X X
+              </pre>
+            </div>
+            <div class="pattern-example">
+              <h4>Bouncy Trap</h4>
+              <pre>
+808:   X · · · · · X · · · X · · · · ·
+Snare: · · · · X · · · · · · · X · · ·
+HiHat: X · X X X · X X X · X X X · X X
+              </pre>
+            </div>
+            <div class="pattern-example">
+              <h4>Hard Trap</h4>
+              <pre>
+808:   X · · · X · · · X · · · X · · ·
+Snare: · · · · X · · · · · · · X · · X
+HiHat: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Exercise -->
+        <section class="content-section exercise-section">
+          <h2>🎯 Exercise: Build a Trap Beat</h2>
+          
+          <div class="exercise-intro">
+            <p>
+              Create a modern trap pattern with rolling hi-hats, sparse snare, 
+              and strategic 808 placement.
+            </p>
+          </div>
+
+          <div class="exercise-steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <div class="step-content">
+                <strong>808:</strong> Place 808s on steps 1 and 9 (sparse, powerful)
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <div class="step-content">
+                <strong>Snare:</strong> Snare/clap on steps 5 and 13 (standard backbeat)
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <div class="step-content">
+                <strong>Hi-Hat:</strong> 16th note hi-hats on every step (rolling pattern)
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">4</span>
+              <div class="step-content">
+                <strong>Open Hi-Hat:</strong> Add open hi-hats on steps 3 and 11 for accent
+              </div>
+            </div>
+          </div>
+
+          <!-- Sequencer Component -->
+          <div class="sequencer-container" id="sequencer">
+            <div class="sequencer-header">
+              <h3>Trap Sequencer</h3>
+              <div class="sequencer-controls">
+                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
+              </div>
+            </div>
+
+            <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-purple);">
+              🎵 140 BPM - Standard Trap Tempo
+            </div>
+
+            <div class="sequencer" id="mpl-sequencer-collection"></div>
+
+            <div class="exercise-status">
+              <p id="mpl-seq-status">Build the trap pattern to unlock the next lesson.</p>
+            </div>
+          </div>
+
+          <div class="next-lesson-container">
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
+              Next Lesson →
+            </button>
+          </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="content-section">
+          <h2>Key Takeaways</h2>
+          <ul class="summary-list">
+            <li><strong>Rolling hi-hats</strong> are trap's signature (16ths + triplets + velocity variation)</li>
+            <li><strong>808</strong> serves as both kick AND bass (long sustain, punchy attack)</li>
+            <li><strong>Sparse arrangement</strong>—the space is as important as the notes</li>
+            <li><strong>Tempo range:</strong> 130-160 BPM (often half-time feel at 65-80)</li>
+            <li><strong>Triplet rolls</strong> add energy and variation to hi-hat patterns</li>
+          </ul>
+        </section>
+
+      </article>
+
+      <!-- Bottom Navigation -->
+      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
+        <a href="lesson-drums-9.html" class="nav-link nav-link--prev">
+          ← Hip-Hop & Boom Bap
+        </a>
+        <a href="labs.html" class="nav-link nav-link--overview">
+          Overview
+        </a>
+        <a href="lesson-drums-11.html" class="nav-link nav-link--next">
+          DnB & Breakbeat →
+        </a>
+      </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize rolling pattern demo
+      function initRollingDemo() {
+        const pattern = document.getElementById('roll-pattern');
+        if (!pattern) return;
+        const steps = [
+          { vel: 100, type: 'normal' }, { vel: 60, type: 'normal' }, { vel: 80, type: 'normal' }, { vel: 40, type: 'normal' },
+          { vel: 100, type: 'triplet' }, { vel: 70, type: 'triplet' }, { vel: 50, type: 'triplet' }, { vel: 90, type: 'normal' },
+          { vel: 50, type: 'normal' }, { vel: 70, type: 'normal' }, { vel: 40, type: 'normal' }, { vel: 100, type: 'normal' },
+          { vel: 60, type: 'triplet' }, { vel: 80, type: 'triplet' }, { vel: 45, type: 'triplet' }, { vel: 95, type: 'normal' }
+        ];
+        steps.forEach((step, i) => {
+          const el = document.createElement('div');
+          el.className = 'roll-step' + (step.type === 'triplet' ? ' triplet' : '');
+          const bar = document.createElement('div');
+          bar.className = 'bar';
+          bar.style.height = `${step.vel}%`;
+          const label = document.createElement('span');
+          label.className = 'label';
+          label.textContent = i + 1;
+          el.appendChild(bar);
+          el.appendChild(label);
+          pattern.appendChild(el);
+        });
+      }
+      document.addEventListener('DOMContentLoaded', initRollingDemo);
+    </script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-10-progress";
+      const NEXT_LESSON_URL = "lesson-drums-11.html";
+
+      // Trap: 808 kick, clap, rolling hi-hats
+      const instruments = [
+        {
+          id: "kick",
+          label: "808",
+          color: "linear-gradient(135deg, #a855f7, #7c3aed)",
+          target: [0, 10],
+          instructions: "808 kick on beat 1 and the '&' of 3"
+        },
+        {
+          id: "clap",
+          label: "Clap",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Clap on beats 2 and 4"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "16th note hi-hats"
+        }
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+    </script>
+  </body>
+</html>

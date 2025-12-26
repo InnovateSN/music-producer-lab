@@ -4,45 +4,22 @@
     <meta charset="UTF-8" />
     <title>Lesson 2 · Snare · Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="explanation.css" />
+    <link rel="stylesheet" href="styles.css">
+    
   </head>
   <body>
     <div class="page">
       <div class="page-inner">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
         <header class="mpl-nav">
           <div class="mpl-nav-logo">
-            <a href="index.html" aria-label="Music Producer Lab Home">
             <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-            </a>
           </div>
           <div class="mpl-nav-actions">
             <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
               <span>Back to overview</span>
             </button>
           </div>
-          <!-- Mobile hamburger menu -->
-          <button 
-            class="mpl-hamburger" 
-            id="mpl-hamburger"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="mpl-mobile-nav"
-          >
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-          </button>
         </header>
-        
-        <!-- Mobile navigation overlay -->
-        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
-          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
-          <a href="explanation.html" class="btn btn-outline"><span>All lessons</span></a>
-        </nav>
 
         <section class="hero" aria-label="Lesson 2 · Snare">
           <div class="hero-copy">
@@ -130,61 +107,84 @@
           </article>
         </section>
 
-        <section class="sections-grid" aria-label="Interactive sequencer exercise">
-          <article class="section">
-            <div class="section-eyebrow">Step 3 · Exercise</div>
-            <h2 class="section-title">Program Kick and Snare.</h2>
-            <p class="section-body">
-              Your task is to correctly program both the <strong>Kick</strong> (4 on the floor) and the <strong>Snare</strong> (backbeat on 2 & 4) in the two interactive sequencers below.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Kick target steps: 1, 5, 9, 13.
-            </p>
-            <p class="section-body" style="margin-top:0.6rem;">
-              Snare target steps: 5, 13.
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Interactive sequencers</div>
-            <h2 class="section-title">16-step grid (Kick & Snare)</h2>
-            <div class="sequencer" id="mpl-sequencer-collection">
-              <!-- Sequencers will be created here -->
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Add the Backbeat Snare</h2>
+            <p class="section-body">Now you'll add the <strong>snare drum</strong> on beats 2 and 4. This creates the "backbeat" - the rhythmic push that makes you want to move.</p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick row:</strong> Click steps <strong>1, 5, 9, 13</strong> (same as Lesson 1).</li>
+            <li><strong>Snare row:</strong> Click steps <strong>5 and 13</strong> only.</li>
+            <li>Notice how the snare lands on beats 2 and 4 - the "off-beats" that provide contrast.</li>
+            <li>Press <strong>Play</strong> to hear the kick and snare working together.</li>
+              </ol>
             </div>
 
-            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center;">
-              <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-                <span>Play</span>
-              </button>
-              <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-                <span>Stop</span>
-              </button>
-              <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-                <span>Check exercise</span>
-              </button>
+            <div class="exercise-tip">
+              <strong>Tip:</strong> The snare should hit at the same time as the 2nd and 4th kick hits. This is the classic rock/pop/dance backbone!
+            </div>
 
-              <div id="mpl-seq-nav-wrap" style="margin-left:auto; display: flex; gap: 0.6rem;">
-                 <a class="btn btn-outline" href="lesson-drums-1.html"><span>← Back to Lesson 1</span></a>
-                 <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                  <span>Next lesson →</span>
-                </button>
+            <div class="pattern-hint">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Kick:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Snare:</span>
+                <span class="step-off">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div
-              class="sequencer-status"
-              id="mpl-seq-status"
-              aria-live="polite"
-              style="margin-top:0.8rem;"
-            >
-              Complete both kick and snare exercises to unlock the next lesson.
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
             </div>
-          </article>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
+          </div>
         </section>
 
         <footer class="footer">
           <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 2</div>
-          <div><a class="footer-link" href="explanation.html">Back to overview</a></div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
         </footer>
       </div>
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact | Music Producer Lab</title>
+  
+  <meta name="description" content="Get in touch with the Music Producer Lab team. We'd love to hear your feedback, questions, and ideas.">
+  <meta name="theme-color" content="#030508">
+  
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .contact-hero {
+      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--space-3xl);
+      align-items: flex-start;
+    }
+    
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+    }
+    
+    .contact-info {
+      position: sticky;
+      top: 120px;
+    }
+    
+    .contact-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .contact-info p {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    
+    .contact-method:hover {
+      border-color: var(--border-glow);
+      transform: translateX(4px);
+    }
+    
+    .contact-method-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-glow);
+      border-radius: var(--radius-md);
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+    
+    .contact-method-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+    }
+    
+    .contact-method-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .contact-form-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+    }
+    
+    .contact-form-header {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .contact-form-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .contact-form-header p {
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+      color: var(--text-secondary);
+    }
+    
+    .form-label .required {
+      color: var(--accent-pink);
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: var(--space-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+    }
+    
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-dim);
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237a8ba8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--space-md) center;
+      background-size: 16px;
+      padding-right: calc(var(--space-md) * 2 + 16px);
+    }
+    
+    .form-submit {
+      width: 100%;
+    }
+    
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: var(--space-md);
+      text-align: center;
+    }
+    
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-2xl);
+    }
+    
+    .form-success.show {
+      display: block;
+    }
+    
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 255, 157, 0.15);
+      border-radius: 50%;
+      color: var(--accent-green);
+    }
+    
+    .form-success h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .form-success p {
+      color: var(--text-muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="/" class="navbar-link">Home</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <li><a href="explore.html" class="navbar-link">Explore</a></li>
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link active">Contact</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+        <a href="labs.html" class="btn btn-primary btn-sm">Start Learning</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <span class="badge badge-primary mb-md">Get in Touch</span>
+      <h1 class="mb-md">Contact Us</h1>
+      <p style="max-width: 600px; font-size: 1.1rem;">
+        Have a question, feedback, or just want to say hi? 
+        We'd love to hear from you.
+      </p>
+    </div>
+  </section>
+  
+  <main class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Other ways to reach us</h2>
+          <p>
+            Prefer a different channel? Here are some other ways to get in touch 
+            with the Music Producer Lab team.
+          </p>
+          
+          <div class="contact-methods">
+            <a href="mailto:innovatesolutionsnow@gmail.com" class="contact-method">
+              <div class="contact-method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="contact-method-content">
+                <h3>Email</h3>
+                <p>innovatesolutionsnow@gmail.com</p>
+              </div>
+            </a>
+            
+            <a href="https://twitter.com/MusicProducerLab" target="_blank" rel="noopener noreferrer" class="contact-method">
+              <div class="contact-method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </div>
+              <div class="contact-method-content">
+                <h3>Twitter / X</h3>
+                <p>@MusicProducerLab</p>
+              </div>
+            </a>
+            
+            <a href="https://discord.gg/musicproducerlab" target="_blank" rel="noopener noreferrer" class="contact-method">
+              <div class="contact-method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                </svg>
+              </div>
+              <div class="contact-method-content">
+                <h3>Discord</h3>
+                <p>Join our community</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-container">
+          <div class="contact-form-header">
+            <h2>Send us a message</h2>
+            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+          </div>
+          
+          <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">
+                  Name <span class="required">*</span>
+                </label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="email">
+                  Email <span class="required">*</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="subject">
+                Subject
+              </label>
+              <select id="subject" name="subject" class="form-select">
+                <option value="">Select a topic...</option>
+                <option value="general">General Question</option>
+                <option value="feedback">Feedback</option>
+                <option value="bug">Bug Report</option>
+                <option value="feature">Feature Request</option>
+                <option value="partnership">Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="message">
+                Message <span class="required">*</span>
+              </label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="How can we help you?" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary form-submit">
+              Send Message
+            </button>
+            
+            <p class="form-note">
+              We typically respond within 24-48 hours.
+            </p>
+          </form>
+          
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. We'll get back to you soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+    });
+    
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+    
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (themeLabel) themeLabel.textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+    }
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
+      localStorage.setItem('theme', next);
+    });
+    
+    // Form handling (simple demo - in production use Formspree or similar)
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // In production, this would submit to Formspree
+      // For demo, just show success message
+      form.style.display = 'none';
+      success.classList.add('show');
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        form.reset();
+        form.style.display = '';
+        success.classList.remove('show');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

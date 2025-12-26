@@ -1,626 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>What is Music Producer Lab? | Interactive Music Production Labs</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <meta
-      name="description"
-      content="Music Producer Lab is an interactive music production lab that teaches modern electronic production through guided, hands-on lessons. Learn skills that translate to any DAW so you can finish confident, release-ready tracks."
-    />
-    <meta
-      name="keywords"
-      content="Music Producer Lab, interactive music production course, music production lab, DAW training, Ableton, Logic, FL Studio, online music lessons, electronic music, sound design, beat making"
-    />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="explanation.css" />
-  </head>
-  <body>
-    <div class="page">
-      <div class="page-inner">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header class="mpl-nav">
-          <div class="mpl-nav-logo">
-            <a href="index.html" aria-label="Music Producer Lab Home">
-              <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
-            </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How It Works | Music Producer Lab</title>
+  
+  <meta name="description" content="Learn how Music Producer Lab helps you master music production through interactive, hands-on lessons and exercises.">
+  <meta name="theme-color" content="#030508">
+  
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .explanation-hero {
+      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .explanation-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(179, 102, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(0, 240, 255, 0.08) 0%, transparent 40%);
+    }
+    
+    .coming-soon-container {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-3xl) 0;
+    }
+    
+    .coming-soon-content {
+      max-width: 600px;
+    }
+    
+    .coming-soon-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-glow);
+      border: 2px solid var(--border-glow);
+      border-radius: 50%;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 60px rgba(0, 240, 255, 0.5), 0 0 100px rgba(179, 102, 255, 0.3);
+        transform: scale(1.05);
+      }
+    }
+    
+    .coming-soon-badge {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-lg);
+      background: rgba(255, 204, 0, 0.15);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: var(--radius-full);
+      color: var(--accent-amber);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .coming-soon-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--space-md);
+    }
+    
+    .coming-soon-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2xl);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .coming-soon-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+      text-align: left;
+    }
+    
+    .coming-soon-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+    }
+    
+    .coming-soon-feature-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-glow);
+      border-radius: var(--radius-md);
+      color: var(--accent-cyan);
+    }
+    
+    .coming-soon-feature h3 {
+      font-size: 1rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .coming-soon-feature p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .coming-soon-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="/" class="navbar-link">Home</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <li><a href="explore.html" class="navbar-link">Explore</a></li>
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="explanation-hero">
+    <div class="container" style="position: relative; z-index: 1;">
+      <span class="badge badge-primary mb-md">How It Works</span>
+      <h1 class="mb-md">Learn By Doing</h1>
+      <p style="max-width: 600px; font-size: 1.1rem;">
+        Discover how Music Producer Lab's interactive approach 
+        helps you learn music production faster and more effectively.
+      </p>
+    </div>
+  </section>
+  
+  <main>
+    <div class="coming-soon-container">
+      <div class="container">
+        <div class="coming-soon-content">
+          <div class="coming-soon-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
           </div>
-          <div class="mpl-nav-actions">
-            <button
-              class="btn btn-outline"
-              type="button"
-              onclick="window.location.href='index.html'"
-            >
-              <span>Back to portal</span>
-            </button>
-            <a
-              href="#mpl-free-drums"
-              class="btn btn-outline"
-              id="mpl-nav-free-lessons"
-            >
-              <span>Free drum lessons</span>
-            </a>
-            <a
-              id="mpl-nav-stripe-cta"
-              class="btn btn-primary"
-              href="lesson-drums-1.html"
-            >
-              <span>Start learning free</span>
-            </a>
-          </div>
-          <!-- Mobile hamburger menu -->
-          <button 
-            class="mpl-hamburger" 
-            id="mpl-hamburger"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="mpl-mobile-nav"
-          >
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-            <span class="mpl-hamburger-line"></span>
-          </button>
-        </header>
-        
-        <!-- Mobile navigation overlay -->
-        <nav class="mpl-mobile-nav" id="mpl-mobile-nav" aria-label="Mobile navigation">
-          <a href="index.html" class="btn btn-outline"><span>Home</span></a>
-          <a href="#mpl-free-drums" class="btn btn-outline" id="mpl-mobile-free-lessons"><span>Free drum lessons</span></a>
-          <a href="lesson-drums-1.html" class="btn btn-primary"><span>Start learning free</span></a>
-        </nav>
-
-        <div class="mpl-billing-banner mpl-auth-hidden" id="mpl-billing-banner" role="status"></div>
-
-        <main id="main-content">
-        <section class="hero">
-          <div class="hero-copy">
-            <div class="hero-copy-eyebrow">Interactive music production</div>
-            <h1 class="hero-title">Learn music production by actually producing.</h1>
-            <p class="hero-subtitle">
-              Interactive labs where you build real tracks step by step.
-              Not videos. Not theory. You do the work.
-            </p>
-
-            <div class="hero-badges">
-              <div class="hero-badge">Guided interactive labs</div>
-              <div class="hero-badge">Step-by-step production coaching</div>
-              <div class="hero-badge">Works with any DAW</div>
-              <div class="hero-badge">Free drum-pattern starter path</div>
-            </div>
-
-            <div class="hero-cta-row">
-              <a
-              id="mpl-hero-stripe-primary"
-              class="btn btn-primary"
-              href="checkout.html"
-            >
-              <span>Start producing — £18.99/month · Cancel anytime. No long-term commitment.</span>
-            </a>
-            <a
-              id="mpl-hero-stripe-secondary"
-              class="btn btn-outline"
-              href="#mpl-how-it-works"
-            >
-              <span>Try the free drum labs</span>
-            </a>
-            <div class="hero-cta-note">
-              Most users finish the core labs in 1–2 months. Cancel anytime. No long-term commitment.
-            </div>
-            </div>
-            <div
-              id="mpl-payment-status"
-              class="mpl-inline-status mpl-auth-hidden"
-              role="status"
-              aria-live="polite"
-            ></div>
-          </div>
-
-          <aside class="hero-visual" aria-hidden="true">
-            <div class="hero-visual-header">
-              <div class="hero-visual-title">Interactive Session · 01</div>
-              <div class="hero-visual-pill">Beat foundation lab</div>
-            </div>
-
-            <div class="hero-visual-grid">
-              <div class="hero-visual-main">
-                <div class="hero-visual-main-title">Assemble your first electronic beat</div>
-                <div class="hero-visual-waves">
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                </div>
-                <div class="hero-visual-metrics">
-                  <div class="hero-visual-metric">
-                    <span>Step</span>
-                    <strong>Kick · Snare · Groove</strong>
-                  </div>
-                  <div class="hero-visual-metric">
-                    <span>Time to complete</span>
-                    <strong>8–12 min</strong>
-                  </div>
-                </div>
+          
+          <span class="coming-soon-badge">Coming Soon</span>
+          
+          <h2 class="coming-soon-title">Full Explanation Page</h2>
+          
+          <p class="coming-soon-description">
+            We're working on a comprehensive guide that explains our learning methodology, 
+            the science behind our interactive approach, and how to get the most out of each lab.
+          </p>
+          
+          <div class="coming-soon-features">
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
               </div>
-
-              <div class="hero-visual-side-card">
-                <div class="hero-visual-side-label">What you learn</div>
-                <div class="hero-visual-pill-list">
-                  <div class="hero-visual-pill-tag">Rhythm &amp; groove</div>
-                  <div class="hero-visual-pill-tag">Arrangement agility</div>
-                  <div class="hero-visual-pill-tag">Creative workflow</div>
-                </div>
-                <div class="hero-visual-footer">
-                  <span>Transferable to any DAW</span>
-                  <span>Logic · Ableton · FL · more</span>
-                </div>
+              <div>
+                <h3>Hands-On Learning</h3>
+                <p>Learn by actually producing, not watching</p>
               </div>
             </div>
-          </aside>
-        </section>
-
-        <section class="sections-grid" aria-label="Why Music Producer Lab">
-          <article class="section">
-            <div class="section-eyebrow">Why Music Producer Lab</div>
-            <h2 class="section-title">Hands-on training built to finish songs.</h2>
-            <p class="section-body">
-              Music Producer Lab replaces long video lectures with guided, interactive
-              lessons. You click, drag, and tweak inside a simulated studio while short
-              prompts explain the decision. The format keeps you moving, improves
-              retention, and makes it easy to recreate the same moves in your own DAW.
-            </p>
-            <p class="section-body">
-              You don’t watch someone produce. You produce. Every lab is interactive:
-              click, build, finish.
-            </p>
-            <ul class="section-list">
-              <li>SEO-friendly electronic production lessons with clear outcomes.</li>
-              <li>Designed for beginners and self-taught producers who want structure.</li>
-              <li>Every module ends with a repeatable checklist you can apply anywhere.</li>
-              <li>Accessible interface with high contrast and screen-reader labels.</li>
-            </ul>
-          </article>
-          <article class="section">
-            <div class="section-eyebrow">Built for modern DAWs</div>
-            <h2 class="section-title">Clear mappings to your favorite tools.</h2>
-            <p class="section-body">
-              Each lab mirrors the controls you already see in Ableton Live, FL Studio,
-              Logic Pro, or Bitwig. You always know which knob or plugin to reach for,
-              so practice inside the Lab turns into muscle memory inside your software.
-            </p>
-            <ul class="section-list">
-              <li>Common language for EQ, compression, automation, and routing.</li>
-              <li>Downloadable notes to rebuild the same chain in your DAW.</li>
-              <li>Project ideas to help you publish release-ready electronic tracks.</li>
-              <li>Fast load times and lightweight assets so you stay in the groove.</li>
-            </ul>
-          </article>
-        </section>
-
-        <section
-          id="mpl-how-it-works"
-          class="sections-grid"
-          aria-label="How it works and what you get"
-          tabindex="-1"
-        >
-          <article class="section">
-            <div class="section-eyebrow">How it works</div>
-            <h2 class="section-title">A lab, not a lecture.</h2>
-            <p class="section-body">
-              Every module drops you into a guided lab where you trigger sounds,
-              tweak knobs, and shape a track in real time. Instead of watching
-              someone else produce, you build the song yourself with clear prompts
-              that explain why each move matters.
-            </p>
-            <ul class="section-list">
-              <li>Short, focused labs that fit into your day.</li>
-              <li>Immediate feedback from the interface as you experiment.</li>
-              <li>Concept-first teaching: you learn why, not just what to click.</li>
-              <li>
-                Built for beginners and self-taught producers who want a solid
-                foundation.
-              </li>
-            </ul>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">DAW-agnostic</div>
-            <h2 class="section-title">Learn once, apply everywhere.</h2>
-            <p class="section-body">
-              At its core, Music Producer Lab is about production fundamentals:
-              gain staging, compression, EQ, sound design, arrangement, mixing,
-              and creative workflow. Everything you discover can be translated
-              to Ableton Live, FL Studio, Logic Pro, Bitwig, or any other DAW.
-            </p>
-            <ul class="section-list">
-              <li>Clear mappings between lab controls and real-world tools.</li>
-              <li>Exercises that mirror actual production scenarios.</li>
-              <li>Downloadable cheatsheets so you can recreate techniques.</li>
-              <li>Language that avoids brand-specific jargon and buzzwords.</li>
-            </ul>
-          </article>
-        </section>
-
-        <section class="outcomes" aria-label="Outcomes and social proof">
-          <div>
-            <div class="section-eyebrow">Outcomes</div>
-            <h2 class="outcomes-main-title">
-              From "Where do I start?" to finished, release-ready songs.
-            </h2>
-            <p class="outcomes-body">
-              By the end of the core experience, you’ll understand how modern tracks
-              are built, how to move from idea to arrangement to polished mix, and
-              how to talk to any DAW with confidence. You’ll know what to listen for,
-              which decisions matter most, and how to keep the process motivating
-              instead of overwhelming.
-            </p>
-            <div class="outcomes-tags">
-              <span class="outcomes-tag">Finish your first complete track</span>
-              <span class="outcomes-tag">Understand the “why” behind every tool</span>
-              <span class="outcomes-tag">Confidently switch between DAWs</span>
-              <span class="outcomes-tag">Build a repeatable creative workflow</span>
+            
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10M6 20V4M18 20v-6"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Progressive Levels</h3>
+                <p>Start simple, build complexity gradually</p>
+              </div>
+            </div>
+            
+            <div class="coming-soon-feature">
+              <div class="coming-soon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Instant Feedback</h3>
+                <p>Know immediately if you're on track</p>
+              </div>
             </div>
           </div>
-
-          <aside class="stats-strip">
-            <div class="stat-block">
-              <div class="stat-label">Designed sessions</div>
-              <div class="stat-value">20+ labs</div>
-              <div class="stat-footnote">Short, focused, and stackable.</div>
-            </div>
-            <div class="stat-block">
-              <div class="stat-label">Time to first beat</div>
-              <div class="stat-value">&lt; 30 min</div>
-              <div class="stat-footnote">From zero to recognizable groove.</div>
-            </div>
-            <div class="stat-block">
-              <div class="stat-label">Experience level</div>
-              <div class="stat-value">Beginner–intermediate</div>
-              <div class="stat-footnote">No previous theory required.</div>
-            </div>
-          </aside>
-        </section>
-
-        <!-- NEW: Free drum-pattern lessons (no account required) -->
-        <section
-          id="mpl-free-drums"
-          class="sections-grid"
-          aria-label="Free drum pattern lessons"
-        >
-          <article class="section">
-            <div class="section-eyebrow">Free value · Lesson series</div>
-            <h2 class="section-title">Drum patterns 101: start with solid grooves.</h2>
-            <p class="section-body">
-              Begin with the essential <strong>4 on the floor</strong> kick pattern.
-              Then add snares, hi-hats, and ghost notes one layer at a time so you
-              hear how a simple pulse becomes a full, modern groove without the
-              overwhelm.
-            </p>
-            <ul class="section-list">
-              <li>
-                Understand what a <strong>bar</strong> is and how songs are counted
-                (<span class="nowrap">1–2–3–4</span>).
-              </li>
-              <li>
-                Learn the difference between <strong>bars</strong>,
-                <strong>beats</strong> and <strong>subdivisions</strong>
-                (1/4, 1/8, 1/16).
-              </li>
-              <li>
-                See how a simple “kick on every beat” becomes full grooves with
-                snares and hats.
-              </li>
-              <li>
-                Apply everything in any DAW:
-                Ableton, FL Studio, Logic, or even simple drum machines.
-              </li>
-            </ul>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Step-by-step exercises</div>
-            <h2 class="section-title">Your first rhythm path.</h2>
-            <p class="section-body">
-              Work through these short exercises in your own DAW or drum machine.
-              No login, no account – just follow the steps and program the patterns.
-            </p>
-            <ul class="section-list">
-              <li>
-                <strong>Exercise 1 · Pure 4 on the floor</strong> –
-                1 bar, tempo 120 BPM, kick on every beat (<span class="nowrap">1, 2, 3, 4</span>).
-              </li>
-              <li>
-                <strong>Exercise 2 · Add the snare</strong> –
-                keep the kicks, add snare on beats 2 and 4.
-              </li>
-              <li>
-                <strong>Exercise 3 · Straight 8th hi-hats</strong> –
-                hats on every 1/8 note to feel subdivisions
-                (<span class="nowrap">1 &amp; 2 &amp; 3 &amp; 4 &amp;</span>).
-              </li>
-              <li>
-                <strong>Exercise 4 · 16th-note groove</strong> –
-                add extra hats on selected 1/16 notes for movement.
-              </li>
-              <li>
-                <strong>Exercise 5 · Variation &amp; fills</strong> –
-                change the last bar to create a simple fill before the loop repeats.
-              </li>
-            </ul>
-            <p class="section-body" style="margin-top: 0.8rem;">
-              You can expand this series later into video, interactive labs or PDFs.
-              The structure is already here so anyone can start learning drums for free.
-            </p>
-            <!-- NEW: Buttons to open each lesson page -->
-            <div style="display:flex;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;">
-              <a class="btn btn-primary" href="lesson-drums-1.html" id="lesson-1-link" data-mpl-lesson-link><span>Lesson 1 · 4 on the floor</span></a>
-              <a class="btn btn-primary" href="lesson-drums-2.html" id="lesson-2-link" data-mpl-lesson-link><span>Lesson 2 · Add the snare</span></a>
-              <a class="btn btn-primary" href="lesson-drums-3.html" id="lesson-3-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 3 · 8th hi-hats · Premium</span></a>
-              <a class="btn btn-primary" href="lesson-drums-4.html" id="lesson-4-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 4 · 16th groove · Premium</span></a>
-              <a class="btn btn-primary" href="lesson-drums-5.html" id="lesson-5-link" data-mpl-lesson-link data-mpl-access="premium"><span>Lesson 5 · Variation &amp; fills · Premium</span></a>
-            </div>
-          </article>
-        </section>
-        <!-- END free drum-pattern lessons -->
-
-        <section id="mpl-core-labs" class="sections-grid" aria-label="Core production labs">
-          <article class="section">
-            <div class="section-eyebrow">Next up</div>
-            <h2 class="section-title">Arrangement → Mixing → Sound design → Vocals → Mastering.</h2>
-            <p class="section-body">
-              After the drum path, move through the core labs in sequence. Each lesson hands off to the next so you keep momentum, understand how the pieces connect, and build a portfolio-ready electronic track.
-            </p>
-            <ul class="section-list">
-              <li>One hero lab per topic so you stay focused on essentials.</li>
-              <li>Access control is baked in: free labs open instantly, premium labs prompt for unlock.</li>
-              <li>Navigation buttons at the bottom of every lab keep sequencing tight.</li>
-            </ul>
-          </article>
-          <article class="section">
-            <div class="section-eyebrow">Open a lab</div>
-            <h2 class="section-title">Choose your next module.</h2>
-            <div id="mpl-lab-cards" class="lab-card-grid" aria-label="Lab navigation"></div>
-          </article>
-        </section>
-
-        <!-- Authentication modal -->
-        <div
-          id="mpl-auth-backdrop"
-          class="mpl-auth-backdrop mpl-auth-hidden"
-          aria-hidden="true"
-        >
-          <div
-            class="mpl-auth-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="mpl-auth-title"
-          >
-            <button
-              type="button"
-              class="mpl-auth-close"
-              id="mpl-auth-close"
-              aria-label="Close"
-            >
-              ✕
-            </button>
-
-            <div class="mpl-auth-header">
-              <div class="mpl-auth-pill" id="mpl-auth-mode-pill">Create your account</div>
-              <h2 id="mpl-auth-title" class="mpl-auth-title">
-                Welcome to Music Producer Lab
-              </h2>
-              <p id="mpl-auth-subtitle" class="mpl-auth-subtitle">
-                Create a free account to save your progress and access upcoming labs.
-              </p>
-            </div>
-
-            <div class="mpl-auth-tabs">
-              <button
-                type="button"
-                class="mpl-auth-tab mpl-auth-tab-active"
-                id="mpl-auth-tab-signup"
-              >
-                Sign up
-              </button>
-              <button
-                type="button"
-                class="mpl-auth-tab"
-                id="mpl-auth-tab-login"
-              >
-                Log in
-              </button>
-            </div>
-
-            <form id="mpl-auth-form-signup" class="mpl-auth-form">
-              <div class="mpl-auth-field">
-                <label for="mpl-auth-name">Name</label>
-                <input
-                  id="mpl-auth-name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  required
-                />
-              </div>
-              <div class="mpl-auth-field">
-                <label for="mpl-auth-email-signup">Email</label>
-                <input
-                  id="mpl-auth-email-signup"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
-              </div>
-              <div class="mpl-auth-field">
-                <label for="mpl-auth-password-signup">Password</label>
-                <input
-                  id="mpl-auth-password-signup"
-                  name="password"
-                  type="password"
-                  autocomplete="new-password"
-                  minlength="8"
-                  required
-                />
-                <p class="mpl-auth-hint">Use at least 8 characters.</p>
-              </div>
-              <button type="submit" class="btn btn-primary mpl-auth-submit">
-                <span>Create account</span>
-              </button>
-              <p class="mpl-auth-footnote">
-                By continuing you agree to the future lab terms and privacy policy.
-              </p>
-              <div
-                class="mpl-auth-status mpl-auth-hidden"
-                role="status"
-                aria-live="polite"
-              ></div>
-            </form>
-
-            <form
-              id="mpl-auth-form-login"
-              class="mpl-auth-form mpl-auth-hidden"
-            >
-              <div class="mpl-auth-field">
-                <label for="mpl-auth-email-login">Email</label>
-                <input
-                  id="mpl-auth-email-login"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
-              </div>
-              <div class="mpl-auth-field mpl-auth-field-row">
-                <div class="mpl-auth-field-col">
-                  <label for="mpl-auth-password-login">Password</label>
-                  <input
-                    id="mpl-auth-password-login"
-                    name="password"
-                    type="password"
-                    autocomplete="current-password"
-                    required
-                  />
-                </div>
-                <button
-                  type="button"
-                  class="mpl-auth-link"
-                  id="mpl-auth-forgot-trigger"
-                >
-                  Forgot?
-                </button>
-              </div>
-              <button type="submit" class="btn btn-primary mpl-auth-submit">
-                <span>Log in</span>
-              </button>
-              <p class="mpl-auth-footnote">
-                Trouble logging in? Use the “Forgot?” link to reset your password.
-              </p>
-              <div
-                class="mpl-auth-status mpl-auth-hidden"
-                role="status"
-                aria-live="polite"
-              ></div>
-            </form>
-
-            <form
-              id="mpl-auth-form-forgot"
-              class="mpl-auth-form mpl-auth-hidden"
-            >
-              <div class="mpl-auth-field">
-                <label for="mpl-auth-email-forgot">Email</label>
-                <input
-                  id="mpl-auth-email-forgot"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
-              </div>
-              <button type="submit" class="btn btn-primary mpl-auth-submit">
-                <span>Send reset link</span>
-              </button>
-              <button
-                type="button"
-                class="mpl-auth-link mpl-auth-link-inline"
-                id="mpl-auth-back-to-login"
-              >
-                Back to log in
-              </button>
-              <div
-                class="mpl-auth-status mpl-auth-hidden"
-                role="status"
-                aria-live="polite"
-              ></div>
-            </form>
-
-            <!-- NEW: Guest entry button -->
-            <button
-              type="button"
-              class="btn btn-outline mpl-auth-submit"
-              id="mpl-auth-guest"
-              style="margin-top: 0.5rem;"
-            >
-              <span>Enter as guest</span>
-            </button>
+          
+          <div class="coming-soon-cta">
+            <a href="labs.html" class="btn btn-primary">
+              Start Learning Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="about.html" class="btn btn-secondary">
+              Learn About Us
+            </a>
           </div>
         </div>
-
-        </main>
-        <footer class="footer">
-          <div>
-            &copy; <span id="mpl-year"></span> Music Producer Lab ·
-            Learn music production by actually producing.
-          </div>
-          <div>
-            <a class="footer-link" href="index.html">Back to portal</a>
-          </div>
-        </footer>
       </div>
-
-
-      <script type="module">
-        import { initExplanationPage } from './explanation.js';
-
-        initExplanationPage();
-        
-        // Mobile hamburger menu toggle
-        const hamburger = document.getElementById('mpl-hamburger');
-        const mobileNav = document.getElementById('mpl-mobile-nav');
-        
-        if (hamburger && mobileNav) {
-          hamburger.addEventListener('click', () => {
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !isExpanded);
-            mobileNav.classList.toggle('is-open');
-            document.body.style.overflow = isExpanded ? '' : 'hidden';
-          });
-          
-          // Close mobile nav when clicking a link
-          mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-              hamburger.setAttribute('aria-expanded', 'false');
-              mobileNav.classList.remove('is-open');
-              document.body.style.overflow = '';
-            });
-          });
-          
-          // Close on escape key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
-              hamburger.setAttribute('aria-expanded', 'false');
-              mobileNav.classList.remove('is-open');
-              document.body.style.overflow = '';
-              hamburger.focus();
-            }
-          });
-        }
-      </script>
     </div>
-  </body>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+    });
+    
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (themeLabel) themeLabel.textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
 </html>

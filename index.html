@@ -1,101 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
-    <link rel="alternate icon" type="image/svg+xml" href="mpl-favicon-alt.svg" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="landing.css" />
-        <style>
-      .portal-logo {
-        width: min(80vw, 300px);
-        max-width: 300px;
-      }
-    </style>
-        <script type="importmap">
-    {
-      "imports": {
-        "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
-      }
-    }
-    </script>
-
-  </head>
-  <body>
-    <div class="landing">
-      <header class="landing-nav">
-        <div class="landing-status" id="landingAccessStatus" aria-live="polite">Stato: Free</div>
-        <div class="landing-nav-actions">
-          <a href="login.html" class="landing-login" id="landingCta">Log in</a>
-          <a href="signup.html" class="landing-login" id="landingSecondaryCta">Acquista</a>
-        </div>
-      </header>
-      <div class="bg">
-        <div class="bg-layer bg-layer-back">
-          <img id="bg-back" alt="Futuristic music production lab background" />
-        </div>
-        <div class="bg-layer bg-layer-front">
-          <img id="bg-front" alt="Futuristic music production lab detail" />
-        </div>
-        <div class="bg-noise"></div>
-      </div>
-
-      <main class="content">
-        <button class="logo-button" id="logoButton" aria-label="Enter Music Producer Lab">
-          <div class="logo">
-  <img src="assets/logo-clean.svg" alt="Music Producer Lab Logo" class="portal-logo" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Music Producer Lab | Learn Music Production by Actually Producing</title>
   
-
-          </div>
-        </button>
-        <section class="magic-link-card" aria-labelledby="magicLinkTitle">
-          <div>
-            <p class="magic-link-kicker">Accedi con un clic</p>
-            <h2 id="magicLinkTitle">Ricevi il Magic Link via email</h2>
-            <p class="magic-link-copy">
-              Inserisci la tua email: ti invieremo un link magico per accedere subito, senza password.
-            </p>
-          </div>
-          <form class="magic-link-form" data-magic-link-form>
-            <label class="sr-only" for="magicLinkEmail">Email</label>
-            <div class="magic-link-inputs">
-              <input
-                id="magicLinkEmail"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-              />
-              <button type="submit">Invia Magic Link</button>
-            </div>
-            <p class="magic-link-status" data-magic-link-status aria-live="polite"></p>
-          </form>
-        </section>
-      </main>
-
-      <div class="loading" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Interactive music production labs where you build real tracks step by step. Learn arrangement, mixing, sound design, and mastering through hands-on experience. Works with any DAW.">
+  <meta name="keywords" content="music production, learn music production, DAW training, Ableton, Logic Pro, FL Studio, beat making, mixing, mastering, sound design">
+  <meta name="author" content="Music Producer Lab">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://music-producer-lab.vercel.app/">
+  <meta property="og:title" content="Music Producer Lab | Learn Music Production by Actually Producing">
+  <meta property="og:description" content="Interactive music production labs where you build real tracks step by step. Not videos. Not theory. You do the work.">
+  <meta property="og:image" content="/assets/og-image.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Music Producer Lab">
+  <meta name="twitter:description" content="Learn music production by actually producing. Interactive labs for any DAW.">
+  <meta name="twitter:image" content="/assets/og-image.png">
+  
+  <!-- Theme & Mobile -->
+  <meta name="theme-color" content="#030508" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <img src="mpl-logo-icon.svg" alt="" class="preloader-logo">
+      <div class="preloader-bars">
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
       </div>
     </div>
-
-    <script
-      src="websim-loader.js"
-      data-websim-src="https://cdn.websim.ai/websim.min.js"
-      defer
-    ></script>
-    <script 
-        src="./supabase-config.js"
-        data-supabase-url="https://nmhmrucvsrhfnajagdyv.supabase.co"
-        data-supabase-anon-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5taG1ydWN2c3JoZm5hamFnZHl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwMTYxNjIsImV4cCI6MjA4MTU5MjE2Mn0.kHqe6kz1AhJ5l_4Gh5aSk4B5s6ip_IdUQfqNwWiPjb4"
-    ></script>
-    <script type="module" src="main.js"></script>
-    <script type="module">
-      import { initMagicLinkRequest } from "./magic-link-auth.js";
-      initMagicLinkRequest();
-    </script>
-  </body>
+  </div>
+  
+  <!-- Noise overlay for texture -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="/" class="navbar-link active">Home</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <li><a href="explore.html" class="navbar-link">Explore</a></li>
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+        <a href="labs.html" class="btn btn-primary btn-sm">Start Learning</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-bg-grid"></div>
+      <div class="hero-bg-orbs" aria-hidden="true">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          Interactive Music Production
+        </div>
+        
+        <h1 class="hero-title">
+          Learn music production by <span class="text-gradient">actually producing</span>.
+        </h1>
+        
+        <p class="hero-subtitle">
+          Interactive labs where you build real tracks step by step. 
+          Not videos. Not theory. <strong>You do the work.</strong>
+        </p>
+        
+        <div class="hero-cta">
+          <a href="labs.html" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Start Free Labs
+          </a>
+          <a href="explore.html" class="btn btn-secondary btn-lg">
+            Explore All Content
+          </a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">20+</div>
+            <div class="hero-stat-label">Interactive Labs</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">&lt;30min</div>
+            <div class="hero-stat-label">To First Beat</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">Any DAW</div>
+            <div class="hero-stat-label">Compatible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="badge badge-primary mb-md">Core Modules</span>
+        <h2 class="mb-md">Everything you need to produce release-ready tracks</h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+          Each lab is designed to teach you a specific skill through hands-on practice. 
+          Start from the basics and work your way up to professional production.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Drums & Rhythm -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Drums & Rhythm</h3>
+            <p class="feature-description">
+              Build solid grooves from the ground up. Master kick patterns, snare placement, hi-hat variations, and fills.
+            </p>
+            <a href="labs.html#drums" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Arrangement -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Arrangement</h3>
+            <p class="feature-description">
+              Learn how to structure your tracks for maximum impact. Intros, builds, drops, and outros that keep listeners engaged.
+            </p>
+            <a href="labs.html#arrangement" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Sound Design -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 10v3M6 6v12M10 8v8M14 4v16M18 8v8M22 10v3"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Sound Design</h3>
+            <p class="feature-description">
+              Create your own unique sounds. Understand synthesis, sampling, layering, and processing to craft signature tones.
+            </p>
+            <a href="labs.html#sound-design" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Mixing -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 21v-7M12 21V3M20 21v-11"/>
+              <path d="M1 14h6M9 10h6M17 13h6"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Mixing</h3>
+            <p class="feature-description">
+              Balance your tracks like a pro. EQ, compression, reverb, and spatial processing to make every element shine.
+            </p>
+            <a href="labs.html#mixing" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Vocals -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Vocals</h3>
+            <p class="feature-description">
+              Process vocals to sit perfectly in your mix. Tuning, doubling, effects, and creative processing techniques.
+            </p>
+            <a href="labs.html#vocals" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Mastering -->
+        <div class="feature-card card-glow">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Mastering</h3>
+            <p class="feature-description">
+              The final polish. Learn limiting, stereo enhancement, and loudness optimization for streaming platforms.
+            </p>
+            <a href="labs.html#mastering" class="feature-link">
+              Start Labs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Why Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="grid grid-2 gap-xl" style="align-items: center;">
+        <div>
+          <span class="badge badge-primary mb-md">Why MPL</span>
+          <h2 class="mb-lg">A lab, not a lecture.</h2>
+          <p class="mb-lg">
+            Every module drops you into a guided lab where you trigger sounds, 
+            tweak knobs, and shape a track in real time. Instead of watching 
+            someone else produce, you build the song yourself with clear prompts 
+            that explain why each move matters.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-md);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="color: var(--accent-green);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </span>
+              <span>Short, focused labs that fit into your day</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="color: var(--accent-green);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </span>
+              <span>Immediate feedback as you experiment</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="color: var(--accent-green);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </span>
+              <span>Concept-first teaching: learn why, not just what</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="color: var(--accent-green);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </span>
+              <span>DAW-agnostic skills you can use anywhere</span>
+            </li>
+          </ul>
+        </div>
+        <div style="position: relative;">
+          <div class="card" style="background: var(--bg-card); border: 1px solid var(--border-glow); box-shadow: var(--glow-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+              <span class="badge badge-success">Interactive Session</span>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">01/20</span>
+            </div>
+            <h4 style="margin-bottom: var(--space-md);">Beat Foundation Lab</h4>
+            <p style="font-size: 0.9rem; margin-bottom: var(--space-lg);">
+              Assemble your first electronic beat with kick, snare, and hi-hats.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); margin-bottom: var(--space-lg);">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Time</div>
+                <div style="font-weight: 600;">8-12 min</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Level</div>
+                <div style="font-weight: 600;">Beginner</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Skills</div>
+                <div style="font-weight: 600;">Rhythm, Groove</div>
+              </div>
+            </div>
+            <a href="labs.html" class="btn btn-primary" style="width: 100%;">
+              Start This Lab
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- DAW Section -->
+  <section class="section">
+    <div class="container text-center">
+      <span class="badge badge-primary mb-md">DAW-Agnostic</span>
+      <h2 class="mb-lg">Learn once, apply everywhere.</h2>
+      <p style="max-width: 600px; margin: 0 auto var(--space-2xl);">
+        Everything you learn translates directly to Ableton Live, FL Studio, Logic Pro, 
+        Bitwig, or any other DAW. We teach production fundamentals, not software tricks.
+      </p>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-xl); opacity: 0.7;">
+        <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-lg);">
+          <span style="font-family: var(--font-display); font-weight: 600;">Ableton Live</span>
+        </div>
+        <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-lg);">
+          <span style="font-family: var(--font-display); font-weight: 600;">FL Studio</span>
+        </div>
+        <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-lg);">
+          <span style="font-family: var(--font-display); font-weight: 600;">Logic Pro</span>
+        </div>
+        <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-lg);">
+          <span style="font-family: var(--font-display); font-weight: 600;">Bitwig</span>
+        </div>
+        <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-lg);">
+          <span style="font-family: var(--font-display); font-weight: 600;">& More</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section" style="background: var(--gradient-glow);">
+    <div class="container text-center">
+      <h2 class="mb-md">Ready to start producing?</h2>
+      <p style="max-width: 500px; margin: 0 auto var(--space-xl);">
+        Jump into your first lab right now. No signup required. 
+        Just you, the lab, and music to make.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md);">
+        <a href="labs.html" class="btn btn-primary btn-lg">
+          Open Free Labs
+        </a>
+        <a href="download.html" class="btn btn-secondary btn-lg">
+          Download Resources
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="mpl-logo-icon.svg" alt="" width="32" height="32">
+            <span>Music Producer Lab</span>
+          </div>
+          <p class="footer-tagline">
+            Learn music production by actually producing. 
+            Interactive labs for any DAW.
+          </p>
+          <div class="footer-socials">
+            <a href="https://twitter.com/MusicProducerLab" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com/@MusicProducerLab" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/musicproducerlab" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://discord.gg/musicproducerlab" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Discord">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Labs</h4>
+          <ul class="footer-links">
+            <li><a href="labs.html#drums" class="footer-link">Drums & Rhythm</a></li>
+            <li><a href="labs.html#arrangement" class="footer-link">Arrangement</a></li>
+            <li><a href="labs.html#sound-design" class="footer-link">Sound Design</a></li>
+            <li><a href="labs.html#mixing" class="footer-link">Mixing</a></li>
+            <li><a href="labs.html#mastering" class="footer-link">Mastering</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="download.html" class="footer-link">Free Downloads</a></li>
+            <li><a href="explore.html" class="footer-link">All Content</a></li>
+            <li><a href="download.html" class="footer-link">Sample Packs</a></li>
+            <li><a href="download.html" class="footer-link">Presets</a></li>
+            <li><a href="download.html" class="footer-link">Guides</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">Blog</a></li>
+            <li><a href="contact.html" class="footer-link">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="about.html">Privacy Policy</a>
+          <a href="about.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('loaded');
+      }, 500);
+    });
+    
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    
+    // Close mobile nav when clicking a link
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (themeLabel) {
+        themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+      }
+    }
+    
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (!prefersDark.matches) {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
 </html>
-

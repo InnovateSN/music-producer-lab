@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 9 · Hip-Hop & Boom Bap Drums | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Program classic hip-hop beats from boom bap to modern styles. Learn the swing, velocity variation, and layering techniques." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Hip-Hop Style Cards */
+      .style-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .style-card {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .style-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+      }
+      
+      .style-card.boombap::before {
+        background: linear-gradient(180deg, #feca57, #ff9f43);
+      }
+      
+      .style-card.lofi::before {
+        background: linear-gradient(180deg, #a29bfe, #6c5ce7);
+      }
+      
+      .style-card.modern::before {
+        background: linear-gradient(180deg, #00cec9, #0984e3);
+      }
+      
+      .style-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .style-card .era {
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .style-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .style-card .characteristics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+      }
+      
+      .style-card .tag {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+      }
+      
+      /* Swing Visualization */
+      .swing-demo {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .swing-grid {
+        display: flex;
+        gap: 4px;
+        margin: var(--space-md) 0;
+      }
+      
+      .swing-step {
+        flex: 1;
+        height: 40px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        position: relative;
+      }
+      
+      .swing-step.active {
+        background: var(--accent-cyan);
+        color: var(--bg-primary);
+      }
+      
+      .swing-step .offset {
+        position: absolute;
+        bottom: -16px;
+        font-size: 0.6rem;
+        color: var(--accent-amber);
+      }
+      
+      /* MPC Reference */
+      .mpc-reference {
+        background: linear-gradient(135deg, #2d3436, #636e72);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-lg) 0;
+        text-align: center;
+      }
+      
+      .mpc-reference h4 {
+        color: var(--accent-amber);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .mpc-pads {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-sm);
+        max-width: 300px;
+        margin: var(--space-md) auto;
+      }
+      
+      .mpc-pad {
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, #636e72, #b2bec3);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: #2d3436;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+      
+      .mpc-pad:active {
+        transform: scale(0.95);
+        background: var(--accent-amber);
+      }
+      
+      /* Pattern Breakdown */
+      .pattern-breakdown {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin: var(--space-lg) 0;
+        font-family: monospace;
+        font-size: 0.8rem;
+        overflow-x: auto;
+      }
+      
+      .pattern-breakdown .row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .pattern-breakdown .label {
+        width: 60px;
+        color: var(--accent-cyan);
+      }
+      
+      .pattern-breakdown .pattern {
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+      
+      .pattern-breakdown .active {
+        color: var(--accent-amber);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="lesson-page">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
+          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
+          <span class="logo-text">Music Producer Lab</span>
+        </a>
+        <a href="labs.html" class="btn btn--outline btn--sm">
+          <span class="btn-icon">←</span> Back to overview
+        </a>
+      </div>
+    </header>
+
+    <main class="lesson-main">
+      <!-- Hero Section -->
+      <section class="lesson-hero">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Lesson 9 · Drums & Rhythm · Intermediate</p>
+          <h1 class="hero-title">Hip-Hop & <span class="highlight">Boom Bap</span></h1>
+          <p class="hero-subtitle">
+            Program classic <strong>hip-hop beats</strong> from golden-era boom bap to modern styles. 
+            Master <strong>swing</strong>, <strong>velocity variation</strong>, and the 
+            <strong>MPC-style quantization</strong> that defines the genre.
+          </p>
+          
+          <div class="hero-meta">
+            <span class="meta-item">⏱️ 15-18 min</span>
+            <span class="meta-item">📊 Level 5</span>
+            <span class="meta-item">🎯 Intermediate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <nav class="lesson-nav" aria-label="Lesson navigation">
+        <a href="lesson-drums-8.html" class="nav-link nav-link--prev">
+          ← Back to Lesson 8
+        </a>
+        <a href="lesson-drums-10.html" class="nav-link nav-link--next">
+          Next: Trap & 808 →
+        </a>
+      </nav>
+
+      <!-- Main Content -->
+      <article class="lesson-content">
+        
+        <!-- Introduction -->
+        <section class="content-section">
+          <h2>The Soul of Hip-Hop Drums</h2>
+          <p>
+            Hip-hop drum programming is an art form that evolved from sampling funk and soul breaks. 
+            The <strong>boom bap</strong> style—named for the sound of the kick ("boom") and snare ("bap")—
+            defined the golden era of the 90s and continues to influence modern production.
+          </p>
+          
+          <div class="callout callout--info">
+            <p>
+              <strong>🎯 The Key Difference:</strong> Unlike electronic music's rigid grid, hip-hop drums 
+              <em>swing</em>. Notes are intentionally placed slightly off-grid to create that head-nodding groove.
+            </p>
+          </div>
+        </section>
+
+        <!-- Style Cards -->
+        <section class="content-section">
+          <h2>Hip-Hop Drum Styles</h2>
+          
+          <div class="style-grid">
+            <div class="style-card boombap">
+              <h3>🎤 Boom Bap</h3>
+              <div class="era">Golden Era (88-96) • 85-98 BPM</div>
+              <p>
+                Hard-hitting kicks and snappy snares with gritty samples. 
+                Often uses chopped breaks from funk and soul records.
+              </p>
+              <div class="characteristics">
+                <span class="tag">Heavy Swing</span>
+                <span class="tag">Punchy Kick</span>
+                <span class="tag">Crispy Snare</span>
+                <span class="tag">Dusty Samples</span>
+              </div>
+            </div>
+            
+            <div class="style-card lofi">
+              <h3>🌙 Lo-Fi Hip-Hop</h3>
+              <div class="era">Modern Chill • 70-90 BPM</div>
+              <p>
+                Mellow, relaxed beats with vinyl crackle and warm textures. 
+                Influenced by J Dilla's humanized, off-grid style.
+              </p>
+              <div class="characteristics">
+                <span class="tag">Off-Grid Notes</span>
+                <span class="tag">Soft Attack</span>
+                <span class="tag">Vinyl Texture</span>
+                <span class="tag">Jazz Samples</span>
+              </div>
+            </div>
+            
+            <div class="style-card modern">
+              <h3>🔥 Modern Hip-Hop</h3>
+              <div class="era">Contemporary • 70-160 BPM</div>
+              <p>
+                Wide tempo range from Drake-style moody beats to aggressive 
+                styles. Clean production with punchy, processed drums.
+              </p>
+              <div class="characteristics">
+                <span class="tag">Clean Mix</span>
+                <span class="tag">808 Bass</span>
+                <span class="tag">Layered Drums</span>
+                <span class="tag">Tight Groove</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Swing Explanation -->
+        <section class="content-section">
+          <h2>Understanding Swing</h2>
+          <p>
+            <strong>Swing</strong> (also called "groove" or "shuffle") delays every other 16th note 
+            slightly, creating a "bouncy" feel. In hip-hop, this is essential for that head-nod groove.
+          </p>
+          
+          <div class="swing-demo">
+            <h4 style="margin-bottom: var(--space-md);">Swing Comparison</h4>
+            
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">
+              <strong>No Swing (Straight):</strong> All notes perfectly on-grid
+            </p>
+            <div class="swing-grid" id="straight-grid">
+              <!-- Generated by JS -->
+            </div>
+            
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: var(--space-md) 0 var(--space-sm);">
+              <strong>With Swing (50-60%):</strong> Off-beats pushed back
+            </p>
+            <div class="swing-grid" id="swing-grid">
+              <!-- Generated by JS -->
+            </div>
+            
+            <p style="font-size: 0.8rem; color: var(--accent-amber); margin-top: var(--space-md);">
+              💡 The delayed off-beats create the characteristic "bounce" of hip-hop
+            </p>
+          </div>
+        </section>
+
+        <!-- Boom Bap Pattern -->
+        <section class="content-section">
+          <h2>The Classic Boom Bap Pattern</h2>
+          <p>
+            The foundation of boom bap is a <strong>syncopated kick</strong> and <strong>heavy snare on 2 and 4</strong>:
+          </p>
+          
+          <div class="pattern-breakdown">
+            <div class="row">
+              <span class="label">Beat:</span>
+              <span class="pattern">
+                <span class="active">1</span> · · · <span class="active">2</span> · · · <span class="active">3</span> · · · <span class="active">4</span> · · ·
+              </span>
+            </div>
+            <div class="row">
+              <span class="label">Step:</span>
+              <span class="pattern">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</span>
+            </div>
+            <div class="row">
+              <span class="label">Kick:</span>
+              <span class="pattern">
+                <span class="active">X</span> · · · · · <span class="active">X</span> · · · <span class="active">X</span> · · · · ·
+              </span>
+            </div>
+            <div class="row">
+              <span class="label">Snare:</span>
+              <span class="pattern">
+                · · · · <span class="active">X</span> · · · · · · · <span class="active">X</span> · · ·
+              </span>
+            </div>
+            <div class="row">
+              <span class="label">Hi-Hat:</span>
+              <span class="pattern">
+                <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> · <span class="active">X</span> ·
+              </span>
+            </div>
+          </div>
+          
+          <div class="callout callout--tip">
+            <h4>🥁 Key Characteristics</h4>
+            <ul style="margin-top: var(--space-sm);">
+              <li><strong>Syncopated kick:</strong> Steps 1, 7, 11 (not straight 4-on-the-floor)</li>
+              <li><strong>Heavy snare:</strong> Steps 5 and 13 with attitude</li>
+              <li><strong>8th note hi-hats:</strong> Consistent pulse with groove</li>
+              <li><strong>Swing:</strong> 50-60% for that bounce</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- MPC Reference -->
+        <section class="content-section">
+          <h2>The MPC Legacy</h2>
+          <p>
+            The Akai MPC (Music Production Center) shaped hip-hop's sound. Its unique 
+            <strong>swing quantization</strong> and finger-drumming workflow created the 
+            genre's distinctive feel.
+          </p>
+          
+          <div class="mpc-reference">
+            <h4>🎹 MPC-Style Finger Drumming</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">
+              Classic MPC producers would "finger drum" patterns, creating natural human timing variations.
+            </p>
+            <div class="mpc-pads">
+              <div class="mpc-pad">KICK</div>
+              <div class="mpc-pad">SNARE</div>
+              <div class="mpc-pad">HH-C</div>
+              <div class="mpc-pad">HH-O</div>
+              <div class="mpc-pad">CLAP</div>
+              <div class="mpc-pad">RIM</div>
+              <div class="mpc-pad">TOM</div>
+              <div class="mpc-pad">PERC</div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--accent-amber); margin-top: var(--space-md);">
+              💡 Tip: Try recording drums in real-time for more human feel
+            </p>
+          </div>
+        </section>
+
+        <!-- Interactive Exercise -->
+        <section class="content-section exercise-section">
+          <h2>🎯 Exercise: Build a Boom Bap Beat</h2>
+          
+          <div class="exercise-intro">
+            <p>
+              Create a classic boom bap pattern with syncopated kick, heavy backbeat snare, 
+              and driving 8th-note hi-hats.
+            </p>
+          </div>
+
+          <div class="exercise-steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <div class="step-content">
+                <strong>Kick:</strong> Place kicks on steps 1, 7, and 11 (syncopated, not 4-on-the-floor)
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <div class="step-content">
+                <strong>Snare:</strong> Heavy snare on steps 5 and 13 (the "bap")
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <div class="step-content">
+                <strong>Hi-Hat:</strong> 8th notes on all odd steps (1, 3, 5, 7, 9, 11, 13, 15)
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">4</span>
+              <div class="step-content">
+                <strong>Feel:</strong> This pattern should make you nod your head!
+              </div>
+            </div>
+          </div>
+
+          <!-- Sequencer Component -->
+          <div class="sequencer-container" id="sequencer">
+            <div class="sequencer-header">
+              <h3>Boom Bap Sequencer</h3>
+              <div class="sequencer-controls">
+                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
+              </div>
+            </div>
+
+            <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-amber);">
+              🎵 90 BPM - Classic Boom Bap Tempo
+            </div>
+
+            <div class="sequencer" id="mpl-sequencer-collection"></div>
+
+            <div class="exercise-status">
+              <p id="mpl-seq-status">Build the boom bap pattern to unlock the next lesson.</p>
+            </div>
+          </div>
+
+          <div class="next-lesson-container">
+            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
+              Next Lesson →
+            </button>
+          </div>
+        </section>
+
+        <!-- Pro Tips -->
+        <section class="content-section">
+          <h2>💡 Pro Tips</h2>
+          <ul>
+            <li><strong>Layer your snare:</strong> Combine a punchy transient sample with a thicker body sample</li>
+            <li><strong>Add vinyl noise:</strong> Subtle crackle and hiss adds authenticity to boom bap</li>
+            <li><strong>Side-chain the sample:</strong> Duck your sample chop when the kick hits</li>
+            <li><strong>Vary velocity:</strong> No two hits should be exactly the same—humanize!</li>
+            <li><strong>Use swing:</strong> 54-62% swing is the sweet spot for boom bap</li>
+          </ul>
+        </section>
+
+        <!-- Summary -->
+        <section class="content-section">
+          <h2>Key Takeaways</h2>
+          <ul class="summary-list">
+            <li><strong>Boom bap</strong> = syncopated kick + heavy snare on 2 and 4</li>
+            <li><strong>Swing</strong> creates the head-nod groove (50-60%)</li>
+            <li><strong>MPC workflow</strong> shaped the genre's human feel</li>
+            <li><strong>Tempo range:</strong> 85-98 BPM for classic boom bap</li>
+            <li><strong>Humanization</strong> is key—no two hits should be identical</li>
+          </ul>
+        </section>
+
+      </article>
+
+      <!-- Bottom Navigation -->
+      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
+        <a href="lesson-drums-8.html" class="nav-link nav-link--prev">
+          ← House & Techno
+        </a>
+        <a href="labs.html" class="nav-link nav-link--overview">
+          Overview
+        </a>
+        <a href="lesson-drums-10.html" class="nav-link nav-link--next">
+          Trap & 808 →
+        </a>
+      </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize swing demo visualization
+      function initSwingDemo() {
+        const straightGrid = document.getElementById('straight-grid');
+        const swingGrid = document.getElementById('swing-grid');
+        if (!straightGrid || !swingGrid) return;
+        for (let i = 0; i < 16; i++) {
+          const straightStep = document.createElement('div');
+          straightStep.className = 'swing-step';
+          if (i % 2 === 0) straightStep.classList.add('active');
+          straightStep.textContent = i + 1;
+          straightGrid.appendChild(straightStep);
+
+          const swingStep = document.createElement('div');
+          swingStep.className = 'swing-step';
+          if (i % 2 === 0) swingStep.classList.add('active');
+          swingStep.textContent = i + 1;
+          if (i % 2 === 1) {
+            const offset = document.createElement('span');
+            offset.className = 'offset';
+            offset.textContent = '+15%';
+            swingStep.appendChild(offset);
+          }
+          swingGrid.appendChild(swingStep);
+        }
+      }
+      document.addEventListener('DOMContentLoaded', initSwingDemo);
+    </script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-9-progress";
+      const NEXT_LESSON_URL = "lesson-drums-10.html";
+
+      // Boom bap: syncopated kick, heavy snare, 8th hats
+      const instruments = [
+        {
+          id: "kick",
+          label: "Kick",
+          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+          target: [0, 6, 10],
+          instructions: "Syncopated kick pattern"
+        },
+        {
+          id: "snare",
+          label: "Snare",
+          color: "linear-gradient(135deg, #feca57, #ff9f43)",
+          target: [4, 12],
+          instructions: "Heavy snare on 2 and 4"
+        },
+        {
+          id: "hihat",
+          label: "Hi-Hat",
+          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+          target: [0, 2, 4, 6, 8, 10, 12, 14],
+          instructions: "8th note hi-hats"
+        }
+      ];
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+    </script>
+  </body>
+</html>

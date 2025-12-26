@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 15 · Percussion Layering & World Rhythms | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Add percussion layers from global traditions. Learn clave patterns, African rhythms, and Latin percussion." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* World Map */
+      .world-rhythms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .rhythm-region {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      .rhythm-region:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+      
+      .rhythm-region h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-xs);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .rhythm-region .region-flag {
+        font-size: 1.5rem;
+      }
+      
+      .rhythm-region p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .percussion-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+      }
+      
+      .perc-tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+      }
+      
+      /* Clave Pattern */
+      .clave-demo {
+        background: linear-gradient(135deg, #2d3436, #636e72);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .clave-pattern {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin: var(--space-lg) 0;
+      }
+      
+      .clave-step {
+        width: 40px;
+        height: 50px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.15s;
+      }
+      
+      .clave-step.hit {
+        background: var(--accent-coral);
+        color: white;
+      }
+      
+      .clave-step.rest {
+        background: var(--bg-tertiary);
+        color: var(--text-muted);
+      }
+      
+      .clave-step.downbeat {
+        border-bottom: 3px solid var(--accent-cyan);
+      }
+      
+      /* Clave Types */
+      .clave-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .clave-type {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+      }
+      
+      .clave-type:hover {
+        border-color: var(--accent-amber);
+      }
+      
+      .clave-type.active {
+        border-color: var(--accent-coral);
+        background: var(--bg-tertiary);
+      }
+      
+      .clave-type h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .clave-type p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      
+      /* Percussion Layers */
+      .layer-builder {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .layer-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-sm) 0;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .layer-row:last-child {
+        border-bottom: none;
+      }
+      
+      .layer-name {
+        width: 100px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      
+      .layer-pattern {
+        flex: 1;
+        display: flex;
+        gap: 4px;
+      }
+      
+      .layer-step {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        background: var(--bg-tertiary);
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+      
+      .layer-step.active {
+        background: var(--accent-coral);
+      }
+      
+      .layer-volume {
+        width: 60px;
+      }
+      
+      /* Percussion Sound Cards */
+      .perc-sounds {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-xl) 0;
+      }
+      
+      .perc-sound {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid var(--border-subtle);
+      }
+      
+      .perc-sound:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+      
+      .perc-sound .icon {
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .perc-sound h4 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .perc-sound p {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SITE HEADER -->
+    <header class="site-header glass">
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
+        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <!-- HERO -->
+      <section class="hero">
+        <p class="hero-eyebrow">Lesson 15 · Drums & Rhythm</p>
+        <h1 class="hero-title">Percussion Layering &<br><span class="highlight">World Rhythms</span></h1>
+        <p class="hero-subtitle">Add <strong>percussion layers</strong> from global traditions. Master <strong>clave patterns</strong>, <strong>Afrobeat rhythms</strong>, and <strong>Latin percussion</strong> to create rich, organic grooves.</p>
+      </section>
+
+      <!-- THE CLAVE -->
+      <section class="card">
+        <h2><span class="icon">🎵</span> The Clave: Foundation of Latin Rhythm</h2>
+        <p class="section-intro">
+          The <strong>clave</strong> is the rhythmic backbone of Afro-Cuban music. It's a five-note pattern that repeats across two bars and guides all other rhythms in the arrangement.
+        </p>
+        
+        <div class="clave-demo">
+          <h3 style="text-align: center; margin-bottom: var(--space-md);">3-2 Son Clave</h3>
+          <div class="clave-pattern" id="clavePattern">
+            <!-- Bar 1: 3 hits -->
+            <div class="clave-step hit downbeat">1</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step hit">4</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step hit">7</div>
+            <div class="clave-step rest">·</div>
+            <!-- Bar 2: 2 hits -->
+            <div class="clave-step rest downbeat">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step hit">4</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step rest">·</div>
+            <div class="clave-step hit">8</div>
+          </div>
+          
+          <div style="text-align: center; margin-top: var(--space-md);">
+            <span style="color: var(--accent-cyan); font-size: 0.8rem;">Bar 1 (3 hits)</span>
+            <span style="margin: 0 var(--space-md); color: var(--text-muted);">|</span>
+            <span style="color: var(--accent-amber); font-size: 0.8rem;">Bar 2 (2 hits)</span>
+          </div>
+        </div>
+        
+        <div class="clave-types">
+          <div class="clave-type active" data-clave="son-32">
+            <h4>3-2 Son Clave</h4>
+            <p>The most common. Bar 1 has 3 notes, Bar 2 has 2.</p>
+          </div>
+          <div class="clave-type" data-clave="son-23">
+            <h4>2-3 Son Clave</h4>
+            <p>Reversed—starts with 2 notes. Different feel, same pattern.</p>
+          </div>
+          <div class="clave-type" data-clave="rumba-32">
+            <h4>3-2 Rumba Clave</h4>
+            <p>3rd note moved late. More syncopated, common in salsa.</p>
+          </div>
+          <div class="clave-type" data-clave="bossa">
+            <h4>Bossa Nova Clave</h4>
+            <p>Brazilian variation. Used in bossa nova and samba.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORLD RHYTHMS -->
+      <section class="card">
+        <h2><span class="icon">🌍</span> World Rhythm Traditions</h2>
+        <p class="section-intro">
+          Different cultures have developed unique rhythmic patterns and percussion instruments. Learning these enriches your production palette.
+        </p>
+        
+        <div class="world-rhythms">
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇨🇺</span> Afro-Cuban</h3>
+            <p>Foundation of salsa, mambo, and Latin jazz. Clave-based patterns with layered percussion.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Clave</span>
+              <span class="perc-tag">Congas</span>
+              <span class="perc-tag">Bongos</span>
+              <span class="perc-tag">Timbales</span>
+              <span class="perc-tag">Cowbell</span>
+            </div>
+          </div>
+          
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇧🇷</span> Brazilian</h3>
+            <p>Samba, bossa nova, and baião rhythms with complex polyrhythmic layering.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Surdo</span>
+              <span class="perc-tag">Pandeiro</span>
+              <span class="perc-tag">Tamborim</span>
+              <span class="perc-tag">Agogô</span>
+              <span class="perc-tag">Cuíca</span>
+            </div>
+          </div>
+          
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇳🇬</span> West African</h3>
+            <p>Afrobeat, highlife, and traditional djembe rhythms. Foundation for modern Afropop.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Djembe</span>
+              <span class="perc-tag">Talking Drum</span>
+              <span class="perc-tag">Shekere</span>
+              <span class="perc-tag">Udu</span>
+              <span class="perc-tag">Bells</span>
+            </div>
+          </div>
+          
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇯🇲</span> Caribbean</h3>
+            <p>Reggae, dancehall, and calypso rhythms with distinctive offbeat emphasis.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Steel Drum</span>
+              <span class="perc-tag">Nyabinghi Drums</span>
+              <span class="perc-tag">Bongo</span>
+              <span class="perc-tag">Shaker</span>
+            </div>
+          </div>
+          
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇮🇳</span> Indian</h3>
+            <p>Tabla patterns, complex time cycles (tala), and ornamental techniques.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Tabla</span>
+              <span class="perc-tag">Dholak</span>
+              <span class="perc-tag">Mridangam</span>
+              <span class="perc-tag">Ghatam</span>
+            </div>
+          </div>
+          
+          <div class="rhythm-region">
+            <h3><span class="region-flag">🇪🇬</span> Middle Eastern</h3>
+            <p>Doumbek patterns, maqsum, and baladi rhythms with complex ornamentation.</p>
+            <div class="percussion-list">
+              <span class="perc-tag">Doumbek</span>
+              <span class="perc-tag">Frame Drum</span>
+              <span class="perc-tag">Riq</span>
+              <span class="perc-tag">Sagat</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERCUSSION SOUNDS -->
+      <section class="card">
+        <h2><span class="icon">🥁</span> Common Percussion Sounds</h2>
+        <p class="section-intro">
+          These percussion instruments add texture and movement to any groove. Learn their roles and typical patterns.
+        </p>
+        
+        <div class="perc-sounds">
+          <div class="perc-sound">
+            <div class="icon">🪘</div>
+            <h4>Congas</h4>
+            <p>Low, mid, high tones. Tumbao patterns.</p>
+          </div>
+          <div class="perc-sound">
+            <div class="icon">🔔</div>
+            <h4>Cowbell</h4>
+            <p>Driving offbeat patterns. Essential for salsa.</p>
+          </div>
+          <div class="perc-sound">
+            <div class="icon">🎐</div>
+            <h4>Shaker</h4>
+            <p>16th note pulse. Adds air and movement.</p>
+          </div>
+          <div class="perc-sound">
+            <div class="icon">🪇</div>
+            <h4>Tambourine</h4>
+            <p>Accent upbeats. Adds brightness and shimmer.</p>
+          </div>
+          <div class="perc-sound">
+            <div class="icon">🥢</div>
+            <h4>Claves</h4>
+            <p>The heartbeat pattern. Guides all other parts.</p>
+          </div>
+          <div class="perc-sound">
+            <div class="icon">🪈</div>
+            <h4>Guiro</h4>
+            <p>Scraping rhythm. Long-short patterns.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCISE -->
+      <section class="card exercise-card">
+        <h2><span class="icon">✏️</span> Exercise: Layer a Latin Groove</h2>
+        <div class="exercise-info">
+          <p><strong>Task:</strong> Build a layered percussion groove using clave, congas, and shaker.</p>
+          <ol class="exercise-steps">
+            <li>Start with the 3-2 son clave as your guide.</li>
+            <li>Add a conga pattern that complements the clave.</li>
+            <li>Layer a shaker on 16th notes for pulse.</li>
+            <li>Add cowbell hits on the offbeats.</li>
+          </ol>
+        </div>
+        
+        <!-- SEQUENCER -->
+        <div class="sequencer-container">
+          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="margin:0;">Percussion Sequencer</h3>
+            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
+              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
+              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
+              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+            </div>
+          </div>
+          <div class="sequencer" id="mpl-sequencer-collection"></div>
+          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
+          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Golden Rule:</strong> Every part should respect the clave. If something clashes, it's probably crossing the clave in the wrong place.
+        </div>
+      </section>
+
+      <!-- KEY TAKEAWAYS -->
+      <section class="card">
+        <h2><span class="icon">🎓</span> Key Takeaways</h2>
+        <ul class="check-list">
+          <li><strong>Clave is king:</strong> All Latin percussion follows the clave pattern</li>
+          <li><strong>Layer textures:</strong> Combine low (congas), mid (cowbell), high (shaker) frequencies</li>
+          <li><strong>Respect tradition:</strong> Learn authentic patterns before experimenting</li>
+          <li><strong>World rhythms enrich:</strong> Afrobeat, Brazilian, Caribbean influences add depth</li>
+          <li><strong>Less is more:</strong> Each layer should have a purpose and space</li>
+        </ul>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="lesson-nav">
+        <a href="lesson-drums-14.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
+        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
+        <a href="lesson-drums-16.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
+      </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© 2025 Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="#">Projects</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('.clave-type').forEach(type => {
+        type.addEventListener('click', () => {
+          document.querySelectorAll('.clave-type').forEach(t => t.classList.remove('active'));
+          type.classList.add('active');
+        });
+      });
+    </script>
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+      const instruments = [
+        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 8], instructions: "Foundation kick" },
+        { id: "clap", label: "Clap", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Clap backbeat" },
+        { id: "rim", label: "Rim", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 3, 6, 10], instructions: "Clave pattern" }
+      ];
+      initDrumSequencer(instruments, "mpl-drums-15-progress", "lesson-drums-16.html");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#030508"/>
+      <stop offset="50%" style="stop-color:#050810"/>
+      <stop offset="100%" style="stop-color:#0a0f1a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00f0ff"/>
+      <stop offset="50%" style="stop-color:#b366ff"/>
+      <stop offset="100%" style="stop-color:#ff66b2"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <g stroke="rgba(0,240,255,0.05)" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  
+  <!-- Glow orbs -->
+  <circle cx="200" cy="150" r="100" fill="#00f0ff" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="1000" cy="400" r="120" fill="#b366ff" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="600" cy="550" r="80" fill="#ff66b2" opacity="0.1" filter="url(#glow)"/>
+  
+  <!-- Logo icon -->
+  <g transform="translate(520, 180)">
+    <rect x="0" y="0" width="160" height="160" rx="32" fill="url(#accentGrad)" filter="url(#glow)"/>
+    <text x="80" y="110" font-family="Orbitron, sans-serif" font-size="72" font-weight="800" fill="#030508" text-anchor="middle">M</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="400" font-family="Orbitron, Arial, sans-serif" font-size="56" font-weight="700" fill="#f0f4ff" text-anchor="middle" letter-spacing="0.04em">MUSIC PRODUCER LAB</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="460" font-family="Inter, Arial, sans-serif" font-size="24" fill="#b8c4e0" text-anchor="middle">Learn music production by actually producing</text>
+  
+  <!-- Accent line -->
+  <rect x="400" y="490" width="400" height="4" rx="2" fill="url(#accentGrad)" filter="url(#glow)"/>
+  
+  <!-- Tags -->
+  <g font-family="Inter, Arial, sans-serif" font-size="16" fill="#7a8ba8">
+    <text x="420" y="540" text-anchor="middle">Interactive Labs</text>
+    <text x="600" y="540" text-anchor="middle">Any DAW</text>
+    <text x="780" y="540" text-anchor="middle">Free to Start</text>
+  </g>
+</svg>

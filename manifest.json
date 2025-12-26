@@ -1,0 +1,32 @@
+{
+  "name": "Music Producer Lab",
+  "short_name": "MPL",
+  "description": "Learn music production by actually producing. Interactive labs for any DAW.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030508",
+  "theme_color": "#030508",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "mpl-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "music"],
+  "lang": "en",
+  "dir": "ltr"
+}
