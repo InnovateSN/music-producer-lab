@@ -1,0 +1,179 @@
+/**
+ * Music Producer Lab - Lesson Configuration
+ * Lesson: Drums 13 - Humanization & Groove Templates
+ * 
+ * This lesson teaches humanization techniques including micro-timing,
+ * velocity curves, swing, and groove template extraction.
+ */
+
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+
+export const lessonConfig = {
+  // ====================
+  // LESSON METADATA
+  // ====================
+  lessonKey: "mpl-drums-13-progress",
+  lessonNumber: 13,
+  lessonCategory: "Drums & Rhythm",
+  depthLevel: 7,
+  
+  // ====================
+  // NAVIGATION
+  // ====================
+  nextLessonUrl: "lesson-drums-14.html",
+  prevLessonUrl: "lesson-drums-12.html",
+  overviewUrl: "labs.html",
+  
+  // ====================
+  // HERO SECTION
+  // ====================
+  hero: {
+    eyebrow: buildHeroEyebrow({ lessonNumber: 13, categoryLabel: "Drums & Rhythm" }),
+    title: "Humanization &",
+    titleHighlight: "Groove Templates",
+    subtitle: "Make programmed drums <strong>feel human</strong>. Master <strong>micro-timing shifts</strong>, <strong>velocity curves</strong>, and <strong>groove template extraction</strong>."
+  },
+  
+  // ====================
+  // SEQUENCER CONFIG
+  // ====================
+  sequencer: {
+    tempo: 90,
+    stepCount: 16,
+    swing: 0,
+    showBeatMarkers: true,
+    showStepNumbers: true,
+    autoSaveState: true,
+    enableVelocity: true,
+    enableHumanization: true
+  },
+  
+  // ====================
+  // EXERCISE
+  // ====================
+  exercise: {
+    title: "Humanize a Beat",
+    description: "Apply humanization techniques to transform a robotic pattern into a living, breathing groove.",
+    tip: "Start subtle—5-10ms timing variation and 10-15% velocity randomization. You can always add more.",
+    steps: [
+      { text: "<strong>Step 1:</strong> Program the basic kick-snare-hihat pattern." },
+      { text: "<strong>Step 2:</strong> Apply 10ms timing randomization to hi-hats only." },
+      { text: "<strong>Step 3:</strong> Create velocity curve: louder downbeats, softer off-beats." },
+      { text: "<strong>Step 4:</strong> Add 54% swing for MPC-style groove." }
+    ]
+  },
+  
+  // ====================
+  // INSTRUMENTS
+  // ====================
+  instruments: [
+    {
+      id: "kick",
+      label: "Kick",
+      color: "linear-gradient(135deg, #e17055, #d63031)",
+      targetSteps: [0, 6, 8, 12],
+      instructionText: "Keep kick mostly on grid for foundation.",
+      patternHint: { enabled: true, note: "Kick anchors the groove" }
+    },
+    {
+      id: "snare",
+      label: "Snare",
+      color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)",
+      targetSteps: [4, 12],
+      instructionText: "Snare can lay slightly behind the beat.",
+      patternHint: { enabled: true, note: "Try +5ms delay on snare" }
+    },
+    {
+      id: "hihat",
+      label: "Hi-Hat",
+      color: "linear-gradient(135deg, #00cec9, #0984e3)",
+      targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
+      instructionText: "Hi-hats get most humanization—timing and velocity.",
+      patternHint: { enabled: true, note: "Apply swing + velocity curve" }
+    }
+  ],
+  
+  // ====================
+  // HUMANIZATION PRESETS
+  // ====================
+  humanizationPresets: [
+    {
+      id: "subtle",
+      name: "Subtle",
+      timing: 5,
+      velocity: 10,
+      swing: 50,
+      description: "Barely noticeable—keeps pattern tight but alive"
+    },
+    {
+      id: "mpc",
+      name: "MPC 60",
+      timing: 10,
+      velocity: 15,
+      swing: 54,
+      description: "Classic hip-hop swing and feel"
+    },
+    {
+      id: "loose",
+      name: "Loose Pocket",
+      timing: 18,
+      velocity: 20,
+      swing: 58,
+      description: "Relaxed, laid-back feel for soul/R&B"
+    },
+    {
+      id: "live",
+      name: "Live Feel",
+      timing: 12,
+      velocity: 25,
+      swing: 52,
+      description: "Simulates real drummer variation"
+    }
+  ],
+  
+  // ====================
+  // GROOVE TEMPLATES
+  // ====================
+  grooveTemplates: [
+    { id: "mpc60", name: "MPC 60 Swing", swing: 54, feel: "hip-hop" },
+    { id: "tr808", name: "TR-808 Feel", swing: 50, feel: "electronic" },
+    { id: "motown", name: "Motown Pocket", swing: 58, feel: "soul" },
+    { id: "live", name: "Live Drummer", swing: 52, feel: "organic" }
+  ],
+  
+  // ====================
+  // MESSAGES
+  // ====================
+  messages: applyMessagePreset("drums", {
+    initial: "Apply humanization to bring this pattern to life!",
+    success: "🎯 That groove feels human! The timing and velocity variation creates a natural pocket.",
+    error: "Try adjusting the timing randomization—subtle changes make a big difference.",
+    alreadyCompleted: "You've mastered humanization! Apply these techniques to all your drum programming."
+  }),
+  
+  // ====================
+  // MODE FLAGS
+  // ====================
+  mode: {
+    sandbox: false,
+    showTargetHint: true,
+    enablePresets: true,
+    enableExport: false,
+    showVelocityLane: true,
+    showHumanizeControls: true
+  },
+  
+  // ====================
+  // LEARNING OBJECTIVES
+  // ====================
+  learningObjectives: [
+    "Apply micro-timing variations (5-20ms) for human feel",
+    "Create and use groove templates from recordings",
+    "Design velocity curves for natural dynamics",
+    "Extract groove from audio and apply to MIDI"
+  ]
+};
+
+if (typeof window !== 'undefined') {
+  window.LESSON_CONFIG = lessonConfig;
+}

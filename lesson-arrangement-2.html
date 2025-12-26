@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arrangement Lesson 2 · Transitions & Energy Flow | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Master the art of transitions. Learn risers, falls, filter sweeps, and drum fills to create smooth, professional transitions between song sections." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Transition Demo Styles */
+      .transition-demo {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .demo-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .demo-btn {
+        padding: var(--space-sm) var(--space-md);
+        border: 2px solid var(--border-light);
+        border-radius: var(--radius-md);
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .demo-btn:hover {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.1);
+      }
+      
+      .demo-btn.active {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.2);
+        color: var(--accent-cyan);
+      }
+      
+      .demo-btn.riser { border-color: var(--accent-green); }
+      .demo-btn.riser:hover, .demo-btn.riser.active { background: rgba(0, 255, 157, 0.2); color: var(--accent-green); }
+      
+      .demo-btn.fall { border-color: var(--accent-purple); }
+      .demo-btn.fall:hover, .demo-btn.fall.active { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+      
+      .demo-btn.filter { border-color: var(--accent-amber); }
+      .demo-btn.filter:hover, .demo-btn.filter.active { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); }
+      
+      .demo-btn.fill { border-color: var(--accent-pink); }
+      .demo-btn.fill:hover, .demo-btn.fill.active { background: rgba(255, 102, 178, 0.2); color: var(--accent-pink); }
+      
+      /* Waveform Visualization */
+      .waveform-container {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin-bottom: var(--space-md);
+      }
+      
+      .waveform-canvas {
+        width: 100%;
+        height: 120px;
+        background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, transparent 50%, rgba(0,240,255,0.05) 100%);
+        border-radius: var(--radius-sm);
+      }
+      
+      .waveform-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: var(--space-sm);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      
+      /* Timeline with Transition Points */
+      .transition-timeline {
+        display: flex;
+        gap: 2px;
+        margin: var(--space-lg) 0;
+        position: relative;
+      }
+      
+      .timeline-block {
+        flex: 1;
+        min-height: 80px;
+        padding: var(--space-sm);
+        border-radius: var(--radius-sm);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        position: relative;
+      }
+      
+      .timeline-block.verse { background: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); }
+      .timeline-block.buildup { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); }
+      .timeline-block.chorus { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+      .timeline-block.drop { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+      .timeline-block.breakdown { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+      
+      .transition-marker {
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background: var(--accent-green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: var(--bg-primary);
+        font-weight: 700;
+        z-index: 10;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      
+      .transition-marker:hover {
+        transform: translateY(-50%) scale(1.2);
+      }
+      
+      .transition-marker.riser { background: var(--accent-green); }
+      .transition-marker.fall { background: var(--accent-purple); }
+      .transition-marker.filter { background: var(--accent-amber); }
+      .transition-marker.fill { background: var(--accent-pink); }
+      
+      /* Technique Cards */
+      .technique-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .technique-card {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        border: 1px solid var(--border-subtle);
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      
+      .technique-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-cyan);
+      }
+      
+      .technique-card.riser { border-left: 4px solid var(--accent-green); }
+      .technique-card.fall { border-left: 4px solid var(--accent-purple); }
+      .technique-card.filter { border-left: 4px solid var(--accent-amber); }
+      .technique-card.fill { border-left: 4px solid var(--accent-pink); }
+      .technique-card.silence { border-left: 4px solid #6b7280; }
+      
+      .technique-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: var(--space-md);
+      }
+      
+      .technique-card.riser .technique-icon { background: rgba(0, 255, 157, 0.2); }
+      .technique-card.fall .technique-icon { background: rgba(168, 85, 247, 0.2); }
+      .technique-card.filter .technique-icon { background: rgba(255, 193, 7, 0.2); }
+      .technique-card.fill .technique-icon { background: rgba(255, 102, 178, 0.2); }
+      .technique-card.silence .technique-icon { background: rgba(107, 114, 128, 0.2); }
+      
+      .technique-card h4 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .technique-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+      }
+      
+      .technique-uses {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+      }
+      
+      .use-tag {
+        padding: var(--space-xs) var(--space-sm);
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      
+      /* Interactive Exercise */
+      .transition-builder {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .builder-sections {
+        display: flex;
+        gap: 4px;
+        margin-bottom: var(--space-lg);
+        overflow-x: auto;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .builder-section {
+        min-width: 100px;
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        position: relative;
+      }
+      
+      .builder-section .section-name {
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+      
+      .builder-section .section-bars {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        opacity: 0.8;
+      }
+      
+      .builder-section.verse { background: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); }
+      .builder-section.buildup { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); }
+      .builder-section.chorus { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+      .builder-section.breakdown { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+      
+      .transition-slot {
+        position: absolute;
+        right: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border: 2px dashed var(--border-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        z-index: 10;
+        background: var(--bg-secondary);
+        transition: all 0.2s;
+      }
+      
+      .transition-slot:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+      }
+      
+      .transition-slot.filled {
+        border-style: solid;
+      }
+      
+      .transition-slot.filled.riser { border-color: var(--accent-green); background: rgba(0, 255, 157, 0.2); color: var(--accent-green); }
+      .transition-slot.filled.fall { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+      .transition-slot.filled.filter { border-color: var(--accent-amber); background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); }
+      .transition-slot.filled.fill { border-color: var(--accent-pink); background: rgba(255, 102, 178, 0.2); color: var(--accent-pink); }
+      .transition-slot.filled.silence { border-color: #6b7280; background: rgba(107, 114, 128, 0.2); color: #9ca3af; }
+      
+      .transition-palette {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .transition-tool {
+        padding: var(--space-sm) var(--space-md);
+        border: 2px solid;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .transition-tool.riser { border-color: var(--accent-green); background: rgba(0, 255, 157, 0.1); color: var(--accent-green); }
+      .transition-tool.fall { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); }
+      .transition-tool.filter { border-color: var(--accent-amber); background: rgba(255, 193, 7, 0.1); color: var(--accent-amber); }
+      .transition-tool.fill { border-color: var(--accent-pink); background: rgba(255, 102, 178, 0.1); color: var(--accent-pink); }
+      .transition-tool.silence { border-color: #6b7280; background: rgba(107, 114, 128, 0.1); color: #9ca3af; }
+      
+      .transition-tool:hover {
+        transform: translateY(-2px);
+      }
+      
+      .transition-tool.selected {
+        box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.3);
+      }
+      
+      /* Concept Box */
+      .concept-box {
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 240, 255, 0.1));
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-lg) 0;
+      }
+      
+      .concept-box h3 {
+        color: var(--accent-purple);
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .concept-box p { color: var(--text-secondary); line-height: 1.7; }
+      
+      /* Pro Tip */
+      .pro-tip {
+        background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 240, 255, 0.05));
+        border: 1px solid rgba(0, 255, 157, 0.3);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin: var(--space-md) 0;
+      }
+      
+      .pro-tip-label {
+        color: var(--accent-green);
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .pro-tip p { color: var(--text-secondary); font-size: 0.9rem; }
+      
+      /* Energy Meter */
+      .energy-meter {
+        margin-top: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .energy-meter-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: var(--space-sm);
+        text-transform: uppercase;
+      }
+      
+      .energy-bar-container {
+        display: flex;
+        gap: 2px;
+        height: 40px;
+        align-items: flex-end;
+      }
+      
+      .energy-segment {
+        flex: 1;
+        background: var(--gradient-primary);
+        border-radius: 2px 2px 0 0;
+        transition: height 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 2">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 2</div>
+            <h1 class="hero-title">
+              Transitions & Energy:
+              <span>The Glue Between Sections</span>.
+            </h1>
+            <p class="hero-subtitle">
+              You know how to build sections. Now learn how to <strong>connect them seamlessly</strong>. 
+              Great transitions are what separate amateur tracks from professional productions. 
+              Master <strong>risers</strong>, <strong>falls</strong>, <strong>filter sweeps</strong>, and <strong>drum fills</strong> 
+              to create smooth, exciting transitions.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-1.html"><span>← Previous: Song Structure</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-3.html"><span>Next: Complete Track →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Transitions</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Seamless Flow</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Transitions</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Risers & Falls</div>
+                  <div class="hero-visual-pill-tag">Filter Sweeps</div>
+                  <div class="hero-visual-pill-tag">Drum Fills</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Interactive Demo</span>
+                  <span>Practical Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- INTRODUCTION -->
+        <section class="sections-grid" aria-label="Introduction">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">Why Transitions Matter.</h2>
+            <p class="section-body">
+              Imagine watching a movie where scenes just cut abruptly with no transition—no fade, no sound design, 
+              no visual cue. It would feel jarring and amateur. Music is the same.
+            </p>
+            <p class="section-body">
+              <strong>Transitions</strong> are the sonic "glue" that connects your sections. They:
+            </p>
+            <ul class="section-list">
+              <li><strong>Signal change</strong> — Tell the listener "something new is coming"</li>
+              <li><strong>Build anticipation</strong> — Create excitement before a drop or chorus</li>
+              <li><strong>Smooth the flow</strong> — Make section changes feel natural, not jarring</li>
+              <li><strong>Add polish</strong> — Separate professional tracks from demos</li>
+            </ul>
+            <div class="concept-box">
+              <h3>🎯 The 80/20 Rule of Transitions</h3>
+              <p>
+                80% of a track's professional feel comes from just 20% of the production work—and transitions 
+                are a huge part of that 20%. A simple 8-bar loop with great transitions sounds more polished 
+                than a complex arrangement with abrupt changes.
+              </p>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key Concept</div>
+            <h2 class="section-title">The Transition Toolkit.</h2>
+            <p class="section-body">
+              Professional producers use a handful of proven techniques. Here are the five essential tools 
+              in your transition toolkit:
+            </p>
+            <ul class="section-list">
+              <li><strong>Risers</strong> — Pitch/noise sweeping upward, building tension</li>
+              <li><strong>Falls (Downlifters)</strong> — Sweeping downward after a drop, releasing energy</li>
+              <li><strong>Filter Sweeps</strong> — Gradually opening/closing a filter (usually low-pass)</li>
+              <li><strong>Drum Fills</strong> — Rhythmic breaks that signal section changes</li>
+              <li><strong>Silence/Gaps</strong> — Strategic silence for maximum impact</li>
+            </ul>
+            <div class="pro-tip">
+              <div class="pro-tip-label">Pro Tip</div>
+              <p>
+                The best transitions often <strong>combine multiple techniques</strong>. A buildup might use a riser 
+                + filter sweep + snare roll all at once. Layering creates more excitement!
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- TECHNIQUE CARDS -->
+        <section style="max-width: 1280px; margin: var(--space-2xl) auto; padding: 0 var(--space-lg);">
+          <div class="section-eyebrow">Step 1</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">The Five Essential Transition Techniques.</h2>
+          
+          <div class="technique-grid">
+            <div class="technique-card riser">
+              <div class="technique-icon">📈</div>
+              <h4>Risers (Uplifters)</h4>
+              <p>
+                A sound that sweeps <strong>upward in pitch or intensity</strong>. Creates tension and anticipation. 
+                Often white noise or a synth with rising pitch automation.
+              </p>
+              <div class="technique-uses">
+                <span class="use-tag">Before drops</span>
+                <span class="use-tag">Before choruses</span>
+                <span class="use-tag">Building tension</span>
+              </div>
+            </div>
+            
+            <div class="technique-card fall">
+              <div class="technique-icon">📉</div>
+              <h4>Falls (Downlifters)</h4>
+              <p>
+                The opposite of risers—sweeps <strong>downward</strong>. Used right after a drop hits to 
+                "release" the built-up energy and settle into the new section.
+              </p>
+              <div class="technique-uses">
+                <span class="use-tag">After drops</span>
+                <span class="use-tag">Into breakdowns</span>
+                <span class="use-tag">Energy release</span>
+              </div>
+            </div>
+            
+            <div class="technique-card filter">
+              <div class="technique-icon">🎛️</div>
+              <h4>Filter Sweeps</h4>
+              <p>
+                Gradually <strong>open or close a low-pass filter</strong>. Opening the filter brightens the sound 
+                (building energy); closing it creates a "underwater" effect (reducing energy).
+              </p>
+              <div class="technique-uses">
+                <span class="use-tag">Buildups</span>
+                <span class="use-tag">Intros/Outros</span>
+                <span class="use-tag">Smooth transitions</span>
+              </div>
+            </div>
+            
+            <div class="technique-card fill">
+              <div class="technique-icon">🥁</div>
+              <h4>Drum Fills</h4>
+              <p>
+                A <strong>rhythmic break</strong> in the drum pattern—usually snare rolls, tom fills, or 
+                kick patterns that signal "the section is about to change."
+              </p>
+              <div class="technique-uses">
+                <span class="use-tag">End of sections</span>
+                <span class="use-tag">Before choruses</span>
+                <span class="use-tag">Every 8-16 bars</span>
+              </div>
+            </div>
+            
+            <div class="technique-card silence">
+              <div class="technique-icon">🔇</div>
+              <h4>Silence / Gaps</h4>
+              <p>
+                Sometimes the most powerful transition is <strong>no sound at all</strong>. A brief silence 
+                (even 1/4 beat) before a drop makes it hit 10x harder.
+              </p>
+              <div class="technique-uses">
+                <span class="use-tag">Before big drops</span>
+                <span class="use-tag">Dramatic effect</span>
+                <span class="use-tag">Reset listener</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 2: WHEN TO USE EACH -->
+        <section class="sections-grid" aria-label="Step 2" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">When to Use Each Technique.</h2>
+            <p class="section-body">
+              Different transitions work best for different section changes. Here's your cheat sheet:
+            </p>
+          </article>
+        </section>
+
+        <div style="max-width: 1280px; margin: 0 auto var(--space-2xl); padding: 0 var(--space-lg);">
+          <div class="transition-timeline">
+            <div class="timeline-block verse">
+              <span>Verse</span>
+              <small>16 bars</small>
+              <div class="transition-marker fill" title="Drum fill into buildup">🥁</div>
+            </div>
+            <div class="timeline-block buildup">
+              <span>Buildup</span>
+              <small>8 bars</small>
+              <div class="transition-marker riser" title="Riser + filter into drop">📈</div>
+            </div>
+            <div class="timeline-block drop" style="flex: 1.5;">
+              <span>Drop / Chorus</span>
+              <small>16 bars</small>
+              <div class="transition-marker fall" title="Fall into breakdown">📉</div>
+            </div>
+            <div class="timeline-block breakdown">
+              <span>Breakdown</span>
+              <small>8 bars</small>
+              <div class="transition-marker filter" title="Filter sweep into buildup">🎛️</div>
+            </div>
+          </div>
+          
+          <div class="pro-tip">
+            <div class="pro-tip-label">Transition Cheat Sheet</div>
+            <p>
+              <strong>Verse → Buildup:</strong> Drum fill + filter starting to open<br>
+              <strong>Buildup → Drop:</strong> Riser + snare roll + silence before impact<br>
+              <strong>Drop → Breakdown:</strong> Fall + filter closing<br>
+              <strong>Breakdown → Buildup:</strong> Filter sweep opening + subtle riser
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 3: ENERGY DYNAMICS -->
+        <section class="sections-grid" aria-label="Step 3">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">Energy Dynamics in Transitions.</h2>
+            <p class="section-body">
+              Transitions aren't just about connecting sections—they're about <strong>managing energy</strong>. 
+              Every transition either builds energy, releases energy, or maintains it.
+            </p>
+            <ul class="section-list">
+              <li><strong>Building energy:</strong> Risers, opening filters, adding elements, snare rolls</li>
+              <li><strong>Releasing energy:</strong> Falls, closing filters, removing elements, silence</li>
+              <li><strong>Maintaining energy:</strong> Subtle fills, minimal changes, crossfades</li>
+            </ul>
+            <div class="concept-box">
+              <h3>🎢 The Energy Rule</h3>
+              <p>
+                Never go from high energy to low energy (or vice versa) without a transition. 
+                A drop needs a buildup before it. A breakdown needs a fall after the drop. 
+                The bigger the energy change, the longer/more intense the transition should be.
+              </p>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Pro Knowledge</div>
+            <h2 class="section-title">Timing Your Transitions.</h2>
+            <p class="section-body">
+              Transitions have a natural timing based on the energy change:
+            </p>
+            <ul class="section-list">
+              <li><strong>1-2 bars:</strong> Quick fill, subtle transition, same energy level</li>
+              <li><strong>4 bars:</strong> Standard buildup/breakdown transition</li>
+              <li><strong>8 bars:</strong> Major energy change, big buildup before main drop</li>
+              <li><strong>16 bars:</strong> Extended intro buildups, genre-specific (trance, prog house)</li>
+            </ul>
+            <div class="pro-tip">
+              <div class="pro-tip-label">Pro Tip</div>
+              <p>
+                Count in <strong>4s and 8s</strong>. Transitions should start and end on these boundaries. 
+                A riser that starts on bar 5 and ends on bar 9 will feel "off" to listeners.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- INTERACTIVE EXERCISE -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Interactive Exercise</div>
+            <h2 class="section-title">Add Transitions to an Arrangement</h2>
+            <p class="section-body">
+              Below is a basic 4-section arrangement. Your job is to <strong>add appropriate transitions</strong> 
+              between each section using the transition palette.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Select a transition tool</strong> from the palette below.</li>
+                <li><strong>Click the (+) slots</strong> between sections to place your transition.</li>
+                <li><strong>Match transitions to context</strong> — risers before energy increases, falls after peaks.</li>
+                <li><strong>Fill all 3 transition slots</strong> to complete the exercise.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Hint:</strong> Think about energy flow. Verse→Buildup needs energy building. 
+              Drop→Breakdown needs energy releasing. What techniques match these needs?
+            </div>
+          </div>
+        </section>
+
+        <!-- TRANSITION BUILDER -->
+        <section class="transition-builder" id="transition-builder">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Transition Builder</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-md);">Click a tool, then click a slot to place it</h2>
+          
+          <div class="transition-palette">
+            <button class="transition-tool riser" data-tool="riser">
+              <span>📈</span> Riser
+            </button>
+            <button class="transition-tool fall" data-tool="fall">
+              <span>📉</span> Fall
+            </button>
+            <button class="transition-tool filter" data-tool="filter">
+              <span>🎛️</span> Filter Sweep
+            </button>
+            <button class="transition-tool fill" data-tool="fill">
+              <span>🥁</span> Drum Fill
+            </button>
+            <button class="transition-tool silence" data-tool="silence">
+              <span>🔇</span> Silence
+            </button>
+          </div>
+          
+          <div class="builder-sections" id="builder-sections">
+            <div class="builder-section verse">
+              <span class="section-name">Verse</span>
+              <span class="section-bars">16 bars</span>
+              <div class="transition-slot" data-slot="0" title="Click to add transition">+</div>
+            </div>
+            <div class="builder-section buildup">
+              <span class="section-name">Buildup</span>
+              <span class="section-bars">8 bars</span>
+              <div class="transition-slot" data-slot="1" title="Click to add transition">+</div>
+            </div>
+            <div class="builder-section chorus">
+              <span class="section-name">Chorus</span>
+              <span class="section-bars">16 bars</span>
+              <div class="transition-slot" data-slot="2" title="Click to add transition">+</div>
+            </div>
+            <div class="builder-section breakdown">
+              <span class="section-name">Breakdown</span>
+              <span class="section-bars">8 bars</span>
+            </div>
+          </div>
+          
+          <div class="energy-meter">
+            <div class="energy-meter-label">Energy Flow Preview</div>
+            <div class="energy-bar-container" id="energy-preview">
+              <!-- Generated by JS -->
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: var(--space-md); margin-top: var(--space-lg); flex-wrap: wrap;">
+            <button class="btn btn-outline" id="clear-transitions">Clear All</button>
+            <button class="btn btn-outline" id="show-solution">Show Suggested Solution</button>
+            <button class="btn btn-primary" id="check-transitions">Check Exercise</button>
+          </div>
+          
+          <div class="sequencer-status" id="transition-status" style="margin-top: var(--space-md);">
+            Add transitions to all 3 slots to complete this exercise.
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="sections-grid" aria-label="Conclusion" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Conclusion</div>
+            <h2 class="section-title">What You've Learned.</h2>
+            <p class="section-body">
+              You now have the tools to create professional-sounding transitions. Here's what you learned:
+            </p>
+            <ul class="section-list">
+              <li><strong>5 essential techniques:</strong> Risers, Falls, Filter Sweeps, Drum Fills, Silence</li>
+              <li><strong>When to use each:</strong> Match transitions to energy changes between sections</li>
+              <li><strong>Energy dynamics:</strong> Transitions build, release, or maintain energy</li>
+              <li><strong>Timing:</strong> Transitions align to 4-bar and 8-bar boundaries</li>
+              <li><strong>Layering:</strong> Combine multiple techniques for bigger impact</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Next Steps</div>
+            <h2 class="section-title">What's Coming Up.</h2>
+            <p class="section-body">
+              In the final lesson of this module, you'll <strong>put everything together</strong>. 
+              You'll arrange a complete track from start to finish:
+            </p>
+            <ul class="section-list">
+              <li>Build a full arrangement using sections from Lesson 1</li>
+              <li>Add transitions using techniques from this lesson</li>
+              <li>Create a 3-4 minute track with proper energy flow</li>
+              <li>Export your arrangement as a template for future productions</li>
+            </ul>
+            <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md); flex-wrap: wrap;">
+              <a href="lesson-arrangement-3.html" class="btn btn-primary">
+                Next Lesson: Complete Track →
+              </a>
+              <a href="labs.html" class="btn btn-outline">
+                Back to Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+      
+      // Transition Builder Logic
+      const LESSON_KEY = "mpl-arrangement-2-progress";
+      let selectedTool = null;
+      let transitions = [null, null, null]; // 3 slots
+      
+      // Tool symbols
+      const toolSymbols = {
+        riser: '📈',
+        fall: '📉',
+        filter: '🎛️',
+        fill: '🥁',
+        silence: '🔇'
+      };
+      
+      // Suggested solution
+      const suggestedSolution = ['fill', 'riser', 'fall'];
+      
+      // Load saved progress
+      const savedProgress = localStorage.getItem(LESSON_KEY);
+      if (savedProgress) {
+        try {
+          const data = JSON.parse(savedProgress);
+          if (data.transitions) {
+            transitions = data.transitions;
+            updateSlots();
+          }
+          if (data.completed) {
+            document.getElementById('transition-status').textContent = 
+              "You've already completed this exercise. Feel free to experiment more!";
+            document.getElementById('transition-status').className = 'sequencer-status success';
+          }
+        } catch (e) {}
+      }
+      
+      // Tool selection
+      document.querySelectorAll('.transition-tool').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.transition-tool').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedTool = btn.dataset.tool;
+        });
+      });
+      
+      // Slot clicking
+      document.querySelectorAll('.transition-slot').forEach(slot => {
+        slot.addEventListener('click', () => {
+          const slotIndex = parseInt(slot.dataset.slot);
+          
+          if (selectedTool) {
+            transitions[slotIndex] = selectedTool;
+            updateSlots();
+            saveProgress();
+          } else if (transitions[slotIndex]) {
+            // Clear slot if clicking without tool selected
+            transitions[slotIndex] = null;
+            updateSlots();
+            saveProgress();
+          }
+        });
+      });
+      
+      // Clear button
+      document.getElementById('clear-transitions').addEventListener('click', () => {
+        transitions = [null, null, null];
+        updateSlots();
+        saveProgress();
+      });
+      
+      // Show solution
+      document.getElementById('show-solution').addEventListener('click', () => {
+        transitions = [...suggestedSolution];
+        updateSlots();
+        saveProgress();
+      });
+      
+      // Check exercise
+      document.getElementById('check-transitions').addEventListener('click', () => {
+        const statusEl = document.getElementById('transition-status');
+        const filledSlots = transitions.filter(t => t !== null).length;
+        
+        if (filledSlots === 0) {
+          statusEl.textContent = "Add some transitions first! Select a tool and click the (+) slots.";
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        if (filledSlots < 3) {
+          statusEl.textContent = `Almost there! You've filled ${filledSlots}/3 transition slots.`;
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        // Check if transitions make sense
+        const isGoodChoice = (slot, tool) => {
+          // Slot 0: Verse → Buildup (fill or filter works)
+          if (slot === 0) return ['fill', 'filter', 'riser'].includes(tool);
+          // Slot 1: Buildup → Chorus (riser, filter, silence work)
+          if (slot === 1) return ['riser', 'filter', 'silence'].includes(tool);
+          // Slot 2: Chorus → Breakdown (fall, filter work)
+          if (slot === 2) return ['fall', 'filter', 'silence'].includes(tool);
+          return true;
+        };
+        
+        const goodChoices = transitions.every((t, i) => isGoodChoice(i, t));
+        
+        if (goodChoices) {
+          localStorage.setItem(LESSON_KEY, JSON.stringify({ transitions, completed: true }));
+          statusEl.innerHTML = "🎉 <strong>Excellent!</strong> Your transitions make musical sense! You've completed this lesson.";
+          statusEl.className = 'sequencer-status success';
+        } else {
+          statusEl.textContent = "All slots filled! Think about energy flow—does each transition match the direction between sections?";
+          statusEl.className = 'sequencer-status';
+        }
+      });
+      
+      function saveProgress() {
+        localStorage.setItem(LESSON_KEY + '-draft', JSON.stringify({ transitions }));
+      }
+      
+      function updateSlots() {
+        document.querySelectorAll('.transition-slot').forEach(slot => {
+          const index = parseInt(slot.dataset.slot);
+          const tool = transitions[index];
+          
+          // Reset classes
+          slot.className = 'transition-slot';
+          
+          if (tool) {
+            slot.classList.add('filled', tool);
+            slot.textContent = toolSymbols[tool];
+          } else {
+            slot.textContent = '+';
+          }
+        });
+        
+        updateEnergyPreview();
+      }
+      
+      function updateEnergyPreview() {
+        const container = document.getElementById('energy-preview');
+        
+        // Base energy levels for each section
+        const baseEnergy = [50, 70, 100, 40]; // verse, buildup, chorus, breakdown
+        
+        // Generate bars
+        let bars = [];
+        for (let i = 0; i < baseEnergy.length; i++) {
+          // Add section bars
+          const sectionBars = i === 0 || i === 2 ? 8 : 4; // 16 bars / 8 bars represented
+          for (let j = 0; j < sectionBars; j++) {
+            let energy = baseEnergy[i];
+            
+            // Add transition effect at end of section
+            if (i < 3 && j >= sectionBars - 2) {
+              const trans = transitions[i];
+              if (trans === 'riser' || trans === 'filter') {
+                energy += 15 * (j - sectionBars + 3);
+              } else if (trans === 'fall') {
+                energy -= 10;
+              }
+            }
+            
+            bars.push(Math.max(20, Math.min(100, energy)));
+          }
+        }
+        
+        container.innerHTML = bars.map(e => 
+          `<div class="energy-segment" style="height: ${e}%;"></div>`
+        ).join('');
+      }
+      
+      // Initialize
+      updateSlots();
+    </script>
+  </body>
+</html>

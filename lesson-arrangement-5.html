@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 5 · Pop & Rock Song Structures | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Master the classic ABABCB structure. Learn verse-chorus dynamics, pre-chorus techniques, and bridge placement." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Structure Diagram */
+      .structure-diagram {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+        overflow-x: auto;
+      }
+      
+      .structure-timeline {
+        display: flex;
+        gap: 2px;
+        min-width: 800px;
+        margin: var(--space-md) 0;
+      }
+      
+      .section-block {
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 80px;
+      }
+      
+      .section-block .bars {
+        font-size: 0.65rem;
+        opacity: 0.8;
+        margin-top: 4px;
+      }
+      
+      .section-block.intro { background: linear-gradient(135deg, #636e72, #b2bec3); flex: 1; }
+      .section-block.verse { background: linear-gradient(135deg, #00cec9, #0984e3); flex: 2; }
+      .section-block.prechorus { background: linear-gradient(135deg, #fdcb6e, #f39c12); flex: 1; }
+      .section-block.chorus { background: linear-gradient(135deg, #e17055, #d63031); flex: 2; }
+      .section-block.bridge { background: linear-gradient(135deg, #a29bfe, #6c5ce7); flex: 1; }
+      .section-block.outro { background: linear-gradient(135deg, #636e72, #b2bec3); flex: 1; }
+      
+      /* Structure Cards */
+      .structure-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .structure-card {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 2px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+      }
+      
+      .structure-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .structure-card .formula {
+        font-family: monospace;
+        font-size: 0.85rem;
+        padding: var(--space-sm);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+        margin: var(--space-sm) 0;
+        letter-spacing: 1px;
+      }
+      
+      .structure-card .examples {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      
+      /* Section Deep Dive */
+      .section-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .section-detail {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        border-left: 4px solid;
+      }
+      
+      .section-detail.verse { border-color: #00cec9; }
+      .section-detail.prechorus { border-color: #fdcb6e; }
+      .section-detail.chorus { border-color: #e17055; }
+      .section-detail.bridge { border-color: #a29bfe; }
+      
+      .section-detail h4 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .section-detail .purpose {
+        font-size: 0.8rem;
+        color: var(--accent-cyan);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .section-detail p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+      
+      .section-detail .bars-info {
+        font-size: 0.75rem;
+        color: var(--accent-amber);
+        margin-top: var(--space-sm);
+      }
+      
+      /* Energy Graph */
+      .energy-graph {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .graph-container {
+        height: 150px;
+        position: relative;
+        border-bottom: 2px solid var(--border-subtle);
+        border-left: 2px solid var(--border-subtle);
+        margin-top: var(--space-md);
+      }
+      
+      .graph-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(90deg, 
+          transparent 0%, transparent 5%,
+          rgba(0, 206, 201, 0.3) 5%, rgba(0, 206, 201, 0.3) 20%,
+          rgba(253, 203, 110, 0.3) 20%, rgba(253, 203, 110, 0.3) 28%,
+          rgba(225, 112, 85, 0.5) 28%, rgba(225, 112, 85, 0.5) 45%,
+          rgba(0, 206, 201, 0.3) 45%, rgba(0, 206, 201, 0.3) 55%,
+          rgba(225, 112, 85, 0.5) 55%, rgba(225, 112, 85, 0.5) 70%,
+          rgba(162, 155, 254, 0.3) 70%, rgba(162, 155, 254, 0.3) 80%,
+          rgba(225, 112, 85, 0.5) 80%, rgba(225, 112, 85, 0.5) 95%,
+          transparent 95%
+        );
+        clip-path: polygon(
+          0% 80%, 5% 80%, 
+          5% 60%, 20% 55%, 
+          20% 40%, 28% 35%, 
+          28% 20%, 45% 15%, 
+          45% 55%, 55% 50%, 
+          55% 15%, 70% 10%, 
+          70% 50%, 80% 45%, 
+          80% 10%, 95% 5%, 
+          95% 70%, 100% 80%,
+          100% 100%, 0% 100%
+        );
+      }
+      
+      .graph-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: var(--space-sm);
+        font-size: 0.65rem;
+        color: var(--text-muted);
+      }
+      
+      /* Hit Song Analysis */
+      .song-analysis {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .song-info {
+        display: flex;
+        gap: var(--space-md);
+        align-items: center;
+        margin-bottom: var(--space-lg);
+        flex-wrap: wrap;
+      }
+      
+      .song-info .title {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+      
+      .song-info .artist {
+        color: var(--text-muted);
+      }
+      
+      .analysis-timeline {
+        display: flex;
+        gap: 1px;
+        margin: var(--space-md) 0;
+      }
+      
+      .analysis-section {
+        flex: 1;
+        padding: var(--space-sm);
+        text-align: center;
+        font-size: 0.7rem;
+        border-radius: var(--radius-sm);
+      }
+      
+      .analysis-section.intro { background: rgba(99, 110, 114, 0.5); }
+      .analysis-section.verse { background: rgba(0, 206, 201, 0.5); }
+      .analysis-section.prechorus { background: rgba(253, 203, 110, 0.5); }
+      .analysis-section.chorus { background: rgba(225, 112, 85, 0.5); }
+      .analysis-section.bridge { background: rgba(162, 155, 254, 0.5); }
+      .analysis-section.outro { background: rgba(99, 110, 114, 0.5); }
+    </style>
+  </head>
+  <body class="lesson-page">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
+          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
+          <span class="logo-text">Music Producer Lab</span>
+        </a>
+        <a href="labs.html" class="btn btn--outline btn--sm">
+          <span class="btn-icon">←</span> Back to overview
+        </a>
+      </div>
+    </header>
+
+    <main class="lesson-main">
+      <!-- Hero Section -->
+      <section class="lesson-hero">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Lesson 5 · Arrangement · Intermediate</p>
+          <h1 class="hero-title">Pop & Rock <span class="highlight">Song Structures</span></h1>
+          <p class="hero-subtitle">
+            Master the <strong>classic ABABCB structure</strong> that powers most hit songs. 
+            Learn <strong>verse-chorus dynamics</strong>, <strong>pre-chorus techniques</strong>, 
+            and how to place the <strong>bridge</strong> for maximum emotional impact.
+          </p>
+          
+          <div class="hero-meta">
+            <span class="meta-item">⏱️ 18-22 min</span>
+            <span class="meta-item">📊 Level 4</span>
+            <span class="meta-item">🎯 Intermediate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <nav class="lesson-nav" aria-label="Lesson navigation">
+        <a href="lesson-arrangement-4.html" class="nav-link nav-link--prev">
+          ← Back to Lesson 4
+        </a>
+        <a href="lesson-arrangement-6.html" class="nav-link nav-link--next">
+          Next: EDM Structures →
+        </a>
+      </nav>
+
+      <!-- Main Content -->
+      <article class="lesson-content">
+        
+        <!-- Introduction -->
+        <section class="content-section">
+          <h2>The Formula Behind Hit Songs</h2>
+          <p>
+            Most successful pop and rock songs follow predictable structures. This isn't a limitation—
+            it's a <strong>proven framework</strong> that listeners subconsciously expect. When you 
+            master these structures, you can create songs that feel both familiar and fresh.
+          </p>
+          
+          <div class="callout callout--info">
+            <p>
+              <strong>🎯 The Key Insight:</strong> Structure creates anticipation. When listeners know 
+              a chorus is coming, the build-up becomes part of the emotional experience.
+            </p>
+          </div>
+        </section>
+
+        <!-- Visual Structure -->
+        <section class="content-section">
+          <h2>The Classic Pop/Rock Structure</h2>
+          
+          <div class="structure-diagram">
+            <h4 style="margin-bottom: var(--space-md);">ABABCB Structure (Most Common)</h4>
+            <div class="structure-timeline">
+              <div class="section-block intro">Intro<span class="bars">4-8 bars</span></div>
+              <div class="section-block verse">Verse 1<span class="bars">8-16 bars</span></div>
+              <div class="section-block prechorus">Pre<span class="bars">4-8 bars</span></div>
+              <div class="section-block chorus">Chorus<span class="bars">8-16 bars</span></div>
+              <div class="section-block verse">Verse 2<span class="bars">8-16 bars</span></div>
+              <div class="section-block prechorus">Pre<span class="bars">4-8 bars</span></div>
+              <div class="section-block chorus">Chorus<span class="bars">8-16 bars</span></div>
+              <div class="section-block bridge">Bridge<span class="bars">8 bars</span></div>
+              <div class="section-block chorus">Chorus<span class="bars">8-16 bars</span></div>
+              <div class="section-block outro">Outro<span class="bars">4-8 bars</span></div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-md);">
+              A = Verse, B = Chorus, C = Bridge → A B A B C B
+            </p>
+          </div>
+        </section>
+
+        <!-- Common Structures -->
+        <section class="content-section">
+          <h2>Common Song Structures</h2>
+          
+          <div class="structure-cards">
+            <div class="structure-card">
+              <h3>🎵 ABABCB (Pop Standard)</h3>
+              <div class="formula">V - C - V - C - B - C</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">
+                The most common pop structure. Bridge provides contrast before the final chorus.
+              </p>
+              <div class="examples">
+                <strong>Examples:</strong> "Shape of You" (Ed Sheeran), "Blank Space" (Taylor Swift)
+              </div>
+            </div>
+            
+            <div class="structure-card">
+              <h3>🎸 AABA (Classic Rock)</h3>
+              <div class="formula">V - V - B - V</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">
+                Traditional 32-bar form. No separate chorus—the hook is in the verse.
+              </p>
+              <div class="examples">
+                <strong>Examples:</strong> "Yesterday" (The Beatles), "Over the Rainbow"
+              </div>
+            </div>
+            
+            <div class="structure-card">
+              <h3>🔥 ABAB (Verse-Chorus)</h3>
+              <div class="formula">V - C - V - C - C</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">
+                Simple and direct. No bridge—the final chorus often extends or lifts.
+              </p>
+              <div class="examples">
+                <strong>Examples:</strong> "We Will Rock You" (Queen), many punk songs
+              </div>
+            </div>
+            
+            <div class="structure-card">
+              <h3>💫 ABABCBB (Extended)</h3>
+              <div class="formula">V - C - V - C - B - C - C</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">
+                Double chorus at the end for big finish. Common in power ballads.
+              </p>
+              <div class="examples">
+                <strong>Examples:</strong> "I Will Always Love You" (Whitney Houston)
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section Details -->
+        <section class="content-section">
+          <h2>Section Deep Dive</h2>
+          
+          <div class="section-details">
+            <div class="section-detail verse">
+              <h4>Verse</h4>
+              <div class="purpose">Purpose: Tell the story</div>
+              <p>
+                Verses deliver the narrative and setup. Lower energy than chorus, 
+                with focus on lyrics and melody.
+              </p>
+              <div class="bars-info">📐 Typically 8-16 bars</div>
+            </div>
+            
+            <div class="section-detail prechorus">
+              <h4>Pre-Chorus</h4>
+              <div class="purpose">Purpose: Build anticipation</div>
+              <p>
+                Bridges the gap between verse and chorus. Creates tension that 
+                releases into the chorus.
+              </p>
+              <div class="bars-info">📐 Typically 4-8 bars</div>
+            </div>
+            
+            <div class="section-detail chorus">
+              <h4>Chorus</h4>
+              <div class="purpose">Purpose: The hook, the payoff</div>
+              <p>
+                The emotional peak. Highest energy, most memorable melody, 
+                often contains the song title.
+              </p>
+              <div class="bars-info">📐 Typically 8-16 bars</div>
+            </div>
+            
+            <div class="section-detail bridge">
+              <h4>Bridge</h4>
+              <div class="purpose">Purpose: Provide contrast</div>
+              <p>
+                Something different—new melody, new chords, new perspective. 
+                Prevents repetition fatigue.
+              </p>
+              <div class="bars-info">📐 Typically 8 bars (sometimes 4 or 16)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Energy Flow -->
+        <section class="content-section">
+          <h2>Energy Flow</h2>
+          <p>
+            Great arrangements create an <strong>energy journey</strong>. Notice how 
+            the chorus peaks are higher than verses, and the bridge creates a dip before 
+            the final, biggest chorus.
+          </p>
+          
+          <div class="energy-graph">
+            <h4>Energy Arc of a Typical Pop Song</h4>
+            <div class="graph-container">
+              <div class="graph-line"></div>
+            </div>
+            <div class="graph-labels">
+              <span>Intro</span>
+              <span>V1</span>
+              <span>Pre</span>
+              <span>C1</span>
+              <span>V2</span>
+              <span>C2</span>
+              <span>Bridge</span>
+              <span>C3 (Final)</span>
+              <span>Outro</span>
+            </div>
+          </div>
+          
+          <div class="callout callout--tip">
+            <h4>💡 Energy Tips</h4>
+            <ul style="margin-top: var(--space-sm);">
+              <li>Each chorus should feel at least as big as the previous one</li>
+              <li>The bridge often dips in energy before the final chorus lift</li>
+              <li>The final chorus is often the biggest—add elements, raise key, or extend</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Hit Song Analysis -->
+        <section class="content-section">
+          <h2>Hit Song Analysis</h2>
+          
+          <div class="song-analysis">
+            <div class="song-info">
+              <span class="title">"Blinding Lights"</span>
+              <span class="artist">— The Weeknd</span>
+            </div>
+            
+            <div class="analysis-timeline">
+              <div class="analysis-section intro">Intro<br>0:00</div>
+              <div class="analysis-section verse">V1<br>0:20</div>
+              <div class="analysis-section prechorus">Pre<br>0:50</div>
+              <div class="analysis-section chorus">C1<br>1:00</div>
+              <div class="analysis-section verse">V2<br>1:30</div>
+              <div class="analysis-section prechorus">Pre<br>2:00</div>
+              <div class="analysis-section chorus">C2<br>2:10</div>
+              <div class="analysis-section bridge">Bridge<br>2:40</div>
+              <div class="analysis-section chorus">C3<br>2:55</div>
+              <div class="analysis-section outro">Out<br>3:15</div>
+            </div>
+            
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-md);">
+              Notice: Classic ABABCB structure with synth-driven intro that returns in the outro.
+            </p>
+          </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="content-section">
+          <h2>Key Takeaways</h2>
+          <ul class="summary-list">
+            <li><strong>ABABCB</strong> is the most common pop structure (Verse-Chorus-Verse-Chorus-Bridge-Chorus)</li>
+            <li><strong>Pre-chorus</strong> builds anticipation between verse and chorus</li>
+            <li><strong>Bridge</strong> provides contrast—usually comes before the final chorus</li>
+            <li><strong>Energy flow</strong> should peak at the chorus, especially the final one</li>
+            <li><strong>Bar counts:</strong> Verse 8-16, Pre 4-8, Chorus 8-16, Bridge 8</li>
+          </ul>
+        </section>
+
+      </article>
+
+      <!-- Bottom Navigation -->
+      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
+        <a href="lesson-arrangement-4.html" class="nav-link nav-link--prev">
+          ← 5 Elements
+        </a>
+        <a href="labs.html" class="nav-link nav-link--overview">
+          Overview
+        </a>
+        <a href="lesson-arrangement-6.html" class="nav-link nav-link--next">
+          EDM Structures →
+        </a>
+      </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      const LESSON_KEY = 'mpl-arrangement-5-progress';
+      const NEXT_LESSON_URL = 'lesson-arrangement-6.html';
+      
+      // Auto-complete on scroll to bottom
+      document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem(LESSON_KEY) === 'completed') {
+          // Already completed
+        } else {
+          // Mark as completed when user reads through
+          window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
+              localStorage.setItem(LESSON_KEY, 'completed');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

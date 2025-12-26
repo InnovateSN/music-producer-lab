@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson 19 · Professional Drum Mixing | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Mix drums to professional standards. EQ, compression, parallel processing, and bus techniques." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .mix-chain { display: flex; gap: var(--space-md); overflow-x: auto; padding: var(--space-lg) 0; margin: var(--space-xl) 0; }
+      .chain-step { min-width: 150px; background: var(--bg-secondary); border: 2px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-lg); text-align: center; }
+      .chain-step.active { border-color: var(--accent-coral); }
+      .chain-step .icon { font-size: 2rem; margin-bottom: var(--space-sm); }
+      .chain-step h4 { font-size: 0.9rem; margin-bottom: 4px; }
+      .chain-step p { font-size: 0.75rem; color: var(--text-muted); }
+      .chain-arrow { display: flex; align-items: center; color: var(--text-muted); font-size: 1.5rem; }
+      
+      .eq-visual { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
+      .eq-curve { height: 120px; background: var(--bg-tertiary); border-radius: var(--radius-md); position: relative; overflow: hidden; }
+      .eq-band { position: absolute; bottom: 0; width: 20%; background: linear-gradient(to top, var(--accent-coral), transparent); }
+      
+      .technique-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin: var(--space-xl) 0; }
+      .technique-card { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--space-lg); border-left: 4px solid var(--accent-coral); }
+      .technique-card h3 { font-size: 1.1rem; margin-bottom: var(--space-sm); }
+      .technique-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md); }
+      .technique-card .settings { font-family: monospace; font-size: 0.8rem; background: var(--bg-tertiary); padding: var(--space-sm); border-radius: var(--radius-sm); }
+    </style>
+  </head>
+  <body>
+    <header class="site-header glass">
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
+        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <section class="hero">
+        <p class="hero-eyebrow">Lesson 19 · Drums & Rhythm</p>
+        <h1 class="hero-title">Professional<br><span class="highlight">Drum Mixing</span></h1>
+        <p class="hero-subtitle">Mix drums to <strong>professional standards</strong>. Master <strong>EQ sculpting</strong>, <strong>compression techniques</strong>, <strong>parallel processing</strong>, and <strong>drum bus glue</strong>.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="icon">🎛️</span> The Drum Mix Chain</h2>
+        <p class="section-intro">A professional drum mix typically follows this processing order:</p>
+        
+        <div class="mix-chain">
+          <div class="chain-step active"><div class="icon">🎚️</div><h4>Gain Staging</h4><p>Set levels first</p></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step"><div class="icon">✂️</div><h4>Subtractive EQ</h4><p>Remove problems</p></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step"><div class="icon">🔨</div><h4>Compression</h4><p>Control dynamics</p></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step"><div class="icon">✨</div><h4>Additive EQ</h4><p>Enhance character</p></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step"><div class="icon">🌊</div><h4>Saturation</h4><p>Add harmonics</p></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step"><div class="icon">🚌</div><h4>Bus Processing</h4><p>Glue together</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="icon">📊</span> EQ Strategies by Drum</h2>
+        <div class="technique-cards">
+          <div class="technique-card">
+            <h3>Kick Drum EQ</h3>
+            <p>Add sub weight and attack definition while removing boxiness.</p>
+            <div class="settings">
+              HP: 30Hz | Cut: 300-400Hz (-3dB)<br>
+              Boost: 60Hz (+3dB) | Click: 3-5kHz (+2dB)
+            </div>
+          </div>
+          <div class="technique-card">
+            <h3>Snare EQ</h3>
+            <p>Add crack and body while controlling harshness.</p>
+            <div class="settings">
+              HP: 80Hz | Body: 200Hz (+2dB)<br>
+              Crack: 2-4kHz (+3dB) | Cut: 400Hz (-2dB)
+            </div>
+          </div>
+          <div class="technique-card">
+            <h3>Hi-Hat EQ</h3>
+            <p>Remove low-end bleed and add shimmer without harshness.</p>
+            <div class="settings">
+              HP: 300-500Hz | Presence: 8-10kHz (+2dB)<br>
+              Cut harsh: 2-3kHz (-2dB if needed)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="icon">🔨</span> Compression Techniques</h2>
+        <div class="technique-cards">
+          <div class="technique-card" style="border-left-color: var(--accent-cyan);">
+            <h3>Punch Compression</h3>
+            <p>Slow attack lets transient through, fast release for punch.</p>
+            <div class="settings">Attack: 30-50ms | Release: 50-100ms | Ratio: 4:1 | GR: 3-6dB</div>
+          </div>
+          <div class="technique-card" style="border-left-color: var(--accent-amber);">
+            <h3>Glue Compression</h3>
+            <p>Gentle settings on drum bus to glue elements together.</p>
+            <div class="settings">Attack: 10-30ms | Release: Auto | Ratio: 2:1 | GR: 1-3dB</div>
+          </div>
+          <div class="technique-card" style="border-left-color: var(--accent-purple);">
+            <h3>Parallel Compression</h3>
+            <p>Heavy compression blended with dry signal for power + clarity.</p>
+            <div class="settings">Attack: 1-10ms | Release: Fast | Ratio: 10:1+ | Blend: 30-50%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card exercise-card">
+        <h2><span class="icon">✏️</span> Exercise: Mix a Drum Bus</h2>
+        <div class="exercise-info">
+          <ol class="exercise-steps">
+            <li>Set levels: Kick and snare loudest, hi-hats supporting.</li>
+            <li>EQ each element: HP filter, cut mud, enhance character.</li>
+            <li>Compress individual drums for punch.</li>
+            <li>Send to parallel bus with heavy compression.</li>
+            <li>Apply gentle bus compression for glue (1-3dB GR).</li>
+          </ol>
+        </div>
+        <div id="sequencer-root" class="sequencer-container"></div>
+      </section>
+
+      <section class="card">
+        <h2><span class="icon">🎓</span> Key Takeaways</h2>
+        <ul class="check-list">
+          <li><strong>Gain stage first:</strong> Good levels before any processing</li>
+          <li><strong>Subtractive before additive:</strong> Cut problems before boosting</li>
+          <li><strong>Parallel compression:</strong> Power without losing transients</li>
+          <li><strong>Bus glue:</strong> Gentle compression makes drums feel unified</li>
+          <li><strong>Reference constantly:</strong> Compare to professional mixes</li>
+        </ul>
+      </section>
+
+      <nav class="lesson-nav">
+        <a href="lesson-drums-18.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a>
+        <a href="labs.html" class="nav-btn overview">Labs</a>
+        <a href="lesson-drums-20.html" class="nav-btn next">Next <span class="arrow">→</span></a>
+      </nav>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <script type="module" src="js/lesson-loader.js"></script>
+  </body>
+</html>
