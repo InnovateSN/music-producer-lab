@@ -627,6 +627,10 @@ p {
   box-shadow: var(--shadow-lg);
 }
 
+.card + .card {
+  margin-top: var(--space-xl);
+}
+
 .card-glow {
   position: relative;
   overflow: hidden;
@@ -668,8 +672,8 @@ p {
 }
 
 .card-description {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
 }
 
 /* Lab Cards - Special styling */
@@ -695,6 +699,264 @@ p {
 .lab-card-badge.premium {
   background: rgba(179, 102, 255, 0.15);
   color: var(--accent-purple);
+}
+
+/* --------------------------------------------------------------------------
+   LESSON/TUTORIAL PAGES
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: rgba(5, 8, 16, 0.92);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-base);
+}
+
+.brand:hover {
+  color: var(--accent-cyan);
+}
+
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+
+.main-content {
+  padding: calc(var(--space-3xl) + 40px) 0 var(--space-4xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.hero-title .highlight {
+  display: inline-block;
+  color: var(--accent-cyan);
+}
+
+.section-intro {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.check-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-sm);
+  margin: var(--space-md) 0 0;
+  padding: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.1);
+}
+
+.exercise-card {
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+}
+
+
+.exercise-info {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  color: var(--text-secondary);
+}
+
+/* Lesson navigation (header + footer variants) */
+.lesson-nav--pinned {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  display: block;
+  padding: var(--space-sm) 0;
+  margin-bottom: var(--space-xl);
+  background: rgba(5, 8, 16, 0.9);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.lesson-nav--pinned .lesson-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.lesson-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(0, 240, 255, 0.25);
+}
+
+.lesson-nav-logo img { height: 32px; }
+
+.lesson-nav--pinned .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.lesson-nav--pinned + .lesson-content {
+  padding-top: calc(var(--space-2xl) + 24px);
+}
+
+.lesson-nav--pinned .btn { min-height: unset; }
+
+.lesson-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-md);
+}
+
+.lesson-nav .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 700;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.lesson-nav .nav-btn:hover,
+.lesson-nav .nav-btn:focus-visible {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  outline: none;
+}
+
+.lesson-nav .nav-btn.overview {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(179, 102, 255, 0.1));
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.lesson-nav .arrow {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: calc(var(--space-2xl) + 32px);
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .header-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .lesson-nav {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --------------------------------------------------------------------------
