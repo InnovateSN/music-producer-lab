@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arrangement Lesson 1 · From Loop to Song | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the fundamentals of song arrangement. Understand how to turn your 8-bar loops into complete songs with intro, verse, chorus, and more." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Arrangement Builder Styles */
+      .arrangement-builder {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+      
+      .section-palette {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .section-btn {
+        padding: var(--space-sm) var(--space-md);
+        border: 2px solid transparent;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+      
+      .section-btn.intro { background: rgba(0, 255, 157, 0.2); color: var(--accent-green); border-color: var(--accent-green); }
+      .section-btn.verse { background: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+      .section-btn.prechorus { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); border-color: var(--accent-amber); }
+      .section-btn.chorus { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: var(--accent-purple); }
+      .section-btn.bridge { background: rgba(255, 102, 178, 0.2); color: var(--accent-pink); border-color: var(--accent-pink); }
+      .section-btn.drop { background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: #ef4444; }
+      .section-btn.breakdown { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-color: #3b82f6; }
+      .section-btn.buildup { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: #f59e0b; }
+      .section-btn.outro { background: rgba(107, 114, 128, 0.2); color: #9ca3af; border-color: #6b7280; }
+      
+      .section-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      .section-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+      
+      .arrangement-timeline {
+        display: flex;
+        gap: 4px;
+        min-height: 100px;
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        overflow-x: auto;
+        align-items: stretch;
+      }
+      
+      .timeline-section {
+        min-width: 80px;
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        animation: slideIn 0.3s ease;
+      }
+      
+      @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      
+      .timeline-section:hover { transform: scale(1.05); }
+      .timeline-section .section-name { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+      .timeline-section .section-bars { font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.8; }
+      
+      .timeline-section .remove-btn {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      
+      .timeline-section:hover .remove-btn { opacity: 1; }
+      
+      .timeline-section.intro { background: rgba(0, 255, 157, 0.3); color: var(--accent-green); }
+      .timeline-section.verse { background: rgba(0, 240, 255, 0.3); color: var(--accent-cyan); }
+      .timeline-section.prechorus { background: rgba(255, 193, 7, 0.3); color: var(--accent-amber); }
+      .timeline-section.chorus { background: rgba(168, 85, 247, 0.3); color: var(--accent-purple); }
+      .timeline-section.bridge { background: rgba(255, 102, 178, 0.3); color: var(--accent-pink); }
+      .timeline-section.drop { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
+      .timeline-section.breakdown { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+      .timeline-section.buildup { background: rgba(245, 158, 11, 0.3); color: #f59e0b; }
+      .timeline-section.outro { background: rgba(107, 114, 128, 0.3); color: #d1d5db; }
+      
+      .timeline-placeholder {
+        min-width: 100%;
+        padding: var(--space-lg);
+        border: 2px dashed var(--border-light);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      
+      .arrangement-stats {
+        display: flex;
+        gap: var(--space-xl);
+        margin-top: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        flex-wrap: wrap;
+      }
+      
+      .stat-item { display: flex; flex-direction: column; gap: var(--space-xs); }
+      .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+      .stat-value { font-family: var(--font-mono); font-size: 1.25rem; color: var(--accent-cyan); font-weight: 700; }
+      
+      .energy-graph {
+        margin-top: var(--space-lg);
+        padding: var(--space-md);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+      }
+      
+      .energy-graph-title { font-size: 0.8rem; color: var(--text-muted); margin-bottom: var(--space-sm); text-transform: uppercase; }
+      .energy-bars { display: flex; gap: 2px; height: 60px; align-items: flex-end; }
+      .energy-bar { flex: 1; background: var(--gradient-primary); border-radius: 2px 2px 0 0; transition: height 0.3s; }
+      
+      /* Section Info Cards */
+      .section-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .section-info-card {
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border-left: 4px solid;
+      }
+      
+      .section-info-card.intro { border-color: var(--accent-green); }
+      .section-info-card.verse { border-color: var(--accent-cyan); }
+      .section-info-card.chorus { border-color: var(--accent-purple); }
+      .section-info-card.bridge { border-color: var(--accent-pink); }
+      .section-info-card.drop { border-color: #ef4444; }
+      .section-info-card.breakdown { border-color: #3b82f6; }
+      .section-info-card.outro { border-color: #6b7280; }
+      
+      .section-info-card h4 { font-size: 1rem; margin-bottom: var(--space-xs); }
+      .section-info-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm); }
+      .section-info-card .bars-badge {
+        display: inline-block;
+        padding: var(--space-xs) var(--space-sm);
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* Concept Boxes */
+      .concept-box {
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 240, 255, 0.1));
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        margin: var(--space-lg) 0;
+      }
+      
+      .concept-box h3 {
+        color: var(--accent-purple);
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .concept-box p { color: var(--text-secondary); line-height: 1.7; }
+      
+      /* Pro Tip Box */
+      .pro-tip {
+        background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 240, 255, 0.05));
+        border: 1px solid rgba(0, 255, 157, 0.3);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin: var(--space-md) 0;
+      }
+      
+      .pro-tip-label {
+        color: var(--accent-green);
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .pro-tip p { color: var(--text-secondary); font-size: 0.9rem; }
+
+      /* Structure Comparison */
+      .structure-comparison {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-lg) 0;
+      }
+      
+      .structure-card {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        border: 1px solid var(--border-subtle);
+      }
+      
+      .structure-card h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-md);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .structure-card .structure-visual {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: var(--space-md);
+      }
+      
+      .structure-block {
+        padding: var(--space-xs) var(--space-sm);
+        border-radius: var(--radius-sm);
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      
+      .structure-block.intro { background: rgba(0, 255, 157, 0.3); color: var(--accent-green); }
+      .structure-block.verse { background: rgba(0, 240, 255, 0.3); color: var(--accent-cyan); }
+      .structure-block.chorus { background: rgba(168, 85, 247, 0.3); color: var(--accent-purple); }
+      .structure-block.bridge { background: rgba(255, 102, 178, 0.3); color: var(--accent-pink); }
+      .structure-block.drop { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
+      .structure-block.breakdown { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+      .structure-block.buildup { background: rgba(245, 158, 11, 0.3); color: #f59e0b; }
+      .structure-block.outro { background: rgba(107, 114, 128, 0.3); color: #9ca3af; }
+
+      /* Audio Example (placeholder) */
+      .audio-example {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin: var(--space-md) 0;
+      }
+      
+      .audio-example-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      
+      .audio-example-icon:hover { transform: scale(1.1); }
+      
+      .audio-example-info { flex: 1; }
+      .audio-example-title { font-weight: 600; font-size: 0.9rem; }
+      .audio-example-desc { font-size: 0.8rem; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 1">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 1</div>
+            <h1 class="hero-title">
+              From Loop to Song:
+              <span>Understanding Structure</span>.
+            </h1>
+            <p class="hero-subtitle">
+              You've created killer drum patterns and loops. Now it's time to turn them into <strong>complete songs</strong>. 
+              In this lesson, you'll learn how to organize your musical ideas into sections—like <strong>intro</strong>, 
+              <strong>verse</strong>, <strong>chorus</strong>, and <strong>bridge</strong>—to create a journey your listeners will love.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-drums-6.html"><span>← Previous: Drums 6</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-2.html"><span>Next: Transitions →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Arrangement Basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Loop → Full Track</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Song Structure</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Song sections</div>
+                  <div class="hero-visual-pill-tag">Common structures</div>
+                  <div class="hero-visual-pill-tag">Energy flow</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Builds on Drums Module</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- INTRODUCTION -->
+        <section class="sections-grid" aria-label="Introduction">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">What is Arrangement?</h2>
+            <p class="section-body">
+              <strong>Arrangement</strong> is how you organize different parts of your song—like intro, verses, and choruses—to create a complete track.
+              Think of it as the <strong>blueprint</strong> or <strong>roadmap</strong> of your song.
+            </p>
+            <p class="section-body">
+              In the Drums module, you created 8-bar and 16-bar patterns. Those patterns are like <strong>building blocks</strong>. 
+              Arrangement is about deciding: <em>How many times do I repeat this block? What comes next? How do I build tension and release?</em>
+            </p>
+            <div class="concept-box">
+              <h3>🎯 Why Arrangement Matters</h3>
+              <p>
+                A great 8-bar loop played for 4 minutes gets boring. But that same loop, combined with variations, breakdowns, and builds, 
+                becomes a <strong>journey</strong>. Arrangement is what transforms a demo into a finished song that keeps listeners engaged from start to finish.
+              </p>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key Concept</div>
+            <h2 class="section-title">Bars, Phrases, and Sections.</h2>
+            <p class="section-body">
+              Before we dive into sections, let's make sure we're speaking the same language:
+            </p>
+            <ul class="section-list">
+              <li><strong>Bar (Measure)</strong> — 4 beats in 4/4 time. Your 16-step drum pattern = 1 bar.</li>
+              <li><strong>Phrase</strong> — A musical sentence, usually <strong>4 or 8 bars</strong>. Most sections are built from phrases.</li>
+              <li><strong>Section</strong> — A distinct part of your song (intro, verse, chorus). Usually <strong>8, 16, or 32 bars</strong>.</li>
+            </ul>
+            <div class="pro-tip">
+              <div class="pro-tip-label">Pro Tip</div>
+              <p>
+                At <strong>120 BPM</strong>: 1 bar = 2 seconds, 8 bars = 16 seconds, 16 bars = 32 seconds. 
+                A typical 3-minute song is about <strong>90 bars</strong>. Keep this in mind when building your arrangement!
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- STEP 1: UNDERSTANDING SECTIONS -->
+        <section class="sections-grid" aria-label="Step 1">
+          <article class="section">
+            <div class="section-eyebrow">Step 1</div>
+            <h2 class="section-title">The Building Blocks of a Song.</h2>
+            <p class="section-body">
+              Most songs—whether pop, EDM, hip-hop, or rock—use a common set of sections. Each section has a specific <strong>purpose</strong> 
+              in the listener's journey:
+            </p>
+          </article>
+        </section>
+
+        <div class="section-info-grid" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+          <div class="section-info-card intro">
+            <h4>🟢 Intro</h4>
+            <p><strong>Purpose:</strong> Set the mood, introduce the vibe. Often minimal or filtered to create anticipation.</p>
+            <p><strong>What happens:</strong> One or two elements playing, building curiosity.</p>
+            <span class="bars-badge">4–8 bars typical</span>
+          </div>
+          <div class="section-info-card verse">
+            <h4>🔵 Verse</h4>
+            <p><strong>Purpose:</strong> Tell the story. Lower energy than chorus, builds toward the hook.</p>
+            <p><strong>What happens:</strong> Vocals/melody introduce the narrative. Drums often simpler.</p>
+            <span class="bars-badge">8–16 bars typical</span>
+          </div>
+          <div class="section-info-card chorus">
+            <h4>🟣 Chorus (or Drop)</h4>
+            <p><strong>Purpose:</strong> The hook! Maximum energy, most memorable part. This is what people hum.</p>
+            <p><strong>What happens:</strong> Full arrangement, catchy melody, all elements playing.</p>
+            <span class="bars-badge">8–16 bars typical</span>
+          </div>
+          <div class="section-info-card bridge">
+            <h4>💗 Bridge</h4>
+            <p><strong>Purpose:</strong> Contrast. Something different to keep the song fresh before the final chorus.</p>
+            <p><strong>What happens:</strong> New chord progression, different melody, or stripped-down arrangement.</p>
+            <span class="bars-badge">8 bars typical</span>
+          </div>
+          <div class="section-info-card breakdown">
+            <h4>🔷 Breakdown</h4>
+            <p><strong>Purpose:</strong> Create contrast. Remove kick/bass to build anticipation for the next drop.</p>
+            <p><strong>What happens:</strong> Atmospheric, melodic, often no drums. Used heavily in EDM.</p>
+            <span class="bars-badge">8–16 bars typical</span>
+          </div>
+          <div class="section-info-card outro">
+            <h4>⚫ Outro</h4>
+            <p><strong>Purpose:</strong> Wind down the song. For DJs, this allows smooth mixing into the next track.</p>
+            <p><strong>What happens:</strong> Elements gradually removed. Often mirrors the intro.</p>
+            <span class="bars-badge">4–8 bars typical</span>
+          </div>
+        </div>
+
+        <!-- STEP 2: COMMON STRUCTURES -->
+        <section class="sections-grid" aria-label="Step 2" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Step 2</div>
+            <h2 class="section-title">Common Song Structures.</h2>
+            <p class="section-body">
+              You don't have to reinvent the wheel! Most hit songs follow proven structures. Here are the two most common forms:
+            </p>
+          </article>
+        </section>
+
+        <div class="structure-comparison" style="max-width: 1280px; margin: 0 auto; padding: 0 var(--space-lg);">
+          <div class="structure-card">
+            <h4>🎤 Pop/Rock Structure (ABABCB)</h4>
+            <div class="structure-visual">
+              <span class="structure-block intro">Intro</span>
+              <span class="structure-block verse">Verse</span>
+              <span class="structure-block chorus">Chorus</span>
+              <span class="structure-block verse">Verse</span>
+              <span class="structure-block chorus">Chorus</span>
+              <span class="structure-block bridge">Bridge</span>
+              <span class="structure-block chorus">Chorus</span>
+              <span class="structure-block outro">Outro</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              <strong>A</strong> = Verse, <strong>B</strong> = Chorus, <strong>C</strong> = Bridge. 
+              Used in most pop, rock, and R&B songs. Think Taylor Swift, Ed Sheeran, Coldplay.
+            </p>
+            <div class="pro-tip" style="margin-top: var(--space-md);">
+              <div class="pro-tip-label">Example</div>
+              <p>"Shape of You" by Ed Sheeran follows this exact structure!</p>
+            </div>
+          </div>
+          
+          <div class="structure-card">
+            <h4>🎧 EDM/Dance Structure</h4>
+            <div class="structure-visual">
+              <span class="structure-block intro">Intro</span>
+              <span class="structure-block buildup">Build</span>
+              <span class="structure-block drop">Drop</span>
+              <span class="structure-block breakdown">Break</span>
+              <span class="structure-block buildup">Build</span>
+              <span class="structure-block drop">Drop</span>
+              <span class="structure-block outro">Outro</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              EDM focuses on <strong>tension and release</strong>. Buildups create anticipation, drops deliver maximum energy. 
+              Usually two "peaks" (drops) per track.
+            </p>
+            <div class="pro-tip" style="margin-top: var(--space-md);">
+              <div class="pro-tip-label">Example</div>
+              <p>"Levels" by Avicii and "Animals" by Martin Garrix use this structure!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: ENERGY FLOW -->
+        <section class="sections-grid" aria-label="Step 3" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Step 3</div>
+            <h2 class="section-title">Energy Flow: The Secret to Great Arrangements.</h2>
+            <p class="section-body">
+              Great arrangements aren't flat—they <strong>breathe</strong>. Think of your song as a journey with peaks and valleys.
+            </p>
+            <ul class="section-list">
+              <li><strong>Build tension</strong> — Remove elements, use filters, add risers, snare rolls</li>
+              <li><strong>Create release</strong> — Drop everything at once for maximum impact</li>
+              <li><strong>Contrast matters</strong> — Quiet breakdowns make loud drops hit harder</li>
+              <li><strong>Two peaks rule</strong> — Most songs have two main energy peaks (choruses/drops)</li>
+            </ul>
+            <div class="concept-box">
+              <h3>🎢 The Roller Coaster Analogy</h3>
+              <p>
+                Think of your song like a roller coaster. The intro is the slow climb. The buildup is that moment at the top 
+                where anticipation peaks. The drop is the thrilling fall. The breakdown is catching your breath before 
+                climbing again. Great songs take listeners on this emotional ride!
+              </p>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Pro Knowledge</div>
+            <h2 class="section-title">The 5 Elements of Arrangement.</h2>
+            <p class="section-body">
+              According to legendary producer Bobby Owsinski, most great arrangements have <strong>no more than 4-5 elements</strong> 
+              playing at once:
+            </p>
+            <ul class="section-list">
+              <li><strong>Foundation</strong> — Kick and bass. The rhythmic backbone.</li>
+              <li><strong>Pad</strong> — Sustained chords or synths. Creates atmosphere.</li>
+              <li><strong>Rhythm</strong> — Hi-hats, percussion. Adds movement and groove.</li>
+              <li><strong>Lead</strong> — Vocal or lead synth. The main melody.</li>
+              <li><strong>Fills</strong> — Ear candy between phrases. Transitions and ear hooks.</li>
+            </ul>
+            <div class="pro-tip">
+              <div class="pro-tip-label">Pro Tip</div>
+              <p>
+                Too many elements = cluttered mix. In verses, use 2-3 elements. In choruses, use 4-5. 
+                This contrast is what makes choruses feel bigger!
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- INTERACTIVE EXERCISE -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Interactive Exercise</div>
+            <h2 class="section-title">Build Your First Arrangement</h2>
+            <p class="section-body">
+              Now it's your turn! Use the interactive builder below to create a <strong>complete song structure</strong>. 
+              Click on section buttons to add them to your timeline.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Start with an Intro</strong> — Click the Intro button to add it to your timeline.</li>
+                <li><strong>Add a Verse → Chorus pattern</strong> — This is your first "cycle".</li>
+                <li><strong>Repeat with variation</strong> — Add another Verse → Chorus, maybe with a Bridge before the final Chorus.</li>
+                <li><strong>End with an Outro</strong> — Bring the song to a close.</li>
+                <li><strong>Aim for 64-96 bars</strong> (about 2:30-4:00 at 120 BPM).</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Challenge:</strong> Try creating both a Pop structure (Intro → Verse → Chorus → Verse → Chorus → Bridge → Chorus → Outro) 
+              AND an EDM structure (Intro → Build → Drop → Breakdown → Build → Drop → Outro). Notice how the energy graph differs!
+            </div>
+          </div>
+        </section>
+
+        <!-- ARRANGEMENT BUILDER -->
+        <section class="arrangement-builder" id="arrangement-builder">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Arrangement Builder</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-md);">Click sections to build your song structure</h2>
+          
+          <div class="section-palette">
+            <button class="section-btn intro" data-section="intro" data-bars="8" data-energy="25">
+              <span>+ Intro</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn verse" data-section="verse" data-bars="16" data-energy="50">
+              <span>+ Verse</span>
+              <small>(16 bars)</small>
+            </button>
+            <button class="section-btn chorus" data-section="chorus" data-bars="16" data-energy="90">
+              <span>+ Chorus</span>
+              <small>(16 bars)</small>
+            </button>
+            <button class="section-btn bridge" data-section="bridge" data-bars="8" data-energy="60">
+              <span>+ Bridge</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn buildup" data-section="buildup" data-bars="8" data-energy="70">
+              <span>+ Buildup</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn drop" data-section="drop" data-bars="16" data-energy="100">
+              <span>+ Drop</span>
+              <small>(16 bars)</small>
+            </button>
+            <button class="section-btn breakdown" data-section="breakdown" data-bars="8" data-energy="35">
+              <span>+ Breakdown</span>
+              <small>(8 bars)</small>
+            </button>
+            <button class="section-btn outro" data-section="outro" data-bars="8" data-energy="20">
+              <span>+ Outro</span>
+              <small>(8 bars)</small>
+            </button>
+          </div>
+          
+          <div class="arrangement-timeline" id="arrangement-timeline">
+            <div class="timeline-placeholder">Click a section above to start building your arrangement</div>
+          </div>
+          
+          <div class="arrangement-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Bars</span>
+              <span class="stat-value" id="total-bars">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Duration (120 BPM)</span>
+              <span class="stat-value" id="total-duration">0:00</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Sections</span>
+              <span class="stat-value" id="total-sections">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Structure Type</span>
+              <span class="stat-value" id="structure-type">—</span>
+            </div>
+          </div>
+          
+          <div class="energy-graph">
+            <div class="energy-graph-title">Energy Flow Visualization</div>
+            <div class="energy-bars" id="energy-bars"></div>
+          </div>
+          
+          <div style="display: flex; gap: var(--space-md); margin-top: var(--space-lg); flex-wrap: wrap;">
+            <button class="btn btn-outline" id="clear-arrangement">Clear All</button>
+            <button class="btn btn-outline" id="load-pop-template">Load Pop Template</button>
+            <button class="btn btn-outline" id="load-edm-template">Load EDM Template</button>
+            <button class="btn btn-primary" id="check-arrangement">Check Arrangement</button>
+          </div>
+          
+          <div class="sequencer-status" id="arrangement-status" style="margin-top: var(--space-md);">
+            Build an arrangement with 64-96 bars to complete this exercise.
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="sections-grid" aria-label="Conclusion" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Conclusion</div>
+            <h2 class="section-title">What You've Learned.</h2>
+            <p class="section-body">
+              Congratulations! You've taken the first step from loop-maker to songwriter. In this lesson, you learned:
+            </p>
+            <ul class="section-list">
+              <li>Songs are built from <strong>sections</strong>: intro, verse, chorus, bridge, breakdown, outro</li>
+              <li>Most sections are <strong>8 or 16 bars</strong> long (multiples of 4)</li>
+              <li><strong>Pop songs</strong> use Verse-Chorus-Bridge patterns (ABABCB)</li>
+              <li><strong>EDM tracks</strong> focus on Build-Drop-Breakdown cycles</li>
+              <li><strong>Energy contrast</strong> between sections is what makes songs compelling</li>
+              <li>Keep arrangements focused: <strong>4-5 elements max</strong> playing at once</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Next Steps</div>
+            <h2 class="section-title">What's Coming Up.</h2>
+            <p class="section-body">
+              You've learned the building blocks. In the next lesson, we'll dive into <strong>transitions</strong>—the techniques 
+              that make sections flow smoothly into each other:
+            </p>
+            <ul class="section-list">
+              <li><strong>Risers and falls</strong> — Creating anticipation and release</li>
+              <li><strong>Filter sweeps</strong> — Smooth frequency transitions</li>
+              <li><strong>Fills and breaks</strong> — Using drum fills to signal changes</li>
+              <li><strong>Arrangement ear candy</strong> — Small details that make big impacts</li>
+            </ul>
+            <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md); flex-wrap: wrap;">
+              <a href="lesson-arrangement-2.html" class="btn btn-primary">
+                Next Lesson: Transitions →
+              </a>
+              <a href="labs.html" class="btn btn-outline">
+                Back to Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+      
+      // Arrangement Builder Logic
+      const LESSON_KEY = "mpl-arrangement-1-progress";
+      const timeline = document.getElementById('arrangement-timeline');
+      const totalBarsEl = document.getElementById('total-bars');
+      const totalDurationEl = document.getElementById('total-duration');
+      const totalSectionsEl = document.getElementById('total-sections');
+      const structureTypeEl = document.getElementById('structure-type');
+      const energyBarsEl = document.getElementById('energy-bars');
+      const statusEl = document.getElementById('arrangement-status');
+      
+      let sections = [];
+      
+      // Load saved progress
+      const savedProgress = localStorage.getItem(LESSON_KEY);
+      if (savedProgress) {
+        try {
+          const data = JSON.parse(savedProgress);
+          if (data.sections) {
+            sections = data.sections;
+            updateTimeline();
+          }
+          if (data.completed) {
+            statusEl.textContent = "You've already completed this exercise. Feel free to experiment more!";
+            statusEl.className = 'sequencer-status success';
+          }
+        } catch (e) {}
+      }
+      
+      // Add section buttons
+      document.querySelectorAll('.section-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const section = {
+            type: btn.dataset.section,
+            bars: parseInt(btn.dataset.bars),
+            energy: parseInt(btn.dataset.energy)
+          };
+          sections.push(section);
+          updateTimeline();
+          saveProgress();
+        });
+      });
+      
+      // Clear button
+      document.getElementById('clear-arrangement').addEventListener('click', () => {
+        sections = [];
+        updateTimeline();
+        saveProgress();
+      });
+      
+      // Load Pop template
+      document.getElementById('load-pop-template').addEventListener('click', () => {
+        sections = [
+          { type: 'intro', bars: 8, energy: 25 },
+          { type: 'verse', bars: 16, energy: 50 },
+          { type: 'chorus', bars: 16, energy: 90 },
+          { type: 'verse', bars: 16, energy: 55 },
+          { type: 'chorus', bars: 16, energy: 95 },
+          { type: 'bridge', bars: 8, energy: 60 },
+          { type: 'chorus', bars: 16, energy: 100 },
+          { type: 'outro', bars: 8, energy: 20 }
+        ];
+        updateTimeline();
+        saveProgress();
+      });
+      
+      // Load EDM template
+      document.getElementById('load-edm-template').addEventListener('click', () => {
+        sections = [
+          { type: 'intro', bars: 8, energy: 25 },
+          { type: 'buildup', bars: 16, energy: 65 },
+          { type: 'drop', bars: 16, energy: 100 },
+          { type: 'breakdown', bars: 8, energy: 35 },
+          { type: 'buildup', bars: 8, energy: 75 },
+          { type: 'drop', bars: 16, energy: 100 },
+          { type: 'outro', bars: 8, energy: 20 }
+        ];
+        updateTimeline();
+        saveProgress();
+      });
+      
+      // Check arrangement
+      document.getElementById('check-arrangement').addEventListener('click', () => {
+        const totalBars = sections.reduce((sum, s) => sum + s.bars, 0);
+        
+        if (sections.length === 0) {
+          statusEl.textContent = "Add some sections first! Click the buttons above to build your arrangement.";
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        if (totalBars < 64) {
+          statusEl.textContent = `Almost there! Your arrangement is ${totalBars} bars. Add more sections to reach at least 64 bars.`;
+          statusEl.className = 'sequencer-status error';
+          return;
+        }
+        
+        if (totalBars > 120) {
+          statusEl.textContent = `Your arrangement is ${totalBars} bars—that's quite long! Consider trimming for a tighter track, but it still works.`;
+          statusEl.className = 'sequencer-status';
+        }
+        
+        // Check for good structure
+        const hasIntro = sections.some(s => s.type === 'intro');
+        const hasOutro = sections.some(s => s.type === 'outro');
+        const hasPeak = sections.some(s => s.type === 'chorus' || s.type === 'drop');
+        const peakCount = sections.filter(s => s.type === 'chorus' || s.type === 'drop').length;
+        
+        if (hasIntro && hasOutro && hasPeak && totalBars >= 64) {
+          localStorage.setItem(LESSON_KEY, JSON.stringify({ sections, completed: true }));
+          statusEl.innerHTML = `🎉 <strong>Excellent!</strong> Your ${totalBars}-bar arrangement has great structure with ${peakCount} peak section(s). You've completed this lesson!`;
+          statusEl.className = 'sequencer-status success';
+        } else {
+          let feedback = [];
+          if (!hasIntro) feedback.push("add an Intro");
+          if (!hasPeak) feedback.push("add a Chorus or Drop");
+          if (!hasOutro) feedback.push("add an Outro");
+          statusEl.textContent = `Good progress! Try to ${feedback.join(", ")} for a complete structure.`;
+          statusEl.className = 'sequencer-status';
+        }
+      });
+      
+      function saveProgress() {
+        localStorage.setItem(LESSON_KEY + '-draft', JSON.stringify({ sections }));
+      }
+      
+      function updateTimeline() {
+        if (sections.length === 0) {
+          timeline.innerHTML = '<div class="timeline-placeholder">Click a section above to start building your arrangement</div>';
+          energyBarsEl.innerHTML = '';
+          totalBarsEl.textContent = '0';
+          totalDurationEl.textContent = '0:00';
+          totalSectionsEl.textContent = '0';
+          structureTypeEl.textContent = '—';
+          return;
+        }
+        
+        // Build timeline
+        timeline.innerHTML = sections.map((section, index) => `
+          <div class="timeline-section ${section.type}" data-index="${index}">
+            <button class="remove-btn" data-index="${index}">×</button>
+            <span class="section-name">${section.type}</span>
+            <span class="section-bars">${section.bars} bars</span>
+          </div>
+        `).join('');
+        
+        // Add remove handlers
+        timeline.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const index = parseInt(btn.dataset.index);
+            sections.splice(index, 1);
+            updateTimeline();
+            saveProgress();
+          });
+        });
+        
+        // Update stats
+        const totalBars = sections.reduce((sum, s) => sum + s.bars, 0);
+        const durationSeconds = (totalBars * 4 * 60) / 120;
+        const minutes = Math.floor(durationSeconds / 60);
+        const seconds = Math.floor(durationSeconds % 60);
+        
+        totalBarsEl.textContent = totalBars;
+        totalDurationEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        totalSectionsEl.textContent = sections.length;
+        
+        // Detect structure type
+        const hasVerse = sections.some(s => s.type === 'verse');
+        const hasChorus = sections.some(s => s.type === 'chorus');
+        const hasDrop = sections.some(s => s.type === 'drop');
+        const hasBuildup = sections.some(s => s.type === 'buildup');
+        
+        if (hasVerse && hasChorus && !hasDrop) {
+          structureTypeEl.textContent = 'Pop/Rock';
+        } else if (hasDrop && hasBuildup && !hasVerse) {
+          structureTypeEl.textContent = 'EDM';
+        } else if (hasDrop || hasChorus) {
+          structureTypeEl.textContent = 'Hybrid';
+        } else {
+          structureTypeEl.textContent = 'Building...';
+        }
+        
+        updateEnergyGraph();
+      }
+      
+      function updateEnergyGraph() {
+        if (sections.length === 0) {
+          energyBarsEl.innerHTML = '';
+          return;
+        }
+        
+        let bars = [];
+        sections.forEach(section => {
+          const numBars = Math.max(1, Math.floor(section.bars / 4));
+          for (let i = 0; i < numBars; i++) {
+            bars.push(section.energy);
+          }
+        });
+        
+        energyBarsEl.innerHTML = bars.map(energy => 
+          `<div class="energy-bar" style="height: ${energy}%;"></div>`
+        ).join('');
+      }
+      
+      // Initialize
+      updateTimeline();
+    </script>
+  </body>
+</html>
