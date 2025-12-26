@@ -5,146 +5,171 @@
     <title>Lesson 20 · Masterclass: Complete Drum Production | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Final project: produce a complete multi-genre drum arrangement with all techniques learned." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      .masterclass-hero { background: linear-gradient(135deg, #e17055 0%, #d63031 50%, #6c5ce7 100%); padding: var(--space-xl); border-radius: var(--radius-lg); margin: var(--space-xl) 0; text-align: center; }
-      .masterclass-hero h2 { font-size: 2rem; margin-bottom: var(--space-md); }
-      .masterclass-hero p { font-size: 1.1rem; opacity: 0.9; }
-      
-      .skills-recap { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin: var(--space-xl) 0; }
-      .skill-badge { background: var(--bg-secondary); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; border: 2px solid var(--border-subtle); }
-      .skill-badge .icon { font-size: 1.5rem; margin-bottom: var(--space-xs); }
-      .skill-badge h4 { font-size: 0.9rem; margin-bottom: 2px; }
-      .skill-badge p { font-size: 0.75rem; color: var(--text-muted); }
-      
-      .project-brief { background: var(--bg-secondary); border: 3px solid var(--accent-coral); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
-      .project-brief h3 { font-size: 1.3rem; margin-bottom: var(--space-md); color: var(--accent-coral); }
-      
-      .section-checklist { background: var(--bg-tertiary); border-radius: var(--radius-md); padding: var(--space-lg); margin: var(--space-lg) 0; }
-      .section-checklist h4 { margin-bottom: var(--space-md); }
-      .section-checklist .section-item { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) 0; border-bottom: 1px solid var(--border-subtle); }
-      .section-checklist .section-item:last-child { border-bottom: none; }
-      .section-checklist .section-item input { width: 20px; height: 20px; }
-      
-      .final-tips { background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
-    </style>
   </head>
   <body>
-    <header class="site-header glass">
-      <div class="header-inner container">
-        <a href="index.html" class="brand">
-          <span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
-          <span class="brand-text">Music Producer Lab</span>
-        </a>
-        <nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav>
-      </div>
-    </header>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
 
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 20 · Drums & Rhythm</p>
-        <h1 class="hero-title">Masterclass:<br><span class="highlight">Complete Drum Production</span></h1>
-        <p class="hero-subtitle">Your <strong>final challenge</strong>: produce a complete, <strong>multi-section drum arrangement</strong> applying <strong>every technique</strong> from the entire curriculum.</p>
-      </section>
-
-      <div class="masterclass-hero">
-        <h2>🏆 Congratulations!</h2>
-        <p>You've mastered 19 lessons of drum programming. Now it's time to prove it.</p>
-      </div>
-
-      <section class="card">
-        <h2><span class="icon">📚</span> Skills You've Learned</h2>
-        <div class="skills-recap">
-          <div class="skill-badge"><div class="icon">🥁</div><h4>Basic Patterns</h4><p>4/4, backbeat, fills</p></div>
-          <div class="skill-badge"><div class="icon">🎵</div><h4>Genre Styles</h4><p>House, hip-hop, trap, DnB</p></div>
-          <div class="skill-badge"><div class="icon">👻</div><h4>Ghost Notes</h4><p>Dynamics & texture</p></div>
-          <div class="skill-badge"><div class="icon">🤖</div><h4>Humanization</h4><p>Timing & velocity</p></div>
-          <div class="skill-badge"><div class="icon">🔄</div><h4>Polyrhythms</h4><p>3:4, 5:4, metric mod</p></div>
-          <div class="skill-badge"><div class="icon">🌍</div><h4>World Rhythms</h4><p>Clave, Afrobeat, Latin</p></div>
-          <div class="skill-badge"><div class="icon">🔊</div><h4>Sound Design</h4><p>Layering & processing</p></div>
-          <div class="skill-badge"><div class="icon">🎛️</div><h4>Mixing</h4><p>EQ, compression, bus</p></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2><span class="icon">📋</span> The Final Project</h2>
-        <div class="project-brief">
-          <h3>Create a 16-Bar Multi-Section Drum Arrangement</h3>
-          <p>Your arrangement must include:</p>
-          <ul class="check-list" style="margin-top: var(--space-md);">
-            <li><strong>Intro (4 bars):</strong> Stripped down, builds anticipation</li>
-            <li><strong>Verse (4 bars):</strong> Full groove with ghost notes & dynamics</li>
-            <li><strong>Build (2 bars):</strong> Rising energy, drum fill at end</li>
-            <li><strong>Drop/Chorus (4 bars):</strong> Maximum energy, full kit</li>
-            <li><strong>Breakdown (2 bars):</strong> Minimal, contrast</li>
-          </ul>
-        </div>
-        
-        <div class="section-checklist">
-          <h4>Requirements Checklist:</h4>
-          <div class="section-item"><input type="checkbox" id="req1"><label for="req1">At least 4 different drum sounds (kick, snare, hi-hat, +1)</label></div>
-          <div class="section-item"><input type="checkbox" id="req2"><label for="req2">Velocity variation for dynamics</label></div>
-          <div class="section-item"><input type="checkbox" id="req3"><label for="req3">At least one fill transition</label></div>
-          <div class="section-item"><input type="checkbox" id="req4"><label for="req4">Ghost notes in at least one section</label></div>
-          <div class="section-item"><input type="checkbox" id="req5"><label for="req5">Clear energy contrast between sections</label></div>
-          <div class="section-item"><input type="checkbox" id="req6"><label for="req6">Applied humanization (timing/velocity)</label></div>
-        </div>
-      </section>
-
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Create Your Masterpiece</h2>
-        <!-- SEQUENCER -->
-        <div class="sequencer-container">
-          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-            <h3 style="margin:0;">Masterclass Sequencer</h3>
-            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
-              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+        <section class="hero" aria-label="Lesson 20 · Masterclass">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 20 · Masterclass</div>
+            <h1 class="hero-title">Complete Drum <span>Production</span></h1>
+            <p class="hero-subtitle">
+              Your <strong>final challenge</strong>: produce a complete, multi-section drum arrangement
+              applying <strong>every technique</strong> from the entire curriculum.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-19.html"><span>← Lesson 19</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
             </div>
           </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Final Project</div>
+              <div class="hero-visual-pill">Masterclass</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Graduation</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>All Techniques</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>30–45 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Apply all skills</div>
+                  <div class="hero-visual-pill-tag">Complete arrangement</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Lesson 20 overview">
+          <article class="section">
+            <div class="section-eyebrow">Recap</div>
+            <h2 class="section-title">Skills You've Learned</h2>
+            <p class="section-body">
+              Over 19 lessons, you've mastered essential drum programming techniques.
+            </p>
+            <ul class="section-list">
+              <li>Basic patterns: 4-on-the-floor, backbeat, syncopation</li>
+              <li>Genre styles: House, Hip-Hop, Trap, DnB, Rock</li>
+              <li>Advanced: Ghost notes, polyrhythms, odd time</li>
+              <li>Production: Layering, mixing, humanization</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Challenge</div>
+            <h2 class="section-title">Your Final Project</h2>
+            <p class="section-body">
+              Create a drum arrangement that demonstrates your mastery.
+            </p>
+            <ul class="section-list">
+              <li>Use dynamics and velocity variation</li>
+              <li>Include at least one genre-specific element</li>
+              <li>Apply humanization to make it groove</li>
+              <li>Consider the mix: EQ and compression</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Final Exercise</div>
+            <h2 class="section-title">Demonstrate Your Skills</h2>
+            <p class="section-body">Complete this pattern to graduate from the Drums curriculum!</p>
+
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick:</strong> Create a solid foundation with variation</li>
+                <li><strong>Snare:</strong> Backbeat with dynamic accents</li>
+                <li><strong>Hi-Hat:</strong> Rhythmic pattern that complements the groove</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Congratulations!</strong> You've completed the entire Drums curriculum. Keep practicing and making beats!
+            </div>
+          </div>
+        </section>
+
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+
           <div class="sequencer" id="mpl-sequencer-collection"></div>
-          <p id="mpl-seq-status" style="margin-top:1rem;">Create your masterpiece!</p>
-          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Complete Course! 🎉</button>
-        </div>
-      </section>
 
-      <section class="card final-tips">
-        <h2><span class="icon">💡</span> Final Tips</h2>
-        <ul class="check-list">
-          <li><strong>Start simple:</strong> Get the basic groove right before adding complexity</li>
-          <li><strong>Listen to references:</strong> Compare your work to professional tracks</li>
-          <li><strong>Less is more:</strong> Space and silence are powerful tools</li>
-          <li><strong>Trust your ears:</strong> If it sounds good, it IS good</li>
-          <li><strong>Keep practicing:</strong> Mastery comes from repetition and experimentation</li>
-        </ul>
-      </section>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">Check Exercise</button>
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled>Complete Course!</button>
+            </div>
+          </div>
 
-      <section class="card" style="text-align: center; background: linear-gradient(135deg, var(--accent-coral), var(--accent-purple));">
-        <h2 style="margin-bottom: var(--space-md);">🎉 You Did It!</h2>
-        <p style="font-size: 1.1rem; margin-bottom: var(--space-lg);">You've completed the entire Drums & Rhythm curriculum. You now have professional-level drum programming skills!</p>
-        <a href="labs.html" class="btn" style="background: white; color: var(--accent-coral); font-weight: 700; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-md); text-decoration: none;">Explore More Labs →</a>
-      </section>
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the final exercise to finish the curriculum.
+          </div>
+        </section>
 
-      <nav class="lesson-nav">
-        <a href="lesson-drums-19.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a>
-        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
-      </nav>
-    </main>
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 20 - Masterclass</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
 
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
-    <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
-      const instruments = [
-        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "Build your groove" },
-        { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Add backbeat" },
-        { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "Complete the pattern" },
-        { id: "clap", label: "Clap", color: "linear-gradient(135deg, #a855f7, #7c3aed)", target: [], instructions: "Add accents (optional)" }
-      ];
-      initDrumSequencer(instruments, "mpl-drums-20-progress", "labs.html");
-    </script>
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
+
+        const LESSON_KEY = "mpl-drums-20-progress";
+        const NEXT_LESSON_URL = "labs.html";
+
+        const instruments = [
+          { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "Your signature kick pattern" },
+          { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Dynamic snare with feel" },
+          { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "Groove-enhancing hi-hats" }
+        ];
+
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      </script>
+    </div>
   </body>
 </html>

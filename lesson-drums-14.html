@@ -5,9 +5,6 @@
     <title>Lesson 14 · Polyrhythms & Metric Modulation | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Layer contrasting rhythms for complexity. Create 3-over-4, 5-over-4, and other polyrhythmic patterns." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
     <style>
       /* Polyrhythm Visualizer */
@@ -17,14 +14,14 @@
         padding: var(--space-xl);
         margin: var(--space-xl) 0;
       }
-      
+
       .poly-circles {
         display: flex;
         justify-content: center;
         gap: var(--space-xl);
         margin-bottom: var(--space-xl);
       }
-      
+
       .poly-circle {
         width: 120px;
         height: 120px;
@@ -35,12 +32,12 @@
         align-items: center;
         justify-content: center;
       }
-      
+
       .poly-circle.active {
         border-color: var(--accent-coral);
         box-shadow: 0 0 20px rgba(231, 112, 85, 0.4);
       }
-      
+
       .poly-circle .beat-marker {
         position: absolute;
         width: 12px;
@@ -49,12 +46,12 @@
         background: var(--accent-cyan);
         transform-origin: center center;
       }
-      
+
       .poly-circle .center-label {
         font-size: 1.5rem;
         font-weight: 700;
       }
-      
+
       /* Grid Overlay */
       .poly-grid {
         display: grid;
@@ -62,7 +59,7 @@
         gap: 2px;
         margin: var(--space-lg) 0;
       }
-      
+
       .grid-cell {
         height: 40px;
         background: var(--bg-tertiary);
@@ -74,11 +71,11 @@
         font-weight: 600;
         transition: all 0.2s;
       }
-      
+
       .grid-cell.beat-3 { background: var(--accent-coral); }
       .grid-cell.beat-4 { background: var(--accent-cyan); }
       .grid-cell.overlap { background: var(--accent-purple); }
-      
+
       /* Poly Examples */
       .poly-examples {
         display: grid;
@@ -86,7 +83,7 @@
         gap: var(--space-lg);
         margin: var(--space-xl) 0;
       }
-      
+
       .poly-card {
         background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
         border: 2px solid var(--border-subtle);
@@ -95,16 +92,16 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-      
+
       .poly-card:hover {
         border-color: var(--accent-cyan);
         transform: translateY(-2px);
       }
-      
+
       .poly-card.active {
         border-color: var(--accent-coral);
       }
-      
+
       .poly-card h3 {
         font-size: 1.2rem;
         margin-bottom: var(--space-sm);
@@ -112,20 +109,20 @@
         align-items: center;
         gap: var(--space-sm);
       }
-      
+
       .poly-ratio {
         font-family: monospace;
         font-size: 1.5rem;
         font-weight: 700;
         color: var(--accent-amber);
       }
-      
+
       .poly-card p {
         font-size: 0.85rem;
         color: var(--text-muted);
         margin-bottom: var(--space-md);
       }
-      
+
       .poly-pattern {
         display: flex;
         gap: 4px;
@@ -133,16 +130,16 @@
         background: var(--bg-tertiary);
         border-radius: var(--radius-sm);
       }
-      
+
       .poly-hit {
         width: 16px;
         height: 24px;
         border-radius: 2px;
       }
-      
+
       .poly-hit.on { background: var(--accent-coral); }
       .poly-hit.off { background: var(--border-subtle); }
-      
+
       /* Famous Examples */
       .famous-examples {
         display: grid;
@@ -150,29 +147,29 @@
         gap: var(--space-md);
         margin: var(--space-lg) 0;
       }
-      
+
       .example-item {
         background: var(--bg-tertiary);
         border-radius: var(--radius-md);
         padding: var(--space-md);
       }
-      
+
       .example-item .song {
         font-weight: 600;
         margin-bottom: 4px;
       }
-      
+
       .example-item .artist {
         font-size: 0.85rem;
         color: var(--text-muted);
       }
-      
+
       .example-item .poly-type {
         font-size: 0.75rem;
         color: var(--accent-cyan);
         margin-top: var(--space-xs);
       }
-      
+
       /* Metric Modulation */
       .modulation-demo {
         background: var(--bg-secondary);
@@ -180,327 +177,434 @@
         padding: var(--space-lg);
         margin: var(--space-xl) 0;
       }
-      
+
       .tempo-comparison {
         display: flex;
         justify-content: space-around;
         align-items: center;
         padding: var(--space-lg);
       }
-      
+
       .tempo-box {
         text-align: center;
       }
-      
+
       .tempo-box .bpm {
         font-size: 2.5rem;
         font-weight: 700;
         font-family: monospace;
       }
-      
+
       .tempo-box .label {
         font-size: 0.85rem;
         color: var(--text-muted);
       }
-      
+
       .tempo-arrow {
         font-size: 2rem;
         color: var(--accent-amber);
       }
+
+      .tip-box {
+        background: var(--bg-secondary);
+        border-left: 4px solid var(--accent-cyan);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      .check-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .check-list li {
+        padding-left: 1.5rem;
+        position: relative;
+        margin-bottom: var(--space-sm);
+      }
+
+      .check-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-cyan);
+        font-weight: bold;
+      }
+
+      .poly-legend {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-lg);
+        margin-top: var(--space-md);
+        font-size: 0.8rem;
+      }
+
+      .poly-legend-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+
+      .poly-legend-box {
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+      }
     </style>
   </head>
   <body>
-    <!-- SITE HEADER -->
-    <header class="site-header glass">
-      <div class="header-inner container">
-        <a href="index.html" class="brand">
-          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
-          <span class="brand-text">Music Producer Lab</span>
-        </a>
-        <nav class="header-nav">
-          <a href="labs.html" class="nav-link">Labs</a>
-          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
-        </nav>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 14 · Polyrhythms">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 14 · Drums & Rhythm</div>
+            <h1 class="hero-title">Polyrhythms & <span>Metric Modulation</span></h1>
+            <p class="hero-subtitle">
+              Layer <strong>contrasting rhythms</strong> for complexity and depth. Master <strong>3-over-4</strong>, <strong>5-over-4</strong>, and create <strong>hypnotic polyrhythmic patterns</strong> used by top producers.
+            </p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Advanced</div>
+              <div class="hero-visual-pill">Polyrhythms</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Layered Rhythms · 120 BPM</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>3:4 & 5:4</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Create 3:4 patterns</div>
+                  <div class="hero-visual-pill-tag">Layer rhythms</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Hypnotic grooves</span>
+                  <span>Tension & release</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Lesson 14 steps">
+          <article class="section">
+            <div class="section-eyebrow">Concept</div>
+            <h2 class="section-title">What is a Polyrhythm?</h2>
+            <p class="section-body">
+              A polyrhythm occurs when <strong>two or more conflicting rhythms</strong> are played simultaneously. The most common is <strong>3 against 4</strong>—three evenly spaced beats against four evenly spaced beats.
+            </p>
+
+            <div class="poly-visualizer">
+              <div class="poly-circles">
+                <div class="poly-circle" id="circle3">
+                  <span class="center-label" style="color: var(--accent-coral);">3</span>
+                </div>
+                <div class="poly-circle" id="circle4">
+                  <span class="center-label" style="color: var(--accent-cyan);">4</span>
+                </div>
+              </div>
+
+              <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
+                In 3:4, the "3" beats divide the bar into thirds, while "4" beats divide it into quarters.
+              </p>
+
+              <div class="poly-grid" style="margin-top: var(--space-lg);">
+                <div class="grid-cell overlap">1</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-3">3</div>
+                <div class="grid-cell beat-4">2</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-3">3</div>
+                <div class="grid-cell beat-4">3</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-4">·</div>
+                <div class="grid-cell beat-3">3</div>
+              </div>
+
+              <div class="poly-legend">
+                <div class="poly-legend-item">
+                  <div class="poly-legend-box" style="background: var(--accent-coral);"></div>
+                  3-beat pattern
+                </div>
+                <div class="poly-legend-item">
+                  <div class="poly-legend-box" style="background: var(--accent-cyan);"></div>
+                  4-beat pattern
+                </div>
+                <div class="poly-legend-item">
+                  <div class="poly-legend-box" style="background: var(--accent-purple);"></div>
+                  Overlap (downbeat)
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">Common Polyrhythms</h2>
+            <p class="section-body">
+              Different polyrhythmic ratios create different feelings—from subtle tension to complex hypnotic grooves.
+            </p>
+
+            <div class="poly-examples">
+              <div class="poly-card active" data-poly="3:4">
+                <h3><span class="poly-ratio">3:4</span> Three over Four</h3>
+                <p>The most common polyrhythm. Creates tension without being too complex. Think "nice cup of tea."</p>
+                <div class="poly-pattern">
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                </div>
+              </div>
+
+              <div class="poly-card" data-poly="2:3">
+                <h3><span class="poly-ratio">2:3</span> Two over Three</h3>
+                <p>Creates a triplet feel. Foundation of shuffle and swing grooves. "Hot dog" rhythm.</p>
+                <div class="poly-pattern">
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                </div>
+              </div>
+
+              <div class="poly-card" data-poly="5:4">
+                <h3><span class="poly-ratio">5:4</span> Five over Four</h3>
+                <p>Complex and hypnotic. Used in African music and progressive genres. Creates shifting accent points.</p>
+                <div class="poly-pattern">
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                </div>
+              </div>
+
+              <div class="poly-card" data-poly="7:4">
+                <h3><span class="poly-ratio">7:4</span> Seven over Four</h3>
+                <p>Very complex, disorienting effect. Used sparingly for dramatic tension and resolution.</p>
+                <div class="poly-pattern">
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                  <div class="poly-hit off"></div>
+                  <div class="poly-hit on"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Examples</div>
+            <h2 class="section-title">Polyrhythms in Popular Music</h2>
+            <p class="section-body">
+              Many hit songs use polyrhythms—often subtly—to create that "something special" in their grooves.
+            </p>
+
+            <div class="famous-examples">
+              <div class="example-item">
+                <div class="song">Drunk in Love</div>
+                <div class="artist">Beyoncé</div>
+                <div class="poly-type">3:4 polyrhythm in percussion</div>
+              </div>
+              <div class="example-item">
+                <div class="song">Kashmir</div>
+                <div class="artist">Led Zeppelin</div>
+                <div class="poly-type">Guitar 3/4 against drums 4/4</div>
+              </div>
+              <div class="example-item">
+                <div class="song">Pyramid Song</div>
+                <div class="artist">Radiohead</div>
+                <div class="poly-type">Piano 3:4 against drums</div>
+              </div>
+              <div class="example-item">
+                <div class="song">Schism</div>
+                <div class="artist">Tool</div>
+                <div class="poly-type">5:4 and 7:4 patterns</div>
+              </div>
+              <div class="example-item">
+                <div class="song">God Only Knows</div>
+                <div class="artist">Beach Boys</div>
+                <div class="poly-type">Subtle 2:3 in arrangement</div>
+              </div>
+              <div class="example-item">
+                <div class="song">Chameleon</div>
+                <div class="artist">Herbie Hancock</div>
+                <div class="poly-type">3:4 clavinet pattern</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Advanced</div>
+            <h2 class="section-title">Metric Modulation</h2>
+            <p class="section-body">
+              Metric modulation changes the perceived tempo by making a <strong>subdivision become the new beat</strong>. The actual BPM doesn't change, but the <em>feel</em> does.
+            </p>
+
+            <div class="modulation-demo">
+              <div class="tempo-comparison">
+                <div class="tempo-box">
+                  <div class="bpm" style="color: var(--accent-cyan);">120</div>
+                  <div class="label">Quarter note = 120 BPM</div>
+                </div>
+                <div class="tempo-arrow">→</div>
+                <div class="tempo-box">
+                  <div class="bpm" style="color: var(--accent-coral);">90</div>
+                  <div class="label">Dotted quarter = 90 BPM</div>
+                </div>
+              </div>
+
+              <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-md);">
+                If the triplet becomes the new pulse, 120 BPM → 90 BPM perceived tempo.
+              </p>
+            </div>
+
+            <div class="tip-box">
+              <strong>Use Case:</strong> Metric modulation is powerful for transitions—smoothly shift from an energetic section to a laid-back groove without abruptly changing tempo.
+            </div>
+          </article>
+        </section>
+
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Create a 3:4 Polyrhythm</h2>
+            <p class="section-body">Program a hi-hat pattern in 3 while the kick-snare stays in 4.</p>
+
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li>Set the sequencer to 12 steps (LCM of 3 and 4).</li>
+                <li>Place kicks on steps 1, 4, 7, 10 (4 evenly spaced).</li>
+                <li>Place hi-hats on steps 1, 5, 9 (3 evenly spaced).</li>
+                <li>Add snare on steps 4 and 10 for backbeat.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Listen:</strong> The hi-hats will feel like they're "floating" against the kick pattern. That's the polyrhythmic tension!
+            </div>
+          </div>
+        </section>
+
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">Polyrhythm Sequencer</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the pattern to continue.
+          </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="sections-grid" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways</h2>
+            <ul class="check-list">
+              <li><strong>3:4 polyrhythm:</strong> Most accessible—creates subtle tension</li>
+              <li><strong>5:4 and 7:4:</strong> Complex, hypnotic—use for progressive genres</li>
+              <li><strong>LCM principle:</strong> Use the Least Common Multiple for grid length (3×4=12)</li>
+              <li><strong>Metric modulation:</strong> Change perceived tempo by shifting the pulse</li>
+              <li><strong>Subtlety wins:</strong> Often one layer in polyrhythm is quieter for accessibility</li>
+            </ul>
+          </article>
+        </section>
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 14</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
       </div>
-    </header>
-
-    <main class="main-content container">
-      <!-- HERO -->
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 14 · Drums & Rhythm</p>
-        <h1 class="hero-title">Polyrhythms &<br><span class="highlight">Metric Modulation</span></h1>
-        <p class="hero-subtitle">Layer <strong>contrasting rhythms</strong> for complexity and depth. Master <strong>3-over-4</strong>, <strong>5-over-4</strong>, and create <strong>hypnotic polyrhythmic patterns</strong> used by top producers.</p>
-      </section>
-
-      <!-- WHAT IS POLYRHYTHM -->
-      <section class="card">
-        <h2><span class="icon">🔄</span> What is a Polyrhythm?</h2>
-        <p class="section-intro">
-          A polyrhythm occurs when <strong>two or more conflicting rhythms</strong> are played simultaneously. The most common is <strong>3 against 4</strong>—three evenly spaced beats against four evenly spaced beats.
-        </p>
-        
-        <div class="poly-visualizer">
-          <div class="poly-circles">
-            <div class="poly-circle" id="circle3">
-              <span class="center-label" style="color: var(--accent-coral);">3</span>
-            </div>
-            <div class="poly-circle" id="circle4">
-              <span class="center-label" style="color: var(--accent-cyan);">4</span>
-            </div>
-          </div>
-          
-          <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
-            In 3:4, the "3" beats divide the bar into thirds, while "4" beats divide it into quarters.
-          </p>
-          
-          <div class="poly-grid" style="margin-top: var(--space-lg);">
-            <div class="grid-cell overlap">1</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-3">3</div>
-            <div class="grid-cell beat-4">2</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-3">3</div>
-            <div class="grid-cell beat-4">3</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-4">·</div>
-            <div class="grid-cell beat-3">3</div>
-          </div>
-          
-          <div style="display: flex; justify-content: center; gap: var(--space-lg); margin-top: var(--space-md);">
-            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
-              <div style="width: 16px; height: 16px; background: var(--accent-coral); border-radius: 2px;"></div>
-              3-beat pattern
-            </span>
-            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
-              <div style="width: 16px; height: 16px; background: var(--accent-cyan); border-radius: 2px;"></div>
-              4-beat pattern
-            </span>
-            <span style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;">
-              <div style="width: 16px; height: 16px; background: var(--accent-purple); border-radius: 2px;"></div>
-              Overlap (downbeat)
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- COMMON POLYRHYTHMS -->
-      <section class="card">
-        <h2><span class="icon">📊</span> Common Polyrhythms</h2>
-        <p class="section-intro">
-          Different polyrhythmic ratios create different feelings—from subtle tension to complex hypnotic grooves.
-        </p>
-        
-        <div class="poly-examples">
-          <div class="poly-card active" data-poly="3:4">
-            <h3><span class="poly-ratio">3:4</span> Three over Four</h3>
-            <p>The most common polyrhythm. Creates tension without being too complex. Think "nice cup of tea."</p>
-            <div class="poly-pattern">
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-            </div>
-          </div>
-          
-          <div class="poly-card" data-poly="2:3">
-            <h3><span class="poly-ratio">2:3</span> Two over Three</h3>
-            <p>Creates a triplet feel. Foundation of shuffle and swing grooves. "Hot dog" rhythm.</p>
-            <div class="poly-pattern">
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-            </div>
-          </div>
-          
-          <div class="poly-card" data-poly="5:4">
-            <h3><span class="poly-ratio">5:4</span> Five over Four</h3>
-            <p>Complex and hypnotic. Used in African music and progressive genres. Creates shifting accent points.</p>
-            <div class="poly-pattern">
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-            </div>
-          </div>
-          
-          <div class="poly-card" data-poly="7:4">
-            <h3><span class="poly-ratio">7:4</span> Seven over Four</h3>
-            <p>Very complex, disorienting effect. Used sparingly for dramatic tension and resolution.</p>
-            <div class="poly-pattern">
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-              <div class="poly-hit off"></div>
-              <div class="poly-hit on"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAMOUS EXAMPLES -->
-      <section class="card">
-        <h2><span class="icon">🎵</span> Polyrhythms in Popular Music</h2>
-        <p class="section-intro">
-          Many hit songs use polyrhythms—often subtly—to create that "something special" in their grooves.
-        </p>
-        
-        <div class="famous-examples">
-          <div class="example-item">
-            <div class="song">Drunk in Love</div>
-            <div class="artist">Beyoncé</div>
-            <div class="poly-type">3:4 polyrhythm in percussion</div>
-          </div>
-          <div class="example-item">
-            <div class="song">Kashmir</div>
-            <div class="artist">Led Zeppelin</div>
-            <div class="poly-type">Guitar 3/4 against drums 4/4</div>
-          </div>
-          <div class="example-item">
-            <div class="song">Pyramid Song</div>
-            <div class="artist">Radiohead</div>
-            <div class="poly-type">Piano 3:4 against drums</div>
-          </div>
-          <div class="example-item">
-            <div class="song">Schism</div>
-            <div class="artist">Tool</div>
-            <div class="poly-type">5:4 and 7:4 patterns</div>
-          </div>
-          <div class="example-item">
-            <div class="song">God Only Knows</div>
-            <div class="artist">Beach Boys</div>
-            <div class="poly-type">Subtle 2:3 in arrangement</div>
-          </div>
-          <div class="example-item">
-            <div class="song">Chameleon</div>
-            <div class="artist">Herbie Hancock</div>
-            <div class="poly-type">3:4 clavinet pattern</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- METRIC MODULATION -->
-      <section class="card">
-        <h2><span class="icon">🔀</span> Metric Modulation</h2>
-        <p class="section-intro">
-          Metric modulation changes the perceived tempo by making a <strong>subdivision become the new beat</strong>. The actual BPM doesn't change, but the <em>feel</em> does.
-        </p>
-        
-        <div class="modulation-demo">
-          <div class="tempo-comparison">
-            <div class="tempo-box">
-              <div class="bpm" style="color: var(--accent-cyan);">120</div>
-              <div class="label">Quarter note = 120 BPM</div>
-            </div>
-            <div class="tempo-arrow">→</div>
-            <div class="tempo-box">
-              <div class="bpm" style="color: var(--accent-coral);">90</div>
-              <div class="label">Dotted quarter = 90 BPM</div>
-            </div>
-          </div>
-          
-          <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-md);">
-            If the triplet becomes the new pulse, 120 BPM → 90 BPM perceived tempo.
-          </p>
-        </div>
-        
-        <div class="tip-box">
-          <strong>Use Case:</strong> Metric modulation is powerful for transitions—smoothly shift from an energetic section to a laid-back groove without abruptly changing tempo.
-        </div>
-      </section>
-
-      <!-- EXERCISE -->
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise: Create a 3:4 Polyrhythm</h2>
-        <div class="exercise-info">
-          <p><strong>Task:</strong> Program a hi-hat pattern in 3 while the kick-snare stays in 4.</p>
-          <ol class="exercise-steps">
-            <li>Set the sequencer to 12 steps (LCM of 3 and 4).</li>
-            <li>Place kicks on steps 1, 4, 7, 10 (4 evenly spaced).</li>
-            <li>Place hi-hats on steps 1, 5, 9 (3 evenly spaced).</li>
-            <li>Add snare on steps 4 and 10 for backbeat.</li>
-          </ol>
-        </div>
-        
-        <!-- SEQUENCER -->
-        <div class="sequencer-container">
-          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-            <h3 style="margin:0;">Polyrhythm Sequencer</h3>
-            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
-              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
-            </div>
-          </div>
-          <div class="sequencer" id="mpl-sequencer-collection"></div>
-          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
-          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
-        </div>
-        
-        <div class="tip-box">
-          <strong>Listen:</strong> The hi-hats will feel like they're "floating" against the kick pattern. That's the polyrhythmic tension!
-        </div>
-      </section>
-
-      <!-- KEY TAKEAWAYS -->
-      <section class="card">
-        <h2><span class="icon">🎓</span> Key Takeaways</h2>
-        <ul class="check-list">
-          <li><strong>3:4 polyrhythm:</strong> Most accessible—creates subtle tension</li>
-          <li><strong>5:4 and 7:4:</strong> Complex, hypnotic—use for progressive genres</li>
-          <li><strong>LCM principle:</strong> Use the Least Common Multiple for grid length (3×4=12)</li>
-          <li><strong>Metric modulation:</strong> Change perceived tempo by shifting the pulse</li>
-          <li><strong>Subtlety wins:</strong> Often one layer in polyrhythm is quieter for accessibility</li>
-        </ul>
-      </section>
-
-      <!-- NAVIGATION -->
-      <nav class="lesson-nav">
-        <a href="lesson-drums-13.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
-        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
-        <a href="lesson-drums-15.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
-      </nav>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <p class="copyright">© 2025 Music Producer Lab</p>
-        <nav class="footer-nav">
-          <a href="labs.html">Labs</a>
-          <a href="#">Projects</a>
-        </nav>
-      </div>
-    </footer>
+    </div>
 
     <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+
       document.querySelectorAll('.poly-card').forEach(card => {
         card.addEventListener('click', () => {
           document.querySelectorAll('.poly-card').forEach(c => c.classList.remove('active'));
@@ -510,12 +614,17 @@
     </script>
     <script type="module">
       import { initDrumSequencer } from './sequencer.js';
+
+      const LESSON_KEY = "mpl-drums-14-progress";
+      const NEXT_LESSON_URL = "lesson-drums-15.html";
+
       const instruments = [
         { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "Kick pattern" },
         { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Snare on 2 and 4" },
         { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 4, 8], instructions: "3-pattern hi-hats" }
       ];
-      initDrumSequencer(instruments, "mpl-drums-14-progress", "lesson-drums-15.html");
+
+      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
     </script>
   </body>
 </html>

@@ -2,485 +2,255 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 11 · DnB & Breakbeat Patterns | Music Producer Lab</title>
+    <title>Lesson 11 · Drum & Bass Patterns | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Create high-energy drum and bass patterns. Learn the Amen break, two-step rhythms, and half-time variations." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Break Cards */
-      .break-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .break-card {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 2px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        position: relative;
-      }
-      
-      .break-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      }
-      
-      .break-card h3 {
-        font-size: 1.1rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .break-card .year {
-        font-size: 0.75rem;
-        color: var(--accent-amber);
-        margin-bottom: var(--space-sm);
-      }
-      
-      .break-card p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: var(--space-md);
-      }
-      
-      .break-card .pattern {
-        background: var(--bg-tertiary);
-        padding: var(--space-sm);
-        border-radius: var(--radius-sm);
-        font-family: monospace;
-        font-size: 0.7rem;
-        overflow-x: auto;
-      }
-      
-      /* Two-Step Demo */
-      .twostep-demo {
-        background: var(--bg-secondary);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .twostep-grid {
-        display: grid;
-        grid-template-columns: repeat(16, 1fr);
-        gap: 2px;
-        margin: var(--space-md) 0;
-      }
-      
-      .twostep-step {
-        aspect-ratio: 1;
-        background: var(--bg-tertiary);
-        border-radius: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.6rem;
-        color: var(--text-muted);
-      }
-      
-      .twostep-step.kick {
-        background: linear-gradient(135deg, #e17055, #d63031);
-        color: white;
-      }
-      
-      .twostep-step.snare {
-        background: linear-gradient(135deg, #fdcb6e, #f39c12);
-        color: #333;
-      }
-      
-      .twostep-step.hihat {
-        background: linear-gradient(135deg, #00cec9, #0984e3);
-        color: white;
-      }
-      
-      /* Tempo Comparison */
-      .tempo-comparison {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .tempo-item {
-        text-align: center;
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        min-width: 150px;
-      }
-      
-      .tempo-item .bpm {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--accent-cyan);
-      }
-      
-      .tempo-item .genre {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-    </style>
   </head>
-  <body class="lesson-page">
-    <!-- Header -->
-    <header class="site-header">
-      <div class="header-content">
-        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
-          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
-          <span class="logo-text">Music Producer Lab</span>
-        </a>
-        <a href="labs.html" class="btn btn--outline btn--sm">
-          <span class="btn-icon">←</span> Back to overview
-        </a>
-      </div>
-    </header>
-
-    <main class="lesson-main">
-      <!-- Hero Section -->
-      <section class="lesson-hero">
-        <div class="hero-content">
-          <p class="hero-eyebrow">Lesson 11 · Drums & Rhythm · Intermediate</p>
-          <h1 class="hero-title">DnB & <span class="highlight">Breakbeat</span></h1>
-          <p class="hero-subtitle">
-            Create <strong>high-energy drum and bass patterns</strong>. Learn the legendary 
-            <strong>Amen break</strong>, <strong>two-step rhythms</strong>, and 
-            <strong>half-time variations</strong> that power the fastest genre in electronic music.
-          </p>
-          
-          <div class="hero-meta">
-            <span class="meta-item">⏱️ 18-20 min</span>
-            <span class="meta-item">📊 Level 6</span>
-            <span class="meta-item">🎯 Intermediate</span>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
           </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <nav class="lesson-nav" aria-label="Lesson navigation">
-        <a href="lesson-drums-10.html" class="nav-link nav-link--prev">
-          ← Back to Lesson 10
-        </a>
-        <a href="lesson-drums-12.html" class="nav-link nav-link--next">
-          Next: Rock & Live Drums →
-        </a>
-      </nav>
-
-      <!-- Main Content -->
-      <article class="lesson-content">
-        
-        <!-- Introduction -->
-        <section class="content-section">
-          <h2>The Fastest Beats on Earth</h2>
-          <p>
-            Drum and bass (DnB) operates at <strong>160-180 BPM</strong>—nearly twice as fast as most 
-            dance music. This high tempo creates incredible energy, but it also requires a different 
-            approach to programming. The patterns feel like they're running at half-speed because of 
-            how the snares are placed.
-          </p>
-          
-          <div class="tempo-comparison">
-            <div class="tempo-item">
-              <div class="bpm">125</div>
-              <div class="genre">House</div>
-            </div>
-            <div class="tempo-item">
-              <div class="bpm">140</div>
-              <div class="genre">Trap</div>
-            </div>
-            <div class="tempo-item">
-              <div class="bpm">174</div>
-              <div class="genre">DnB</div>
-            </div>
-          </div>
-          
-          <div class="callout callout--info">
-            <p>
-              <strong>🎯 The Half-Time Secret:</strong> At 174 BPM, if you put the snare on beats 2 and 4, 
-              it feels like 87 BPM—smooth and rolling. This is the "two-step" feel that defines DnB.
-            </p>
-          </div>
-        </section>
-
-        <!-- Famous Breaks -->
-        <section class="content-section">
-          <h2>The Legendary Breaks</h2>
-          <p>DnB was built on sampled breakbeats. These are the most influential:</p>
-          
-          <div class="break-cards">
-            <div class="break-card">
-              <h3>🥁 The Amen Break</h3>
-              <div class="year">1969 - The Winstons</div>
-              <p>
-                The most sampled drum break in history. Its syncopated kick and crispy snare 
-                defined jungle and drum & bass. Every producer should know this pattern.
-              </p>
-              <div class="pattern">
-K: X · · · · · X · · · X · · · · ·
-S: · · · · X · · · · · · · X · X ·
-H: X · X · X · X · X · X · X · X ·
-              </div>
-            </div>
-            
-            <div class="break-card">
-              <h3>🎵 Think Break</h3>
-              <div class="year">1972 - Lyn Collins</div>
-              <p>
-                Funky and driving. More straight than the Amen, with a heavy backbeat. 
-                Great for liquid DnB and soulful tracks.
-              </p>
-              <div class="pattern">
-K: X · · · · · · · X · · · · · · ·
-S: · · · · X · · · · · · · X · · ·
-H: X · X · X · X · X · X · X · X ·
-              </div>
-            </div>
-            
-            <div class="break-card">
-              <h3>⚡ Apache Break</h3>
-              <div class="year">1973 - Incredible Bongo Band</div>
-              <p>
-                The foundation of hip-hop drums too. Its open, spacious feel works 
-                great for half-time DnB and modern bass music.
-              </p>
-              <div class="pattern">
-K: X · · · · · · · X · X · · · · ·
-S: · · · · X · · · · · · · X · · ·
-H: · · X · · · X · · · X · · · X ·
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Two-Step Pattern -->
-        <section class="content-section">
-          <h2>The Two-Step Pattern</h2>
-          <p>
-            The <strong>two-step</strong> is DnB's core rhythm. The snare hits on beat 2 and 4 
-            (at 174 BPM), creating that rolling, driving feel.
-          </p>
-          
-          <div class="twostep-demo">
-            <h4 style="margin-bottom: var(--space-md);">Classic Two-Step</h4>
-            
-            <div style="display: flex; gap: var(--space-xs); margin-bottom: var(--space-sm);">
-              <span style="font-size: 0.75rem; color: var(--text-muted);">Row:</span>
-            </div>
-            
-            <div style="margin-bottom: var(--space-xs);">
-              <span style="font-size: 0.7rem; color: #e17055;">Kick</span>
-            </div>
-            <div class="twostep-grid">
-              <div class="twostep-step kick">1</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step kick">7</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step kick">10</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-            </div>
-            
-            <div style="margin: var(--space-sm) 0 var(--space-xs);">
-              <span style="font-size: 0.7rem; color: #fdcb6e;">Snare</span>
-            </div>
-            <div class="twostep-grid">
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step snare">5</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step snare">13</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step"></div>
-            </div>
-            
-            <div style="margin: var(--space-sm) 0 var(--space-xs);">
-              <span style="font-size: 0.7rem; color: #00cec9;">Hi-Hat</span>
-            </div>
-            <div class="twostep-grid">
-              <div class="twostep-step hihat">1</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">3</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">5</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">7</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">9</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">11</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">13</div>
-              <div class="twostep-step"></div>
-              <div class="twostep-step hihat">15</div>
-              <div class="twostep-step"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Interactive Exercise -->
-        <section class="content-section exercise-section">
-          <h2>🎯 Exercise: Build a Two-Step Beat</h2>
-          
-          <div class="exercise-intro">
-            <p>
-              Create a classic DnB two-step pattern with syncopated kick, 
-              backbeat snare, and driving 8th-note hi-hats.
-            </p>
-          </div>
-
-          <div class="exercise-steps">
-            <div class="step">
-              <span class="step-number">1</span>
-              <div class="step-content">
-                <strong>Kick:</strong> Steps 1, 7, 10 (syncopated for that rolling feel)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">2</span>
-              <div class="step-content">
-                <strong>Snare:</strong> Steps 5 and 13 (the half-time backbeat)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">3</span>
-              <div class="step-content">
-                <strong>Hi-Hat:</strong> 8th notes (1, 3, 5, 7, 9, 11, 13, 15)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">4</span>
-              <div class="step-content">
-                <strong>Listen:</strong> At 174 BPM, it should feel rolling and energetic!
-              </div>
-            </div>
-          </div>
-
-          <!-- Sequencer Component -->
-          <div class="sequencer-container" id="sequencer">
-            <div class="sequencer-header">
-              <h3>DnB Sequencer</h3>
-              <div class="sequencer-controls">
-                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
-              </div>
-            </div>
-
-            <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-cyan);">
-              🎵 174 BPM - Standard DnB Tempo
-            </div>
-
-            <div class="sequencer" id="mpl-sequencer-collection"></div>
-
-            <div class="exercise-status">
-              <p id="mpl-seq-status">Build the two-step pattern to unlock the next lesson.</p>
-            </div>
-          </div>
-
-          <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
-              Next Lesson →
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
             </button>
           </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 11 · Drum & Bass Patterns">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 11 · Drums & Rhythm · Intermediate</div>
+            <h1 class="hero-title">Drum & Bass <span>Patterns</span></h1>
+            <p class="hero-subtitle">
+              Create <strong>high-energy drum and bass patterns</strong>. Learn the legendary
+              <strong>Amen break</strong>, <strong>two-step rhythms</strong>, and
+              <strong>half-time variations</strong> that power the fastest genre in electronic music.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-10.html"><span>← Lesson 10</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">DnB Patterns</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">174 BPM · Two-Step</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Fast Breaks</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>18–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Master two-step rhythm</div>
+                  <div class="hero-visual-pill-tag">Learn breakbeat patterns</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>High-energy rhythms</span>
+                  <span>Amen break · Half-time</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
-        <!-- Summary -->
-        <section class="content-section">
-          <h2>Key Takeaways</h2>
-          <ul class="summary-list">
-            <li><strong>DnB tempo:</strong> 160-180 BPM (usually 174)</li>
-            <li><strong>Two-step feel:</strong> Snare on 2 and 4 creates half-time groove</li>
-            <li><strong>Syncopated kicks:</strong> Off-beat kick placement creates rolling energy</li>
-            <li><strong>The Amen break:</strong> Foundation of the genre—study it!</li>
-            <li><strong>Breakbeats:</strong> Sampled drum loops from funk/soul records</li>
-          </ul>
+        <section class="sections-grid" aria-label="Lesson 11 steps">
+          <article class="section">
+            <div class="section-eyebrow">Concept</div>
+            <h2 class="section-title">The Fastest Beats on Earth</h2>
+            <p class="section-body">
+              Drum and bass (DnB) operates at <strong>160-180 BPM</strong>—nearly twice as fast as most
+              dance music. This high tempo creates incredible energy, but it also requires a different
+              approach to programming. The patterns feel like they're running at half-speed because of
+              how the snares are placed.
+            </p>
+            <ul class="section-list">
+              <li><strong>House tempo:</strong> 125 BPM - steady and grooving</li>
+              <li><strong>Trap tempo:</strong> 140 BPM - hard-hitting and aggressive</li>
+              <li><strong>DnB tempo:</strong> 174 BPM - fast but feels half-time</li>
+              <li><strong>The half-time secret:</strong> At 174 BPM, snare on beats 2 and 4 feels like 87 BPM</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">History</div>
+            <h2 class="section-title">The Legendary Breaks</h2>
+            <p class="section-body">
+              DnB was built on sampled breakbeats from classic funk and soul records.
+              The <strong>Amen Break</strong> (1969, The Winstons) is the most sampled drum break in history—its
+              syncopated kick and crispy snare defined jungle and drum & bass.
+            </p>
+            <ul class="section-list">
+              <li><strong>Amen Break:</strong> The foundation of DnB, syncopated and crispy</li>
+              <li><strong>Think Break:</strong> Funky and driving, great for liquid DnB</li>
+              <li><strong>Apache Break:</strong> Open and spacious, works for half-time bass music</li>
+              <li><strong>Two-step pattern:</strong> The core DnB rhythm with snare on 2 and 4</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">Programming the Two-Step</h2>
+            <p class="section-body">
+              The <strong>two-step</strong> is DnB's core rhythm. The snare hits on beat 2 and 4
+              (at 174 BPM), creating that rolling, driving feel. The kick pattern is syncopated
+              to add energy and movement.
+            </p>
+            <ul class="section-list">
+              <li><strong>Syncopated kicks:</strong> Off-beat placement creates rolling energy</li>
+              <li><strong>Half-time snare:</strong> On beats 2 and 4 for that smooth feel</li>
+              <li><strong>8th note hi-hats:</strong> Drive the pattern forward at high speed</li>
+              <li><strong>Variations:</strong> Add ghost notes and fills for human feel</li>
+            </ul>
+          </article>
         </section>
 
-      </article>
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Build a Two-Step DnB Beat</h2>
+            <p class="section-body">Create a classic drum and bass two-step pattern with syncopated kick, backbeat snare, and driving 8th-note hi-hats at 174 BPM.</p>
 
-      <!-- Bottom Navigation -->
-      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
-        <a href="lesson-drums-10.html" class="nav-link nav-link--prev">
-          ← Trap & 808
-        </a>
-        <a href="labs.html" class="nav-link nav-link--overview">
-          Overview
-        </a>
-        <a href="lesson-drums-12.html" class="nav-link nav-link--next">
-          Rock & Live Drums →
-        </a>
-      </nav>
-    </main>
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick:</strong> Steps 1, 7, 10 (syncopated for that rolling DnB feel)</li>
+                <li><strong>Snare:</strong> Steps 5 and 13 (the half-time backbeat on 2 and 4)</li>
+                <li><strong>Hi-Hat:</strong> Steps 1, 3, 5, 7, 9, 11, 13, 15 (8th notes for driving energy)</li>
+                <li><strong>Listen:</strong> At 174 BPM, it should feel rolling and energetic!</li>
+              </ol>
+            </div>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+            <div class="exercise-tip">
+              <strong>Tip:</strong> The kick pattern (1, 7, 10) creates the syncopated "rolling" feel that defines DnB. The snare on 2 and 4 makes it feel like half-time.
+            </div>
+
+            <div class="pattern-hint">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Kick:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-off">5</span><span class="step-off">6</span><span class="step-on">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-on">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-off">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Snare:</span>
+                <span class="step-off">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Hi-Hat:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-on">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-on">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-on">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-on">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-note">174 BPM - Standard DnB tempo with two-step feel</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Build the two-step pattern to unlock the next lesson.
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 11</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
       </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
 
-      const LESSON_KEY = "mpl-drums-11-progress";
-      const NEXT_LESSON_URL = "lesson-drums-12.html";
+        const LESSON_KEY = "mpl-drums-11-progress";
+        const NEXT_LESSON_URL = "lesson-drums-12.html";
 
-      // DnB: fast syncopated kick, snare on 2&4, 8th hats
-      const instruments = [
-        {
-          id: "kick",
-          label: "Kick",
-          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-          target: [0, 6, 10],
-          instructions: "Syncopated kick pattern"
-        },
-        {
-          id: "snare",
-          label: "Snare",
-          color: "linear-gradient(135deg, #feca57, #ff9f43)",
-          target: [4, 12],
-          instructions: "Snare on 2 and 4 (two-step)"
-        },
-        {
-          id: "hihat",
-          label: "Hi-Hat",
-          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-          target: [0, 2, 4, 6, 8, 10, 12, 14],
-          instructions: "8th note hi-hats"
-        }
-      ];
+        // DnB: fast syncopated kick, snare on 2&4, 8th hats
+        const instruments = [
+          {
+            id: "kick",
+            label: "Kick",
+            color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+            target: [0, 6, 10],
+            instructions: "Syncopated kick pattern (steps 1, 7, 10)"
+          },
+          {
+            id: "snare",
+            label: "Snare",
+            color: "linear-gradient(135deg, #feca57, #ff9f43)",
+            target: [4, 12],
+            instructions: "Snare on 2 and 4 (two-step, steps 5, 13)"
+          },
+          {
+            id: "hihat",
+            label: "Hi-Hat",
+            color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+            target: [0, 2, 4, 6, 8, 10, 12, 14],
+            instructions: "8th note hi-hats (driving energy)"
+          }
+        ];
 
-      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-    </script>
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      </script>
+    </div>
   </body>
 </html>

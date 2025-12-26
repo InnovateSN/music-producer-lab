@@ -4,538 +4,168 @@
     <meta charset="UTF-8" />
     <title>Lesson 16 · Drum Sound Design & Layering | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Design custom drum sounds. Layer kicks, snares, and hi-hats for unique textures. Use processing for character." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
+    <meta name="description" content="Design custom drum sounds. Layer kicks, snares, and hi-hats for unique textures." />
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Layer Stack Visualization */
-      .layer-stack {
-        background: linear-gradient(135deg, #2d3436, #1a1a2e);
-        border-radius: var(--radius-lg);
-        padding: var(--space-xl);
-        margin: var(--space-xl) 0;
-      }
-      
-      .stack-layers {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-md);
-        max-width: 500px;
-        margin: 0 auto;
-      }
-      
-      .layer-item {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-        padding: var(--space-md);
-        background: var(--bg-secondary);
-        border-radius: var(--radius-md);
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 2px solid transparent;
-      }
-      
-      .layer-item:hover {
-        border-color: var(--accent-cyan);
-      }
-      
-      .layer-item.active {
-        border-color: var(--accent-coral);
-      }
-      
-      .layer-waveform {
-        width: 100px;
-        height: 40px;
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-sm);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-      
-      .layer-info {
-        flex: 1;
-      }
-      
-      .layer-info h4 {
-        font-size: 0.95rem;
-        margin-bottom: 2px;
-      }
-      
-      .layer-info p {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-      }
-      
-      .layer-controls {
-        display: flex;
-        gap: var(--space-sm);
-      }
-      
-      .layer-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: var(--bg-tertiary);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        transition: all 0.2s;
-      }
-      
-      .layer-btn:hover {
-        background: var(--accent-cyan);
-      }
-      
-      /* Processing Chain */
-      .processing-chain {
-        display: flex;
-        gap: var(--space-md);
-        overflow-x: auto;
-        padding: var(--space-md) 0;
-        margin: var(--space-xl) 0;
-      }
-      
-      .process-block {
-        min-width: 140px;
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 2px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-md);
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      
-      .process-block:hover {
-        border-color: var(--accent-cyan);
-      }
-      
-      .process-block.active {
-        border-color: var(--accent-coral);
-        background: var(--bg-tertiary);
-      }
-      
-      .process-block .icon {
-        font-size: 1.5rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .process-block h4 {
-        font-size: 0.85rem;
-        margin-bottom: 4px;
-      }
-      
-      .process-block p {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-      }
-      
-      .chain-arrow {
-        display: flex;
-        align-items: center;
-        color: var(--text-muted);
-        font-size: 1.2rem;
-      }
-      
-      /* Sound Design Cards */
-      .design-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .design-card {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 2px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-      }
-      
-      .design-card h3 {
-        font-size: 1.1rem;
-        margin-bottom: var(--space-sm);
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-      }
-      
-      .design-card p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: var(--space-md);
-      }
-      
-      .design-card .technique-list {
-        font-size: 0.8rem;
-      }
-      
-      .design-card .technique-list li {
-        margin-bottom: 6px;
-        padding-left: var(--space-sm);
-        border-left: 2px solid var(--accent-coral);
-      }
-      
-      /* Frequency Split */
-      .freq-split {
-        background: var(--bg-secondary);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .freq-bands {
-        display: flex;
-        gap: 4px;
-        margin: var(--space-lg) 0;
-        height: 120px;
-        align-items: flex-end;
-      }
-      
-      .freq-band {
-        flex: 1;
-        border-radius: 4px 4px 0 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: var(--space-sm);
-        text-align: center;
-      }
-      
-      .freq-band.sub { background: linear-gradient(to top, #e17055, #d63031); height: 100%; }
-      .freq-band.low { background: linear-gradient(to top, #fdcb6e, #f39c12); height: 80%; }
-      .freq-band.mid { background: linear-gradient(to top, #00cec9, #0984e3); height: 60%; }
-      .freq-band.high { background: linear-gradient(to top, #a29bfe, #6c5ce7); height: 40%; }
-      
-      .freq-band .label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: white;
-      }
-      
-      .freq-band .range {
-        font-size: 0.6rem;
-        opacity: 0.8;
-        color: white;
-      }
-    </style>
   </head>
   <body>
-    <!-- SITE HEADER -->
-    <header class="site-header glass">
-      <div class="header-inner container">
-        <a href="index.html" class="brand">
-          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
-          <span class="brand-text">Music Producer Lab</span>
-        </a>
-        <nav class="header-nav">
-          <a href="labs.html" class="nav-link">Labs</a>
-          <a href="#" class="nav-link disabled-link" tabindex="-1">Projects</a>
-        </nav>
-      </div>
-    </header>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
 
-    <main class="main-content container">
-      <!-- HERO -->
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 16 · Drums & Rhythm</p>
-        <h1 class="hero-title">Drum Sound Design &<br><span class="highlight">Layering</span></h1>
-        <p class="hero-subtitle">Design <strong>custom drum sounds</strong> from scratch. Master <strong>kick layering</strong>, <strong>snare stacks</strong>, and <strong>processing chains</strong> for signature drum textures.</p>
-      </section>
-
-      <!-- WHY LAYER -->
-      <section class="card">
-        <h2><span class="icon">📚</span> Why Layer Drums?</h2>
-        <p class="section-intro">
-          Single drum samples often lack the <strong>fullness, punch, or character</strong> needed for a professional mix. Layering combines multiple sounds to create something greater than the sum of its parts.
-        </p>
-        
-        <ul class="check-list">
-          <li><strong>Sub weight:</strong> Add low-end power to thin kicks</li>
-          <li><strong>Transient punch:</strong> Layer attack samples for cut-through</li>
-          <li><strong>Tonal body:</strong> Add mid-range warmth and character</li>
-          <li><strong>High-end crack:</strong> Layer noise or click for presence</li>
-          <li><strong>Uniqueness:</strong> Create signature sounds no one else has</li>
-        </ul>
-      </section>
-
-      <!-- KICK LAYERING -->
-      <section class="card">
-        <h2><span class="icon">🔊</span> Kick Drum Layering</h2>
-        <p class="section-intro">
-          A powerful kick typically consists of <strong>3-4 layers</strong>, each handling a different frequency range.
-        </p>
-        
-        <div class="layer-stack">
-          <div class="stack-layers">
-            <div class="layer-item active">
-              <div class="layer-waveform" style="background: linear-gradient(135deg, #e17055, #d63031);">SUB</div>
-              <div class="layer-info">
-                <h4>Sub Layer (40-80 Hz)</h4>
-                <p>Pure sine wave or 808 sub. Provides the chest-shaking weight.</p>
-              </div>
-              <div class="layer-controls">
-                <button class="layer-btn">🔊</button>
-                <button class="layer-btn">⚙️</button>
-              </div>
-            </div>
-            
-            <div class="layer-item">
-              <div class="layer-waveform" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">BODY</div>
-              <div class="layer-info">
-                <h4>Body Layer (80-250 Hz)</h4>
-                <p>Acoustic kick or tonal sample. Adds warmth and thickness.</p>
-              </div>
-              <div class="layer-controls">
-                <button class="layer-btn">🔊</button>
-                <button class="layer-btn">⚙️</button>
-              </div>
-            </div>
-            
-            <div class="layer-item">
-              <div class="layer-waveform" style="background: linear-gradient(135deg, #00cec9, #0984e3);">PUNCH</div>
-              <div class="layer-info">
-                <h4>Punch Layer (1-4 kHz)</h4>
-                <p>Short transient click. Cuts through the mix.</p>
-              </div>
-              <div class="layer-controls">
-                <button class="layer-btn">🔊</button>
-                <button class="layer-btn">⚙️</button>
-              </div>
-            </div>
-            
-            <div class="layer-item">
-              <div class="layer-waveform" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">CLICK</div>
-              <div class="layer-info">
-                <h4>Click Layer (4-10 kHz)</h4>
-                <p>Beater click or noise burst. Adds attack definition.</p>
-              </div>
-              <div class="layer-controls">
-                <button class="layer-btn">🔊</button>
-                <button class="layer-btn">⚙️</button>
-              </div>
+        <section class="hero" aria-label="Lesson 16 · Sound Design">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 16 · Advanced</div>
+            <h1 class="hero-title">Drum Sound Design & <span>Layering</span></h1>
+            <p class="hero-subtitle">
+              Design <strong>custom drum sounds</strong> by layering multiple samples. Create unique
+              kicks, snares, and hi-hats with <strong>professional layering techniques</strong>.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-15.html"><span>← Lesson 15</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
             </div>
           </div>
-        </div>
-        
-        <div class="tip-box">
-          <strong>Key Principle:</strong> High-pass filter each layer to prevent frequency overlap. Sub layer: low-pass at 80Hz. Body: bandpass 80-250Hz. And so on.
-        </div>
-      </section>
 
-      <!-- PROCESSING CHAIN -->
-      <section class="card">
-        <h2><span class="icon">🔗</span> Drum Processing Chain</h2>
-        <p class="section-intro">
-          After layering, process your drum bus to <strong>glue the layers together</strong> and add character.
-        </p>
-        
-        <div class="processing-chain">
-          <div class="process-block active">
-            <div class="icon">🎚️</div>
-            <h4>EQ</h4>
-            <p>Shape frequencies</p>
-          </div>
-          <div class="chain-arrow">→</div>
-          <div class="process-block">
-            <div class="icon">🔨</div>
-            <h4>Compression</h4>
-            <p>Control dynamics</p>
-          </div>
-          <div class="chain-arrow">→</div>
-          <div class="process-block">
-            <div class="icon">📊</div>
-            <h4>Transient</h4>
-            <p>Shape attack/decay</p>
-          </div>
-          <div class="chain-arrow">→</div>
-          <div class="process-block">
-            <div class="icon">🌊</div>
-            <h4>Saturation</h4>
-            <p>Add harmonics</p>
-          </div>
-          <div class="chain-arrow">→</div>
-          <div class="process-block">
-            <div class="icon">🔊</div>
-            <h4>Limiting</h4>
-            <p>Final loudness</p>
-          </div>
-        </div>
-      </section>
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">Layering</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Sound Design</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Layering</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Layer samples</div>
+                  <div class="hero-visual-pill-tag">Create unique sounds</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
 
-      <!-- SNARE DESIGN -->
-      <section class="card">
-        <h2><span class="icon">🥁</span> Snare Sound Design</h2>
-        <p class="section-intro">
-          Snares need <strong>punch, body, and top-end crack</strong>. Layer acoustic and electronic elements.
-        </p>
-        
-        <div class="design-cards">
-          <div class="design-card">
-            <h3><span class="icon">💥</span> Punchy Snare</h3>
-            <p>For genres needing impact: rock, hip-hop, pop.</p>
-            <ul class="technique-list">
-              <li>Acoustic snare for body</li>
-              <li>Clap layer for width</li>
-              <li>Transient shaper: boost attack</li>
-              <li>Parallel compression for sustain</li>
+        <section class="sections-grid" aria-label="Lesson 16 steps">
+          <article class="section">
+            <div class="section-eyebrow">Concept</div>
+            <h2 class="section-title">What is Drum Layering?</h2>
+            <p class="section-body">
+              Layering combines multiple samples to create one unified sound with more depth and character.
+            </p>
+            <ul class="section-list">
+              <li><strong>Sub layer:</strong> Low frequencies for weight and punch</li>
+              <li><strong>Body layer:</strong> Mid frequencies for tone and character</li>
+              <li><strong>Top layer:</strong> High frequencies for attack and presence</li>
             </ul>
-          </div>
-          
-          <div class="design-card">
-            <h3><span class="icon">🔥</span> Cracky Snare</h3>
-            <p>For dance music: house, techno, DnB.</p>
-            <ul class="technique-list">
-              <li>Short, tight sample</li>
-              <li>White noise layer (short decay)</li>
-              <li>High-shelf boost at 8kHz+</li>
-              <li>Fast compression for punch</li>
-            </ul>
-          </div>
-          
-          <div class="design-card">
-            <h3><span class="icon">🌙</span> Fat Snare</h3>
-            <p>For lo-fi, boom bap, soul samples.</p>
-            <ul class="technique-list">
-              <li>Vintage drum machine sample</li>
-              <li>Saturate for warmth</li>
-              <li>Low-pass filter (cut highs)</li>
-              <li>Room reverb for depth</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <!-- FREQUENCY ANATOMY -->
-      <section class="card">
-        <h2><span class="icon">📊</span> Frequency Anatomy of Drums</h2>
-        <p class="section-intro">
-          Understanding which frequencies each drum occupies helps you layer and EQ effectively.
-        </p>
-        
-        <div class="freq-split">
-          <div class="freq-bands">
-            <div class="freq-band sub">
-              <span class="label">SUB</span>
-              <span class="range">20-80 Hz</span>
-            </div>
-            <div class="freq-band low">
-              <span class="label">LOW</span>
-              <span class="range">80-250 Hz</span>
-            </div>
-            <div class="freq-band mid">
-              <span class="label">MID</span>
-              <span class="range">250Hz-4kHz</span>
-            </div>
-            <div class="freq-band high">
-              <span class="label">HIGH</span>
-              <span class="range">4-20 kHz</span>
-            </div>
-          </div>
-          
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-top: var(--space-lg); font-size: 0.8rem;">
-            <div><strong>Kick weight</strong><br>808 sub, body</div>
-            <div><strong>Kick punch</strong><br>Snare body</div>
-            <div><strong>Snare crack</strong><br>Hi-hat body</div>
-            <div><strong>Hi-hat air</strong><br>Cymbal shimmer</div>
-          </div>
-        </div>
-      </section>
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">Layering Best Practices</h2>
+            <p class="section-body">
+              Effective layering requires careful attention to phase alignment and frequency balance.
+            </p>
+            <ul class="section-list">
+              <li>Check phase alignment between layers</li>
+              <li>Use EQ to carve space for each layer</li>
+              <li>Compress the layered result for glue</li>
+            </ul>
+          </article>
+        </section>
 
-      <!-- EXERCISE -->
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise: Design a Layered Kick</h2>
-        <div class="exercise-info">
-          <p><strong>Task:</strong> Create a punchy, full kick using 3 layers.</p>
-          <ol class="exercise-steps">
-            <li>Start with a sub layer (sine wave or 808 sub).</li>
-            <li>Add a body layer (acoustic kick, HP at 80Hz).</li>
-            <li>Add a click layer (transient sample, HP at 2kHz).</li>
-            <li>Glue with bus compression (2-4dB gain reduction).</li>
-          </ol>
-        </div>
-        
-        <!-- SEQUENCER -->
-        <div class="sequencer-container">
-          <div class="sequencer-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-            <h3 style="margin:0;">Drum Sequencer</h3>
-            <div class="sequencer-controls" style="display:flex;gap:0.5rem;">
-              <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-              <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-              <button class="btn btn--accent" id="mpl-seq-check-all">Check</button>
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Create a Layered Drum Pattern</h2>
+            <p class="section-body">Apply layering concepts while programming this pattern.</p>
+
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick:</strong> Steps 1, 5, 9, 13 (foundation)</li>
+                <li><strong>Snare:</strong> Steps 5 and 13 (backbeat)</li>
+                <li><strong>Hi-Hat:</strong> 8th notes for rhythm</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> Think about how each drum sound could be built from multiple layers.
             </div>
           </div>
+        </section>
+
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+
           <div class="sequencer" id="mpl-sequencer-collection"></div>
-          <p id="mpl-seq-status" style="margin-top:1rem;">Complete the pattern to continue.</p>
-          <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled style="margin-top:1rem;">Next Lesson →</button>
-        </div>
-        
-        <div class="tip-box">
-          <strong>Phase Check:</strong> Always check phase alignment between layers. Zoom in on waveforms to ensure transients line up.
-        </div>
-      </section>
 
-      <!-- KEY TAKEAWAYS -->
-      <section class="card">
-        <h2><span class="icon">🎓</span> Key Takeaways</h2>
-        <ul class="check-list">
-          <li><strong>Layer by frequency:</strong> Sub, body, punch, click—each layer has a role</li>
-          <li><strong>Filter overlap:</strong> HP/LP each layer to prevent masking</li>
-          <li><strong>Phase alignment:</strong> Zoom in to align transients</li>
-          <li><strong>Process chain:</strong> EQ → Compression → Saturation → Limiting</li>
-          <li><strong>Less is more:</strong> 3-4 well-chosen layers beats 10 cluttered ones</li>
-        </ul>
-      </section>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">Check Exercise</button>
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled>Next Lesson &rarr;</button>
+            </div>
+          </div>
 
-      <!-- NAVIGATION -->
-      <nav class="lesson-nav">
-        <a href="lesson-drums-15.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
-        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
-        <a href="lesson-drums-17.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
-      </nav>
-    </main>
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
+          </div>
+        </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <p class="copyright">© 2025 Music Producer Lab</p>
-        <nav class="footer-nav">
-          <a href="labs.html">Labs</a>
-          <a href="#">Projects</a>
-        </nav>
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 16</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
       </div>
-    </footer>
 
-    <script>
-      document.querySelectorAll('.layer-item').forEach(item => {
-        item.addEventListener('click', () => {
-          document.querySelectorAll('.layer-item').forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-        });
-      });
-      document.querySelectorAll('.process-block').forEach(block => {
-        block.addEventListener('click', () => {
-          document.querySelectorAll('.process-block').forEach(b => b.classList.remove('active'));
-          block.classList.add('active');
-        });
-      });
-    </script>
-    <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
-      const instruments = [
-        { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 8], instructions: "Layered kick" },
-        { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Snare on 2 and 4" },
-        { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "8th notes" }
-      ];
-      initDrumSequencer(instruments, "mpl-drums-16-progress", "lesson-drums-17.html");
-    </script>
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
+
+        const LESSON_KEY = "mpl-drums-16-progress";
+        const NEXT_LESSON_URL = "lesson-drums-17.html";
+
+        const instruments = [
+          { id: "kick", label: "Kick", color: "linear-gradient(135deg, #ff6b6b, #ee5a24)", target: [0, 4, 8, 12], instructions: "Layered kick on beats 1-4" },
+          { id: "snare", label: "Snare", color: "linear-gradient(135deg, #feca57, #ff9f43)", target: [4, 12], instructions: "Snare on beats 2 and 4" },
+          { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00d2d3, #01a3a4)", target: [0, 2, 4, 6, 8, 10, 12, 14], instructions: "8th note hi-hats" }
+        ];
+
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      </script>
+    </div>
   </body>
 </html>

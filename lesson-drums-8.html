@@ -2,494 +2,266 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 8 · House & Techno Drums | Music Producer Lab</title>
+    <title>Lesson 8 · House & Techno Grooves | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Master electronic dance music drum patterns. Learn the driving 4/4 patterns, off-beat hi-hats, and minimal techno rhythms." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Genre Cards */
-      .genre-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .genre-card {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 2px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        transition: all 0.3s ease;
-      }
-      
-      .genre-card:hover {
-        border-color: var(--accent-cyan);
-        transform: translateY(-2px);
-      }
-      
-      .genre-card.house {
-        border-left: 4px solid var(--accent-purple);
-      }
-      
-      .genre-card.techno {
-        border-left: 4px solid var(--accent-cyan);
-      }
-      
-      .genre-card.deep-house {
-        border-left: 4px solid var(--accent-green);
-      }
-      
-      .genre-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: var(--space-sm);
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-      }
-      
-      .genre-card .tempo {
-        font-size: 0.8rem;
-        color: var(--accent-cyan);
-        background: rgba(0, 240, 255, 0.1);
-        padding: 2px 8px;
-        border-radius: var(--radius-sm);
-      }
-      
-      .genre-card p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        margin-bottom: var(--space-md);
-      }
-      
-      .genre-card .pattern-preview {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-sm);
-        font-family: monospace;
-        font-size: 0.75rem;
-        overflow-x: auto;
-      }
-      
-      /* Pattern Grid */
-      .pattern-grid {
-        display: grid;
-        grid-template-columns: auto repeat(16, 1fr);
-        gap: 2px;
-        font-size: 0.75rem;
-        margin: var(--space-md) 0;
-      }
-      
-      .pattern-grid .label {
-        padding: 4px 8px;
-        background: var(--bg-tertiary);
-        border-radius: 2px;
-        font-weight: 600;
-      }
-      
-      .pattern-grid .step {
-        width: 100%;
-        aspect-ratio: 1;
-        border-radius: 2px;
-        background: var(--bg-tertiary);
-      }
-      
-      .pattern-grid .step.active {
-        background: var(--accent-cyan);
-      }
-      
-      .pattern-grid .step.offbeat {
-        background: var(--accent-purple);
-      }
-      
-      /* Key Elements */
-      .key-elements {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .key-element {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        text-align: center;
-      }
-      
-      .key-element .icon {
-        font-size: 2rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .key-element h4 {
-        font-size: 0.9rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .key-element p {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-      }
-      
-      /* BPM Range Display */
-      .bpm-range {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-        background: var(--bg-tertiary);
-        padding: var(--space-md);
-        border-radius: var(--radius-md);
-        margin: var(--space-md) 0;
-      }
-      
-      .bpm-range .bar {
-        flex: 1;
-        height: 8px;
-        background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan), var(--accent-purple));
-        border-radius: 4px;
-        position: relative;
-      }
-      
-      .bpm-range .marker {
-        position: absolute;
-        top: -20px;
-        transform: translateX(-50%);
-        font-size: 0.7rem;
-        color: var(--text-muted);
-      }
-    </style>
   </head>
-  <body class="lesson-page">
-    <!-- Header -->
-    <header class="site-header">
-      <div class="header-content">
-        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
-          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
-          <span class="logo-text">Music Producer Lab</span>
-        </a>
-        <a href="labs.html" class="btn btn--outline btn--sm">
-          <span class="btn-icon">←</span> Back to overview
-        </a>
-      </div>
-    </header>
-
-    <main class="lesson-main">
-      <!-- Hero Section -->
-      <section class="lesson-hero">
-        <div class="hero-content">
-          <p class="hero-eyebrow">Lesson 8 · Drums & Rhythm · Intermediate</p>
-          <h1 class="hero-title">House & Techno <span class="highlight">Drums</span></h1>
-          <p class="hero-subtitle">
-            Master the <strong>driving 4/4 patterns</strong> that power dance floors worldwide. 
-            Learn <strong>off-beat hi-hats</strong>, <strong>minimal techno rhythms</strong>, 
-            and the essential elements of electronic dance music drums.
-          </p>
-          
-          <div class="hero-meta">
-            <span class="meta-item">⏱️ 15-18 min</span>
-            <span class="meta-item">📊 Level 4</span>
-            <span class="meta-item">🎯 Intermediate</span>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
           </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <nav class="lesson-nav" aria-label="Lesson navigation">
-        <a href="lesson-drums-7.html" class="nav-link nav-link--prev">
-          ← Back to Lesson 7
-        </a>
-        <a href="lesson-drums-9.html" class="nav-link nav-link--next">
-          Next: Hip-Hop & Boom Bap →
-        </a>
-      </nav>
-
-      <!-- Main Content -->
-      <article class="lesson-content">
-        
-        <!-- Introduction -->
-        <section class="content-section">
-          <h2>The Heartbeat of Electronic Music</h2>
-          <p>
-            House and techno share the same DNA: the relentless <strong>four-on-the-floor kick</strong> 
-            that drives dancers forward. But within this simple framework lies incredible variety—from 
-            deep and minimal to hard and driving.
-          </p>
-          
-          <div class="bpm-range">
-            <span>118</span>
-            <div class="bar">
-              <span class="marker" style="left: 10%">Deep House</span>
-              <span class="marker" style="left: 40%">House</span>
-              <span class="marker" style="left: 70%">Tech House</span>
-              <span class="marker" style="left: 95%">Techno</span>
-            </div>
-            <span>140</span>
-          </div>
-          
-          <div class="callout callout--info">
-            <p>
-              <strong>🎯 The Magic Formula:</strong> 4-on-the-floor kick + off-beat hi-hat = instant dance groove. 
-              Everything else is variation and style.
-            </p>
-          </div>
-        </section>
-
-        <!-- Key Elements -->
-        <section class="content-section">
-          <h2>The 4 Essential Elements</h2>
-          
-          <div class="key-elements">
-            <div class="key-element">
-              <div class="icon">🔊</div>
-              <h4>Four-on-the-Floor Kick</h4>
-              <p>Kick on every quarter note (1, 2, 3, 4). The foundation of all house/techno.</p>
-            </div>
-            <div class="key-element">
-              <div class="icon">🎹</div>
-              <h4>Off-Beat Hi-Hat</h4>
-              <p>Hi-hat on the "&" counts (off-beats). Creates forward momentum and drive.</p>
-            </div>
-            <div class="key-element">
-              <div class="icon">👏</div>
-              <h4>Clap/Snare on 2 & 4</h4>
-              <p>Backbeat clap or snare. Often layered or with reverb tail.</p>
-            </div>
-            <div class="key-element">
-              <div class="icon">🔔</div>
-              <h4>Ride/Open Hi-Hat</h4>
-              <p>Adds shimmer and energy. Often on quarter notes or accents.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Genre Breakdown -->
-        <section class="content-section">
-          <h2>Genre Patterns</h2>
-          
-          <div class="genre-cards">
-            <div class="genre-card house">
-              <h3>🏠 Classic House <span class="tempo">120-128 BPM</span></h3>
-              <p>
-                The original dance music pattern. Driving but groovy, with emphasis on 
-                the off-beat hi-hat creating that signature "pumping" feel.
-              </p>
-              <div class="pattern-preview">
-Kick:  [X · · · X · · · X · · · X · · ·]
-Clap:  [· · · · X · · · · · · · X · · ·]
-HiHat: [· · X · · · X · · · X · · · X ·]
-              </div>
-            </div>
-            
-            <div class="genre-card techno">
-              <h3>⚡ Minimal Techno <span class="tempo">125-135 BPM</span></h3>
-              <p>
-                Stripped back and hypnotic. Less is more—focus on subtle variations 
-                and evolving textures rather than busy patterns.
-              </p>
-              <div class="pattern-preview">
-Kick:  [X · · · X · · · X · · · X · · ·]
-Clap:  [· · · · X · · · · · · · X · · ·]
-HiHat: [X · X · X · X · X · X · X · X ·]
-              </div>
-            </div>
-            
-            <div class="genre-card deep-house">
-              <h3>🌊 Deep House <span class="tempo">118-124 BPM</span></h3>
-              <p>
-                Slower, groovier, more soulful. Often uses shuffled hi-hats and 
-                percussion layers for a warmer, organic feel.
-              </p>
-              <div class="pattern-preview">
-Kick:  [X · · · X · · · X · · · X · · ·]
-Clap:  [· · · · X · · · · · · · X · · ·]
-HiHat: [· · X · · · X · · · X · · · X ·]
-Shaker:[X · · X · · X · X · · X · · X ·]
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Off-Beat Hi-Hat Deep Dive -->
-        <section class="content-section">
-          <h2>The Off-Beat Hi-Hat Secret</h2>
-          <p>
-            The <strong>off-beat hi-hat</strong> is what gives house music its drive. 
-            Instead of playing on the beat (1, 2, 3, 4), it plays on the "and" counts (&):
-          </p>
-          
-          <div class="callout callout--tip">
-            <h4>🔢 Understanding Off-Beats</h4>
-            <pre style="font-family: monospace; font-size: 0.9rem; margin-top: var(--space-sm);">
-Beat:    1   &   2   &   3   &   4   &
-Step:    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
-
-Kick:    X · · · X · · · X ·  ·  ·  X  ·  ·  ·
-Off-HH:  · · X · · · X · · ·  X  ·  ·  ·  X  ·
-
-The hi-hat lands on steps 3, 7, 11, 15 (the "&" of each beat)
-            </pre>
-          </div>
-          
-          <p>
-            This creates a <strong>push-pull effect</strong> with the kick: the kick grounds you 
-            on the beat while the hi-hat propels you forward to the next beat.
-          </p>
-        </section>
-
-        <!-- Interactive Exercise -->
-        <section class="content-section exercise-section">
-          <h2>🎯 Exercise: Build a House Beat</h2>
-          
-          <div class="exercise-intro">
-            <p>
-              Create a classic house drum pattern with four-on-the-floor kick, 
-              off-beat hi-hats, and a clap on 2 and 4.
-            </p>
-          </div>
-
-          <div class="exercise-steps">
-            <div class="step">
-              <span class="step-number">1</span>
-              <div class="step-content">
-                <strong>Kick:</strong> Place kicks on steps 1, 5, 9, 13 (every quarter note)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">2</span>
-              <div class="step-content">
-                <strong>Clap:</strong> Add claps on steps 5 and 13 (beats 2 and 4)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">3</span>
-              <div class="step-content">
-                <strong>Off-beat Hi-Hat:</strong> Place hi-hats on steps 3, 7, 11, 15 (the "&" counts)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">4</span>
-              <div class="step-content">
-                <strong>Open Hi-Hat:</strong> Add an open hi-hat on step 15 for accent
-              </div>
-            </div>
-          </div>
-
-          <!-- Sequencer Component -->
-          <div class="sequencer-container" id="sequencer">
-            <div class="sequencer-header">
-              <h3>House Drum Sequencer</h3>
-              <div class="sequencer-controls">
-                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
-              </div>
-            </div>
-
-            <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-cyan);">
-              🎵 125 BPM - Classic House Tempo
-            </div>
-
-            <!-- Sequencer grid will be injected by JS -->
-            <div class="sequencer" id="mpl-sequencer-collection"></div>
-
-            <div class="exercise-status">
-              <p id="mpl-seq-status">Complete the house beat pattern to unlock the next lesson.</p>
-            </div>
-          </div>
-
-          <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
-              Next Lesson →
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
             </button>
           </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 8 · House & Techno Grooves">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 8 · Intermediate</div>
+            <h1 class="hero-title">House & Techno <span>Grooves</span></h1>
+            <p class="hero-subtitle">
+              Master the <strong>driving 4/4 patterns</strong> that power dance floors worldwide.
+              Learn <strong>off-beat hi-hats</strong>, <strong>minimal techno rhythms</strong>,
+              and the essential elements of electronic dance music drums.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-7.html"><span>← Lesson 7</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">EDM Drums</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">4-on-the-Floor · 125 BPM</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>House Grooves</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–18 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">4-on-floor kick</div>
+                  <div class="hero-visual-pill-tag">Off-beat hi-hats</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>House · Techno · Deep House</span>
+                  <span>Dance floor foundation</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
-        <!-- Variations -->
-        <section class="content-section">
-          <h2>💡 Pattern Variations</h2>
-          <p>Once you've mastered the basic pattern, try these variations:</p>
-          
-          <ul>
-            <li><strong>Add 16th hi-hats:</strong> Fill in more steps for a busier, driving feel</li>
-            <li><strong>Remove kick on 3:</strong> Creates a "break" effect (common in tech house)</li>
-            <li><strong>Add percussion:</strong> Shakers, congas, or rimshots on off-beats</li>
-            <li><strong>Open hi-hat accents:</strong> Open hi-hat on beat 4 for tension before the loop restarts</li>
-            <li><strong>Ride cymbal:</strong> Quarter-note ride for that "classic" sound</li>
-          </ul>
+        <section class="sections-grid" aria-label="Lesson 8 steps">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">The Heartbeat of Electronic Music</h2>
+            <p class="section-body">
+              House and techno share the same DNA: the relentless <strong>four-on-the-floor kick</strong>
+              that drives dancers forward. But within this simple framework lies incredible variety—from
+              deep and minimal to hard and driving.
+            </p>
+            <p class="section-body">
+              <strong>The Magic Formula:</strong> 4-on-the-floor kick + off-beat hi-hat = instant dance groove.
+              Everything else is variation and style.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Essential Elements</div>
+            <h2 class="section-title">The 4 Building Blocks</h2>
+            <ul class="section-list">
+              <li><strong>Four-on-the-Floor Kick:</strong> Kick on every quarter note (1, 2, 3, 4). The foundation of all house/techno.</li>
+              <li><strong>Off-Beat Hi-Hat:</strong> Hi-hat on the "&" counts (off-beats). Creates forward momentum and drive.</li>
+              <li><strong>Clap/Snare on 2 & 4:</strong> Backbeat clap or snare. Often layered or with reverb tail.</li>
+              <li><strong>Ride/Open Hi-Hat:</strong> Adds shimmer and energy. Often on quarter notes or accents.</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Genre Styles</div>
+            <h2 class="section-title">House, Techno & Deep House</h2>
+            <p class="section-body">
+              <strong>Classic House (120-128 BPM):</strong> The original dance music pattern. Driving but groovy,
+              with emphasis on the off-beat hi-hat creating that signature "pumping" feel.
+            </p>
+            <p class="section-body">
+              <strong>Minimal Techno (125-135 BPM):</strong> Stripped back and hypnotic. Less is more—focus on
+              subtle variations and evolving textures rather than busy patterns.
+            </p>
+            <p class="section-body">
+              <strong>Deep House (118-124 BPM):</strong> Slower, groovier, more soulful. Often uses shuffled
+              hi-hats and percussion layers for a warmer, organic feel.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">The Off-Beat Hi-Hat Secret</h2>
+            <p class="section-body">
+              The <strong>off-beat hi-hat</strong> is what gives house music its drive.
+              Instead of playing on the beat (1, 2, 3, 4), it plays on the "and" counts (&).
+            </p>
+            <p class="section-body">
+              <strong>Understanding Off-Beats:</strong><br>
+              Beat: 1 & 2 & 3 & 4 &<br>
+              Step: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16<br>
+              The hi-hat lands on steps 3, 7, 11, 15 (the "&" of each beat)
+            </p>
+            <p class="section-body">
+              This creates a <strong>push-pull effect</strong> with the kick: the kick grounds you
+              on the beat while the hi-hat propels you forward to the next beat.
+            </p>
+          </article>
         </section>
 
-        <!-- Summary -->
-        <section class="content-section">
-          <h2>Key Takeaways</h2>
-          <ul class="summary-list">
-            <li><strong>Four-on-the-floor kick</strong> is the foundation (steps 1, 5, 9, 13)</li>
-            <li><strong>Off-beat hi-hats</strong> create forward momentum (steps 3, 7, 11, 15)</li>
-            <li><strong>Clap/snare on 2 and 4</strong> provides the backbeat</li>
-            <li>House: 120-128 BPM, Techno: 125-140 BPM, Deep House: 118-124 BPM</li>
-            <li>Less is more in minimal techno—focus on groove, not complexity</li>
-          </ul>
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Build a House Beat</h2>
+            <p class="section-body">Create a classic house drum pattern with four-on-the-floor kick, off-beat hi-hats, and a clap on 2 and 4.</p>
+
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick:</strong> Place kicks on steps 1, 5, 9, 13 (every quarter note)</li>
+                <li><strong>Clap:</strong> Add claps on steps 5 and 13 (beats 2 and 4)</li>
+                <li><strong>Off-beat Hi-Hat:</strong> Place hi-hats on steps 3, 7, 11, 15 (the "&" counts)</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> The off-beat hi-hat is the secret sauce. It creates that forward-driving energy that makes people want to dance!
+            </div>
+
+            <div class="pattern-hint">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Kick:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Clap:</span>
+                <span class="step-off">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Hi-Hat:</span>
+                <span class="step-off">1</span><span class="step-off">2</span><span class="step-on">3</span><span class="step-off">4</span>
+                <span class="step-off">5</span><span class="step-off">6</span><span class="step-on">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-off">10</span><span class="step-on">11</span><span class="step-off">12</span>
+                <span class="step-off">13</span><span class="step-off">14</span><span class="step-on">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-note">Off-beat hi-hats on steps 3, 7, 11, 15 create the house groove</div>
+            </div>
+          </div>
         </section>
 
-      </article>
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid · 125 BPM</h2>
 
-      <!-- Bottom Navigation -->
-      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
-        <a href="lesson-drums-7.html" class="nav-link nav-link--prev">
-          ← Ghost Notes
-        </a>
-        <a href="labs.html" class="nav-link nav-link--overview">
-          Overview
-        </a>
-        <a href="lesson-drums-9.html" class="nav-link nav-link--next">
-          Hip-Hop & Boom Bap →
-        </a>
-      </nav>
-    </main>
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the house beat pattern to unlock the next lesson.
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 8</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
       </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
 
-      const LESSON_KEY = "mpl-drums-8-progress";
-      const NEXT_LESSON_URL = "lesson-drums-9.html";
+        const LESSON_KEY = "mpl-drums-8-progress";
+        const NEXT_LESSON_URL = "lesson-drums-9.html";
 
-      // House/Techno: 4-on-floor kick, off-beat hats, clap on 2&4
-      const instruments = [
-        {
-          id: "kick",
-          label: "Kick",
-          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-          target: [0, 4, 8, 12],
-          instructions: "Four-on-the-floor: kick on every beat"
-        },
-        {
-          id: "clap",
-          label: "Clap",
-          color: "linear-gradient(135deg, #feca57, #ff9f43)",
-          target: [4, 12],
-          instructions: "Clap on beats 2 and 4"
-        },
-        {
-          id: "hihat",
-          label: "Hi-Hat",
-          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-          target: [2, 6, 10, 14],
-          instructions: "Off-beat hi-hats for that house groove"
-        }
-      ];
+        // House/Techno: 4-on-floor kick, off-beat hats, clap on 2&4
+        const instruments = [
+          {
+            id: "kick",
+            label: "Kick",
+            color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+            target: [0, 4, 8, 12],
+            instructions: "Four-on-the-floor: kick on every beat"
+          },
+          {
+            id: "clap",
+            label: "Clap",
+            color: "linear-gradient(135deg, #feca57, #ff9f43)",
+            target: [4, 12],
+            instructions: "Clap on beats 2 and 4"
+          },
+          {
+            id: "hihat",
+            label: "Hi-Hat",
+            color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+            target: [2, 6, 10, 14],
+            instructions: "Off-beat hi-hats for that house groove"
+          }
+        ];
 
-      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-    </script>
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      </script>
+    </div>
   </body>
 </html>

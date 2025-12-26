@@ -5,581 +5,228 @@
     <title>Lesson 7 · Ghost Notes & Dynamics | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Add ghost notes and master velocity dynamics to create professional-sounding drum grooves with human feel." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Ghost Notes Visualization */
-      .ghost-demo {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .velocity-lane {
-        display: flex;
-        align-items: flex-end;
-        gap: 4px;
-        height: 80px;
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        margin-bottom: var(--space-md);
-      }
-      
-      .velocity-bar {
-        flex: 1;
-        background: linear-gradient(to top, var(--accent-cyan), var(--accent-purple));
-        border-radius: 2px 2px 0 0;
-        min-height: 8px;
-        transition: height 0.3s ease;
-        cursor: pointer;
-      }
-      
-      .velocity-bar.ghost {
-        background: linear-gradient(to top, rgba(0, 240, 255, 0.3), rgba(168, 85, 247, 0.3));
-        height: 20% !important;
-      }
-      
-      .velocity-bar.accent {
-        height: 100% !important;
-      }
-      
-      .velocity-bar.normal {
-        height: 70% !important;
-      }
-      
-      .velocity-bar:hover {
-        filter: brightness(1.2);
-      }
-      
-      .velocity-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        padding: 0 var(--space-md);
-      }
-      
-      /* Dynamics Controls */
-      .dynamics-controls {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .dynamics-card {
-        background: var(--bg-tertiary);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-      }
-      
-      .dynamics-card h4 {
-        font-size: 0.9rem;
-        margin-bottom: var(--space-sm);
-        display: flex;
-        align-items: center;
-        gap: var(--space-xs);
-      }
-      
-      .dynamics-card p {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin-bottom: var(--space-sm);
-      }
-      
-      .velocity-slider {
-        width: 100%;
-        height: 8px;
-        border-radius: 4px;
-        background: var(--bg-secondary);
-        -webkit-appearance: none;
-        appearance: none;
-      }
-      
-      .velocity-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--accent-cyan);
-        cursor: pointer;
-      }
-      
-      /* Pattern Comparison */
-      .pattern-comparison {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      @media (max-width: 768px) {
-        .pattern-comparison {
-          grid-template-columns: 1fr;
-        }
-      }
-      
-      .pattern-box {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-      }
-      
-      .pattern-box h4 {
-        font-size: 0.9rem;
-        margin-bottom: var(--space-md);
-        text-align: center;
-      }
-      
-      .pattern-box.before {
-        border: 2px solid var(--accent-amber);
-      }
-      
-      .pattern-box.after {
-        border: 2px solid var(--accent-green);
-      }
-      
-      /* Interactive Sequencer Enhancements */
-      .sequencer-velocity-mode .step-btn {
-        position: relative;
-      }
-      
-      .sequencer-velocity-mode .step-btn::after {
-        content: attr(data-velocity);
-        position: absolute;
-        bottom: -18px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.6rem;
-        color: var(--text-muted);
-      }
-      
-      /* Theory Cards */
-      .theory-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .theory-card {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-      }
-      
-      .theory-card .icon {
-        font-size: 2rem;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .theory-card h4 {
-        font-size: 1rem;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .theory-card p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-      }
-      
-      /* Velocity Curve Display */
-      .velocity-curve {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .curve-canvas {
-        width: 100%;
-        height: 120px;
-        background: linear-gradient(180deg, 
-          rgba(0, 255, 157, 0.1) 0%, 
-          rgba(0, 240, 255, 0.05) 50%, 
-          rgba(168, 85, 247, 0.1) 100%
-        );
-        border-radius: var(--radius-sm);
-        position: relative;
-      }
-      
-      .curve-line {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--accent-cyan);
-      }
-    </style>
   </head>
-  <body class="lesson-page">
-    <!-- Header -->
-    <header class="site-header">
-      <div class="header-content">
-        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
-          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
-          <span class="logo-text">Music Producer Lab</span>
-        </a>
-        <a href="labs.html" class="btn btn--outline btn--sm">
-          <span class="btn-icon">←</span> Back to overview
-        </a>
-      </div>
-    </header>
-
-    <main class="lesson-main">
-      <!-- Hero Section -->
-      <section class="lesson-hero">
-        <div class="hero-content">
-          <p class="hero-eyebrow">Lesson 7 · Drums & Rhythm · Intermediate</p>
-          <h1 class="hero-title">Ghost Notes & <span class="highlight">Dynamics</span></h1>
-          <p class="hero-subtitle">
-            Add <strong>ghost notes</strong> (soft snare hits between main beats) and master 
-            <strong>velocity control</strong> to transform robotic patterns into grooves with 
-            human feel and professional polish.
-          </p>
-          
-          <div class="hero-meta">
-            <span class="meta-item">⏱️ 15-18 min</span>
-            <span class="meta-item">📊 Level 4</span>
-            <span class="meta-item">🎯 Intermediate</span>
+  <body>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
           </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <nav class="lesson-nav" aria-label="Lesson navigation">
-        <a href="lesson-drums-6.html" class="nav-link nav-link--prev">
-          ← Back to Lesson 6
-        </a>
-        <a href="lesson-drums-8.html" class="nav-link nav-link--next">
-          Next: House & Techno →
-        </a>
-      </nav>
-
-      <!-- Main Content -->
-      <article class="lesson-content">
-        
-        <!-- Introduction -->
-        <section class="content-section">
-          <h2>What Are Ghost Notes?</h2>
-          <p>
-            Ghost notes are <strong>very soft drum hits</strong> played between the main beats. 
-            On a real drum kit, they're the quiet "chatter" that drummers add to fill space and 
-            create groove. In programming, we achieve this with <strong>low velocity notes</strong>.
-          </p>
-          
-          <div class="callout callout--info">
-            <p>
-              <strong>🎯 Why Ghost Notes Matter:</strong> They add "shuffle" and "pocket" to your 
-              drums without changing the core pattern. This is what separates amateur beats from 
-              professional productions.
-            </p>
-          </div>
-          
-          <div class="theory-grid">
-            <div class="theory-card">
-              <div class="icon">👻</div>
-              <h4>Ghost Notes</h4>
-              <p>Soft hits at 15-40% velocity placed on off-beats. They're felt more than heard, adding texture and groove.</p>
-            </div>
-            <div class="theory-card">
-              <div class="icon">💥</div>
-              <h4>Accents</h4>
-              <p>Loud hits at 90-127 velocity on important beats. They define the rhythm and create punch.</p>
-            </div>
-            <div class="theory-card">
-              <div class="icon">🎚️</div>
-              <h4>Dynamics</h4>
-              <p>The range between soft and loud. Greater dynamic range = more expressive, human feel.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Velocity Explained -->
-        <section class="content-section">
-          <h2>Understanding Velocity</h2>
-          <p>
-            <strong>Velocity</strong> (0-127) controls how hard a note is played. In drum programming:
-          </p>
-          
-          <div class="dynamics-controls">
-            <div class="dynamics-card">
-              <h4>👻 Ghost (15-40)</h4>
-              <p>Barely audible texture. Adds shuffle without competing with main hits.</p>
-              <input type="range" class="velocity-slider" min="15" max="40" value="25">
-            </div>
-            <div class="dynamics-card">
-              <h4>🔉 Soft (40-70)</h4>
-              <p>Quiet supporting notes. Secondary hi-hats, light percussion.</p>
-              <input type="range" class="velocity-slider" min="40" max="70" value="55">
-            </div>
-            <div class="dynamics-card">
-              <h4>🔊 Normal (70-100)</h4>
-              <p>Standard playing volume. Main groove notes.</p>
-              <input type="range" class="velocity-slider" min="70" max="100" value="85">
-            </div>
-            <div class="dynamics-card">
-              <h4>💥 Accent (100-127)</h4>
-              <p>Emphasized hits. Downbeats, crash cymbals, fill peaks.</p>
-              <input type="range" class="velocity-slider" min="100" max="127" value="115">
-            </div>
-          </div>
-        </section>
-
-        <!-- Before/After Comparison -->
-        <section class="content-section">
-          <h2>The Difference Ghost Notes Make</h2>
-          <p>Compare these two patterns—same notes, different dynamics:</p>
-          
-          <div class="pattern-comparison">
-            <div class="pattern-box before">
-              <h4>❌ Without Ghost Notes (Flat)</h4>
-              <div class="velocity-lane" id="flat-pattern">
-                <!-- Flat velocity bars -->
-              </div>
-              <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                All notes at 100 velocity—robotic and lifeless
-              </p>
-            </div>
-            <div class="pattern-box after">
-              <h4>✅ With Ghost Notes (Dynamic)</h4>
-              <div class="velocity-lane" id="dynamic-pattern">
-                <!-- Dynamic velocity bars -->
-              </div>
-              <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                Varied velocity—groovy and human
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Ghost Note Placement -->
-        <section class="content-section">
-          <h2>Where to Place Ghost Notes</h2>
-          <p>Ghost notes typically go on the <strong>off-beats</strong> (the "e" and "a" of 16th notes):</p>
-          
-          <div class="callout callout--tip">
-            <h4>🥁 Classic Ghost Note Pattern (Snare)</h4>
-            <pre style="font-family: monospace; font-size: 0.9rem; margin-top: var(--space-sm);">
-Beat:    1  e  &  a  2  e  &  a  3  e  &  a  4  e  &  a
-Main:    -  -  -  -  X  -  -  -  -  -  -  -  X  -  -  -
-Ghost:   -  x  -  x  -  x  -  x  -  x  -  x  -  x  -  x
-
-X = Accent (100+ velocity)
-x = Ghost (25-35 velocity)
-            </pre>
-          </div>
-          
-          <h3>Common Ghost Note Placements</h3>
-          <ul>
-            <li><strong>Before the backbeat:</strong> Ghost on the "a" of 1 and 3 (just before beats 2 and 4)</li>
-            <li><strong>After the backbeat:</strong> Ghost on the "e" of 2 and 4 (just after the snare)</li>
-            <li><strong>Continuous 16ths:</strong> Ghost on every 16th note except the main hits</li>
-            <li><strong>Swing placement:</strong> Ghost on the "&" counts for swing feel</li>
-          </ul>
-        </section>
-
-        <!-- Interactive Exercise -->
-        <section class="content-section exercise-section">
-          <h2>🎯 Exercise: Add Ghost Notes to Your Groove</h2>
-          
-          <div class="exercise-intro">
-            <p>
-              Transform a basic backbeat into a professional groove by adding ghost notes 
-              and varying velocity. The pattern should feel alive, not robotic.
-            </p>
-          </div>
-
-          <div class="exercise-steps">
-            <div class="step">
-              <span class="step-number">1</span>
-              <div class="step-content">
-                <strong>Start with the foundation:</strong> Kick on 1, 5, 9, 13 (4-on-the-floor)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">2</span>
-              <div class="step-content">
-                <strong>Add backbeat snare:</strong> Snare on 5 and 13 at <strong>high velocity (100+)</strong>
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">3</span>
-              <div class="step-content">
-                <strong>Add ghost notes:</strong> Soft snare hits on steps 3, 7, 11, 15 at <strong>low velocity (25-35)</strong>
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">4</span>
-              <div class="step-content">
-                <strong>Vary hi-hat velocity:</strong> Accent downbeats (1, 5, 9, 13), soften off-beats
-              </div>
-            </div>
-          </div>
-
-          <!-- Sequencer Component -->
-          <div class="sequencer-container" id="sequencer">
-            <div class="sequencer-header">
-              <h3>Drum Sequencer</h3>
-              <div class="sequencer-controls">
-                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
-              </div>
-            </div>
-
-            <div class="sequencer-info">
-              <p>💡 <strong>Tip:</strong> Click a step to toggle it on/off. Build the pattern described in the exercise above.</p>
-            </div>
-
-            <!-- Sequencer grid will be injected by JS -->
-            <div class="sequencer" id="mpl-sequencer-collection"></div>
-
-            <div class="exercise-status">
-              <p id="mpl-seq-status">Complete the exercise by matching the target pattern to unlock the next lesson.</p>
-            </div>
-          </div>
-
-          <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
-              Next Lesson →
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
             </button>
           </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 7 · Ghost Notes">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 7 · Intermediate</div>
+            <h1 class="hero-title">Ghost Notes & <span>Dynamics</span></h1>
+            <p class="hero-subtitle">
+              Add <strong>ghost notes</strong> (soft snare hits between main beats) and master
+              <strong>velocity control</strong> to transform robotic patterns into grooves with
+              human feel and professional polish.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-drums-6.html"><span>← Lesson 6</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">Ghost Notes</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Dynamics & Feel</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Velocity Control</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–18 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Add ghost notes</div>
+                  <div class="hero-visual-pill-tag">Master velocity</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Soft hits = more groove</span>
+                  <span>Human feel, not robotic</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
-        <!-- Pro Tips -->
-        <section class="content-section">
-          <h2>💡 Pro Tips for Ghost Notes</h2>
-          
-          <div class="theory-grid">
-            <div class="theory-card">
-              <div class="icon">🎛️</div>
-              <h4>Use Velocity Curves</h4>
-              <p>Most DAWs let you randomize velocity within a range. Try ±10-15% variation for natural feel.</p>
+        <section class="sections-grid" aria-label="Lesson 7 steps">
+          <article class="section">
+            <div class="section-eyebrow">Concept</div>
+            <h2 class="section-title">What Are Ghost Notes?</h2>
+            <p class="section-body">
+              Ghost notes are <strong>very soft drum hits</strong> played between the main beats.
+              They add "shuffle" and "pocket" without changing the core pattern.
+            </p>
+            <ul class="section-list">
+              <li><strong>Ghost (15-40 velocity):</strong> Barely audible texture on off-beats</li>
+              <li><strong>Accent (100-127 velocity):</strong> Emphasized hits on main beats</li>
+              <li><strong>Dynamic range:</strong> The contrast between soft and loud creates life</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">Where to Place Ghost Notes</h2>
+            <p class="section-body">
+              Ghost notes typically go on the <strong>off-beats</strong> (the "e" and "a" of 16th notes).
+            </p>
+            <ul class="section-list">
+              <li><strong>Before backbeat:</strong> Ghost on the "a" of 1 and 3</li>
+              <li><strong>After backbeat:</strong> Ghost on the "e" of 2 and 4</li>
+              <li><strong>Continuous:</strong> Ghost on every 16th except main hits</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- Exercise Instructions -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Add Ghost Notes to Your Groove</h2>
+            <p class="section-body">Transform a basic backbeat into a professional groove by using velocity control.</p>
+
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Kick:</strong> Steps 1, 5, 9, 13 (four-on-the-floor foundation)</li>
+                <li><strong>Snare:</strong> Steps 5 and 13 (backbeat at high velocity)</li>
+                <li><strong>Hi-Hat:</strong> Steps 1, 3, 5, 7, 9, 11, 13, 15 (8th notes)</li>
+              </ol>
             </div>
-            <div class="theory-card">
-              <div class="icon">🥢</div>
-              <h4>Layer with Brushes</h4>
-              <p>For jazz or neo-soul, use brush samples for ghost notes—even softer and more textured.</p>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> Ghost notes should be felt, not heard prominently. They add groove without competing with main hits.
             </div>
-            <div class="theory-card">
-              <div class="icon">🎧</div>
-              <h4>Listen Low</h4>
-              <p>Ghost notes should be felt, not heard prominently. If they're too obvious, lower the velocity.</p>
-            </div>
-            <div class="theory-card">
-              <div class="icon">⏱️</div>
-              <h4>Timing Matters</h4>
-              <p>Try slightly pushing ghost notes ahead of the beat for energy, or behind for laid-back feel.</p>
+
+            <div class="pattern-hint">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Kick:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Snare:</span>
+                <span class="step-off">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
+                <span class="step-off">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-row-visual">
+                <span class="instrument-label">Hi-Hat:</span>
+                <span class="step-on">1</span><span class="step-off">2</span><span class="step-on">3</span><span class="step-off">4</span>
+                <span class="step-on">5</span><span class="step-off">6</span><span class="step-on">7</span><span class="step-off">8</span>
+                <span class="step-on">9</span><span class="step-off">10</span><span class="step-on">11</span><span class="step-off">12</span>
+                <span class="step-on">13</span><span class="step-off">14</span><span class="step-on">15</span><span class="step-off">16</span>
+              </div>
+              <div class="pattern-note">Focus on velocity: accents on main beats, soft ghost notes on off-beats</div>
             </div>
           </div>
         </section>
 
-        <!-- Summary -->
-        <section class="content-section">
-          <h2>Key Takeaways</h2>
-          <ul class="summary-list">
-            <li>Ghost notes are <strong>soft hits (15-40 velocity)</strong> that add texture and groove</li>
-            <li>Place them on <strong>off-beats</strong> (the "e" and "a" of 16th notes)</li>
-            <li>Use <strong>dynamic contrast</strong> between accents and ghosts for professional feel</li>
-            <li>Ghost notes make patterns feel <strong>human and alive</strong></li>
-            <li>Less is more—ghost notes should be <strong>felt, not heard</strong></li>
-          </ul>
+        <!-- Full-Width Sequencer -->
+        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
+          </div>
         </section>
 
-      </article>
-
-      <!-- Bottom Navigation -->
-      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
-        <a href="lesson-drums-6.html" class="nav-link nav-link--prev">
-          ← Syncopated Kick
-        </a>
-        <a href="labs.html" class="nav-link nav-link--overview">
-          Overview
-        </a>
-        <a href="lesson-drums-8.html" class="nav-link nav-link--next">
-          House & Techno →
-        </a>
-      </nav>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 7</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
       </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script>
-      // Velocity lane visualization for demo
-      function initVelocityDemo() {
-        const flatPattern = document.getElementById('flat-pattern');
-        const dynamicPattern = document.getElementById('dynamic-pattern');
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module">
+        import { initDrumSequencer } from './sequencer.js';
 
-        const flatVelocities = Array(16).fill(100);
-        const dynamicVelocities = [90,25,70,30,110,25,70,30,90,25,70,30,110,25,70,30];
+        const LESSON_KEY = "mpl-drums-7-progress";
+        const NEXT_LESSON_URL = "lesson-drums-8.html";
 
-        flatVelocities.forEach((vel) => {
-          const bar = document.createElement('div');
-          bar.className = 'velocity-bar';
-          bar.style.height = `${vel}%`;
-          flatPattern.appendChild(bar);
-        });
+        const instruments = [
+          {
+            id: "kick",
+            label: "Kick",
+            color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+            target: [0, 4, 8, 12],
+            instructions: "Kick on beats 1, 2, 3, 4 (steps 1, 5, 9, 13)"
+          },
+          {
+            id: "snare",
+            label: "Snare",
+            color: "linear-gradient(135deg, #feca57, #ff9f43)",
+            target: [4, 12],
+            instructions: "Backbeat snare on beats 2 and 4 (steps 5, 13)"
+          },
+          {
+            id: "hihat",
+            label: "Hi-Hat",
+            color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
+            target: [0, 2, 4, 6, 8, 10, 12, 14],
+            instructions: "8th note hi-hats"
+          }
+        ];
 
-        dynamicVelocities.forEach((vel) => {
-          const bar = document.createElement('div');
-          bar.className = 'velocity-bar';
-          if (vel <= 40) bar.classList.add('ghost');
-          else if (vel >= 100) bar.classList.add('accent');
-          else bar.classList.add('normal');
-          bar.style.height = `${vel}%`;
-          dynamicPattern.appendChild(bar);
-        });
-      }
-      document.addEventListener('DOMContentLoaded', initVelocityDemo);
-    </script>
-    <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
-
-      const LESSON_KEY = "mpl-drums-7-progress";
-      const NEXT_LESSON_URL = "lesson-drums-8.html";
-
-      // Ghost notes lesson: kick, snare (with ghosts), hi-hat
-      const instruments = [
-        {
-          id: "kick",
-          label: "Kick",
-          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-          target: [0, 4, 8, 12],
-          instructions: "Kick on beats 1, 2, 3, 4 (steps 1, 5, 9, 13)"
-        },
-        {
-          id: "snare",
-          label: "Snare",
-          color: "linear-gradient(135deg, #feca57, #ff9f43)",
-          target: [4, 12],
-          instructions: "Backbeat snare on beats 2 and 4 (steps 5, 13)"
-        },
-        {
-          id: "hihat",
-          label: "Hi-Hat",
-          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-          target: [0, 2, 4, 6, 8, 10, 12, 14],
-          instructions: "8th note hi-hats"
-        }
-      ];
-
-      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-    </script>
+        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      </script>
+    </div>
   </body>
 </html>
