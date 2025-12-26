@@ -10,37 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
     <style>
-      .lesson-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        padding: var(--space-md) 0;
-        background: rgba(5, 8, 16, 0.9);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border-subtle);
-      }
-      .lesson-nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 var(--space-lg);
-      }
-      .lesson-nav-logo {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        font-family: var(--font-display);
-        font-weight: 700;
-        color: var(--text-primary);
-        text-decoration: none;
-      }
-      .lesson-nav-logo img { height: 32px; }
-      .lesson-content { padding-top: 80px; }
-      
+
       /* Mastering Console Styles */
       .mastering-console {
         background: linear-gradient(180deg, #1a1f2e 0%, #0f1219 100%);
@@ -363,13 +333,15 @@
   <body>
     <div class="noise-overlay" aria-hidden="true"></div>
     
-    <nav class="lesson-nav">
+    <nav class="lesson-nav lesson-nav--pinned">
       <div class="lesson-nav-inner">
         <a href="/" class="lesson-nav-logo">
           <img src="mpl-logo-icon.svg" alt="">
           <span>MPL</span>
         </a>
-        <a href="labs.html#mastering" class="btn btn-secondary btn-sm">Back to Labs</a>
+        <div class="nav-actions">
+          <a href="labs.html#mastering" class="btn btn-secondary btn-sm">Back to Labs</a>
+        </div>
       </div>
     </nav>
     
