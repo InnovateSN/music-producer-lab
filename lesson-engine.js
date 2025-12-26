@@ -329,7 +329,10 @@ function initSequencer(config) {
       stepCount: seqConfig?.stepCount || 16,
       swing: seqConfig?.swing || 0,
       messages: messages,
-      sandbox: mode?.sandbox || false
+      sandbox: mode?.sandbox || false,
+      autoSaveState: seqConfig?.autoSaveState ?? true,
+      enablePresets: mode?.enablePresets || false,
+      enableExport: mode?.enableExport || false
     }
   );
 }

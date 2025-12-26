@@ -216,13 +216,22 @@ let sequencerInstruments = null;
 export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
   const container = document.getElementById('mpl-sequencer-collection');
   if (!container) return;
-  
+
   // Apply options
-  tempo = options.tempo || 120;
-  stepCount = options.stepCount || 16;
-  swing = options.swing || 0;
-  const messages = options.messages || {};
-  const isSandbox = options.sandbox || false;
+  const {
+    tempo: tempoOption = 120,
+    stepCount: stepCountOption = 16,
+    swing: swingOption = 0,
+    messages = {},
+    sandbox: isSandbox = false,
+    autoSaveState = true,
+    enablePresets = false,
+    enableExport = false
+  } = options;
+
+  tempo = tempoOption;
+  stepCount = stepCountOption;
+  swing = swingOption;
   
   // Track state for each instrument
   const state = {};
@@ -427,7 +436,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         }
         
         // Auto-save if enabled
-        if (options.autoSave !== false) {
+        if (autoSaveState) {
           savePatternState(lessonKey + '-pattern', state);
         }
       });
@@ -499,6 +508,16 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   const checkBtn = document.getElementById('mpl-seq-check-all');
   const statusEl = document.getElementById('mpl-seq-status');
   const nextBtn = document.getElementById('mpl-next-lesson');
+  const presetControls = document.getElementById('mpl-preset-controls');
+  const exportBtn = document.getElementById('mpl-export-json');
+
+  if (presetControls) {
+    presetControls.style.display = enablePresets ? 'flex' : 'none';
+  }
+
+  if (exportBtn) {
+    exportBtn.style.display = enableExport ? 'inline-flex' : 'none';
+  }
   
   // Play button
   if (playBtn) {
