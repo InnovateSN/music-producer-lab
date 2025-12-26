@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <title>Lesson 5 · Variation &amp; fills · Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Create a small fill in the last bar to make the loop feel like it breathes before repeating." />
     <link rel="stylesheet" href="styles.css">
-    
   </head>
   <body>
     <div class="page">
@@ -15,7 +15,7 @@
             <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
           </div>
           <div class="mpl-nav-actions">
-            <button class="btn btn-outline" type="button" onclick="window.location.href='explanation.html'">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
               <span>Back to overview</span>
             </button>
           </div>
@@ -29,10 +29,50 @@
               Create a small fill in the last bar to make the loop feel like it breathes before repeating.
             </p>
             <div style="margin-top:1rem;">
-              <a class="btn btn-primary" href="lesson-drums-4.html"><span>Back to Lesson 4</span></a>
-              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Back to overview</span></a>
+              <a class="btn btn-primary" href="lesson-drums-4.html"><span>← Lesson 4</span></a>
+              <a class="btn btn-primary" href="lesson-drums-6.html" style="margin-left:0.6rem;"><span>Lesson 6 →</span></a>
             </div>
           </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">Fills</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">End of Loop</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Drum Fills</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>12–15 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Create a fill</div>
+                  <div class="hero-visual-pill-tag">Add variation</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Signal transitions</span>
+                  <span>Make loops breathe</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
         <!-- New Section for Sequencer -->
@@ -130,7 +170,7 @@
         import { initDrumSequencer } from './sequencer.js';
 
         const LESSON_KEY = "mpl-lesson5-progress";
-        const NEXT_LESSON_URL = "explanation.html"; // Final lesson navigates back to overview
+        const NEXT_LESSON_URL = "lesson-drums-6.html";
 
         // Instruments (All tracks are interactive in L5)
         const instruments = [

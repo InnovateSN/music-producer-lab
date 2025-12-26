@@ -5,40 +5,194 @@
     <title>Lesson 14 · Countermelody & Harmonic Layers | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Add depth with countermelodies" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 14 · Arrangement</p>
-        <h1 class="hero-title">Countermelody<br><span class="highlight">& Harmonic Layers</span></h1>
-        <p class="hero-subtitle"><strong>Create rich musical textures</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Add depth with countermelodies. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master countermelody & harmonic layers techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the countermelody & harmonic layers concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding countermelody & harmonic layers fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-13.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-15.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 14">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 14</div>
+            <h1 class="hero-title">
+              Countermelody &
+              <span>Harmonic Layers</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Create <strong>rich musical textures</strong> by adding countermelodies and harmonic layers.
+              Add depth with countermelodies that complement your main musical ideas.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-13.html"><span>← Previous</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-15.html"><span>Next →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Melodic Depth</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Harmonic Richness</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Countermelody</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Countermelodies</div>
+                  <div class="hero-visual-pill-tag">Harmonic layers</div>
+                  <div class="hero-visual-pill-tag">Voice leading</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Advanced Arrangement</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section class="sections-grid" aria-label="Lesson Content">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">What is a Countermelody?</h2>
+            <p class="section-body">
+              A <strong>countermelody</strong> is a secondary melody that plays alongside your main melody, creating depth and interest.
+              It's not a harmony (which simply supports the main melody)—it's an independent melodic line that
+              complements and enhances the primary musical idea.
+            </p>
+            <p class="section-body">
+              Think of it like a conversation: the main melody speaks, and the countermelody responds with its own
+              meaningful contribution, creating a richer musical dialogue.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Core Principles</div>
+            <h2 class="section-title">Writing Effective Countermelodies.</h2>
+            <p class="section-body">
+              Great countermelodies follow these principles:
+            </p>
+            <ul class="section-list">
+              <li><strong>Rhythmic Contrast:</strong> When the main melody is busy, keep it simple; when it rests, fill the space</li>
+              <li><strong>Different Register:</strong> Place it in a different octave or frequency range than the main melody</li>
+              <li><strong>Complementary Motion:</strong> Often moves in contrary motion to the main melody</li>
+              <li><strong>Independent but Related:</strong> Has its own identity while supporting the main idea</li>
+              <li><strong>Harmonic Awareness:</strong> Works with the underlying chord progression</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Techniques</div>
+            <h2 class="section-title">Types of Harmonic Layers.</h2>
+            <p class="section-body">
+              Build rich harmonic textures with these layering approaches:
+            </p>
+            <ul class="section-list">
+              <li><strong>Parallel Harmonies:</strong> Third or sixth above/below the main melody—classic and powerful</li>
+              <li><strong>Oblique Motion:</strong> One voice holds while the other moves—creates stability</li>
+              <li><strong>Contrary Motion:</strong> Voices move in opposite directions—adds independence and interest</li>
+              <li><strong>Pedal Tones:</strong> Sustained note underneath changing harmonies—creates tension and release</li>
+              <li><strong>Inner Voices:</strong> Mid-range harmonic movement between bass and melody—adds fullness</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Professional Application</div>
+            <h2 class="section-title">When & Where to Use Countermelodies.</h2>
+            <p class="section-body">
+              Strategic placement of countermelodies elevates your arrangements:
+            </p>
+            <ul class="section-list">
+              <li><strong>Second Chorus:</strong> Add a countermelody to make it more interesting than the first</li>
+              <li><strong>Final Chorus:</strong> Layer multiple countermelodies for maximum richness</li>
+              <li><strong>Bridge Section:</strong> Use countermelody to create contrast and freshness</li>
+              <li><strong>Verse-to-Chorus Transition:</strong> Introduce it during the pre-chorus for smooth buildup</li>
+              <li><strong>Breakdowns:</strong> Feature a countermelody when main elements are stripped away</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Advanced Concepts</div>
+            <h2 class="section-title">Voice Leading & Movement.</h2>
+            <p class="section-body">
+              Professional countermelodies demonstrate strong voice leading:
+            </p>
+            <ul class="section-list">
+              <li>Move by step (conjunct motion) more often than by leap</li>
+              <li>Resolve dissonances by moving to consonant intervals</li>
+              <li>Avoid parallel fifths and octaves with the main melody</li>
+              <li>Create smooth melodic contours with intentional direction</li>
+              <li>Use sequence and repetition to create memorable secondary hooks</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- EXERCISE SECTION -->
+        <section class="sequencer-section" aria-label="Interactive Exercise">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title">Create Countermelodies & Harmonic Layers</h2>
+          <p class="section-body">
+            Apply countermelody and harmonic layer concepts in this practical exercise.
+            Experiment with creating rich musical textures that enhance your arrangements.
+          </p>
+          <div id="mpl-sequencer-collection" class="sequencer-container"></div>
+        </section>
+
+        <!-- KEY TAKEAWAYS -->
+        <section class="sections-grid" aria-label="Key Takeaways">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways.</h2>
+            <ul class="section-list">
+              <li>Countermelodies are independent melodic lines that complement the main melody</li>
+              <li>Use rhythmic contrast—fill spaces when the main melody rests</li>
+              <li>Place countermelodies in different registers for clarity</li>
+              <li>Add countermelodies in later choruses to increase interest</li>
+              <li>Strong voice leading creates smooth, professional-sounding harmonic layers</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; 2025 Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
     <script type="module" src="js/lesson-loader.js"></script>
   </body>
 </html>

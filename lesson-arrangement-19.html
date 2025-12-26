@@ -5,40 +5,138 @@
     <title>Lesson 19 · Remixing & Rearrangement | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Transform existing tracks" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 19 · Arrangement</p>
-        <h1 class="hero-title">Remixing<br><span class="highlight">& Rearrangement</span></h1>
-        <p class="hero-subtitle"><strong>Learn remix techniques and creative transformation</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Transform existing tracks. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master remixing & rearrangement techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the remixing & rearrangement concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding remixing & rearrangement fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-18.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-20.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
-    <script type="module" src="js/lesson-loader.js"></script>
+    <div class="page">
+      <div class="page-inner">
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to overview</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-label="Lesson 19 · Remixing & Rearrangement">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Lesson 19 · Arrangement</div>
+            <h1 class="hero-title">Remixing & <span>Rearrangement</span></h1>
+            <p class="hero-subtitle">
+              Transform existing tracks with <strong>remix techniques and creative transformation</strong>
+              that reimagine songs in new genres and styles.
+            </p>
+            <div style="margin-top:1rem;">
+              <a class="btn btn-primary" href="lesson-arrangement-18.html"><span>← Lesson 18</span></a>
+              <a class="btn btn-primary" href="labs.html" style="margin-left:0.6rem;"><span>Overview</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Exercise</div>
+              <div class="hero-visual-pill">Remixing</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Creative Transformation</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Remix Techniques</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Transform tracks</div>
+                  <div class="hero-visual-pill-tag">Reimagine structure</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Genre transformation</span>
+                  <span>Creative rearrangement</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="Lesson 19 content">
+          <article class="section">
+            <div class="section-eyebrow">Concept</div>
+            <h2 class="section-title">Remixing & Rearrangement</h2>
+            <p class="section-body">
+              Learn to <strong>deconstruct and reimagine existing tracks</strong>,
+              transforming them into new versions that honor the original while adding your unique vision.
+            </p>
+            <ul class="section-list">
+              <li><strong>Genre transformation:</strong> Change style while keeping core elements</li>
+              <li><strong>Structural reimagining:</strong> Reorder sections for new impact</li>
+              <li><strong>Creative interpretation:</strong> Add your unique production style</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Technique</div>
+            <h2 class="section-title">Creating Effective Remixes</h2>
+            <p class="section-body">
+              Master the art of <strong>transforming existing material</strong>
+              into fresh, exciting versions that stand on their own.
+            </p>
+            <ul class="section-list">
+              <li><strong>Stem analysis:</strong> Identify key elements worth keeping</li>
+              <li><strong>Tempo & key changes:</strong> Adapt to new genre requirements</li>
+              <li><strong>New production:</strong> Add drums, bass, and effects</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Application</div>
+            <h2 class="section-title">Key Takeaways</h2>
+            <p class="section-body">
+              Master remixing and rearrangement to <strong>build your portfolio</strong>
+              and develop creative transformation skills.
+            </p>
+            <ul class="section-list">
+              <li>Understanding remix fundamentals and techniques</li>
+              <li>Creative track transformation methods</li>
+              <li>Professional remix production standards</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="sequencer-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Exercise</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">Practice Remixing & Rearrangement</h2>
+          <p class="section-body" style="margin-bottom: var(--space-lg);">
+            Apply the remixing & rearrangement concepts in a practical arrangement exercise.
+          </p>
+          <div id="sequencer-root" class="sequencer-container"></div>
+        </section>
+
+        <footer class="footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab · Lesson 19</div>
+          <div><a class="footer-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
+
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+      <script type="module" src="js/lesson-loader.js"></script>
+    </div>
   </body>
 </html>

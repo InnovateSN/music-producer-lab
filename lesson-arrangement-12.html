@@ -5,40 +5,176 @@
     <title>Lesson 12 · Dynamic Arrangement Arcs | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Plan macro-level dynamics across your track" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 12 · Arrangement</p>
-        <h1 class="hero-title">Dynamic<br><span class="highlight">Arrangement Arcs</span></h1>
-        <p class="hero-subtitle"><strong>Create compelling energy journeys</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Plan macro-level dynamics across your track. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master dynamic arrangement arcs techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the dynamic arrangement arcs concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding dynamic arrangement arcs fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-11.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-13.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 12">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 12</div>
+            <h1 class="hero-title">
+              Dynamic
+              <span>Arrangement Arcs</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Create compelling <strong>energy journeys</strong> that keep listeners engaged.
+              Plan macro-level dynamics across your track to build professional-sounding arrangements.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-11.html"><span>← Previous</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-13.html"><span>Next →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Energy Flow</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Dynamic Control</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Energy Arcs</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Dynamic curves</div>
+                  <div class="hero-visual-pill-tag">Peak placement</div>
+                  <div class="hero-visual-pill-tag">Energy balance</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Advanced Arrangement</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section class="sections-grid" aria-label="Lesson Content">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">Understanding Dynamic Arcs.</h2>
+            <p class="section-body">
+              A <strong>dynamic arc</strong> is the overall energy trajectory of your song—the journey from start to finish.
+              Great arrangements don't maintain constant energy; they breathe, build, and release to create emotional impact.
+            </p>
+            <p class="section-body">
+              Think of your track as a story with rising action, climaxes, and resolutions. Planning these dynamics
+              at the macro level ensures your arrangement feels intentional and compelling.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Core Principles</div>
+            <h2 class="section-title">The Three-Act Structure.</h2>
+            <p class="section-body">
+              Most successful tracks follow a three-act dynamic structure:
+            </p>
+            <ul class="section-list">
+              <li><strong>Act 1 - Setup (0-30%):</strong> Introduce elements gradually, establish the vibe, build anticipation</li>
+              <li><strong>Act 2 - Development (30-70%):</strong> Main energy peaks, variations, the "meat" of your track</li>
+              <li><strong>Act 3 - Resolution (70-100%):</strong> Final peak, wind down, give listeners closure</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Techniques</div>
+            <h2 class="section-title">Creating Effective Energy Curves.</h2>
+            <p class="section-body">
+              Use these techniques to control your track's dynamic arc:
+            </p>
+            <ul class="section-list">
+              <li><strong>Layering Strategy:</strong> Add elements gradually—start sparse, build to full</li>
+              <li><strong>Peak Placement:</strong> Position your highest energy moments strategically (typically 2-3 peaks)</li>
+              <li><strong>Contrast is Key:</strong> Low energy sections make high energy sections hit harder</li>
+              <li><strong>Tension & Release:</strong> Build tension through breakdowns, release through drops</li>
+              <li><strong>Frequency Balance:</strong> Use filter sweeps and EQ to create dynamic movement</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Professional Approach</div>
+            <h2 class="section-title">Reference Track Analysis.</h2>
+            <p class="section-body">
+              Study how professional producers craft dynamic arcs:
+            </p>
+            <ul class="section-list">
+              <li>Load a reference track into your DAW and visualize its waveform</li>
+              <li>Identify where energy peaks occur and how they're spaced</li>
+              <li>Notice how elements are introduced and removed throughout</li>
+              <li>Pay attention to contrast between sections</li>
+              <li>Map out the frequency content changes across the arrangement</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- EXERCISE SECTION -->
+        <section class="sequencer-section" aria-label="Interactive Exercise">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title">Build Dynamic Arrangement Arcs</h2>
+          <p class="section-body">
+            Apply dynamic arrangement arc concepts in this practical exercise.
+            Create compelling energy journeys that keep your listeners engaged from start to finish.
+          </p>
+          <div id="mpl-sequencer-collection" class="sequencer-container"></div>
+        </section>
+
+        <!-- KEY TAKEAWAYS -->
+        <section class="sections-grid" aria-label="Key Takeaways">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways.</h2>
+            <ul class="section-list">
+              <li>Dynamic arcs create emotional journeys through energy variation</li>
+              <li>Use three-act structure to organize your arrangement's flow</li>
+              <li>Strategic peak placement prevents listener fatigue</li>
+              <li>Contrast between sections is essential for impact</li>
+              <li>Study reference tracks to understand professional dynamic curves</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; 2025 Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
     <script type="module" src="js/lesson-loader.js"></script>
   </body>
 </html>

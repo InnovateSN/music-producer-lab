@@ -5,40 +5,197 @@
     <title>Lesson 15 · Reference Track Analysis | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Learn to analyze professional arrangements" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 15 · Arrangement</p>
-        <h1 class="hero-title">Reference<br><span class="highlight">Track Analysis</span></h1>
-        <p class="hero-subtitle"><strong>Extract structure, timing, and techniques from hits</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Learn to analyze professional arrangements. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master reference track analysis techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the reference track analysis concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding reference track analysis fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-14.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-16.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 15">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 15</div>
+            <h1 class="hero-title">
+              Reference
+              <span>Track Analysis</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn to analyze professional arrangements and extract <strong>structure</strong>, <strong>timing</strong>,
+              and <strong>techniques</strong> from hit tracks to elevate your own productions.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-14.html"><span>← Previous</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-16.html"><span>Next →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Analytical Skills</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Pro Analysis</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Track Analysis</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Structure mapping</div>
+                  <div class="hero-visual-pill-tag">Timing analysis</div>
+                  <div class="hero-visual-pill-tag">Technique extraction</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Advanced Arrangement</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section class="sections-grid" aria-label="Lesson Content">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">Why Analyze Reference Tracks?</h2>
+            <p class="section-body">
+              <strong>Reference track analysis</strong> is one of the most powerful learning tools available to producers.
+              By deconstructing professional arrangements, you gain insights into structure, timing, and production
+              techniques that would take years to discover on your own.
+            </p>
+            <p class="section-body">
+              Every hit song is a masterclass in arrangement. Learning to analyze them systematically will
+              dramatically accelerate your growth as a producer.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Step-by-Step Process</div>
+            <h2 class="section-title">How to Analyze a Reference Track.</h2>
+            <p class="section-body">
+              Follow this systematic approach to extract maximum value:
+            </p>
+            <ul class="section-list">
+              <li><strong>Import into DAW:</strong> Load the track and enable waveform view for visual reference</li>
+              <li><strong>Map the Structure:</strong> Identify sections with markers (intro, verse, chorus, etc.)</li>
+              <li><strong>Count the Bars:</strong> Determine how many bars each section contains</li>
+              <li><strong>Note Transitions:</strong> Identify techniques used between sections (fills, risers, drops)</li>
+              <li><strong>Layer by Layer:</strong> Listen multiple times, isolating different elements each time</li>
+              <li><strong>Document Everything:</strong> Create a detailed arrangement map with timestamps</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key Areas to Analyze</div>
+            <h2 class="section-title">What to Listen For.</h2>
+            <p class="section-body">
+              Focus your analysis on these critical elements:
+            </p>
+            <ul class="section-list">
+              <li><strong>Overall Structure:</strong> Section order, repeats, variations</li>
+              <li><strong>Section Lengths:</strong> Bar counts for each section (crucial for pacing)</li>
+              <li><strong>Dynamic Arc:</strong> Energy flow from start to finish</li>
+              <li><strong>Element Entrances:</strong> When instruments appear and disappear</li>
+              <li><strong>Frequency Balance:</strong> How low, mid, and high elements are distributed</li>
+              <li><strong>Transitions:</strong> Specific techniques used to connect sections</li>
+              <li><strong>Repetition vs. Variation:</strong> What stays the same, what changes</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Practical Application</div>
+            <h2 class="section-title">Creating an Arrangement Template.</h2>
+            <p class="section-body">
+              Turn your analysis into actionable templates:
+            </p>
+            <ul class="section-list">
+              <li>Build an empty DAW project with markers matching your reference structure</li>
+              <li>Add empty tracks for each layer you identified</li>
+              <li>Note arrangement decisions at each marker (e.g., "add hi-hats here")</li>
+              <li>Use this template as a starting point for similar tracks</li>
+              <li>Over time, create a library of templates from different genres and styles</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Professional Tips</div>
+            <h2 class="section-title">Advanced Analysis Techniques.</h2>
+            <p class="section-body">
+              Level up your analysis with these pro methods:
+            </p>
+            <ul class="section-list">
+              <li><strong>Frequency Spectrum Analysis:</strong> Use a visual EQ to see frequency distribution changes</li>
+              <li><strong>Solo Listening:</strong> Use EQ to isolate and study specific frequency ranges</li>
+              <li><strong>Tempo & Meter:</strong> Tap tempo or use BPM detection to understand the groove</li>
+              <li><strong>Compare Multiple References:</strong> Analyze 3-5 tracks in the same genre for patterns</li>
+              <li><strong>Reverse Engineering:</strong> Try to recreate sections to understand the techniques</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- EXERCISE SECTION -->
+        <section class="sequencer-section" aria-label="Interactive Exercise">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title">Analyze a Reference Track</h2>
+          <p class="section-body">
+            Apply reference track analysis concepts in this practical exercise.
+            Extract structure, timing, and techniques from professional arrangements to inform your own work.
+          </p>
+          <div id="mpl-sequencer-collection" class="sequencer-container"></div>
+        </section>
+
+        <!-- KEY TAKEAWAYS -->
+        <section class="sections-grid" aria-label="Key Takeaways">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways.</h2>
+            <ul class="section-list">
+              <li>Reference track analysis is one of the fastest ways to improve your arrangements</li>
+              <li>Map structure, count bars, and document transition techniques systematically</li>
+              <li>Listen multiple times, focusing on different elements each time</li>
+              <li>Create arrangement templates from your analysis for future projects</li>
+              <li>Analyze multiple tracks in the same genre to identify common patterns</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; 2025 Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
     <script type="module" src="js/lesson-loader.js"></script>
   </body>
 </html>

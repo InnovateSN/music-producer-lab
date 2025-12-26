@@ -5,40 +5,175 @@
     <title>Lesson 11 · Key Changes & Modulation | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Add excitement with key changes" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 11 · Arrangement</p>
-        <h1 class="hero-title">Key<br><span class="highlight">Changes & Modulation</span></h1>
-        <p class="hero-subtitle"><strong>Learn smooth modulation techniques and dramatic shifts</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Add excitement with key changes. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master key changes & modulation techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the key changes & modulation concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding key changes & modulation fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-10.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-12.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 11">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 11</div>
+            <h1 class="hero-title">
+              Key Changes &
+              <span>Modulation</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn smooth <strong>modulation techniques</strong> and <strong>dramatic shifts</strong>.
+              Add excitement with key changes that elevate your arrangements to professional levels.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-10.html"><span>← Previous</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-12.html"><span>Next →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Advanced Techniques</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Modulation Mastery</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Key Changes</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Smooth transitions</div>
+                  <div class="hero-visual-pill-tag">Dramatic shifts</div>
+                  <div class="hero-visual-pill-tag">Pro techniques</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Advanced Arrangement</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section class="sections-grid" aria-label="Lesson Content">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">What is Modulation?</h2>
+            <p class="section-body">
+              <strong>Modulation</strong> is the art of changing keys within a song to add excitement and emotional impact.
+              When done well, a key change can lift your track to new heights, creating a fresh perspective that
+              keeps listeners engaged.
+            </p>
+            <p class="section-body">
+              From the classic "up a step" modulation in pop hits to subtle modal shifts in modern production,
+              key changes are powerful tools in your arrangement arsenal.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key Concepts</div>
+            <h2 class="section-title">Types of Key Changes.</h2>
+            <ul class="section-list">
+              <li><strong>Direct Modulation:</strong> Instant shift to a new key—bold and dramatic</li>
+              <li><strong>Pivot Chord Modulation:</strong> Use a common chord to smoothly transition between keys</li>
+              <li><strong>Step-Up Modulation:</strong> Classic "up a half-step or whole-step" energy boost</li>
+              <li><strong>Relative Key Shift:</strong> Move between major and relative minor for emotional contrast</li>
+              <li><strong>Parallel Key Change:</strong> Shift from major to minor (or vice versa) on the same root</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Techniques</div>
+            <h2 class="section-title">When to Use Key Changes.</h2>
+            <p class="section-body">
+              Strategic placement of key changes can transform your arrangement:
+            </p>
+            <ul class="section-list">
+              <li><strong>Final Chorus:</strong> The classic "power chorus" lift—adds excitement and energy</li>
+              <li><strong>Bridge Section:</strong> Create contrast before returning to the main key</li>
+              <li><strong>Second Half:</strong> Refresh the listener's ear midway through the track</li>
+              <li><strong>Breakdown to Drop:</strong> Shift keys during the breakdown for a surprising drop</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Professional Tips</div>
+            <h2 class="section-title">Smooth Modulation Techniques.</h2>
+            <p class="section-body">
+              Master producers use these techniques to make key changes feel natural:
+            </p>
+            <ul class="section-list">
+              <li><strong>Drum Fill Transition:</strong> Use fills or breaks to mask the key change</li>
+              <li><strong>Sustained Notes:</strong> Hold a common note between keys as a bridge</li>
+              <li><strong>Riser Effects:</strong> Build anticipation before the key shift</li>
+              <li><strong>Drop Out:</strong> Strip to minimal elements, then come back in the new key</li>
+              <li><strong>Gradual Shift:</strong> Slowly introduce notes from the new key before fully committing</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- EXERCISE SECTION -->
+        <section class="sequencer-section" aria-label="Interactive Exercise">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title">Practice Key Changes & Modulation</h2>
+          <p class="section-body">
+            Apply the key changes & modulation concepts in this practical arrangement exercise.
+            Experiment with different modulation techniques and hear how they transform your track.
+          </p>
+          <div id="mpl-sequencer-collection" class="sequencer-container"></div>
+        </section>
+
+        <!-- KEY TAKEAWAYS -->
+        <section class="sections-grid" aria-label="Key Takeaways">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways.</h2>
+            <ul class="section-list">
+              <li>Key changes add excitement and prevent listener fatigue</li>
+              <li>Step-up modulations work great for final choruses</li>
+              <li>Smooth transitions use pivot chords and sustained notes</li>
+              <li>Dramatic shifts require proper setup with fills or breaks</li>
+              <li>Consider the emotional journey when choosing when and how to modulate</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; 2025 Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
     <script type="module" src="js/lesson-loader.js"></script>
   </body>
 </html>

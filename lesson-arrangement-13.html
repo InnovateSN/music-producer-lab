@@ -5,40 +5,179 @@
     <title>Lesson 13 · Instrumental Arrangement | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Layer instruments effectively" />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header glass"><div class="header-inner container"><a href="index.html" class="brand"><span class="brand-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span><span class="brand-text">Music Producer Lab</span></a><nav class="header-nav"><a href="labs.html" class="nav-link">Labs</a></nav></div></header>
-    <main class="main-content container">
-      <section class="hero">
-        <p class="hero-eyebrow">Lesson 13 · Arrangement</p>
-        <h1 class="hero-title">Instrumental<br><span class="highlight">Arrangement</span></h1>
-        <p class="hero-subtitle"><strong>Know when to add/remove elements for maximum impact</strong></p>
-      </section>
-      <section class="card">
-        <h2><span class="icon">📚</span> Lesson Overview</h2>
-        <p class="section-intro">Layer instruments effectively. This lesson covers advanced arrangement techniques to take your productions to the next level.</p>
-        <ul class="check-list">
-          <li>Master instrumental arrangement techniques</li>
-          <li>Apply professional arrangement principles</li>
-          <li>Create compelling musical journeys</li>
-          <li>Develop your unique arrangement style</li>
-        </ul>
-      </section>
-      <section class="card exercise-card">
-        <h2><span class="icon">✏️</span> Exercise</h2>
-        <div class="exercise-info">
-          <p>Apply the instrumental arrangement concepts in a practical arrangement exercise.</p>
-        </div>
-        <div id="sequencer-root" class="sequencer-container"></div>
-      </section>
-      <section class="card"><h2><span class="icon">🎓</span> Key Takeaways</h2><ul class="check-list"><li>Understanding instrumental arrangement fundamentals</li><li>Practical application in your productions</li><li>Professional-level arrangement skills</li></ul></section>
-      <nav class="lesson-nav"><a href="lesson-arrangement-12.html" class="nav-btn prev"><span class="arrow">←</span> Previous</a><a href="labs.html" class="nav-btn overview">Labs</a><a href="lesson-arrangement-14.html" class="nav-btn next">Next <span class="arrow">→</span></a></nav>
-    </main>
-    <footer class="site-footer"><div class="container footer-grid"><p class="copyright">© 2025 Music Producer Lab</p></div></footer>
+    <div class="page">
+      <div class="page-inner">
+        <!-- HEADER NAV -->
+        <header class="mpl-nav">
+          <div class="mpl-nav-logo">
+            <img src="mpl-logo-full.svg" alt="Music Producer Lab" class="mpl-nav-logo-img" />
+          </div>
+          <div class="mpl-nav-actions">
+            <button class="btn btn-outline" type="button" onclick="window.location.href='labs.html'">
+              <span>Back to Labs</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Arrangement Lesson 13">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Arrangement · Lesson 13</div>
+            <h1 class="hero-title">
+              Instrumental
+              <span>Arrangement</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Layer instruments effectively and know when to <strong>add or remove elements</strong> for maximum impact.
+              Master the art of instrumental balance in your arrangements.
+            </p>
+            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <a class="btn btn-outline" href="lesson-arrangement-12.html"><span>← Previous</span></a>
+              <a class="btn btn-primary" href="lesson-arrangement-14.html"><span>Next →</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free Lesson</div>
+              <div class="hero-visual-pill">Layering Mastery</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Instrument Balance</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Layering</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>20–25 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Effective layering</div>
+                  <div class="hero-visual-pill-tag">Element timing</div>
+                  <div class="hero-visual-pill-tag">Frequency balance</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Advanced Arrangement</span>
+                  <span>Interactive Exercise</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section class="sections-grid" aria-label="Lesson Content">
+          <article class="section">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">The Art of Instrumental Layering.</h2>
+            <p class="section-body">
+              <strong>Instrumental arrangement</strong> is about choosing the right instruments and knowing when to bring them in or take them out.
+              Too many elements create mud; too few create emptiness. The sweet spot is where magic happens.
+            </p>
+            <p class="section-body">
+              Professional producers think in terms of <strong>frequency ranges</strong>, <strong>rhythmic roles</strong>,
+              and <strong>energy levels</strong> when arranging instruments across their tracks.
+            </p>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Core Framework</div>
+            <h2 class="section-title">The Five-Layer System.</h2>
+            <p class="section-body">
+              Organize your instruments into five core layers:
+            </p>
+            <ul class="section-list">
+              <li><strong>Foundation (Low End):</strong> Kick, bass—the rhythmic and harmonic foundation</li>
+              <li><strong>Rhythm (Mid-Low):</strong> Percussion, drums, rhythmic guitars—drives the groove</li>
+              <li><strong>Pad/Atmosphere (Mid):</strong> Sustained chords, strings, ambient textures—fills space</li>
+              <li><strong>Lead/Melody (Mid-High):</strong> Vocals, lead synths, melodic instruments—main focus</li>
+              <li><strong>Sparkle (High):</strong> Hi-hats, shakers, bells, high synths—adds shine and detail</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Strategic Approach</div>
+            <h2 class="section-title">When to Add & Remove Elements.</h2>
+            <p class="section-body">
+              Master the timing of instrument entrances and exits:
+            </p>
+            <ul class="section-list">
+              <li><strong>Intro:</strong> Start with 1-2 layers, establish the vibe</li>
+              <li><strong>Verse:</strong> 2-3 layers, keep it spacious for vocals</li>
+              <li><strong>Pre-Chorus:</strong> Add 1-2 layers to build anticipation</li>
+              <li><strong>Chorus:</strong> 4-5 layers max, full arrangement energy</li>
+              <li><strong>Breakdown:</strong> Strip to 1-2 layers for contrast</li>
+              <li><strong>Bridge:</strong> Try new combinations, surprise the listener</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Professional Techniques</div>
+            <h2 class="section-title">Advanced Layering Strategies.</h2>
+            <p class="section-body">
+              Elevate your arrangements with these pro techniques:
+            </p>
+            <ul class="section-list">
+              <li><strong>Frequency Masking:</strong> Ensure instruments occupy different frequency ranges</li>
+              <li><strong>Call & Response:</strong> Let instruments "talk to each other" rhythmically</li>
+              <li><strong>Subtle Variation:</strong> Change small details in repeated sections (add/swap one element)</li>
+              <li><strong>Ghost Elements:</strong> Add very quiet layers for depth without overwhelming</li>
+              <li><strong>The Power of Silence:</strong> Strategic removal is as powerful as addition</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- EXERCISE SECTION -->
+        <section class="sequencer-section" aria-label="Interactive Exercise">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title">Practice Instrumental Arrangement</h2>
+          <p class="section-body">
+            Apply instrumental arrangement concepts in this practical exercise.
+            Experiment with layering instruments and learn when to add or remove elements for maximum impact.
+          </p>
+          <div id="mpl-sequencer-collection" class="sequencer-container"></div>
+        </section>
+
+        <!-- KEY TAKEAWAYS -->
+        <section class="sections-grid" aria-label="Key Takeaways">
+          <article class="section">
+            <div class="section-eyebrow">Summary</div>
+            <h2 class="section-title">Key Takeaways.</h2>
+            <ul class="section-list">
+              <li>Organize instruments into five frequency-based layers</li>
+              <li>Verses need 2-3 layers; choruses can have 4-5 layers max</li>
+              <li>Strategic element removal creates contrast and impact</li>
+              <li>Ensure instruments occupy different frequency ranges to avoid masking</li>
+              <li>Less is often more—every element should serve a purpose</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div>&copy; 2025 Music Producer Lab. All rights reserved.</div>
+          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
+        </footer>
+      </div>
+    </div>
+
     <script type="module" src="js/lesson-loader.js"></script>
   </body>
 </html>
