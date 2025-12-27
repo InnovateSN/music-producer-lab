@@ -157,31 +157,6 @@
             <div class="exercise-tip">
               <strong>Tip:</strong> Count "1 & 2 & 3 & 4 &" – the hi-hat hits on every syllable!
             </div>
-
-            <div class="pattern-hint">
-              <div class="pattern-hint-label">Target Pattern:</div>
-              <div class="pattern-grid-visual">
-                <div style="margin-bottom: 0.5rem;"><strong>Kick:</strong></div>
-                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
-                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
-                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
-                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
-              </div>
-              <div class="pattern-grid-visual" style="margin-top: 0.5rem;">
-                <div style="margin-bottom: 0.5rem;"><strong>Snare:</strong></div>
-                <span class="step-off">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
-                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
-                <span class="step-off">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
-                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
-              </div>
-              <div class="pattern-grid-visual" style="margin-top: 0.5rem;">
-                <div style="margin-bottom: 0.5rem;"><strong>Hi-Hat:</strong></div>
-                <span class="step-on">1</span><span class="step-off">2</span><span class="step-on">3</span><span class="step-off">4</span>
-                <span class="step-on">5</span><span class="step-off">6</span><span class="step-on">7</span><span class="step-off">8</span>
-                <span class="step-on">9</span><span class="step-off">10</span><span class="step-on">11</span><span class="step-off">12</span>
-                <span class="step-on">13</span><span class="step-off">14</span><span class="step-on">15</span><span class="step-off">16</span>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -202,6 +177,9 @@
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               Stop
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-show-pattern">
+              💡 Show Pattern
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
               Check Exercise
@@ -281,6 +259,40 @@
       ];
 
       initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+
+      // Show Pattern functionality
+      document.getElementById('mpl-show-pattern').addEventListener('click', () => {
+        instruments.forEach((instrument, instrumentIndex) => {
+          const sequencerRow = document.querySelectorAll('.sequencer-row')[instrumentIndex];
+          if (!sequencerRow) return;
+
+          instrument.target.forEach(stepIndex => {
+            const stepButton = sequencerRow.querySelectorAll('.sequencer-step')[stepIndex];
+            if (stepButton) {
+              stepButton.classList.add('hint-pulse');
+              setTimeout(() => {
+                stepButton.classList.remove('hint-pulse');
+              }, 2500);
+            }
+          });
+        });
+      });
     </script>
+    <style>
+      @keyframes pulse-hint {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+          background: var(--step-bg, #1a1d24);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(255, 215, 0, 0);
+          background: rgba(255, 215, 0, 0.3);
+        }
+      }
+      .sequencer-step.hint-pulse {
+        animation: pulse-hint 0.8s ease-in-out 3;
+        border-color: rgba(255, 215, 0, 0.8) !important;
+      }
+    </style>
   </body>
 </html>
