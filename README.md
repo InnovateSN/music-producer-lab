@@ -90,15 +90,27 @@ open http://localhost:8000
 
 ## Developer Notes
 
-See [`HANDOFF_REPORT_26_DECEMBER_2025.md`](./HANDOFF_REPORT_26_DECEMBER_2025.md) for:
-- Codebase architecture details
-- Known issues and solutions
-- Development continuation guide
+**Current Project Status:**
+See [`docs/PROJECT_STATUS_REPORT_27_DEC_2025.md`](./docs/PROJECT_STATUS_REPORT_27_DEC_2025.md) for comprehensive analysis:
+- Complete project health assessment
+- Technical metrics and statistics
+- Critical issues and recommendations
+- Migration strategy and roadmap
 
-See [`LESSON-SYSTEM-README.md`](./LESSON-SYSTEM-README.md) for:
+**Creating New Lessons:**
+See [`docs/LESSON-SYSTEM-README.md`](./docs/LESSON-SYSTEM-README.md) for:
 - How to create new lessons
 - Configuration options
-- Sequencer API
+- Sequencer API reference
+
+**Migration Guide:**
+See [`docs/MODULAR_MIGRATION_STRATEGY.md`](./docs/MODULAR_MIGRATION_STRATEGY.md) for:
+- Complete strategy for modular system migration
+- Step-by-step implementation guide
+- Risk assessment and rollback plans
+
+**Historical Documentation:**
+See [`docs/archive/`](./docs/archive/) for previous reports and analysis
 
 ---
 
