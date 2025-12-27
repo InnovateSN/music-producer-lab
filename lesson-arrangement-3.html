@@ -2,471 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Arrangement Lesson 3 · Arrange a Complete Track | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson 3 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Put it all together! Arrange a complete 3-4 minute track from scratch using everything you've learned about song structure and transitions." />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Full Track Builder Styles */
-      .track-builder {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .builder-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-md);
-        border-bottom: 1px solid var(--border-subtle);
-        flex-wrap: wrap;
-        gap: var(--space-md);
-      }
-      
-      .builder-title h3 {
-        font-size: 1.2rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .builder-title p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-      
-      .genre-selector {
-        display: flex;
-        gap: var(--space-sm);
-      }
-      
-      .genre-btn {
-        padding: var(--space-sm) var(--space-md);
-        border: 2px solid var(--border-light);
-        border-radius: var(--radius-md);
-        background: var(--bg-tertiary);
-        color: var(--text-primary);
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.85rem;
-        transition: all 0.2s;
-      }
-      
-      .genre-btn:hover {
-        border-color: var(--accent-cyan);
-      }
-      
-      .genre-btn.active {
-        border-color: var(--accent-cyan);
-        background: rgba(0, 240, 255, 0.2);
-        color: var(--accent-cyan);
-      }
-      
-      /* Section Palette */
-      .section-palette {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-sm);
-        margin-bottom: var(--space-lg);
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-      }
-      
-      .palette-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-sm);
-        padding-right: var(--space-md);
-        border-right: 1px solid var(--border-subtle);
-      }
-      
-      .palette-group:last-child {
-        border-right: none;
-      }
-      
-      .palette-label {
-        width: 100%;
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .section-btn {
-        padding: var(--space-xs) var(--space-sm);
-        border: 2px solid transparent;
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.75rem;
-        transition: all 0.2s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px;
-      }
-      
-      .section-btn small {
-        font-size: 0.65rem;
-        opacity: 0.7;
-      }
-      
-      .section-btn.intro { background: rgba(0, 255, 157, 0.2); color: var(--accent-green); border-color: var(--accent-green); }
-      .section-btn.verse { background: rgba(0, 240, 255, 0.2); color: var(--accent-cyan); border-color: var(--accent-cyan); }
-      .section-btn.prechorus { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); border-color: var(--accent-amber); }
-      .section-btn.chorus { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: var(--accent-purple); }
-      .section-btn.bridge { background: rgba(255, 102, 178, 0.2); color: var(--accent-pink); border-color: var(--accent-pink); }
-      .section-btn.buildup { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: #f59e0b; }
-      .section-btn.drop { background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: #ef4444; }
-      .section-btn.breakdown { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-color: #3b82f6; }
-      .section-btn.outro { background: rgba(107, 114, 128, 0.2); color: #9ca3af; border-color: #6b7280; }
-      
-      .section-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      
-      /* Transition Palette */
-      .transition-palette {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-sm);
-        margin-bottom: var(--space-lg);
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-      }
-      
-      .transition-btn {
-        padding: var(--space-xs) var(--space-sm);
-        border: 2px solid var(--border-light);
-        border-radius: var(--radius-sm);
-        background: transparent;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.75rem;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: var(--space-xs);
-      }
-      
-      .transition-btn.riser { border-color: var(--accent-green); color: var(--accent-green); }
-      .transition-btn.fall { border-color: var(--accent-purple); color: var(--accent-purple); }
-      .transition-btn.filter { border-color: var(--accent-amber); color: var(--accent-amber); }
-      .transition-btn.fill { border-color: var(--accent-pink); color: var(--accent-pink); }
-      .transition-btn.silence { border-color: #6b7280; color: #9ca3af; }
-      
-      .transition-btn:hover {
-        transform: translateY(-2px);
-      }
-      
-      .transition-btn.selected {
-        box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.3);
-      }
-      
-      /* Main Timeline */
-      .main-timeline {
-        min-height: 140px;
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        display: flex;
-        gap: 4px;
-        overflow-x: auto;
-        align-items: stretch;
-        margin-bottom: var(--space-md);
-      }
-      
-      .timeline-item {
-        min-width: 70px;
-        padding: var(--space-sm);
-        border-radius: var(--radius-sm);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        cursor: pointer;
-        transition: all 0.2s;
-        position: relative;
-        animation: slideIn 0.3s ease;
-      }
-      
-      @keyframes slideIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-      }
-      
-      .timeline-item:hover {
-        transform: scale(1.05);
-      }
-      
-      .timeline-item .item-name {
-        font-weight: 600;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-      }
-      
-      .timeline-item .item-bars {
-        font-family: var(--font-mono);
-        font-size: 0.65rem;
-        opacity: 0.8;
-      }
-      
-      .timeline-item .remove-btn {
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: rgba(0,0,0,0.5);
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-      
-      .timeline-item:hover .remove-btn { opacity: 1; }
-      
-      /* Section colors */
-      .timeline-item.intro { background: rgba(0, 255, 157, 0.3); color: var(--accent-green); }
-      .timeline-item.verse { background: rgba(0, 240, 255, 0.3); color: var(--accent-cyan); }
-      .timeline-item.prechorus { background: rgba(255, 193, 7, 0.3); color: var(--accent-amber); }
-      .timeline-item.chorus { background: rgba(168, 85, 247, 0.3); color: var(--accent-purple); }
-      .timeline-item.bridge { background: rgba(255, 102, 178, 0.3); color: var(--accent-pink); }
-      .timeline-item.buildup { background: rgba(245, 158, 11, 0.3); color: #f59e0b; }
-      .timeline-item.drop { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
-      .timeline-item.breakdown { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
-      .timeline-item.outro { background: rgba(107, 114, 128, 0.3); color: #d1d5db; }
-      
-      /* Transition items */
-      .timeline-item.transition {
-        min-width: 36px;
-        max-width: 36px;
-        font-size: 1rem;
-        background: var(--bg-secondary);
-        border: 2px dashed var(--border-light);
-      }
-      
-      .timeline-item.transition.riser { border-color: var(--accent-green); color: var(--accent-green); }
-      .timeline-item.transition.fall { border-color: var(--accent-purple); color: var(--accent-purple); }
-      .timeline-item.transition.filter { border-color: var(--accent-amber); color: var(--accent-amber); }
-      .timeline-item.transition.fill { border-color: var(--accent-pink); color: var(--accent-pink); }
-      .timeline-item.transition.silence { border-color: #6b7280; color: #9ca3af; }
-      
-      .timeline-placeholder {
-        width: 100%;
-        padding: var(--space-xl);
-        border: 2px dashed var(--border-light);
-        border-radius: var(--radius-md);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        text-align: center;
-        gap: var(--space-sm);
-      }
-      
-      /* Stats Bar */
-      .stats-bar {
-        display: flex;
-        gap: var(--space-lg);
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        flex-wrap: wrap;
-        margin-bottom: var(--space-md);
-      }
-      
-      .stat {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-      
-      .stat-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-      }
-      
-      .stat-value {
-        font-family: var(--font-mono);
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--accent-cyan);
-      }
-      
-      .stat-value.warning { color: var(--accent-amber); }
-      .stat-value.success { color: var(--accent-green); }
-      .stat-value.error { color: #ef4444; }
-      
-      /* Energy Graph */
-      .energy-graph {
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        margin-bottom: var(--space-md);
-      }
-      
-      .energy-label {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .energy-bars {
-        display: flex;
-        gap: 1px;
-        height: 60px;
-        align-items: flex-end;
-      }
-      
-      .energy-bar {
-        flex: 1;
-        background: var(--gradient-primary);
-        border-radius: 2px 2px 0 0;
-        transition: height 0.3s;
-        min-width: 3px;
-      }
-      
-      /* Checklist */
-      .arrangement-checklist {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        margin-bottom: var(--space-md);
-      }
-      
-      .checklist-title {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .checklist-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-sm);
-      }
-      
-      .checklist-item {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-      
-      .checklist-item.checked {
-        color: var(--accent-green);
-      }
-      
-      .checklist-icon {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 2px solid currentColor;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-      }
-      
-      .checklist-item.checked .checklist-icon {
-        background: var(--accent-green);
-        border-color: var(--accent-green);
-        color: var(--bg-primary);
-      }
-      
-      /* Concept/Pro Tip Boxes */
-      .concept-box {
-        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 240, 255, 0.1));
-        border: 1px solid rgba(168, 85, 247, 0.3);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-lg) 0;
-      }
-      
-      .concept-box h3 {
-        color: var(--accent-purple);
-        font-size: 1.1rem;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .concept-box p { color: var(--text-secondary); line-height: 1.7; }
-      
-      .pro-tip {
-        background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 240, 255, 0.05));
-        border: 1px solid rgba(0, 255, 157, 0.3);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        margin: var(--space-md) 0;
-      }
-      
-      .pro-tip-label {
-        color: var(--accent-green);
-        font-weight: 700;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .pro-tip p { color: var(--text-secondary); font-size: 0.9rem; }
-      
-      /* Completion Badge */
-      .completion-badge {
-        display: none;
-        background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
-        border-radius: var(--radius-lg);
-        padding: var(--space-xl);
-        text-align: center;
-        margin: var(--space-xl) 0;
-      }
-      
-      .completion-badge.visible {
-        display: block;
-        animation: celebrate 0.5s ease;
-      }
-      
-      @keyframes celebrate {
-        0% { transform: scale(0.8); opacity: 0; }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); opacity: 1; }
-      }
-      
-      .completion-badge h2 {
-        font-size: 2rem;
-        margin-bottom: var(--space-md);
-        color: var(--bg-primary);
-      }
-      
-      .completion-badge p {
-        font-size: 1.1rem;
-        color: rgba(0,0,0,0.7);
-        margin-bottom: var(--space-lg);
-      }
-    </style>
   </head>
   <body>
-    <div class="page">
     <!-- HEADER -->
     <header class="site-header glass">
       <div class="header-inner container">
@@ -482,24 +26,15 @@
 
     <main class="main-content container">
 
-        <!-- HERO SECTION -->
-        <section class="hero" aria-label="Arrangement Lesson 3">
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
           <div class="hero-copy">
-            <div class="hero-copy-eyebrow">Arrangement · Lesson 3</div>
-            <h1 class="hero-title">
-              Arrange a Complete Track:
-              <span>Your First Full Song</span>.
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
             </h1>
-            <p class="hero-subtitle">
-              This is it—the moment you put <strong>everything together</strong>. 
-              You'll build a complete 3-4 minute track from scratch, using sections from Lesson 1 
-              and transitions from Lesson 2. By the end, you'll have a <strong>professional arrangement</strong> 
-              ready to fill with your own sounds.
-            </p>
-            <div style="margin-top:1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
-              <a class="btn btn-outline" href="lesson-arrangement-2.html"><span>← Previous: Transitions</span></a>
-              <a class="btn btn-primary" href="labs.html"><span>Complete Module →</span></a>
-            </div>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
           </div>
 
           <aside class="hero-visual" aria-hidden="true">
@@ -544,595 +79,71 @@
           </aside>
         </section>
 
-        <!-- INTRODUCTION -->
-        <section class="sections-grid" aria-label="Introduction">
-          <article class="section">
-            <div class="section-eyebrow">The Challenge</div>
-            <h2 class="section-title">Build a Professional Arrangement.</h2>
-            <p class="section-body">
-              In this final lesson, you'll combine everything you've learned:
-            </p>
-            <ul class="section-list">
-              <li><strong>Song sections</strong> — Intro, verse, chorus, bridge, breakdown, outro</li>
-              <li><strong>Transitions</strong> — Risers, falls, filter sweeps, drum fills, silence</li>
-              <li><strong>Energy flow</strong> — Peaks, valleys, tension, and release</li>
-              <li><strong>Timing</strong> — 4-bar and 8-bar phrase boundaries</li>
-            </ul>
-            <div class="concept-box">
-              <h3>🎯 Your Goal</h3>
-              <p>
-                Create an arrangement that is <strong>80-120 bars long</strong> (approximately 2:40-4:00 at 120 BPM). 
-                Include at least <strong>2 peak sections</strong> (chorus or drop), proper intro/outro, 
-                and <strong>transitions between every section change</strong>.
-              </p>
-            </div>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Requirements</div>
-            <h2 class="section-title">What Makes a Complete Track.</h2>
-            <p class="section-body">
-              Your arrangement needs to check these boxes:
-            </p>
-            <ul class="section-list">
-              <li>✅ <strong>Start with an Intro</strong> (4-8 bars)</li>
-              <li>✅ <strong>At least 2 peak sections</strong> (Chorus or Drop)</li>
-              <li>✅ <strong>Transitions between sections</strong> (no abrupt changes)</li>
-              <li>✅ <strong>Energy variation</strong> (not all sections at same intensity)</li>
-              <li>✅ <strong>End with an Outro</strong> (4-8 bars)</li>
-              <li>✅ <strong>Total length: 80-120 bars</strong></li>
-            </ul>
-            <div class="pro-tip">
-              <div class="pro-tip-label">Pro Tip</div>
-              <p>
-                Start with a template structure you know works, then customize it. 
-                Don't try to reinvent song structure—learn the rules first, then break them intentionally.
-              </p>
-            </div>
-          </article>
-        </section>
-
-        <!-- EXERCISE INSTRUCTIONS -->
-        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
-            <div class="section-eyebrow">Capstone Exercise</div>
-            <h2 class="section-title">Build Your Complete Track</h2>
-            <p class="section-body">
-              Use the full track builder below. Start by choosing a genre (Pop or EDM), 
-              then build your arrangement section by section, adding transitions between each change.
-            </p>
-            
-            <div class="exercise-steps">
-              <h3>Step-by-step:</h3>
-              <ol class="exercise-checklist">
-                <li><strong>Choose your genre</strong> — Pop/Rock or EDM (this changes recommended structures).</li>
-                <li><strong>Add sections</strong> — Click buttons to add sections to your timeline.</li>
-                <li><strong>Add transitions</strong> — Select a transition tool, then click between sections.</li>
-                <li><strong>Check the checklist</strong> — Make sure all requirements are met.</li>
-                <li><strong>Validate your arrangement</strong> — Click "Complete Track" when ready!</li>
-              </ol>
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
-            <div class="exercise-tip">
-              <strong>Stuck?</strong> Use "Load Template" to see a professional structure, then modify it to make it your own!
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
 
-        <!-- FULL TRACK BUILDER -->
-        <section class="track-builder" id="track-builder">
-          <div class="builder-header">
-            <div class="builder-title">
-              <h3>Full Track Arrangement Builder</h3>
-              <p>Build a complete 3-4 minute track with sections and transitions</p>
-            </div>
-            <div class="genre-selector">
-              <button class="genre-btn active" data-genre="pop">🎤 Pop/Rock</button>
-              <button class="genre-btn" data-genre="edm">🎧 EDM</button>
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Clear
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
             </div>
           </div>
-          
-          <!-- Section Palette -->
-          <div class="section-palette">
-            <div class="palette-group">
-              <span class="palette-label">Start/End</span>
-              <button class="section-btn intro" data-section="intro" data-bars="8" data-energy="25">Intro<small>8 bars</small></button>
-              <button class="section-btn outro" data-section="outro" data-bars="8" data-energy="20">Outro<small>8 bars</small></button>
-            </div>
-            <div class="palette-group pop-sections">
-              <span class="palette-label">Pop/Rock Sections</span>
-              <button class="section-btn verse" data-section="verse" data-bars="16" data-energy="50">Verse<small>16 bars</small></button>
-              <button class="section-btn prechorus" data-section="prechorus" data-bars="8" data-energy="65">Pre-Chorus<small>8 bars</small></button>
-              <button class="section-btn chorus" data-section="chorus" data-bars="16" data-energy="90">Chorus<small>16 bars</small></button>
-              <button class="section-btn bridge" data-section="bridge" data-bars="8" data-energy="55">Bridge<small>8 bars</small></button>
-            </div>
-            <div class="palette-group edm-sections" style="display: none;">
-              <span class="palette-label">EDM Sections</span>
-              <button class="section-btn buildup" data-section="buildup" data-bars="8" data-energy="70">Buildup<small>8 bars</small></button>
-              <button class="section-btn drop" data-section="drop" data-bars="16" data-energy="100">Drop<small>16 bars</small></button>
-              <button class="section-btn breakdown" data-section="breakdown" data-bars="8" data-energy="40">Breakdown<small>8 bars</small></button>
-            </div>
-          </div>
-          
-          <!-- Transition Palette -->
-          <div class="transition-palette">
-            <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: var(--space-sm);">Transitions:</span>
-            <button class="transition-btn riser" data-transition="riser">📈 Riser</button>
-            <button class="transition-btn fall" data-transition="fall">📉 Fall</button>
-            <button class="transition-btn filter" data-transition="filter">🎛️ Filter</button>
-            <button class="transition-btn fill" data-transition="fill">🥁 Fill</button>
-            <button class="transition-btn silence" data-transition="silence">🔇 Silence</button>
-          </div>
-          
-          <!-- Main Timeline -->
-          <div class="main-timeline" id="main-timeline">
-            <div class="timeline-placeholder">
-              <span style="font-size: 1.5rem;">🎵</span>
-              <span>Click sections above to start building your track</span>
-              <span style="font-size: 0.8rem;">Or use "Load Template" for a starting point</span>
-            </div>
-          </div>
-          
-          <!-- Stats Bar -->
-          <div class="stats-bar">
-            <div class="stat">
-              <span class="stat-label">Total Bars</span>
-              <span class="stat-value" id="stat-bars">0</span>
-            </div>
-            <div class="stat">
-              <span class="stat-label">Duration</span>
-              <span class="stat-value" id="stat-duration">0:00</span>
-            </div>
-            <div class="stat">
-              <span class="stat-label">Sections</span>
-              <span class="stat-value" id="stat-sections">0</span>
-            </div>
-            <div class="stat">
-              <span class="stat-label">Transitions</span>
-              <span class="stat-value" id="stat-transitions">0</span>
-            </div>
-            <div class="stat">
-              <span class="stat-label">Peaks</span>
-              <span class="stat-value" id="stat-peaks">0</span>
-            </div>
-          </div>
-          
-          <!-- Energy Graph -->
-          <div class="energy-graph">
-            <div class="energy-label">Energy Flow</div>
-            <div class="energy-bars" id="energy-bars"></div>
-          </div>
-          
-          <!-- Checklist -->
-          <div class="arrangement-checklist">
-            <div class="checklist-title">Arrangement Checklist</div>
-            <div class="checklist-items" id="checklist">
-              <div class="checklist-item" data-check="intro">
-                <span class="checklist-icon">✓</span>
-                <span>Has Intro</span>
-              </div>
-              <div class="checklist-item" data-check="outro">
-                <span class="checklist-icon">✓</span>
-                <span>Has Outro</span>
-              </div>
-              <div class="checklist-item" data-check="peaks">
-                <span class="checklist-icon">✓</span>
-                <span>2+ Peak Sections</span>
-              </div>
-              <div class="checklist-item" data-check="length">
-                <span class="checklist-icon">✓</span>
-                <span>80-120 Bars</span>
-              </div>
-              <div class="checklist-item" data-check="transitions">
-                <span class="checklist-icon">✓</span>
-                <span>Has Transitions</span>
-              </div>
-              <div class="checklist-item" data-check="energy">
-                <span class="checklist-icon">✓</span>
-                <span>Energy Variety</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Controls -->
-          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-            <button class="btn btn-outline" id="btn-clear">Clear All</button>
-            <button class="btn btn-outline" id="btn-template">Load Template</button>
-            <button class="btn btn-outline" id="btn-undo">Undo</button>
-            <button class="btn btn-primary" id="btn-complete">Complete Track ✓</button>
-          </div>
-          
-          <div class="sequencer-status" id="builder-status" style="margin-top: var(--space-md);">
-            Build your arrangement to meet all checklist requirements.
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
           </div>
         </section>
 
-        <!-- Completion Badge -->
-        <div class="completion-badge" id="completion-badge">
-          <h2>🎉 Congratulations!</h2>
-          <p>You've completed the Arrangement Module and created your first full track arrangement!</p>
-          <a href="labs.html" class="btn btn-outline" style="background: white; color: var(--bg-primary);">
-            Continue Learning →
-          </a>
-        </div>
-
-        <!-- CONCLUSION -->
-        <section class="sections-grid" aria-label="Conclusion" style="margin-top: var(--space-2xl);">
-          <article class="section">
-            <div class="section-eyebrow">Module Complete</div>
-            <h2 class="section-title">What You've Accomplished.</h2>
-            <p class="section-body">
-              You've completed the entire Arrangement module! Here's what you now know:
-            </p>
-            <ul class="section-list">
-              <li><strong>Song structure</strong> — Intro, verse, chorus, bridge, breakdown, outro</li>
-              <li><strong>Common forms</strong> — Pop/Rock (ABABCB) and EDM (Build-Drop-Breakdown)</li>
-              <li><strong>Transitions</strong> — Risers, falls, filter sweeps, drum fills, silence</li>
-              <li><strong>Energy flow</strong> — Managing peaks, valleys, tension, and release</li>
-              <li><strong>Professional timing</strong> — 4-bar and 8-bar phrase boundaries</li>
-            </ul>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">What's Next</div>
-            <h2 class="section-title">Continue Your Journey.</h2>
-            <p class="section-body">
-              Now that you can arrange a complete song, it's time to fill it with great sounds. 
-              Check out these modules to continue:
-            </p>
-            <ul class="section-list">
-              <li><strong>Sound Design</strong> — Create your own synth patches and sounds</li>
-              <li><strong>Mixing</strong> — Balance levels and make your track sound professional</li>
-              <li><strong>Mastering</strong> — Final polish for streaming-ready tracks</li>
-            </ul>
-            <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md); flex-wrap: wrap;">
-              <a href="labs.html" class="btn btn-primary">
-                Explore More Modules →
-              </a>
-              <a href="lesson-sound-design.html" class="btn btn-outline">
-                Sound Design Module
-              </a>
-            </div>
-          </article>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer" style="margin-top: var(--space-3xl);">
-          <div>&copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.</div>
-          <div><a class="footer-link" href="labs.html">Back to Labs</a></div>
-        </footer>
-      </div>
-    </div>
-
-    <script>
-      document.getElementById("mpl-year").textContent = new Date().getFullYear();
-      
-      // Track Builder Logic
-      const LESSON_KEY = "mpl-arrangement-3-progress";
-      let items = []; // Array of {type, isTransition, bars, energy, transitionType}
-      let selectedTransition = null;
-      let currentGenre = 'pop';
-      let history = [];
-      
-      const transitionSymbols = {
-        riser: '📈', fall: '📉', filter: '🎛️', fill: '🥁', silence: '🔇'
-      };
-      
-      const templates = {
-        pop: [
-          { type: 'intro', bars: 8, energy: 25 },
-          { type: 'fill', isTransition: true },
-          { type: 'verse', bars: 16, energy: 50 },
-          { type: 'fill', isTransition: true },
-          { type: 'prechorus', bars: 8, energy: 65 },
-          { type: 'riser', isTransition: true },
-          { type: 'chorus', bars: 16, energy: 90 },
-          { type: 'fall', isTransition: true },
-          { type: 'verse', bars: 16, energy: 55 },
-          { type: 'fill', isTransition: true },
-          { type: 'chorus', bars: 16, energy: 95 },
-          { type: 'filter', isTransition: true },
-          { type: 'bridge', bars: 8, energy: 60 },
-          { type: 'riser', isTransition: true },
-          { type: 'chorus', bars: 16, energy: 100 },
-          { type: 'fall', isTransition: true },
-          { type: 'outro', bars: 8, energy: 20 }
-        ],
-        edm: [
-          { type: 'intro', bars: 8, energy: 25 },
-          { type: 'filter', isTransition: true },
-          { type: 'buildup', bars: 16, energy: 70 },
-          { type: 'riser', isTransition: true },
-          { type: 'drop', bars: 16, energy: 100 },
-          { type: 'fall', isTransition: true },
-          { type: 'breakdown', bars: 8, energy: 40 },
-          { type: 'filter', isTransition: true },
-          { type: 'buildup', bars: 8, energy: 75 },
-          { type: 'riser', isTransition: true },
-          { type: 'drop', bars: 16, energy: 100 },
-          { type: 'fall', isTransition: true },
-          { type: 'outro', bars: 8, energy: 20 }
-        ]
-      };
-      
-      // Load saved progress
-      const saved = localStorage.getItem(LESSON_KEY);
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          if (data.items) items = data.items;
-          if (data.genre) currentGenre = data.genre;
-          if (data.completed) {
-            document.getElementById('builder-status').textContent = 
-              "You've completed this module! Feel free to experiment more.";
-            document.getElementById('builder-status').className = 'sequencer-status success';
-          }
-          updateGenreUI();
-          render();
-        } catch (e) {}
-      }
-      
-      // Genre selector
-      document.querySelectorAll('.genre-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          currentGenre = btn.dataset.genre;
-          updateGenreUI();
-          saveProgress();
-        });
-      });
-      
-      function updateGenreUI() {
-        document.querySelectorAll('.genre-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.genre === currentGenre);
-        });
-        document.querySelector('.pop-sections').style.display = currentGenre === 'pop' ? 'flex' : 'none';
-        document.querySelector('.edm-sections').style.display = currentGenre === 'edm' ? 'flex' : 'none';
-      }
-      
-      // Section buttons
-      document.querySelectorAll('.section-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          saveHistory();
-          items.push({
-            type: btn.dataset.section,
-            bars: parseInt(btn.dataset.bars),
-            energy: parseInt(btn.dataset.energy),
-            isTransition: false
-          });
-          render();
-          saveProgress();
-        });
-      });
-      
-      // Transition buttons
-      document.querySelectorAll('.transition-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.transition-btn').forEach(b => b.classList.remove('selected'));
-          
-          if (selectedTransition === btn.dataset.transition) {
-            selectedTransition = null;
-          } else {
-            btn.classList.add('selected');
-            selectedTransition = btn.dataset.transition;
-          }
-        });
-      });
-      
-      // Controls
-      document.getElementById('btn-clear').addEventListener('click', () => {
-        saveHistory();
-        items = [];
-        render();
-        saveProgress();
-      });
-      
-      document.getElementById('btn-template').addEventListener('click', () => {
-        saveHistory();
-        items = JSON.parse(JSON.stringify(templates[currentGenre]));
-        render();
-        saveProgress();
-      });
-      
-      document.getElementById('btn-undo').addEventListener('click', () => {
-        if (history.length > 0) {
-          items = history.pop();
-          render();
-          saveProgress();
-        }
-      });
-      
-      document.getElementById('btn-complete').addEventListener('click', checkCompletion);
-      
-      function saveHistory() {
-        history.push(JSON.parse(JSON.stringify(items)));
-        if (history.length > 20) history.shift();
-      }
-      
-      function saveProgress() {
-        localStorage.setItem(LESSON_KEY + '-draft', JSON.stringify({ items, genre: currentGenre }));
-      }
-      
-      function render() {
-        const timeline = document.getElementById('main-timeline');
-        
-        if (items.length === 0) {
-          timeline.innerHTML = `
-            <div class="timeline-placeholder">
-              <span style="font-size: 1.5rem;">🎵</span>
-              <span>Click sections above to start building your track</span>
-              <span style="font-size: 0.8rem;">Or use "Load Template" for a starting point</span>
-            </div>
-          `;
-        } else {
-          timeline.innerHTML = items.map((item, index) => {
-            if (item.isTransition) {
-              return `
-                <div class="timeline-item transition ${item.type}" data-index="${index}">
-                  <button class="remove-btn" data-index="${index}">×</button>
-                  ${transitionSymbols[item.type] || '•'}
-                </div>
-              `;
-            } else {
-              return `
-                <div class="timeline-item ${item.type}" data-index="${index}">
-                  <button class="remove-btn" data-index="${index}">×</button>
-                  <span class="item-name">${item.type}</span>
-                  <span class="item-bars">${item.bars}b</span>
-                </div>
-              `;
-            }
-          }).join('');
-          
-          // Add click handlers for adding transitions
-          timeline.querySelectorAll('.timeline-item:not(.transition)').forEach(el => {
-            el.addEventListener('click', (e) => {
-              if (e.target.classList.contains('remove-btn')) return;
-              
-              if (selectedTransition) {
-                saveHistory();
-                const index = parseInt(el.dataset.index);
-                items.splice(index + 1, 0, {
-                  type: selectedTransition,
-                  isTransition: true
-                });
-                render();
-                saveProgress();
-              }
-            });
-          });
-          
-          // Remove handlers
-          timeline.querySelectorAll('.remove-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              saveHistory();
-              const index = parseInt(btn.dataset.index);
-              items.splice(index, 1);
-              render();
-              saveProgress();
-            });
-          });
-        }
-        
-        updateStats();
-        updateEnergyGraph();
-        updateChecklist();
-      }
-      
-      function updateStats() {
-        const sections = items.filter(i => !i.isTransition);
-        const transitions = items.filter(i => i.isTransition);
-        const totalBars = sections.reduce((sum, s) => sum + (s.bars || 0), 0);
-        const peaks = sections.filter(s => ['chorus', 'drop'].includes(s.type)).length;
-        
-        const duration = (totalBars * 4 * 60) / 120;
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60);
-        
-        document.getElementById('stat-bars').textContent = totalBars;
-        document.getElementById('stat-bars').className = 'stat-value' + 
-          (totalBars >= 80 && totalBars <= 120 ? ' success' : totalBars > 0 ? ' warning' : '');
-        
-        document.getElementById('stat-duration').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        document.getElementById('stat-sections').textContent = sections.length;
-        document.getElementById('stat-transitions').textContent = transitions.length;
-        document.getElementById('stat-peaks').textContent = peaks;
-        document.getElementById('stat-peaks').className = 'stat-value' + (peaks >= 2 ? ' success' : '');
-      }
-      
-      function updateEnergyGraph() {
-        const container = document.getElementById('energy-bars');
-        
-        if (items.length === 0) {
-          container.innerHTML = '';
-          return;
-        }
-        
-        let bars = [];
-        items.forEach(item => {
-          if (item.isTransition) {
-            // Add small transition indicator
-            bars.push(item.type === 'riser' ? 65 : item.type === 'fall' ? 35 : 50);
-          } else {
-            const numBars = Math.max(1, Math.floor((item.bars || 8) / 4));
-            for (let i = 0; i < numBars; i++) {
-              bars.push(item.energy || 50);
-            }
-          }
-        });
-        
-        container.innerHTML = bars.map(e => 
-          `<div class="energy-bar" style="height: ${e}%;"></div>`
-        ).join('');
-      }
-      
-      function updateChecklist() {
-        const sections = items.filter(i => !i.isTransition);
-        const transitions = items.filter(i => i.isTransition);
-        const totalBars = sections.reduce((sum, s) => sum + (s.bars || 0), 0);
-        const peaks = sections.filter(s => ['chorus', 'drop'].includes(s.type)).length;
-        const energies = sections.map(s => s.energy || 50);
-        const hasVariety = energies.length > 1 && (Math.max(...energies) - Math.min(...energies)) >= 30;
-        
-        const checks = {
-          intro: sections.some(s => s.type === 'intro'),
-          outro: sections.some(s => s.type === 'outro'),
-          peaks: peaks >= 2,
-          length: totalBars >= 80 && totalBars <= 120,
-          transitions: transitions.length >= 2,
-          energy: hasVariety
-        };
-        
-        Object.entries(checks).forEach(([key, passed]) => {
-          const el = document.querySelector(`[data-check="${key}"]`);
-          if (el) {
-            el.classList.toggle('checked', passed);
-          }
-        });
-        
-        return Object.values(checks).every(v => v);
-      }
-      
-      function checkCompletion() {
-        const statusEl = document.getElementById('builder-status');
-        const allPassed = updateChecklist();
-        
-        if (items.length === 0) {
-          statusEl.textContent = "Add some sections first! Click the buttons above to build your arrangement.";
-          statusEl.className = 'sequencer-status error';
-          return;
-        }
-        
-        if (!allPassed) {
-          const sections = items.filter(i => !i.isTransition);
-          const totalBars = sections.reduce((sum, s) => sum + (s.bars || 0), 0);
-          
-          let feedback = [];
-          if (!sections.some(s => s.type === 'intro')) feedback.push("add an Intro");
-          if (!sections.some(s => s.type === 'outro')) feedback.push("add an Outro");
-          if (sections.filter(s => ['chorus', 'drop'].includes(s.type)).length < 2) feedback.push("add more peak sections");
-          if (totalBars < 80) feedback.push(`add ${80 - totalBars} more bars`);
-          if (totalBars > 120) feedback.push(`remove ${totalBars - 120} bars`);
-          if (items.filter(i => i.isTransition).length < 2) feedback.push("add more transitions");
-          
-          statusEl.textContent = `Almost there! Try to ${feedback.slice(0, 2).join(" and ")}.`;
-          statusEl.className = 'sequencer-status error';
-          return;
-        }
-        
-        // Success!
-        localStorage.setItem(LESSON_KEY, JSON.stringify({ items, genre: currentGenre, completed: true }));
-        statusEl.innerHTML = "🎉 <strong>Amazing!</strong> You've created a complete, professional arrangement!";
-        statusEl.className = 'sequencer-status success';
-        
-        document.getElementById('completion-badge').classList.add('visible');
-        document.getElementById('completion-badge').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      
-      // Initialize
-      updateGenreUI();
-      render();
-    </script>
+    </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -1144,6 +155,18 @@
         </nav>
       </div>
     </footer>
-    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+    <!-- MODULAR LESSON ENGINE -->
+    <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-arrangement-3.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

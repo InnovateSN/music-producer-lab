@@ -2,312 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 4 · The 5 Elements of Arrangement | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson 4 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Learn Bobby Owsinski's 5 arrangement elements: Foundation, Pad, Rhythm, Lead, and Fills. Master the building blocks of professional arrangements." />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Element Cards */
-      .element-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .element-card {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-      }
-      
-      .element-card:hover {
-        transform: translateY(-4px);
-      }
-      
-      .element-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-      }
-      
-      .element-card.foundation::before {
-        background: linear-gradient(90deg, #e17055, #d63031);
-      }
-      
-      .element-card.pad::before {
-        background: linear-gradient(90deg, #a29bfe, #6c5ce7);
-      }
-      
-      .element-card.rhythm::before {
-        background: linear-gradient(90deg, #fdcb6e, #f39c12);
-      }
-      
-      .element-card.lead::before {
-        background: linear-gradient(90deg, #00cec9, #0984e3);
-      }
-      
-      .element-card.fills::before {
-        background: linear-gradient(90deg, #fd79a8, #e84393);
-      }
-      
-      .element-card .number {
-        position: absolute;
-        top: var(--space-md);
-        right: var(--space-md);
-        font-size: 3rem;
-        font-weight: 700;
-        opacity: 0.1;
-      }
-      
-      .element-card .icon {
-        font-size: 2rem;
-        margin-bottom: var(--space-sm);
-      }
-      
-      .element-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .element-card .subtitle {
-        font-size: 0.8rem;
-        color: var(--accent-cyan);
-        margin-bottom: var(--space-sm);
-      }
-      
-      .element-card p {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-bottom: var(--space-md);
-      }
-      
-      .element-card .examples {
-        font-size: 0.8rem;
-        padding: var(--space-sm);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-sm);
-      }
-      
-      .element-card .examples strong {
-        color: var(--text-primary);
-      }
-      
-      /* Rule Box */
-      .rule-box {
-        background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1));
-        border: 2px solid var(--accent-cyan);
-        border-radius: var(--radius-lg);
-        padding: var(--space-xl);
-        text-align: center;
-        margin: var(--space-xl) 0;
-      }
-      
-      .rule-box .number {
-        font-size: 4rem;
-        font-weight: 700;
-        color: var(--accent-cyan);
-        line-height: 1;
-      }
-      
-      .rule-box h3 {
-        font-size: 1.5rem;
-        margin: var(--space-sm) 0;
-      }
-      
-      .rule-box p {
-        color: var(--text-muted);
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      
-      /* Interactive Builder */
-      .element-builder {
-        background: var(--bg-secondary);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .builder-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--space-lg);
-        flex-wrap: wrap;
-        gap: var(--space-md);
-      }
-      
-      .element-toggles {
-        display: flex;
-        gap: var(--space-sm);
-        flex-wrap: wrap;
-      }
-      
-      .element-toggle {
-        padding: var(--space-sm) var(--space-md);
-        border: 2px solid var(--border-light);
-        border-radius: var(--radius-md);
-        background: var(--bg-tertiary);
-        color: var(--text-primary);
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.85rem;
-        transition: all 0.2s;
-      }
-      
-      .element-toggle:hover {
-        border-color: var(--accent-cyan);
-      }
-      
-      .element-toggle.active {
-        background: var(--accent-cyan);
-        border-color: var(--accent-cyan);
-        color: var(--bg-primary);
-      }
-      
-      .element-toggle.foundation.active { background: #e17055; border-color: #e17055; }
-      .element-toggle.pad.active { background: #a29bfe; border-color: #a29bfe; }
-      .element-toggle.rhythm.active { background: #fdcb6e; border-color: #fdcb6e; color: #333; }
-      .element-toggle.lead.active { background: #00cec9; border-color: #00cec9; }
-      .element-toggle.fills.active { background: #fd79a8; border-color: #fd79a8; }
-      
-      .element-counter {
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      
-      .element-counter .count {
-        color: var(--accent-cyan);
-      }
-      
-      .element-counter.warning .count {
-        color: var(--accent-amber);
-      }
-      
-      .element-counter.danger .count {
-        color: #e17055;
-      }
-      
-      /* Visual Stack */
-      .element-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        margin: var(--space-lg) 0;
-      }
-      
-      .stack-layer {
-        height: 40px;
-        border-radius: var(--radius-sm);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        font-size: 0.85rem;
-        opacity: 0.3;
-        transition: all 0.3s;
-      }
-      
-      .stack-layer.active {
-        opacity: 1;
-      }
-      
-      .stack-layer.foundation { background: linear-gradient(90deg, #e17055, #d63031); }
-      .stack-layer.pad { background: linear-gradient(90deg, #a29bfe, #6c5ce7); }
-      .stack-layer.rhythm { background: linear-gradient(90deg, #fdcb6e, #f39c12); color: #333; }
-      .stack-layer.lead { background: linear-gradient(90deg, #00cec9, #0984e3); }
-      .stack-layer.fills { background: linear-gradient(90deg, #fd79a8, #e84393); }
-      
-      /* Section Example */
-      .section-example {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .section-example h4 {
-        margin-bottom: var(--space-md);
-      }
-      
-      .section-bars {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-md);
-      }
-      
-      .section-bar {
-        padding: var(--space-sm);
-        background: var(--bg-secondary);
-        border-radius: var(--radius-sm);
-        text-align: center;
-      }
-      
-      .section-bar h5 {
-        font-size: 0.85rem;
-        margin-bottom: var(--space-xs);
-      }
-      
-      .section-bar .elements {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        font-size: 0.7rem;
-      }
-      
-      .section-bar .el {
-        padding: 2px 4px;
-        border-radius: 2px;
-      }
-      
-      .section-bar .el.f { background: rgba(225, 112, 85, 0.5); }
-      .section-bar .el.p { background: rgba(162, 155, 254, 0.5); }
-      .section-bar .el.r { background: rgba(253, 203, 110, 0.5); }
-      .section-bar .el.l { background: rgba(0, 206, 201, 0.5); }
-      .section-bar .el.fi { background: rgba(253, 121, 168, 0.5); }
-    </style>
   </head>
-  <body class="lesson-page">
-    <!-- Header -->
+  <body>
+    <!-- HEADER -->
     <header class="site-header glass">
-      <div class="header-content">
-        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
-          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
-          <span class="logo-text">Music Producer Lab</span>
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
         </a>
-        <a href="labs.html" class="btn btn--outline btn--sm">
-          <span class="btn-icon">←</span> Back to overview
-        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+        </nav>
       </div>
     </header>
 
-    <main class="lesson-main">
-      <!-- Hero Section -->
-      <section class="hero" aria-label="Lesson 4 · Arrangement">
-        <div class="hero-copy">
-          <div class="hero-copy-eyebrow">Lesson 4 · Arrangement</div>
-          <h1 class="hero-title">
-            The 5 Elements of
-            <span>Arrangement</span>.
-          </h1>
-          <p class="hero-subtitle">
-            Learn <strong>Bobby Owsinski's legendary framework</strong> for professional arrangements.
-            Master the <strong>5 essential elements</strong>—Foundation, Pad, Rhythm, Lead, and Fills—
-            that every hit song uses to create depth, interest, and clarity.
-          </p>
-        </div>
+    <main class="main-content container">
 
-        <aside class="hero-visual" aria-hidden="true">
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
           <div class="hero-visual-header">
             <div class="hero-visual-title">Lesson 4</div>
             <div class="hero-visual-pill">Arrangement</div>
@@ -346,335 +76,96 @@
             </div>
           </div>
         </aside>
-      </section>
-
-      <!-- Navigation -->
-      <nav class="lesson-nav" aria-label="Lesson navigation">
-        <a href="lesson-arrangement-3.html" class="nav-link nav-link--prev">
-          ← Back to Lesson 3
-        </a>
-        <a href="lesson-arrangement-5.html" class="nav-link nav-link--next">
-          Next: Pop & Rock Structures →
-        </a>
-      </nav>
-
-      <!-- Main Content -->
-      <article class="lesson-content">
-        
-        <!-- Introduction -->
-        <section class="content-section">
-          <h2>The Secret to Clear, Professional Arrangements</h2>
-          <p>
-            Have you ever wondered why some tracks sound "full" and professional while others sound 
-            cluttered or empty? The answer lies in understanding the <strong>5 elements of arrangement</strong>, 
-            a framework developed by legendary producer and author <strong>Bobby Owsinski</strong>.
-          </p>
-          
-          <div class="callout callout--info">
-            <p>
-              <strong>🎯 The Key Insight:</strong> Every element in a professional arrangement serves 
-              a specific purpose. When you understand these purposes, you can build arrangements that 
-              are both full AND clear.
-            </p>
-          </div>
         </section>
 
-        <!-- The Golden Rule -->
-        <section class="content-section">
-          <div class="rule-box">
-            <div class="number">4-5</div>
-            <h3>The Golden Rule</h3>
-            <p>
-              Never have more than <strong>4-5 elements playing at the same time</strong>. 
-              This keeps your arrangement clear and prevents frequency clashing. 
-              Professional producers know: <em>less is more</em>.
-            </p>
-          </div>
-        </section>
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
 
-        <!-- The 5 Elements -->
-        <section class="content-section">
-          <h2>The 5 Essential Elements</h2>
-          
-          <div class="element-cards">
-            <div class="element-card foundation">
-              <span class="number">1</span>
-              <div class="icon">🔊</div>
-              <h3>Foundation</h3>
-              <div class="subtitle">The anchor of your track</div>
-              <p>
-                The low-end elements that ground your song. Usually bass and drums working together 
-                to establish the groove and harmonic foundation.
-              </p>
-              <div class="examples">
-                <strong>Examples:</strong> Kick + Bass, 808, Drums + Synth Bass, Upright Bass + Drums
-              </div>
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
-            
-            <div class="element-card pad">
-              <span class="number">2</span>
-              <div class="icon">☁️</div>
-              <h3>Pad</h3>
-              <div class="subtitle">The harmonic bed</div>
-              <p>
-                Sustained elements that provide harmonic context and fill the mid-range. 
-                Pads create "warmth" and "bed" for other elements to sit on.
-              </p>
-              <div class="examples">
-                <strong>Examples:</strong> Synth Pad, Strings, Organ, Electric Piano, Choir
-              </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
-            
-            <div class="element-card rhythm">
-              <span class="number">3</span>
-              <div class="icon">🎸</div>
-              <h3>Rhythm</h3>
-              <div class="subtitle">The motion and groove</div>
-              <p>
-                Elements that add rhythmic interest and forward motion. Usually playing 
-                percussive or rhythmic patterns that complement the foundation.
-              </p>
-              <div class="examples">
-                <strong>Examples:</strong> Rhythm Guitar, Synth Arpeggios, Percussion, Piano Comping
-              </div>
-            </div>
-            
-            <div class="element-card lead">
-              <span class="number">4</span>
-              <div class="icon">🎤</div>
-              <h3>Lead</h3>
-              <div class="subtitle">The focal point</div>
-              <p>
-                The main melodic element that listeners focus on. Usually the vocals, but can be 
-                a lead synth, guitar solo, or any melodic line that carries the "story."
-              </p>
-              <div class="examples">
-                <strong>Examples:</strong> Vocals, Lead Synth, Guitar Solo, Saxophone, Whistle
-              </div>
-            </div>
-            
-            <div class="element-card fills">
-              <span class="number">5</span>
-              <div class="icon">✨</div>
-              <h3>Fills</h3>
-              <div class="subtitle">The ear candy</div>
-              <p>
-                Short, attention-grabbing elements that appear in gaps or transitions. 
-                They add interest and variation without competing with the lead.
-              </p>
-              <div class="examples">
-                <strong>Examples:</strong> Drum Fills, Vocal Ad-libs, FX Sweeps, Guitar Licks, One-shots
-              </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
 
-        <!-- Interactive Builder -->
-        <section class="content-section">
-          <h2>🎯 Interactive: Build an Arrangement</h2>
-          <p>
-            Toggle elements on/off to see how they combine. Remember: keep it under 5 simultaneous elements!
-          </p>
-          
-          <div class="element-builder">
-            <div class="builder-header">
-              <div class="element-toggles">
-                <button class="element-toggle foundation" data-element="foundation">🔊 Foundation</button>
-                <button class="element-toggle pad" data-element="pad">☁️ Pad</button>
-                <button class="element-toggle rhythm" data-element="rhythm">🎸 Rhythm</button>
-                <button class="element-toggle lead" data-element="lead">🎤 Lead</button>
-                <button class="element-toggle fills" data-element="fills">✨ Fills</button>
-              </div>
-              <div class="element-counter" id="element-counter">
-                Active: <span class="count">0</span>/5
-              </div>
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Clear
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
             </div>
-            
-            <div class="element-stack" id="element-stack">
-              <div class="stack-layer fills">Fills (Ear Candy)</div>
-              <div class="stack-layer lead">Lead (Focal Point)</div>
-              <div class="stack-layer rhythm">Rhythm (Motion)</div>
-              <div class="stack-layer pad">Pad (Harmonic Bed)</div>
-              <div class="stack-layer foundation">Foundation (Anchor)</div>
-            </div>
-            
-            <p id="builder-feedback" style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
-              Click the buttons above to add elements. Watch the visual stack change!
-            </p>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
           </div>
         </section>
 
-        <!-- Section Examples -->
-        <section class="content-section">
-          <h2>Elements by Section</h2>
-          <p>Different sections use different combinations of elements:</p>
-          
-          <div class="section-example">
-            <h4>Typical Element Usage</h4>
-            <div class="section-bars">
-              <div class="section-bar">
-                <h5>Intro</h5>
-                <div class="elements">
-                  <span class="el f">Foundation (light)</span>
-                  <span class="el p">Pad</span>
-                </div>
-                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">2 elements</p>
-              </div>
-              <div class="section-bar">
-                <h5>Verse</h5>
-                <div class="elements">
-                  <span class="el f">Foundation</span>
-                  <span class="el p">Pad</span>
-                  <span class="el l">Lead (Vocals)</span>
-                </div>
-                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">3 elements</p>
-              </div>
-              <div class="section-bar">
-                <h5>Chorus</h5>
-                <div class="elements">
-                  <span class="el f">Foundation</span>
-                  <span class="el p">Pad</span>
-                  <span class="el r">Rhythm</span>
-                  <span class="el l">Lead (Vocals)</span>
-                </div>
-                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">4 elements</p>
-              </div>
-              <div class="section-bar">
-                <h5>Drop</h5>
-                <div class="elements">
-                  <span class="el f">Foundation (heavy)</span>
-                  <span class="el r">Rhythm</span>
-                  <span class="el l">Lead (synth)</span>
-                  <span class="el fi">Fills</span>
-                </div>
-                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">4 elements</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Pro Tips -->
-        <section class="content-section">
-          <h2>💡 Pro Tips</h2>
-          <ul>
-            <li><strong>Foundation is non-negotiable:</strong> Almost every section needs bass and drums</li>
-            <li><strong>Pads fill gaps:</strong> Use pads when there's no lead, pull them back when vocals enter</li>
-            <li><strong>Rhythm adds energy:</strong> Add rhythmic elements to increase intensity</li>
-            <li><strong>Lead needs space:</strong> When the lead is present, reduce other elements</li>
-            <li><strong>Fills are spice:</strong> Use sparingly—they lose impact if overused</li>
-          </ul>
-        </section>
-
-        <!-- Summary -->
-        <section class="content-section">
-          <h2>Key Takeaways</h2>
-          <ul class="summary-list">
-            <li>Every arrangement has <strong>5 element types:</strong> Foundation, Pad, Rhythm, Lead, Fills</li>
-            <li>Keep <strong>4-5 elements maximum</strong> playing at any time</li>
-            <li><strong>Foundation</strong> (bass + drums) is almost always present</li>
-            <li><strong>Lead</strong> needs space—reduce other elements when vocals are present</li>
-            <li><strong>Fills</strong> add interest in gaps but should be used sparingly</li>
-          </ul>
-        </section>
-
-      </article>
-
-      <!-- Bottom Navigation -->
-      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
-        <a href="lesson-arrangement-3.html" class="nav-link nav-link--prev">
-          ← Complete Track
-        </a>
-        <a href="labs.html" class="nav-link nav-link--overview">
-          Overview
-        </a>
-        <a href="lesson-arrangement-5.html" class="nav-link nav-link--next">
-          Pop & Rock Structures →
-        </a>
-      </nav>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-      const LESSON_KEY = 'mpl-arrangement-4-progress';
-      const NEXT_LESSON_URL = 'lesson-arrangement-5.html';
-      
-      // Element toggle functionality
-      const toggles = document.querySelectorAll('.element-toggle');
-      const counter = document.getElementById('element-counter');
-      const feedback = document.getElementById('builder-feedback');
-      const stackLayers = document.querySelectorAll('.stack-layer');
-      
-      let activeElements = new Set();
-      
-      toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const element = toggle.dataset.element;
-          
-          if (activeElements.has(element)) {
-            activeElements.delete(element);
-            toggle.classList.remove('active');
-          } else {
-            activeElements.add(element);
-            toggle.classList.add('active');
-          }
-          
-          updateDisplay();
-        });
-      });
-      
-      function updateDisplay() {
-        const count = activeElements.size;
-        
-        // Update counter
-        counter.querySelector('.count').textContent = count;
-        counter.className = 'element-counter';
-        if (count === 5) counter.classList.add('warning');
-        if (count > 5) counter.classList.add('danger');
-        
-        // Update stack visualization
-        stackLayers.forEach(layer => {
-          const element = layer.classList[1]; // Get element class (foundation, pad, etc.)
-          if (activeElements.has(element)) {
-            layer.classList.add('active');
-          } else {
-            layer.classList.remove('active');
-          }
-        });
-        
-        // Update feedback
-        if (count === 0) {
-          feedback.textContent = "Click the buttons above to add elements. Watch the visual stack change!";
-          feedback.style.color = "var(--text-muted)";
-        } else if (count <= 3) {
-          feedback.textContent = `✅ Good start! ${count} element${count > 1 ? 's' : ''} active. Room for more if needed.`;
-          feedback.style.color = "var(--accent-green)";
-        } else if (count === 4) {
-          feedback.textContent = "✅ Perfect! 4 elements is the sweet spot for a full arrangement.";
-          feedback.style.color = "var(--accent-green)";
-        } else if (count === 5) {
-          feedback.textContent = "⚠️ 5 elements is the maximum. Consider removing one if it sounds cluttered.";
-          feedback.style.color = "var(--accent-amber)";
-        } else {
-          feedback.textContent = "❌ Too many elements! This will likely sound cluttered. Remove some.";
-          feedback.style.color = "#e17055";
-        }
-      }
-      
-      // Mark as completed when user interacts
-      toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          if (activeElements.size >= 3) {
-            localStorage.setItem(LESSON_KEY, 'completed');
-          }
-        });
-      });
+    <!-- MODULAR LESSON ENGINE -->
+    <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-arrangement-4.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
