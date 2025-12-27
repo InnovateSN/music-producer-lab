@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 3 · Hi-Hats in 1/8: Feel the Subdivisions | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson 3 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Add hi-hats on eighth notes to feel the subdivisions. Learn how 1 & 2 & 3 & 4 & creates the groove between beats." />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
@@ -26,17 +26,15 @@
 
     <main class="main-content container">
 
-        <section class="hero" aria-label="Lesson 3 · Drum pattern">
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
           <div class="hero-copy">
-            <div class="hero-copy-eyebrow">Lesson 3 · Drum pattern</div>
-            <h1 class="hero-title">
-              Hi-Hats in 1/8:
-              <span>Feel the Subdivisions</span>.
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
             </h1>
-            <p class="hero-subtitle">
-              Program hi-hats on <strong>eighth notes</strong> to hear the "&" subdivisions:
-              <strong>1 & 2 & 3 & 4 &</strong>. This adds motion and energy between your kick and snare.
-            </p>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
           </div>
 
           <aside class="hero-visual" aria-hidden="true">
@@ -80,96 +78,42 @@
           </aside>
         </section>
 
-        <section class="sections-grid" aria-label="Lesson 3 steps">
-          <article class="section">
-            <div class="section-eyebrow">What Are Eighth Notes?</div>
-            <h2 class="section-title">Subdividing the beat in half.</h2>
-            <p class="section-body">
-              <strong>Eighth notes (1/8)</strong> divide each beat in half. If quarter notes are
-              "1, 2, 3, 4", eighth notes add the "&" between: <strong>1 & 2 & 3 & 4 &</strong>.
-            </p>
-            <ul class="section-list">
-              <li><strong>Quarter notes:</strong> 4 per bar (the main beats).</li>
-              <li><strong>Eighth notes:</strong> 8 per bar (twice as fast).</li>
-              <li><strong>The "&":</strong> Falls exactly between the main beats.</li>
-            </ul>
-            <p class="section-body" style="margin-top:0.8rem;">
-              <strong>Count along:</strong> "1 & 2 & 3 & 4 &" – the hi-hat plays on every syllable!
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Step 1</div>
-            <h2 class="section-title">Hi-Hats Add Motion and Energy.</h2>
-            <p class="section-body">
-              Hi-hats are metallic cymbals that create rhythmic motion. They fill the space
-              between kick and snare, giving the beat its <strong>energy and drive</strong>.
-            </p>
-            <ul class="section-list">
-              <li>Short, crisp metallic sound that cuts through the mix.</li>
-              <li>Defines the tempo feel (straight or swung).</li>
-              <li>Can be "closed" (tight) or "open" (sustaining).</li>
-            </ul>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Step 2</div>
-            <h2 class="section-title">Program the Eighth Notes Pattern.</h2>
-            <p class="section-body">
-              In a <strong>16-step grid</strong>, eighth notes fall on the
-              <strong>odd-numbered steps</strong>: 1, 3, 5, 7, 9, 11, 13, 15.
-            </p>
-            <ul class="section-list">
-              <li>Keep your <strong>Kick</strong>: steps 1, 5, 9, 13.</li>
-              <li>Keep your <strong>Snare</strong>: steps 5 and 13.</li>
-              <li>Add <strong>Hi-Hat</strong> on: steps <strong>1, 3, 5, 7, 9, 11, 13, 15</strong>.</li>
-              <li class="instruction-line">
-                <p class="instruction">
-                  <strong>Listen:</strong>
-                  <span class="count nowrap">The hi-hats create a steady "tss-tss-tss-tss" that drives the groove forward.</span>
-                </p>
-              </li>
-            </ul>
-            <p class="section-body" style="margin-top:0.8rem;">
-              The result is a complete rock/pop beat with three elements working together!
-            </p>
-          </article>
-        </section>
-
-        <!-- Exercise Instructions -->
-        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
             <div class="section-eyebrow">Exercise</div>
-            <h2 class="section-title">Add the Hi-Hats</h2>
-            <p class="section-body">Create a complete beat with kick, snare, and eighth-note hi-hats. This is your first full drum groove!</p>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
 
-            <div class="exercise-steps">
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
               <h3>What to do:</h3>
-              <ol class="exercise-checklist">
-                <li><strong>Kick row:</strong> Click steps <strong>1, 5, 9, 13</strong> to place your kicks.</li>
-                <li><strong>Snare row:</strong> Click steps <strong>5 and 13</strong> to place your snares.</li>
-                <li><strong>Hi-Hat row:</strong> Click steps <strong>1, 3, 5, 7, 9, 11, 13, 15</strong> (all odd steps).</li>
-                <li>Press <strong>Play</strong> to hear your full groove.</li>
-                <li>When satisfied, click <strong>Check Exercise</strong> to verify your pattern.</li>
-              </ol>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
-            <div class="exercise-tip">
-              <strong>Tip:</strong> Count "1 & 2 & 3 & 4 &" – the hi-hat hits on every syllable!
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
 
-        <!-- Full-Width Sequencer -->
-        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
           <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
-          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
 
           <div class="sequencer" id="mpl-sequencer-collection">
             <!-- Sequencer will be created by JS -->
           </div>
 
-          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               Play
@@ -178,8 +122,9 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               Stop
             </button>
-            <button type="button" class="btn btn-outline" id="mpl-show-pattern">
-              💡 Show Pattern
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Clear
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
               Check Exercise
@@ -193,27 +138,10 @@
           </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            Complete the pattern to unlock the next lesson.
+            Complete the exercise to unlock the next lesson.
           </div>
         </section>
 
-      <!-- KEY TAKEAWAYS -->
-      <section class="card">
-        <h2><span class="icon">🎓</span> Key Takeaways</h2>
-        <ul class="check-list">
-          <li><strong>Eighth notes:</strong> Divide each beat in half (1 & 2 & 3 & 4 &)</li>
-          <li><strong>Hi-hats:</strong> Create motion and energy between kick and snare</li>
-          <li><strong>Odd steps:</strong> In a 16-step grid, 8th notes fall on 1, 3, 5, 7, 9, 11, 13, 15</li>
-          <li><strong>Complete beat:</strong> Kick + Snare + Hi-Hat = full drum groove</li>
-        </ul>
-      </section>
-
-      <!-- NAVIGATION -->
-      <nav class="lesson-nav">
-        <a href="lesson-drums-2.html" class="nav-btn prev"><span class="arrow">←</span> Previous Lesson</a>
-        <a href="labs.html" class="nav-btn overview">Labs Overview</a>
-        <a href="lesson-drums-4.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
-      </nav>
     </main>
 
     <!-- FOOTER -->
@@ -227,72 +155,17 @@
       </div>
     </footer>
 
-    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+    <!-- MODULAR LESSON ENGINE -->
     <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-3.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
 
-      const LESSON_KEY = "mpl-lesson3-progress";
-      const NEXT_LESSON_URL = "lesson-drums-4.html";
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
 
-      const instruments = [
-        {
-          id: "kick",
-          label: "Kick",
-          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-          target: [0, 4, 8, 12],
-          instructions: "Kick: 4 on the floor (beats 1, 2, 3, 4)"
-        },
-        {
-          id: "snare",
-          label: "Snare",
-          color: "linear-gradient(135deg, #5f4dff, #8a9bff)",
-          target: [4, 12],
-          instructions: "Snare: Backbeat on beats 2 and 4"
-        },
-        {
-          id: "hihat",
-          label: "Hi-Hat",
-          color: "linear-gradient(135deg, #00d4ff, #b8ffdd)",
-          target: [0, 2, 4, 6, 8, 10, 12, 14],
-          instructions: "Hi-Hat: Eighth notes (1 & 2 & 3 & 4 &)"
-        }
-      ];
-
-      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-
-      // Show Pattern functionality
-      document.getElementById('mpl-show-pattern').addEventListener('click', () => {
-        instruments.forEach((instrument, instrumentIndex) => {
-          const sequencerRow = document.querySelectorAll('.sequencer-row')[instrumentIndex];
-          if (!sequencerRow) return;
-
-          instrument.target.forEach(stepIndex => {
-            const stepButton = sequencerRow.querySelectorAll('.sequencer-step')[stepIndex];
-            if (stepButton) {
-              stepButton.classList.add('hint-pulse');
-              setTimeout(() => {
-                stepButton.classList.remove('hint-pulse');
-              }, 2500);
-            }
-          });
-        });
-      });
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
-    <style>
-      @keyframes pulse-hint {
-        0%, 100% {
-          box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
-          background: var(--step-bg, #1a1d24);
-        }
-        50% {
-          box-shadow: 0 0 0 8px rgba(255, 215, 0, 0);
-          background: rgba(255, 215, 0, 0.3);
-        }
-      }
-      .sequencer-step.hint-pulse {
-        animation: pulse-hint 0.8s ease-in-out 3;
-        border-color: rgba(255, 215, 0, 0.8) !important;
-      }
-    </style>
   </body>
 </html>

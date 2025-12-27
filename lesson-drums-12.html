@@ -2,530 +2,132 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 12 · Rock & Live Drum Simulation | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson 12 | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Program realistic rock drums. Simulate live drummer techniques, cymbal work, and dynamic fills." />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-      /* Drum Kit Visualization */
-      .drum-kit {
-        background: linear-gradient(135deg, #2d3436, #636e72);
-        border-radius: var(--radius-lg);
-        padding: var(--space-xl);
-        margin: var(--space-xl) 0;
-        text-align: center;
-      }
-      
-      .kit-layout {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: var(--space-md);
-        max-width: 500px;
-        margin: 0 auto;
-      }
-      
-      .kit-piece {
-        aspect-ratio: 1;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.1s;
-      }
-      
-      .kit-piece:hover {
-        transform: scale(1.1);
-      }
-      
-      .kit-piece:active {
-        transform: scale(0.95);
-      }
-      
-      .kit-piece.crash { grid-column: 1; grid-row: 1; background: linear-gradient(135deg, #fdcb6e, #f39c12); }
-      .kit-piece.hihat { grid-column: 2; grid-row: 1; background: linear-gradient(135deg, #00cec9, #0984e3); }
-      .kit-piece.ride { grid-column: 4; grid-row: 1; background: linear-gradient(135deg, #fdcb6e, #f39c12); }
-      .kit-piece.china { grid-column: 5; grid-row: 1; background: linear-gradient(135deg, #e17055, #d63031); }
-      
-      .kit-piece.tom-high { grid-column: 2; grid-row: 2; background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-      .kit-piece.tom-mid { grid-column: 3; grid-row: 2; background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-      .kit-piece.tom-floor { grid-column: 4; grid-row: 2; background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-      
-      .kit-piece.snare { grid-column: 2; grid-row: 3; background: linear-gradient(135deg, #ffeaa7, #fdcb6e); color: #333; }
-      .kit-piece.kick { grid-column: 3; grid-row: 3; background: linear-gradient(135deg, #e17055, #d63031); border-radius: var(--radius-md); }
-      
-      /* Rock Styles */
-      .rock-styles {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .rock-style {
-        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        border: 2px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-      }
-      
-      .rock-style h3 {
-        font-size: 1.1rem;
-        margin-bottom: var(--space-xs);
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-      }
-      
-      .rock-style .tempo {
-        font-size: 0.75rem;
-        color: var(--accent-amber);
-        background: rgba(253, 203, 110, 0.2);
-        padding: 2px 8px;
-        border-radius: var(--radius-sm);
-      }
-      
-      .rock-style p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: var(--space-md);
-      }
-      
-      .rock-style .pattern-box {
-        background: var(--bg-tertiary);
-        padding: var(--space-sm);
-        border-radius: var(--radius-sm);
-        font-family: monospace;
-        font-size: 0.7rem;
-        overflow-x: auto;
-      }
-      
-      /* Dynamics Meter */
-      .dynamics-meter {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      
-      .meter-bar {
-        height: 20px;
-        background: linear-gradient(90deg, 
-          var(--accent-green) 0%, 
-          var(--accent-cyan) 33%, 
-          var(--accent-amber) 66%, 
-          #e17055 100%
-        );
-        border-radius: var(--radius-sm);
-        position: relative;
-      }
-      
-      .meter-labels {
-        display: flex;
-        justify-content: space-between;
-        margin-top: var(--space-xs);
-        font-size: 0.7rem;
-        color: var(--text-muted);
-      }
-      
-      /* Fill Builder */
-      .fill-builder {
-        background: var(--bg-secondary);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        margin: var(--space-xl) 0;
-      }
-      
-      .fill-grid {
-        display: grid;
-        grid-template-columns: repeat(16, 1fr);
-        gap: 2px;
-        margin: var(--space-md) 0;
-      }
-      
-      .fill-step {
-        aspect-ratio: 1;
-        background: var(--bg-tertiary);
-        border-radius: 2px;
-        cursor: pointer;
-        transition: all 0.1s;
-        position: relative;
-      }
-      
-      .fill-step:hover {
-        background: var(--accent-cyan);
-        opacity: 0.5;
-      }
-      
-      .fill-step.active {
-        opacity: 1;
-      }
-      
-      .fill-step.snare.active { background: var(--accent-amber); }
-      .fill-step.tom-high.active { background: #a29bfe; }
-      .fill-step.tom-mid.active { background: #6c5ce7; }
-      .fill-step.tom-floor.active { background: #5f27cd; }
-      .fill-step.crash.active { background: var(--accent-cyan); }
-    </style>
   </head>
-  <body class="lesson-page">
-    <!-- Header -->
+  <body>
+    <!-- HEADER -->
     <header class="site-header glass">
-      <div class="header-content">
-        <a href="index.html" class="logo" aria-label="Music Producer Lab Home">
-          <img src="mpl-logo.svg" alt="MPL" class="logo-icon" width="32" height="32">
-          <span class="logo-text">Music Producer Lab</span>
+      <div class="header-inner container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent-coral)"/><rect x="10" y="10" width="5" height="12" rx="1" fill="#fff"/><rect x="17" y="6" width="5" height="16" rx="1" fill="#fff"/></svg></span>
+          <span class="brand-text">Music Producer Lab</span>
         </a>
-        <a href="labs.html" class="btn btn--outline btn--sm">
-          <span class="btn-icon">←</span> Back to overview
-        </a>
+        <nav class="header-nav">
+          <a href="labs.html" class="nav-link">Labs</a>
+        </nav>
       </div>
     </header>
 
-    <main class="lesson-main">
-      <!-- Hero Section -->
-      <section class="lesson-hero">
-        <div class="hero-content">
-          <p class="hero-eyebrow">Lesson 12 · Drums & Rhythm · Intermediate</p>
-          <h1 class="hero-title">Rock & Live <span class="highlight">Drum Simulation</span></h1>
-          <p class="hero-subtitle">
-            Program <strong>realistic rock drums</strong> that sound like a real drummer. 
-            Master <strong>cymbal work</strong>, <strong>dynamic tom fills</strong>, and the 
-            techniques that make programmed drums feel <strong>human and powerful</strong>.
-          </p>
-          
-          <div class="hero-meta">
-            <span class="meta-item">⏱️ 18-20 min</span>
-            <span class="meta-item">📊 Level 6</span>
-            <span class="meta-item">🎯 Intermediate</span>
-          </div>
-        </div>
-      </section>
+    <main class="main-content container">
 
-      <!-- Navigation -->
-      <nav class="lesson-nav" aria-label="Lesson navigation">
-        <a href="lesson-drums-11.html" class="nav-link nav-link--prev">
-          ← Back to Lesson 11
-        </a>
-        <a href="lesson-drums-13.html" class="nav-link nav-link--next">
-          Next: Humanization →
-        </a>
-      </nav>
-
-      <!-- Main Content -->
-      <article class="lesson-content">
-        
-        <!-- Introduction -->
-        <section class="content-section">
-          <h2>Programming Drums That Feel Alive</h2>
-          <p>
-            Rock drums are all about <strong>power and emotion</strong>. Unlike electronic genres where 
-            precision is key, rock drumming embraces imperfection—the subtle timing variations, velocity 
-            changes, and expressive fills that make a performance feel <em>human</em>.
-          </p>
-          
-          <div class="callout callout--info">
-            <p>
-              <strong>🎯 The Goal:</strong> Your programmed rock drums should sound like a real drummer 
-              in a room, not a drum machine. Think dynamics, think fills, think <em>feel</em>.
-            </p>
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
           </div>
+
+          <!-- Hero visual section -->
         </section>
 
-        <!-- Drum Kit Overview -->
-        <section class="content-section">
-          <h2>The Rock Drum Kit</h2>
-          <p>A standard rock kit has more pieces than electronic genres. Know your instruments:</p>
-          
-          <div class="drum-kit">
-            <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Interactive Drum Kit</h4>
-            <div class="kit-layout">
-              <div class="kit-piece crash" title="Crash Cymbal">Crash</div>
-              <div class="kit-piece hihat" title="Hi-Hat">HiHat</div>
-              <div class="kit-piece" style="background: transparent;"></div>
-              <div class="kit-piece ride" title="Ride Cymbal">Ride</div>
-              <div class="kit-piece china" title="China/Splash">China</div>
-              
-              <div class="kit-piece" style="background: transparent;"></div>
-              <div class="kit-piece tom-high" title="High Tom">Hi Tom</div>
-              <div class="kit-piece tom-mid" title="Mid Tom">Mid Tom</div>
-              <div class="kit-piece tom-floor" title="Floor Tom">Floor</div>
-              <div class="kit-piece" style="background: transparent;"></div>
-              
-              <div class="kit-piece" style="background: transparent;"></div>
-              <div class="kit-piece snare" title="Snare Drum">Snare</div>
-              <div class="kit-piece kick" title="Kick Drum">Kick</div>
-              <div class="kit-piece" style="background: transparent;"></div>
-              <div class="kit-piece" style="background: transparent;"></div>
-            </div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-md);">
-              Click pieces to hear them (if audio enabled)
-            </p>
-          </div>
-        </section>
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
 
-        <!-- Rock Styles -->
-        <section class="content-section">
-          <h2>Rock Drum Styles</h2>
-          
-          <div class="rock-styles">
-            <div class="rock-style">
-              <h3>🎸 Classic Rock <span class="tempo">100-130 BPM</span></h3>
-              <p>
-                Driving 8th note grooves with powerful backbeat. Think Led Zeppelin, 
-                AC/DC—big drums, simple patterns, lots of attitude.
-              </p>
-              <div class="pattern-box">
-K: X · · · X · · · X · · · X · · ·
-S: · · · · X · · · · · · · X · · ·
-H: X · X · X · X · X · X · X · X ·
-              </div>
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
-            
-            <div class="rock-style">
-              <h3>🔥 Hard Rock <span class="tempo">110-140 BPM</span></h3>
-              <p>
-                More aggressive with double kick patterns and china cymbal accents. 
-                Think Foo Fighters, Queens of the Stone Age.
-              </p>
-              <div class="pattern-box">
-K: X · X · X · · · X · X · X · · ·
-S: · · · · X · · · · · · · X · · ·
-H: X X X X X X X X X X X X X X X X
-              </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
-            
-            <div class="rock-style">
-              <h3>🥁 Pop Rock <span class="tempo">100-120 BPM</span></h3>
-              <p>
-                Cleaner grooves with consistent dynamics. More controlled, 
-                radio-friendly patterns. Think Maroon 5, OneRepublic.
-              </p>
-              <div class="pattern-box">
-K: X · · · · · X · X · · · · · X ·
-S: · · · · X · · · · · · · X · · ·
-H: X · X · X · X · X · X · X · X ·
-              </div>
-            </div>
-            
-            <div class="rock-style">
-              <h3>⚡ Punk Rock <span class="tempo">150-200 BPM</span></h3>
-              <p>
-                Fast, aggressive, relentless. D-beat patterns, constant energy, 
-                crash cymbal abuse. Think Green Day, Blink-182.
-              </p>
-              <div class="pattern-box">
-K: X · · · X · · · X · · · X · · ·
-S: · · X · · · X · · · X · · · X ·
-C: X · · · · · · · X · · · · · · ·
-              </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
 
-        <!-- Dynamics -->
-        <section class="content-section">
-          <h2>Dynamics: The Secret to Realism</h2>
-          <p>
-            Real drummers don't hit every note at the same volume. <strong>Dynamics</strong> create 
-            the ebb and flow that makes rock drums feel alive.
-          </p>
-          
-          <div class="dynamics-meter">
-            <h4 style="margin-bottom: var(--space-sm);">Dynamic Range</h4>
-            <div class="meter-bar"></div>
-            <div class="meter-labels">
-              <span>Ghost (pp)</span>
-              <span>Soft (p)</span>
-              <span>Normal (mf)</span>
-              <span>Loud (f)</span>
-              <span>Accent (ff)</span>
-            </div>
-          </div>
-          
-          <div class="callout callout--tip">
-            <h4>💡 Dynamic Rules for Rock</h4>
-            <ul style="margin-top: var(--space-sm);">
-              <li><strong>Verses:</strong> Pull back—softer hi-hats, controlled snare</li>
-              <li><strong>Choruses:</strong> Open up—crash cymbals, fuller dynamics</li>
-              <li><strong>Fills:</strong> Build intensity—start soft, end loud</li>
-              <li><strong>Accents:</strong> Crash on beat 1 of new sections</li>
-            </ul>
-          </div>
-        </section>
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
 
-        <!-- Tom Fills -->
-        <section class="content-section">
-          <h2>Building Rock Fills</h2>
-          <p>
-            Rock fills typically move <strong>around the kit</strong>—from snare to high tom to mid tom 
-            to floor tom, often ending with a crash. This creates a <strong>descending pitch</strong> 
-            that builds energy.
-          </p>
-          
-          <div class="fill-builder">
-            <h4 style="margin-bottom: var(--space-md);">Classic Rock Fill Pattern</h4>
-            
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">
-              A typical fill in the last 4 steps of a bar:
-            </p>
-            
-            <div style="font-family: monospace; font-size: 0.8rem; background: var(--bg-tertiary); padding: var(--space-md); border-radius: var(--radius-md);">
-<span style="color: var(--text-muted);">Steps:    13   14   15   16  | 1</span>
-<span style="color: var(--accent-amber);">Snare:    X    ·    ·    ·  | ·</span>
-<span style="color: #a29bfe;">Hi Tom:   ·    X    ·    ·  | ·</span>
-<span style="color: #6c5ce7;">Mid Tom:  ·    ·    X    ·  | ·</span>
-<span style="color: #5f27cd;">Floor:    ·    ·    ·    X  | ·</span>
-<span style="color: var(--accent-cyan);">Crash:    ·    ·    ·    ·  | X</span>
-            </div>
-            
-            <p style="font-size: 0.8rem; color: var(--accent-amber); margin-top: var(--space-md);">
-              💡 The crash lands on beat 1 of the NEW section—this signals the change!
-            </p>
-          </div>
-        </section>
-
-        <!-- Interactive Exercise -->
-        <section class="content-section exercise-section">
-          <h2>🎯 Exercise: Build a Rock Beat with Fill</h2>
-          
-          <div class="exercise-intro">
-            <p>
-              Create a rock drum pattern with a fill at the end of bar 2. 
-              Use the full kit—kick, snare, hi-hats, toms, and crash.
-            </p>
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
           </div>
 
-          <div class="exercise-steps">
-            <div class="step">
-              <span class="step-number">1</span>
-              <div class="step-content">
-                <strong>Kick:</strong> Steps 1, 5, 9, 13 (4-on-the-floor variation)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">2</span>
-              <div class="step-content">
-                <strong>Snare:</strong> Steps 5 and 13 (backbeat)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">3</span>
-              <div class="step-content">
-                <strong>Hi-Hat:</strong> 8th notes throughout (1, 3, 5, 7, 9, 11, 13, 15)
-              </div>
-            </div>
-            <div class="step">
-              <span class="step-number">4</span>
-              <div class="step-content">
-                <strong>Crash:</strong> Add a crash on step 1 to mark the start
-              </div>
-            </div>
-          </div>
-
-          <!-- Sequencer Component -->
-          <div class="sequencer-container" id="sequencer">
-            <div class="sequencer-header">
-              <h3>Rock Drum Sequencer</h3>
-              <div class="sequencer-controls">
-                <button class="btn btn--primary" id="mpl-seq-play-all">▶ Play</button>
-                <button class="btn btn--outline" id="mpl-seq-stop-all">⏹ Stop</button>
-                <button class="btn btn--accent" id="mpl-seq-check-all">Check Exercise</button>
-              </div>
-            </div>
-
-            <div class="tempo-display" style="text-align: center; margin: var(--space-sm) 0; color: var(--accent-amber);">
-              🎵 120 BPM - Classic Rock Tempo
-            </div>
-
-            <div class="sequencer" id="mpl-sequencer-collection"></div>
-
-            <div class="exercise-status">
-              <p id="mpl-seq-status">Build a rock beat with crash accent to unlock the next lesson.</p>
-            </div>
-          </div>
-
-          <div class="next-lesson-container">
-            <button class="btn btn--primary btn--lg" id="mpl-next-lesson" disabled>
-              Next Lesson →
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Play
             </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              Stop
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Clear
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              Check Exercise
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                Next Lesson &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            Complete the exercise to unlock the next lesson.
           </div>
         </section>
 
-        <!-- Summary -->
-        <section class="content-section">
-          <h2>Key Takeaways</h2>
-          <ul class="summary-list">
-            <li><strong>Rock drums use the full kit:</strong> Kick, snare, hi-hat, toms, cymbals</li>
-            <li><strong>Dynamics are essential:</strong> Verse (soft) → Chorus (loud)</li>
-            <li><strong>Fills move around the kit:</strong> Snare → Hi Tom → Mid Tom → Floor Tom → Crash</li>
-            <li><strong>Crash on beat 1:</strong> Signals new sections</li>
-            <li><strong>Tempo range:</strong> 100-200 BPM depending on subgenre</li>
-          </ul>
-        </section>
-
-      </article>
-
-      <!-- Bottom Navigation -->
-      <nav class="lesson-nav lesson-nav--bottom" aria-label="Lesson navigation">
-        <a href="lesson-drums-11.html" class="nav-link nav-link--prev">
-          ← DnB & Breakbeat
-        </a>
-        <a href="labs.html" class="nav-link nav-link--overview">
-          Overview
-        </a>
-        <a href="lesson-drums-13.html" class="nav-link nav-link--next">
-          Humanization →
-        </a>
-      </nav>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2024 Music Producer Lab. All rights reserved.</p>
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- MODULAR LESSON ENGINE -->
     <script type="module">
-      import { initDrumSequencer } from './sequencer.js';
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-12.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
 
-      const LESSON_KEY = "mpl-drums-12-progress";
-      const NEXT_LESSON_URL = "lesson-drums-13.html";
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
 
-      // Rock: standard beat with kick, snare, hats
-      const instruments = [
-        {
-          id: "kick",
-          label: "Kick",
-          color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-          target: [0, 8],
-          instructions: "Kick on beats 1 and 3"
-        },
-        {
-          id: "snare",
-          label: "Snare",
-          color: "linear-gradient(135deg, #feca57, #ff9f43)",
-          target: [4, 12],
-          instructions: "Snare on beats 2 and 4"
-        },
-        {
-          id: "hihat",
-          label: "Hi-Hat",
-          color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-          target: [0, 2, 4, 6, 8, 10, 12, 14],
-          instructions: "8th note hi-hats"
-        }
-      ];
-
-      initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

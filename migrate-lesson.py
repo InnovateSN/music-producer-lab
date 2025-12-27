@@ -1,8 +1,30 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Migration script for Music Producer Lab lessons
+Converts standalone lessons to modular architecture
+"""
+
+import re
+import sys
+
+def extract_hero_visual(html_content):
+    """Extract the custom hero-visual section from original lesson"""
+    pattern = r'<aside class="hero-visual"[^>]*>.*?</aside>'
+    match = re.search(pattern, html_content, re.DOTALL)
+    if match:
+        return match.group(0)
+    return None
+
+def generate_migrated_lesson(lesson_number, lesson_type="drums", hero_visual=None):
+    """Generate migrated lesson HTML"""
+
+    config_path = f"./configs/lesson-{lesson_type}-{lesson_number}.config.js"
+
+    template = f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title id="mpl-page-title">Lesson 16 | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson {lesson_number} | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
@@ -37,7 +59,7 @@
             <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
           </div>
 
-          <!-- Hero visual section -->
+          {hero_visual if hero_visual else "<!-- Hero visual section -->"}
         </section>
 
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
@@ -120,8 +142,8 @@
     <!-- MODULAR LESSON ENGINE -->
     <script type="module">
       // Import lesson config and engine
-      import { lessonConfig } from './configs/lesson-drums-16.config.js';
-      import { initLessonFromConfig } from './lesson-engine.js';
+      import {{ lessonConfig }} from '{config_path}';
+      import {{ initLessonFromConfig }} from './lesson-engine.js';
 
       // Initialize lesson from config
       initLessonFromConfig(lessonConfig);
@@ -131,3 +153,62 @@
     </script>
   </body>
 </html>
+'''
+
+    return template
+
+def migrate_lesson_file(input_file, output_file, lesson_number, lesson_type="drums"):
+    """Migrate a single lesson file"""
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            original_content = f.read()
+
+        # Extract hero-visual section
+        hero_visual = extract_hero_visual(original_content)
+
+        # Generate migrated content
+        migrated_content = generate_migrated_lesson(lesson_number, lesson_type, hero_visual)
+
+        # Write to output file
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(migrated_content)
+
+        print(f"✅ Migrated: {input_file} → {output_file}")
+        return True
+
+    except Exception as e:
+        print(f"❌ Error migrating {input_file}: {e}")
+        return False
+
+def main():
+    if len(sys.argv) < 3:
+        print("Usage: python3 migrate-lesson.py <lesson_number> <lesson_type>")
+        print("Example: python3 migrate-lesson.py 2 drums")
+        sys.exit(1)
+
+    lesson_number = sys.argv[1]
+    lesson_type = sys.argv[2] if len(sys.argv) > 2 else "drums"
+
+    input_file = f"lesson-{lesson_type}-{lesson_number}.html"
+    output_file = f"lesson-{lesson_type}-{lesson_number}.html"
+    backup_file = f"lesson-{lesson_type}-{lesson_number}-BACKUP.html"
+
+    # Create backup
+    import shutil
+    try:
+        shutil.copy(input_file, backup_file)
+        print(f"📦 Backup created: {backup_file}")
+    except:
+        print(f"⚠️  Could not create backup")
+
+    # Migrate
+    success = migrate_lesson_file(input_file, output_file, lesson_number, lesson_type)
+
+    if success:
+        print(f"✨ Migration complete!")
+    else:
+        print(f"❌ Migration failed")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

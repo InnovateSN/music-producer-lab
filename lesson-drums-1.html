@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 1 · Drum Pattern · 4 on the floor | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson 1 · Drum Pattern · 4 on the floor | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Free Lesson 1 from Music Producer Lab: create your first 4 on the floor drum pattern and understand bars, beats and subdivisions." />
+    <meta name="description" id="mpl-meta-description" content="Free Lesson 1 from Music Producer Lab: create your first 4 on the floor drum pattern and understand bars, beats and subdivisions." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
@@ -26,19 +26,15 @@
 
     <main class="main-content container">
 
-        <section class="hero" aria-label="Lesson 1 · Drum pattern">
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
           <div class="hero-copy">
-            <div class="hero-copy-eyebrow">Lesson 1 · Drum pattern</div>
-            <h1 class="hero-title">
-              4 on the floor:
-              <span>your first full beat</span>.
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
             </h1>
-            <p class="hero-subtitle">
-              In this lesson you build the classic 4 on the floor rhythm and,
-              while you program it in your DAW or drum machine, you learn what
-              <strong>bars</strong>, <strong>beats</strong> and
-              <strong>subdivisions</strong> (1/4, 1/8, 1/16) are.
-            </p>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
           </div>
 
           <aside class="hero-visual" aria-hidden="true">
@@ -82,104 +78,42 @@
           </aside>
         </section>
 
-        <section class="sections-grid" aria-label="Lesson 1 steps">
-          <article class="section">
-            <div class="section-eyebrow">Step 1</div>
-            <h2 class="section-title">Set up the project and learn the count.</h2>
-            <p class="section-body">
-              One bar in 4/4 is divided into 4 <strong>beats</strong>. We count
-              them like this:
-              <strong><span class="nowrap">1 – 2 – 3 – 4</span></strong>. Each number is a
-              strong beat.
-            </p>
-            <ul class="section-list">
-              <li>Set the tempo to <strong>120 BPM</strong>.</li>
-              <li>Make sure the time signature is <strong>4/4</strong>.</li>
-              <li>Turn on your DAW’s <strong>metronome</strong>.</li>
-              <li class="instruction-line">
-                <p class="instruction">
-                  <strong>Count out loud:</strong>
-                  <span class="count nowrap">1 – 2 – 3 – 4 together with the metronome click.</span>
-                </p>
-              </li>
-            </ul>
-            <p class="section-body" style="margin-top:0.8rem;">
-              When we talk about subdivisions:
-              <strong>quarter notes (1/4)</strong> are the beats
-              (<span class="nowrap">1, 2, 3, 4</span>),
-              <strong>eighth notes (1/8)</strong> add the “&amp;”
-              (<span class="nowrap">1 &amp; 2 &amp; 3 &amp; 4 &amp;</span>),
-              <strong>sixteenth notes (1/16)</strong> split each beat even further.
-            </p>
-          </article>
-
-          <article class="section">
-            <div class="section-eyebrow">Step 2</div>
-            <h2 class="section-title">Program the 4 on the floor.</h2>
-            <p class="section-body">
-              Now create the classic 4 on the floor: a kick on every beat of the
-              bar. This is the foundation of a huge amount of dance and pop music.
-            </p>
-            <ul class="section-list">
-              <li>
-                Create a <strong>1-bar</strong> MIDI clip on your kick track.
-              </li>
-              <li>
-                Place a kick on beats
-                <strong><span class="nowrap">1, 2, 3, 4</span></strong>
-                (quarter-note grid).
-              </li>
-              <li>
-                Loop the clip and listen: you should hear a steady kick together
-                with the metronome.
-              </li>
-            </ul>
-          </article>
-        </section>
-
-        <!-- Exercise Instructions -->
-        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
             <div class="section-eyebrow">Exercise</div>
-            <h2 class="section-title">Build the 4-on-the-Floor Kick Pattern</h2>
-            <p class="section-body">In this exercise, you'll create the classic <strong>"4 on the floor"</strong> kick pattern - the foundation of house, techno, and most dance music.</p>
-            
-            <div class="exercise-steps">
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
               <h3>What to do:</h3>
-              <ol class="exercise-checklist">
-                <li><strong>Click on steps 1, 5, 9, and 13</strong> in the Kick row to place your kicks.</li>
-            <li>These positions correspond to the four beats of the bar (quarter notes).</li>
-            <li>Press <strong>Play</strong> to hear your pattern loop.</li>
-            <li>When satisfied, click <strong>Check Exercise</strong> to verify your answer.</li>
-              </ol>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
-            <div class="exercise-tip">
-              <strong>Tip:</strong> Think of counting 1-2-3-4. Each number gets a kick drum hit!
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
 
-            <div class="pattern-hint">
-              <div class="pattern-hint-label">Target Pattern (Kick):</div>
-              <div class="pattern-grid-visual">
-                <span class="step-on">1</span><span class="step-off">2</span><span class="step-off">3</span><span class="step-off">4</span>
-                <span class="step-on">5</span><span class="step-off">6</span><span class="step-off">7</span><span class="step-off">8</span>
-                <span class="step-on">9</span><span class="step-off">10</span><span class="step-off">11</span><span class="step-off">12</span>
-                <span class="step-on">13</span><span class="step-off">14</span><span class="step-off">15</span><span class="step-off">16</span>
-              </div>
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
 
-        <!-- Full-Width Sequencer -->
-        <section class="sequencer-section" style="margin-top: var(--space-xl);">
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
           <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
-          <h2 class="section-title" style="margin-bottom: var(--space-lg);">16-Step Grid</h2>
-          
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+
           <div class="sequencer" id="mpl-sequencer-collection">
             <!-- Sequencer will be created by JS -->
           </div>
 
-          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               Play
@@ -187,6 +121,10 @@
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               Stop
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Clear
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
               Check Exercise
@@ -200,53 +138,34 @@
           </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            Complete the kick exercise to unlock the next lesson.
+            Complete the exercise to unlock the next lesson.
           </div>
         </section>
 
-        <!-- NAVIGATION -->
-        <nav class="lesson-nav">
-          <a href="labs.html" class="nav-btn prev"><span class="arrow">←</span> Labs Overview</a>
-          <a href="labs.html" class="nav-btn overview">Labs</a>
-          <a href="lesson-drums-2.html" class="nav-btn next">Next Lesson <span class="arrow">→</span></a>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
         </nav>
-      </main>
+      </div>
+    </footer>
 
-      <!-- FOOTER -->
-      <footer class="site-footer">
-        <div class="container footer-grid">
-          <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
-          <nav class="footer-nav">
-            <a href="labs.html">Labs</a>
-            <a href="index.html">Home</a>
-          </nav>
-        </div>
-      </footer>
+    <!-- MODULAR LESSON ENGINE -->
+    <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-1.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
 
-      <script type="module">
-        import { initDrumSequencer } from './sequencer.js';
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
 
-        document.getElementById("mpl-year").textContent =
-          new Date().getFullYear();
-
-        const LESSON_KEY = "mpl-lesson1-progress";
-        const NEXT_LESSON_URL = "lesson-drums-2.html";
-
-        // Instruments (only Kick for Lesson 1)
-        const instruments = [
-          {
-            id: "kick",
-            label: "Kick",
-            color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
-            target: [0,4,8,12],
-            instructions:
-              "Exercise — Kick: Place one kick on each beat of the bar (one per quarter note). Work in the 16-step grid where the bar has four beats."
-          }
-        ];
-
-        initDrumSequencer(instruments, LESSON_KEY, NEXT_LESSON_URL);
-      </script>
-    </div>
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
-
