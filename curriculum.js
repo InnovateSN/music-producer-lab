@@ -1,7 +1,7 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains all 44 lessons across 6 categories.
+ * This file contains all 45 lessons across 6 categories.
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
  * Progression Levels:
@@ -15,7 +15,7 @@ export const curriculumOverviewUrl = 'labs.html';
 
 export const curriculum = [
   // ============================================================
-  // DRUMS & RHYTHM MODULE (20 Lessons)
+  // DRUMS & RHYTHM MODULE (21 Lessons)
   // ============================================================
   {
     slug: 'drums',
@@ -24,10 +24,22 @@ export const curriculum = [
     lessons: [
       // --- LEVEL 1-3: BEGINNER ---
       {
+        slug: 'lesson-drums-0',
+        lessonKey: 'mpl-lesson0-progress',
+        title: 'Music Production Fundamentals',
+        description: 'Essential concepts for absolute beginners: DAWs, loops, tempo, bars, beats, and how music is organized in time. No prior knowledge required.',
+        duration: '15-20 min',
+        level: 'Beginner',
+        depthLevel: 1,
+        badge: 'Free',
+        pagePath: 'lesson-drums-0.html',
+        configPath: './configs/lesson-drums-0.config.js'
+      },
+      {
         slug: 'lesson-drums-1',
         lessonKey: 'mpl-lesson1-progress', // Matches HTML file
         title: '4 on the Floor: Kick Foundation',
-        description: 'Start with the essential 4-on-the-floor kick pattern. Learn basic song counting and understand bars, beats, and subdivisions.',
+        description: 'Build the most important rhythm pattern in electronic music. Create a repeating rhythm that feels stable, danceable, and easy to recognize.',
         duration: '8-10 min',
         level: 'Beginner',
         depthLevel: 1,
