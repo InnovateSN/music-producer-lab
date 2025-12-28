@@ -282,6 +282,9 @@
       // Labs Page
       labsPageTitle: 'Interactive Music Production Labs',
       labsPageSubtitle: 'Choose your path. Build real skills.',
+      labsHeroBadge: 'All Labs',
+      labsHeroTitle: 'Interactive Production Labs',
+      labsHeroSubtitle: 'Choose a module and start learning. Each lab is designed to teach you a specific skill through hands-on practice. No fluff, just production.',
 
       categoryDrums: 'Drums & Rhythm',
       categoryDrumsDescription: 'Master drum programming and rhythm fundamentals',
@@ -304,54 +307,134 @@
       categoryMasteringLessons: '15 lessons',
 
       // About Page
-      aboutPageTitle: 'About Music Producer Lab',
-      aboutPageSubtitle: 'Our mission is to make music production education accessible through hands-on learning.',
+      aboutHeroBadge: 'Our Story',
+      aboutHeroTitle: 'About Music Producer Lab',
+      aboutHeroSubtitle: 'We believe everyone should have the opportunity to create music. That\'s why we\'re building the most accessible, hands-on music production education platform.',
 
       aboutMissionTitle: 'Our Mission',
-      aboutMissionText1: 'Music production education is broken. Most courses focus on watching instead of doing. Students spend hundreds of hours consuming content but never build the muscle memory that comes from actually producing.',
-      aboutMissionText2: 'We built Music Producer Lab to fix this. Every lesson is interactive. Every concept is practiced immediately. You learn by doing, not watching.',
+      aboutMissionPara1: 'Music Producer Lab exists to democratize music production education. We believe that the traditional approach to learning music production - watching endless hours of video tutorials - isn\'t working for most people.',
+      aboutMissionPara2: 'That\'s why we\'ve built an entirely different approach: interactive labs where you learn by doing. Instead of watching someone else produce, you build the track yourself, step by step, with guidance that explains not just what to do, but why each decision matters.',
+      aboutMissionPara3: 'Our goal is to help you go from "I don\'t know where to start" to confidently finishing release-ready tracks. We focus on transferable skills that work in any DAW, so you\'re never locked into a specific workflow.',
 
-      aboutValuesTitle: 'Our Values',
+      aboutValuesTitle: 'What We Believe',
+      aboutValue1Title: 'Learning by Doing',
+      aboutValue1Desc: 'You don\'t learn to swim by watching videos. Music production is the same. Our labs put you in the driver\'s seat from minute one.',
+      aboutValue2Title: 'DAW-Agnostic',
+      aboutValue2Desc: 'We teach production fundamentals, not software tricks. Everything you learn here works in Ableton, Logic, FL Studio, or any DAW.',
+      aboutValue3Title: 'Accessible to All',
+      aboutValue3Desc: 'Music education shouldn\'t be locked behind expensive courses. Our core content is free and always will be.',
+      aboutValue4Title: 'Progressive Learning',
+      aboutValue4Desc: 'Start simple, build complexity. Each lab builds on the last, so you never feel overwhelmed or lost.',
 
-      value1Title: 'Hands-On Learning',
-      value1Description: 'Learn by doing, not watching. Every lesson includes interactive exercises.',
+      aboutApproachTitle: 'Our Approach',
+      aboutApproachPara1: 'Every lab at Music Producer Lab follows a simple philosophy: you do the work. We don\'t show you a finished product and expect you to recreate it. Instead, we guide you through the creative process, one decision at a time.',
+      aboutApproachPara2: 'Each lab is designed to teach a specific skill. We keep them short and focused - usually 10-20 minutes - so you can fit learning into your day without burning out. And because every lab ends with you having created something, you get the satisfaction of immediate results.',
+      aboutApproachPara3: 'We also believe in explaining the "why" behind every technique. It\'s not enough to know that you should put a high-pass filter on your reverb return. You need to understand why that helps your mix so you can make those decisions yourself in your own productions.',
 
-      value2Title: 'Progressive Difficulty',
-      value2Description: 'Start simple, build complexity. Each lesson builds on previous knowledge.',
+      aboutCreditsTitle: 'Credits & Thanks',
+      aboutCreditsPara: 'Music Producer Lab is built by a small team of passionate producers and educators. We\'re grateful to everyone who has contributed to making this project possible.',
+      aboutCreditsDesign: 'Design System',
+      aboutCreditsDesignDesc: 'Custom CSS with modern design principles',
+      aboutCreditsTypography: 'Typography',
+      aboutCreditsTypographyDesc: 'Inter, Orbitron, JetBrains Mono',
+      aboutCreditsIcons: 'Icons',
+      aboutCreditsIconsDesc: 'Custom SVG icons',
+      aboutCreditsHosting: 'Hosting',
+      aboutCreditsHostingDesc: 'Vercel',
 
-      value3Title: 'Real-World Skills',
-      value3Description: 'Focus on techniques used by professionals. No filler, no fluff.',
-
-      value4Title: 'Accessible Education',
-      value4Description: 'Quality music production education should be available to everyone.',
-
-      aboutTeamTitle: 'Built by Producers, for Producers',
-      aboutTeamText: 'Music Producer Lab is created by a team of professional producers, audio engineers, and educators who have worked across multiple genres and industries.',
+      aboutContactTitle: 'Want to get in touch?',
+      aboutContactPara: 'We\'d love to hear from you. Whether you have feedback, questions, or just want to say hi, reach out anytime.',
+      aboutContactButton: 'Contact Us',
 
       // Contact Page
-      contactPageTitle: 'Get in Touch',
-      contactPageSubtitle: 'Have questions? We\'d love to hear from you.',
+      contactHeroBadge: 'Get in Touch',
+      contactHeroTitle: 'Contact Us',
+      contactHeroSubtitle: 'Have a question, feedback, or just want to say hi? We\'d love to hear from you.',
 
+      contactInfoTitle: 'Other ways to reach us',
+      contactInfoSubtitle: 'Prefer a different channel? Here are some other ways to get in touch with the Music Producer Lab team.',
+      contactEmail: 'Email',
+      contactTwitter: 'Twitter / X',
+      contactTwitterHandle: '@MusicProducerLab',
+      contactDiscord: 'Discord',
+      contactDiscordText: 'Join our community',
+
+      contactFormTitle: 'Send us a message',
+      contactFormSubtitle: 'Fill out the form below and we\'ll get back to you as soon as possible.',
       contactNameLabel: 'Name',
       contactNamePlaceholder: 'Your name',
       contactEmailLabel: 'Email',
-      contactEmailPlaceholder: 'your@email.com',
+      contactEmailPlaceholder: 'you@example.com',
       contactSubjectLabel: 'Subject',
-      contactSubjectPlaceholder: 'What is this about?',
+      contactSubjectDefault: 'Select a topic...',
+      contactSubjectGeneral: 'General Question',
+      contactSubjectFeedback: 'Feedback',
+      contactSubjectBug: 'Bug Report',
+      contactSubjectFeature: 'Feature Request',
+      contactSubjectPartnership: 'Partnership',
+      contactSubjectOther: 'Other',
       contactMessageLabel: 'Message',
-      contactMessagePlaceholder: 'Tell us more...',
+      contactMessagePlaceholder: 'How can we help you?',
       contactSendButton: 'Send Message',
+      contactFormNote: 'We typically respond within 24-48 hours.',
 
-      contactInfoTitle: 'Other Ways to Reach Us',
-      contactEmail: 'Email',
-      contactEmailValue: 'hello@musicproducerlab.com',
-      contactSupport: 'Support',
-      contactSupportValue: 'support@musicproducerlab.com',
-      contactSocial: 'Social Media',
+      contactSuccessTitle: 'Message Sent!',
+      contactSuccessMessage: 'Thanks for reaching out. We\'ll get back to you soon.',
 
       // Progress Page
       progressPageTitle: 'Your Progress',
       progressPageSubtitle: 'Track your learning journey',
+      progressHeroTitle: 'Your Progress',
+      progressHeroSubtitle: 'Track your journey from beginner to pro. Every lab completed brings you closer to mastery.',
+
+      progressStatsLabsCompleted: 'Labs Completed',
+      progressStatsOverallProgress: 'Overall Progress',
+      progressStatsCurrentStreak: 'Current Streak',
+      progressStatsTotalTime: 'Total Time',
+
+      progressCategoryTitle: 'Progress by Category',
+
+      progressAchievementsTitle: 'Achievements',
+      progressAchievementFirstBeat: 'First Beat',
+      progressAchievementFirstBeatDesc: 'Complete your first lab',
+      progressAchievementGettingStarted: 'Getting Started',
+      progressAchievementGettingStartedDesc: 'Complete 5 labs',
+      progressAchievementCommitted: 'Committed',
+      progressAchievementCommittedDesc: 'Complete 10 labs',
+      progressAchievementDedicated: 'Dedicated Producer',
+      progressAchievementDedicatedDesc: 'Complete 20 labs',
+      progressAchievementMaster: 'Lab Master',
+      progressAchievementMasterDesc: 'Complete all labs',
+      progressAchievementWeekStreak: 'Week Warrior',
+      progressAchievementWeekStreakDesc: 'Practice 7 days in a row',
+      progressAchievementMonthStreak: 'Monthly Master',
+      progressAchievementMonthStreakDesc: 'Practice 30 days in a row',
+      progressAchievementDrumsComplete: 'Rhythm Master',
+      progressAchievementDrumsCompleteDesc: 'Complete all Drums labs',
+      progressAchievementSpeedDemon: 'Speed Demon',
+      progressAchievementSpeedDemonDesc: 'Complete 3 labs in one day',
+
+      progressManageTitle: 'Manage Your Progress',
+      progressManageDescription: 'Export your progress to back it up or transfer to another device. Import to restore or merge progress.',
+      progressExportButton: 'Export Progress',
+      progressImportButton: 'Import Progress',
+      progressResetButton: 'Reset Progress',
+
+      progressResetConfirm1: 'Are you sure you want to reset ALL progress? This cannot be undone!',
+      progressResetConfirm2: 'This will delete all your completed labs, achievements, and stats. Are you absolutely sure?',
+      progressExportSuccess: 'Progress exported to',
+      progressImportSuccess: 'Progress imported successfully!',
+      progressImportError: 'Failed to import progress:',
+
+      progressCategoryDrums: '🥁 Drums & Rhythm',
+      progressCategoryArrangement: '🎹 Arrangement',
+      progressCategorySoundDesign: '🎛️ Sound Design',
+      progressCategoryMixing: '🎚️ Mixing',
+      progressCategoryVocals: '🎤 Vocals',
+      progressCategoryMastering: '✨ Mastering',
+
+      progressDays: 'days',
+      progressUnlocked: 'Unlocked',
 
       progressOverview: 'Overview',
       progressCompleted: 'Completed',
@@ -362,6 +445,57 @@
       // Download Page
       downloadPageTitle: 'Free Downloads',
       downloadPageSubtitle: 'Sample packs, templates, and resources to boost your production.',
+      downloadHeroBadge: '100% Free',
+      downloadHeroTitle: 'Free Downloads',
+      downloadHeroSubtitle: 'Sample packs, presets, project files, and guides to help you practice what you learn in the labs. All free, no signup required.',
+
+      downloadCategorySamplePacks: 'Sample Packs',
+      downloadCategoryGuides: 'Guides & Cheatsheets',
+
+      downloadDrumKitCategory: 'Drums',
+      downloadDrumKitTitle: 'MPL Drum Starter Kit',
+      downloadDrumKitDescription: 'Essential drum samples to practice with the rhythm labs. Kicks, snares, hi-hats, and percussion.',
+      downloadDrumKitSamples: '48 samples',
+      downloadDrumKitSize: '12 MB',
+      downloadDrumKitRoyalty: 'Royalty-free',
+
+      downloadOneShotsCategory: 'Synth',
+      downloadOneShotsTitle: 'Essential One-Shots',
+      downloadOneShotsDescription: 'Synth stabs, bass hits, and melodic one-shots perfect for arrangement and sound design practice.',
+      downloadOneShotsSamples: '32 samples',
+      downloadOneShotsSize: '8 MB',
+
+      downloadFxPackCategory: 'FX',
+      downloadFxPackTitle: 'Transition FX Pack',
+      downloadFxPackDescription: 'Risers, downlifters, impacts, and sweeps for your arrangements.',
+      downloadFxPackSamples: '64 samples',
+      downloadFxPackComingSoon: 'Coming Q1 2026',
+
+      downloadDrumCheatCategory: 'PDF Guide',
+      downloadDrumCheatTitle: 'Drum Pattern Cheatsheet',
+      downloadDrumCheatDescription: 'Common drum patterns for house, techno, hip-hop, and more. Print it out and keep it by your workstation.',
+      downloadDrumCheatFormat: 'PDF',
+      downloadDrumCheatPages: '2 pages',
+
+      downloadEqGuideCategory: 'PDF Guide',
+      downloadEqGuideTitle: 'EQ Frequency Guide',
+      downloadEqGuideDescription: 'Reference guide for EQ frequencies. Know where to cut and boost for different instruments.',
+      downloadEqGuidePages: '1 page',
+
+      downloadStructureCategory: 'PDF Guide',
+      downloadStructureTitle: 'Song Structure Templates',
+      downloadStructureDescription: 'Arrangement templates for different genres and track lengths.',
+      downloadStructureFormat: 'PDF',
+
+      downloadNewsletterTitle: 'Get notified of new downloads',
+      downloadNewsletterDescription: 'We release new free resources regularly. Subscribe to be the first to know when new sample packs and guides drop.',
+      downloadNewsletterPlaceholder: 'your@email.com',
+      downloadNewsletterButton: 'Subscribe',
+      downloadNewsletterSuccess: 'Thanks for subscribing!',
+
+      downloadButtonFree: 'Download Free',
+      downloadButtonComingSoon: 'Coming Soon',
+      downloadComingSoonBadge: 'Coming Soon',
 
       downloadSamplePacks: 'Sample Packs',
       downloadTemplates: 'Project Templates',
@@ -370,6 +504,18 @@
       // Explore Page
       explorePageTitle: 'Explore Music Production',
       explorePageSubtitle: 'Discover concepts, techniques, and tools.',
+      exploreHeroBadge: 'Everything in One Place',
+      exploreHeroTitle: 'Explore Music Producer Lab',
+      exploreHeroSubtitle: 'Browse all content, labs, resources, and learning paths. Find exactly what you need to level up your production skills.',
+      exploreSearchPlaceholder: 'Search labs, lessons, resources...',
+
+      exploreCategoryAll: 'All Content',
+      exploreCategoryDrums: 'Drums',
+      exploreCategoryArrangement: 'Arrangement',
+      exploreCategorySoundDesign: 'Sound Design',
+      exploreCategoryMixing: 'Mixing',
+      exploreCategoryMastering: 'Mastering',
+      exploreCategoryResources: 'Resources',
 
       exploreTopics: 'Topics',
       exploreTechniques: 'Techniques',
@@ -698,6 +844,9 @@
       // Labs Page
       labsPageTitle: 'Laboratori Interattivi di Produzione Musicale',
       labsPageSubtitle: 'Scegli il tuo percorso. Costruisci abilità reali.',
+      labsHeroBadge: 'Tutti i Lab',
+      labsHeroTitle: 'Laboratori di Produzione Interattivi',
+      labsHeroSubtitle: 'Scegli un modulo e inizia ad imparare. Ogni lab è progettato per insegnarti una specifica abilità attraverso la pratica diretta. Niente fuffa, solo produzione.',
 
       categoryDrums: 'Batteria & Ritmo',
       categoryDrumsDescription: 'Padroneggia la programmazione della batteria e i fondamentali del ritmo',
@@ -720,54 +869,134 @@
       categoryMasteringLessons: '15 lezioni',
 
       // About Page
-      aboutPageTitle: 'Chi Siamo',
-      aboutPageSubtitle: 'La nostra missione è rendere l\'educazione alla produzione musicale accessibile attraverso l\'apprendimento pratico.',
+      aboutHeroBadge: 'La Nostra Storia',
+      aboutHeroTitle: 'Chi Siamo',
+      aboutHeroSubtitle: 'Crediamo che tutti dovrebbero avere l\'opportunità di creare musica. Per questo stiamo costruendo la piattaforma di educazione alla produzione musicale più accessibile e pratica.',
 
       aboutMissionTitle: 'La Nostra Missione',
-      aboutMissionText1: 'L\'educazione alla produzione musicale è rotta. La maggior parte dei corsi si concentra sul guardare invece del fare. Gli studenti passano centinaia di ore a consumare contenuti ma non costruiscono mai la memoria muscolare che deriva dal produrre realmente.',
-      aboutMissionText2: 'Abbiamo costruito Music Producer Lab per risolvere questo problema. Ogni lezione è interattiva. Ogni concetto viene praticato immediatamente. Impari facendo, non guardando.',
+      aboutMissionPara1: 'Music Producer Lab esiste per democratizzare l\'educazione alla produzione musicale. Crediamo che l\'approccio tradizionale all\'apprendimento della produzione musicale - guardare ore infinite di video tutorial - non funzioni per la maggior parte delle persone.',
+      aboutMissionPara2: 'Per questo abbiamo costruito un approccio completamente diverso: laboratori interattivi dove impari facendo. Invece di guardare qualcun altro produrre, costruisci la traccia tu stesso, passo dopo passo, con una guida che spiega non solo cosa fare, ma perché ogni decisione è importante.',
+      aboutMissionPara3: 'Il nostro obiettivo è aiutarti a passare da "non so da dove iniziare" a completare con sicurezza tracce pronte per la pubblicazione. Ci concentriamo su competenze trasferibili che funzionano in qualsiasi DAW, così non sei mai vincolato a un workflow specifico.',
 
-      aboutValuesTitle: 'I Nostri Valori',
+      aboutValuesTitle: 'In Cosa Crediamo',
+      aboutValue1Title: 'Imparare Facendo',
+      aboutValue1Desc: 'Non impari a nuotare guardando video. La produzione musicale è la stessa cosa. I nostri laboratori ti mettono al posto di guida dal primo minuto.',
+      aboutValue2Title: 'DAW-Agnostico',
+      aboutValue2Desc: 'Insegniamo i fondamentali della produzione, non trucchi software. Tutto ciò che impari qui funziona in Ableton, Logic, FL Studio o qualsiasi DAW.',
+      aboutValue3Title: 'Accessibile a Tutti',
+      aboutValue3Desc: 'L\'educazione musicale non dovrebbe essere bloccata dietro corsi costosi. Il nostro contenuto principale è gratuito e lo sarà sempre.',
+      aboutValue4Title: 'Apprendimento Progressivo',
+      aboutValue4Desc: 'Inizia semplice, costruisci complessità. Ogni laboratorio si basa sul precedente, così non ti senti mai sopraffatto o perso.',
 
-      value1Title: 'Apprendimento Pratico',
-      value1Description: 'Impara facendo, non guardando. Ogni lezione include esercizi interattivi.',
+      aboutApproachTitle: 'Il Nostro Approccio',
+      aboutApproachPara1: 'Ogni laboratorio di Music Producer Lab segue una filosofia semplice: sei tu a fare il lavoro. Non ti mostriamo un prodotto finito aspettandoci che tu lo ricrei. Invece, ti guidiamo attraverso il processo creativo, una decisione alla volta.',
+      aboutApproachPara2: 'Ogni laboratorio è progettato per insegnare una competenza specifica. Li manteniamo brevi e focalizzati - di solito 10-20 minuti - così puoi inserire l\'apprendimento nella tua giornata senza bruciarti. E poiché ogni laboratorio finisce con te che hai creato qualcosa, ottieni la soddisfazione di risultati immediati.',
+      aboutApproachPara3: 'Crediamo anche nello spiegare il "perché" dietro ogni tecnica. Non basta sapere che dovresti mettere un filtro high-pass sul return del riverbero. Devi capire perché questo aiuta il tuo mix così puoi prendere quelle decisioni da solo nelle tue produzioni.',
 
-      value2Title: 'Difficoltà Progressiva',
-      value2Description: 'Parti semplice, costruisci complessità. Ogni lezione si basa sulla conoscenza precedente.',
+      aboutCreditsTitle: 'Riconoscimenti e Ringraziamenti',
+      aboutCreditsPara: 'Music Producer Lab è costruito da un piccolo team di produttori ed educatori appassionati. Siamo grati a tutti coloro che hanno contribuito a rendere possibile questo progetto.',
+      aboutCreditsDesign: 'Design System',
+      aboutCreditsDesignDesc: 'CSS personalizzato con principi di design moderno',
+      aboutCreditsTypography: 'Tipografia',
+      aboutCreditsTypographyDesc: 'Inter, Orbitron, JetBrains Mono',
+      aboutCreditsIcons: 'Icone',
+      aboutCreditsIconsDesc: 'Icone SVG personalizzate',
+      aboutCreditsHosting: 'Hosting',
+      aboutCreditsHostingDesc: 'Vercel',
 
-      value3Title: 'Competenze del Mondo Reale',
-      value3Description: 'Focus su tecniche usate dai professionisti. Niente riempitivo, niente fuffa.',
-
-      value4Title: 'Educazione Accessibile',
-      value4Description: 'L\'educazione di qualità alla produzione musicale dovrebbe essere disponibile per tutti.',
-
-      aboutTeamTitle: 'Costruito da Produttori, per Produttori',
-      aboutTeamText: 'Music Producer Lab è creato da un team di produttori professionisti, ingegneri audio ed educatori che hanno lavorato in molteplici generi e industrie.',
+      aboutContactTitle: 'Vuoi metterti in contatto?',
+      aboutContactPara: 'Ci piacerebbe sentirti. Che tu abbia feedback, domande, o voglia solo salutare, contattaci in qualsiasi momento.',
+      aboutContactButton: 'Contattaci',
 
       // Contact Page
-      contactPageTitle: 'Contattaci',
-      contactPageSubtitle: 'Hai domande? Ci piacerebbe sentirti.',
+      contactHeroBadge: 'Contattaci',
+      contactHeroTitle: 'Contattaci',
+      contactHeroSubtitle: 'Hai una domanda, un feedback, o vuoi solo salutare? Ci piacerebbe sentirti.',
 
+      contactInfoTitle: 'Altri modi per contattarci',
+      contactInfoSubtitle: 'Preferisci un canale diverso? Ecco altri modi per metterti in contatto con il team di Music Producer Lab.',
+      contactEmail: 'Email',
+      contactTwitter: 'Twitter / X',
+      contactTwitterHandle: '@MusicProducerLab',
+      contactDiscord: 'Discord',
+      contactDiscordText: 'Unisciti alla community',
+
+      contactFormTitle: 'Inviaci un messaggio',
+      contactFormSubtitle: 'Compila il modulo qui sotto e ti risponderemo il prima possibile.',
       contactNameLabel: 'Nome',
       contactNamePlaceholder: 'Il tuo nome',
       contactEmailLabel: 'Email',
-      contactEmailPlaceholder: 'tua@email.com',
+      contactEmailPlaceholder: 'tu@esempio.com',
       contactSubjectLabel: 'Oggetto',
-      contactSubjectPlaceholder: 'Di cosa si tratta?',
+      contactSubjectDefault: 'Seleziona un argomento...',
+      contactSubjectGeneral: 'Domanda Generale',
+      contactSubjectFeedback: 'Feedback',
+      contactSubjectBug: 'Segnalazione Bug',
+      contactSubjectFeature: 'Richiesta Funzionalità',
+      contactSubjectPartnership: 'Partnership',
+      contactSubjectOther: 'Altro',
       contactMessageLabel: 'Messaggio',
-      contactMessagePlaceholder: 'Raccontaci di più...',
+      contactMessagePlaceholder: 'Come possiamo aiutarti?',
       contactSendButton: 'Invia Messaggio',
+      contactFormNote: 'Rispondiamo tipicamente entro 24-48 ore.',
 
-      contactInfoTitle: 'Altri Modi per Contattarci',
-      contactEmail: 'Email',
-      contactEmailValue: 'hello@musicproducerlab.com',
-      contactSupport: 'Supporto',
-      contactSupportValue: 'support@musicproducerlab.com',
-      contactSocial: 'Social Media',
+      contactSuccessTitle: 'Messaggio Inviato!',
+      contactSuccessMessage: 'Grazie per averci contattato. Ti risponderemo presto.',
 
       // Progress Page
       progressPageTitle: 'I Tuoi Progressi',
       progressPageSubtitle: 'Traccia il tuo percorso di apprendimento',
+      progressHeroTitle: 'I Tuoi Progressi',
+      progressHeroSubtitle: 'Traccia il tuo percorso da principiante a professionista. Ogni lab completato ti avvicina alla padronanza.',
+
+      progressStatsLabsCompleted: 'Lab Completati',
+      progressStatsOverallProgress: 'Progresso Complessivo',
+      progressStatsCurrentStreak: 'Serie Attuale',
+      progressStatsTotalTime: 'Tempo Totale',
+
+      progressCategoryTitle: 'Progresso per Categoria',
+
+      progressAchievementsTitle: 'Obiettivi Raggiunti',
+      progressAchievementFirstBeat: 'Primo Beat',
+      progressAchievementFirstBeatDesc: 'Completa il tuo primo lab',
+      progressAchievementGettingStarted: 'Primi Passi',
+      progressAchievementGettingStartedDesc: 'Completa 5 lab',
+      progressAchievementCommitted: 'Impegnato',
+      progressAchievementCommittedDesc: 'Completa 10 lab',
+      progressAchievementDedicated: 'Produttore Dedicato',
+      progressAchievementDedicatedDesc: 'Completa 20 lab',
+      progressAchievementMaster: 'Maestro dei Lab',
+      progressAchievementMasterDesc: 'Completa tutti i lab',
+      progressAchievementWeekStreak: 'Guerriero della Settimana',
+      progressAchievementWeekStreakDesc: 'Pratica per 7 giorni di fila',
+      progressAchievementMonthStreak: 'Maestro Mensile',
+      progressAchievementMonthStreakDesc: 'Pratica per 30 giorni di fila',
+      progressAchievementDrumsComplete: 'Maestro del Ritmo',
+      progressAchievementDrumsCompleteDesc: 'Completa tutti i lab di Batteria',
+      progressAchievementSpeedDemon: 'Velocista',
+      progressAchievementSpeedDemonDesc: 'Completa 3 lab in un giorno',
+
+      progressManageTitle: 'Gestisci i Tuoi Progressi',
+      progressManageDescription: 'Esporta i tuoi progressi per eseguire un backup o trasferirli su un altro dispositivo. Importa per ripristinare o unire i progressi.',
+      progressExportButton: 'Esporta Progressi',
+      progressImportButton: 'Importa Progressi',
+      progressResetButton: 'Reimposta Progressi',
+
+      progressResetConfirm1: 'Sei sicuro di voler reimpostare TUTTI i progressi? Questa azione non può essere annullata!',
+      progressResetConfirm2: 'Questo eliminerà tutti i tuoi lab completati, obiettivi e statistiche. Sei assolutamente sicuro?',
+      progressExportSuccess: 'Progressi esportati in',
+      progressImportSuccess: 'Progressi importati con successo!',
+      progressImportError: 'Impossibile importare i progressi:',
+
+      progressCategoryDrums: '🥁 Batteria & Ritmo',
+      progressCategoryArrangement: '🎹 Arrangiamento',
+      progressCategorySoundDesign: '🎛️ Sound Design',
+      progressCategoryMixing: '🎚️ Mixing',
+      progressCategoryVocals: '🎤 Voce',
+      progressCategoryMastering: '✨ Mastering',
+
+      progressDays: 'giorni',
+      progressUnlocked: 'Sbloccato',
 
       progressOverview: 'Panoramica',
       progressCompleted: 'Completati',
@@ -778,6 +1007,57 @@
       // Download Page
       downloadPageTitle: 'Download Gratuiti',
       downloadPageSubtitle: 'Sample pack, template e risorse per potenziare la tua produzione.',
+      downloadHeroBadge: '100% Gratuito',
+      downloadHeroTitle: 'Download Gratuiti',
+      downloadHeroSubtitle: 'Sample pack, preset, file di progetto e guide per aiutarti a mettere in pratica ciò che impari nei lab. Tutto gratuito, senza registrazione.',
+
+      downloadCategorySamplePacks: 'Sample Pack',
+      downloadCategoryGuides: 'Guide e Schede di Riferimento',
+
+      downloadDrumKitCategory: 'Batteria',
+      downloadDrumKitTitle: 'Kit di Batteria MPL per Iniziare',
+      downloadDrumKitDescription: 'Campioni di batteria essenziali per esercitarti con i lab di ritmo. Casse, rullanti, hi-hat e percussioni.',
+      downloadDrumKitSamples: '48 campioni',
+      downloadDrumKitSize: '12 MB',
+      downloadDrumKitRoyalty: 'Royalty-free',
+
+      downloadOneShotsCategory: 'Synth',
+      downloadOneShotsTitle: 'One-Shot Essenziali',
+      downloadOneShotsDescription: 'Stab di synth, colpi di basso e one-shot melodici perfetti per la pratica di arrangiamento e sound design.',
+      downloadOneShotsSamples: '32 campioni',
+      downloadOneShotsSize: '8 MB',
+
+      downloadFxPackCategory: 'FX',
+      downloadFxPackTitle: 'Pack di Effetti di Transizione',
+      downloadFxPackDescription: 'Riser, downlifter, impact e sweep per i tuoi arrangiamenti.',
+      downloadFxPackSamples: '64 campioni',
+      downloadFxPackComingSoon: 'In arrivo Q1 2026',
+
+      downloadDrumCheatCategory: 'Guida PDF',
+      downloadDrumCheatTitle: 'Schema Pattern di Batteria',
+      downloadDrumCheatDescription: 'Pattern di batteria comuni per house, techno, hip-hop e altro. Stampalo e tienilo vicino alla tua postazione.',
+      downloadDrumCheatFormat: 'PDF',
+      downloadDrumCheatPages: '2 pagine',
+
+      downloadEqGuideCategory: 'Guida PDF',
+      downloadEqGuideTitle: 'Guida alle Frequenze EQ',
+      downloadEqGuideDescription: 'Guida di riferimento per le frequenze EQ. Sapere dove tagliare e potenziare per diversi strumenti.',
+      downloadEqGuidePages: '1 pagina',
+
+      downloadStructureCategory: 'Guida PDF',
+      downloadStructureTitle: 'Template di Struttura del Brano',
+      downloadStructureDescription: 'Template di arrangiamento per diversi generi e lunghezze di tracce.',
+      downloadStructureFormat: 'PDF',
+
+      downloadNewsletterTitle: 'Ricevi notifiche sui nuovi download',
+      downloadNewsletterDescription: 'Pubblichiamo regolarmente nuove risorse gratuite. Iscriviti per essere il primo a sapere quando escono nuovi sample pack e guide.',
+      downloadNewsletterPlaceholder: 'tua@email.com',
+      downloadNewsletterButton: 'Iscriviti',
+      downloadNewsletterSuccess: 'Grazie per esserti iscritto!',
+
+      downloadButtonFree: 'Scarica Gratis',
+      downloadButtonComingSoon: 'In Arrivo',
+      downloadComingSoonBadge: 'In Arrivo',
 
       downloadSamplePacks: 'Sample Pack',
       downloadTemplates: 'Template di Progetto',
@@ -786,6 +1066,18 @@
       // Explore Page
       explorePageTitle: 'Esplora la Produzione Musicale',
       explorePageSubtitle: 'Scopri concetti, tecniche e strumenti.',
+      exploreHeroBadge: 'Tutto in un Unico Posto',
+      exploreHeroTitle: 'Esplora Music Producer Lab',
+      exploreHeroSubtitle: 'Sfoglia tutti i contenuti, lab, risorse e percorsi di apprendimento. Trova esattamente ciò di cui hai bisogno per migliorare le tue abilità di produzione.',
+      exploreSearchPlaceholder: 'Cerca lab, lezioni, risorse...',
+
+      exploreCategoryAll: 'Tutti i Contenuti',
+      exploreCategoryDrums: 'Batteria',
+      exploreCategoryArrangement: 'Arrangiamento',
+      exploreCategorySoundDesign: 'Sound Design',
+      exploreCategoryMixing: 'Mixing',
+      exploreCategoryMastering: 'Mastering',
+      exploreCategoryResources: 'Risorse',
 
       exploreTopics: 'Argomenti',
       exploreTechniques: 'Tecniche',
@@ -1203,6 +1495,14 @@
         // Default: update text content
         element.textContent = translation;
       }
+    });
+
+    // Find all elements with data-i18n-placeholder attribute
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      const translation = t(key);
+      element.placeholder = translation;
     });
 
     // Update HTML lang attribute
