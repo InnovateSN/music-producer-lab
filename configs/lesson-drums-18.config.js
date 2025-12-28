@@ -45,7 +45,7 @@ export const lessonConfig = {
     { id: "kick", label: "Kick", color: "linear-gradient(135deg, #e17055, #d63031)", targetSteps: [0, 4, 8, 12] },
     { id: "clap", label: "Clap", color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)", targetSteps: [4, 12] },
     { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00cec9, #0984e3)", targetSteps: [0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] },
-    { id: "808", label: "808", color: "linear-gradient(135deg, #a29bfe, #6c5ce7)", targetSteps: [0, 8] }
+    { id: "tom", label: "808", color: "linear-gradient(135deg, #a29bfe, #6c5ce7)", targetSteps: [0, 8] }
   ],
   
   messages: applyMessagePreset("drums", {

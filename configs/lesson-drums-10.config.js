@@ -67,7 +67,7 @@ export const lessonConfig = {
   // ====================
   instruments: [
     {
-      id: "808",
+      id: "kick",
       label: "808",
       color: "linear-gradient(135deg, #e17055, #d63031)",
       targetSteps: [0, 8],
@@ -89,7 +89,7 @@ export const lessonConfig = {
       }
     },
     {
-      id: "hihat-closed",
+      id: "hihat",
       label: "Hi-Hat (Closed)",
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
@@ -100,7 +100,7 @@ export const lessonConfig = {
       }
     },
     {
-      id: "hihat-open",
+      id: "rim",
       label: "Hi-Hat (Open)",
       color: "linear-gradient(135deg, #a29bfe, #6c5ce7)",
       targetSteps: [2, 10],

@@ -97,7 +97,7 @@ export const lessonConfig = {
       }
     },
     {
-      id: "snare-ghost",
+      id: "snare",
       label: "Snare Ghost",
       color: "linear-gradient(135deg, rgba(254, 202, 87, 0.5), rgba(255, 159, 67, 0.5))",
       targetSteps: [2, 6, 10, 14],
