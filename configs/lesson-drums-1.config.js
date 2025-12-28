@@ -17,7 +17,7 @@ export const lessonConfig = {
   // NAVIGATION
   // ====================
   nextLessonUrl: "lesson-drums-2.html",
-  prevLessonUrl: null,
+  prevLessonUrl: "lesson-drums-0.html",
   overviewUrl: "labs.html",
   
   // ====================
@@ -25,9 +25,9 @@ export const lessonConfig = {
   // ====================
   hero: {
     eyebrow: buildHeroEyebrow({ lessonNumber: 1, categoryLabel: "Drum pattern" }),
-    title: "4 on the floor:",
-    titleHighlight: "your first full beat",
-    subtitle: "In this lesson you build the classic 4 on the floor rhythm and learn what <strong>bars</strong>, <strong>beats</strong> and <strong>subdivisions</strong> (1/4, 1/8, 1/16) are."
+    title: "4 on the Floor:",
+    titleHighlight: "Your First Full Beat",
+    subtitle: "Build the most important rhythm pattern in electronic music. You'll create a repeating rhythm that feels stable, danceable, and easy to recognize. This single pattern is the foundation behind house, techno, and most modern dance music. Once you understand this, everything else in drum programming becomes much less mysterious."
   },
   
   // ====================
@@ -44,13 +44,14 @@ export const lessonConfig = {
   // ====================
   exercise: {
     title: "Build the 4-on-the-Floor Kick Pattern",
-    description: "In this exercise, you'll create the classic <strong>\"4 on the floor\"</strong> kick pattern - the foundation of house, techno, and most dance music.",
-    tip: "Think of counting 1-2-3-4. Each number gets a kick drum hit!",
+    description: "<strong>\"4 on the floor\"</strong> means a kick drum on every beat of the bar. Since there are four beats in a bar (in 4/4 time), you place four kicks equally spaced. This creates a steady pulse that dancers can lock onto. It might sound \"too simple,\" and that's exactly the point - this simplicity is power. It leaves space for everything else you'll add later: hi-hats, claps, bass, chords, and melodies.",
+    tip: "Count \"one-two-three-four\" out loud while the loop plays. The kick should hit exactly when you say each number!",
     steps: [
       { text: "<strong>Click on steps 1, 5, 9, and 13</strong> in the Kick row to place your kicks." },
-      { text: "These positions correspond to the four beats of the bar (quarter notes)." },
-      { text: "Press <strong>Play</strong> to hear your pattern loop." },
-      { text: "When satisfied, click <strong>Check Exercise</strong> to verify your answer." }
+      { text: "These positions correspond to the <strong>four main beats</strong> of the bar (quarter notes)." },
+      { text: "Press <strong>Play</strong> to hear your pattern loop. Does it feel even and steady?" },
+      { text: "Listen: Does the loop flow smoothly from end back to start without stumbling?" },
+      { text: "When satisfied, click <strong>Check Exercise</strong> to verify your pattern." }
     ]
   },
   
@@ -63,7 +64,7 @@ export const lessonConfig = {
       label: "Kick",
       color: "linear-gradient(135deg,#ff5a3d,#ffb28a)",
       targetSteps: [0, 4, 8, 12],
-      instructionText: "Exercise — Kick: Place one kick on each beat of the bar (one per quarter note). Work in the 16-step grid where the bar has four beats.",
+      instructionText: "Exercise — Kick: Create the \"4 on the floor\" pattern by placing one kick on each of the four beats. In the 16-step grid, the four beats are steps 1, 5, 9, and 13. When you count \"one-two-three-four,\" these are where the kicks land. This is the heartbeat of the track.",
       patternHint: {
         label: "Kick"
       }
