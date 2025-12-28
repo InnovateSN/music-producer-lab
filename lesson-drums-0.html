@@ -113,7 +113,7 @@
             </div>
 
             <!-- Card: Bars and Beats -->
-            <div class="exercise-box">
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(255,90,61,0.08), rgba(255,178,138,0.08));">
               <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Understanding Bars and Beats</h3>
               <p class="section-body">
                 Most dance music is in <strong>4/4 time</strong> (pronounced "four four"), which means there are <strong>four beats in every bar</strong>. A <strong>beat</strong> is the basic pulse you would naturally clap to.
@@ -121,10 +121,13 @@
               <p class="section-body">
                 If you count along with a typical club track, you count like this:
               </p>
-              <p class="section-body" style="font-family: monospace; background: rgba(255,255,255,0.03); padding: var(--space-sm); border-radius: 4px; margin: var(--space-sm) 0;">
-                one - two - three - four<br>
-                one - two - three - four
-              </p>
+              <div style="font-family: monospace; background: rgba(0,0,0,0.3); padding: var(--space-md); border-radius: 8px; margin: var(--space-md) 0; text-align: center; line-height: 2;">
+                <div style="color: #ff8a65; font-size: 1.1em; font-weight: bold;">one - two - three - four</div>
+                <div style="color: #ff8a65; font-size: 1.1em; font-weight: bold;">one - two - three - four</div>
+                <div style="margin-top: var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-size: 0.9em;">
+                  ↑ Bar 1 repeats → Bar 2 repeats ↑
+                </div>
+              </div>
               <p class="section-body" style="margin-bottom: 0;">
                 Each time you reach "four" and start again at "one," you've completed <strong>one bar</strong>. A bar is simply a container that holds a fixed number of beats.
               </p>
@@ -139,24 +142,39 @@
               <p class="section-body">
                 These smaller divisions are called <strong>sixteenth notes</strong>. The grid is not random - it's a visual way of showing time. This 16-step grid lets you place sounds precisely in time.
               </p>
+              <div style="font-family: monospace; background: rgba(255,255,255,0.03); padding: var(--space-md); border-radius: 8px; line-height: 1.8; margin: var(--space-md) 0; overflow-x: auto;">
+                <div style="color: rgba(255,255,255,0.5);">Steps:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16</div>
+                <div style="color: #ff8a65; margin-top: var(--space-xs);">Grid:   ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·</div>
+                <div style="margin-top: var(--space-sm); color: rgba(255,255,255,0.6); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-sm);">
+                  <div>Beats:  |-- 1 --|-- 2 --|-- 3 --|-- 4 --|</div>
+                  <div style="margin-top: var(--space-xs);">Main:   ●           ●           ●           ●</div>
+                </div>
+              </div>
               <p class="section-body" style="margin-bottom: 0;">
-                <strong>Steps 1, 5, 9, and 13</strong> represent the four main beats (quarter notes). Everything in between gives you more precision for creating interesting rhythms.
+                <strong>Steps 1, 5, 9, and 13</strong> (marked with ●) represent the four main beats (quarter notes). Everything in between gives you more precision for creating interesting rhythms.
               </p>
             </div>
 
             <!-- Card: Notes Without Music Theory Stress -->
-            <div class="exercise-box">
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(95,77,255,0.08), rgba(138,155,255,0.08));">
               <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Notes Without Music Theory Stress</h3>
               <p class="section-body">
                 Even if you don't know music theory, you can understand timing as divisions of the bar:
               </p>
-              <ul class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm);">
-                <li><strong>Quarter note</strong> = the bar divided into 4 equal parts (the main beats)</li>
-                <li><strong>Eighth note</strong> = the bar divided into 8 equal parts</li>
-                <li><strong>Sixteenth note</strong> = the bar divided into 16 equal parts</li>
-              </ul>
+              <div style="font-family: monospace; background: rgba(0,0,0,0.3); padding: var(--space-md); border-radius: 8px; margin: var(--space-md) 0; line-height: 1.8;">
+                <div style="color: #ff8a65;"><strong>Quarter notes</strong> (4 per bar):</div>
+                <div style="color: #ff5a3d; margin-left: var(--space-md);">●       ●       ●       ●</div>
+                <div style="color: rgba(255,255,255,0.5); margin-left: var(--space-md); font-size: 0.85em;">1       2       3       4</div>
+
+                <div style="color: #8a9bff; margin-top: var(--space-md);"><strong>Eighth notes</strong> (8 per bar):</div>
+                <div style="color: #5f4dff; margin-left: var(--space-md);">●   ●   ●   ●   ●   ●   ●   ●</div>
+
+                <div style="color: #81c784; margin-top: var(--space-md);"><strong>Sixteenth notes</strong> (16 per bar):</div>
+                <div style="color: #66bb6a; margin-left: var(--space-md);">● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ●</div>
+                <div style="color: rgba(255,255,255,0.5); margin-left: var(--space-md); font-size: 0.75em;">← More division = More precision →</div>
+              </div>
               <p class="section-body" style="margin-bottom: 0;">
-                A beat is like a big step when walking. A subdivision is like smaller steps inside the big step. The grid shows sixteenth notes, giving you maximum precision.
+                A beat is like a big step when walking. A subdivision is like smaller steps inside the big step. The 16-step grid shows sixteenth notes, giving you maximum precision.
               </p>
             </div>
 
