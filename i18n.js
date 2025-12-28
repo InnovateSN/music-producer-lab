@@ -1265,6 +1265,223 @@
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
   ];
 
+  // Static translations for lesson content (fallback when API is not available)
+  const staticLessonTranslations = {
+    it: {
+      // Instrument names
+      'Kick': 'Cassa',
+      'Snare': 'Rullante',
+      'Hi-hat': 'Charleston',
+      'Clap': 'Battito di mani',
+      'Tom': 'Tom',
+      'Rim': 'Cerchio',
+      'Cymbal': 'Piatto',
+      'Shaker': 'Shaker',
+      'Bass': 'Basso',
+      'Chord': 'Accordo',
+      'Lead': 'Lead',
+      'Pad': 'Pad',
+      'Melody': 'Melodia',
+      'Percussion': 'Percussione',
+      'Crash': 'Crash',
+      'Ride': 'Ride',
+      'Open Hat': 'Charleston Aperto',
+      'Closed Hat': 'Charleston Chiuso',
+
+      // Common instructions
+      'Play': 'Riproduci',
+      'Stop': 'Ferma',
+      'Clear': 'Cancella',
+      'Check Exercise': 'Verifica Esercizio',
+      'Next Lesson': 'Lezione Successiva',
+      'Previous Lesson': 'Lezione Precedente',
+      'Target Pattern': 'Pattern di Riferimento',
+      'Interactive Sequencer': 'Sequencer Interattivo',
+      'Complete the exercise': 'Completa l\'esercizio',
+      'Proceed to the next lesson': 'Procedi alla prossima lezione',
+
+      // Lesson structure
+      'Lesson': 'Lezione',
+      'Exercise': 'Esercizio',
+      'Tip': 'Suggerimento',
+      'Goal': 'Obiettivo',
+      'What to do:': 'Cosa fare:',
+      'Tip:': 'Suggerimento:',
+      'Steps:': 'Passaggi:',
+      'Description': 'Descrizione',
+
+      // Arrangement sections
+      'Intro': 'Intro',
+      'Verse': 'Strofa',
+      'Chorus': 'Ritornello',
+      'Bridge': 'Bridge',
+      'Buildup': 'Crescendo',
+      'Drop': 'Drop',
+      'Breakdown': 'Breakdown',
+      'Outro': 'Outro',
+
+      // Musical terms
+      'beat': 'battuta',
+      'beats': 'battute',
+      'bar': 'misura',
+      'bars': 'misure',
+      'quarter note': 'semiminima',
+      'quarter notes': 'semiminime',
+      'eighth note': 'croma',
+      'eighth notes': 'crome',
+      'sixteenth note': 'semicroma',
+      'sixteenth notes': 'semicrome',
+      'backbeat': 'backbeat',
+      'rhythm': 'ritmo',
+      'pattern': 'pattern',
+      'groove': 'groove',
+      'tempo': 'tempo',
+      'swing': 'swing',
+      'subdivision': 'suddivisione',
+      'subdivisions': 'suddivisioni',
+      'step': 'step',
+      'steps': 'step',
+      'measure': 'misura',
+
+      // Common action phrases
+      'In this lesson': 'In questa lezione',
+      'In this exercise': 'In questo esercizio',
+      'Press': 'Premi',
+      'Click': 'Clicca',
+      'Place': 'Posiziona',
+      'Build': 'Costruisci',
+      'Create': 'Crea',
+      'Learn': 'Impara',
+      'Practice': 'Pratica',
+      'Add': 'Aggiungi',
+      'Keep': 'Mantieni',
+      'Notice': 'Nota',
+      'Listen': 'Ascolta',
+      'Hear': 'Ascolta',
+      'Try': 'Prova',
+      'Experiment': 'Sperimenta',
+      'Complete': 'Completa',
+      'Unlock': 'Sblocca',
+      'Start': 'Inizia',
+      'End': 'Termina',
+      'Repeat': 'Ripeti',
+
+      // Common lesson phrases
+      'you build': 'costruisci',
+      'you learn': 'impari',
+      'you create': 'crei',
+      'In this lesson you build': 'In questa lezione costruisci',
+      'Learn about': 'Scopri',
+      'the classic': 'il classico',
+      'your first': 'il tuo primo',
+      'adding the': 'aggiungendo il',
+      'Build the': 'Costruisci il',
+      'Add the': 'Aggiungi il',
+      'Keep the': 'Mantieni il',
+      'Notice how': 'Nota come',
+      'Press Play': 'Premi Riproduci',
+      'to hear': 'per ascoltare',
+      'Make sure': 'Assicurati',
+      'from Lesson': 'dalla Lezione',
+
+      // Success/Error messages
+      'Correct!': 'Corretto!',
+      'Great job!': 'Ottimo lavoro!',
+      'Excellent!': 'Eccellente!',
+      'Well done!': 'Ben fatto!',
+      'Not quite right': 'Non del tutto corretto',
+      'Not quite there yet': 'Non ci siamo ancora',
+      'Try again': 'Riprova',
+      'Check both the': 'Controlla sia il',
+      'and': 'e',
+      'You can now proceed': 'Ora puoi procedere',
+      'to the next lesson': 'alla prossima lezione',
+      'to unlock the next lesson': 'per sbloccare la prossima lezione',
+      'You\'ve mastered': 'Hai padroneggiato',
+      'You\'ve completed this lesson': 'Hai completato questa lezione',
+      'You\'ve already completed this exercise': 'Hai già completato questo esercizio',
+      'Feel free to experiment more!': 'Sentiti libero di sperimentare di più!',
+
+      // Specific lesson content - Common patterns
+      '4 on the floor': '4 on the floor',
+      'full beat': 'beat completo',
+      'Adding the Snare': 'Aggiungendo il Rullante',
+      'Backbeat': 'Backbeat',
+      'Hi-Hat Pattern': 'Pattern Charleston',
+      'Build Your First Arrangement': 'Costruisci il Tuo Primo Arrangiamento',
+      'Understanding Structure': 'Comprendere la Struttura',
+      'From Loop to Song': 'Dal Loop alla Canzone',
+
+      // Common exercise instructions
+      'Click on steps': 'Clicca sugli step',
+      'in the': 'nella',
+      'row': 'riga',
+      'row to place': 'riga per posizionare',
+      'to place your': 'per posizionare i tuoi',
+      'These positions correspond to': 'Queste posizioni corrispondono a',
+      'the four beats of the bar': 'le quattro battute della misura',
+      'to verify your answer': 'per verificare la tua risposta',
+      'When satisfied, click': 'Quando sei soddisfatto, clicca',
+
+      // Arrangement specific
+      'Use the interactive arrangement builder': 'Usa il costruttore di arrangiamento interattivo',
+      'to create a complete song structure': 'per creare una struttura di canzone completa',
+      'Click sections to add them to your timeline': 'Clicca sulle sezioni per aggiungerle alla tua timeline',
+      'watch the energy flow': 'osserva il flusso di energia',
+      'visualize your arrangement': 'visualizza il tuo arrangiamento',
+      'Aim for': 'Punta a',
+      'at': 'a',
+      'BPM': 'BPM',
+      'about': 'circa',
+
+      // Common categories
+      'Drum pattern': 'Pattern batteria',
+      'Drums': 'Batteria',
+      'Arrangement': 'Arrangiamento',
+      'Melody': 'Melodia',
+      'Mixing': 'Mixaggio',
+      'Sound Design': 'Sound Design',
+
+      // Time and numbers
+      'minutes': 'minuti',
+      'minute': 'minuto',
+      'seconds': 'secondi',
+      'second': 'secondo',
+      'First': 'Primo',
+      'Second': 'Secondo',
+      'Third': 'Terzo',
+      'Fourth': 'Quarto',
+      'Final': 'Finale',
+      'Next': 'Successivo',
+      'Previous': 'Precedente',
+
+      // Additional common words
+      'the': 'il',
+      'a': 'un',
+      'an': 'un',
+      'and': 'e',
+      'or': 'o',
+      'with': 'con',
+      'on': 'su',
+      'of': 'di',
+      'for': 'per',
+      'to': 'a',
+      'from': 'da',
+      'by': 'da',
+      'your': 'tuo',
+      'this': 'questo',
+      'that': 'quello',
+      'each': 'ogni',
+      'every': 'ogni',
+      'both': 'entrambi',
+      'all': 'tutti',
+      'one': 'uno',
+      'two': 'due',
+      'three': 'tre',
+      'four': 'quattro'
+    }
+  };
+
   // Automatic translation cache settings
   const AUTO_TRANSLATE_CACHE_KEY = 'mpl-auto-translate-cache-v1';
   const AUTO_TRANSLATE_MAX_ENTRIES = 1000;
@@ -1332,12 +1549,29 @@
   async function requestBatchTranslations(texts, targetLang) {
     if (!texts.length) return new Map();
 
+    const result = new Map();
+    const staticDict = staticLessonTranslations[targetLang] || {};
+
+    // First, use static translations for exact matches
+    texts.forEach(text => {
+      if (staticDict[text]) {
+        result.set(text, staticDict[text]);
+      }
+    });
+
+    // Only call API for remaining untranslated texts
+    const remainingTexts = texts.filter(text => !result.has(text));
+
+    if (remainingTexts.length === 0) {
+      return result;
+    }
+
     try {
       const response = await fetch(TRANSLATION_PROXY_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          texts,
+          texts: remainingTexts,
           source: 'auto',
           target: targetLang,
           contentType: 'lesson',
@@ -1353,13 +1587,17 @@
       const data = await response.json();
       const translationsFromProxy = data?.translations || {};
 
-      return new Map(
-        Object.entries(translationsFromProxy)
-          .filter(([, translated]) => typeof translated === 'string' && translated.trim().length)
-      );
+      // Add proxy translations to result
+      Object.entries(translationsFromProxy)
+        .filter(([, translated]) => typeof translated === 'string' && translated.trim().length)
+        .forEach(([original, translated]) => {
+          result.set(original, translated);
+        });
+
+      return result;
     } catch (err) {
-      console.warn('[i18n] Translation proxy request failed', err);
-      return new Map();
+      console.warn('[i18n] Translation proxy request failed, using static translations only', err);
+      return result;
     }
   }
 
