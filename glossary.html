@@ -566,14 +566,10 @@
 
     </main>
 
-    <!-- FOOTER (if you have one) -->
-    <script>
-      // Load navbar
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
-        });
-    </script>
+    <!-- Scripts -->
+    <!-- Shared Navbar Component -->
+    <script src="navbar.js"></script>
+    <!-- Progress Tracker -->
+    <script src="progress-tracker.js"></script>
   </body>
 </html>
