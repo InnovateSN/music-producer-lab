@@ -269,30 +269,32 @@ function setupNavigation(config) {
 
 function setupModeUI(config) {
   const { mode, sequencer } = config;
-  
+
   // Sandbox mode
   if (mode?.sandbox) {
     // Show clear button
     const clearBtn = document.getElementById('mpl-seq-clear-all');
     if (clearBtn) clearBtn.style.display = 'inline-flex';
-    
+
     // Hide check button
     const checkBtn = document.getElementById('mpl-seq-check-all');
     if (checkBtn) checkBtn.style.display = 'none';
-    
-    // Hide next lesson button
-    const nextWrap = document.getElementById('mpl-seq-next-lesson-wrap');
-    if (nextWrap) nextWrap.style.display = 'none';
-    
+
+    // Hide next lesson button (unless alwaysShowNextButton is true)
+    if (!mode?.alwaysShowNextButton) {
+      const nextWrap = document.getElementById('mpl-seq-next-lesson-wrap');
+      if (nextWrap) nextWrap.style.display = 'none';
+    }
+
     // Show advanced controls
     const advControls = document.getElementById('mpl-advanced-controls');
     if (advControls) advControls.style.display = 'flex';
-    
+
     // Update status message
     const status = document.getElementById('mpl-seq-status');
     if (status) status.textContent = 'Sandbox mode - experiment freely with the sequencer!';
   }
-  
+
   // Update step count label
   const stepLabel = document.getElementById('mpl-step-count-label');
   if (stepLabel) stepLabel.textContent = sequencer?.stepCount || 16;
