@@ -78,6 +78,30 @@
       solution3Description: 'Music Producer Lab',
       solution3Detail: 'Instant feedback on every decision. Learn what works and why.',
 
+      // Homepage - Deep Dive Section
+      whyPassiveTitle: 'Passive Tutorials',
+      whyPassiveCopy: "You watch hours of videos, take notes, but when you open your DAW... you don't know where to start. <strong>Watching isn't learning.</strong> Your brain needs to do, not just see.",
+      whyTheoryTitle: 'Too Much Theory',
+      whyTheoryCopy: 'Courses start with weeks of music theory, frequencies, compressors... Before you make music you have to study like an audio engineer. <strong>Result? Frustration and giving up.</strong>',
+      whyGuidedTitle: 'No Guided Practice',
+      whyGuidedCopy: 'They give you the info but leave you alone. "Now go practice"—but practice <em>what</em>? <strong>Without structured guidance, you just spin in circles.</strong>',
+      whyTimeTitle: 'Too Much Time Wasted',
+      whyTimeCopy: "Months (or years) collecting random tutorials, testing plugins, hunting for \"the secret.\" <strong>You don't need more information—you need a clear path.</strong>",
+      truthTitle: 'The truth? <span class="text-gradient">You\'re not missing talent.</span>',
+      truthCopy: "You're missing a method that guides you step by step, where <strong>you make music from minute one</strong>, where every exercise has a purpose, where <strong>you finish what you start</strong>.",
+
+      // Homepage - Lab Steps
+      step2Title: 'Follow the Step-by-Step Guide',
+      step2Copy: 'The lab tells you <strong>exactly what to do</strong>: "Add the kick on beat 1", "Bring the volume to -6dB", "Open the filter up to 2kHz". Every instruction is clear, tested, designed to <strong>teach you while you do</strong>.',
+      step2Bullet1: 'Precise directions, zero ambiguity',
+      step2Bullet2: 'Explanations of the "why" behind every choice',
+      step2Bullet3: 'Hear the result instantly',
+      step3Title: 'Apply It in Your DAW',
+      step3Copy: 'Just finished a beat/mix/arrangement in the lab? <strong>Great.</strong> Now open Ableton, FL Studio, Logic (any DAW) and <strong>recreate what you learned</strong>. The skills are universal—they work everywhere.',
+      step3Bullet1: 'Concepts transfer to any software',
+      step3Bullet2: 'Muscle memory built through practice',
+      step3Bullet3: 'From zero to full track in days, not months',
+
       // Homepage - Learning Path
       learningPathTitle: 'Your Learning Path',
       learningPathSubtitle: 'Progress from complete beginner to confident producer in structured modules.',
@@ -116,6 +140,26 @@
 
       audience4Title: 'Musicians Expanding',
       audience4Description: 'Great at instruments but new to production? Fast-track to producing.',
+
+      // Homepage - Who Section
+      whoBadge: "Who It's For",
+      whoHeading: 'Music Producer Lab is for you if...',
+      whoIntro: "Doesn't matter if you're brand new or already experimenting—if you want to <strong>make music</strong> instead of just study it, you're in the right place.",
+      whoBeginnersTitle: 'Complete Beginners',
+      whoBeginnersCopy: "Never opened a DAW? <strong>Perfect.</strong> Our labs start from zero. You learn by doing, without confusing jargon.",
+      whoBeginnersCTA: '→ First track in <30 minutes',
+      whoSelfTaughtTitle: 'Frustrated Self-Learners',
+      whoSelfTaughtCopy: 'Watched 100+ tutorials but can\'t finish a beat? You need <strong>structure, not more random content.</strong> The labs give you a clear path.',
+      whoSelfTaughtCTA: '→ Finally finish what you start',
+      whoIntermediateTitle: 'Intermediate Producers',
+      whoIntermediateCopy: 'You can make beats but want to <strong>refine mixing, mastering, arrangement?</strong> Advanced labs teach pro techniques with immediate examples.',
+      whoIntermediateCTA: '→ Take your tracks to a professional level',
+      whoNotHeading: '⚠️ Music Producer Lab is NOT for you if...',
+      whoNotVideo: 'You only want to watch videos—labs require active interaction. If you\'re not willing to get hands-on, this isn\'t for you.',
+      whoNotShortcut: 'You\'re looking for magic shortcuts—there is no "pro secret." Guided practice is required. Labs make it efficient, but you still have to do it.',
+      whoCtaTitle: 'Ready to move from theory to practice?',
+      whoCtaCopy: 'Pick your first lab and start producing real music. <strong>Free, no registration.</strong>',
+      whoCtaButton: 'Start Labs Now',
 
       // Homepage - Proof Section
       proofTitle: 'This Actually Works',
@@ -346,6 +390,38 @@
       progressSaveError: 'Error saving progress',
       lessonComplete: 'Lesson completed!',
       allLessonsComplete: 'All lessons completed! Great work!',
+
+      // Homepage - Results Section
+      resultsBadge: 'Tangible Results',
+      resultsTitle: "What you'll get with Music Producer Lab",
+      resultsSubtitle: "No vague promises—here's exactly what you'll be able to do after our labs.",
+      resultsWeek1Title: 'After 1 Week',
+      resultsWeek1Bullet1: 'You completed your <strong>first working beat</strong> (kick, snare, hi-hats, bass)',
+      resultsWeek1Bullet2: "You understand <strong>how a DAW works</strong>—it's no longer intimidating",
+      resultsWeek1Bullet3: 'You can <strong>count bars</strong> and program on-grid rhythms',
+      resultsMonth1Title: 'After 1 Month',
+      resultsMonth1Bullet1: "You've produced <strong>5-10 full tracks</strong> (intro, build, drop, outro)",
+      resultsMonth1Bullet2: 'You can <strong>mix core elements</strong> (volume, pan, EQ, compression)',
+      resultsMonth1Bullet3: 'You have a <strong>listenable portfolio</strong> to share with friends/social',
+      resultsMonth3Title: 'After 3 Months',
+      resultsMonth3Bullet1: 'You produce <strong>release-ready tracks</strong> (ready for Spotify/SoundCloud)',
+      resultsMonth3Bullet2: 'You command <strong>foundational mixing and mastering</strong>—professional sound',
+      resultsMonth3Bullet3: 'You have <strong>a recognizable style</strong> and efficient workflow',
+      resultsBonusTitle: 'Bonus Skills',
+      resultsBonusBullet1: '<strong>Trained ear</strong>—you recognize frequencies and dynamics',
+      resultsBonusBullet2: '<strong>Personal, organized sound library</strong>',
+      resultsBonusBullet3: '<strong>Creative confidence</strong>—no more fear of the blank page',
+      resultsGuaranteeTitle: '🎯 <span class="text-gradient">Simple guarantee</span>: complete the labs, make the tracks.',
+      resultsGuaranteeCopy: "It's not magic—it's method. Every lab is tested, every step works. <strong>You just follow the instructions and practice.</strong> The result? Real tracks, real skills, a growing portfolio.",
+
+      // Homepage - FAQ (Landing)
+      faqBadgeLanding: 'FAQ',
+      faqHeadingLanding: 'Frequently Asked Questions',
+      faqIntroLanding: 'Everything you need to know before starting.',
+      faqCostQuestion: '💰 How much does Music Producer Lab cost?',
+      faqCostAnswer: 'The core labs are completely free. No credit card, no registration. Open your browser and start. Some advanced labs require a subscription, but you already have 20+ free labs to begin.',
+      faqDawQuestion: '🎹 Do I need a specific DAW?',
+      faqDawAnswer: 'No. The labs run in the browser—no installation needed. When you apply the skills in your DAW, the concepts work with Ableton, FL Studio, Logic, Bitwig, Reaper, anything. We teach universal principles, not program-specific tricks.',
     },
 
     it: {
@@ -418,6 +494,30 @@
       solution3Description: 'Music Producer Lab',
       solution3Detail: 'Feedback istantaneo su ogni decisione. Impara cosa funziona e perché.',
 
+      // Homepage - Deep Dive Section
+      whyPassiveTitle: 'Tutorial Passivi',
+      whyPassiveCopy: 'Guardi ore di video, prendi appunti, ma quando apri il tuo DAW... non sai da dove cominciare. <strong>Guardare non è imparare.</strong> Il cervello ha bisogno di fare, non solo di vedere.',
+      whyTheoryTitle: 'Troppa Teoria',
+      whyTheoryCopy: 'Corsi che iniziano con settimane di teoria musicale, frequenze, compressori... Prima di fare musica devi studiare come un ingegnere del suono. <strong>Risultato? Frustrazione e abbandono.</strong>',
+      whyGuidedTitle: 'Nessuna Pratica Guidata',
+      whyGuidedCopy: 'Ti danno le informazioni ma ti lasciano solo. "Ora vai e pratica" - ma pratica <em>cosa</em>? <strong>Senza una guida strutturata, finisci a girare in tondo.</strong>',
+      whyTimeTitle: 'Troppo Tempo Perso',
+      whyTimeCopy: 'Mesi (o anni) a raccogliere tutorial random, provare plugin, cercare "il segreto". <strong>Non hai bisogno di più informazioni - hai bisogno di un percorso chiaro.</strong>',
+      truthTitle: 'La verità? <span class="text-gradient">Non ti manca il talento.</span>',
+      truthCopy: 'Ti manca un metodo che ti guidi passo-passo, dove <strong>fai musica dal primo minuto</strong>, dove ogni esercizio ha uno scopo preciso, dove <strong>finisci quello che inizi</strong>.',
+
+      // Homepage - Lab Steps
+      step2Title: 'Segui la Guida Passo-Passo',
+      step2Copy: 'Il lab ti dice <strong>esattamente cosa fare</strong>: "Aggiungi il kick sul beat 1", "Porta il volume a -6dB", "Apri il filtro fino a 2kHz". Ogni istruzione è chiara, testata, progettata per <strong>insegnarti mentre fai</strong>.',
+      step2Bullet1: 'Indicazioni precise, zero ambiguità',
+      step2Bullet2: 'Spiegazioni del "perché" dietro ogni scelta',
+      step2Bullet3: 'Ascolti il risultato istantaneamente',
+      step3Title: 'Applica al Tuo DAW',
+      step3Copy: 'Hai appena completato un beat/mix/arrangement nel lab? <strong>Perfetto.</strong> Ora apri Ableton, FL Studio, Logic (qualsiasi DAW) e <strong>ricrea quello che hai imparato</strong>. Le skill sono universali - funzionano ovunque.',
+      step3Bullet1: 'Concetti trasferibili a qualsiasi software',
+      step3Bullet2: 'Muscle memory acquisita con la pratica',
+      step3Bullet3: 'Da zero a traccia completa in giorni, non mesi',
+
       // Homepage - Learning Path
       learningPathTitle: 'Il Tuo Percorso di Apprendimento',
       learningPathSubtitle: 'Progredisci da principiante completo a produttore sicuro in moduli strutturati.',
@@ -456,6 +556,26 @@
 
       audience4Title: 'Musicisti in Espansione',
       audience4Description: 'Bravo con gli strumenti ma nuovo alla produzione? Corsia veloce per produrre.',
+
+      // Homepage - Who Section
+      whoBadge: 'Per Chi È',
+      whoHeading: 'Music Producer Lab è per te se...',
+      whoIntro: 'Non importa se sei alle prime armi o hai già sperimentato - se vuoi <strong>fare musica</strong> invece che solo studiarla, sei nel posto giusto.',
+      whoBeginnersTitle: 'Principianti Assoluti',
+      whoBeginnersCopy: 'Non hai mai aperto un DAW? <strong>Perfetto.</strong> I nostri lab partono da zero. Impari facendo, senza gergo tecnico che ti confonde.',
+      whoBeginnersCTA: '→ Prima traccia in <30 minuti',
+      whoSelfTaughtTitle: 'Autodidatti Frustrati',
+      whoSelfTaughtCopy: 'Hai guardato 100+ tutorial ma non riesci a finire un beat? Hai bisogno di <strong>struttura, non più contenuti random.</strong> I lab ti danno un percorso chiaro.',
+      whoSelfTaughtCTA: '→ Finalmente completi quello che inizi',
+      whoIntermediateTitle: 'Produttori Intermedi',
+      whoIntermediateCopy: 'Sai fare beat ma vuoi <strong>affinare mixing, mastering, arrangement?</strong> I lab avanzati ti insegnano le tecniche dei pro, con esempi pratici immediati.',
+      whoIntermediateCTA: '→ Porta le tue tracce a livello professionale',
+      whoNotHeading: '⚠️ Music Producer Lab <strong>NON</strong> è per te se...',
+      whoNotVideo: 'Vuoi solo guardare video - I lab richiedono interazione attiva. Se non sei disposto a mettere le mani sulla tastiera, questo non fa per te.',
+      whoNotShortcut: 'Cerchi scorciatoie magiche - Non esiste il "segreto dei pro". Serve pratica guidata. I lab la rendono efficiente, ma devi farla.',
+      whoCtaTitle: 'Pronto a passare dalla teoria alla pratica?',
+      whoCtaCopy: 'Scegli il tuo primo lab e inizia a produrre musica vera. <strong>Gratis, senza registrazione.</strong>',
+      whoCtaButton: 'Inizia Subito i Lab',
 
       // Homepage - Proof Section
       proofTitle: 'Questo Funziona Davvero',
@@ -686,6 +806,38 @@
       progressSaveError: 'Errore nel salvataggio del progresso',
       lessonComplete: 'Lezione completata!',
       allLessonsComplete: 'Tutte le lezioni completate! Ottimo lavoro!',
+
+      // Homepage - Results Section
+      resultsBadge: 'Risultati Concreti',
+      resultsTitle: 'Cosa otterrai con Music Producer Lab',
+      resultsSubtitle: 'Non promesse vaghe - ecco esattamente cosa sarai in grado di fare dopo i nostri lab.',
+      resultsWeek1Title: 'Dopo 1 Settimana',
+      resultsWeek1Bullet1: 'Hai completato il tuo <strong>primo beat funzionante</strong> (kick, snare, hi-hats, bass)',
+      resultsWeek1Bullet2: 'Capisci <strong>come funziona un DAW</strong> - non ti spaventa più',
+      resultsWeek1Bullet3: 'Sai <strong>contare le battute</strong> e programmare ritmi a tempo',
+      resultsMonth1Title: 'Dopo 1 Mese',
+      resultsMonth1Bullet1: 'Hai prodotto <strong>5-10 tracce complete</strong> (intro, build, drop, outro)',
+      resultsMonth1Bullet2: 'Sai <strong>mixare elementi base</strong> (volume, pan, EQ, compressione)',
+      resultsMonth1Bullet3: 'Hai un <strong>portfolio ascoltabile</strong> da mostrare ad amici/social',
+      resultsMonth3Title: 'Dopo 3 Mesi',
+      resultsMonth3Bullet1: 'Produci <strong>tracce release-ready</strong> (pronte per Spotify/SoundCloud)',
+      resultsMonth3Bullet2: 'Padroneggi <strong>mixing e mastering di base</strong> - suoni professionali',
+      resultsMonth3Bullet3: 'Hai <strong>il tuo stile riconoscibile</strong> e workflow efficiente',
+      resultsBonusTitle: 'Bonus Skills',
+      resultsBonusBullet1: '<strong>Orecchio allenato</strong> - riconosci frequenze e dinamiche',
+      resultsBonusBullet2: '<strong>Libreria di suoni</strong> personale e organizzata',
+      resultsBonusBullet3: '<strong>Confidenza creativa</strong> - non hai più paura del foglio bianco',
+      resultsGuaranteeTitle: '🎯 <span class="text-gradient">Garanzia semplice</span>: se completi i lab, fai le tracce.',
+      resultsGuaranteeCopy: 'Non è magia - è metodo. Ogni lab è testato, ogni step funziona. <strong>Tu devi solo seguire le istruzioni e praticare.</strong> Il risultato? Tracce vere, skill reali, portfolio che cresce.',
+
+      // Homepage - FAQ (Landing)
+      faqBadgeLanding: 'FAQ',
+      faqHeadingLanding: 'Domande Frequenti',
+      faqIntroLanding: 'Tutto quello che devi sapere prima di iniziare.',
+      faqCostQuestion: '💰 Quanto costa Music Producer Lab?',
+      faqCostAnswer: 'I lab base sono completamente gratuiti. Non serve carta di credito, non serve registrazione. Apri il browser e inizia. Alcuni lab avanzati richiedono abbonamento, ma hai già 20+ lab gratis per partire.',
+      faqDawQuestion: '🎹 Ho bisogno di un DAW specifico?',
+      faqDawAnswer: 'No. I lab funzionano nel browser - non serve installare nulla. Quando applichi le skill al tuo DAW, i concetti funzionano con Ableton, FL Studio, Logic, Bitwig, Reaper, qualsiasi software. Insegniamo principi universali, non trucchi specifici di un programma.',
     },
 
     // Spanish, French, and German translations would follow the same structure
@@ -822,7 +974,13 @@
       // Check if the element has a data-i18n-attr attribute for translating attributes
       const attr = element.getAttribute('data-i18n-attr');
       if (attr) {
-        element.setAttribute(attr, translation);
+        if (attr === 'html' || attr === 'innerHTML') {
+          element.innerHTML = translation;
+        } else if (attr === 'text' || attr === 'textContent') {
+          element.textContent = translation;
+        } else {
+          element.setAttribute(attr, translation);
+        }
       } else {
         // Default: update text content
         element.textContent = translation;
