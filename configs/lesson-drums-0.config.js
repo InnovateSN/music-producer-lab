@@ -98,7 +98,8 @@ export const lessonConfig = {
     sandbox: true, // Free exploration mode
     showTargetHint: false,
     enablePresets: false,
-    enableExport: false
+    enableExport: false,
+    alwaysShowNextButton: true // Show Next Lesson button even in sandbox mode
   },
 
   // ====================
