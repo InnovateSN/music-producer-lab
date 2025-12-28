@@ -99,6 +99,14 @@
       lessonNextLesson: 'Next Lesson →',
       lessonNextTooltip: 'Complete exercise to unlock',
 
+      // Lesson - Hero visual card
+      lessonDrumBasics: 'Drum basics',
+      lessonBarLoop: '1-bar loop',
+      lessonUnderstandCounting: 'Understand counting',
+      lessonProgramKickPattern: 'Program the kick pattern',
+      lessonWorksInAnyDAW: 'Works in any DAW',
+      lessonDAWs: 'Ableton · FL · Logic · others',
+
       // Homepage - Deep Dive Section
       whyPassiveTitle: 'Passive Tutorials',
       whyPassiveCopy: "You watch hours of videos, take notes, but when you open your DAW... you don't know where to start. <strong>Watching isn't learning.</strong> Your brain needs to do, not just see.",
@@ -1104,6 +1112,14 @@
       lessonNextLesson: 'Lezione successiva →',
       lessonNextTooltip: "Completa l'esercizio per sbloccare",
 
+      // Lesson - Hero visual card
+      lessonDrumBasics: 'Fondamenti di batteria',
+      lessonBarLoop: 'Loop di 1 misura',
+      lessonUnderstandCounting: 'Comprendere il conteggio',
+      lessonProgramKickPattern: 'Programmare il pattern di cassa',
+      lessonWorksInAnyDAW: 'Funziona con qualsiasi DAW',
+      lessonDAWs: 'Ableton · FL · Logic · altri',
+
       // Lesson Pages - Common Elements
       lessonPrevious: 'Lezione Precedente',
       lessonNext: 'Lezione Successiva',
@@ -1501,6 +1517,7 @@
 
       // Specific lesson content - Common patterns
       '4 on the floor': '4 on the floor',
+      'your first full beat': 'il tuo primo beat completo',
       'full beat': 'beat completo',
       'Adding the Snare': 'Aggiungendo il Rullante',
       'Backbeat': 'Backbeat',
@@ -1508,6 +1525,52 @@
       'Build Your First Arrangement': 'Costruisci il Tuo Primo Arrangiamento',
       'Understanding Structure': 'Comprendere la Struttura',
       'From Loop to Song': 'Dal Loop alla Canzone',
+
+      // Lesson 1 specific content
+      'Build the 4-on-the-Floor Kick Pattern': 'Costruisci il Pattern di Cassa 4 on the Floor',
+      'In this lesson you build the classic 4 on the floor rhythm and learn what': 'In questa lezione costruisci il classico ritmo 4 on the floor e impari cosa sono',
+      'bars': 'misure',
+      'beats': 'battute',
+      'are.': 'sono.',
+      'are': 'sono',
+      'In this exercise, you\'ll create the classic': 'In questo esercizio, creerai il classico',
+      'kick pattern - the foundation of house, techno, and most dance music.': 'pattern di cassa - la base di house, techno e la maggior parte della musica dance.',
+      'Think of counting 1-2-3-4. Each number gets a kick drum hit!': 'Pensa di contare 1-2-3-4. Ogni numero riceve un colpo di cassa!',
+      'on steps': 'sugli step',
+      'to place your kicks.': 'per posizionare le tue casse.',
+      'correspond to the four beats of the bar': 'corrispondono alle quattro battute della misura',
+      'quarter notes': 'semiminime',
+      'Kick on every beat: steps 1, 5, 9, and 13': 'Cassa su ogni battuta: step 1, 5, 9 e 13',
+      'Place one kick on each beat of the bar': 'Posiziona una cassa su ogni battuta della misura',
+      'one per quarter note': 'una per semiminima',
+      'Work in the 16-step grid where the bar has four beats.': 'Lavora nella griglia a 16 step dove la misura ha quattro battute.',
+      'Beat start (downbeat)': 'Inizio battuta (downbeat)',
+      'Active step': 'Step attivo',
+
+      // Lesson 2 specific content
+      'The backbeat:': 'Il backbeat:',
+      'adding the snare': 'aggiungere il rullante',
+      'Learn about the': 'Scopri il',
+      'backbeat': 'backbeat',
+      'one of the most important concepts in popular music. The snare on beats 2 and 4 defines the groove.': 'uno dei concetti più importanti nella musica popolare. Il rullante sulle battute 2 e 4 definisce il groove.',
+      'Add the Backbeat Snare Pattern': 'Aggiungi il Pattern Rullante Backbeat',
+      'The': 'Il',
+      'is the snare hitting on beats 2 and 4. Combined with the kick on 1, 2, 3, 4, this creates the foundation of rock, pop, and most modern music.': 'è il rullante che colpisce sulle battute 2 e 4. Combinato con la cassa su 1, 2, 3, 4, questo crea la base del rock, pop e della maggior parte della musica moderna.',
+      'The backbeat creates a call-and-response between kick and snare. Kick pushes forward, snare answers back!': 'Il backbeat crea un botta e risposta tra cassa e rullante. La cassa spinge avanti, il rullante risponde!',
+      'Keep the 4-on-the-floor pattern': 'Mantieni il pattern 4-on-the-floor',
+      'Add snare on steps': 'Aggiungi il rullante sugli step',
+      'Notice how the snare "answers" the kick on beats 2 and 4.': 'Nota come il rullante "risponde" alla cassa sulle battute 2 and 4.',
+      'Press': 'Premi',
+      'to hear the classic kick-snare groove.': 'per ascoltare il classico groove cassa-rullante.',
+      'Keep the 4-on-the-floor pattern from Lesson 1.': 'Mantieni il pattern 4-on-the-floor dalla Lezione 1.',
+      'Add the backbeat on beats 2 and 4': 'Aggiungi il backbeat sulle battute 2 e 4',
+      'Kick on every beat, Snare on beats 2 and 4': 'Cassa su ogni battuta, Rullante sulle battute 2 e 4',
+      'Add the snare backbeat to unlock the next lesson.': 'Aggiungi il backbeat del rullante per sbloccare la prossima lezione.',
+      'You\'ve mastered the backbeat.': 'Hai padroneggiato il backbeat.',
+      'Proceed to the next lesson.': 'Procedi alla prossima lezione.',
+      'Check both the kick': 'Controlla sia la cassa',
+      'and snare': 'che il rullante',
+      'patterns!': 'pattern!',
 
       // Common exercise instructions
       'Click on steps': 'Clicca sugli step',
@@ -1519,6 +1582,15 @@
       'the four beats of the bar': 'le quattro battute della misura',
       'to verify your answer': 'per verificare la tua risposta',
       'When satisfied, click': 'Quando sei soddisfatto, clicca',
+      'Kick row:': 'Riga Cassa:',
+      'Snare row:': 'Riga Rullante:',
+      'Hi-hat row:': 'Riga Charleston:',
+      'Kick:': 'Cassa:',
+      'Snare:': 'Rullante:',
+      'Hi-hat:': 'Charleston:',
+      'Exercise — Kick:': 'Esercizio — Cassa:',
+      'Exercise — Snare:': 'Esercizio — Rullante:',
+      'Exercise — Hi-hat:': 'Esercizio — Charleston:',
 
       // Arrangement specific
       'Use the interactive arrangement builder': 'Usa il costruttore di arrangiamento interattivo',
