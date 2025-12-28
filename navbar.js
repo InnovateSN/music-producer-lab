@@ -1,74 +1,11 @@
 /**
  * MUSIC PRODUCER LAB - SHARED NAVBAR COMPONENT
  * This script creates a consistent navigation bar across all pages
+ * Uses the global i18n system from i18n.js
  */
 
 (function() {
   'use strict';
-
-  // Language translations
-  const translations = {
-    en: {
-      home: 'Home',
-      labs: 'Labs',
-      explore: 'Explore',
-      downloads: 'Downloads',
-      about: 'About',
-      contact: 'Contact',
-      startLearning: 'Start Learning',
-      dark: 'Dark',
-      light: 'Light',
-      language: 'Language'
-    },
-    it: {
-      home: 'Home',
-      labs: 'Laboratori',
-      explore: 'Esplora',
-      downloads: 'Download',
-      about: 'Chi Siamo',
-      contact: 'Contatti',
-      startLearning: 'Inizia ad Imparare',
-      dark: 'Scuro',
-      light: 'Chiaro',
-      language: 'Lingua'
-    },
-    es: {
-      home: 'Inicio',
-      labs: 'Laboratorios',
-      explore: 'Explorar',
-      downloads: 'Descargas',
-      about: 'Acerca de',
-      contact: 'Contacto',
-      startLearning: 'Empezar a Aprender',
-      dark: 'Oscuro',
-      light: 'Claro',
-      language: 'Idioma'
-    },
-    fr: {
-      home: 'Accueil',
-      labs: 'Laboratoires',
-      explore: 'Explorer',
-      downloads: 'Téléchargements',
-      about: 'À Propos',
-      contact: 'Contact',
-      startLearning: 'Commencer à Apprendre',
-      dark: 'Sombre',
-      light: 'Clair',
-      language: 'Langue'
-    },
-    de: {
-      home: 'Startseite',
-      labs: 'Labore',
-      explore: 'Erkunden',
-      downloads: 'Downloads',
-      about: 'Über Uns',
-      contact: 'Kontakt',
-      startLearning: 'Lernen Beginnen',
-      dark: 'Dunkel',
-      light: 'Hell',
-      language: 'Sprache'
-    }
-  };
 
   // Language configuration
   const languages = [
@@ -79,21 +16,26 @@
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
   ];
 
-  // Get current language from localStorage or default to English
-  let currentLang = localStorage.getItem('mpl-language') || 'en';
-
-  // Get translation helper
+  // Get translation helper from global i18n (fallback if i18n.js not loaded yet)
   function t(key) {
-    return translations[currentLang][key] || translations.en[key] || key;
+    return window.MPL?.i18n?.t(key) || key;
   }
 
-  // Set language
+  // Get current language
+  function getCurrentLang() {
+    return window.MPL?.i18n?.getCurrentLanguage() || localStorage.getItem('mpl-language') || 'en';
+  }
+
+  // Set language using global i18n system
   function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('mpl-language', lang);
+    if (window.MPL?.i18n?.setLanguage) {
+      window.MPL.i18n.setLanguage(lang);
+    } else {
+      // Fallback if i18n.js not loaded
+      localStorage.setItem('mpl-language', lang);
+      window.location.reload();
+    }
     updateNavbarText();
-    // Dispatch event for other parts of the app to react
-    window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
   }
 
   // Update navbar text with current language
@@ -133,6 +75,7 @@
   function createNavbar() {
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop() || 'index.html';
+    const currentLang = getCurrentLang();
 
     function isActive(page) {
       if (page === 'index.html' && (currentPage === 'index.html' || currentPage === '')) {
