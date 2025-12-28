@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body data-i18n-auto="true">
+  <body>
     <div id="navbar-placeholder"></div>
 
     <div class="page">
@@ -32,12 +32,12 @@
         <!-- EXERCISE INSTRUCTIONS -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
-            <div class="section-eyebrow" data-i18n="lessonExerciseLabel">Exercise</div>
+            <div class="section-eyebrow">Exercise</div>
             <h2 class="section-title" id="mpl-exercise-title">Create a Fill at the End of the Bar</h2>
             <p class="section-body" id="mpl-exercise-description">Drum fills add excitement and signal transitions in music. In this exercise, you'll create a <strong>fill pattern</strong> in the last beat (beat 4) while keeping the groove in beats 1-3.</p>
             
             <div class="exercise-steps" id="mpl-exercise-steps-wrap">
-              <h3 data-i18n="lessonWhatToDo">What to do:</h3>
+              <h3>What to do:</h3>
               <ol class="exercise-checklist" id="mpl-exercise-steps">
                 <li><strong>Kick row:</strong> Steps <strong>1, 5, 9, 13, 15</strong> - normal pattern plus extra kicks in beat 4.</li>
                 <li><strong>Snare row:</strong> Steps <strong>5, 13, 16</strong> - backbeat plus a final hit on step 16.</li>
@@ -47,12 +47,12 @@
             </div>
 
             <div class="exercise-tip" id="mpl-exercise-tip">
-              <strong data-i18n="lessonTipLabel">Tip:</strong> <span id="mpl-exercise-tip-text">Fills 'break' the pattern to signal something new is coming. The silence in the hi-hats makes the kick/snare fill pop!</span>
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text">Fills 'break' the pattern to signal something new is coming. The silence in the hi-hats makes the kick/snare fill pop!</span>
             </div>
 
             <!-- PATTERN HINT -->
             <div class="pattern-hint" id="mpl-pattern-hint">
-              <div class="pattern-hint-label" data-i18n="lessonTargetPattern">Target Pattern:</div>
+              <div class="pattern-hint-label">Target Pattern:</div>
               <div id="mpl-pattern-hint-grid">
                 <div class="pattern-row-visual">
                   <span class="instrument-label">Kick:</span>
@@ -83,7 +83,7 @@
 
         <!-- SEQUENCER SECTION -->
         <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
-          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);" data-i18n="lessonSequencerLabel">Interactive Sequencer</div>
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
           <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
           
           <div class="sequencer" id="mpl-sequencer-collection">
@@ -94,29 +94,29 @@
           <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              <span data-i18n="lessonControlPlay">Play</span>
+              <span>Play</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-              <span data-i18n="lessonControlStop">Stop</span>
+              <span>Stop</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-clear-all" style="display:none;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-              <span data-i18n="lessonControlClear">Clear</span>
+              <span>Clear</span>
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-              <span data-i18n="lessonControlCheck">Check Exercise</span>
+              <span>Check Exercise</span>
             </button>
 
             <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock" data-i18n="lessonNextTooltip" data-i18n-attr="title">
-                <span data-i18n="lessonNextLesson">Next Lesson &rarr;</span>
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                <span>Next Lesson &rarr;</span>
               </button>
             </div>
           </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            <span data-i18n="lessonUnlockMessage">Complete the exercise to unlock the next lesson.</span>
+            <span>Complete the exercise to unlock the next lesson.</span>
           </div>
         </section>
 
@@ -130,7 +130,6 @@
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       
       <!-- INLINE CONFIG + INITIALIZATION -->
-          <script src="i18n.js"></script>
 
 <script type="module">
         import { initDrumSequencer } from './sequencer.js';
@@ -150,7 +149,7 @@
           },
           
           messages: {
-            initial: "<span data-i18n="lessonUnlockMessage">Complete the exercise to unlock the next lesson.</span>",
+            initial: "<span>Complete the exercise to unlock the next lesson.</span>",
             alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
             success: "🎉 Correct! Great job! You can now proceed to the next lesson.",
             error: "Not quite right. Check the pattern and try again!"
