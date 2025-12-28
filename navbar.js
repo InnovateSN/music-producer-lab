@@ -8,12 +8,10 @@
   'use strict';
 
   // Language configuration
+  // Only include languages with complete translations to avoid mixed content
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+    { code: 'it', name: 'Italiano', flag: '🇮🇹' }
   ];
 
   // Get translation helper from global i18n (fallback if i18n.js not loaded yet)
