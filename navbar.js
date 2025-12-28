@@ -273,17 +273,10 @@
     initNavbar();
   }
 
-  // Export navbar-specific functions for global access
+  // Export for global access
   window.MPL = window.MPL || {};
-  window.MPL.navbar = {
-    setLanguage: setLanguage,
-    getCurrentLanguage: () => currentLang,
-    updateNavbarText: updateNavbarText
-  };
-
-  // Listen for language changes from i18n system
-  window.addEventListener('languagechange', (e) => {
-    currentLang = e.detail.lang;
-    updateNavbarText();
-  });
+  window.MPL.setLanguage = setLanguage;
+  window.MPL.getCurrentLanguage = () => currentLang;
+  window.MPL.t = t;
+  window.MPL.updateNavbarText = updateNavbarText;
 })();
