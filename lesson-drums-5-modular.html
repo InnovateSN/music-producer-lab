@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body data-i18n-auto="true">
     <div class="page">
       <div class="page-inner">
         <!-- HEADER NAV -->
@@ -139,7 +139,9 @@
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
       
       <!-- INLINE CONFIG + INITIALIZATION -->
-      <script type="module">
+          <script src="i18n.js"></script>
+
+<script type="module">
         import { initDrumSequencer } from './sequencer.js';
 
         // =============================================

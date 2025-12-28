@@ -74,6 +74,11 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
     setupPresetControls(mergedConfig);
   }
 
+  // Run automatic translations after dynamic content is injected
+  if (window.MPL?.i18n?.autoTranslatePage) {
+    window.MPL.i18n.autoTranslatePage().catch(err => console.warn('[LessonEngine] auto-translate failed', err));
+  }
+
   console.log('[LessonEngine] Lesson initialized:', mergedConfig.lessonKey);
 }
 

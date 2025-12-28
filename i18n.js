@@ -931,6 +931,40 @@
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
   ];
 
+  // Automatic translation cache settings
+  const AUTO_TRANSLATE_CACHE_KEY = 'mpl-auto-translate-cache-v1';
+  const AUTO_TRANSLATE_MAX_ENTRIES = 1000;
+
+  function loadAutoTranslateCache() {
+    try {
+      return JSON.parse(localStorage.getItem(AUTO_TRANSLATE_CACHE_KEY)) || {};
+    } catch (err) {
+      console.warn('[i18n] Failed to parse auto-translate cache', err);
+      return {};
+    }
+  }
+
+  let autoTranslateCache = loadAutoTranslateCache();
+
+  function persistAutoTranslateCache() {
+    try {
+      const cache = JSON.stringify(autoTranslateCache);
+      localStorage.setItem(AUTO_TRANSLATE_CACHE_KEY, cache);
+    } catch (err) {
+      console.warn('[i18n] Failed to persist auto-translate cache', err);
+    }
+  }
+
+  function pruneCacheForLanguage(lang) {
+    const entries = Object.entries(autoTranslateCache[lang] || {});
+    if (entries.length <= AUTO_TRANSLATE_MAX_ENTRIES) return;
+
+    const overflow = entries.length - AUTO_TRANSLATE_MAX_ENTRIES;
+    const keysToDelete = entries.slice(0, overflow).map(([key]) => key);
+    keysToDelete.forEach(key => delete autoTranslateCache[lang][key]);
+    persistAutoTranslateCache();
+  }
+
   // Get current language from localStorage or default to English
   let currentLang = localStorage.getItem('mpl-language') || 'en';
 
@@ -958,6 +992,120 @@
 
     // Reload the page to apply the new language
     window.location.reload();
+  }
+
+  async function requestMachineTranslation(text, targetLang) {
+    const payload = {
+      q: text,
+      source: 'auto',
+      target: targetLang,
+      format: 'text'
+    };
+
+    const endpoints = [
+      'https://libretranslate.de/translate',
+      'https://translate.argosopentech.com/translate'
+    ];
+
+    for (const url of endpoints) {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) continue;
+        const data = await response.json();
+        if (data?.translatedText) return data.translatedText;
+      } catch (err) {
+        console.warn('[i18n] Translation request failed for endpoint', url, err);
+      }
+    }
+
+    return null;
+  }
+
+  async function getAutoTranslatedText(text) {
+    if (!text || currentLang === 'en') return text;
+
+    autoTranslateCache[currentLang] = autoTranslateCache[currentLang] || {};
+
+    if (autoTranslateCache[currentLang][text]) {
+      return autoTranslateCache[currentLang][text];
+    }
+
+    const translated = await requestMachineTranslation(text, currentLang);
+    if (translated) {
+      autoTranslateCache[currentLang][text] = translated;
+      pruneCacheForLanguage(currentLang);
+      persistAutoTranslateCache();
+      return translated;
+    }
+
+    return text;
+  }
+
+  function shouldSkipNode(node) {
+    const parent = node.parentElement;
+    if (!parent) return true;
+    if (parent.closest('[data-i18n-ignore]')) return true;
+    if (parent.closest('[data-i18n]')) return true;
+    if (parent.closest('script,style,code,pre')) return true;
+
+    const text = node.textContent.trim();
+    if (!text || text.length < 2) return true;
+    if (/^[\d\s.,;:!?()'"-]+$/.test(text)) return true;
+    return false;
+  }
+
+  function collectTranslatableNodes(root) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        return shouldSkipNode(node)
+          ? NodeFilter.FILTER_REJECT
+          : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+    return nodes;
+  }
+
+  async function autoTranslatePage() {
+    if (currentLang === 'en') return;
+
+    const roots = document.querySelectorAll('[data-i18n-auto], body');
+    const nodes = [];
+    roots.forEach(root => nodes.push(...collectTranslatableNodes(root)));
+
+    if (!nodes.length) return;
+
+    const uniqueTexts = Array.from(new Set(nodes.map(node => node.textContent.trim())));
+    const translationPairs = await Promise.all(uniqueTexts.map(async text => ({
+      original: text,
+      translated: await getAutoTranslatedText(text)
+    })));
+
+    const translationMap = new Map(
+      translationPairs
+        .filter(pair => pair.translated && pair.translated !== pair.original)
+        .map(pair => [pair.original, pair.translated])
+    );
+
+    nodes.forEach(node => {
+      const text = node.textContent;
+      const trimmed = text.trim();
+      const translated = translationMap.get(trimmed);
+      if (!translated) return;
+
+      const leading = text.match(/^\s*/)[0];
+      const trailing = text.match(/\s*$/)[0];
+      node.textContent = `${leading}${translated}${trailing}`;
+    });
   }
 
   /**
@@ -989,6 +1137,9 @@
 
     // Update HTML lang attribute
     document.documentElement.lang = currentLang;
+
+    // Automatically translate any remaining text nodes (tutorials, sequencer labels, etc.)
+    autoTranslatePage().catch(err => console.warn('[i18n] Auto-translate failed', err));
   }
 
   /**
@@ -1038,7 +1189,8 @@
     getCurrentLanguage,
     getLanguages,
     updatePageText,
-    translations
+    translations,
+    autoTranslatePage
   };
 
 })();

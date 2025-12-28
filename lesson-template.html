@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body data-i18n-auto="true">
     <!-- HEADER -->
     <header class="site-header glass">
       <div class="header-inner container">
@@ -132,8 +132,8 @@
       
       <!-- LESSON ENGINE SCRIPT -->
       <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
-      
-      <!-- 
+
+      <!--
         HOW TO USE THIS TEMPLATE:
         
         1. Create a config file (e.g., configs/lesson-drums-5.config.js)
@@ -141,12 +141,16 @@
         3. Update the script import at the bottom to point to your config
         
         Example:
-        <script type="module">
+            <script src="i18n.js"></script>
+
+<script type="module">
           import { lessonConfig } from './configs/lesson-drums-5.config.js';
           import { initLessonFromConfig } from './lesson-engine.js';
           initLessonFromConfig(lessonConfig);
         </script>
       -->
+
+      <script src="i18n.js"></script>
       
       <script type="module">
         // IMPORT YOUR CONFIG HERE - change this path for each lesson
