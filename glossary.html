@@ -86,6 +86,7 @@
             <a href="#section-r" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md);">R</a>
             <a href="#section-s" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md);">S</a>
             <a href="#section-t" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md);">T</a>
+            <a href="#section-v" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md);">V</a>
           </div>
         </section>
 
@@ -116,6 +117,13 @@
           <!-- SECTION: A -->
           <div id="section-a" style="margin-top: var(--space-2xl);">
             <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-lg); color: var(--accent-cyan);">A</h3>
+
+            <div class="exercise-box" id="accent">
+              <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Accent</h4>
+              <p class="section-body">
+                An emphasized note played louder than surrounding notes. In drum programming, accents are created using high velocity values (100-127). Accents highlight important rhythmic moments and create dynamic contrast. For example, accenting the downbeats (1, 5, 9, 13) while keeping off-beats softer creates a more musical, expressive groove.
+              </p>
+            </div>
 
             <div class="exercise-box" id="adsr">
               <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">ADSR Envelope</h4>
@@ -211,6 +219,13 @@
           <div id="section-d" style="margin-top: var(--space-2xl);">
             <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-lg); color: var(--accent-cyan);">D</h3>
 
+            <div class="exercise-box" id="dynamics">
+              <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Dynamics</h4>
+              <p class="section-body">
+                Variations in loudness or intensity within a musical performance. In drum programming, dynamics are controlled through velocity—some hits are played louder (accents) while others are softer (ghost notes). Using dynamics makes programmed patterns sound more human, expressive, and musical. A pattern with good dynamics has contrast between loud and soft notes, creating interest and groove that flat, uniform-velocity patterns lack.
+              </p>
+            </div>
+
             <div class="exercise-box" id="daw">
               <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">DAW (Digital Audio Workstation)</h4>
               <p class="section-body">
@@ -282,6 +297,13 @@
           <!-- SECTION: G -->
           <div id="section-g" style="margin-top: var(--space-2xl);">
             <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-lg); color: var(--accent-cyan);">G</h3>
+
+            <div class="exercise-box" id="ghost-notes">
+              <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Ghost Notes</h4>
+              <p class="section-body">
+                Very soft drum hits—typically snare hits—placed between the main beats. Ghost notes are programmed using very low velocity (15-40 out of 127) and should be felt more than heard. They add subtle texture, rhythmic detail, and human feel to drum patterns. Common in funk, hip-hop, and realistic drum programming, ghost notes fill the space between strong hits without overpowering the main groove. The key is subtlety: a few well-placed ghost notes are more effective than filling every gap.
+              </p>
+            </div>
 
             <div class="exercise-box" id="gain-reduction">
               <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Gain Reduction</h4>
@@ -527,6 +549,27 @@
               <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Sustain</h4>
               <p class="section-body">
                 The third stage of an ADSR envelope. It's the <strong>volume level held while a note is playing</strong> (after attack and decay). Unlike the other ADSR stages which are time-based, sustain is a level - the sound stays at this volume for as long as you hold the note. High sustain creates long, held sounds. Low sustain creates percussive, plucky sounds.
+              </p>
+            </div>
+          </div>
+
+          <!-- SECTION: V -->
+          <div id="section-v" style="margin-top: var(--space-2xl);">
+            <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-lg); color: var(--accent-cyan);">V</h3>
+
+            <div class="exercise-box" id="velocity">
+              <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Velocity</h4>
+              <p class="section-body">
+                A MIDI parameter that controls how hard a note is played, measured on a scale from 0 to 127. Higher velocity = louder, more forceful notes. Lower velocity = softer, quieter notes. In drum programming, velocity ranges typically include:
+              </p>
+              <ul class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm);">
+                <li><strong>15-40:</strong> Ghost notes (barely audible, felt more than heard)</li>
+                <li><strong>40-70:</strong> Soft/medium hits</li>
+                <li><strong>70-100:</strong> Normal playing strength</li>
+                <li><strong>100-127:</strong> Accents (emphasized, loud hits)</li>
+              </ul>
+              <p class="section-body" style="margin-top: var(--space-sm);">
+                Varying velocity creates dynamics and expression, transforming robotic patterns into human-feeling grooves. The difference between the softest and loudest notes is called the dynamic range.
               </p>
             </div>
           </div>
