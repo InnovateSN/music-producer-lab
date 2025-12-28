@@ -1,7 +1,7 @@
 /**
  * MUSIC PRODUCER LAB - SHARED NAVBAR COMPONENT
  * This script creates a consistent navigation bar across all pages
- * Integrates with i18n.js for translations
+ * Uses the global i18n system from i18n.js
  */
 
 (function() {
@@ -16,36 +16,26 @@
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
   ];
 
-  // Get current language from localStorage or default to English
-  let currentLang = localStorage.getItem('mpl-language') || 'en';
-
-  // Get translation helper (uses global i18n if available, otherwise fallback)
+  // Get translation helper from global i18n (fallback if i18n.js not loaded yet)
   function t(key) {
-    if (window.MPL && window.MPL.i18n) {
-      return window.MPL.i18n.t(key);
-    }
-    // Fallback translations for navbar if i18n.js not loaded yet
-    const fallback = {
-      home: 'Home', labs: 'Labs', explore: 'Explore', downloads: 'Downloads',
-      about: 'About', contact: 'Contact', startLearning: 'Start Learning',
-      dark: 'Dark', light: 'Light'
-    };
-    return fallback[key] || key;
+    return window.MPL?.i18n?.t(key) || key;
   }
 
-  // Set language
-  function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('mpl-language', lang);
+  // Get current language
+  function getCurrentLang() {
+    return window.MPL?.i18n?.getCurrentLanguage() || localStorage.getItem('mpl-language') || 'en';
+  }
 
-    // Use global i18n system if available
-    if (window.MPL && window.MPL.i18n) {
+  // Set language using global i18n system
+  function setLanguage(lang) {
+    if (window.MPL?.i18n?.setLanguage) {
       window.MPL.i18n.setLanguage(lang);
     } else {
-      updateNavbarText();
-      // Dispatch event for other parts of the app to react
-      window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+      // Fallback if i18n.js not loaded
+      localStorage.setItem('mpl-language', lang);
+      window.location.reload();
     }
+    updateNavbarText();
   }
 
   // Update navbar text with current language
@@ -85,6 +75,7 @@
   function createNavbar() {
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop() || 'index.html';
+    const currentLang = getCurrentLang();
 
     function isActive(page) {
       if (page === 'index.html' && (currentPage === 'index.html' || currentPage === '')) {

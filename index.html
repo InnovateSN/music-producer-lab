@@ -78,28 +78,28 @@
     
     <div class="container">
       <div class="hero-content">
-        <div class="hero-eyebrow">
+        <div class="hero-eyebrow" data-i18n="heroEyebrow">
           Interactive Music Production
         </div>
-        
+
         <h1 class="hero-title">
-          Learn music production by <span class="text-gradient">actually producing</span>.
+          <span data-i18n="heroTitle">Learn music production by</span> <span class="text-gradient" data-i18n="heroTitleHighlight">actually producing</span>.
         </h1>
-        
+
         <p class="hero-subtitle">
-          Interactive labs where you build real tracks step by step. 
-          Not videos. Not theory. <strong>You do the work.</strong>
+          <span data-i18n="heroSubtitle">Interactive labs where you build real tracks step by step.</span>
+          <span data-i18n="heroSubtitlePrefix">Not videos. Not theory.</span> <strong data-i18n="heroSubtitleBold">You do the work.</strong>
         </p>
-        
+
         <div class="hero-cta">
           <a href="labs.html" class="btn btn-primary btn-lg">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
-            Start Free Labs
+            <span data-i18n="startFreeLabs">Start Free Labs</span>
           </a>
           <a href="explore.html" class="btn btn-secondary btn-lg">
-            Explore All Content
+            <span data-i18n="seeWhatYouBuild">See What You'll Build</span>
           </a>
         </div>
         
@@ -128,14 +128,14 @@
     </div>
   </section>
 
-  <!-- Problem Section -->
+  <!-- Why Different Section -->
   <section class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle);">
     <div class="container">
       <div class="text-center mb-2xl">
-        <span class="badge badge-primary mb-md" data-i18n="problemBadge">The Problem</span>
-        <h2 class="mb-lg" style="max-width: 800px; margin: 0 auto;">
-          <span data-i18n="problemTitle">Tired of watching tutorials without ever</span> <span class="text-gradient" data-i18n="problemTitleGradient">finishing a track</span>?
+        <h2 class="mb-lg" style="max-width: 800px; margin: 0 auto;" data-i18n="whyDifferentTitle">
+          Why Music Producer Lab is Different
         </h2>
+        <p data-i18n="whyDifferentSubtitle">Most courses teach theory. We teach by doing.</p>
       </div>
 
       <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
@@ -889,16 +889,16 @@
   <!-- CTA Section -->
   <section class="section" style="background: var(--gradient-glow);">
     <div class="container text-center">
-      <h2 class="mb-md" data-i18n="ctaTitle">Ready to start producing?</h2>
-      <p style="max-width: 500px; margin: 0 auto var(--space-xl);" data-i18n="ctaDescription">
-        Jump into your first lab right now. No signup required. Just you, the lab, and music to make.
+      <h2 class="mb-md" data-i18n="finalCtaTitle">Stop Watching. Start Producing.</h2>
+      <p style="max-width: 500px; margin: 0 auto var(--space-xl);" data-i18n="finalCtaSubtitle">
+        Join thousands of students who chose to build instead of watch.
       </p>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md);">
         <a href="labs.html" class="btn btn-primary btn-lg">
-          <span data-i18n="ctaPrimary">Start Your First Lab</span>
+          <span data-i18n="finalCtaButton">Start Free Labs Now</span>
         </a>
         <a href="download.html" class="btn btn-secondary btn-lg">
-          <span data-i18n="ctaSecondary">Browse All Labs</span>
+          <span data-i18n="downloadGuides">Production Guides</span>
         </a>
       </div>
     </div>
@@ -914,7 +914,7 @@
             <span>Music Producer Lab</span>
           </div>
           <p class="footer-tagline" data-i18n="footerTagline">
-            Master music production through hands-on practice.
+            Learn music production by actually producing.
           </p>
           <div class="footer-socials">
             <a href="https://twitter.com/MusicProducerLab" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Twitter">
@@ -986,7 +986,7 @@
   </footer>
   
   <!-- Scripts -->
-  <!-- i18n Translation System (must load first) -->
+  <!-- Global i18n System -->
   <script src="i18n.js"></script>
   <!-- Shared Navbar Component -->
   <script src="navbar.js"></script>
