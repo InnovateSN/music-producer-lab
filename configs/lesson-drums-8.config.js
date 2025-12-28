@@ -88,7 +88,7 @@ export const lessonConfig = {
       }
     },
     {
-      id: "hihat-closed",
+      id: "hihat",
       label: "Hi-Hat (Closed)",
       color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
       targetSteps: [2, 6, 10, 14],
@@ -99,7 +99,7 @@ export const lessonConfig = {
       }
     },
     {
-      id: "hihat-open",
+      id: "rim",
       label: "Hi-Hat (Open)",
       color: "linear-gradient(135deg, #54a0ff, #2e86de)",
       targetSteps: [14],

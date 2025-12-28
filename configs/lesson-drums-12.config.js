@@ -91,7 +91,7 @@ export const lessonConfig = {
       patternHint: { enabled: true, note: "Hi-Hat: 8th notes" }
     },
     {
-      id: "crash",
+      id: "clap",
       label: "Crash",
       color: "linear-gradient(135deg, #fdcb6e, #f39c12)",
       targetSteps: [0],
