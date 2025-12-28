@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Progress | Music Producer Lab</title>
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .progress-hero {
+      padding: calc(80px + var(--space-2xl)) 0 var(--space-2xl);
+      background: var(--gradient-hero);
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-glow);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .category-progress {
+      background: var(--bg-card);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: var(--space-lg);
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .category-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .category-stats {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-full);
+      transition: width 0.6s ease;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .achievement {
+      background: var(--bg-card);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      transition: all var(--transition-base);
+    }
+
+    .achievement.locked {
+      opacity: 0.4;
+    }
+
+    .achievement.unlocked {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .achievement-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .achievement-info h4 {
+      margin-bottom: var(--space-xs);
+      font-size: 1rem;
+    }
+
+    .achievement-info p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .achievement-date {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      margin-top: var(--space-xs);
+    }
+
+    .actions-panel {
+      background: var(--bg-secondary);
+      padding: var(--space-2xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn-danger {
+      background: var(--accent-pink);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #ff4d99;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation (loaded by navbar.js) -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Hero -->
+  <section class="progress-hero">
+    <div class="container">
+      <h1 style="margin-bottom: var(--space-md);">Your Progress</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);">
+        Track your journey from beginner to pro. Every lab completed brings you closer to mastery.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Stats Overview -->
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-completed">0</div>
+          <div class="stat-label">Labs Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-percentage">0%</div>
+          <div class="stat-label">Overall Progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-streak">0</div>
+          <div class="stat-label">Current Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-time">0h</div>
+          <div class="stat-label">Total Time</div>
+        </div>
+      </div>
+
+      <!-- Category Progress -->
+      <div style="margin-bottom: var(--space-2xl);">
+        <h2 class="mb-xl">Progress by Category</h2>
+        <div id="categories-container"></div>
+      </div>
+
+      <!-- Achievements -->
+      <div style="margin-bottom: var(--space-2xl);">
+        <h2 class="mb-xl">Achievements <span id="achievement-count" style="color: var(--text-muted); font-size: 1rem;">(0/9)</span></h2>
+        <div class="achievement-grid" id="achievements-container"></div>
+      </div>
+
+      <!-- Actions Panel -->
+      <div class="actions-panel">
+        <h3 style="margin-bottom: var(--space-md);">Manage Your Progress</h3>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+          Export your progress to back it up or transfer to another device. Import to restore or merge progress.
+        </p>
+        <div class="actions-grid">
+          <button class="btn btn-primary btn-icon" id="exportBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export Progress
+          </button>
+          <button class="btn btn-secondary btn-icon" id="importBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Import Progress
+          </button>
+          <button class="btn btn-secondary btn-icon" id="resetBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+              <path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+              <path d="M3 21v-5h5"/>
+            </svg>
+            Reset Progress
+          </button>
+        </div>
+        <input type="file" id="importProgressFile" accept=".json" style="display: none;">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; <span id="year"></span> Music Producer Lab. Keep learning!</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="navbar.js"></script>
+  <script src="progress-tracker.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const tracker = window.MPL.ProgressTracker;
+    const stats = tracker.getStats();
+
+    // Update stats
+    document.getElementById('stat-completed').textContent = stats.totalCompleted;
+    document.getElementById('stat-percentage').textContent = stats.completionPercentage + '%';
+    document.getElementById('stat-streak').textContent = stats.currentStreak + ' days';
+
+    const hours = Math.floor(stats.totalTime / 60);
+    const minutes = stats.totalTime % 60;
+    document.getElementById('stat-time').textContent = hours > 0
+      ? `${hours}h ${minutes}m`
+      : `${minutes}m`;
+
+    // Render categories
+    const categoriesContainer = document.getElementById('categories-container');
+    const categoryNames = {
+      'drums': '🥁 Drums & Rhythm',
+      'arrangement': '🎹 Arrangement',
+      'sound-design': '🎛️ Sound Design',
+      'mixing': '🎚️ Mixing',
+      'vocals': '🎤 Vocals',
+      'mastering': '✨ Mastering'
+    };
+
+    Object.entries(stats.categories).forEach(([key, cat]) => {
+      const percentage = cat.total > 0 ? Math.round((cat.completed / cat.total) * 100) : 0;
+
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'category-progress';
+      categoryDiv.innerHTML = `
+        <div class="category-header">
+          <span class="category-name">${categoryNames[key] || key}</span>
+          <span class="category-stats">${cat.completed}/${cat.total} (${percentage}%)</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${percentage}%"></div>
+        </div>
+      `;
+      categoriesContainer.appendChild(categoryDiv);
+    });
+
+    // Render achievements
+    const achievementsContainer = document.getElementById('achievements-container');
+    const allAchievements = [
+      { id: 'first-beat', name: 'First Beat', description: 'Complete your first lab', icon: '🎵' },
+      { id: 'getting-started', name: 'Getting Started', description: 'Complete 5 labs', icon: '🚀' },
+      { id: 'committed', name: 'Committed', description: 'Complete 10 labs', icon: '💪' },
+      { id: 'dedicated', name: 'Dedicated Producer', description: 'Complete 20 labs', icon: '🔥' },
+      { id: 'master', name: 'Lab Master', description: 'Complete all labs', icon: '👑' },
+      { id: 'week-streak', name: 'Week Warrior', description: 'Practice 7 days in a row', icon: '📅' },
+      { id: 'month-streak', name: 'Monthly Master', description: 'Practice 30 days in a row', icon: '🗓️' },
+      { id: 'drums-complete', name: 'Rhythm Master', description: 'Complete all Drums labs', icon: '🥁' },
+      { id: 'speed-demon', name: 'Speed Demon', description: 'Complete 3 labs in one day', icon: '⚡' }
+    ];
+
+    const unlockedAchievements = tracker.data.achievements;
+    document.getElementById('achievement-count').textContent = `(${unlockedAchievements.length}/${allAchievements.length})`;
+
+    allAchievements.forEach(achievement => {
+      const unlocked = unlockedAchievements.find(a => a.id === achievement.id);
+
+      const achievementDiv = document.createElement('div');
+      achievementDiv.className = `achievement ${unlocked ? 'unlocked' : 'locked'}`;
+      achievementDiv.innerHTML = `
+        <div class="achievement-icon">${achievement.icon}</div>
+        <div class="achievement-info">
+          <h4>${achievement.name}</h4>
+          <p>${achievement.description}</p>
+          ${unlocked ? `<div class="achievement-date">Unlocked ${new Date(unlocked.unlockedAt).toLocaleDateString()}</div>` : ''}
+        </div>
+      `;
+      achievementsContainer.appendChild(achievementDiv);
+    });
+
+    // Export button
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const filename = tracker.exportProgress();
+      alert(`Progress exported to ${filename}`);
+    });
+
+    // Import button
+    document.getElementById('importBtn').addEventListener('click', () => {
+      document.getElementById('importProgressFile').click();
+    });
+
+    // Reset button
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset ALL progress? This cannot be undone!')) {
+        if (confirm('This will delete all your completed labs, achievements, and stats. Are you absolutely sure?')) {
+          tracker.reset();
+          location.reload();
+        }
+      }
+    });
+
+    // Listen for achievement unlock events
+    window.addEventListener('mpl:achievement-unlocked', (e) => {
+      // Show notification (optional)
+      console.log('Achievement unlocked:', e.detail);
+    });
+
+    // Listen for import success
+    window.addEventListener('mpl:progress-imported', () => {
+      alert('Progress imported successfully!');
+      location.reload();
+    });
+
+    // Listen for import error
+    window.addEventListener('mpl:progress-import-error', (e) => {
+      alert('Failed to import progress: ' + e.detail.error);
+    });
+  </script>
+</body>
+</html>

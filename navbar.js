@@ -166,6 +166,11 @@
           </ul>
 
           <div class="navbar-actions">
+            <!-- Progress Badge -->
+            <a href="progress.html" class="progress-badge-link" title="View your progress">
+              <span class="progress-badge" id="progress-badge">0/90</span>
+            </a>
+
             <!-- Language Selector -->
             <div class="language-selector">
               <button class="language-toggle" id="languageToggle" aria-label="Select language">
