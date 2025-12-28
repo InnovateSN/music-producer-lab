@@ -1,74 +1,11 @@
 /**
  * MUSIC PRODUCER LAB - SHARED NAVBAR COMPONENT
  * This script creates a consistent navigation bar across all pages
+ * Integrates with i18n.js for translations
  */
 
 (function() {
   'use strict';
-
-  // Language translations
-  const translations = {
-    en: {
-      home: 'Home',
-      labs: 'Labs',
-      explore: 'Explore',
-      downloads: 'Downloads',
-      about: 'About',
-      contact: 'Contact',
-      startLearning: 'Start Learning',
-      dark: 'Dark',
-      light: 'Light',
-      language: 'Language'
-    },
-    it: {
-      home: 'Home',
-      labs: 'Laboratori',
-      explore: 'Esplora',
-      downloads: 'Download',
-      about: 'Chi Siamo',
-      contact: 'Contatti',
-      startLearning: 'Inizia ad Imparare',
-      dark: 'Scuro',
-      light: 'Chiaro',
-      language: 'Lingua'
-    },
-    es: {
-      home: 'Inicio',
-      labs: 'Laboratorios',
-      explore: 'Explorar',
-      downloads: 'Descargas',
-      about: 'Acerca de',
-      contact: 'Contacto',
-      startLearning: 'Empezar a Aprender',
-      dark: 'Oscuro',
-      light: 'Claro',
-      language: 'Idioma'
-    },
-    fr: {
-      home: 'Accueil',
-      labs: 'Laboratoires',
-      explore: 'Explorer',
-      downloads: 'Téléchargements',
-      about: 'À Propos',
-      contact: 'Contact',
-      startLearning: 'Commencer à Apprendre',
-      dark: 'Sombre',
-      light: 'Clair',
-      language: 'Langue'
-    },
-    de: {
-      home: 'Startseite',
-      labs: 'Labore',
-      explore: 'Erkunden',
-      downloads: 'Downloads',
-      about: 'Über Uns',
-      contact: 'Kontakt',
-      startLearning: 'Lernen Beginnen',
-      dark: 'Dunkel',
-      light: 'Hell',
-      language: 'Sprache'
-    }
-  };
 
   // Language configuration
   const languages = [
@@ -82,18 +19,33 @@
   // Get current language from localStorage or default to English
   let currentLang = localStorage.getItem('mpl-language') || 'en';
 
-  // Get translation helper
+  // Get translation helper (uses global i18n if available, otherwise fallback)
   function t(key) {
-    return translations[currentLang][key] || translations.en[key] || key;
+    if (window.MPL && window.MPL.i18n) {
+      return window.MPL.i18n.t(key);
+    }
+    // Fallback translations for navbar if i18n.js not loaded yet
+    const fallback = {
+      home: 'Home', labs: 'Labs', explore: 'Explore', downloads: 'Downloads',
+      about: 'About', contact: 'Contact', startLearning: 'Start Learning',
+      dark: 'Dark', light: 'Light'
+    };
+    return fallback[key] || key;
   }
 
   // Set language
   function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('mpl-language', lang);
-    updateNavbarText();
-    // Dispatch event for other parts of the app to react
-    window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+
+    // Use global i18n system if available
+    if (window.MPL && window.MPL.i18n) {
+      window.MPL.i18n.setLanguage(lang);
+    } else {
+      updateNavbarText();
+      // Dispatch event for other parts of the app to react
+      window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+    }
   }
 
   // Update navbar text with current language
@@ -330,10 +282,17 @@
     initNavbar();
   }
 
-  // Export for global access
+  // Export navbar-specific functions for global access
   window.MPL = window.MPL || {};
-  window.MPL.setLanguage = setLanguage;
-  window.MPL.getCurrentLanguage = () => currentLang;
-  window.MPL.t = t;
-  window.MPL.updateNavbarText = updateNavbarText;
+  window.MPL.navbar = {
+    setLanguage: setLanguage,
+    getCurrentLanguage: () => currentLang,
+    updateNavbarText: updateNavbarText
+  };
+
+  // Listen for language changes from i18n system
+  window.addEventListener('languagechange', (e) => {
+    currentLang = e.detail.lang;
+    updateNavbarText();
+  });
 })();
