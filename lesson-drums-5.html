@@ -43,17 +43,17 @@
                 </div>
                 <div class="hero-visual-metrics">
                   <div class="hero-visual-metric">
-                    <span>Structure</span>
+                    <span data-i18n="lessonHeroMetricStructure">Structure</span>
                     <strong>Fills & Variations</strong>
                   </div>
                   <div class="hero-visual-metric">
-                    <span>Time</span>
+                    <span data-i18n="lessonHeroMetricTime">Time</span>
                     <strong>10–15 min</strong>
                   </div>
                 </div>
               </div>
               <div class="hero-visual-side-card">
-                <div class="hero-visual-side-label">Goal</div>
+                <div class="hero-visual-side-label" data-i18n="lessonHeroGoal">Goal</div>
                 <div class="hero-visual-pill-list">
                   <div class="hero-visual-pill-tag">Learn drum fills</div>
                   <div class="hero-visual-pill-tag">Add transitions</div>
@@ -70,22 +70,22 @@
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
-            <div class="section-eyebrow">Exercise</div>
+            <div class="section-eyebrow" data-i18n="lessonExerciseLabel">Exercise</div>
             <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
             <p class="section-body" id="mpl-exercise-description"></p>
 
             <div class="exercise-steps" id="mpl-exercise-steps-wrap">
-              <h3>What to do:</h3>
+              <h3 data-i18n="lessonWhatToDo">What to do:</h3>
               <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
             <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
-              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+              <strong data-i18n="lessonTipLabel">Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
 
             <!-- PATTERN HINT (populated by JS) -->
             <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
-              <div class="pattern-hint-label">Target Pattern:</div>
+              <div class="pattern-hint-label" data-i18n="lessonTargetPattern">Target Pattern:</div>
               <div id="mpl-pattern-hint-grid"></div>
               <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
@@ -94,7 +94,7 @@
 
         <!-- SEQUENCER SECTION -->
         <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
-          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);" data-i18n="lessonSequencerLabel">Interactive Sequencer</div>
           <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
 
           <div class="sequencer" id="mpl-sequencer-collection">
@@ -105,29 +105,29 @@
           <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              Play
+              <span data-i18n="lessonControlPlay">Play</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-              Stop
+              <span data-i18n="lessonControlStop">Stop</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-              Clear
+              <span data-i18n="lessonControlClear">Clear</span>
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-              Check Exercise
+              <span data-i18n="lessonControlCheck">Check Exercise</span>
             </button>
 
             <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                Next Lesson &rarr;
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock" data-i18n="lessonNextTooltip" data-i18n-attr="title">
+                <span data-i18n="lessonNextLesson">Next Lesson &rarr;</span>
               </button>
             </div>
           </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            Complete the exercise to unlock the next lesson.
+            <span data-i18n="lessonUnlockMessage">Complete the exercise to unlock the next lesson.</span>
           </div>
         </section>
 
