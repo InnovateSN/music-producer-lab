@@ -181,8 +181,8 @@
   <!-- Hero -->
   <section class="progress-hero">
     <div class="container">
-      <h1 style="margin-bottom: var(--space-md);" data-i18n="progressHeroTitle">Your Progress</h1>
-      <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);" data-i18n="progressHeroSubtitle">
+      <h1 style="margin-bottom: var(--space-md);">Your Progress</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);">
         Track your journey from beginner to pro. Every lab completed brings you closer to mastery.
       </p>
     </div>
@@ -196,38 +196,38 @@
       <div class="stats-grid" id="stats-grid">
         <div class="stat-card">
           <div class="stat-value" id="stat-completed">0</div>
-          <div class="stat-label" data-i18n="progressStatsLabsCompleted">Labs Completed</div>
+          <div class="stat-label">Labs Completed</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-percentage">0%</div>
-          <div class="stat-label" data-i18n="progressStatsOverallProgress">Overall Progress</div>
+          <div class="stat-label">Overall Progress</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-streak">0</div>
-          <div class="stat-label" data-i18n="progressStatsCurrentStreak">Current Streak</div>
+          <div class="stat-label">Current Streak</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-time">0h</div>
-          <div class="stat-label" data-i18n="progressStatsTotalTime">Total Time</div>
+          <div class="stat-label">Total Time</div>
         </div>
       </div>
 
       <!-- Category Progress -->
       <div style="margin-bottom: var(--space-2xl);">
-        <h2 class="mb-xl" data-i18n="progressCategoryTitle">Progress by Category</h2>
+        <h2 class="mb-xl">Progress by Category</h2>
         <div id="categories-container"></div>
       </div>
 
       <!-- Achievements -->
       <div style="margin-bottom: var(--space-2xl);">
-        <h2 class="mb-xl"><span data-i18n="progressAchievementsTitle">Achievements</span> <span id="achievement-count" style="color: var(--text-muted); font-size: 1rem;">(0/9)</span></h2>
+        <h2 class="mb-xl"><span>Achievements</span> <span id="achievement-count" style="color: var(--text-muted); font-size: 1rem;">(0/9)</span></h2>
         <div class="achievement-grid" id="achievements-container"></div>
       </div>
 
       <!-- Actions Panel -->
       <div class="actions-panel">
-        <h3 style="margin-bottom: var(--space-md);" data-i18n="progressManageTitle">Manage Your Progress</h3>
-        <p style="color: var(--text-muted); margin-bottom: var(--space-xl); max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="progressManageDescription">
+        <h3 style="margin-bottom: var(--space-md);">Manage Your Progress</h3>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
           Export your progress to back it up or transfer to another device. Import to restore or merge progress.
         </p>
         <div class="actions-grid">
@@ -237,7 +237,7 @@
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            <span data-i18n="progressExportButton">Export Progress</span>
+            <span>Export Progress</span>
           </button>
           <button class="btn btn-secondary btn-icon" id="importBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -245,7 +245,7 @@
               <polyline points="17 8 12 3 7 8"/>
               <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
-            <span data-i18n="progressImportButton">Import Progress</span>
+            <span>Import Progress</span>
           </button>
           <button class="btn btn-secondary btn-icon" id="resetBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -254,7 +254,7 @@
               <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
               <path d="M3 21v-5h5"/>
             </svg>
-            <span data-i18n="progressResetButton">Reset Progress</span>
+            <span>Reset Progress</span>
           </button>
         </div>
         <input type="file" id="importProgressFile" accept=".json" style="display: none;">
@@ -271,8 +271,6 @@
   </footer>
 
   <!-- Scripts -->
-  <!-- Global i18n System -->
-  <script src="i18n.js"></script>
   <!-- Shared Navbar Component -->
   <script src="navbar.js"></script>
   <script src="progress-tracker.js"></script>
@@ -296,14 +294,13 @@
 
     // Render categories
     const categoriesContainer = document.getElementById('categories-container');
-    const t = window.MPL.i18n.t;
     const categoryNames = {
-      'drums': t('progressCategoryDrums'),
-      'arrangement': t('progressCategoryArrangement'),
-      'sound-design': t('progressCategorySoundDesign'),
-      'mixing': t('progressCategoryMixing'),
-      'vocals': t('progressCategoryVocals'),
-      'mastering': t('progressCategoryMastering')
+      'drums': 'Drums & Rhythm',
+      'arrangement': 'Arrangement',
+      'sound-design': 'Sound Design',
+      'mixing': 'Mixing',
+      'vocals': 'Vocals',
+      'mastering': 'Mastering'
     };
 
     Object.entries(stats.categories).forEach(([key, cat]) => {
@@ -326,15 +323,15 @@
     // Render achievements
     const achievementsContainer = document.getElementById('achievements-container');
     const allAchievements = [
-      { id: 'first-beat', name: t('progressAchievementFirstBeat'), description: t('progressAchievementFirstBeatDesc'), icon: '🎵' },
-      { id: 'getting-started', name: t('progressAchievementGettingStarted'), description: t('progressAchievementGettingStartedDesc'), icon: '🚀' },
-      { id: 'committed', name: t('progressAchievementCommitted'), description: t('progressAchievementCommittedDesc'), icon: '💪' },
-      { id: 'dedicated', name: t('progressAchievementDedicated'), description: t('progressAchievementDedicatedDesc'), icon: '🔥' },
-      { id: 'master', name: t('progressAchievementMaster'), description: t('progressAchievementMasterDesc'), icon: '👑' },
-      { id: 'week-streak', name: t('progressAchievementWeekStreak'), description: t('progressAchievementWeekStreakDesc'), icon: '📅' },
-      { id: 'month-streak', name: t('progressAchievementMonthStreak'), description: t('progressAchievementMonthStreakDesc'), icon: '🗓️' },
-      { id: 'drums-complete', name: t('progressAchievementDrumsComplete'), description: t('progressAchievementDrumsCompleteDesc'), icon: '🥁' },
-      { id: 'speed-demon', name: t('progressAchievementSpeedDemon'), description: t('progressAchievementSpeedDemonDesc'), icon: '⚡' }
+      { id: 'first-beat', name: 'First Beat', description: 'Complete your first lesson', icon: '🎵' },
+      { id: 'getting-started', name: 'Getting Started', description: 'Complete 5 lessons', icon: '🚀' },
+      { id: 'committed', name: 'Committed', description: 'Complete 10 lessons', icon: '💪' },
+      { id: 'dedicated', name: 'Dedicated', description: 'Complete 25 lessons', icon: '🔥' },
+      { id: 'master', name: 'Master', description: 'Complete all lessons', icon: '👑' },
+      { id: 'week-streak', name: 'Week Streak', description: 'Learn for 7 days in a row', icon: '📅' },
+      { id: 'month-streak', name: 'Month Streak', description: 'Learn for 30 days in a row', icon: '🗓️' },
+      { id: 'drums-complete', name: 'Drums Complete', description: 'Complete all drum lessons', icon: '🥁' },
+      { id: 'speed-demon', name: 'Speed Demon', description: 'Complete 5 lessons in one day', icon: '⚡' }
     ];
 
     const unlockedAchievements = tracker.data.achievements;
