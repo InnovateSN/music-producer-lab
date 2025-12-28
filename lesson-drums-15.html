@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body data-i18n-auto="true">
     <!-- HEADER -->
     <header class="site-header glass">
       <div class="header-inner container">
@@ -118,7 +118,9 @@
     </footer>
 
     <!-- MODULAR LESSON ENGINE -->
-    <script type="module">
+        <script src="i18n.js"></script>
+
+<script type="module">
       // Import lesson config and engine
       import { lessonConfig } from './configs/lesson-drums-15.config.js';
       import { initLessonFromConfig } from './lesson-engine.js';
