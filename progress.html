@@ -181,8 +181,8 @@
   <!-- Hero -->
   <section class="progress-hero">
     <div class="container">
-      <h1 style="margin-bottom: var(--space-md);" data-i18n="progressTitle">Your Progress</h1>
-      <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);" data-i18n="progressDescription">
+      <h1 style="margin-bottom: var(--space-md);">Your Progress</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);">
         Track your journey from beginner to pro. Every lab completed brings you closer to mastery.
       </p>
     </div>
@@ -196,38 +196,38 @@
       <div class="stats-grid" id="stats-grid">
         <div class="stat-card">
           <div class="stat-value" id="stat-completed">0</div>
-          <div class="stat-label" data-i18n="progressStatsCompleted">Labs Completed</div>
+          <div class="stat-label">Labs Completed</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-percentage">0%</div>
-          <div class="stat-label" data-i18n="progressStatsPercentage">Overall Progress</div>
+          <div class="stat-label">Overall Progress</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-streak">0</div>
-          <div class="stat-label" data-i18n="progressStatsStreak">Current Streak</div>
+          <div class="stat-label">Current Streak</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="stat-time">0h</div>
-          <div class="stat-label" data-i18n="progressStatsTime">Total Time</div>
+          <div class="stat-label">Total Time</div>
         </div>
       </div>
 
       <!-- Category Progress -->
       <div style="margin-bottom: var(--space-2xl);">
-        <h2 class="mb-xl" data-i18n="progressCategoryTitle">Progress by Category</h2>
+        <h2 class="mb-xl">Progress by Category</h2>
         <div id="categories-container"></div>
       </div>
 
       <!-- Achievements -->
       <div style="margin-bottom: var(--space-2xl);">
-        <h2 class="mb-xl"><span data-i18n="progressAchievementsTitle">Achievements</span> <span id="achievement-count" style="color: var(--text-muted); font-size: 1rem;">(0/9)</span></h2>
+        <h2 class="mb-xl">Achievements <span id="achievement-count" style="color: var(--text-muted); font-size: 1rem;">(0/9)</span></h2>
         <div class="achievement-grid" id="achievements-container"></div>
       </div>
 
       <!-- Actions Panel -->
       <div class="actions-panel">
-        <h3 style="margin-bottom: var(--space-md);" data-i18n="progressManageTitle">Manage Your Progress</h3>
-        <p style="color: var(--text-muted); margin-bottom: var(--space-xl); max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="progressManageDescription">
+        <h3 style="margin-bottom: var(--space-md);">Manage Your Progress</h3>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
           Export your progress to back it up or transfer to another device. Import to restore or merge progress.
         </p>
         <div class="actions-grid">
@@ -237,7 +237,7 @@
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            <span data-i18n="progressExport">Export Progress</span>
+            Export Progress
           </button>
           <button class="btn btn-secondary btn-icon" id="importBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -245,7 +245,7 @@
               <polyline points="17 8 12 3 7 8"/>
               <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
-            <span data-i18n="progressImport">Import Progress</span>
+            Import Progress
           </button>
           <button class="btn btn-secondary btn-icon" id="resetBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -254,7 +254,7 @@
               <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
               <path d="M3 21v-5h5"/>
             </svg>
-            <span data-i18n="progressReset">Reset Progress</span>
+            Reset Progress
           </button>
         </div>
         <input type="file" id="importProgressFile" accept=".json" style="display: none;">
@@ -296,24 +296,14 @@
 
     // Render categories
     const categoriesContainer = document.getElementById('categories-container');
-
-    // Get category names from i18n
-    function getCategoryName(key) {
-      if (window.MPL && window.MPL.i18n) {
-        const i18nKey = 'category' + key.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-        return window.MPL.i18n.t(i18nKey);
-      }
-      // Fallback
-      const categoryNames = {
-        'drums': '🥁 Drums & Rhythm',
-        'arrangement': '🎹 Arrangement',
-        'sound-design': '🎛️ Sound Design',
-        'mixing': '🎚️ Mixing',
-        'vocals': '🎤 Vocals',
-        'mastering': '✨ Mastering'
-      };
-      return categoryNames[key] || key;
-    }
+    const categoryNames = {
+      'drums': '🥁 Drums & Rhythm',
+      'arrangement': '🎹 Arrangement',
+      'sound-design': '🎛️ Sound Design',
+      'mixing': '🎚️ Mixing',
+      'vocals': '🎤 Vocals',
+      'mastering': '✨ Mastering'
+    };
 
     Object.entries(stats.categories).forEach(([key, cat]) => {
       const percentage = cat.total > 0 ? Math.round((cat.completed / cat.total) * 100) : 0;
@@ -322,7 +312,7 @@
       categoryDiv.className = 'category-progress';
       categoryDiv.innerHTML = `
         <div class="category-header">
-          <span class="category-name">${getCategoryName(key)}</span>
+          <span class="category-name">${categoryNames[key] || key}</span>
           <span class="category-stats">${cat.completed}/${cat.total} (${percentage}%)</span>
         </div>
         <div class="progress-bar">
