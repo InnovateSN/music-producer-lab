@@ -934,6 +934,7 @@
   // Automatic translation cache settings
   const AUTO_TRANSLATE_CACHE_KEY = 'mpl-auto-translate-cache-v1';
   const AUTO_TRANSLATE_MAX_ENTRIES = 1000;
+  const TRANSLATION_PROXY_ENDPOINT = '/api/translate';
 
   function loadAutoTranslateCache() {
     try {
@@ -994,36 +995,41 @@
     window.location.reload();
   }
 
-  async function requestMachineTranslation(text, targetLang) {
-    const payload = {
-      q: text,
-      source: 'auto',
-      target: targetLang,
-      format: 'text'
-    };
+  async function requestBatchTranslations(texts, targetLang) {
+    if (!texts.length) return new Map();
 
-    const endpoints = [
-      'https://libretranslate.de/translate',
-      'https://translate.argosopentech.com/translate'
-    ];
+    try {
+      const response = await fetch(TRANSLATION_PROXY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          texts,
+          source: 'auto',
+          target: targetLang,
+          contentType: 'lesson'
+        })
+      });
 
-    for (const url of endpoints) {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) continue;
-        const data = await response.json();
-        if (data?.translatedText) return data.translatedText;
-      } catch (err) {
-        console.warn('[i18n] Translation request failed for endpoint', url, err);
+      if (!response.ok) {
+        throw new Error(`Proxy responded with status ${response.status}`);
       }
-    }
 
-    return null;
+      const data = await response.json();
+      const translationsFromProxy = data?.translations || {};
+
+      return new Map(
+        Object.entries(translationsFromProxy)
+          .filter(([, translated]) => typeof translated === 'string' && translated.trim().length)
+      );
+    } catch (err) {
+      console.warn('[i18n] Translation proxy request failed', err);
+      return new Map();
+    }
+  }
+
+  async function requestMachineTranslation(text, targetLang) {
+    const translations = await requestBatchTranslations([text], targetLang);
+    return translations.get(text) || null;
   }
 
   async function getAutoTranslatedText(text) {
@@ -1085,13 +1091,33 @@
     if (!nodes.length) return;
 
     const uniqueTexts = Array.from(new Set(nodes.map(node => node.textContent.trim())));
-    const translationPairs = await Promise.all(uniqueTexts.map(async text => ({
-      original: text,
-      translated: await getAutoTranslatedText(text)
-    })));
+
+    autoTranslateCache[currentLang] = autoTranslateCache[currentLang] || {};
+
+    const cachedEntries = new Map(
+      uniqueTexts
+        .filter(text => autoTranslateCache[currentLang][text])
+        .map(text => [text, autoTranslateCache[currentLang][text]])
+    );
+
+    const textsToTranslate = uniqueTexts.filter(text => !cachedEntries.has(text));
+    const proxyTranslations = await requestBatchTranslations(textsToTranslate, currentLang);
+
+    proxyTranslations.forEach((translated, original) => {
+      autoTranslateCache[currentLang][original] = translated;
+    });
+
+    if (proxyTranslations.size) {
+      pruneCacheForLanguage(currentLang);
+      persistAutoTranslateCache();
+    }
 
     const translationMap = new Map(
-      translationPairs
+      uniqueTexts
+        .map(original => ({
+          original,
+          translated: autoTranslateCache[currentLang][original] || proxyTranslations.get(original)
+        }))
         .filter(pair => pair.translated && pair.translated !== pair.original)
         .map(pair => [pair.original, pair.translated])
     );
@@ -1111,7 +1137,7 @@
   /**
    * Update all text on the page with current language
    */
-  function updatePageText() {
+  async function updatePageText() {
     // Find all elements with data-i18n attribute
     const elements = document.querySelectorAll('[data-i18n]');
 
@@ -1139,7 +1165,11 @@
     document.documentElement.lang = currentLang;
 
     // Automatically translate any remaining text nodes (tutorials, sequencer labels, etc.)
-    autoTranslatePage().catch(err => console.warn('[i18n] Auto-translate failed', err));
+    try {
+      await autoTranslatePage();
+    } catch (err) {
+      console.warn('[i18n] Auto-translate via proxy failed, showing source language text', err);
+    }
   }
 
   /**
@@ -1165,16 +1195,33 @@
     // Set initial HTML lang attribute
     document.documentElement.lang = currentLang;
 
+    const runInitialUpdate = async () => {
+      try {
+        await updatePageText();
+      } catch (err) {
+        console.error('[i18n] Failed to initialize translations via proxy, reverting to source language', err);
+        currentLang = 'en';
+        localStorage.setItem('mpl-language', currentLang);
+        document.documentElement.lang = currentLang;
+
+        try {
+          await updatePageText();
+        } catch (fallbackErr) {
+          console.error('[i18n] Fallback translation update failed', fallbackErr);
+        }
+      }
+    };
+
     // Update page text on load
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', updatePageText);
+      document.addEventListener('DOMContentLoaded', runInitialUpdate);
     } else {
-      updatePageText();
+      runInitialUpdate();
     }
 
     // Listen for language changes
     window.addEventListener('languagechange', () => {
-      updatePageText();
+      updatePageText().catch(err => console.warn('[i18n] Language change update failed', err));
     });
   }
 
