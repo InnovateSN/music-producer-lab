@@ -237,10 +237,10 @@
   <!-- Hero -->
   <section class="contact-hero">
     <div class="container">
-      <span class="badge badge-primary mb-md">Get in Touch</span>
-      <h1 class="mb-md">Contact Us</h1>
-      <p style="max-width: 600px; font-size: 1.1rem;">
-        Have a question, feedback, or just want to say hi? 
+      <span class="badge badge-primary mb-md" data-i18n="contactHeroBadge">Get in Touch</span>
+      <h1 class="mb-md" data-i18n="contactHeroTitle">Contact Us</h1>
+      <p style="max-width: 600px; font-size: 1.1rem;" data-i18n="contactHeroSubtitle">
+        Have a question, feedback, or just want to say hi?
         We'd love to hear from you.
       </p>
     </div>
@@ -251,12 +251,12 @@
       <div class="contact-grid">
         <!-- Contact Info -->
         <div class="contact-info">
-          <h2>Other ways to reach us</h2>
-          <p>
-            Prefer a different channel? Here are some other ways to get in touch 
+          <h2 data-i18n="contactInfoTitle">Other ways to reach us</h2>
+          <p data-i18n="contactInfoSubtitle">
+            Prefer a different channel? Here are some other ways to get in touch
             with the Music Producer Lab team.
           </p>
-          
+
           <div class="contact-methods">
             <a href="mailto:innovatesolutionsnow@gmail.com" class="contact-method">
               <div class="contact-method-icon">
@@ -266,11 +266,11 @@
                 </svg>
               </div>
               <div class="contact-method-content">
-                <h3>Email</h3>
+                <h3 data-i18n="contactEmail">Email</h3>
                 <p>innovatesolutionsnow@gmail.com</p>
               </div>
             </a>
-            
+
             <a href="https://twitter.com/MusicProducerLab" target="_blank" rel="noopener noreferrer" class="contact-method">
               <div class="contact-method-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -278,11 +278,11 @@
                 </svg>
               </div>
               <div class="contact-method-content">
-                <h3>Twitter / X</h3>
-                <p>@MusicProducerLab</p>
+                <h3 data-i18n="contactTwitter">Twitter / X</h3>
+                <p data-i18n="contactTwitterHandle">@MusicProducerLab</p>
               </div>
             </a>
-            
+
             <a href="https://discord.gg/musicproducerlab" target="_blank" rel="noopener noreferrer" class="contact-method">
               <div class="contact-method-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -290,8 +290,8 @@
                 </svg>
               </div>
               <div class="contact-method-content">
-                <h3>Discord</h3>
-                <p>Join our community</p>
+                <h3 data-i18n="contactDiscord">Discord</h3>
+                <p data-i18n="contactDiscordText">Join our community</p>
               </div>
             </a>
           </div>
@@ -300,58 +300,58 @@
         <!-- Contact Form -->
         <div class="contact-form-container">
           <div class="contact-form-header">
-            <h2>Send us a message</h2>
-            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+            <h2 data-i18n="contactFormTitle">Send us a message</h2>
+            <p data-i18n="contactFormSubtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
           </div>
-          
+
           <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="name">
-                  Name <span class="required">*</span>
+                  <span data-i18n="contactNameLabel">Name</span> <span class="required">*</span>
                 </label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                <input type="text" id="name" name="name" class="form-input" data-i18n-placeholder="contactNamePlaceholder" placeholder="Your name" required>
               </div>
-              
+
               <div class="form-group">
                 <label class="form-label" for="email">
-                  Email <span class="required">*</span>
+                  <span data-i18n="contactEmailLabel">Email</span> <span class="required">*</span>
                 </label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+                <input type="email" id="email" name="email" class="form-input" data-i18n-placeholder="contactEmailPlaceholder" placeholder="you@example.com" required>
               </div>
             </div>
-            
+
             <div class="form-group">
-              <label class="form-label" for="subject">
+              <label class="form-label" for="subject" data-i18n="contactSubjectLabel">
                 Subject
               </label>
               <select id="subject" name="subject" class="form-select">
-                <option value="">Select a topic...</option>
-                <option value="general">General Question</option>
-                <option value="feedback">Feedback</option>
-                <option value="bug">Bug Report</option>
-                <option value="feature">Feature Request</option>
-                <option value="partnership">Partnership</option>
-                <option value="other">Other</option>
+                <option value="" data-i18n="contactSubjectDefault">Select a topic...</option>
+                <option value="general" data-i18n="contactSubjectGeneral">General Question</option>
+                <option value="feedback" data-i18n="contactSubjectFeedback">Feedback</option>
+                <option value="bug" data-i18n="contactSubjectBug">Bug Report</option>
+                <option value="feature" data-i18n="contactSubjectFeature">Feature Request</option>
+                <option value="partnership" data-i18n="contactSubjectPartnership">Partnership</option>
+                <option value="other" data-i18n="contactSubjectOther">Other</option>
               </select>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label" for="message">
-                Message <span class="required">*</span>
+                <span data-i18n="contactMessageLabel">Message</span> <span class="required">*</span>
               </label>
-              <textarea id="message" name="message" class="form-textarea" placeholder="How can we help you?" required></textarea>
+              <textarea id="message" name="message" class="form-textarea" data-i18n-placeholder="contactMessagePlaceholder" placeholder="How can we help you?" required></textarea>
             </div>
-            
-            <button type="submit" class="btn btn-primary form-submit">
+
+            <button type="submit" class="btn btn-primary form-submit" data-i18n="contactSendButton">
               Send Message
             </button>
-            
-            <p class="form-note">
+
+            <p class="form-note" data-i18n="contactFormNote">
               We typically respond within 24-48 hours.
             </p>
           </form>
-          
+
           <div class="form-success" id="formSuccess">
             <div class="form-success-icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -359,8 +359,8 @@
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </div>
-            <h3>Message Sent!</h3>
-            <p>Thanks for reaching out. We'll get back to you soon.</p>
+            <h3 data-i18n="contactSuccessTitle">Message Sent!</h3>
+            <p data-i18n="contactSuccessMessage">Thanks for reaching out. We'll get back to you soon.</p>
           </div>
         </div>
       </div>
