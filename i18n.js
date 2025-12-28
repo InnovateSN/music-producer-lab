@@ -803,10 +803,9 @@
 
     currentLang = lang;
     localStorage.setItem('mpl-language', lang);
-    updatePageText();
 
-    // Dispatch event for other parts of the app to react
-    window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+    // Reload the page to apply the new language
+    window.location.reload();
   }
 
   /**
