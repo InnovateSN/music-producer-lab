@@ -934,7 +934,7 @@
   // Automatic translation cache settings
   const AUTO_TRANSLATE_CACHE_KEY = 'mpl-auto-translate-cache-v1';
   const AUTO_TRANSLATE_MAX_ENTRIES = 1000;
-  const TRANSLATION_PROXY_ENDPOINT = '/api/translate';
+  const TRANSLATION_PROXY_ENDPOINT = '/api/translate/proxy';
 
   function loadAutoTranslateCache() {
     try {
@@ -1006,7 +1006,9 @@
           texts,
           source: 'auto',
           target: targetLang,
-          contentType: 'lesson'
+          contentType: 'lesson',
+          pagePath: window.location.pathname,
+          preferCache: true
         })
       });
 
