@@ -422,7 +422,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       step.dataset.instrument = inst.id;
       step.dataset.step = i;
       step.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
-      
+
       const beatStart = i % stepsPerBeat === 0;
       step.style.cssText = `
         flex: 1;
@@ -434,268 +434,178 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         cursor: pointer;
         transition: all 0.15s ease;
         padding: 0;
+        position: relative;
+        overflow: hidden;
       `;
-      
-      step.addEventListener('click', () => {
-        state[inst.id][i] = !state[inst.id][i];
-        const beatStart = i % stepsPerBeat === 0;
-        step.style.background = state[inst.id][i]
-          ? inst.color
-          : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
-        step.style.borderColor = state[inst.id][i]
-          ? 'transparent'
-          : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
 
+      // Velocity fill element (vertical bar showing velocity level)
+      const velocityFill = document.createElement('div');
+      velocityFill.className = 'velocity-fill-inline';
+      velocityFill.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: ${(velocityState[inst.id][i] / 127) * 100}%;
+        background: ${inst.color};
+        opacity: ${state[inst.id][i] ? 0.5 : 0};
+        pointer-events: none;
+        transition: height 0.1s ease, opacity 0.15s ease;
+        z-index: 0;
+      `;
+      step.appendChild(velocityFill);
+
+      // Velocity tooltip (shows numeric value during drag)
+      const velocityTooltip = document.createElement('div');
+      velocityTooltip.className = 'velocity-tooltip';
+      velocityTooltip.style.cssText = `
+        position: absolute;
+        top: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.95);
+        color: #00f0ff;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        font-family: var(--font-mono, monospace);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        z-index: 10;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      `;
+      step.appendChild(velocityTooltip);
+
+      // Drag state
+      let isDragging = false;
+      let dragStartY = 0;
+      let hasMovedEnough = false;
+
+      step.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        dragStartY = e.clientY;
+        hasMovedEnough = false;
+
+        // Show tooltip immediately
+        velocityTooltip.textContent = `${velocityState[inst.id][i]}`;
+        velocityTooltip.style.opacity = '1';
+
+        e.preventDefault(); // Prevent text selection
+      });
+
+      const handleMouseMove = (e) => {
+        if (!isDragging) return;
+
+        const dragDistance = Math.abs(e.clientY - dragStartY);
+        if (dragDistance > 3) {
+          hasMovedEnough = true;
+        }
+
+        // Calculate velocity based on Y position within the button
+        const rect = step.getBoundingClientRect();
+        const y = e.clientY - rect.top;
+        const height = rect.height;
+
+        // Inverted: top = 127 (max), bottom = 0 (min)
+        const velocityPercent = Math.max(0, Math.min(1, 1 - (y / height)));
+        const newVelocity = Math.round(velocityPercent * 127);
+
+        velocityState[inst.id][i] = newVelocity;
+
+        // Update fill height
+        velocityFill.style.height = `${(newVelocity / 127) * 100}%`;
+
+        // Update tooltip
+        velocityTooltip.textContent = `${newVelocity}`;
+
+        // If step is active, update opacity to show fill
         if (state[inst.id][i]) {
-          // Play sound with current velocity for this step
+          velocityFill.style.opacity = '0.5';
+        }
+      };
+
+      const handleMouseUp = (e) => {
+        if (!isDragging) return;
+
+        // If not dragged enough, treat as click to toggle step
+        if (!hasMovedEnough) {
+          state[inst.id][i] = !state[inst.id][i];
+
+          // Update fill opacity based on step state
+          velocityFill.style.opacity = state[inst.id][i] ? '0.5' : '0';
+
+          // Update background
+          const beatStart = i % stepsPerBeat === 0;
+          step.style.background = state[inst.id][i]
+            ? inst.color
+            : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
+          step.style.borderColor = state[inst.id][i]
+            ? 'transparent'
+            : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
+
+          if (state[inst.id][i]) {
+            // Play sound with current velocity
+            playSound(inst.id, velocityState[inst.id][i]);
+          }
+        } else {
+          // Was dragging - ensure step is active and play preview
+          if (!state[inst.id][i]) {
+            state[inst.id][i] = true;
+            velocityFill.style.opacity = '0.5';
+            step.style.background = inst.color;
+            step.style.borderColor = 'transparent';
+          }
+
+          // Play sound with new velocity
           playSound(inst.id, velocityState[inst.id][i]);
         }
+
+        isDragging = false;
+        hasMovedEnough = false;
+        velocityTooltip.style.opacity = '0';
 
         // Auto-save if enabled
         if (autoSaveState) {
           savePatternState(lessonKey + '-pattern', { state, velocityState });
         }
+      };
+
+      // Attach move and up listeners to document for better drag experience
+      step.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp, { once: true });
       });
-      
-      // Hover effect
+
+      // Hover effect (only when not active)
       step.addEventListener('mouseenter', () => {
-        if (!state[inst.id][i]) {
+        if (!state[inst.id][i] && !isDragging) {
           step.style.background = 'rgba(255,255,255,0.1)';
         }
       });
-      
+
       step.addEventListener('mouseleave', () => {
+        // Clean up drag listeners if mouse leaves
+        if (isDragging) {
+          document.removeEventListener('mousemove', handleMouseMove);
+          isDragging = false;
+          hasMovedEnough = false;
+          velocityTooltip.style.opacity = '0';
+        }
+
         if (!state[inst.id][i]) {
           const beatStart = i % stepsPerBeat === 0;
           step.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
         }
       });
-      
+
       stepsContainer.appendChild(step);
     }
     
     row.appendChild(stepsContainer);
     grid.appendChild(row);
-
-    // Add velocity lane if enabled
-    if (enableVelocity) {
-      const velocityRow = document.createElement('div');
-      velocityRow.className = 'sequencer-velocity-row';
-      velocityRow.style.cssText = `
-        display: flex;
-        align-items: flex-end;
-        gap: 0;
-        margin-bottom: 16px;
-        margin-top: 8px;
-        padding: 8px;
-        background: rgba(0, 240, 255, 0.05);
-        border-radius: 6px;
-        border: 1px solid rgba(0, 240, 255, 0.15);
-      `;
-
-      // Label with info icon
-      const velLabelContainer = document.createElement('div');
-      velLabelContainer.style.cssText = `
-        width: 70px;
-        flex-shrink: 0;
-        padding-right: 8px;
-        align-self: center;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      `;
-
-      const velLabel = document.createElement('div');
-      velLabel.className = 'sequencer-velocity-label';
-      velLabel.textContent = 'Velocity';
-      velLabel.style.cssText = `
-        font-weight: 600;
-        font-size: 0.75rem;
-        color: var(--accent-cyan, #00f0ff);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      `;
-
-      const infoIcon = document.createElement('span');
-      infoIcon.textContent = 'ⓘ';
-      infoIcon.className = 'velocity-info-icon';
-      infoIcon.title = 'Velocity controls how loud/soft each step plays (0=silent, 127=max). Drag the sliders or use the visual bars to adjust.';
-      infoIcon.style.cssText = `
-        font-size: 12px;
-        color: rgba(255,255,255,0.4);
-        cursor: help;
-        transition: color 0.2s ease;
-      `;
-      infoIcon.addEventListener('mouseenter', () => {
-        infoIcon.style.color = 'var(--accent-cyan, #00f0ff)';
-      });
-      infoIcon.addEventListener('mouseleave', () => {
-        infoIcon.style.color = 'rgba(255,255,255,0.4)';
-      });
-
-      velLabelContainer.appendChild(velLabel);
-      velLabelContainer.appendChild(infoIcon);
-      velocityRow.appendChild(velLabelContainer);
-
-      // Velocity sliders container
-      const velocityContainer = document.createElement('div');
-      velocityContainer.className = 'sequencer-velocity-sliders';
-      velocityContainer.style.cssText = `
-        display: flex;
-        flex: 1;
-        gap: 1px;
-        align-items: flex-end;
-      `;
-
-      for (let i = 0; i < stepCount; i++) {
-        const sliderWrapper = document.createElement('div');
-        sliderWrapper.style.cssText = `
-          flex: 1;
-          min-width: ${stepCount > 16 ? '14px' : '18px'};
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 2px;
-          position: relative;
-        `;
-
-        // Velocity value label
-        const velocityLabel = document.createElement('div');
-        velocityLabel.className = 'velocity-value-label';
-        velocityLabel.textContent = velocityState[inst.id][i];
-        velocityLabel.style.cssText = `
-          font-size: 11px;
-          font-weight: 700;
-          color: rgba(255,255,255,0.9);
-          margin-bottom: 3px;
-          min-height: 16px;
-          text-align: center;
-          font-family: var(--font-mono, monospace);
-        `;
-
-        // Velocity bar visual (shows current velocity)
-        const velocityBar = document.createElement('div');
-        velocityBar.className = 'velocity-bar';
-        velocityBar.title = `Velocity: ${velocityState[inst.id][i]} (0-127)`;
-        velocityBar.style.cssText = `
-          width: 100%;
-          height: 50px;
-          background: rgba(255,255,255,0.12);
-          border-radius: 4px;
-          position: relative;
-          overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.2);
-          box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-        `;
-
-        const velocityFill = document.createElement('div');
-        velocityFill.className = 'velocity-fill';
-        const velocityPercent = (velocityState[inst.id][i] / 127) * 100;
-        velocityFill.style.cssText = `
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: ${velocityPercent}%;
-          background: ${inst.color};
-          opacity: 0.85;
-          transition: height 0.1s ease;
-          box-shadow: 0 -2px 4px rgba(0,0,0,0.15);
-        `;
-        velocityBar.appendChild(velocityFill);
-
-        // Slider track background container with directional indicator
-        const sliderContainer = document.createElement('div');
-        sliderContainer.className = 'velocity-slider-container';
-        sliderContainer.style.cssText = `
-          width: 100%;
-          position: relative;
-          margin-top: 4px;
-          height: 20px;
-          display: flex;
-          align-items: center;
-        `;
-
-        // Background track (solco)
-        const sliderTrack = document.createElement('div');
-        sliderTrack.className = 'velocity-slider-track';
-        sliderTrack.style.cssText = `
-          position: absolute;
-          width: 100%;
-          height: 6px;
-          background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15));
-          border-radius: 3px;
-          box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), inset 0 -1px 1px rgba(255,255,255,0.05);
-          border: 1px solid rgba(0,0,0,0.2);
-        `;
-
-        // Directional indicator (freccia che copre la lunghezza dello slider)
-        const directionIndicator = document.createElement('div');
-        directionIndicator.className = 'velocity-direction-indicator';
-        directionIndicator.innerHTML = '&#9664;'; // ◀ symbol
-        directionIndicator.style.cssText = `
-          position: absolute;
-          left: 2px;
-          font-size: 6px;
-          color: rgba(0, 240, 255, 0.3);
-          pointer-events: none;
-          transform: scaleX(3) scaleY(0.8);
-          transform-origin: left center;
-        `;
-
-        // Range slider (horizontal)
-        const slider = document.createElement('input');
-        slider.type = 'range';
-        slider.min = '0';
-        slider.max = '127';
-        slider.value = velocityState[inst.id][i];
-        slider.dataset.instrument = inst.id;
-        slider.dataset.step = i;
-        slider.className = 'velocity-slider';
-        slider.title = `Adjust velocity for step ${i + 1} (0-127)`;
-        slider.style.cssText = `
-          width: 100%;
-          height: 20px;
-          -webkit-appearance: none;
-          background: transparent;
-          cursor: pointer;
-          position: relative;
-          z-index: 2;
-        `;
-
-        // Update velocity on slider change
-        slider.addEventListener('input', (e) => {
-          const newVelocity = parseInt(e.target.value);
-          velocityState[inst.id][i] = newVelocity;
-
-          // Update visual bar
-          const percent = (newVelocity / 127) * 100;
-          velocityFill.style.height = `${percent}%`;
-
-          // Update label
-          velocityLabel.textContent = newVelocity;
-          velocityBar.title = `Velocity: ${newVelocity} (0-127)`;
-
-          // Auto-save if enabled
-          if (autoSaveState) {
-            savePatternState(lessonKey + '-pattern', { state, velocityState });
-          }
-        });
-
-        // Assemble slider container
-        sliderContainer.appendChild(sliderTrack);
-        sliderContainer.appendChild(directionIndicator);
-        sliderContainer.appendChild(slider);
-
-        sliderWrapper.appendChild(velocityLabel);
-        sliderWrapper.appendChild(velocityBar);
-        sliderWrapper.appendChild(sliderContainer);
-        velocityContainer.appendChild(sliderWrapper);
-      }
-
-      velocityRow.appendChild(velocityContainer);
-      grid.appendChild(velocityRow);
-    }
   });
 
   wrapper.appendChild(grid);
@@ -971,7 +881,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           }
         });
         // Update UI
-        updateSequencerUI(state, instruments, stepCount);
+        updateSequencerUI(state, instruments, stepCount, velocityState);
         alert(`Preset "${presetName}" loaded!`);
       }
     } catch (e) {
@@ -984,14 +894,36 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     const savedPattern = localStorage.getItem(lessonKey + '-pattern');
     if (savedPattern) {
       const parsed = JSON.parse(savedPattern);
-      Object.keys(parsed).forEach(instId => {
-        if (state[instId]) {
-          parsed[instId].forEach((val, i) => {
-            if (i < stepCount) state[instId][i] = val;
-          });
-        }
-      });
-      updateSequencerUI(state, instruments, stepCount);
+
+      // Handle both old format (direct state) and new format ({ state, velocityState })
+      if (parsed.state && parsed.velocityState) {
+        // New format with velocity
+        Object.keys(parsed.state).forEach(instId => {
+          if (state[instId]) {
+            parsed.state[instId].forEach((val, i) => {
+              if (i < stepCount) state[instId][i] = val;
+            });
+          }
+        });
+        Object.keys(parsed.velocityState).forEach(instId => {
+          if (velocityState[instId]) {
+            parsed.velocityState[instId].forEach((val, i) => {
+              if (i < stepCount) velocityState[instId][i] = val;
+            });
+          }
+        });
+        updateSequencerUI(state, instruments, stepCount, velocityState);
+      } else {
+        // Old format (backward compatibility)
+        Object.keys(parsed).forEach(instId => {
+          if (state[instId]) {
+            parsed[instId].forEach((val, i) => {
+              if (i < stepCount) state[instId][i] = val;
+            });
+          }
+        });
+        updateSequencerUI(state, instruments, stepCount, velocityState);
+      }
     }
   } catch (e) {}
 }
@@ -1021,17 +953,27 @@ function stopSequencer() {
 }
 
 // Update sequencer UI from state
-function updateSequencerUI(state, instruments, stepCount) {
+function updateSequencerUI(state, instruments, stepCount, velocityState = null) {
   const stepsPerBeat = stepCount / 4;
   instruments.forEach(inst => {
     document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
       const beatStart = i % stepsPerBeat === 0;
-      el.style.background = state[inst.id][i] 
-        ? inst.color 
+      el.style.background = state[inst.id][i]
+        ? inst.color
         : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
       el.style.borderColor = state[inst.id][i]
         ? 'transparent'
         : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
+
+      // Update velocity fill if present
+      if (velocityState && velocityState[inst.id]) {
+        const velocityFill = el.querySelector('.velocity-fill-inline');
+        if (velocityFill) {
+          const velocityPercent = (velocityState[inst.id][i] / 127) * 100;
+          velocityFill.style.height = `${velocityPercent}%`;
+          velocityFill.style.opacity = state[inst.id][i] ? '0.5' : '0';
+        }
+      }
     });
   });
 }
