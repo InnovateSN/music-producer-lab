@@ -1033,10 +1033,17 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   `;
   container.appendChild(legend);
 
-  // Get control elements (search within container first, then globally for backwards compatibility)
-  const playBtn = container.querySelector('#mpl-seq-play-all, [id^="mpl-seq-play-all"]') || document.getElementById('mpl-seq-play-all');
-  const stopBtn = container.querySelector('#mpl-seq-stop-all, [id^="mpl-seq-stop-all"]') || document.getElementById('mpl-seq-stop-all');
-  const clearBtn = container.querySelector('#mpl-seq-clear-all, [id^="mpl-seq-clear-all"]') || document.getElementById('mpl-seq-clear-all');
+  // Get control elements (search within container first, then in previous sibling, then globally for backwards compatibility)
+  const previousSibling = container.previousElementSibling;
+  const playBtn = container.querySelector('#mpl-seq-play-all, [id^="mpl-seq-play-all"]') ||
+                  (previousSibling && previousSibling.querySelector('[id^="mpl-seq-play-all"]')) ||
+                  document.getElementById('mpl-seq-play-all');
+  const stopBtn = container.querySelector('#mpl-seq-stop-all, [id^="mpl-seq-stop-all"]') ||
+                  (previousSibling && previousSibling.querySelector('[id^="mpl-seq-stop-all"]')) ||
+                  document.getElementById('mpl-seq-stop-all');
+  const clearBtn = container.querySelector('#mpl-seq-clear-all, [id^="mpl-seq-clear-all"]') ||
+                   (previousSibling && previousSibling.querySelector('[id^="mpl-seq-clear-all"]')) ||
+                   document.getElementById('mpl-seq-clear-all');
   const checkBtn = container.querySelector('#mpl-seq-check-all') || document.getElementById('mpl-seq-check-all');
   const statusEl = container.querySelector('#mpl-seq-status') || document.getElementById('mpl-seq-status');
   const nextBtn = container.querySelector('#mpl-next-lesson') || document.getElementById('mpl-next-lesson');
