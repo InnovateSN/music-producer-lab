@@ -1,0 +1,16 @@
+# Ignore all audio files to avoid committing large binary files
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.aiff
+*.aif
+
+# Keep the directory structure
+!.gitignore
+!README.md
+!.gitkeep
+!**/.gitkeep
+
+# Keep example files if they're small enough (uncomment if needed)
+# !**/example-*.wav
