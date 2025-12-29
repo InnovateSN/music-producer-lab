@@ -45,7 +45,8 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     enableVelocity: true,
-    enableHumanization: true
+    enableHumanization: true,
+    showSwingControl: true
   },
   
   // ====================
@@ -160,7 +161,8 @@ export const lessonConfig = {
     enablePresets: true,
     enableExport: false,
     showVelocityLane: true,
-    showHumanizeControls: true
+    showHumanizeControls: true,
+    showSwingControl: true
   },
   
   // ====================
