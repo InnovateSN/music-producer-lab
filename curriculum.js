@@ -280,6 +280,18 @@ export const curriculum = [
         badge: 'Premium',
         pagePath: 'lesson-drums-20.html',
         configPath: './configs/lesson-drums-20.config.js'
+      },
+      {
+        slug: 'lesson-drums-21',
+        lessonKey: 'mpl-drums-21-practice',
+        title: 'Velocity Practice Playground',
+        description: 'Interactive practice lab with visual examples demonstrating velocity control, dynamics, and practical pattern exercises.',
+        duration: '15-20 min',
+        level: 'Beginner-Intermediate',
+        depthLevel: 3,
+        badge: 'Practice',
+        pagePath: 'lesson-drums-21.html',
+        configPath: './configs/lesson-drums-21.config.js'
       }
     ]
   },

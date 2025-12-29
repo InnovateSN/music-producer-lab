@@ -36,7 +36,8 @@ export const lessonConfig = {
   sequencer: {
     tempo: 110,
     stepCount: 16,
-    swing: 0
+    swing: 0,
+    enableVelocity: true // Enable velocity control for practice
   },
   
   // ====================

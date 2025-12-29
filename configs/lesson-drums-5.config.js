@@ -42,7 +42,8 @@ export const lessonConfig = {
     swing: 0,             // 0-100, 0 = no swing
     showBeatMarkers: true,
     showStepNumbers: true,
-    autoSaveState: true   // Save to localStorage on every change
+    autoSaveState: true,  // Save to localStorage on every change
+    enableVelocity: true  // Enable velocity control for practice
   },
   
   // ====================
