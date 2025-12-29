@@ -434,13 +434,16 @@
       setTimeout(() => {
         const stepContainer = document.getElementById('demo-step-grid-sequencer');
         if (stepContainer) {
-          stepContainer.innerHTML = `
-            <div style="display: none;">
-              <button id="mpl-seq-play-all-step"></button>
-              <button id="mpl-seq-stop-all-step"></button>
-              <button id="mpl-seq-clear-all-step"></button>
-            </div>
+          // Create internal control buttons BEFORE sequencer init, in a sibling element
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-step"></button>
+            <button id="mpl-seq-stop-all-step"></button>
+            <button id="mpl-seq-clear-all-step"></button>
           `;
+          // Insert before the container so it won't be cleared
+          stepContainer.parentNode.insertBefore(controlsDiv, stepContainer);
 
           initDrumSequencer(
             stepGridInstruments,
@@ -460,9 +463,9 @@
           );
 
           // Store references to internal controls
-          const internalPlayBtn = stepContainer.querySelector('#mpl-seq-play-all-step');
-          const internalStopBtn = stepContainer.querySelector('#mpl-seq-stop-all-step');
-          const internalClearBtn = stepContainer.querySelector('#mpl-seq-clear-all-step');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-step');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-step');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-step');
 
           // Wire up custom controls
           const playBtn = document.getElementById('demo-step-play');
@@ -485,13 +488,16 @@
       setTimeout(() => {
         const velocityContainer = document.getElementById('demo-velocity-sequencer');
         if (velocityContainer) {
-          velocityContainer.innerHTML = `
-            <div style="display: none;">
-              <button id="mpl-seq-play-all-velocity"></button>
-              <button id="mpl-seq-stop-all-velocity"></button>
-              <button id="mpl-seq-clear-all-velocity"></button>
-            </div>
+          // Create internal control buttons BEFORE sequencer init, in a sibling element
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-velocity"></button>
+            <button id="mpl-seq-stop-all-velocity"></button>
+            <button id="mpl-seq-clear-all-velocity"></button>
           `;
+          // Insert before the container so it won't be cleared
+          velocityContainer.parentNode.insertBefore(controlsDiv, velocityContainer);
 
           initDrumSequencer(
             velocityInstruments,
@@ -511,9 +517,9 @@
           );
 
           // Store references to internal controls
-          const internalPlayBtn = velocityContainer.querySelector('#mpl-seq-play-all-velocity');
-          const internalStopBtn = velocityContainer.querySelector('#mpl-seq-stop-all-velocity');
-          const internalClearBtn = velocityContainer.querySelector('#mpl-seq-clear-all-velocity');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-velocity');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-velocity');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-velocity');
 
           // Wire up custom controls
           const playBtn = document.getElementById('demo-velocity-play');
