@@ -23,6 +23,108 @@ function getAudioContext() {
   return audioContext;
 }
 
+// ====================
+// SAMPLE LOADING SYSTEM
+// ====================
+
+// Storage for loaded audio samples (AudioBuffers)
+const loadedSamples = {};
+
+// Sample paths configuration (base paths - will try multiple formats)
+const SAMPLE_BASE_PATHS = {
+  kick: 'samples/drums/kick/kick',
+  snare: 'samples/drums/snare/snare',
+  hihat: 'samples/drums/hihat/hihat',
+  clap: 'samples/drums/clap/clap',
+  tom: 'samples/drums/tom/tom',
+  rim: 'samples/drums/rim/rim'
+};
+
+// Supported audio formats (in order of preference)
+const AUDIO_FORMATS = ['.wav', '.mp3', '.ogg'];
+
+/**
+ * Load an audio sample from a URL
+ * @param {string} url - Path to the audio file
+ * @returns {Promise<AudioBuffer|null>} - Loaded AudioBuffer or null if failed
+ */
+async function loadSample(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      return null; // File not found, will use synthetic fallback
+    }
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await getAudioContext().decodeAudioData(arrayBuffer);
+    return audioBuffer;
+  } catch (error) {
+    console.warn(`Failed to load sample: ${url}`, error);
+    return null;
+  }
+}
+
+/**
+ * Try to load a sample with multiple format attempts
+ * @param {string} basePath - Base path without extension
+ * @returns {Promise<AudioBuffer|null>}
+ */
+async function loadSampleWithFormats(basePath) {
+  for (const format of AUDIO_FORMATS) {
+    const url = basePath + format;
+    const buffer = await loadSample(url);
+    if (buffer) {
+      return buffer;
+    }
+  }
+  return null; // No format found
+}
+
+/**
+ * Preload all drum samples
+ * Called once when the sequencer initializes
+ */
+async function preloadSamples() {
+  const loadPromises = Object.entries(SAMPLE_BASE_PATHS).map(async ([instrument, basePath]) => {
+    const buffer = await loadSampleWithFormats(basePath);
+    if (buffer) {
+      loadedSamples[instrument] = buffer;
+      console.log(`✓ Loaded sample: ${instrument}`);
+    } else {
+      console.log(`→ Using synthetic sound for: ${instrument}`);
+    }
+  });
+
+  await Promise.all(loadPromises);
+  console.log(`Sample loading complete. Loaded ${Object.keys(loadedSamples).length}/${Object.keys(SAMPLE_BASE_PATHS).length} samples.`);
+}
+
+/**
+ * Play a loaded sample with velocity
+ * @param {string} instrument - Instrument name (kick, snare, etc)
+ * @param {number} velocity - Velocity 0-1 (normalized)
+ */
+function playSample(instrument, velocity = 1.0) {
+  const buffer = loadedSamples[instrument];
+  if (!buffer) return false; // Sample not loaded
+
+  const ctx = getAudioContext();
+  const source = ctx.createBufferSource();
+  const gainNode = ctx.createGain();
+
+  source.buffer = buffer;
+  gainNode.gain.value = velocity; // Apply velocity
+
+  source.connect(gainNode);
+  gainNode.connect(ctx.destination);
+
+  source.start(ctx.currentTime);
+  return true; // Successfully played sample
+}
+
+// ====================
+// SYNTHETIC DRUM SOUNDS (Fallback)
+// ====================
+
 // Simple drum sounds using Web Audio API oscillators/noise
 const drumSounds = {
   kick: (velocity = 1.0) => {
@@ -199,11 +301,19 @@ function playSound(type, velocity = 100) {
   // Normalize type: remove suffixes like "-ghost", "-accent", etc.
   // Examples: "snare-ghost" -> "snare", "kick-heavy" -> "kick"
   const baseType = type.split('-')[0];
-  const sound = drumSounds[baseType] || drumSounds.kick;
+
   try {
     // Normalize velocity to 0-1 range for gain
     const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
-    sound(normalizedVelocity);
+
+    // Try to play loaded sample first
+    const samplePlayed = playSample(baseType, normalizedVelocity);
+
+    // If no sample available, fall back to synthetic sound
+    if (!samplePlayed) {
+      const sound = drumSounds[baseType] || drumSounds.kick;
+      sound(normalizedVelocity);
+    }
   } catch (e) {
     console.warn('Audio playback failed:', e);
   }
@@ -231,6 +341,11 @@ let sequencerInstruments = null;
 export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
   const container = document.getElementById('mpl-sequencer-collection');
   if (!container) return;
+
+  // Preload audio samples (non-blocking - loads in background)
+  preloadSamples().catch(err => {
+    console.warn('Sample preloading failed, using synthetic sounds:', err);
+  });
 
   // Apply options
   const {
