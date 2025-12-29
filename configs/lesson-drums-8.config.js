@@ -31,7 +31,7 @@ export const lessonConfig = {
     eyebrow: buildHeroEyebrow({ lessonNumber: 8, categoryLabel: "Drums & Rhythm" }),
     title: "House & Techno",
     titleHighlight: "Drums",
-    subtitle: "Master the <strong>driving 4/4 patterns</strong> that power dance floors worldwide. Learn <strong>off-beat hi-hats</strong> and <strong>minimal techno rhythms</strong>."
+    subtitle: "Master the <strong>driving 4/4 patterns</strong> that power dance floors worldwide. Learn <strong>techno hi-hats</strong> and <strong>percussive rimshot accents</strong>."
   },
   
   // ====================
@@ -50,14 +50,14 @@ export const lessonConfig = {
   // EXERCISE
   // ====================
   exercise: {
-    title: "Build a Classic House Beat",
-    description: "Create the essential house drum pattern with four-on-the-floor kick, off-beat hi-hats, and clap backbeat.",
-    tip: "The off-beat hi-hat is what gives house its 'pump'—it should land on the '&' counts (steps 3, 7, 11, 15).",
+    title: "Build a Classic Techno Beat",
+    description: "Create a techno drum pattern with four-on-the-floor kick, hi-hats, clap backbeat, and rimshot accents.",
+    tip: "The rimshot adds percussive texture to the pattern—it hits on steps 7, 9, and 16 to create rhythmic interest.",
     steps: [
       { text: "<strong>Kick:</strong> Four-on-the-floor on steps 1, 5, 9, 13." },
       { text: "<strong>Clap:</strong> Backbeat on steps 5 and 13 (beats 2 and 4)." },
-      { text: "<strong>Closed Hi-Hat:</strong> Off-beats on steps 3, 7, 11, 15." },
-      { text: "<strong>Open Hi-Hat:</strong> Accent on step 15 for tension." }
+      { text: "<strong>Closed Hi-Hat:</strong> Steps 2, 6, 10, 14." },
+      { text: "<strong>Rimshot:</strong> Accents on steps 7, 9, and 16." }
     ]
   },
   
@@ -91,22 +91,22 @@ export const lessonConfig = {
       id: "hihat",
       label: "Hi-Hat (Closed)",
       color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-      targetSteps: [2, 6, 10, 14],
-      instructionText: "Off-beat hi-hats on the '&' counts (steps 3, 7, 11, 15).",
+      targetSteps: [1, 5, 9, 13],
+      instructionText: "Hi-hats on steps 2, 6, 10, 14.",
       patternHint: {
         enabled: true,
-        note: "Closed HH: 3, 7, 11, 15 (off-beats)"
+        note: "Closed HH: 2, 6, 10, 14"
       }
     },
     {
       id: "rim",
-      label: "Hi-Hat (Open)",
+      label: "Rimshot",
       color: "linear-gradient(135deg, #54a0ff, #2e86de)",
-      targetSteps: [14],
-      instructionText: "Open hi-hat on step 15 for accent before loop restart.",
+      targetSteps: [6, 8, 15],
+      instructionText: "Rimshot on steps 7, 9, and 16 for rhythmic accents.",
       patternHint: {
         enabled: true,
-        note: "Open HH: 15 (tension before repeat)"
+        note: "Rimshot: 7, 9, 16 (rhythmic accents)"
       }
     }
   ],
@@ -116,17 +116,17 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Classic house: Kick every beat, off-beat hi-hats, clap on 2 & 4"
+    note: "Classic techno: Kick every beat, hi-hats, clap on 2 & 4, rimshot accents"
   },
   
   // ====================
   // MESSAGES
   // ====================
   messages: applyMessagePreset("drums", {
-    initial: "Build the classic house beat pattern to complete this exercise.",
-    success: "🎉 Perfect! That's the authentic house groove! The off-beat hi-hats give it that pumping feel.",
-    error: "Check your pattern—make sure hi-hats are on the OFF-beats (3, 7, 11, 15), not the downbeats.",
-    alreadyCompleted: "You've mastered house drums! Try experimenting with tempo and variations."
+    initial: "Build the classic techno beat pattern to complete this exercise.",
+    success: "🎉 Perfect! That's the authentic techno groove! The rimshot accents add great rhythmic texture.",
+    error: "Check your pattern—make sure all instruments match the target steps shown above.",
+    alreadyCompleted: "You've mastered techno drums! Try experimenting with tempo and variations."
   }),
   
   // ====================
