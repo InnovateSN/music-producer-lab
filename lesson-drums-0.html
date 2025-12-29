@@ -265,12 +265,18 @@
               <span>Clear</span>
             </button>
 
-            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" onclick="window.location.href='lesson-drums-1.html'">
-                <span>Next Lesson &rarr;</span>
-              </button>
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" onclick="window.location.href='lesson-drums-1.html'">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
             </div>
-          </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
             <span>Sandbox mode - experiment freely! When ready, click Next Lesson.</span>

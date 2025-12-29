@@ -238,20 +238,35 @@ function generatePatternHint(config) {
 // ==========================================
 
 function setupNavigation(config) {
-  const { overviewUrl, nextLessonUrl } = config;
-  
+  const { overviewUrl, nextLessonUrl, prevLessonUrl } = config;
+
   // Back button in header
   const backBtn = document.getElementById('mpl-back-btn');
   if (backBtn && overviewUrl) {
     backBtn.onclick = () => window.location.href = overviewUrl;
   }
-  
+
   // Footer link
   const footerLink = document.getElementById('mpl-footer-overview-link');
   if (footerLink && overviewUrl) {
     footerLink.href = overviewUrl;
   }
-  
+
+  // Previous lesson button
+  const prevBtn = document.getElementById('mpl-prev-lesson');
+  if (prevBtn) {
+    if (prevLessonUrl) {
+      prevBtn.onclick = () => window.location.href = prevLessonUrl;
+      prevBtn.disabled = false;
+      prevBtn.style.display = 'inline-flex';
+    } else {
+      // Hide previous button if no previous lesson
+      const wrapper = document.getElementById('mpl-seq-prev-lesson-wrap');
+      if (wrapper) wrapper.style.display = 'none';
+      else prevBtn.style.display = 'none';
+    }
+  }
+
   // Next lesson button (handled by sequencer)
   const nextBtn = document.getElementById('mpl-next-lesson');
   if (nextBtn) {
