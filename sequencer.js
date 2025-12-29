@@ -266,6 +266,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   wrapper.className = 'sequencer-wrapper';
   wrapper.style.cssText = `
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   `;
@@ -277,7 +278,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     display: flex;
     flex-direction: column;
     gap: 8px;
-    min-width: fit-content;
+    width: 100%;
   `;
   
   // Step numbers header row
@@ -486,7 +487,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         align-items: flex-end;
         gap: 0;
         margin-bottom: 16px;
-        opacity: 0.8;
+        margin-top: 8px;
+        padding: 8px;
+        background: rgba(0, 240, 255, 0.05);
+        border-radius: 6px;
+        border: 1px solid rgba(0, 240, 255, 0.15);
       `;
 
       // Label with info icon
@@ -505,9 +510,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       velLabel.className = 'sequencer-velocity-label';
       velLabel.textContent = 'Velocity';
       velLabel.style.cssText = `
-        font-weight: 500;
-        font-size: 0.7rem;
-        color: var(--text-muted, #7a8ba8);
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: var(--accent-cyan, #00f0ff);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       `;
 
       const infoIcon = document.createElement('span');
@@ -557,12 +564,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         velocityLabel.className = 'velocity-value-label';
         velocityLabel.textContent = velocityState[inst.id][i];
         velocityLabel.style.cssText = `
-          font-size: 10px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.7);
-          margin-bottom: 2px;
-          min-height: 14px;
+          font-size: 11px;
+          font-weight: 700;
+          color: rgba(255,255,255,0.9);
+          margin-bottom: 3px;
+          min-height: 16px;
           text-align: center;
+          font-family: var(--font-mono, monospace);
         `;
 
         // Velocity bar visual (shows current velocity)
@@ -571,12 +579,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         velocityBar.title = `Velocity: ${velocityState[inst.id][i]} (0-127)`;
         velocityBar.style.cssText = `
           width: 100%;
-          height: 40px;
-          background: rgba(255,255,255,0.05);
-          border-radius: 3px;
+          height: 50px;
+          background: rgba(255,255,255,0.12);
+          border-radius: 4px;
           position: relative;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.2);
+          box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         `;
 
         const velocityFill = document.createElement('div');
@@ -589,8 +598,9 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           right: 0;
           height: ${velocityPercent}%;
           background: ${inst.color};
-          opacity: 0.6;
+          opacity: 0.85;
           transition: height 0.1s ease;
+          box-shadow: 0 -2px 4px rgba(0,0,0,0.15);
         `;
         velocityBar.appendChild(velocityFill);
 
@@ -602,13 +612,15 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         slider.value = velocityState[inst.id][i];
         slider.dataset.instrument = inst.id;
         slider.dataset.step = i;
+        slider.className = 'velocity-slider';
         slider.title = `Adjust velocity for step ${i + 1} (0-127)`;
         slider.style.cssText = `
           width: 100%;
-          height: 8px;
+          height: 12px;
           -webkit-appearance: none;
           background: transparent;
           cursor: pointer;
+          margin-top: 4px;
         `;
 
         // Update velocity on slider change

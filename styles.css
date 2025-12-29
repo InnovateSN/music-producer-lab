@@ -2633,41 +2633,44 @@ input[type="range"].sequencer-velocity-slider,
 
 /* Range slider track - Webkit/Blink */
 input[type="range"]::-webkit-slider-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  height: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Range slider track - Firefox */
 input[type="range"]::-moz-range-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  height: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Range slider thumb - Webkit/Blink */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--accent-cyan, #00f0ff);
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 240, 255, 0.4), 0 0 0 2px rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.9);
 }
 
 /* Range slider thumb - Firefox */
 input[type="range"]::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.9);
   border-radius: 50%;
   background: var(--accent-cyan, #00f0ff);
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 240, 255, 0.4), 0 0 0 2px rgba(255,255,255,0.2);
 }
 
 /* Range slider thumb hover */
