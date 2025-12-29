@@ -196,7 +196,10 @@ const drumSounds = {
 // @param {string} type - The drum sound type (kick, snare, hihat, etc)
 // @param {number} velocity - MIDI velocity (0-127), defaults to 100
 function playSound(type, velocity = 100) {
-  const sound = drumSounds[type] || drumSounds.kick;
+  // Normalize type: remove suffixes like "-ghost", "-accent", etc.
+  // Examples: "snare-ghost" -> "snare", "kick-heavy" -> "kick"
+  const baseType = type.split('-')[0];
+  const sound = drumSounds[baseType] || drumSounds.kick;
   try {
     // Normalize velocity to 0-1 range for gain
     const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
@@ -431,7 +434,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
         border-radius: 4px;
         background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
-        cursor: pointer;
+        cursor: ns-resize;
         transition: all 0.15s ease;
         padding: 0;
         position: relative;
@@ -452,8 +455,28 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         pointer-events: none;
         transition: height 0.1s ease, opacity 0.15s ease;
         z-index: 0;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
       `;
       step.appendChild(velocityFill);
+
+      // Velocity handle (visual indicator at the top of the fill)
+      const velocityHandle = document.createElement('div');
+      velocityHandle.className = 'velocity-handle';
+      velocityHandle.style.cssText = `
+        position: absolute;
+        bottom: ${(velocityState[inst.id][i] / 127) * 100}%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(0,240,255,0.95) 50%, rgba(255,255,255,0.9) 100%);
+        opacity: ${state[inst.id][i] ? 1 : 0};
+        pointer-events: none;
+        transition: bottom 0.1s ease, opacity 0.15s ease;
+        z-index: 1;
+        box-shadow: 0 -1px 6px rgba(0,240,255,0.7), 0 1px 4px rgba(0,0,0,0.6);
+        border-radius: 2px;
+      `;
+      step.appendChild(velocityHandle);
 
       // Velocity tooltip (shows numeric value during drag)
       const velocityTooltip = document.createElement('div');
@@ -518,12 +541,16 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         // Update fill height
         velocityFill.style.height = `${(newVelocity / 127) * 100}%`;
 
+        // Update handle position (synchronized with fill)
+        velocityHandle.style.bottom = `${(newVelocity / 127) * 100}%`;
+
         // Update tooltip
         velocityTooltip.textContent = `${newVelocity}`;
 
-        // If step is active, update opacity to show fill
+        // If step is active, update opacity to show fill and handle
         if (state[inst.id][i]) {
           velocityFill.style.opacity = '0.5';
+          velocityHandle.style.opacity = '1';
         }
       };
 
@@ -534,8 +561,9 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         if (!hasMovedEnough) {
           state[inst.id][i] = !state[inst.id][i];
 
-          // Update fill opacity based on step state
+          // Update fill and handle opacity based on step state
           velocityFill.style.opacity = state[inst.id][i] ? '0.5' : '0';
+          velocityHandle.style.opacity = state[inst.id][i] ? '1' : '0';
 
           // Update background
           const beatStart = i % stepsPerBeat === 0;
@@ -555,6 +583,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           if (!state[inst.id][i]) {
             state[inst.id][i] = true;
             velocityFill.style.opacity = '0.5';
+            velocityHandle.style.opacity = '1';
             step.style.background = inst.color;
             step.style.borderColor = 'transparent';
           }
@@ -965,13 +994,19 @@ function updateSequencerUI(state, instruments, stepCount, velocityState = null) 
         ? 'transparent'
         : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
 
-      // Update velocity fill if present
+      // Update velocity fill and handle if present
       if (velocityState && velocityState[inst.id]) {
         const velocityFill = el.querySelector('.velocity-fill-inline');
+        const velocityHandle = el.querySelector('.velocity-handle');
         if (velocityFill) {
           const velocityPercent = (velocityState[inst.id][i] / 127) * 100;
           velocityFill.style.height = `${velocityPercent}%`;
           velocityFill.style.opacity = state[inst.id][i] ? '0.5' : '0';
+        }
+        if (velocityHandle) {
+          const velocityPercent = (velocityState[inst.id][i] / 127) * 100;
+          velocityHandle.style.bottom = `${velocityPercent}%`;
+          velocityHandle.style.opacity = state[inst.id][i] ? '1' : '0';
         }
       }
     });
