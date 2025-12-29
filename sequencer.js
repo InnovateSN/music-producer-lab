@@ -385,8 +385,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   wrapper.style.cssText = `
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
-    overflow-y: visible;
+    overflow: hidden;
+    padding-right: 2px;
   `;
   
   // Add velocity guide if enabled
@@ -875,6 +875,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   if (playBtn) {
     playBtn.addEventListener('click', () => {
       if (isPlaying) return;
+
+      // Resume audio context if suspended (browser autoplay policy)
+      const ctx = getAudioContext();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+
       isPlaying = true;
       currentStep = 0;
       
@@ -893,10 +900,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           const stepIdx = parseInt(el.dataset.step);
           if (stepIdx === currentStep) {
             el.style.boxShadow = '0 0 12px rgba(0, 240, 255, 0.6), inset 0 0 8px rgba(0, 240, 255, 0.3)';
-            el.style.transform = 'scale(1.02)';
+            el.style.filter = 'brightness(1.15)';
           } else {
             el.style.boxShadow = 'none';
-            el.style.transform = 'scale(1)';
+            el.style.filter = 'none';
           }
         });
         
@@ -1166,7 +1173,7 @@ function stopSequencer() {
   // Remove highlights
   document.querySelectorAll('.sequencer-step').forEach(el => {
     el.style.boxShadow = 'none';
-    el.style.transform = 'scale(1)';
+    el.style.filter = 'none';
   });
   
   // Reset step number colors
