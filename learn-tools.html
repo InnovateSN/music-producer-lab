@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Learn Our Tools · Sequencer Guide | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Complete guide to using the Music Producer Lab sequencer: step programming, velocity controls, tempo, swing, and more." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Learn Our Tools hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Tutorial</div>
+            <h1 class="hero-title">
+              <span>Learn Our</span>
+              <span class="gradient-text"> Tools.</span>
+            </h1>
+            <p class="hero-subtitle">Master the Music Producer Lab sequencer with this complete guide. Learn how to use velocity controls, tempo settings, swing, and all the features that bring your beats to life.</p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Interactive Sequencer</div>
+              <div class="hero-visual-pill">5 Core Tools</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Learn by doing</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Duration</span>
+                    <strong>5-10 min</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Level</span>
+                    <strong>All Levels</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll Learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Step Programming</div>
+                  <div class="hero-visual-pill-tag">Velocity Control</div>
+                  <div class="hero-visual-pill-tag">Tempo & Swing</div>
+                  <div class="hero-visual-pill-tag">Pattern Hints</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- TOOL SECTIONS -->
+        <section style="margin-top: var(--space-3xl);">
+
+          <!-- 1. STEP GRID -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #1</div>
+            <h2 class="section-title">Step Grid <span class="gradient-text">Programming</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is the Step Grid?</h3>
+              <div class="exercise-description">
+                <p>The step grid is the heart of our sequencer. Each row represents a drum sound (Kick, Snare, Hi-Hat, etc.), and each column represents a step in time (typically 16 steps = 1 bar).</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Click any button</strong> to activate that step - the sound will play when the sequencer reaches that step</li>
+                    <li><strong>Click again</strong> to deactivate the step</li>
+                    <li><strong>Active steps</strong> are highlighted with the instrument's color</li>
+                    <li><strong>Current playing step</strong> is indicated by a cyan outline as the sequencer plays</li>
+                  </ol>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>💡 Pro Tip:</strong> Start simple! Try placing kicks on steps 1, 5, 9, and 13 for a basic "4 on the floor" pattern.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. VELOCITY CONTROLS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #2</div>
+            <h2 class="section-title">Velocity <span class="gradient-text">Controls</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Velocity?</h3>
+              <div class="exercise-description">
+                <p><strong>Velocity</strong> controls how loud or soft each individual step plays. It's measured on a scale from <strong>0 (silent)</strong> to <strong>127 (maximum volume)</strong>, following the MIDI standard.</p>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Understanding the Interface:</h4>
+                  <ul class="exercise-steps">
+                    <li><strong>Numeric Labels</strong> (top): Shows the current velocity value (0-127) for each step</li>
+                    <li><strong>Visual Bars</strong> (middle): Color-coded bars that fill up based on velocity - taller = louder</li>
+                    <li><strong>Sliders</strong> (bottom): Horizontal sliders to adjust velocity - drag left/right to change</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">How to Use Velocity:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Drag the slider</strong> left (quieter) or right (louder) for each step</li>
+                    <li><strong>Watch the number</strong> change at the top to see the exact value</li>
+                    <li><strong>Watch the bar</strong> fill up or down to visualize the volume</li>
+                    <li><strong>Hover over the ⓘ icon</strong> next to "Velocity" for a quick reminder</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(95, 77, 255, 0.1); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Velocity Ranges:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;">🔇 <strong>0-30:</strong> Ghost notes (barely audible, subtle touches)</li>
+                    <li style="padding: var(--space-xs) 0;">🔉 <strong>60-80:</strong> Medium dynamics (standard notes)</li>
+                    <li style="padding: var(--space-xs) 0;">🔊 <strong>100-127:</strong> Accents (emphasized, powerful hits)</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>🎵 Musical Tip:</strong> Varying velocity creates more natural, human-sounding rhythms. Try setting snare backbeats to 110-120 and hi-hats between 60-90 for a groove that breathes!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TEMPO CONTROL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #3</div>
+            <h2 class="section-title">Tempo <span class="gradient-text">Control</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Tempo?</h3>
+              <div class="exercise-description">
+                <p><strong>Tempo</strong> controls how fast your pattern plays, measured in <strong>BPM (Beats Per Minute)</strong>. Higher BPM = faster, lower BPM = slower.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li>Look for the <strong>"Tempo"</strong> slider in the Advanced Controls section</li>
+                    <li>Drag the slider or click the +/- buttons to adjust BPM (typically 60-180)</li>
+                    <li>The number displays your current tempo</li>
+                    <li>Adjust while playing to hear the difference in real-time!</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(0, 240, 255, 0.05); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Tempo Ranges by Genre:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;">🎸 <strong>60-80 BPM:</strong> Hip-Hop, Trip-Hop, Ballads</li>
+                    <li style="padding: var(--space-xs) 0;">🎹 <strong>90-110 BPM:</strong> Reggae, Dub, Downtempo</li>
+                    <li style="padding: var(--space-xs) 0;">🎧 <strong>120-130 BPM:</strong> House, Techno, Pop</li>
+                    <li style="padding: var(--space-xs) 0;">⚡ <strong>140-180 BPM:</strong> Drum & Bass, Dubstep, Hardstyle</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>🎼 Pro Tip:</strong> Most lessons have a recommended tempo that works best for the pattern. You can experiment, but stick close to the suggested BPM when learning!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. SWING CONTROL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #4</div>
+            <h2 class="section-title">Swing <span class="gradient-text">Control</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Swing?</h3>
+              <div class="exercise-description">
+                <p><strong>Swing</strong> adds a "shuffle" feel to your rhythm by slightly delaying every other step. It creates a more laid-back, groovy feel - think jazz, boom-bap, or old-school hip-hop.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li>Find the <strong>"Swing"</strong> slider in Advanced Controls</li>
+                    <li><strong>0% = No swing</strong> (straight, mechanical timing)</li>
+                    <li><strong>50% = Maximum swing</strong> (triplet feel, heavy shuffle)</li>
+                    <li>Start with <strong>10-20%</strong> for subtle groove, <strong>30-40%</strong> for pronounced shuffle</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-primary);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">When to Use Swing:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;">✅ Jazz, Blues, Swing music (obviously!)</li>
+                    <li style="padding: var(--space-xs) 0;">✅ Boom-bap Hip-Hop (J Dilla, MF DOOM)</li>
+                    <li style="padding: var(--space-xs) 0;">✅ Funk, Soul, R&B grooves</li>
+                    <li style="padding: var(--space-xs) 0;">❌ Four-on-the-floor House/Techno (usually straight)</li>
+                    <li style="padding: var(--space-xs) 0;">❌ Trap, Dubstep (precise timing preferred)</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>🎶 Listen Closely:</strong> The difference between 0% and 15% swing is subtle but powerful. Play your pattern with and without swing to train your ears!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. PATTERN HINTS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #5</div>
+            <h2 class="section-title">Pattern <span class="gradient-text">Hints</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What are Pattern Hints?</h3>
+              <div class="exercise-description">
+                <p><strong>Pattern Hints</strong> are visual guides that show you the target pattern you're trying to recreate in a lesson. They appear as small dots or markers on the grid.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Read Pattern Hints:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Small dots/markers</strong> show where you need to activate steps</li>
+                    <li>They're color-coded to match each instrument (kick, snare, hi-hat)</li>
+                    <li>Some lessons show velocity hints with different dot sizes or opacity</li>
+                    <li>Use them as a guide, but try to understand the <em>why</em> behind the pattern</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255, 170, 0, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">💡 Learning Strategy:</h4>
+                  <p style="margin: 0; line-height: 1.6;">Try building the pattern <strong>without</strong> looking at the hints first. Then check your work against the hints. This builds pattern recognition and helps you internalize rhythmic concepts!</p>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>🎯 Remember:</strong> Pattern hints are training wheels. The goal is to eventually understand the rhythm well enough to create similar patterns on your own!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PLAYBACK CONTROLS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Essential Controls</div>
+            <h2 class="section-title">Playback <span class="gradient-text">Controls</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">Control Your Sequencer</h3>
+              <div class="exercise-description">
+                <div style="display: grid; gap: var(--space-md);">
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);">▶️ Play Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Starts the sequencer loop. It will continuously play your pattern until you stop it.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);">⏹ Stop Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Stops playback and resets to the beginning (step 1).</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);">🗑 Clear Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Removes all active steps, giving you a clean slate. Use this to start over.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-primary);">✓ Check Pattern:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">(Lesson mode only) Validates your pattern against the target. You'll see success or error feedback.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-primary);">→ Next Lesson:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Unlocks after successfully completing the lesson. Takes you to the next challenge!</p>
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>⚡ Shortcut Tip:</strong> You can adjust tempo, swing, and velocity <em>while</em> the sequencer is playing to hear changes in real-time. Experiment freely!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QUICK REFERENCE -->
+          <div class="tool-section" style="margin-bottom: var(--space-2xl);">
+            <div class="section-eyebrow">Quick Reference</div>
+            <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+
+            <div class="exercise-box">
+              <div style="display: grid; gap: var(--space-lg);">
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">❓ "I can't hear any sound when I click steps"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Make sure to press the <strong>Play ▶️</strong> button! Steps only make sound when the sequencer is playing. You can also check your device volume.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">❓ "My velocity sliders aren't showing up"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Velocity controls only appear in advanced lessons (Lesson 7+). Earlier lessons focus on basic step programming first.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">❓ "The 'Check Pattern' button says I'm wrong, but my pattern looks correct"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">In velocity-enabled lessons, both <strong>step placement</strong> and <strong>velocity values</strong> must match! Check your velocity sliders carefully.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">❓ "How do I save my progress?"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Progress auto-saves in most lessons! Your pattern is stored locally in your browser. Completing a lesson unlocks the next one.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">❓ "Can I create my own patterns in sandbox mode?"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Yes! Some lessons have a sandbox mode where you can experiment freely without validation. Look for lessons marked "Sandbox" or "Free Play".</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- BACK TO LABS -->
+        <div class="lesson-nav" style="margin-top: var(--space-2xl); margin-bottom: var(--space-3xl);">
+          <a href="labs.html" class="btn btn-secondary">
+            <span>← Back to All Labs</span>
+          </a>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container container">
+        <p>&copy; 2025 Music Producer Lab. Interactive music production education.</p>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="glossary.html">Glossary</a>
+          <a href="learn-tools.html">Learn Our Tools</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="navbar.js"></script>
+    <script src="hamburger-menu.js"></script>
+    <script src="theme-toggle.js"></script>
+  </body>
+</html>
