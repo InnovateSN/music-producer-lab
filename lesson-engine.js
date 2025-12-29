@@ -286,13 +286,15 @@ function setupModeUI(config) {
       if (nextWrap) nextWrap.style.display = 'none';
     }
 
-    // Show advanced controls
-    const advControls = document.getElementById('mpl-advanced-controls');
-    if (advControls) advControls.style.display = 'flex';
-
     // Update status message
     const status = document.getElementById('mpl-seq-status');
     if (status) status.textContent = 'Sandbox mode - experiment freely with the sequencer!';
+  }
+
+  // Show advanced controls if enabled (sandbox, showTempoControl, or showSwingControl)
+  if (mode?.sandbox || mode?.showTempoControl || mode?.showSwingControl || sequencer?.showSwingControl) {
+    const advControls = document.getElementById('mpl-advanced-controls');
+    if (advControls) advControls.style.display = 'flex';
   }
 
   // Update step count label
@@ -345,15 +347,48 @@ function initSequencer(config) {
 // ==========================================
 
 function setupAdvancedControls(config) {
+  // Create controls container if it doesn't exist
+  let advControls = document.getElementById('mpl-advanced-controls');
+  if (!advControls) {
+    const controlsParent = document.getElementById('mpl-seq-status');
+    if (controlsParent && controlsParent.parentElement) {
+      advControls = document.createElement('div');
+      advControls.id = 'mpl-advanced-controls';
+      advControls.style.cssText = 'display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;';
+
+      // Create tempo control
+      const tempoDiv = document.createElement('div');
+      tempoDiv.style.cssText = 'display:flex;align-items:center;gap:0.5rem;';
+      tempoDiv.innerHTML = `
+        <label for="mpl-tempo-slider" style="font-size:0.85rem;color:var(--text-muted);">Tempo:</label>
+        <input type="range" id="mpl-tempo-slider" min="60" max="180" value="120" style="width:100px;">
+        <span id="mpl-tempo-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:50px;">120 BPM</span>
+      `;
+
+      // Create swing control
+      const swingDiv = document.createElement('div');
+      swingDiv.style.cssText = 'display:flex;align-items:center;gap:0.5rem;';
+      swingDiv.innerHTML = `
+        <label for="mpl-swing-slider" style="font-size:0.85rem;color:var(--text-muted);">Swing:</label>
+        <input type="range" id="mpl-swing-slider" min="0" max="100" value="0" style="width:100px;">
+        <span id="mpl-swing-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:40px;">0%</span>
+      `;
+
+      advControls.appendChild(tempoDiv);
+      advControls.appendChild(swingDiv);
+      controlsParent.parentElement.insertBefore(advControls, controlsParent);
+    }
+  }
+
   const tempoSlider = document.getElementById('mpl-tempo-slider');
   const tempoValue = document.getElementById('mpl-tempo-value');
   const swingSlider = document.getElementById('mpl-swing-slider');
   const swingValue = document.getElementById('mpl-swing-value');
-  
+
   if (tempoSlider && tempoValue) {
     tempoSlider.value = config.sequencer?.tempo || 120;
     tempoValue.textContent = `${tempoSlider.value} BPM`;
-    
+
     tempoSlider.addEventListener('input', () => {
       const tempo = parseInt(tempoSlider.value);
       tempoValue.textContent = `${tempo} BPM`;
@@ -361,11 +396,11 @@ function setupAdvancedControls(config) {
       window.dispatchEvent(new CustomEvent('mpl-tempo-change', { detail: { tempo } }));
     });
   }
-  
+
   if (swingSlider && swingValue) {
     swingSlider.value = config.sequencer?.swing || 0;
     swingValue.textContent = `${swingSlider.value}%`;
-    
+
     swingSlider.addEventListener('input', () => {
       const swing = parseInt(swingSlider.value);
       swingValue.textContent = `${swing}%`;

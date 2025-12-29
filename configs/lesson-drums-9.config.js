@@ -53,9 +53,9 @@ export const lessonConfig = {
   exercise: {
     title: "Build a Boom Bap Beat",
     description: "Create the classic boom bap pattern with syncopated kick, heavy snare, and 8th-note hi-hats. This should make you nod your head!",
-    tip: "The kick is SYNCOPATED (not 4-on-the-floor). Place kicks on 1, 7, and 11 for the classic boom bap bounce.",
+    tip: "The kick is SYNCOPATED (not 4-on-the-floor). Place kicks on 1, 8, 9, and 11 for the classic boom bap bounce.",
     steps: [
-      { text: "<strong>Kick:</strong> Syncopated pattern on steps 1, 7, 11 (the 'boom')." },
+      { text: "<strong>Kick:</strong> Syncopated pattern on steps 1, 8, 9, 11 (the 'boom')." },
       { text: "<strong>Snare:</strong> Heavy hits on steps 5 and 13 (the 'bap')." },
       { text: "<strong>Hi-Hat:</strong> 8th notes on steps 1, 3, 5, 7, 9, 11, 13, 15." },
       { text: "<strong>Feel:</strong> Let the swing setting add that head-nod bounce!" }
@@ -70,11 +70,11 @@ export const lessonConfig = {
       id: "kick",
       label: "Kick",
       color: "linear-gradient(135deg, #e17055, #d63031)",
-      targetSteps: [0, 6, 10],
-      instructionText: "Syncopated boom bap kick: 1, 7, 11 (NOT 4-on-the-floor!).",
+      targetSteps: [0, 7, 8, 10],
+      instructionText: "Syncopated boom bap kick: 1, 8, 9, 11 (NOT 4-on-the-floor!).",
       patternHint: {
         enabled: true,
-        note: "Kick: 1, 7, 11 (syncopated groove)"
+        note: "Kick: 1, 8, 9, 11 (syncopated groove)"
       }
     },
     {
@@ -106,7 +106,7 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Boom bap = syncopated kick (1, 7, 11) + heavy snare (5, 13) + 8th hi-hats"
+    note: "Boom bap = syncopated kick (1, 8, 9, 11) + heavy snare (5, 13) + 8th hi-hats"
   },
   
   // ====================
@@ -115,7 +115,7 @@ export const lessonConfig = {
   messages: applyMessagePreset("drums", {
     initial: "Build the boom bap pattern. Remember: the kick is SYNCOPATED!",
     success: "🎉 Classic boom bap! That swing and syncopation is what makes heads nod. You've got the groove!",
-    error: "Check your kick placement—boom bap kicks are on 1, 7, 11 (not 4-on-the-floor like house).",
+    error: "Check your kick placement—boom bap kicks are on 1, 8, 9, 11 (not 4-on-the-floor like house).",
     alreadyCompleted: "You've mastered boom bap! Try adding ghost notes and varying velocity for more flavor."
   }),
   
