@@ -31,7 +31,7 @@ export const lessonConfig = {
     eyebrow: buildHeroEyebrow({ lessonNumber: 21, categoryLabel: "Practice Lab" }),
     title: "Velocity",
     titleHighlight: "Practice Playground",
-    subtitle: "Esplora il controllo della <strong>velocity</strong> (intensità delle note 0-127) con esempi pratici e visivi. Impara come la velocity trasforma pattern robotici in groove naturali e dinamici."
+    subtitle: "Explore <strong>velocity</strong> control (note intensity 0-127) with practical and visual examples. Learn how velocity transforms robotic patterns into natural and dynamic grooves."
   },
 
   // ====================
@@ -51,14 +51,14 @@ export const lessonConfig = {
   // EXERCISE
   // ====================
   exercise: {
-    title: "Esercizi Pratici di Velocity",
-    description: "Prova questi pattern di esempio per capire come funziona il controllo della velocity. Ascolta le differenze e sperimenta liberamente!",
-    tip: "💡 Trascina su/giù su ogni step per cambiare la velocity. Nota come cambia il volume del suono!",
+    title: "Velocity Practice Exercises",
+    description: "Try these example patterns to understand how velocity control works. Listen to the differences and experiment freely!",
+    tip: "💡 Drag up/down on each step to change velocity. Notice how the sound volume changes!",
     steps: [
-      { text: "<strong>Esempio 1 - Kick:</strong> Ascolta 3 kick con velocity diverse: Bassa (30), Media (80), Alta (127). Nota la differenza di volume!" },
-      { text: "<strong>Esempio 2 - Snare:</strong> Confronta snare forte (120) sul backbeat con ghost note morbide (25) tra i beat." },
-      { text: "<strong>Esempio 3 - Hi-Hat:</strong> Pattern con accenti (110) sui downbeat e note morbide (50) sugli off-beat." },
-      { text: "<strong>Sperimenta:</strong> Prova a creare i tuoi pattern con diverse velocity. Usa il tooltip (numero che appare) per vedere i valori esatti!" }
+      { text: "<strong>Example 1 - Kick:</strong> Listen to 3 kicks with different velocities: Low (30), Medium (80), High (127). Notice the volume difference!" },
+      { text: "<strong>Example 2 - Snare:</strong> Compare loud snare (120) on the backbeat with soft ghost notes (25) between beats." },
+      { text: "<strong>Example 3 - Hi-Hat:</strong> Pattern with accents (110) on downbeats and soft notes (50) on off-beats." },
+      { text: "<strong>Experiment:</strong> Try creating your own patterns with different velocities. Use the tooltip (number that appears) to see exact values!" }
     ]
   },
 
@@ -74,7 +74,7 @@ export const lessonConfig = {
         steps: [0, 4, 8],
         velocities: [30, 80, 127]
       },
-      instructionText: "🎯 ESEMPIO: 3 kick con velocity Bassa→Media→Alta. Ascolta la differenza!",
+      instructionText: "🎯 EXAMPLE: 3 kicks with Low→Medium→High velocity. Listen to the difference!",
       patternHint: {
         enabled: true,
         note: "Step 1 (vel 30) → Step 5 (vel 80) → Step 9 (vel 127)"
@@ -88,10 +88,10 @@ export const lessonConfig = {
         steps: [4, 6, 12, 14],
         velocities: [120, 25, 120, 25]
       },
-      instructionText: "🎯 ESEMPIO: Snare forti (120) sui beat principali + ghost notes (25) tra i beat.",
+      instructionText: "🎯 EXAMPLE: Loud snares (120) on main beats + ghost notes (25) between beats.",
       patternHint: {
         enabled: true,
-        note: "Beat 2&4 FORTE (120) + ghost notes MORBIDE (25)"
+        note: "Beat 2&4 LOUD (120) + SOFT ghost notes (25)"
       }
     },
     {
@@ -102,10 +102,10 @@ export const lessonConfig = {
         steps: [0, 2, 4, 6, 8, 10, 12, 14],
         velocities: [110, 50, 110, 50, 110, 50, 110, 50]
       },
-      instructionText: "🎯 ESEMPIO: Hi-hat 8th notes con accenti (110) sui downbeat e morbidi (50) sugli off-beat.",
+      instructionText: "🎯 EXAMPLE: Hi-hat 8th notes with accents (110) on downbeats and soft (50) on off-beats.",
       patternHint: {
         enabled: true,
-        note: "Downbeats FORTI (110) + off-beats MORBIDI (50)"
+        note: "Downbeats LOUD (110) + off-beats SOFT (50)"
       }
     },
     {
@@ -116,7 +116,7 @@ export const lessonConfig = {
         steps: [0, 4, 8, 12],
         velocities: [40, 70, 100, 127]
       },
-      instructionText: "🎯 ESEMPIO: Crescendo graduale da morbido (40) a fortissimo (127).",
+      instructionText: "🎯 EXAMPLE: Gradual crescendo from soft (40) to very loud (127).",
       patternHint: {
         enabled: true,
         note: "Crescendo: 40 → 70 → 100 → 127"
@@ -138,17 +138,17 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "📚 Questi sono esempi pre-caricati. Premi PLAY per ascoltare, poi modifica le velocity per sperimentare!"
+    note: "📚 These are pre-loaded examples. Press PLAY to listen, then modify the velocities to experiment!"
   },
 
   // ====================
   // MESSAGES
   // ====================
   messages: applyMessagePreset("drums", {
-    initial: "🎨 Benvenuto nel Velocity Playground! Premi PLAY per ascoltare gli esempi, poi sperimenta modificando le velocity. Non ci sono errori qui—solo sperimentazione!",
-    success: "🎵 Ottimo lavoro! Continua a sperimentare con le velocity per capire come influenzano il suono.",
+    initial: "🎨 Welcome to the Velocity Playground! Press PLAY to hear the examples, then experiment by modifying velocities. There are no mistakes here—just experimentation!",
+    success: "🎵 Great work! Keep experimenting with velocities to understand how they affect the sound.",
     error: "",
-    alreadyCompleted: "Continua a sperimentare! Ogni modifica ti aiuta a capire meglio la velocity."
+    alreadyCompleted: "Keep experimenting! Every change helps you better understand velocity."
   }),
 
   // ====================
@@ -167,11 +167,11 @@ export const lessonConfig = {
   // LEARNING OBJECTIVES
   // ====================
   learningObjectives: [
-    "Capire come la velocity (0-127) controlla il volume delle note",
-    "Ascoltare la differenza tra velocity basse (ghost notes) e alte (accents)",
-    "Imparare a usare il velocity slider trascinando su/giù",
-    "Sperimentare con dinamiche e contrasti per creare groove naturali",
-    "Vedere visivamente la velocity tramite la barra blu nei button"
+    "Understand how velocity (0-127) controls note volume",
+    "Hear the difference between low velocities (ghost notes) and high velocities (accents)",
+    "Learn to use the velocity slider by dragging up/down",
+    "Experiment with dynamics and contrasts to create natural grooves",
+    "See velocity visually through the blue bar in buttons"
   ],
 
   // ====================
@@ -183,28 +183,28 @@ export const lessonConfig = {
       {
         range: "0-40",
         label: "Ghost Notes",
-        description: "Note molto morbide, quasi sussurrate. Aggiungono texture senza dominare.",
+        description: "Very soft notes, almost whispered. Add texture without dominating.",
         color: "rgba(0,240,255,0.2)",
         audioExample: "kick-soft"
       },
       {
         range: "41-80",
-        label: "Normale",
-        description: "Velocity standard per la maggior parte delle note. Ben udibile ma non aggressivo.",
+        label: "Normal",
+        description: "Standard velocity for most notes. Clearly audible but not aggressive.",
         color: "rgba(0,240,255,0.5)",
         audioExample: "kick-medium"
       },
       {
         range: "81-120",
-        label: "Accenti",
-        description: "Note enfatizzate che definiscono il ritmo principale. Forte e chiaro.",
+        label: "Accents",
+        description: "Emphasized notes that define the main rhythm. Loud and clear.",
         color: "rgba(0,240,255,0.7)",
         audioExample: "kick-loud"
       },
       {
         range: "121-127",
-        label: "Massimo",
-        description: "Volume massimo per momenti di impatto. Usa con moderazione!",
+        label: "Maximum",
+        description: "Maximum volume for moments of impact. Use sparingly!",
         color: "rgba(0,240,255,0.9)",
         audioExample: "kick-max"
       }
@@ -216,33 +216,33 @@ export const lessonConfig = {
   // ====================
   practicalTips: [
     {
-      title: "Come usare il Velocity Slider",
+      title: "How to Use the Velocity Slider",
       steps: [
-        "Click su uno step per attivarlo/disattivarlo",
-        "Trascina verticalmente SU per aumentare la velocity (più forte)",
-        "Trascina verticalmente GIÙ per diminuire la velocity (più morbido)",
-        "Il numero che appare mostra la velocity esatta (0-127)",
-        "La barra BLU dentro lo step mostra visivamente l'intensità"
+        "Click on a step to activate/deactivate it",
+        "Drag vertically UP to increase velocity (louder)",
+        "Drag vertically DOWN to decrease velocity (softer)",
+        "The number that appears shows exact velocity (0-127)",
+        "The BLUE bar inside the step visually shows intensity"
       ]
     },
     {
-      title: "Velocity nella Musica Reale",
+      title: "Velocity in Real Music",
       steps: [
-        "I batteristi veri non colpiscono ogni nota alla stessa forza",
-        "Ghost notes (25-40) aggiungono groove e texture",
-        "Accenti (100+) sui beat principali danno struttura",
-        "Variazioni di velocity creano dinamica e interesse",
-        "La differenza tra morbido e forte è ciò che rende umana la musica"
+        "Real drummers don't hit every note with the same force",
+        "Ghost notes (25-40) add groove and texture",
+        "Accents (100+) on main beats provide structure",
+        "Velocity variations create dynamics and interest",
+        "The difference between soft and loud is what makes music human"
       ]
     },
     {
-      title: "Esercizi Suggeriti",
+      title: "Suggested Exercises",
       steps: [
-        "Prova a ricreare il pattern del kick con tutte le note alla stessa velocity",
-        "Poi varia le velocity—nota come diventa più interessante!",
-        "Sperimenta con crescendo (aumentare gradualmente) e diminuendo",
-        "Crea un pattern con forte contrasto: ghost notes + accents",
-        "Ascolta musica vera e cerca di identificare le velocity diverse"
+        "Try recreating the kick pattern with all notes at the same velocity",
+        "Then vary the velocities—notice how it becomes more interesting!",
+        "Experiment with crescendo (gradually increasing) and diminuendo",
+        "Create a pattern with strong contrast: ghost notes + accents",
+        "Listen to real music and try to identify different velocities"
       ]
     }
   ]
