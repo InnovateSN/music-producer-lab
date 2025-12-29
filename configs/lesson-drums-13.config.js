@@ -63,7 +63,7 @@ export const lessonConfig = {
       { text: "<strong>Step 2:</strong> Program the basic kick-snare-hihat pattern." },
       { text: "<strong>Step 3:</strong> Apply 10ms timing randomization to hi-hats only." },
       { text: "<strong>Step 4:</strong> Create velocity curve: louder downbeats, softer off-beats." },
-      { text: "<strong>Step 5:</strong> Add 54% swing for MPC-style groove." }
+      { text: "<strong>Step 5:</strong> Add 54% <a href=\"glossary.html#swing\" style=\"color: var(--accent-cyan); text-decoration: underline;\">swing</a> for MPC-style groove." }
     ]
   },
   
@@ -93,7 +93,7 @@ export const lessonConfig = {
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
       instructionText: "Hi-hats get most humanization—timing and velocity.",
-      patternHint: { enabled: true, note: "Apply swing + velocity curve" }
+      patternHint: { enabled: true, note: "Apply <a href=\"glossary.html#swing\" style=\"color: var(--accent-cyan); text-decoration: underline;\">swing</a> + <a href=\"glossary.html#velocity\" style=\"color: var(--accent-cyan); text-decoration: underline;\">velocity</a> curve" }
     }
   ],
   
