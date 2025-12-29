@@ -435,11 +435,10 @@
         const stepContainer = document.getElementById('demo-step-grid-sequencer');
         if (stepContainer) {
           stepContainer.innerHTML = `
-            <div id="mpl-sequencer-collection"></div>
             <div style="display: none;">
-              <button id="mpl-seq-play-all"></button>
-              <button id="mpl-seq-stop-all"></button>
-              <button id="mpl-seq-clear-all"></button>
+              <button id="mpl-seq-play-all-step"></button>
+              <button id="mpl-seq-stop-all-step"></button>
+              <button id="mpl-seq-clear-all-step"></button>
             </div>
           `;
 
@@ -456,13 +455,14 @@
               enablePresets: false,
               enableExport: false,
               enableVelocity: false // Disabled for basic demo
-            }
+            },
+            'demo-step-grid-sequencer' // Unique container ID
           );
 
           // Store references to internal controls
-          const internalPlayBtn = stepContainer.querySelector('#mpl-seq-play-all');
-          const internalStopBtn = stepContainer.querySelector('#mpl-seq-stop-all');
-          const internalClearBtn = stepContainer.querySelector('#mpl-seq-clear-all');
+          const internalPlayBtn = stepContainer.querySelector('#mpl-seq-play-all-step');
+          const internalStopBtn = stepContainer.querySelector('#mpl-seq-stop-all-step');
+          const internalClearBtn = stepContainer.querySelector('#mpl-seq-clear-all-step');
 
           // Wire up custom controls
           const playBtn = document.getElementById('demo-step-play');
@@ -485,28 +485,13 @@
       setTimeout(() => {
         const velocityContainer = document.getElementById('demo-velocity-sequencer');
         if (velocityContainer) {
-          // Create a temporary wrapper with the required ID
           velocityContainer.innerHTML = `
-            <div id="mpl-sequencer-collection-temp"></div>
             <div style="display: none;">
               <button id="mpl-seq-play-all-velocity"></button>
               <button id="mpl-seq-stop-all-velocity"></button>
               <button id="mpl-seq-clear-all-velocity"></button>
             </div>
           `;
-
-          // Temporarily rename the container for initialization
-          const tempContainer = velocityContainer.querySelector('#mpl-sequencer-collection-temp');
-          tempContainer.id = 'mpl-sequencer-collection';
-
-          // Temporarily rename the buttons
-          const tempPlayBtn = velocityContainer.querySelector('#mpl-seq-play-all-velocity');
-          const tempStopBtn = velocityContainer.querySelector('#mpl-seq-stop-all-velocity');
-          const tempClearBtn = velocityContainer.querySelector('#mpl-seq-clear-all-velocity');
-
-          tempPlayBtn.id = 'mpl-seq-play-all';
-          tempStopBtn.id = 'mpl-seq-stop-all';
-          tempClearBtn.id = 'mpl-seq-clear-all';
 
           initDrumSequencer(
             velocityInstruments,
@@ -521,28 +506,28 @@
               enablePresets: false,
               enableExport: false,
               enableVelocity: true // Enabled for velocity demo
-            }
+            },
+            'demo-velocity-sequencer' // Unique container ID
           );
 
-          // Restore unique IDs to avoid conflicts
-          tempContainer.id = 'mpl-sequencer-collection-velocity';
-          tempPlayBtn.id = 'mpl-seq-play-all-velocity';
-          tempStopBtn.id = 'mpl-seq-stop-all-velocity';
-          tempClearBtn.id = 'mpl-seq-clear-all-velocity';
+          // Store references to internal controls
+          const internalPlayBtn = velocityContainer.querySelector('#mpl-seq-play-all-velocity');
+          const internalStopBtn = velocityContainer.querySelector('#mpl-seq-stop-all-velocity');
+          const internalClearBtn = velocityContainer.querySelector('#mpl-seq-clear-all-velocity');
 
           // Wire up custom controls
           const playBtn = document.getElementById('demo-velocity-play');
           const stopBtn = document.getElementById('demo-velocity-stop');
           const clearBtn = document.getElementById('demo-velocity-clear');
 
-          if (playBtn && tempPlayBtn) {
-            playBtn.addEventListener('click', () => tempPlayBtn.click());
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
           }
-          if (stopBtn && tempStopBtn) {
-            stopBtn.addEventListener('click', () => tempStopBtn.click());
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
           }
-          if (clearBtn && tempClearBtn) {
-            clearBtn.addEventListener('click', () => tempClearBtn.click());
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
           }
         }
       }, 300);
