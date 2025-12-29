@@ -30,7 +30,41 @@ function getAudioContext() {
 // Storage for loaded audio samples (AudioBuffers)
 const loadedSamples = {};
 
+// Sample library (loaded from sample-library.json)
+let sampleLibrary = {};
+
+// Currently selected samples for each instrument (stored in localStorage)
+const selectedSamples = {};
+
+// Load sample library from JSON
+async function loadSampleLibrary() {
+  try {
+    const response = await fetch('sample-library.json');
+    if (response.ok) {
+      sampleLibrary = await response.json();
+      console.log('✓ Sample library loaded:', Object.keys(sampleLibrary).length, 'instruments');
+
+      // Initialize selected samples (load from localStorage or use first sample)
+      Object.keys(sampleLibrary).forEach(instrument => {
+        const savedSelection = localStorage.getItem(`mpl-sample-${instrument}`);
+        if (savedSelection && sampleLibrary[instrument].find(s => s.path === savedSelection)) {
+          selectedSamples[instrument] = savedSelection;
+        } else if (sampleLibrary[instrument].length > 0) {
+          // Use first sample as default
+          selectedSamples[instrument] = sampleLibrary[instrument][0].path;
+        }
+      });
+
+      return true;
+    }
+  } catch (error) {
+    console.warn('Could not load sample library, using fallback paths:', error);
+  }
+  return false;
+}
+
 // Sample paths configuration (base paths - will try multiple formats)
+// DEPRECATED: Now using dynamic paths from sample-library.json
 const SAMPLE_BASE_PATHS = {
   kick: 'samples/drums/kick/kick',
   snare: 'samples/drums/snare/snare',
@@ -84,18 +118,57 @@ async function loadSampleWithFormats(basePath) {
  * Called once when the sequencer initializes
  */
 async function preloadSamples() {
-  const loadPromises = Object.entries(SAMPLE_BASE_PATHS).map(async ([instrument, basePath]) => {
-    const buffer = await loadSampleWithFormats(basePath);
-    if (buffer) {
-      loadedSamples[instrument] = buffer;
-      console.log(`✓ Loaded sample: ${instrument}`);
-    } else {
-      console.log(`→ Using synthetic sound for: ${instrument}`);
-    }
-  });
+  // Try to load sample library first
+  await loadSampleLibrary();
 
-  await Promise.all(loadPromises);
-  console.log(`Sample loading complete. Loaded ${Object.keys(loadedSamples).length}/${Object.keys(SAMPLE_BASE_PATHS).length} samples.`);
+  // If we have sample library, load selected samples
+  if (Object.keys(selectedSamples).length > 0) {
+    const loadPromises = Object.entries(selectedSamples).map(async ([instrument, samplePath]) => {
+      const buffer = await loadSample(samplePath);
+      if (buffer) {
+        loadedSamples[instrument] = buffer;
+        console.log(`✓ Loaded sample: ${instrument} (${samplePath})`);
+      } else {
+        console.log(`→ Using synthetic sound for: ${instrument}`);
+      }
+    });
+    await Promise.all(loadPromises);
+  } else {
+    // Fallback to old system
+    const loadPromises = Object.entries(SAMPLE_BASE_PATHS).map(async ([instrument, basePath]) => {
+      const buffer = await loadSampleWithFormats(basePath);
+      if (buffer) {
+        loadedSamples[instrument] = buffer;
+        console.log(`✓ Loaded sample: ${instrument}`);
+      } else {
+        console.log(`→ Using synthetic sound for: ${instrument}`);
+      }
+    });
+    await Promise.all(loadPromises);
+  }
+
+  console.log(`Sample loading complete. Loaded ${Object.keys(loadedSamples).length} samples.`);
+}
+
+/**
+ * Change the selected sample for an instrument
+ * @param {string} instrument - Instrument name
+ * @param {string} samplePath - Path to the new sample
+ */
+async function changeSample(instrument, samplePath) {
+  selectedSamples[instrument] = samplePath;
+  localStorage.setItem(`mpl-sample-${instrument}`, samplePath);
+
+  // Reload the sample
+  const buffer = await loadSample(samplePath);
+  if (buffer) {
+    loadedSamples[instrument] = buffer;
+    console.log(`✓ Changed sample for ${instrument}: ${samplePath}`);
+    return true;
+  } else {
+    console.warn(`Failed to load sample: ${samplePath}`);
+    return false;
+  }
 }
 
 /**
@@ -349,7 +422,44 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   if (!container) return;
 
   // Preload audio samples (non-blocking - loads in background)
-  preloadSamples().catch(err => {
+  preloadSamples().then(() => {
+    // Show sample status banner
+    const samplesLoaded = Object.keys(loadedSamples).length;
+    if (samplesLoaded > 0) {
+      const banner = document.createElement('div');
+      banner.style.cssText = `
+        background: linear-gradient(135deg, rgba(0, 255, 157, 0.15), rgba(0, 240, 255, 0.15));
+        border: 1px solid rgba(0, 255, 157, 0.4);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.85rem;
+        color: var(--text-primary, #e0e6f0);
+      `;
+
+      banner.innerHTML = `
+        <div style="flex-shrink: 0; font-size: 1.5rem;">🎵</div>
+        <div style="flex: 1;">
+          <div style="font-weight: 700; color: var(--accent-green, #00ff9d); margin-bottom: 2px;">
+            ${samplesLoaded} Custom Samples Loaded
+          </div>
+          <div style="color: var(--text-muted, #a0aec0); font-size: 0.8rem;">
+            ${Object.keys(sampleLibrary).length > 0 ? 'Use the dropdowns below each instrument to change samples' : 'Using your custom audio samples'}
+          </div>
+        </div>
+      `;
+
+      const firstElement = container.firstChild;
+      if (firstElement) {
+        container.insertBefore(banner, firstElement);
+      } else {
+        container.appendChild(banner);
+      }
+    }
+  }).catch(err => {
     console.warn('Sample preloading failed, using synthetic sounds:', err);
   });
 
@@ -576,21 +686,84 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       display: flex;
       align-items: center;
       gap: 0;
+      margin-bottom: 4px;
     `;
-    
+
+    // Label container (includes label + sample selector)
+    const labelContainer = document.createElement('div');
+    labelContainer.style.cssText = `
+      width: 70px;
+      flex-shrink: 0;
+      padding-right: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    `;
+
     // Label
     const label = document.createElement('div');
     label.className = 'sequencer-label';
     label.textContent = inst.label;
     label.style.cssText = `
-      width: 70px;
-      flex-shrink: 0;
       font-weight: 600;
       font-size: 0.85rem;
       color: var(--text-secondary, #b8c4e0);
-      padding-right: 8px;
     `;
-    row.appendChild(label);
+    labelContainer.appendChild(label);
+
+    // Sample selector (if samples available)
+    if (sampleLibrary[inst.id] && sampleLibrary[inst.id].length > 0) {
+      const sampleSelect = document.createElement('select');
+      sampleSelect.className = 'sample-selector';
+      sampleSelect.style.cssText = `
+        width: 100%;
+        font-size: 0.65rem;
+        padding: 2px 4px;
+        background: rgba(0, 240, 255, 0.1);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 4px;
+        color: var(--text-primary, #e0e6f0);
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+      `;
+
+      // Add options
+      sampleLibrary[inst.id].forEach(sample => {
+        const option = document.createElement('option');
+        option.value = sample.path;
+        option.textContent = sample.name;
+        if (selectedSamples[inst.id] === sample.path) {
+          option.selected = true;
+        }
+        sampleSelect.appendChild(option);
+      });
+
+      // Change handler
+      sampleSelect.addEventListener('change', async (e) => {
+        const newPath = e.target.value;
+        const success = await changeSample(inst.id, newPath);
+        if (success) {
+          // Visual feedback
+          sampleSelect.style.background = 'rgba(0, 255, 157, 0.2)';
+          setTimeout(() => {
+            sampleSelect.style.background = 'rgba(0, 240, 255, 0.1)';
+          }, 300);
+        }
+      });
+
+      // Hover effect
+      sampleSelect.addEventListener('mouseenter', () => {
+        sampleSelect.style.background = 'rgba(0, 240, 255, 0.2)';
+      });
+      sampleSelect.addEventListener('mouseleave', () => {
+        sampleSelect.style.background = 'rgba(0, 240, 255, 0.1)';
+      });
+
+      labelContainer.appendChild(sampleSelect);
+    }
+
+    row.appendChild(labelContainer);
     
     // Steps container - full width, no wrap
     const stepsContainer = document.createElement('div');
@@ -1231,4 +1404,4 @@ function savePatternState(key, state) {
 }
 
 // Export for use in lesson pages
-export { playSound, drumSounds };
+export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples };
