@@ -1078,16 +1078,20 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       
       const playStep = () => {
         // Calculate swing delay
-        // Swing works by delaying off-beat notes (odd steps) closer to the next on-beat
-        // We do this by increasing delay BEFORE off-beat and decreasing delay AFTER off-beat
+        // Swing works by delaying the second eighth note of each beat
+        // In 16-step: delays steps 3, 7, 11, 15 (the 4th, 8th, 12th, 16th in UI)
+        // We do this by increasing delay BEFORE off-beat eighth and decreasing AFTER
         let stepDelay = baseStepTime;
         if (swing > 0) {
-          if (currentStep % 2 === 0) {
-            // Even step (on-beat): increase delay before next note (off-beat)
-            // This pushes the off-beat note later, closer to the following on-beat
+          const stepsPerBeat = stepCount / 4;
+          const positionInBeat = currentStep % stepsPerBeat;
+
+          if (positionInBeat === stepsPerBeat - 2) {
+            // Step BEFORE the off-beat eighth: increase delay
+            // This pushes the next note (off-beat eighth) later
             stepDelay = baseStepTime * (1 + (swing / 100) * 0.5);
-          } else {
-            // Odd step (off-beat): decrease delay to compensate and maintain tempo
+          } else if (positionInBeat === stepsPerBeat - 1) {
+            // Off-beat eighth step: decrease delay to compensate and maintain tempo
             stepDelay = baseStepTime * (1 - (swing / 100) * 0.5);
           }
         }
