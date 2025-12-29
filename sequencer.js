@@ -416,9 +416,10 @@ let sequencerInstruments = null;
  * @param {string} lessonKey - LocalStorage key for progress
  * @param {string} nextLessonUrl - URL for next lesson
  * @param {Object} options - Additional options (tempo, stepCount, swing, messages, sandbox)
+ * @param {string} containerId - Optional container ID (defaults to 'mpl-sequencer-collection')
  */
-export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}) {
-  const container = document.getElementById('mpl-sequencer-collection');
+export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options = {}, containerId = 'mpl-sequencer-collection') {
+  const container = document.getElementById(containerId);
   if (!container) return;
 
   // Preload audio samples (non-blocking - loads in background)
@@ -1031,16 +1032,16 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     </div>
   `;
   container.appendChild(legend);
-  
-  // Get control elements
-  const playBtn = document.getElementById('mpl-seq-play-all');
-  const stopBtn = document.getElementById('mpl-seq-stop-all');
-  const clearBtn = document.getElementById('mpl-seq-clear-all');
-  const checkBtn = document.getElementById('mpl-seq-check-all');
-  const statusEl = document.getElementById('mpl-seq-status');
-  const nextBtn = document.getElementById('mpl-next-lesson');
-  const presetControls = document.getElementById('mpl-preset-controls');
-  const exportBtn = document.getElementById('mpl-export-json');
+
+  // Get control elements (search within container first, then globally for backwards compatibility)
+  const playBtn = container.querySelector('#mpl-seq-play-all, [id^="mpl-seq-play-all"]') || document.getElementById('mpl-seq-play-all');
+  const stopBtn = container.querySelector('#mpl-seq-stop-all, [id^="mpl-seq-stop-all"]') || document.getElementById('mpl-seq-stop-all');
+  const clearBtn = container.querySelector('#mpl-seq-clear-all, [id^="mpl-seq-clear-all"]') || document.getElementById('mpl-seq-clear-all');
+  const checkBtn = container.querySelector('#mpl-seq-check-all') || document.getElementById('mpl-seq-check-all');
+  const statusEl = container.querySelector('#mpl-seq-status') || document.getElementById('mpl-seq-status');
+  const nextBtn = container.querySelector('#mpl-next-lesson') || document.getElementById('mpl-next-lesson');
+  const presetControls = container.querySelector('#mpl-preset-controls') || document.getElementById('mpl-preset-controls');
+  const exportBtn = container.querySelector('#mpl-export-json') || document.getElementById('mpl-export-json');
 
   if (presetControls) {
     presetControls.style.display = enablePresets ? 'flex' : 'none';
