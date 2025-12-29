@@ -44,13 +44,7 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true, // Key feature for this lesson
-    velocityLevels: {
-      ghost: { min: 15, max: 40, default: 28 },
-      soft: { min: 40, max: 70, default: 55 },
-      normal: { min: 70, max: 100, default: 85 },
-      accent: { min: 100, max: 127, default: 115 }
-    }
+    enableVelocity: true // ENABLE VELOCITY LANES UI - Key feature for this lesson
   },
   
   // ====================

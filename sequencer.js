@@ -25,28 +25,29 @@ function getAudioContext() {
 
 // Simple drum sounds using Web Audio API oscillators/noise
 const drumSounds = {
-  kick: () => {
+  kick: (velocity = 1.0) => {
     const ctx = getAudioContext();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    
+
     osc.type = 'sine';
     osc.frequency.setValueAtTime(150, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-    
-    gain.gain.setValueAtTime(1, ctx.currentTime);
+
+    // Apply velocity to gain
+    gain.gain.setValueAtTime(1 * velocity, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-    
+
     osc.connect(gain);
     gain.connect(ctx.destination);
-    
+
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.5);
   },
   
-  snare: () => {
+  snare: (velocity = 1.0) => {
     const ctx = getAudioContext();
-    
+
     // Noise component
     const bufferSize = ctx.sampleRate * 0.2;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
@@ -54,141 +55,152 @@ const drumSounds = {
     for (let i = 0; i < bufferSize; i++) {
       data[i] = Math.random() * 2 - 1;
     }
-    
+
     const noise = ctx.createBufferSource();
     noise.buffer = buffer;
-    
+
     const noiseFilter = ctx.createBiquadFilter();
     noiseFilter.type = 'highpass';
     noiseFilter.frequency.value = 1000;
-    
+
     const noiseGain = ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.3, ctx.currentTime);
+    // Apply velocity to noise component
+    noiseGain.gain.setValueAtTime(0.3 * velocity, ctx.currentTime);
     noiseGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-    
+
     noise.connect(noiseFilter);
     noiseFilter.connect(noiseGain);
     noiseGain.connect(ctx.destination);
-    
+
     // Tone component
     const osc = ctx.createOscillator();
     const oscGain = ctx.createGain();
-    
+
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(180, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-    
-    oscGain.gain.setValueAtTime(0.7, ctx.currentTime);
+
+    // Apply velocity to oscillator component
+    oscGain.gain.setValueAtTime(0.7 * velocity, ctx.currentTime);
     oscGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-    
+
     osc.connect(oscGain);
     oscGain.connect(ctx.destination);
-    
+
     noise.start(ctx.currentTime);
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.1);
   },
   
-  hihat: () => {
+  hihat: (velocity = 1.0) => {
     const ctx = getAudioContext();
-    
+
     const bufferSize = ctx.sampleRate * 0.05;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
       data[i] = Math.random() * 2 - 1;
     }
-    
+
     const noise = ctx.createBufferSource();
     noise.buffer = buffer;
-    
+
     const filter = ctx.createBiquadFilter();
     filter.type = 'highpass';
     filter.frequency.value = 5000;
-    
+
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    // Apply velocity
+    gain.gain.setValueAtTime(0.3 * velocity, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-    
+
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(ctx.destination);
-    
+
     noise.start(ctx.currentTime);
   },
-  
-  clap: () => {
+
+  clap: (velocity = 1.0) => {
     const ctx = getAudioContext();
-    
+
     const bufferSize = ctx.sampleRate * 0.15;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
       data[i] = Math.random() * 2 - 1;
     }
-    
+
     const noise = ctx.createBufferSource();
     noise.buffer = buffer;
-    
+
     const filter = ctx.createBiquadFilter();
     filter.type = 'bandpass';
     filter.frequency.value = 2000;
     filter.Q.value = 0.5;
-    
+
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.4, ctx.currentTime);
+    // Apply velocity
+    gain.gain.setValueAtTime(0.4 * velocity, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
-    
+
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(ctx.destination);
-    
+
     noise.start(ctx.currentTime);
   },
-  
-  tom: () => {
+
+  tom: (velocity = 1.0) => {
     const ctx = getAudioContext();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    
+
     osc.type = 'sine';
     osc.frequency.setValueAtTime(200, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.3);
-    
-    gain.gain.setValueAtTime(0.8, ctx.currentTime);
+
+    // Apply velocity
+    gain.gain.setValueAtTime(0.8 * velocity, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-    
+
     osc.connect(gain);
     gain.connect(ctx.destination);
-    
+
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.3);
   },
-  
-  rim: () => {
+
+  rim: (velocity = 1.0) => {
     const ctx = getAudioContext();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    
+
     osc.type = 'square';
     osc.frequency.setValueAtTime(500, ctx.currentTime);
-    
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+
+    // Apply velocity
+    gain.gain.setValueAtTime(0.3 * velocity, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-    
+
     osc.connect(gain);
     gain.connect(ctx.destination);
-    
+
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.05);
   }
+
 };
 
-// Play a drum sound
-function playSound(type) {
+// Play a drum sound with velocity
+// @param {string} type - The drum sound type (kick, snare, hihat, etc)
+// @param {number} velocity - MIDI velocity (0-127), defaults to 100
+function playSound(type, velocity = 100) {
   const sound = drumSounds[type] || drumSounds.kick;
   try {
-    sound();
+    // Normalize velocity to 0-1 range for gain
+    const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
+    sound(normalizedVelocity);
   } catch (e) {
     console.warn('Audio playback failed:', e);
   }
@@ -226,19 +238,22 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     sandbox: isSandbox = false,
     autoSaveState = true,
     enablePresets = false,
-    enableExport = false
+    enableExport = false,
+    enableVelocity = false // Enable velocity lanes UI
   } = options;
 
   tempo = tempoOption;
   stepCount = stepCountOption;
   swing = swingOption;
-  
+
   // Track state for each instrument
   const state = {};
+  const velocityState = {}; // Track velocity for each step (0-127)
   instruments.forEach(inst => {
     state[inst.id] = new Array(stepCount).fill(false);
+    velocityState[inst.id] = new Array(stepCount).fill(100); // Default velocity 100
   });
-  
+
   // Store for external access
   sequencerState = state;
   sequencerInstruments = instruments;
@@ -424,20 +439,21 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       step.addEventListener('click', () => {
         state[inst.id][i] = !state[inst.id][i];
         const beatStart = i % stepsPerBeat === 0;
-        step.style.background = state[inst.id][i] 
-          ? inst.color 
+        step.style.background = state[inst.id][i]
+          ? inst.color
           : (beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)');
         step.style.borderColor = state[inst.id][i]
           ? 'transparent'
           : (beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)');
-        
+
         if (state[inst.id][i]) {
-          playSound(inst.id);
+          // Play sound with current velocity for this step
+          playSound(inst.id, velocityState[inst.id][i]);
         }
-        
+
         // Auto-save if enabled
         if (autoSaveState) {
-          savePatternState(lessonKey + '-pattern', state);
+          savePatternState(lessonKey + '-pattern', { state, velocityState });
         }
       });
       
@@ -460,8 +476,123 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     
     row.appendChild(stepsContainer);
     grid.appendChild(row);
+
+    // Add velocity lane if enabled
+    if (enableVelocity) {
+      const velocityRow = document.createElement('div');
+      velocityRow.className = 'sequencer-velocity-row';
+      velocityRow.style.cssText = `
+        display: flex;
+        align-items: flex-end;
+        gap: 0;
+        margin-bottom: 16px;
+        opacity: 0.8;
+      `;
+
+      // Label
+      const velLabel = document.createElement('div');
+      velLabel.className = 'sequencer-velocity-label';
+      velLabel.textContent = 'Velocity';
+      velLabel.style.cssText = `
+        width: 70px;
+        flex-shrink: 0;
+        font-weight: 500;
+        font-size: 0.7rem;
+        color: var(--text-muted, #7a8ba8);
+        padding-right: 8px;
+        align-self: center;
+      `;
+      velocityRow.appendChild(velLabel);
+
+      // Velocity sliders container
+      const velocityContainer = document.createElement('div');
+      velocityContainer.className = 'sequencer-velocity-sliders';
+      velocityContainer.style.cssText = `
+        display: flex;
+        flex: 1;
+        gap: 2px;
+        align-items: flex-end;
+      `;
+
+      for (let i = 0; i < stepCount; i++) {
+        const sliderWrapper = document.createElement('div');
+        sliderWrapper.style.cssText = `
+          flex: 1;
+          min-width: ${stepCount > 16 ? '28px' : '36px'};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+        `;
+
+        // Velocity bar visual (shows current velocity)
+        const velocityBar = document.createElement('div');
+        velocityBar.className = 'velocity-bar';
+        velocityBar.style.cssText = `
+          width: 100%;
+          height: 40px;
+          background: rgba(255,255,255,0.05);
+          border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+        `;
+
+        const velocityFill = document.createElement('div');
+        velocityFill.className = 'velocity-fill';
+        const velocityPercent = (velocityState[inst.id][i] / 127) * 100;
+        velocityFill.style.cssText = `
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: ${velocityPercent}%;
+          background: ${inst.color};
+          opacity: 0.6;
+          transition: height 0.1s ease;
+        `;
+        velocityBar.appendChild(velocityFill);
+
+        // Range slider (vertical)
+        const slider = document.createElement('input');
+        slider.type = 'range';
+        slider.min = '0';
+        slider.max = '127';
+        slider.value = velocityState[inst.id][i];
+        slider.dataset.instrument = inst.id;
+        slider.dataset.step = i;
+        slider.style.cssText = `
+          width: 100%;
+          height: 8px;
+          -webkit-appearance: none;
+          background: transparent;
+          cursor: pointer;
+        `;
+
+        // Update velocity on slider change
+        slider.addEventListener('input', (e) => {
+          const newVelocity = parseInt(e.target.value);
+          velocityState[inst.id][i] = newVelocity;
+
+          // Update visual bar
+          const percent = (newVelocity / 127) * 100;
+          velocityFill.style.height = `${percent}%`;
+
+          // Auto-save if enabled
+          if (autoSaveState) {
+            savePatternState(lessonKey + '-pattern', { state, velocityState });
+          }
+        });
+
+        sliderWrapper.appendChild(velocityBar);
+        sliderWrapper.appendChild(slider);
+        velocityContainer.appendChild(sliderWrapper);
+      }
+
+      velocityRow.appendChild(velocityContainer);
+      grid.appendChild(velocityRow);
+    }
   });
-  
+
   wrapper.appendChild(grid);
   container.appendChild(wrapper);
   
@@ -560,10 +691,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           }
         });
         
-        // Play sounds for active steps
+        // Play sounds for active steps with their velocity
         instruments.forEach(inst => {
           if (state[inst.id][currentStep]) {
-            playSound(inst.id);
+            playSound(inst.id, velocityState[inst.id][currentStep]);
           }
         });
         

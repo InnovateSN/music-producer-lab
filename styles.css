@@ -2607,8 +2607,133 @@ p {
   .navbar-nav.open {
     z-index: 999;
   }
-  
+
   body.nav-open {
     overflow: hidden;
+  }
+}
+
+/* ======================================
+   VELOCITY LANES - Range Slider Styling
+   ====================================== */
+
+/* Velocity row container */
+.sequencer-velocity-row {
+  margin-top: -8px;
+}
+
+/* Range slider base */
+input[type="range"].sequencer-velocity-slider,
+.sequencer-velocity-sliders input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Range slider track - Webkit/Blink */
+input[type="range"]::-webkit-slider-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  height: 6px;
+}
+
+/* Range slider track - Firefox */
+input[type="range"]::-moz-range-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  height: 6px;
+}
+
+/* Range slider thumb - Webkit/Blink */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-cyan, #00f0ff);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Range slider thumb - Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-cyan, #00f0ff);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Range slider thumb hover */
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--accent-primary, #5f4dff);
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: var(--accent-primary, #5f4dff);
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+/* Range slider thumb active/focus */
+input[type="range"]:active::-webkit-slider-thumb,
+input[type="range"]:focus::-webkit-slider-thumb {
+  background: var(--accent-primary, #5f4dff);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(95, 77, 255, 0.8);
+}
+
+input[type="range"]:active::-moz-range-thumb,
+input[type="range"]:focus::-moz-range-thumb {
+  background: var(--accent-primary, #5f4dff);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(95, 77, 255, 0.8);
+}
+
+/* Remove outline on focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Velocity bar visual feedback */
+.velocity-bar {
+  transition: opacity 0.2s ease;
+}
+
+.velocity-bar:hover {
+  opacity: 0.9;
+}
+
+/* Velocity fill animation */
+.velocity-fill {
+  transition: height 0.1s ease, opacity 0.15s ease;
+}
+
+/* Responsive adjustments for velocity lanes */
+@media (max-width: 768px) {
+  .sequencer-velocity-row {
+    margin-bottom: 12px;
+  }
+
+  .velocity-bar {
+    height: 32px !important;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
   }
 }
