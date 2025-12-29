@@ -47,7 +47,8 @@ export const lessonConfig = {
     enableVelocity: true,
     enableHumanization: true,
     showSwingControl: true,
-    requiredTempo: 90 // Students must set tempo to 90 BPM for hip-hop feel
+    requiredTempo: 90, // Students must set tempo to 90 BPM for hip-hop feel
+    requiredSwing: 54 // Students must add 54% swing for MPC-style groove (Step 5)
   },
   
   // ====================

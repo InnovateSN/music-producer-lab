@@ -45,7 +45,8 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     showSwingControl: true,
-    requiredTempo: 90
+    requiredTempo: 90,
+    requiredSwing: 55 // Students must set swing to 55% for boom bap feel
   },
   
   // ====================
