@@ -37,7 +37,8 @@ export const lessonConfig = {
     tempo: 110,
     stepCount: 16,
     swing: 0,
-    enableVelocity: true // Enable velocity control for practice
+    enableVelocity: true, // Enable velocity control for practice
+    requiredTempo: 110
   },
   
   // ====================
@@ -48,6 +49,7 @@ export const lessonConfig = {
     description: "Break free from the 4-on-the-floor! <strong>Syncopation</strong> places kicks on unexpected beats, creating that groovy, off-beat feel found in funk, hip-hop, and many electronic genres.",
     tip: "Syncopation = surprise! The kick lands 'between' where you expect it. The steady snare/hi-hat anchors the groove while the kick adds movement.",
     steps: [
+      { text: "<strong>Set the tempo to 110 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick row:</strong> Steps <strong>1, 3, 6, 11</strong> - NOT on every beat!" },
       { text: "<strong>Snare row:</strong> Steps <strong>5 and 13</strong> (keep the backbeat steady)." },
       { text: "<strong>Hi-Hat row:</strong> Steps <strong>1, 3, 5, 7, 9, 11, 13, 15</strong> (straight eighths)." },

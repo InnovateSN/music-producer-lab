@@ -51,7 +51,12 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
   
   // Populate exercise section
   populateExercise(mergedConfig);
-  
+
+  // Populate theory section if present
+  if (mergedConfig.theory?.sections) {
+    populateTheory(mergedConfig);
+  }
+
   // Generate pattern hint if enabled
   if (mergedConfig.patternHint?.enabled !== false && mergedConfig.instruments?.length > 0) {
     generatePatternHint(mergedConfig);
@@ -180,6 +185,37 @@ function populateExercise(config) {
     tipEl.style.display = 'block';
     tipText.innerHTML = exercise.tip;
   }
+}
+
+// ==========================================
+// THEORY SECTION
+// ==========================================
+
+function populateTheory(config) {
+  const { theory } = config;
+
+  if (!theory || !theory.sections) return;
+
+  const theorySection = document.getElementById('mpl-theory-section');
+  if (!theorySection) return;
+
+  // Generate HTML for all theory sections
+  let html = '';
+
+  theory.sections.forEach((section, index) => {
+    html += `
+      <div class="exercise-box" style="margin-bottom: var(--space-lg);">
+        <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-md); color: var(--accent-cyan);">
+          ${section.title}
+        </h3>
+        <div class="section-body">
+          ${section.content}
+        </div>
+      </div>
+    `;
+  });
+
+  theorySection.innerHTML = html;
 }
 
 // ==========================================
@@ -352,7 +388,8 @@ function initSequencer(config) {
       autoSaveState: seqConfig?.autoSaveState ?? true,
       enablePresets: mode?.enablePresets || false,
       enableExport: mode?.enableExport || false,
-      enableVelocity: seqConfig?.enableVelocity || false // Enable velocity lanes
+      enableVelocity: seqConfig?.enableVelocity || false, // Enable velocity lanes
+      requiredTempo: seqConfig?.requiredTempo || null // Required BPM for validation
     }
   );
 }
@@ -369,7 +406,7 @@ function setupAdvancedControls(config) {
     if (controlsParent && controlsParent.parentElement) {
       advControls = document.createElement('div');
       advControls.id = 'mpl-advanced-controls';
-      advControls.style.cssText = 'display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;';
+      advControls.style.cssText = 'display:flex;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;';
 
       // Create tempo control
       const tempoDiv = document.createElement('div');

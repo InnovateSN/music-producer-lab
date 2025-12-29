@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    showSwingControl: true
+    showSwingControl: true,
+    requiredTempo: 90
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Create the classic boom bap pattern with syncopated kick, heavy snare, and 8th-note hi-hats. This should make you nod your head!",
     tip: "The kick is SYNCOPATED (not 4-on-the-floor). Place kicks on 1, 8, 9, and 11 for the classic boom bap bounce.",
     steps: [
+      { text: "<strong>Set the tempo to 90 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Syncopated pattern on steps 1, 8, 9, 11 (the 'boom')." },
       { text: "<strong>Snare:</strong> Heavy hits on steps 5 and 13 (the 'bap')." },
       { text: "<strong>Hi-Hat:</strong> 8th notes on steps 1, 3, 5, 7, 9, 11, 13, 15." },

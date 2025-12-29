@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 120
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Create a driving rock pattern using kick, snare, hi-hats, and a crash cymbal to mark the downbeat.",
     tip: "Rock drums are about POWER and DYNAMICS. Add a crash on beat 1 to signal the start of the section!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13 (driving quarter notes)." },
       { text: "<strong>Snare:</strong> Steps 5 and 13 (powerful backbeat)." },
       { text: "<strong>Hi-Hat:</strong> 8th notes (1, 3, 5, 7, 9, 11, 13, 15)." },

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson 22 · Bars, Beats & Subdivisions | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Learn the foundation of rhythm: understand bars, beats, quarter notes, eighth notes, and sixteenth notes. Master subdivisions for precise drum programming." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Bars, Beats &</span>
+              <span id="mpl-hero-title-highlight" class="gradient-text">Subdivisions</span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle">Master the foundation of rhythm. Understand how music is organized in time.</p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Rhythm Fundamentals</div>
+              <div class="hero-visual-pill">Essential Knowledge</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title"><span>1-bar loop</span> · 120 BPM</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Subdivisions</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll Learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Bars & Beats</div>
+                  <div class="hero-visual-pill-tag">Quarter Notes</div>
+                  <div class="hero-visual-pill-tag">Eighth Notes</div>
+                  <div class="hero-visual-pill-tag">Sixteenth Notes</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Foundation for All Production</span>
+                  <span>Essential rhythm knowledge</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- THEORY CONTENT SECTION (populated by JS from config) -->
+        <section class="theory-section" style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);" id="mpl-theory-section">
+          <!-- Theory content will be populated by lesson-engine.js from the config -->
+        </section>
+
+        <!-- SEQUENCER EXERCISE SECTION -->
+        <section class="exercise-section" style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="section-eyebrow">Interactive Exercise</div>
+          <h2 class="section-title" id="mpl-exercise-title">Demonstrate Your Understanding</h2>
+
+          <div class="exercise-box" id="mpl-exercise-box">
+            <div id="mpl-exercise-description" class="exercise-description"></div>
+
+            <div id="mpl-exercise-tip" class="exercise-tip" style="margin-top: var(--space-md);"></div>
+
+            <div style="margin-top: var(--space-lg);">
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-cyan);">Steps:</h3>
+              <ol id="mpl-exercise-steps" class="exercise-steps"></ol>
+            </div>
+          </div>
+
+          <!-- Pattern Hint (populated by JS) -->
+          <div id="mpl-pattern-hint" style="margin-top: var(--space-xl);"></div>
+
+          <!-- Sequencer Container -->
+          <div id="mpl-sequencer-collection" style="margin-top: var(--space-xl);"></div>
+
+          <!-- Status Message -->
+          <div id="mpl-seq-status" style="margin-top: var(--space-md); padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); text-align: center; color: var(--text-muted); font-size: var(--font-size-sm);">
+            Complete the exercise to unlock the next lesson.
+          </div>
+
+          <!-- Next Lesson Button -->
+          <div id="mpl-seq-next-lesson-wrap" style="margin-top: var(--space-lg); text-align: center;">
+            <button id="mpl-seq-next-lesson" class="btn btn-primary btn-lg" style="opacity: 0.5; cursor: not-allowed;" disabled>
+              Next Lesson →
+            </button>
+          </div>
+        </section>
+
+        <!-- NAVIGATION (populated by JS) -->
+        <nav id="mpl-lesson-nav" class="lesson-nav" style="margin-top: var(--space-3xl); margin-bottom: var(--space-2xl);">
+          <!-- Navigation will be populated by lesson-engine.js -->
+        </nav>
+
+    </main>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { lessonConfig } from './configs/lesson-drums-22.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+      import { loadNavbar } from './js/navbar.js';
+
+      // Load navbar
+      loadNavbar();
+
+      // Initialize lesson from config
+      document.addEventListener('DOMContentLoaded', () => {
+        initLessonFromConfig(lessonConfig);
+      });
+    </script>
+
+    <script src="js/service-worker-registration.js"></script>
+  </body>
+</html>

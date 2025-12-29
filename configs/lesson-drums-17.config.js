@@ -45,7 +45,8 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     enableVelocity: true,
-    timeSignature: "5/4"
+    timeSignature: "5/4",
+    requiredTempo: 110
   },
   
   // ====================
@@ -56,6 +57,7 @@ export const lessonConfig = {
     description: "Program a drum pattern in 5/4 time with clear 3+2 grouping.",
     tip: "Feel the natural lilt—once the grouping clicks, 5/4 feels completely natural.",
     steps: [
+      { text: "<strong>Set the tempo to 110 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Beats 1 and 4 (marks 3+2 grouping)." },
       { text: "<strong>Snare:</strong> Beats 3 and 5 for backbeat." },
       { text: "<strong>Hi-Hat:</strong> All 5 beats for steady pulse." },

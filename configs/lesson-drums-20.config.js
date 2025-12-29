@@ -28,13 +28,15 @@ export const lessonConfig = {
     swing: 0,
     showBeatMarkers: true,
     enableVelocity: true,
-    enableSections: true
+    enableSections: true,
+    requiredTempo: 120
   },
   
   exercise: {
     title: "Create a 16-Bar Drum Arrangement",
     description: "Build a complete drum production with intro, verse, build, drop, and breakdown.",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Intro (4 bars):</strong> Stripped down, builds anticipation." },
       { text: "<strong>Verse (4 bars):</strong> Full groove with ghost notes." },
       { text: "<strong>Build (2 bars):</strong> Rising energy, fill at end." },

@@ -37,7 +37,8 @@ export const lessonConfig = {
     tempo: 120,
     stepCount: 16,
     swing: 0,
-    enableVelocity: true // Enable velocity control for practice
+    enableVelocity: true, // Enable velocity control for practice
+    requiredTempo: 120
   },
   
   // ====================
@@ -48,6 +49,7 @@ export const lessonConfig = {
     description: "Time to add <strong>hi-hats</strong> playing eighth notes (1 & 2 & 3 & 4 &). This fills in the space between kicks and makes the groove feel more energetic.",
     tip: "Count '1 & 2 & 3 & 4 &' - the hi-hat plays on every number AND every '&'!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick row:</strong> Steps <strong>1, 5, 9, 13</strong> (quarter notes)." },
       { text: "<strong>Snare row:</strong> Steps <strong>5 and 13</strong> (backbeat)." },
       { text: "<strong>Hi-Hat row:</strong> Click <strong>every odd step: 1, 3, 5, 7, 9, 11, 13, 15</strong>." },
