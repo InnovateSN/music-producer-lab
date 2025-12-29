@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true // ENABLE VELOCITY LANES UI - Key feature for this lesson
+    enableVelocity: true, // ENABLE VELOCITY LANES UI - Key feature for this lesson
+    requiredTempo: 95
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Transform a basic kick-snare pattern into a professional groove by adding ghost notes (soft snare hits) on strategic positions.",
     tip: "Ghost notes should be FELT, not obviously heard. Use low velocity (25-35) for ghost notes, high velocity (100+) for accents.",
     steps: [
+      { text: "<strong>Set the tempo to 95 BPM</strong> using the Tempo slider." },
       { text: "<strong>Foundation:</strong> Kick on steps 1 and 9 (beats 1 and 3 only)." },
       { text: "<strong>Backbeat snare:</strong> Place snare at HIGH velocity (100+) on steps 5 and 13 (beats 2 and 4)." },
       { text: "<strong>Ghost notes:</strong> Add soft snare hits (velocity 25-35) on steps 7 and 10." },

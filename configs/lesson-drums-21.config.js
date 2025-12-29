@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true // ENABLE VELOCITY LANES UI
+    enableVelocity: true, // ENABLE VELOCITY LANES UI
+    requiredTempo: 100
   },
 
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Try these example patterns to understand how velocity control works. Listen to the differences and experiment freely!",
     tip: "💡 Drag up/down on each step to change velocity. Notice how the sound volume changes!",
     steps: [
+      { text: "<strong>Set the tempo to 100 BPM</strong> using the Tempo slider." },
       { text: "<strong>Example 1 - Kick:</strong> Listen to 3 kicks with different velocities: Low (30), Medium (80), High (127). Notice the volume difference!" },
       { text: "<strong>Example 2 - Snare:</strong> Compare loud snare (120) on the backbeat with soft ghost notes (25) between beats." },
       { text: "<strong>Example 3 - Hi-Hat:</strong> Pattern with accents (110) on downbeats and soft notes (50) on off-beats." },

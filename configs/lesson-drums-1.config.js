@@ -36,7 +36,8 @@ export const lessonConfig = {
   sequencer: {
     tempo: 120,
     stepCount: 16,
-    swing: 0
+    swing: 0,
+    requiredTempo: 120 // Students must set tempo to 120 BPM
   },
   
   // ====================
@@ -47,11 +48,12 @@ export const lessonConfig = {
     description: "<strong>\"4 on the floor\"</strong> means a kick drum on every beat of the bar. Since there are four beats in a bar (in 4/4 time), you place four kicks equally spaced. This creates a steady pulse that dancers can lock onto. It might sound \"too simple,\" and that's exactly the point - this simplicity is power. It leaves space for everything else you'll add later: hi-hats, claps, bass, chords, and melodies.",
     tip: "Count \"one-two-three-four\" out loud while the loop plays. The kick should hit exactly when you say each number!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider below the sequencer. This is the standard house music tempo." },
       { text: "<strong>Click on steps 1, 5, 9, and 13</strong> in the Kick row to place your kicks." },
       { text: "These positions correspond to the <strong>four main beats</strong> of the bar (quarter notes)." },
       { text: "Press <strong>Play</strong> to hear your pattern loop. Does it feel even and steady?" },
       { text: "Listen: Does the loop flow smoothly from end back to start without stumbling?" },
-      { text: "When satisfied, click <strong>Check Exercise</strong> to verify your pattern." }
+      { text: "When satisfied, click <strong>Check Exercise</strong> to verify your pattern and tempo." }
     ]
   },
   

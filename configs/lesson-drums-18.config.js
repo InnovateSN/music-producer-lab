@@ -27,13 +27,15 @@ export const lessonConfig = {
     stepCount: 16,
     swing: 0,
     showBeatMarkers: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 124
   },
   
   exercise: {
     title: "Create a Trap House Beat",
     description: "Blend trap hi-hats with a house kick pattern for a modern fusion groove.",
     steps: [
+      { text: "<strong>Set the tempo to 124 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> 4-on-the-floor (house)." },
       { text: "<strong>Hi-Hat:</strong> Rolling trap pattern with triplets." },
       { text: "<strong>808:</strong> Sub bass on kick hits." },

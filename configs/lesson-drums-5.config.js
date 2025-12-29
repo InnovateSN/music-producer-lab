@@ -43,7 +43,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,  // Save to localStorage on every change
-    enableVelocity: true  // Enable velocity control for practice
+    enableVelocity: true, // Enable velocity control for practice
+    requiredTempo: 120    // Students must set tempo to 120 BPM
   },
   
   // ====================
@@ -54,6 +55,7 @@ export const lessonConfig = {
     description: "Drum fills add excitement and signal transitions in music. In this exercise, you'll create a <strong>fill pattern</strong> in the last beat (beat 4) while keeping the groove in beats 1-3.",
     tip: "Fills 'break' the pattern to signal something new is coming. The silence in the hi-hats makes the kick/snare fill pop!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick row:</strong> Steps <strong>1, 5, 9, 13, 15</strong> - normal pattern plus extra kicks in beat 4." },
       { text: "<strong>Snare row:</strong> Steps <strong>5, 13, 16</strong> - backbeat plus a final hit on step 16." },
       { text: "<strong>Hi-Hat row:</strong> Steps <strong>1, 3, 5, 7, 9, 11</strong> only - stop the hi-hats before the fill." },

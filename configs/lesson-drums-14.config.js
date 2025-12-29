@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 100
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Program a hi-hat pattern in 3 against a kick-snare pattern in 4.",
     tip: "The hi-hats should feel like they're 'floating' against the kick. That's the polyrhythmic tension!",
     steps: [
+      { text: "<strong>Set the tempo to 100 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Steps 1, 4, 7, 10 (four evenly spaced)." },
       { text: "<strong>Hi-Hat:</strong> Steps 1, 5, 9 (three evenly spaced)." },
       { text: "<strong>Snare:</strong> Steps 4 and 10 for backbeat." },

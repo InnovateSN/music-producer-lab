@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    halfTime: true // Trap often feels like half-time
+    halfTime: true, // Trap often feels like half-time
+    requiredTempo: 140
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Create a modern trap pattern with rolling hi-hats, sparse snare placement, and strategic 808s.",
     tip: "In trap, less is more for the low end. Let the 808s breathe and fill the space between with hi-hat rolls.",
     steps: [
+      { text: "<strong>Set the tempo to 140 BPM</strong> using the Tempo slider." },
       { text: "<strong>808:</strong> Sparse placement on steps 1 and 9 (powerful but not constant)." },
       { text: "<strong>Snare:</strong> Backbeat on steps 5 and 13 (clap + snare layered)." },
       { text: "<strong>Hi-Hat (Closed):</strong> Rolling 16ths on every step for energy." },

@@ -474,7 +474,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     autoSaveState = true,
     enablePresets = false,
     enableExport = false,
-    enableVelocity = false // Enable velocity lanes UI
+    enableVelocity = false, // Enable velocity lanes UI
+    requiredTempo = null // Optional: Required BPM for exercise validation
   } = options;
 
   tempo = tempoOption;
@@ -1152,11 +1153,18 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   if (checkBtn && !isSandbox) {
     checkBtn.addEventListener('click', () => {
       let allCorrect = true;
-      
+      let tempoCorrect = true;
+
+      // Check if tempo matches required tempo (if specified)
+      if (requiredTempo !== null && tempo !== requiredTempo) {
+        tempoCorrect = false;
+        allCorrect = false;
+      }
+
       instruments.forEach(inst => {
         const target = inst.target || [];
         const current = state[inst.id];
-        
+
         // Check if pattern matches
         for (let i = 0; i < stepCount; i++) {
           const shouldBeActive = target.includes(i);
@@ -1166,8 +1174,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           }
         }
       });
-      
-      if (allCorrect) {
+
+      if (allCorrect && tempoCorrect) {
         if (statusEl) {
           statusEl.textContent = messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.';
           statusEl.style.color = 'var(--accent-green, #00ff9d)';
@@ -1183,24 +1191,32 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         } catch (e) {}
       } else {
         if (statusEl) {
-          statusEl.textContent = messages.error || 'Not quite right. Check the pattern and try again!';
-          statusEl.style.color = 'var(--accent-amber, #ffcc00)';
+          // Provide specific error message based on what's wrong
+          if (!tempoCorrect && requiredTempo !== null) {
+            statusEl.textContent = `⏱️ Please set the tempo to ${requiredTempo} BPM before checking the exercise.`;
+            statusEl.style.color = 'var(--accent-amber, #ffcc00)';
+          } else {
+            statusEl.textContent = messages.error || 'Not quite right. Check the pattern and try again!';
+            statusEl.style.color = 'var(--accent-amber, #ffcc00)';
+          }
         }
-        
-        // Show correct pattern briefly
-        instruments.forEach(inst => {
-          const target = inst.target || [];
-          document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
-            if (target.includes(i) && !state[inst.id][i]) {
-              el.style.outline = '2px solid rgba(0, 240, 255, 0.7)';
-              el.style.outlineOffset = '2px';
-              setTimeout(() => {
-                el.style.outline = 'none';
-                el.style.outlineOffset = '0';
-              }, 2000);
-            }
+
+        // Show correct pattern briefly (only if pattern is wrong, not tempo)
+        if (tempoCorrect) {
+          instruments.forEach(inst => {
+            const target = inst.target || [];
+            document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {
+              if (target.includes(i) && !state[inst.id][i]) {
+                el.style.outline = '2px solid rgba(0, 240, 255, 0.7)';
+                el.style.outlineOffset = '2px';
+                setTimeout(() => {
+                  el.style.outline = 'none';
+                  el.style.outlineOffset = '0';
+                }, 2000);
+              }
+            });
           });
-        });
+        }
       }
     });
   }

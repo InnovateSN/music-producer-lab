@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 100
   },
   
   // ====================
@@ -55,6 +56,7 @@ export const lessonConfig = {
     description: "Build a layered percussion groove using clave, congas, shaker, and cowbell.",
     tip: "The clave is your guide—every other part should respect its pattern.",
     steps: [
+      { text: "<strong>Set the tempo to 100 BPM</strong> using the Tempo slider." },
       { text: "<strong>Clave:</strong> 3-2 son clave (steps 1, 4, 7, 12, 16)." },
       { text: "<strong>Congas:</strong> Tumbao pattern—slaps on 2 and 4." },
       { text: "<strong>Shaker:</strong> 16th notes for pulse and movement." },
