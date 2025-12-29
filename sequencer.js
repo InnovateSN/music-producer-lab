@@ -267,8 +267,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   wrapper.style.cssText = `
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   `;
   
   // Main grid container
@@ -304,7 +303,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   stepNumbersContainer.style.cssText = `
     display: flex;
     flex: 1;
-    gap: 2px;
+    gap: 1px;
   `;
   
   const stepsPerBeat = stepCount / 4; // For 16 steps = 4 per beat
@@ -315,13 +314,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     const beatStart = i % stepsPerBeat === 0;
     stepNum.style.cssText = `
       flex: 1;
-      min-width: ${stepCount > 16 ? '22px' : '28px'};
+      min-width: ${stepCount > 16 ? '14px' : '18px'};
       text-align: center;
       font-family: var(--font-mono, monospace);
-      font-size: ${stepCount > 16 ? '0.55rem' : '0.65rem'};
+      font-size: ${stepCount > 16 ? '0.5rem' : '0.6rem'};
       font-weight: ${beatStart ? '700' : '400'};
       color: ${beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)'};
-      padding: 4px 0;
+      padding: 2px 0;
     `;
     stepNum.textContent = i + 1;
     stepNumbersContainer.appendChild(stepNum);
@@ -354,7 +353,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   beatMarkersContainer.style.cssText = `
     display: flex;
     flex: 1;
-    gap: 2px;
+    gap: 1px;
   `;
   
   for (let beat = 1; beat <= 4; beat++) {
@@ -362,14 +361,14 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     beatGroup.style.cssText = `
       flex: 1;
       display: flex;
-      gap: 2px;
+      gap: 1px;
     `;
     
     for (let sub = 0; sub < stepsPerBeat; sub++) {
       const marker = document.createElement('div');
       marker.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '22px' : '28px'};
+        min-width: ${stepCount > 16 ? '14px' : '18px'};
         height: 4px;
         background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
         border-radius: 2px;
@@ -413,7 +412,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     stepsContainer.style.cssText = `
       display: flex;
       flex: 1;
-      gap: 2px;
+      gap: 1px;
     `;
     
     for (let i = 0; i < stepCount; i++) {
@@ -427,10 +426,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const beatStart = i % stepsPerBeat === 0;
       step.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '22px' : '28px'};
-        height: ${stepCount > 16 ? '36px' : '42px'};
+        min-width: ${stepCount > 16 ? '14px' : '18px'};
+        height: ${stepCount > 16 ? '32px' : '38px'};
         border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
-        border-radius: 6px;
+        border-radius: 4px;
         background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
         cursor: pointer;
         transition: all 0.15s ease;
@@ -544,7 +543,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       velocityContainer.style.cssText = `
         display: flex;
         flex: 1;
-        gap: 2px;
+        gap: 1px;
         align-items: flex-end;
       `;
 
@@ -552,7 +551,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const sliderWrapper = document.createElement('div');
         sliderWrapper.style.cssText = `
           flex: 1;
-          min-width: ${stepCount > 16 ? '22px' : '28px'};
+          min-width: ${stepCount > 16 ? '14px' : '18px'};
           display: flex;
           flex-direction: column;
           align-items: center;
