@@ -385,7 +385,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   wrapper.style.cssText = `
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: auto;
+    overflow-y: visible;
   `;
   
   // Add velocity guide if enabled
@@ -493,7 +494,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     const beatStart = i % stepsPerBeat === 0;
     stepNum.style.cssText = `
       flex: 1;
-      min-width: ${stepCount > 16 ? '14px' : '18px'};
+      min-width: ${stepCount > 16 ? '12px' : '16px'};
       text-align: center;
       font-family: var(--font-mono, monospace);
       font-size: ${stepCount > 16 ? '0.5rem' : '0.6rem'};
@@ -547,7 +548,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const marker = document.createElement('div');
       marker.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '14px' : '18px'};
+        min-width: ${stepCount > 16 ? '12px' : '16px'};
         height: 4px;
         background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
         border-radius: 2px;
@@ -605,8 +606,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const beatStart = i % stepsPerBeat === 0;
       step.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '14px' : '18px'};
-        height: ${stepCount > 16 ? '32px' : '38px'};
+        min-width: ${stepCount > 16 ? '12px' : '16px'};
+        height: ${stepCount > 16 ? '30px' : '34px'};
         border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
         border-radius: 4px;
         background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
@@ -892,7 +893,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           const stepIdx = parseInt(el.dataset.step);
           if (stepIdx === currentStep) {
             el.style.boxShadow = '0 0 12px rgba(0, 240, 255, 0.6), inset 0 0 8px rgba(0, 240, 255, 0.3)';
-            el.style.transform = 'scale(1.05)';
+            el.style.transform = 'scale(1.02)';
           } else {
             el.style.boxShadow = 'none';
             el.style.transform = 'scale(1)';
