@@ -209,6 +209,34 @@
                   </ul>
                 </div>
 
+                <!-- INTERACTIVE DEMO: Tempo Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">🎮 Try It Now: Tempo Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click steps to create a pattern, then adjust the tempo slider to hear how speed changes the feel!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-tempo-sequencer"></div>
+
+                  <!-- Tempo Control -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: var(--space-md);">
+                      <label for="demo-tempo-slider" style="font-size:0.9rem;color:var(--text-muted);min-width:60px;">Tempo:</label>
+                      <input type="range" id="demo-tempo-slider" min="60" max="180" value="120" style="flex: 1;">
+                      <span id="demo-tempo-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:70px;color:var(--accent-cyan);">120 BPM</span>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-tempo-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-tempo-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try the same pattern at 80 BPM (slow hip-hop), 120 BPM (house), and 160 BPM (drum & bass)!
+                  </div>
+                </div>
+
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
                   <strong>🎼 Pro Tip:</strong> Most lessons have a recommended tempo that works best for the pattern. You can experiment, but stick close to the suggested BPM when learning!
                 </div>
@@ -245,6 +273,35 @@
                     <li style="padding: var(--space-xs) 0;">❌ Four-on-the-floor House/Techno (usually straight)</li>
                     <li style="padding: var(--space-xs) 0;">❌ Trap, Dubstep (precise timing preferred)</li>
                   </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Swing Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">🎮 Try It Now: Swing Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Create a hi-hat pattern, then adjust swing to hear the difference between straight and shuffled timing!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-swing-sequencer"></div>
+
+                  <!-- Swing Control -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: var(--space-md);">
+                      <label for="demo-swing-slider" style="font-size:0.9rem;color:var(--text-muted);min-width:60px;">Swing:</label>
+                      <input type="range" id="demo-swing-slider" min="0" max="100" value="0" style="flex: 1;">
+                      <span id="demo-swing-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-primary);">0%</span>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-swing-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-swing-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-swing-preset" class="btn btn-outline" style="min-width: 140px;">Load Demo Pattern</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try 0% swing (straight), then 55% (boom-bap feel). Can you hear the "drunk" shuffle?
+                  </div>
                 </div>
 
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
@@ -537,6 +594,140 @@
           }
         }
       }, 300);
+
+      // Initialize Tempo Demo
+      setTimeout(() => {
+        const tempoContainer = document.getElementById('demo-tempo-sequencer');
+        if (tempoContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-tempo"></button>
+            <button id="mpl-seq-stop-all-tempo"></button>
+          `;
+          tempoContainer.parentNode.insertBefore(controlsDiv, tempoContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)', instructions: '' },
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' }
+            ],
+            'demo-tempo',
+            null,
+            {
+              tempo: 120,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false
+            },
+            'demo-tempo-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-tempo-play');
+          const stopBtn = document.getElementById('demo-tempo-stop');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-tempo');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-tempo');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+
+          // Wire up tempo slider
+          const tempoSlider = document.getElementById('demo-tempo-slider');
+          const tempoValue = document.getElementById('demo-tempo-value');
+          if (tempoSlider && tempoValue) {
+            tempoSlider.addEventListener('input', () => {
+              const tempo = parseInt(tempoSlider.value);
+              tempoValue.textContent = `${tempo} BPM`;
+              window.dispatchEvent(new CustomEvent('mpl-tempo-change', { detail: { tempo } }));
+            });
+          }
+        }
+      }, 500);
+
+      // Initialize Swing Demo
+      setTimeout(() => {
+        const swingContainer = document.getElementById('demo-swing-sequencer');
+        if (swingContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-swing"></button>
+            <button id="mpl-seq-stop-all-swing"></button>
+          `;
+          swingContainer.parentNode.insertBefore(controlsDiv, swingContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' },
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #e17055, #d63031)', instructions: '' }
+            ],
+            'demo-swing',
+            null,
+            {
+              tempo: 90,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false
+            },
+            'demo-swing-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-swing-play');
+          const stopBtn = document.getElementById('demo-swing-stop');
+          const presetBtn = document.getElementById('demo-swing-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-swing');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-swing');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+
+          // Load demo pattern button
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Load a boom-bap style pattern: hi-hats on 8th notes
+              window.dispatchEvent(new CustomEvent('mpl-load-pattern', {
+                detail: {
+                  pattern: {
+                    hihat: [0, 2, 4, 6, 8, 10, 12, 14], // 8th notes
+                    kick: [0, 7, 8, 10] // Boom bap pattern
+                  }
+                }
+              }));
+            });
+          }
+
+          // Wire up swing slider
+          const swingSlider = document.getElementById('demo-swing-slider');
+          const swingValue = document.getElementById('demo-swing-value');
+          if (swingSlider && swingValue) {
+            swingSlider.addEventListener('input', () => {
+              const swing = parseInt(swingSlider.value);
+              swingValue.textContent = `${swing}%`;
+              window.dispatchEvent(new CustomEvent('mpl-swing-change', { detail: { swing } }));
+            });
+          }
+        }
+      }, 700);
     </script>
   </body>
 </html>
