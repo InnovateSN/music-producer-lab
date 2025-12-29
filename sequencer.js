@@ -303,6 +303,12 @@ function playSound(type, velocity = 100) {
   const baseType = type.split('-')[0];
 
   try {
+    // Ensure audio context is running (browser autoplay policy)
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(err => console.warn('Failed to resume audio context:', err));
+    }
+
     // Normalize velocity to 0-1 range for gain
     const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
 
@@ -873,13 +879,13 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   
   // Play button
   if (playBtn) {
-    playBtn.addEventListener('click', () => {
+    playBtn.addEventListener('click', async () => {
       if (isPlaying) return;
 
       // Resume audio context if suspended (browser autoplay policy)
       const ctx = getAudioContext();
       if (ctx.state === 'suspended') {
-        ctx.resume();
+        await ctx.resume();
       }
 
       isPlaying = true;
