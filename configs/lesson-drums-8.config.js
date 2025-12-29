@@ -91,11 +91,11 @@ export const lessonConfig = {
       id: "hihat",
       label: "Hi-Hat (Closed)",
       color: "linear-gradient(135deg, #00d2d3, #01a3a4)",
-      targetSteps: [1, 5, 9, 13],
-      instructionText: "Hi-hats on steps 2, 6, 10, 14.",
+      targetSteps: [2, 6, 10, 14],
+      instructionText: "Hi-hats on steps 3, 7, 11, 15.",
       patternHint: {
         enabled: true,
-        note: "Closed HH: 2, 6, 10, 14"
+        note: "Closed HH: 3, 7, 11, 15"
       }
     },
     {
