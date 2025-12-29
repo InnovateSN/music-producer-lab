@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson 21 - Velocity Playground | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Esplora il controllo della velocity con esempi pratici interattivi." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+          </div>
+        </section>
+
+        <!-- INTERACTIVE GUIDE SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+          <div class="section-eyebrow">Guida Interattiva</div>
+          <h2 class="section-title">Come Funziona il Velocity Slider</h2>
+
+          <!-- Velocity Ranges Visual Guide -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
+
+            <!-- Range: Ghost Notes -->
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                <div style="width: 16px; height: 40px; background: linear-gradient(to top, transparent 70%, rgba(0,240,255,0.3)); border-radius: 3px; border: 1px solid rgba(0,240,255,0.3);"></div>
+                <h3 style="font-size: var(--font-size-lg); margin: 0; color: var(--accent-cyan);">Ghost Notes</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">
+                Velocity: 0-40
+              </div>
+              <p class="section-body" style="font-size: 0.9rem; margin: 0;">
+                Note molto morbide, quasi sussurrate. Aggiungono texture senza dominare il mix. Perfette tra i beat principali.
+              </p>
+            </div>
+
+            <!-- Range: Normal -->
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                <div style="width: 16px; height: 40px; background: linear-gradient(to top, transparent 30%, rgba(0,240,255,0.5)); border-radius: 3px; border: 1px solid rgba(0,240,255,0.3);"></div>
+                <h3 style="font-size: var(--font-size-lg); margin: 0; color: var(--accent-cyan);">Normale</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">
+                Velocity: 41-80
+              </div>
+              <p class="section-body" style="font-size: 0.9rem; margin: 0;">
+                Velocity standard per la maggior parte delle note. Ben udibile ma equilibrato. Usa questo per il groove di base.
+              </p>
+            </div>
+
+            <!-- Range: Accents -->
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                <div style="width: 16px; height: 40px; background: linear-gradient(to top, transparent 10%, rgba(0,240,255,0.7)); border-radius: 3px; border: 1px solid rgba(0,240,255,0.3);"></div>
+                <h3 style="font-size: var(--font-size-lg); margin: 0; color: var(--accent-cyan);">Accenti</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">
+                Velocity: 81-120
+              </div>
+              <p class="section-body" style="font-size: 0.9rem; margin: 0;">
+                Note enfatizzate che definiscono il ritmo. Forte e chiaro. Ideale per snare sui beat 2 e 4 (backbeat).
+              </p>
+            </div>
+
+            <!-- Range: Maximum -->
+            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                <div style="width: 16px; height: 40px; background: linear-gradient(to top, rgba(0,240,255,0.4), rgba(0,240,255,0.9)); border-radius: 3px; border: 1px solid rgba(0,240,255,0.5);"></div>
+                <h3 style="font-size: var(--font-size-lg); margin: 0; color: var(--accent-cyan);">Massimo</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">
+                Velocity: 121-127
+              </div>
+              <p class="section-body" style="font-size: 0.9rem; margin: 0;">
+                Volume massimo per momenti di impatto massimo. Usa con moderazione per drop, fill, e momenti climax.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- How to Use Guide -->
+          <div class="exercise-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(138, 43, 226, 0.08)); border: 1px solid rgba(0, 240, 255, 0.3);">
+            <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-md); color: var(--accent-primary);">
+              🎮 Come Controllare la Velocity
+            </h3>
+            <div style="display: grid; gap: var(--space-md);">
+              <div style="display: flex; gap: var(--space-md); align-items: start;">
+                <span style="font-size: 2rem; flex-shrink: 0;">👆</span>
+                <div>
+                  <strong style="color: var(--accent-cyan);">Click</strong>
+                  <p class="section-body" style="margin: var(--space-xs) 0 0 0; font-size: 0.9rem;">
+                    Clicca su uno step button per attivare/disattivare la nota. La nota suonerà alla velocity corrente (default 100).
+                  </p>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--space-md); align-items: start;">
+                <span style="font-size: 2rem; flex-shrink: 0;">⬆️</span>
+                <div>
+                  <strong style="color: var(--accent-cyan);">Trascina Su</strong>
+                  <p class="section-body" style="margin: var(--space-xs) 0 0 0; font-size: 0.9rem;">
+                    Trascina verso l'alto per aumentare la velocity (volume più alto). Il numero che appare mostra il valore esatto (0-127).
+                  </p>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--space-md); align-items: start;">
+                <span style="font-size: 2rem; flex-shrink: 0;">⬇️</span>
+                <div>
+                  <strong style="color: var(--accent-cyan);">Trascina Giù</strong>
+                  <p class="section-body" style="margin: var(--space-xs) 0 0 0; font-size: 0.9rem;">
+                    Trascina verso il basso per diminuire la velocity (volume più basso). Perfetto per creare ghost notes.
+                  </p>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--space-md); align-items: start;">
+                <span style="font-size: 2rem; flex-shrink: 0;">👁️</span>
+                <div>
+                  <strong style="color: var(--accent-cyan);">Indicatori Visivi</strong>
+                  <p class="section-body" style="margin: var(--space-xs) 0 0 0; font-size: 0.9rem;">
+                    La <strong>barra blu</strong> dentro lo step mostra l'intensità. Più alta = più forte. La <strong>linea blu</strong> in alto è il velocity handle.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Esercizi Pratici</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>Cosa fare:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Suggerimento:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Pattern di Esempio:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Practice Playground</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">
+            <span id="mpl-step-count-label">16</span>-Step Sequencer con Velocity
+          </h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              <span>Clear</span>
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <a href="labs.html" class="btn btn-primary">
+                <span>Torna ai Labs &rarr;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Modalità Playground - Sperimenta liberamente!</span>
+          </div>
+        </section>
+
+        <!-- PRACTICAL TIPS SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+          <div class="section-eyebrow">Consigli Pratici</div>
+          <h2 class="section-title">Velocity nella Musica Reale</h2>
+
+          <div style="display: grid; gap: var(--space-lg);">
+
+            <!-- Tip 1 -->
+            <div class="exercise-box">
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">
+                🥁 Perché i Batteristi Usano Velocity Diverse
+              </h3>
+              <p class="section-body">
+                I batteristi reali non colpiscono ogni nota con la stessa forza. Ogni colpo varia naturalmente in base a:
+              </p>
+              <ul class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm);">
+                <li><strong>Enfasi musicale:</strong> I beat importanti vengono colpiti più forte (accenti)</li>
+                <li><strong>Movimento fisico:</strong> Alcuni colpi sono "rimbalzi" naturalmente più morbidi</li>
+                <li><strong>Texture ed espressione:</strong> Colpi morbidi aggiungono dettaglio ritmico senza sopraffare</li>
+              </ul>
+              <p class="section-body" style="margin-top: var(--space-sm); margin-bottom: 0;">
+                Quando programmi batteria con velocity uniforme (tutti a 100), il pattern suona piatto e senza vita. Aggiungere variazioni di velocity lo rende immediatamente più umano e professionale.
+              </p>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="exercise-box">
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">
+                🎯 Applica Velocity ai Tuoi Pattern
+              </h3>
+              <p class="section-body">
+                Ecco una formula semplice per aggiungere dinamiche ai tuoi groove:
+              </p>
+              <ol class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm);">
+                <li><strong>Kick:</strong> Mantieni costante (90-110) per stabilità</li>
+                <li><strong>Snare backbeat (2 & 4):</strong> Forte (100-120) per definire il groove</li>
+                <li><strong>Snare ghost notes:</strong> Molto morbide (25-40) tra i beat</li>
+                <li><strong>Hi-hat downbeats:</strong> Accenti (90-110) sui beat principali</li>
+                <li><strong>Hi-hat off-beats:</strong> Più morbidi (50-70) tra i beat</li>
+              </ol>
+              <p class="section-body" style="margin-top: var(--space-sm); margin-bottom: 0;">
+                <strong>Regola d'oro:</strong> Crea contrasto! Gli accenti forti diventano più potenti quando sono circondati da note morbide.
+              </p>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="exercise-box">
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">
+                💪 Esercizi per Padroneggiare la Velocity
+              </h3>
+              <ol class="section-body" style="margin-left: var(--space-md);">
+                <li>Ricrea il pattern Kick Demo con tutte le note alla stessa velocity → Nota quanto suona robotico</li>
+                <li>Ora varia le velocity come nell'esempio → Ascolta come diventa più interessante!</li>
+                <li>Sperimenta con crescendo (aumento graduale) e diminuendo (diminuzione graduale)</li>
+                <li>Crea un pattern con forte contrasto: mix di ghost notes (30) e accents (110)</li>
+                <li>Ascolta musica vera e cerca di identificare dove senti ghost notes e accenti</li>
+              </ol>
+            </div>
+
+          </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- MODULAR LESSON ENGINE -->
+
+<script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-21.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

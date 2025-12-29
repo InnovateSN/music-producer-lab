@@ -388,6 +388,67 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     overflow-x: hidden;
   `;
   
+  // Add velocity guide if enabled
+  if (enableVelocity) {
+    const velocityGuide = document.createElement('div');
+    velocityGuide.className = 'velocity-guide';
+    velocityGuide.style.cssText = `
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1));
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-primary, #e0e6f0);
+    `;
+
+    velocityGuide.innerHTML = `
+      <div style="flex-shrink: 0;">
+        <svg width="40" height="40" viewBox="0 0 40 40" style="display: block;">
+          <!-- Step button example -->
+          <rect x="2" y="2" width="36" height="36" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(0,240,255,0.3)" stroke-width="1"/>
+          <!-- Velocity fill -->
+          <rect x="2" y="20" width="36" height="18" rx="4" fill="rgba(0,240,255,0.4)" opacity="0.5"/>
+          <!-- Velocity handle -->
+          <line x1="2" y1="20" x2="38" y2="20" stroke="#00f0ff" stroke-width="2" opacity="1"/>
+          <!-- Arrow up -->
+          <path d="M20 8 L20 14 M17 11 L20 8 L23 11" stroke="#8a2be2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Arrow down -->
+          <path d="M20 32 L20 26 M17 29 L20 32 L23 29" stroke="#8a2be2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="flex: 1;">
+        <div style="font-weight: 700; color: var(--accent-cyan, #00f0ff); margin-bottom: 4px; font-size: 0.9rem;">
+          💡 Velocity Control Attivo
+        </div>
+        <div style="color: var(--text-muted, #a0aec0); line-height: 1.4;">
+          <strong>Click</strong> per attivare/disattivare •
+          <strong>Trascina su/giù</strong> per regolare il volume (0-127) •
+          La barra blu mostra l'intensità della nota
+        </div>
+      </div>
+      <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; color: var(--text-muted, #a0aec0);">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent, rgba(0,240,255,0.6)); border-radius: 2px;"></div>
+          <span>Alto (100-127)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent 50%, rgba(0,240,255,0.4) 50%); border-radius: 2px;"></div>
+          <span>Medio (50-100)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent 75%, rgba(0,240,255,0.2) 75%); border-radius: 2px;"></div>
+          <span>Basso (0-50)</span>
+        </div>
+      </div>
+    `;
+
+    wrapper.appendChild(velocityGuide);
+  }
+
   // Main grid container
   const grid = document.createElement('div');
   grid.className = 'sequencer-grid';
@@ -1032,8 +1093,25 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       console.error('Failed to load preset:', e);
     }
   });
-  
-  // Load saved pattern state if exists
+
+  // Load initial patterns from config if specified
+  let hasInitialPattern = false;
+  instruments.forEach(inst => {
+    if (inst.initialPattern && inst.initialPattern.steps && inst.initialPattern.steps.length > 0) {
+      hasInitialPattern = true;
+      inst.initialPattern.steps.forEach((stepIdx, i) => {
+        if (stepIdx >= 0 && stepIdx < stepCount) {
+          state[inst.id][stepIdx] = true;
+          // Set velocity if provided, otherwise use default
+          if (inst.initialPattern.velocities && inst.initialPattern.velocities[i] !== undefined) {
+            velocityState[inst.id][stepIdx] = inst.initialPattern.velocities[i];
+          }
+        }
+      });
+    }
+  });
+
+  // Load saved pattern state if exists (overwrites initial pattern if user has saved work)
   try {
     const savedPattern = localStorage.getItem(lessonKey + '-pattern');
     if (savedPattern) {
@@ -1068,6 +1146,9 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         });
         updateSequencerUI(state, instruments, stepCount, velocityState);
       }
+    } else if (hasInitialPattern) {
+      // If no saved pattern but we have initial pattern, update UI to show it
+      updateSequencerUI(state, instruments, stepCount, velocityState);
     }
   } catch (e) {}
 }
