@@ -44,13 +44,7 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true, // Key feature for this lesson
-    velocityLevels: {
-      ghost: { min: 15, max: 40, default: 28 },
-      soft: { min: 40, max: 70, default: 55 },
-      normal: { min: 70, max: 100, default: 85 },
-      accent: { min: 100, max: 127, default: 115 }
-    }
+    enableVelocity: true // ENABLE VELOCITY LANES UI - Key feature for this lesson
   },
   
   // ====================
@@ -58,13 +52,13 @@ export const lessonConfig = {
   // ====================
   exercise: {
     title: "Add Ghost Notes to a Backbeat",
-    description: "Transform a basic kick-snare pattern into a professional groove by adding ghost notes (soft snare hits) on the off-beats.",
+    description: "Transform a basic kick-snare pattern into a professional groove by adding ghost notes (soft snare hits) on strategic positions.",
     tip: "Ghost notes should be FELT, not obviously heard. Use low velocity (25-35) for ghost notes, high velocity (100+) for accents.",
     steps: [
-      { text: "<strong>Foundation:</strong> Kick on steps 1, 5, 9, 13 (4-on-the-floor)." },
-      { text: "<strong>Backbeat snare:</strong> Place snare at HIGH velocity (100+) on steps 5 and 13." },
-      { text: "<strong>Ghost notes:</strong> Add soft snare hits (velocity 25-35) on steps 3, 7, 11, 15." },
-      { text: "<strong>Hi-hat dynamics:</strong> Accent downbeats, soften off-beats for groove." }
+      { text: "<strong>Foundation:</strong> Kick on steps 1 and 9 (beats 1 and 3 only)." },
+      { text: "<strong>Backbeat snare:</strong> Place snare at HIGH velocity (100+) on steps 5 and 13 (beats 2 and 4)." },
+      { text: "<strong>Ghost notes:</strong> Add soft snare hits (velocity 25-35) on steps 7 and 10." },
+      { text: "<strong>Hi-hat pattern:</strong> Eighth notes on all steps (1, 3, 5, 7, 9, 11, 13, 15) with accent dynamics." }
     ]
   },
   
@@ -76,12 +70,12 @@ export const lessonConfig = {
       id: "kick",
       label: "Kick",
       color: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
-      targetSteps: [0, 4, 8, 12],
-      targetVelocity: [100, 100, 100, 100],
-      instructionText: "4-on-the-floor kick pattern at normal velocity.",
+      targetSteps: [0, 8],
+      targetVelocity: [100, 100],
+      instructionText: "Kick on beats 1 and 3 at normal velocity.",
       patternHint: {
         enabled: true,
-        note: "Kick on 1, 5, 9, 13 at full velocity"
+        note: "Kick on steps 1 and 9 (beats 1 and 3)"
       }
     },
     {
@@ -100,12 +94,12 @@ export const lessonConfig = {
       id: "snare",
       label: "Snare Ghost",
       color: "linear-gradient(135deg, rgba(254, 202, 87, 0.5), rgba(255, 159, 67, 0.5))",
-      targetSteps: [2, 6, 10, 14],
-      targetVelocity: [28, 28, 28, 28],
-      instructionText: "Ghost notes at LOW velocity (25-35) on off-beats.",
+      targetSteps: [6, 9],
+      targetVelocity: [30, 30],
+      instructionText: "Ghost notes at LOW velocity (25-35) on steps 7 and 10.",
       patternHint: {
         enabled: true,
-        note: "SOFT snare on 3, 7, 11, 15 (velocity ~25-35)"
+        note: "SOFT snare on steps 7 and 10 (velocity ~25-35)"
       }
     },
     {
@@ -139,9 +133,9 @@ export const lessonConfig = {
     checkVelocity: true,
     velocityTolerance: 15, // Allow ±15 velocity variance
     requireGhostNotes: true,
-    minimumGhostNotes: 2,
+    minimumGhostNotes: 2, // Exactly 2 ghost notes in this pattern
     requireDynamicContrast: true,
-    minimumDynamicRange: 50 // At least 50 velocity difference between ghost and accent
+    minimumDynamicRange: 60 // At least 60 velocity difference between ghost (30) and accent (110)
   },
   
   // ====================
@@ -149,7 +143,7 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Ghost notes on 3, 7, 11, 15. Accents on 5 and 13. Dynamic contrast is key!"
+    note: "Ghost notes on steps 7 and 10. Accents on 5 and 13. Dynamic contrast is key!"
   },
   
   // ====================

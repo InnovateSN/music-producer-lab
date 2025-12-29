@@ -323,8 +323,8 @@ function initSequencer(config) {
   
   // Initialize the drum sequencer
   initDrumSequencer(
-    seqInstruments, 
-    lessonKey, 
+    seqInstruments,
+    lessonKey,
     nextLessonUrl,
     {
       tempo: seqConfig?.tempo || 120,
@@ -334,7 +334,8 @@ function initSequencer(config) {
       sandbox: mode?.sandbox || false,
       autoSaveState: seqConfig?.autoSaveState ?? true,
       enablePresets: mode?.enablePresets || false,
-      enableExport: mode?.enableExport || false
+      enableExport: mode?.enableExport || false,
+      enableVelocity: seqConfig?.enableVelocity || false // Enable velocity lanes
     }
   );
 }
