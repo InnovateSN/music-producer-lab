@@ -475,7 +475,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     enablePresets = false,
     enableExport = false,
     enableVelocity = false, // Enable velocity lanes UI
-    requiredTempo = null // Optional: Required BPM for exercise validation
+    requiredTempo = null, // Optional: Required BPM for exercise validation
+    requiredSwing = null // Optional: Required swing % for exercise validation
   } = options;
 
   tempo = tempoOption;
@@ -1154,10 +1155,17 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     checkBtn.addEventListener('click', () => {
       let allCorrect = true;
       let tempoCorrect = true;
+      let swingCorrect = true;
 
       // Check if tempo matches required tempo (if specified)
       if (requiredTempo !== null && tempo !== requiredTempo) {
         tempoCorrect = false;
+        allCorrect = false;
+      }
+
+      // Check if swing matches required swing (if specified)
+      if (requiredSwing !== null && swing !== requiredSwing) {
+        swingCorrect = false;
         allCorrect = false;
       }
 
@@ -1175,7 +1183,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         }
       });
 
-      if (allCorrect && tempoCorrect) {
+      if (allCorrect && tempoCorrect && swingCorrect) {
         if (statusEl) {
           statusEl.textContent = messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.';
           statusEl.style.color = 'var(--accent-green, #00ff9d)';
@@ -1184,7 +1192,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           nextBtn.disabled = false;
           nextBtn.style.opacity = '1';
         }
-        
+
         // Save progress
         try {
           localStorage.setItem(lessonKey, 'completed');
@@ -1195,14 +1203,17 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           if (!tempoCorrect && requiredTempo !== null) {
             statusEl.textContent = `⏱️ Please set the tempo to ${requiredTempo} BPM before checking the exercise.`;
             statusEl.style.color = 'var(--accent-amber, #ffcc00)';
+          } else if (!swingCorrect && requiredSwing !== null) {
+            statusEl.textContent = `🎵 Please set the swing to ${requiredSwing}% before checking the exercise.`;
+            statusEl.style.color = 'var(--accent-amber, #ffcc00)';
           } else {
             statusEl.textContent = messages.error || 'Not quite right. Check the pattern and try again!';
             statusEl.style.color = 'var(--accent-amber, #ffcc00)';
           }
         }
 
-        // Show correct pattern briefly (only if pattern is wrong, not tempo)
-        if (tempoCorrect) {
+        // Show correct pattern briefly (only if pattern is wrong, not tempo/swing)
+        if (tempoCorrect && swingCorrect) {
           instruments.forEach(inst => {
             const target = inst.target || [];
             document.querySelectorAll(`.sequencer-step[data-instrument="${inst.id}"]`).forEach((el, i) => {

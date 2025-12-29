@@ -389,7 +389,8 @@ function initSequencer(config) {
       enablePresets: mode?.enablePresets || false,
       enableExport: mode?.enableExport || false,
       enableVelocity: seqConfig?.enableVelocity || false, // Enable velocity lanes
-      requiredTempo: seqConfig?.requiredTempo || null // Required BPM for validation
+      requiredTempo: seqConfig?.requiredTempo || null, // Required BPM for validation
+      requiredSwing: seqConfig?.requiredSwing || null // Required swing % for validation
     }
   );
 }
