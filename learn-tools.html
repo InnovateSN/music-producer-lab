@@ -86,6 +86,26 @@
                   </ol>
                 </div>
 
+                <!-- INTERACTIVE DEMO: Step Programming -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">🎮 Try It Now: Step Programming</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click the step buttons below to activate/deactivate them. Then press Play to hear your pattern!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-step-grid-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-step-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-step-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-step-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try creating a basic "four on the floor" pattern by clicking Kick on steps 1, 5, 9, and 13!
+                  </div>
+                </div>
+
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
                   <strong>💡 Pro Tip:</strong> Start simple! Try placing kicks on steps 1, 5, 9, and 13 for a basic "4 on the floor" pattern.
                 </div>
@@ -130,6 +150,26 @@
                     <li style="padding: var(--space-xs) 0;">🔉 <strong>60-80:</strong> Medium dynamics (standard notes)</li>
                     <li style="padding: var(--space-xs) 0;">🔊 <strong>100-127:</strong> Accents (emphasized, powerful hits)</li>
                   </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Velocity Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">🎮 Try It Now: Velocity Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click to activate steps, then drag up/down on each step to adjust its velocity (volume). Watch the blue bar fill as you drag!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-velocity-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-velocity-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-velocity-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-velocity-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Create a hi-hat pattern with varying dynamics - try alternating between loud (127) and soft (40-60) hits for a natural groove!
+                  </div>
                 </div>
 
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
@@ -347,5 +387,165 @@
     <script src="navbar.js"></script>
     <script src="hamburger-menu.js"></script>
     <script src="theme-toggle.js"></script>
+
+    <!-- Interactive Demo Scripts -->
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+
+      // Demo 1: Step Grid Programming (Basic - No Velocity)
+      const stepGridInstruments = [
+        {
+          id: 'kick',
+          label: 'Kick',
+          color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)',
+          instructions: ''
+        },
+        {
+          id: 'snare',
+          label: 'Snare',
+          color: 'linear-gradient(135deg, #00f0ff, #5773ff)',
+          instructions: ''
+        },
+        {
+          id: 'hihat',
+          label: 'Hi-Hat',
+          color: 'linear-gradient(135deg, #8a2be2, #da70d6)',
+          instructions: ''
+        }
+      ];
+
+      // Demo 2: Velocity Control
+      const velocityInstruments = [
+        {
+          id: 'kick',
+          label: 'Kick',
+          color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)',
+          instructions: ''
+        },
+        {
+          id: 'hihat',
+          label: 'Hi-Hat',
+          color: 'linear-gradient(135deg, #8a2be2, #da70d6)',
+          instructions: ''
+        }
+      ];
+
+      // Initialize Step Grid Demo
+      setTimeout(() => {
+        const stepContainer = document.getElementById('demo-step-grid-sequencer');
+        if (stepContainer) {
+          stepContainer.innerHTML = `
+            <div id="mpl-sequencer-collection"></div>
+            <div style="display: none;">
+              <button id="mpl-seq-play-all"></button>
+              <button id="mpl-seq-stop-all"></button>
+              <button id="mpl-seq-clear-all"></button>
+            </div>
+          `;
+
+          initDrumSequencer(
+            stepGridInstruments,
+            'demo-step-grid', // localStorage key
+            null, // no next lesson
+            {
+              tempo: 120,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false // Disabled for basic demo
+            }
+          );
+
+          // Store references to internal controls
+          const internalPlayBtn = stepContainer.querySelector('#mpl-seq-play-all');
+          const internalStopBtn = stepContainer.querySelector('#mpl-seq-stop-all');
+          const internalClearBtn = stepContainer.querySelector('#mpl-seq-clear-all');
+
+          // Wire up custom controls
+          const playBtn = document.getElementById('demo-step-play');
+          const stopBtn = document.getElementById('demo-step-stop');
+          const clearBtn = document.getElementById('demo-step-clear');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+        }
+      }, 100);
+
+      // Initialize Velocity Demo
+      setTimeout(() => {
+        const velocityContainer = document.getElementById('demo-velocity-sequencer');
+        if (velocityContainer) {
+          // Create a temporary wrapper with the required ID
+          velocityContainer.innerHTML = `
+            <div id="mpl-sequencer-collection-temp"></div>
+            <div style="display: none;">
+              <button id="mpl-seq-play-all-velocity"></button>
+              <button id="mpl-seq-stop-all-velocity"></button>
+              <button id="mpl-seq-clear-all-velocity"></button>
+            </div>
+          `;
+
+          // Temporarily rename the container for initialization
+          const tempContainer = velocityContainer.querySelector('#mpl-sequencer-collection-temp');
+          tempContainer.id = 'mpl-sequencer-collection';
+
+          // Temporarily rename the buttons
+          const tempPlayBtn = velocityContainer.querySelector('#mpl-seq-play-all-velocity');
+          const tempStopBtn = velocityContainer.querySelector('#mpl-seq-stop-all-velocity');
+          const tempClearBtn = velocityContainer.querySelector('#mpl-seq-clear-all-velocity');
+
+          tempPlayBtn.id = 'mpl-seq-play-all';
+          tempStopBtn.id = 'mpl-seq-stop-all';
+          tempClearBtn.id = 'mpl-seq-clear-all';
+
+          initDrumSequencer(
+            velocityInstruments,
+            'demo-velocity', // localStorage key
+            null, // no next lesson
+            {
+              tempo: 100,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: true // Enabled for velocity demo
+            }
+          );
+
+          // Restore unique IDs to avoid conflicts
+          tempContainer.id = 'mpl-sequencer-collection-velocity';
+          tempPlayBtn.id = 'mpl-seq-play-all-velocity';
+          tempStopBtn.id = 'mpl-seq-stop-all-velocity';
+          tempClearBtn.id = 'mpl-seq-clear-all-velocity';
+
+          // Wire up custom controls
+          const playBtn = document.getElementById('demo-velocity-play');
+          const stopBtn = document.getElementById('demo-velocity-stop');
+          const clearBtn = document.getElementById('demo-velocity-clear');
+
+          if (playBtn && tempPlayBtn) {
+            playBtn.addEventListener('click', () => tempPlayBtn.click());
+          }
+          if (stopBtn && tempStopBtn) {
+            stopBtn.addEventListener('click', () => tempStopBtn.click());
+          }
+          if (clearBtn && tempClearBtn) {
+            clearBtn.addEventListener('click', () => tempClearBtn.click());
+          }
+        }
+      }, 300);
+    </script>
   </body>
 </html>

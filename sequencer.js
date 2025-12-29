@@ -422,26 +422,26 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       </div>
       <div style="flex: 1;">
         <div style="font-weight: 700; color: var(--accent-cyan, #00f0ff); margin-bottom: 4px; font-size: 0.9rem;">
-          💡 Velocity Control Attivo
+          💡 Velocity Control Active
         </div>
         <div style="color: var(--text-muted, #a0aec0); line-height: 1.4;">
-          <strong>Click</strong> per attivare/disattivare •
-          <strong>Trascina su/giù</strong> per regolare il volume (0-127) •
-          La barra blu mostra l'intensità della nota
+          <strong>Click</strong> to toggle on/off •
+          <strong>Drag up/down</strong> to adjust volume (0-127) •
+          The blue bar shows note intensity
         </div>
       </div>
       <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; color: var(--text-muted, #a0aec0);">
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent, rgba(0,240,255,0.6)); border-radius: 2px;"></div>
-          <span>Alto (100-127)</span>
+          <span>High (100-127)</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent 50%, rgba(0,240,255,0.4) 50%); border-radius: 2px;"></div>
-          <span>Medio (50-100)</span>
+          <span>Medium (50-100)</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="width: 12px; height: 12px; background: linear-gradient(to top, transparent 75%, rgba(0,240,255,0.2) 75%); border-radius: 2px;"></div>
-          <span>Basso (0-50)</span>
+          <span>Low (0-50)</span>
         </div>
       </div>
     `;
