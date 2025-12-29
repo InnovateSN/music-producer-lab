@@ -1,8 +1,8 @@
 # Audio Samples
 
-Questa cartella contiene i sample audio personalizzati per il Music Producer Lab sequencer.
+This folder contains custom audio samples for the Music Producer Lab sequencer.
 
-## 📁 Struttura
+## 📁 Structure
 
 ```
 samples/
@@ -15,104 +15,104 @@ samples/
     └── rim/
 ```
 
-## 🎵 Come Aggiungere i Tuoi Samples
+## 🎵 How to Add Your Samples
 
-### 1. Formati Supportati
-- **WAV** (consigliato - qualità migliore, nessuna compressione)
-- **MP3** (supportato - file più piccoli)
-- **OGG** (supportato - alternativa a MP3)
+### 1. Supported Formats
+- **WAV** (recommended - best quality, no compression)
+- **MP3** (supported - smaller files)
+- **OGG** (supported - MP3 alternative)
 
 ### 2. Naming Convention
-I file devono seguire questo schema:
+Files must follow this schema:
 
 ```
 {instrument}.{ext}
 ```
 
-**Esempi:**
-- `kick.wav` → Sample principale per kick
-- `snare.wav` → Sample principale per snare
-- `hihat.wav` → Sample principale per hi-hat
-- `clap.wav` → Sample per clap
-- `tom.wav` → Sample per tom
-- `rim.wav` → Sample per rimshot
+**Examples:**
+- `kick.wav` → Main kick sample
+- `snare.wav` → Main snare sample
+- `hihat.wav` → Main hi-hat sample
+- `clap.wav` → Clap sample
+- `tom.wav` → Tom sample
+- `rim.wav` → Rimshot sample
 
-### 3. Dove Mettere i File
+### 3. Where to Put Files
 
-Copia i tuoi samples nelle rispettive cartelle:
+Copy your samples into their respective folders:
 
 ```bash
-# Esempio: aggiungere un kick sample
-cp mio-kick.wav samples/drums/kick/kick.wav
+# Example: add a kick sample
+cp my-kick.wav samples/drums/kick/kick.wav
 
-# Esempio: aggiungere un snare sample
-cp mio-snare.wav samples/drums/snare/snare.wav
+# Example: add a snare sample
+cp my-snare.wav samples/drums/snare/snare.wav
 
-# Esempio: aggiungere un hi-hat sample
-cp mio-hihat.wav samples/drums/hihat/hihat.wav
+# Example: add a hi-hat sample
+cp my-hihat.wav samples/drums/hihat/hihat.wav
 ```
 
-### 4. Sample Multipli (Opzionale)
+### 4. Multiple Samples (Optional)
 
-Puoi aggiungere variazioni multiple:
+You can add multiple variations:
 
 ```
 kick/
-  ├── kick.wav          ← Sample principale (usato di default)
-  ├── kick-heavy.wav    ← Variazione pesante
-  └── kick-sub.wav      ← Variazione sub bass
+  ├── kick.wav          ← Main sample (used by default)
+  ├── kick-heavy.wav    ← Heavy variation
+  └── kick-sub.wav      ← Sub bass variation
 
 snare/
-  ├── snare.wav         ← Sample principale
-  ├── snare-tight.wav   ← Variazione tight
-  └── snare-loose.wav   ← Variazione loose
+  ├── snare.wav         ← Main sample
+  ├── snare-tight.wav   ← Tight variation
+  └── snare-loose.wav   ← Loose variation
 ```
 
-Il sistema caricherà il sample principale (`{instrument}.wav`) automaticamente. Le variazioni possono essere utilizzate in future implementazioni.
+The system will load the main sample (`{instrument}.wav`) automatically. Variations can be used in future implementations.
 
-## 🔧 Specifiche Tecniche Consigliate
+## 🔧 Recommended Technical Specifications
 
-### Qualità Audio
-- **Sample Rate**: 44.1 kHz o 48 kHz
-- **Bit Depth**: 16-bit o 24-bit
-- **Channels**: Mono o Stereo (mono consigliato per drum one-shots)
+### Audio Quality
+- **Sample Rate**: 44.1 kHz or 48 kHz
+- **Bit Depth**: 16-bit or 24-bit
+- **Channels**: Mono or Stereo (mono recommended for drum one-shots)
 
-### Durata
-- **Kick**: 0.5 - 2 secondi
-- **Snare**: 0.3 - 1.5 secondi
-- **Hi-Hat**: 0.1 - 0.5 secondi
-- **Clap**: 0.2 - 0.8 secondi
-- **Tom**: 0.5 - 2 secondi
-- **Rim**: 0.1 - 0.5 secondi
+### Duration
+- **Kick**: 0.5 - 2 seconds
+- **Snare**: 0.3 - 1.5 seconds
+- **Hi-Hat**: 0.1 - 0.5 seconds
+- **Clap**: 0.2 - 0.8 seconds
+- **Tom**: 0.5 - 2 seconds
+- **Rim**: 0.1 - 0.5 seconds
 
-### Normalizzazione
-- Normalizza i tuoi samples a **-3dB** o **-6dB** per evitare clipping
-- Assicurati che il picco non superi 0dB
-- Rimuovi silenzio all'inizio e alla fine
+### Normalization
+- Normalize your samples to **-3dB** or **-6dB** to avoid clipping
+- Ensure peaks don't exceed 0dB
+- Remove silence at the beginning and end
 
-## 🎚️ Come Funziona
+## 🎚️ How It Works
 
-1. **Caricamento Automatico**: Quando carichi una lezione, il sequencer cerca automaticamente i samples in `samples/drums/{instrument}/{instrument}.wav`
+1. **Automatic Loading**: When you load a lesson, the sequencer automatically looks for samples in `samples/drums/{instrument}/{instrument}.wav`
 
-2. **Fallback Sintetico**: Se un sample non viene trovato, il sistema usa i suoni sintetici generati con Web Audio API (quelli attuali)
+2. **Synthetic Fallback**: If a sample isn't found, the system uses synthetic sounds generated with the Web Audio API (the current ones)
 
-3. **Velocity Sensitivity**: I samples vengono riprodotti con gain proporzionale alla velocity (0-127):
-   - Velocity 0 = silenzio
+3. **Velocity Sensitivity**: Samples are played with gain proportional to velocity (0-127):
+   - Velocity 0 = silence
    - Velocity 64 = 50% volume
    - Velocity 127 = 100% volume
 
-4. **Performance**: I samples vengono precaricati all'avvio per garantire playback immediato senza latenza
+4. **Performance**: Samples are preloaded at startup to ensure immediate playback without latency
 
-## 📥 Dove Trovare Samples Gratuiti
+## 📥 Where to Find Free Samples
 
-### Siti Consigliati
-- **[freesound.org](https://freesound.org)** - Enorme libreria di suoni CC0/Creative Commons
-- **[sampleswap.org](https://sampleswap.org)** - Samples gratuiti per produttori
-- **[99sounds.org](https://99sounds.org)** - Sample packs gratuiti di alta qualità
-- **[bedroom-producers-blog.com](https://bedroomproducersblog.com/free-samples/)** - Recensioni e link a free sample packs
+### Recommended Sites
+- **[freesound.org](https://freesound.org)** - Huge library of CC0/Creative Commons sounds
+- **[sampleswap.org](https://sampleswap.org)** - Free samples for producers
+- **[99sounds.org](https://99sounds.org)** - High-quality free sample packs
+- **[bedroom-producers-blog.com](https://bedroomproducersblog.com/free-samples/)** - Reviews and links to free sample packs
 
-### Ricerca su Freesound
-Termini di ricerca consigliati:
+### Freesound Search
+Recommended search terms:
 - "808 kick one shot"
 - "acoustic snare one shot"
 - "closed hihat"
@@ -120,49 +120,49 @@ Termini di ricerca consigliati:
 - "acoustic tom"
 - "rimshot"
 
-**Filtri consigliati:**
+**Recommended filters:**
 - License: CC0 (Public Domain)
 - Format: WAV
 - Channels: Mono
 - Sample Rate: 44100 Hz
 
-## 🚀 Esempio Quick Start
+## 🚀 Quick Start Example
 
 ```bash
-# 1. Scarica alcuni samples da freesound.org
-# 2. Rinominali e mettili nelle cartelle giuste:
+# 1. Download some samples from freesound.org
+# 2. Rename and place them in the correct folders:
 
 mv ~/Downloads/my-kick-sample.wav samples/drums/kick/kick.wav
 mv ~/Downloads/my-snare-sample.wav samples/drums/snare/snare.wav
 mv ~/Downloads/my-hihat-sample.wav samples/drums/hihat/hihat.wav
 
-# 3. Ricarica la pagina della lezione - i nuovi samples verranno caricati automaticamente!
+# 3. Reload the lesson page - the new samples will load automatically!
 ```
 
-## 🎛️ Stato Attuale
+## 🎛️ Current Status
 
-Il sistema è configurato per:
-- ✅ Caricare samples da questa cartella
-- ✅ Applicare velocity dinamicamente
-- ✅ Fallback automatico ai suoni sintetici
-- ✅ Supporto per tutti i formati (WAV, MP3, OGG)
-- ✅ Preloading per zero latenza
+The system is configured to:
+- ✅ Load samples from this folder
+- ✅ Apply velocity dynamically
+- ✅ Automatically fallback to synthetic sounds
+- ✅ Support all formats (WAV, MP3, OGG)
+- ✅ Preload for zero latency
 
-## 📝 Note
+## 📝 Notes
 
-- I samples sostituiscono completamente i suoni sintetici quando presenti
-- Se vuoi tornare ai suoni sintetici, basta rimuovere o rinominare i file sample
-- I samples sono in `.gitignore` quindi non verranno committati nel repo (rispetto copyright)
-- Puoi aggiungere un file `.sample-list.txt` per tenere traccia della fonte dei tuoi samples
+- Samples completely replace synthetic sounds when present
+- If you want to return to synthetic sounds, just remove or rename the sample files
+- Samples are in `.gitignore` so they won't be committed to the repo (copyright respect)
+- You can add a `.sample-list.txt` file to keep track of your sample sources
 
-## ⚖️ Licenze e Copyright
+## ⚖️ Licenses and Copyright
 
-**IMPORTANTE**:
-- Assicurati di avere i diritti per usare i samples che carichi
-- Usa solo samples con licenza libera (CC0, Creative Commons, Royalty-Free) per progetti pubblici
-- Se usi samples commerciali, rispetta i termini della licenza
-- Non committare samples protetti da copyright nel repository
+**IMPORTANT**:
+- Make sure you have the rights to use the samples you load
+- Only use samples with free licenses (CC0, Creative Commons, Royalty-Free) for public projects
+- If you use commercial samples, respect the license terms
+- Don't commit copyright-protected samples to the repository
 
 ---
 
-**Domande?** Apri una issue nel repository o consulta la documentazione principale.
+**Questions?** Open an issue in the repository or consult the main documentation.
