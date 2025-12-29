@@ -315,10 +315,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     const beatStart = i % stepsPerBeat === 0;
     stepNum.style.cssText = `
       flex: 1;
-      min-width: ${stepCount > 16 ? '28px' : '36px'};
+      min-width: ${stepCount > 16 ? '22px' : '28px'};
       text-align: center;
       font-family: var(--font-mono, monospace);
-      font-size: ${stepCount > 16 ? '0.6rem' : '0.7rem'};
+      font-size: ${stepCount > 16 ? '0.55rem' : '0.65rem'};
       font-weight: ${beatStart ? '700' : '400'};
       color: ${beatStart ? 'var(--accent-cyan, #00f0ff)' : 'var(--text-dim, #4a5a78)'};
       padding: 4px 0;
@@ -369,7 +369,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const marker = document.createElement('div');
       marker.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '28px' : '36px'};
+        min-width: ${stepCount > 16 ? '22px' : '28px'};
         height: 4px;
         background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
         border-radius: 2px;
@@ -427,8 +427,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const beatStart = i % stepsPerBeat === 0;
       step.style.cssText = `
         flex: 1;
-        min-width: ${stepCount > 16 ? '28px' : '36px'};
-        height: ${stepCount > 16 ? '38px' : '44px'};
+        min-width: ${stepCount > 16 ? '22px' : '28px'};
+        height: ${stepCount > 16 ? '36px' : '42px'};
         border: 1px solid ${beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)'};
         border-radius: 6px;
         background: ${beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)'};
@@ -552,11 +552,12 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const sliderWrapper = document.createElement('div');
         sliderWrapper.style.cssText = `
           flex: 1;
-          min-width: ${stepCount > 16 ? '28px' : '36px'};
+          min-width: ${stepCount > 16 ? '22px' : '28px'};
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 2px;
+          position: relative;
         `;
 
         // Velocity value label
@@ -604,6 +605,45 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         `;
         velocityBar.appendChild(velocityFill);
 
+        // Slider track background container with directional indicator
+        const sliderContainer = document.createElement('div');
+        sliderContainer.className = 'velocity-slider-container';
+        sliderContainer.style.cssText = `
+          width: 100%;
+          position: relative;
+          margin-top: 4px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+        `;
+
+        // Background track (solco)
+        const sliderTrack = document.createElement('div');
+        sliderTrack.className = 'velocity-slider-track';
+        sliderTrack.style.cssText = `
+          position: absolute;
+          width: 100%;
+          height: 6px;
+          background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15));
+          border-radius: 3px;
+          box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), inset 0 -1px 1px rgba(255,255,255,0.05);
+          border: 1px solid rgba(0,0,0,0.2);
+        `;
+
+        // Directional indicator (freccia che copre la lunghezza dello slider)
+        const directionIndicator = document.createElement('div');
+        directionIndicator.className = 'velocity-direction-indicator';
+        directionIndicator.innerHTML = '&#9664;'; // ◀ symbol
+        directionIndicator.style.cssText = `
+          position: absolute;
+          left: 2px;
+          font-size: 6px;
+          color: rgba(0, 240, 255, 0.3);
+          pointer-events: none;
+          transform: scaleX(3) scaleY(0.8);
+          transform-origin: left center;
+        `;
+
         // Range slider (horizontal)
         const slider = document.createElement('input');
         slider.type = 'range';
@@ -616,11 +656,12 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         slider.title = `Adjust velocity for step ${i + 1} (0-127)`;
         slider.style.cssText = `
           width: 100%;
-          height: 12px;
+          height: 20px;
           -webkit-appearance: none;
           background: transparent;
           cursor: pointer;
-          margin-top: 4px;
+          position: relative;
+          z-index: 2;
         `;
 
         // Update velocity on slider change
@@ -642,9 +683,14 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           }
         });
 
+        // Assemble slider container
+        sliderContainer.appendChild(sliderTrack);
+        sliderContainer.appendChild(directionIndicator);
+        sliderContainer.appendChild(slider);
+
         sliderWrapper.appendChild(velocityLabel);
         sliderWrapper.appendChild(velocityBar);
-        sliderWrapper.appendChild(slider);
+        sliderWrapper.appendChild(sliderContainer);
         velocityContainer.appendChild(sliderWrapper);
       }
 
