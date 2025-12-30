@@ -57,11 +57,11 @@ export const lessonConfig = {
   exercise: {
     title: "Humanize a Beat",
     description: "Apply humanization techniques to transform a robotic pattern into a living, breathing groove.",
-    tip: "Start subtle—5-10ms timing variation and 10-15% velocity randomization. You can always add more.",
+    tip: "Start subtle—8-15ms timing variation and 15-25% velocity randomization. You can always add more.",
     steps: [
       { text: "<strong>Step 1:</strong> Set the tempo to 90 BPM for a classic hip-hop feel." },
       { text: "<strong>Step 2:</strong> Program the basic kick-snare-hihat pattern." },
-      { text: "<strong>Step 3:</strong> Apply 10ms timing randomization to hi-hats only." },
+      { text: "<strong>Step 3:</strong> Apply 15ms timing randomization to hi-hats only." },
       { text: "<strong>Step 4:</strong> Create velocity curve: louder downbeats, softer off-beats." },
       { text: "<strong>Step 5:</strong> Add 54% <a href=\"glossary.html#swing\" style=\"color: var(--accent-cyan); text-decoration: underline;\">swing</a> for MPC-style groove." }
     ]

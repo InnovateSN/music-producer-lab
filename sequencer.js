@@ -421,8 +421,8 @@ let stepCount = 16;
 
 // Humanization state
 let humanizationEnabled = false;
-let timingRandomization = 0; // milliseconds (0-20ms range)
-let velocityRandomization = 0; // percentage (0-30% range)
+let timingRandomization = 0; // milliseconds (0-50ms range)
+let velocityRandomization = 0; // percentage (0-50% range)
 
 // Store references for external control
 let sequencerState = null;
@@ -435,7 +435,7 @@ let sequencerInstruments = null;
 /**
  * Apply timing randomization to a step
  * @param {number} baseDelay - Base delay in ms
- * @param {number} randomAmount - Randomization amount in ms (0-20)
+ * @param {number} randomAmount - Randomization amount in ms (0-50)
  * @returns {number} - Randomized delay
  */
 function applyTimingHumanization(baseDelay, randomAmount) {
@@ -447,7 +447,7 @@ function applyTimingHumanization(baseDelay, randomAmount) {
 /**
  * Apply velocity randomization
  * @param {number} baseVelocity - Base velocity (0-127)
- * @param {number} randomPercent - Randomization percentage (0-30)
+ * @param {number} randomPercent - Randomization percentage (0-50)
  * @returns {number} - Randomized velocity (0-127)
  */
 function applyVelocityHumanization(baseVelocity, randomPercent) {
@@ -1122,12 +1122,12 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
               0ms
             </span>
           </label>
-          <input type="range" id="mpl-timing-slider" min="0" max="20" step="1" value="0"
+          <input type="range" id="mpl-timing-slider" min="0" max="50" step="1" value="0"
             style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
           <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim, #4a5a78); margin-top: 4px;">
             <span>0ms</span>
-            <span>10ms</span>
-            <span>20ms</span>
+            <span>25ms</span>
+            <span>50ms</span>
           </div>
         </div>
 
@@ -1141,12 +1141,12 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
               0%
             </span>
           </label>
-          <input type="range" id="mpl-velocity-rand-slider" min="0" max="30" step="1" value="0"
+          <input type="range" id="mpl-velocity-rand-slider" min="0" max="50" step="1" value="0"
             style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
           <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim, #4a5a78); margin-top: 4px;">
             <span>0%</span>
-            <span>15%</span>
-            <span>30%</span>
+            <span>25%</span>
+            <span>50%</span>
           </div>
         </div>
 
@@ -1156,25 +1156,25 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
             Humanization Presets:
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px;">
-            <button type="button" class="humanize-preset-btn" data-timing="5" data-velocity="10"
+            <button type="button" class="humanize-preset-btn" data-timing="8" data-velocity="15"
               style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
               <div style="margin-bottom: 2px;">Subtle</div>
-              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">5ms / 10%</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">8ms / 15%</div>
             </button>
-            <button type="button" class="humanize-preset-btn" data-timing="10" data-velocity="15"
+            <button type="button" class="humanize-preset-btn" data-timing="15" data-velocity="25"
               style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
               <div style="margin-bottom: 2px;">MPC 60</div>
-              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">10ms / 15%</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">15ms / 25%</div>
             </button>
-            <button type="button" class="humanize-preset-btn" data-timing="18" data-velocity="20"
+            <button type="button" class="humanize-preset-btn" data-timing="30" data-velocity="35"
               style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
               <div style="margin-bottom: 2px;">Loose</div>
-              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">18ms / 20%</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">30ms / 35%</div>
             </button>
-            <button type="button" class="humanize-preset-btn" data-timing="12" data-velocity="25"
+            <button type="button" class="humanize-preset-btn" data-timing="20" data-velocity="40"
               style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
               <div style="margin-bottom: 2px;">Live</div>
-              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">12ms / 25%</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">20ms / 40%</div>
             </button>
           </div>
         </div>
