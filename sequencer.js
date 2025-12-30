@@ -523,7 +523,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     enableVelocity = false, // Enable velocity lanes UI
     enableHumanization = false, // Enable humanization controls
     requiredTempo = null, // Optional: Required BPM for exercise validation
-    requiredSwing = null // Optional: Required swing % for exercise validation
+    requiredSwing = null, // Optional: Required swing % for exercise validation
+    accentedSteps = null // Optional: Custom accented steps for beat markers
   } = options;
 
   tempo = tempoOption;
@@ -703,8 +704,6 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   `;
 
   // Check if custom accentedSteps is provided
-  const accentedSteps = config.accentedSteps || null;
-
   if (accentedSteps && Array.isArray(accentedSteps)) {
     // Use custom accented steps
     for (let step = 0; step < stepCount; step++) {
