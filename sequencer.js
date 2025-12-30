@@ -71,7 +71,10 @@ const SAMPLE_BASE_PATHS = {
   hihat: 'samples/drums/hihat/hihat',
   clap: 'samples/drums/clap/clap',
   tom: 'samples/drums/tom/tom',
-  rim: 'samples/drums/rim/rim'
+  rim: 'samples/drums/rim/rim',
+  crash: 'samples/drums/crash/crash',
+  ride: 'samples/drums/ride/ride',
+  cymbals: 'samples/drums/cymbals/cymbals'
 };
 
 // Supported audio formats (in order of preference)
