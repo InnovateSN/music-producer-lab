@@ -701,30 +701,50 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     flex: 1;
     gap: 1px;
   `;
-  
-  for (let beat = 1; beat <= 4; beat++) {
-    const beatGroup = document.createElement('div');
-    beatGroup.style.cssText = `
-      flex: 1;
-      display: flex;
-      gap: 1px;
-    `;
-    
-    for (let sub = 0; sub < stepsPerBeat; sub++) {
+
+  // Check if custom accentedSteps is provided
+  const accentedSteps = config.accentedSteps || null;
+
+  if (accentedSteps && Array.isArray(accentedSteps)) {
+    // Use custom accented steps
+    for (let step = 0; step < stepCount; step++) {
       const marker = document.createElement('div');
+      const isAccented = accentedSteps.includes(step);
       marker.style.cssText = `
         flex: 1;
         min-width: ${stepCount > 16 ? '12px' : '16px'};
         height: 4px;
-        background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
+        background: ${isAccented ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
         border-radius: 2px;
       `;
-      beatGroup.appendChild(marker);
+      beatMarkersContainer.appendChild(marker);
     }
-    
-    beatMarkersContainer.appendChild(beatGroup);
+  } else {
+    // Default 4/4 behavior with beat groups
+    for (let beat = 1; beat <= 4; beat++) {
+      const beatGroup = document.createElement('div');
+      beatGroup.style.cssText = `
+        flex: 1;
+        display: flex;
+        gap: 1px;
+      `;
+
+      for (let sub = 0; sub < stepsPerBeat; sub++) {
+        const marker = document.createElement('div');
+        marker.style.cssText = `
+          flex: 1;
+          min-width: ${stepCount > 16 ? '12px' : '16px'};
+          height: 4px;
+          background: ${sub === 0 ? 'var(--accent-cyan, #00f0ff)' : 'var(--border-subtle, rgba(255,255,255,0.06))'};
+          border-radius: 2px;
+        `;
+        beatGroup.appendChild(marker);
+      }
+
+      beatMarkersContainer.appendChild(beatGroup);
+    }
   }
-  
+
   beatRow.appendChild(beatMarkersContainer);
   grid.appendChild(beatRow);
   

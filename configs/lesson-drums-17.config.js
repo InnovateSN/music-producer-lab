@@ -38,17 +38,18 @@ export const lessonConfig = {
   // SEQUENCER CONFIG
   // ====================
   sequencer: {
-    tempo: 120,
+    tempo: 78,
     stepCount: 14,
     swing: 50,
     showBeatMarkers: true,
+    accentedSteps: [0, 2, 4, 6, 8, 10, 12], // Steps 1, 3, 5, 7, 9, 11, 13 (odd eighth notes)
     showStepNumbers: true,
     autoSaveState: true,
     enableVelocity: true,
     enableHumanization: true,
     humanizationAmount: 10,
-    timeSignature: "7/4",
-    requiredTempo: 120,
+    timeSignature: "7/8",
+    requiredTempo: 78,
     requiredSwing: 50
   },
   
@@ -56,22 +57,23 @@ export const lessonConfig = {
   // EXERCISE
   // ====================
   exercise: {
-    title: "Recreate Pink Floyd's \"Money\" (7/4)",
-    description: "One of the most iconic <strong>7/4 grooves in rock history</strong>. Released in 1973 on \"The Dark Side of the Moon,\" Pink Floyd's \"Money\" introduced millions of listeners to odd time signatures. <strong>7/4 means 7 quarter notes per bar</strong>—one extra beat beyond the familiar 4/4. The genius of this groove is its <strong>3+2+2 grouping</strong> (or sometimes felt as 2+2+3): three beats, then two beats, then two more. This creates a lopsided, hypnotic feel that's both strange and groovy. The kick pattern (beats 1, 3, 5, 7) anchors the rhythm, while the snare on beats 2, 4, 6 creates an offset backbeat. When combined with the steady hi-hat eighths and subtle swing, the result is unforgettable. Count along: <strong>ONE-two-THREE-four-FIVE-six-SEVEN</strong>—feel how it wants to resolve but keeps going?",
-    tip: "Listen to the original first! The key to making 7/4 groove is confidence—commit to the pattern and let it hypnotize you. Once you internalize the 3+2+2 grouping, it feels as natural as 4/4.",
+    title: "Recreate Pink Floyd's \"Money\" (7/8)",
+    description: "One of the most iconic <strong>odd meter grooves in rock history</strong>. Released in 1973 on \"The Dark Side of the Moon,\" Pink Floyd's \"Money\" introduced millions of listeners to odd time signatures. This lesson uses <strong>7/8 time signature at 78 BPM</strong>—7 eighth notes per bar. <strong>Important: The grid is displayed in eighth notes</strong>, with the highlighted steps (1, 3, 5, 7, 9, 11, 13) marking the primary pulses. The genius of this groove is its <strong>2+2+3 grouping</strong>: two eighths, two eighths, then three. This creates a lopsided, hypnotic feel that's both strange and groovy. The kick pattern anchors the rhythm, while the snare creates an offset backbeat. When combined with the steady hi-hat and subtle swing, the result is unforgettable.",
+    tip: "Listen to the original first! The grid shows eighth notes—each step is one eighth. The highlighted steps (1, 3, 5, 7, 9, 11, 13) mark the main pulses. Count in groups: ONE-two-THREE-four-FIVE-six-SEVEN.",
     steps: [
-      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
+      { text: "<strong>Set the tempo to 78 BPM</strong> using the Tempo slider." },
       { text: "<strong>Set swing to 50%</strong> for the subtle groove feel." },
-      { text: "<strong>Kick:</strong> Beats 1, 3, 5, 7 (steps 1, 5, 9, 13) - the foundation." },
-      { text: "<strong>Snare:</strong> Beats 2, 4, 6 (steps 3, 7, 11) - offset backbeat." },
-      { text: "<strong>Hi-Hat:</strong> All eighth notes (every step 1-14) for steady pulse." },
-      { text: "<strong>Listen:</strong> Count 1-2-3-4-5-6-7 and feel the 3+2+2 grouping emerge." }
+      { text: "<strong>Note:</strong> Grid displays eighth notes—highlighted steps (1,3,5,7,9,11,13) are primary pulses." },
+      { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13 - the foundation on main pulses." },
+      { text: "<strong>Snare:</strong> Steps 3, 7, 11 - offset backbeat." },
+      { text: "<strong>Hi-Hat:</strong> All steps (every eighth note) for steady pulse." },
+      { text: "<strong>Listen:</strong> Feel the 2+2+3 grouping (14 steps = two bars of 7/8)." }
     ],
     videoEmbed: {
       enabled: true,
       url: "https://www.youtube.com/embed/JkhX5W7JoWI",
       title: "Pink Floyd - Money (Official Audio)",
-      description: "Listen to the iconic 7/4 groove that inspired this lesson. Notice how natural the odd meter feels once you lock into the pattern."
+      description: "Listen to the iconic 7/8 groove that inspired this lesson. Notice how natural the odd meter feels once you lock into the pattern."
     }
   },
   
@@ -84,23 +86,23 @@ export const lessonConfig = {
       label: "Kick",
       color: "linear-gradient(135deg, #e17055, #d63031)",
       targetSteps: [0, 4, 8, 12],
-      instructionText: "Kick on beats 1, 3, 5, 7—the foundation of the 7/4 groove.",
-      patternHint: { enabled: true, note: "Beats 1, 3, 5, 7 (steps 1, 5, 9, 13)" }
+      instructionText: "Kick on steps 1, 5, 9, 13—the foundation on highlighted pulses.",
+      patternHint: { enabled: true, note: "Steps 1, 5, 9, 13 (main pulses)" }
     },
     {
       id: "snare",
       label: "Snare",
       color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)",
       targetSteps: [2, 6, 10],
-      instructionText: "Snare on beats 2, 4, 6—offset backbeat that makes 7/4 distinctive.",
-      patternHint: { enabled: true, note: "Beats 2, 4, 6 (steps 3, 7, 11)" }
+      instructionText: "Snare on steps 3, 7, 11—offset backbeat in 7/8.",
+      patternHint: { enabled: true, note: "Steps 3, 7, 11 (backbeat)" }
     },
     {
       id: "hihat",
       label: "Hi-Hat",
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-      instructionText: "Steady eighth notes on all 14 steps—provides consistent pulse.",
+      instructionText: "Steady eighth notes on all 14 steps—every eighth note.",
       patternHint: { enabled: true, note: "All eighth notes (every step)" }
     }
   ],
@@ -283,10 +285,10 @@ export const lessonConfig = {
   // MESSAGES
   // ====================
   messages: applyMessagePreset("drums", {
-    initial: "Recreate Pink Floyd's iconic 7/4 groove from \"Money\"!",
-    success: "💰 Perfect! You've mastered the most famous 7/4 groove in rock history. Feel that 3+2+2 grouping?",
-    error: "Check the pattern—kick on 1,3,5,7 and snare on 2,4,6. Count: ONE-two-THREE-four-FIVE-six-SEVEN.",
-    alreadyCompleted: "You've conquered 7/4! Now try 'Take Five' in 5/4, 'Outshined' in 7/8, or write your own odd meter masterpiece."
+    initial: "Recreate Pink Floyd's iconic 7/8 groove from \"Money\"!",
+    success: "💰 Perfect! You've mastered the most famous odd meter groove in rock history. Feel that 2+2+3 grouping?",
+    error: "Check the pattern—kick on steps 1,5,9,13 and snare on 3,7,11. Grid shows eighth notes with highlighted primary pulses.",
+    alreadyCompleted: "You've conquered 7/8! Now try 'Take Five' in 5/4, 'Outshined' in 7/8, or write your own odd meter masterpiece."
   }),
   
   // ====================
