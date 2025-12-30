@@ -1,0 +1,97 @@
+<!--
+  AUDIO PLAYER TEMPLATE FOR LESSONS
+  Copy this template into lesson HTML files to add audio loop players
+-->
+
+<!-- STYLE 1: Simple Audio Player -->
+<div style="margin: var(--space-md) 0;">
+  <audio controls style="width: 100%; max-width: 500px;">
+    <source src="samples/loops/breaks/amen-break-136bpm.wav" type="audio/wav">
+    <source src="samples/loops/breaks/amen-break-136bpm.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+    <em>Original tempo: 136 BPM</em>
+  </p>
+</div>
+
+<!-- STYLE 2: Highlighted Audio Box (Recommended) -->
+<div style="background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(138,43,226,0.08));
+            border: 1px solid rgba(0,240,255,0.3);
+            border-radius: 8px;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;">
+  <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+    <span style="font-size: 1.5rem;">🎧</span>
+    <strong style="color: var(--accent-cyan);">Listen: Amen Break (136 BPM)</strong>
+  </div>
+  <audio controls style="width: 100%;">
+    <source src="samples/loops/breaks/amen-break-136bpm.wav" type="audio/wav">
+    <source src="samples/loops/breaks/amen-break-136bpm.mp3" type="audio/mpeg">
+  </audio>
+  <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-sm); margin-bottom: 0;">
+    The original 6-second drum solo from "Amen, Brother" (1969)
+  </p>
+</div>
+
+<!-- STYLE 3: Compare Two Loops Side-by-Side -->
+<div style="display: grid; gap: var(--space-md); margin: var(--space-md) 0;">
+
+  <!-- Original -->
+  <div style="background: rgba(0,240,255,0.05);
+              padding: var(--space-md);
+              border-radius: 6px;
+              border-left: 3px solid var(--accent-cyan);">
+    <strong style="color: var(--accent-cyan);">🎧 Original (136 BPM)</strong>
+    <audio controls style="width: 100%; margin-top: var(--space-sm);">
+      <source src="samples/loops/breaks/amen-break-136bpm.wav" type="audio/wav">
+      <source src="samples/loops/breaks/amen-break-136bpm.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Time-stretched -->
+  <div style="background: rgba(138,43,226,0.05);
+              padding: var(--space-md);
+              border-radius: 6px;
+              border-left: 3px solid #8a2be2;">
+    <strong style="color: #8a2be2;">🎧 DnB Tempo (174 BPM)</strong>
+    <audio controls style="width: 100%; margin-top: var(--space-sm);">
+      <source src="samples/loops/dnb/amen-break-174bpm.wav" type="audio/wav">
+      <source src="samples/loops/dnb/amen-break-174bpm.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <p class="section-body" style="margin-top: var(--space-sm);">
+    Notice how the character changes when sped up from 136 to 174 BPM!
+  </p>
+</div>
+
+<!-- STYLE 4: Multiple Examples in Tabs (Manual Toggle) -->
+<div style="margin: var(--space-md) 0;">
+  <div style="display: flex; gap: var(--space-xs); margin-bottom: var(--space-md); flex-wrap: wrap;">
+    <button class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Amen Break</button>
+    <button class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Funky Drummer</button>
+    <button class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Apache</button>
+  </div>
+
+  <div style="background: rgba(0,240,255,0.05);
+              padding: var(--space-md);
+              border-radius: 6px;">
+    <audio controls style="width: 100%;">
+      <source src="samples/loops/breaks/amen-break-136bpm.wav" type="audio/wav">
+      <source src="samples/loops/breaks/amen-break-136bpm.mp3" type="audio/mpeg">
+    </audio>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-sm); margin-bottom: 0;">
+      Click the buttons above to switch between different breaks (manual implementation needed)
+    </p>
+  </div>
+</div>
+
+<!-- STYLE 5: Inline in Theory Text -->
+<p class="section-body">
+  The <strong>Amen break</strong> is a 6-second drum solo.
+  <audio controls style="display: inline-block; vertical-align: middle; max-width: 200px; height: 30px; margin: 0 var(--space-xs);">
+    <source src="samples/loops/breaks/amen-break-136bpm.mp3" type="audio/mpeg">
+  </audio>
+  Listen to how it sounds at the original tempo.
+</p>

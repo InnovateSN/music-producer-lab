@@ -59,7 +59,7 @@ export const lessonConfig = {
       { text: "<strong>Set the tempo to 125 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Four-on-the-floor on steps 1, 5, 9, 13." },
       { text: "<strong>Clap:</strong> Backbeat on steps 5 and 13 (beats 2 and 4)." },
-      { text: "<strong>Closed Hi-Hat:</strong> Steps 2, 6, 10, 14." },
+      { text: "<strong>Closed Hi-Hat:</strong> Off-beat steps 3, 7, 11, 15." },
       { text: "<strong>Rimshot:</strong> Accents on steps 7, 9, and 16." }
     ]
   },
