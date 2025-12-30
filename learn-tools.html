@@ -400,8 +400,67 @@
                   </ul>
                 </div>
 
+                <!-- INTERACTIVE DEMO: Humanization -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">🎮 Try It Now: <a href="glossary.html#humanization" style="color: var(--accent-primary); text-decoration: underline;">Humanization</a> Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Load a pattern, then toggle humanization ON/OFF to hear the difference. Adjust timing and velocity sliders to find your perfect groove!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-humanization-sequencer"></div>
+
+                  <!-- Humanization Controls -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="margin-bottom: var(--space-md);">
+                      <label style="display: flex; align-items: center; gap: var(--space-sm); cursor: pointer;">
+                        <input type="checkbox" id="demo-humanization-enable" style="width: 18px; height: 18px; cursor: pointer;">
+                        <span style="font-size: 0.95rem; font-weight: 600; color: var(--accent-cyan);">Enable <a href="glossary.html#humanization" style="color: var(--accent-cyan); text-decoration: underline;">Humanization</a></span>
+                      </label>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-sm);">
+                      <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xs);">
+                        <label for="demo-humanization-timing" style="font-size:0.9rem;color:var(--text-muted);min-width:100px;">Timing (ms):</label>
+                        <input type="range" id="demo-humanization-timing" min="0" max="20" value="0" step="1" style="flex: 1;">
+                        <span id="demo-humanization-timing-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-cyan);">0ms</span>
+                      </div>
+                      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0 115px;">Randomizes note timing by ±milliseconds</p>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-md);">
+                      <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xs);">
+                        <label for="demo-humanization-velocity" style="font-size:0.9rem;color:var(--text-muted);min-width:100px;"><a href="glossary.html#velocity" style="color: var(--text-muted); text-decoration: underline;">Velocity</a> (%):</label>
+                        <input type="range" id="demo-humanization-velocity" min="0" max="30" value="0" step="1" style="flex: 1;">
+                        <span id="demo-humanization-velocity-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-primary);">0%</span>
+                      </div>
+                      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0 115px;">Randomizes note volume/intensity</p>
+                    </div>
+
+                    <!-- Presets -->
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-md);">
+                      <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: var(--space-sm);">Quick Presets:</p>
+                      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+                        <button class="btn btn-outline" data-preset="subtle" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Subtle</button>
+                        <button class="btn btn-outline" data-preset="mpc60" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">MPC 60</button>
+                        <button class="btn btn-outline" data-preset="loose" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Loose</button>
+                        <button class="btn btn-outline" data-preset="live" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Live Feel</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-humanization-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-humanization-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-humanization-preset" class="btn btn-outline" style="min-width: 140px;">Load Demo Pattern</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Load the pattern, play it with humanization OFF (robotic). Then enable it and try the "MPC 60" preset. Can you hear the groove come alive?
+                  </div>
+                </div>
+
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
-                  <strong>🎯 Pro Tip:</strong> Start with humanization OFF to build your pattern perfectly on the grid. Then enable humanization to add life. Toggle it on/off to hear the difference—it's subtle but makes all the difference!
+                  <strong>🎯 Pro Tip:</strong> Start with <a href="glossary.html#humanization" style="color: var(--accent-cyan); text-decoration: underline;">humanization</a> OFF to build your pattern perfectly on the grid. Then enable humanization to add life. Toggle it on/off to hear the difference—it's subtle but makes all the difference!
                 </div>
               </div>
             </div>
@@ -792,6 +851,144 @@
           }
         }
       }, 700);
+
+      // Initialize Humanization Demo
+      setTimeout(() => {
+        const humanizationContainer = document.getElementById('demo-humanization-sequencer');
+        if (humanizationContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-humanization"></button>
+            <button id="mpl-seq-stop-all-humanization"></button>
+          `;
+          humanizationContainer.parentNode.insertBefore(controlsDiv, humanizationContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #e17055, #d63031)', instructions: '' },
+              { id: 'snare', label: 'Snare', color: 'linear-gradient(135deg, #ffeaa7, #fdcb6e)', instructions: '' },
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' }
+            ],
+            'demo-humanization',
+            null,
+            {
+              tempo: 90,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false,
+              enableHumanization: true
+            },
+            'demo-humanization-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-humanization-play');
+          const stopBtn = document.getElementById('demo-humanization-stop');
+          const presetBtn = document.getElementById('demo-humanization-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-humanization');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-humanization');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+
+          // Load demo pattern button
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Load a hip-hop style pattern
+              window.dispatchEvent(new CustomEvent('mpl-load-pattern', {
+                detail: {
+                  pattern: {
+                    kick: [0, 6, 8, 12],
+                    snare: [4, 12],
+                    hihat: [0, 2, 4, 6, 8, 10, 12, 14] // 8th notes
+                  }
+                }
+              }));
+            });
+          }
+
+          // Wire up humanization controls
+          const enableCheckbox = document.getElementById('demo-humanization-enable');
+          const timingSlider = document.getElementById('demo-humanization-timing');
+          const timingValue = document.getElementById('demo-humanization-timing-value');
+          const velocitySlider = document.getElementById('demo-humanization-velocity');
+          const velocityValue = document.getElementById('demo-humanization-velocity-value');
+
+          if (enableCheckbox) {
+            enableCheckbox.addEventListener('change', () => {
+              window.dispatchEvent(new CustomEvent('mpl-humanization-enable', {
+                detail: { enabled: enableCheckbox.checked }
+              }));
+            });
+          }
+
+          if (timingSlider && timingValue) {
+            timingSlider.addEventListener('input', () => {
+              const timing = parseInt(timingSlider.value);
+              timingValue.textContent = `${timing}ms`;
+              window.dispatchEvent(new CustomEvent('mpl-humanization-timing', {
+                detail: { timing }
+              }));
+            });
+          }
+
+          if (velocitySlider && velocityValue) {
+            velocitySlider.addEventListener('input', () => {
+              const velocity = parseInt(velocitySlider.value);
+              velocityValue.textContent = `${velocity}%`;
+              window.dispatchEvent(new CustomEvent('mpl-humanization-velocity', {
+                detail: { velocity }
+              }));
+            });
+          }
+
+          // Preset buttons
+          const presetButtons = document.querySelectorAll('[data-preset]');
+          presetButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const preset = btn.getAttribute('data-preset');
+              let timing = 0, velocity = 0;
+
+              switch(preset) {
+                case 'subtle':
+                  timing = 5; velocity = 10;
+                  break;
+                case 'mpc60':
+                  timing = 10; velocity = 15;
+                  break;
+                case 'loose':
+                  timing = 18; velocity = 20;
+                  break;
+                case 'live':
+                  timing = 12; velocity = 25;
+                  break;
+              }
+
+              if (timingSlider && velocitySlider && enableCheckbox) {
+                timingSlider.value = timing;
+                timingValue.textContent = `${timing}ms`;
+                velocitySlider.value = velocity;
+                velocityValue.textContent = `${velocity}%`;
+                enableCheckbox.checked = true;
+
+                window.dispatchEvent(new CustomEvent('mpl-humanization-enable', { detail: { enabled: true } }));
+                window.dispatchEvent(new CustomEvent('mpl-humanization-timing', { detail: { timing } }));
+                window.dispatchEvent(new CustomEvent('mpl-humanization-velocity', { detail: { velocity } }));
+              }
+            });
+          });
+        }
+      }, 900);
     </script>
   </body>
 </html>
