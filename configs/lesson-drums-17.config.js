@@ -28,7 +28,7 @@ export const lessonConfig = {
   // HERO SECTION
   // ====================
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 17, categoryLabel: "Drums & Rhythm" }),
+    eyebrow: buildHeroEyebrow({ lessonSlug: "lesson-drums-17", categoryLabel: "Drums & Rhythm" }),
     title: "Odd Time",
     titleHighlight: "Signatures",
     subtitle: "Break from <strong>4/4</strong> with <strong>5/4, 7/8, and other odd meters</strong>. Create unique grooves that stand out."
