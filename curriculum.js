@@ -207,30 +207,6 @@ export const curriculum = [
         pagePath: 'lesson-drums-14.html',
         configPath: './configs/lesson-drums-14.config.js'
       },
-      {
-        slug: 'lesson-drums-15',
-        lessonKey: 'mpl-drums-15-progress',
-        title: 'Percussion Layering & World Rhythms',
-        description: 'Add percussion layers from global traditions. Learn clave patterns, African rhythms, and Latin percussion.',
-        duration: '20-25 min',
-        level: 'Advanced',
-        depthLevel: 8,
-        badge: 'Premium',
-        pagePath: 'lesson-drums-15.html',
-        configPath: './configs/lesson-drums-15.config.js'
-      },
-      {
-        slug: 'lesson-drums-16',
-        lessonKey: 'mpl-drums-16-progress',
-        title: 'Drum Sound Design & Layering',
-        description: 'Design custom drum sounds. Layer kicks, snares, and hi-hats for unique textures. Use processing for character.',
-        duration: '20-25 min',
-        level: 'Advanced',
-        depthLevel: 8,
-        badge: 'Premium',
-        pagePath: 'lesson-drums-16.html',
-        configPath: './configs/lesson-drums-16.config.js'
-      },
 
       // --- LEVEL 9-10: EXPERT ---
       {
