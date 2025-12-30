@@ -160,5 +160,27 @@
       "file": "Rimshot LM1 20.wav",
       "path": "samples/drums/rim/Rimshot LM1 20.wav"
     }
+  ],
+  "crash": [
+    {
+      "name": "Crash 14inch",
+      "file": "BT-Cymbal Crash 14inch.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 14inch.wav"
+    },
+    {
+      "name": "Crash 78 Size",
+      "file": "BT-Cymbal Crash 78 Size.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 78 Size.wav"
+    },
+    {
+      "name": "Crash 78 Size 2",
+      "file": "BT-Cymbal Crash 78 Size 2.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 78 Size 2.wav"
+    },
+    {
+      "name": "Crash Default",
+      "file": "crash.wav",
+      "path": "samples/drums/crash/crash.wav"
+    }
   ]
 }
