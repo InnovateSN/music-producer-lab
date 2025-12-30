@@ -20,7 +20,7 @@ export const lessonConfig = {
   // ====================
   // NAVIGATION
   // ====================
-  nextLessonUrl: "lesson-drums-16.html",
+  nextLessonUrl: "lesson-drums-17.html",
   prevLessonUrl: "lesson-drums-13.html",
   overviewUrl: "labs.html",
   
