@@ -57,7 +57,7 @@ export const lessonConfig = {
     tip: "Rock drums are about POWER and DYNAMICS. Add a crash on beat 1 to signal the start of the section!",
     steps: [
       { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
-      { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13 (driving quarter notes)." },
+      { text: "<strong>Kick:</strong> Steps 1, 9, 11 (syncopated rock pattern)." },
       { text: "<strong>Snare:</strong> Steps 5 and 13 (powerful backbeat)." },
       { text: "<strong>Hi-Hat:</strong> 8th notes (1, 3, 5, 7, 9, 11, 13, 15)." },
       { text: "<strong>Crash:</strong> Step 1 to mark the section start." }
@@ -72,9 +72,9 @@ export const lessonConfig = {
       id: "kick",
       label: "Kick",
       color: "linear-gradient(135deg, #e17055, #d63031)",
-      targetSteps: [0, 4, 8, 12],
-      instructionText: "Driving quarter note kick pattern.",
-      patternHint: { enabled: true, note: "Kick: 1, 5, 9, 13" }
+      targetSteps: [0, 8, 10],
+      instructionText: "Syncopated rock kick pattern.",
+      patternHint: { enabled: true, note: "Kick: 1, 9, 11" }
     },
     {
       id: "snare",
