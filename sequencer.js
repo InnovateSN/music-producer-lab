@@ -178,8 +178,9 @@ async function changeSample(instrument, samplePath) {
  * Play a loaded sample with velocity
  * @param {string} instrument - Instrument name (kick, snare, etc)
  * @param {number} velocity - Velocity 0-1 (normalized)
+ * @param {number} timingOffset - Timing offset in milliseconds (default 0)
  */
-function playSample(instrument, velocity = 1.0) {
+function playSample(instrument, velocity = 1.0, timingOffset = 0) {
   const buffer = loadedSamples[instrument];
   if (!buffer) return false; // Sample not loaded
 
@@ -193,7 +194,7 @@ function playSample(instrument, velocity = 1.0) {
   source.connect(gainNode);
   gainNode.connect(ctx.destination);
 
-  source.start(ctx.currentTime);
+  source.start(ctx.currentTime + (timingOffset / 1000));
   return true; // Successfully played sample
 }
 
@@ -373,7 +374,8 @@ const drumSounds = {
 // Play a drum sound with velocity
 // @param {string} type - The drum sound type (kick, snare, hihat, etc)
 // @param {number} velocity - MIDI velocity (0-127), defaults to 100
-function playSound(type, velocity = 100) {
+// @param {number} timingOffset - Timing offset in milliseconds (default 0)
+function playSound(type, velocity = 100, timingOffset = 0) {
   // Normalize type: remove suffixes like "-ghost", "-accent", etc.
   // Examples: "snare-ghost" -> "snare", "kick-heavy" -> "kick"
   const baseType = type.split('-')[0];
@@ -389,12 +391,20 @@ function playSound(type, velocity = 100) {
     const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
 
     // Try to play loaded sample first
-    const samplePlayed = playSample(baseType, normalizedVelocity);
+    const samplePlayed = playSample(baseType, normalizedVelocity, timingOffset);
 
     // If no sample available, fall back to synthetic sound
     if (!samplePlayed) {
       const sound = drumSounds[baseType] || drumSounds.kick;
-      sound(normalizedVelocity);
+      // For synthetic sounds, use setTimeout for timing offset
+      if (timingOffset > 0) {
+        setTimeout(() => sound(normalizedVelocity), timingOffset);
+      } else if (timingOffset < 0) {
+        // Clamp negative offsets to 0 (can't play in the past)
+        sound(normalizedVelocity);
+      } else {
+        sound(normalizedVelocity);
+      }
     }
   } catch (e) {
     console.warn('Audio playback failed:', e);
@@ -409,9 +419,42 @@ let tempo = 120;
 let swing = 0;
 let stepCount = 16;
 
+// Humanization state
+let humanizationEnabled = false;
+let timingRandomization = 0; // milliseconds (0-20ms range)
+let velocityRandomization = 0; // percentage (0-30% range)
+
 // Store references for external control
 let sequencerState = null;
 let sequencerInstruments = null;
+
+// ====================
+// HUMANIZATION FUNCTIONS
+// ====================
+
+/**
+ * Apply timing randomization to a step
+ * @param {number} baseDelay - Base delay in ms
+ * @param {number} randomAmount - Randomization amount in ms (0-20)
+ * @returns {number} - Randomized delay
+ */
+function applyTimingHumanization(baseDelay, randomAmount) {
+  if (randomAmount === 0) return baseDelay;
+  const variation = (Math.random() - 0.5) * 2 * randomAmount; // -randomAmount to +randomAmount
+  return Math.max(0, baseDelay + variation);
+}
+
+/**
+ * Apply velocity randomization
+ * @param {number} baseVelocity - Base velocity (0-127)
+ * @param {number} randomPercent - Randomization percentage (0-30)
+ * @returns {number} - Randomized velocity (0-127)
+ */
+function applyVelocityHumanization(baseVelocity, randomPercent) {
+  if (randomPercent === 0) return baseVelocity;
+  const variation = (Math.random() - 0.5) * 2 * (randomPercent / 100) * baseVelocity;
+  return Math.max(1, Math.min(127, Math.round(baseVelocity + variation)));
+}
 
 /**
  * Initialize drum sequencer
@@ -478,6 +521,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     enablePresets = false,
     enableExport = false,
     enableVelocity = false, // Enable velocity lanes UI
+    enableHumanization = false, // Enable humanization controls
     requiredTempo = null, // Optional: Required BPM for exercise validation
     requiredSwing = null // Optional: Required swing % for exercise validation
   } = options;
@@ -1039,6 +1083,107 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   `;
   container.appendChild(legend);
 
+  // Humanization controls (if enabled)
+  if (enableHumanization) {
+    const humanizationSection = document.createElement('div');
+    humanizationSection.className = 'humanization-controls';
+    humanizationSection.style.cssText = `
+      margin-top: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 240, 255, 0.1));
+      border: 1px solid rgba(138, 43, 226, 0.3);
+      border-radius: 12px;
+    `;
+
+    humanizationSection.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-purple, #8a2be2);">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--text-primary, #e0e6f0);">
+          Humanization
+        </h3>
+        <label style="margin-left: auto; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="mpl-humanize-enable" style="width: 18px; height: 18px; cursor: pointer;">
+          <span style="font-size: 0.9rem; color: var(--text-secondary, #b8c4e0);">Enable</span>
+        </label>
+      </div>
+
+      <div id="mpl-humanize-controls" style="display: none; opacity: 0.5; pointer-events: none; transition: opacity 0.3s ease;">
+        <!-- Timing Randomization Slider -->
+        <div style="margin-bottom: 16px;">
+          <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary, #b8c4e0);">
+              Timing Randomization
+            </span>
+            <span id="mpl-timing-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: var(--accent-cyan, #00f0ff);">
+              0ms
+            </span>
+          </label>
+          <input type="range" id="mpl-timing-slider" min="0" max="20" step="1" value="0"
+            style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim, #4a5a78); margin-top: 4px;">
+            <span>0ms</span>
+            <span>10ms</span>
+            <span>20ms</span>
+          </div>
+        </div>
+
+        <!-- Velocity Randomization Slider -->
+        <div style="margin-bottom: 20px;">
+          <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary, #b8c4e0);">
+              Velocity Randomization
+            </span>
+            <span id="mpl-velocity-rand-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: var(--accent-cyan, #00f0ff);">
+              0%
+            </span>
+          </label>
+          <input type="range" id="mpl-velocity-rand-slider" min="0" max="30" step="1" value="0"
+            style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim, #4a5a78); margin-top: 4px;">
+            <span>0%</span>
+            <span>15%</span>
+            <span>30%</span>
+          </div>
+        </div>
+
+        <!-- Preset Buttons -->
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted, #7a8ba8); margin-bottom: 10px;">
+            Humanization Presets:
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px;">
+            <button type="button" class="humanize-preset-btn" data-timing="5" data-velocity="10"
+              style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+              <div style="margin-bottom: 2px;">Subtle</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">5ms / 10%</div>
+            </button>
+            <button type="button" class="humanize-preset-btn" data-timing="10" data-velocity="15"
+              style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+              <div style="margin-bottom: 2px;">MPC 60</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">10ms / 15%</div>
+            </button>
+            <button type="button" class="humanize-preset-btn" data-timing="18" data-velocity="20"
+              style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+              <div style="margin-bottom: 2px;">Loose</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">18ms / 20%</div>
+            </button>
+            <button type="button" class="humanize-preset-btn" data-timing="12" data-velocity="25"
+              style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary, #e0e6f0); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+              <div style="margin-bottom: 2px;">Live</div>
+              <div style="font-size: 0.7rem; font-weight: 400; color: var(--text-dim, #4a5a78);">12ms / 25%</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(humanizationSection);
+  }
+
   // Get control elements (search within container first, then in previous sibling, then globally for backwards compatibility)
   const previousSibling = container.previousElementSibling;
   const playBtn = container.querySelector('#mpl-seq-play-all, [id^="mpl-seq-play-all"]') ||
@@ -1121,10 +1266,20 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
           }
         });
         
-        // Play sounds for active steps with their velocity
+        // Play sounds for active steps with their velocity and humanization
         instruments.forEach(inst => {
           if (state[inst.id][currentStep]) {
-            playSound(inst.id, velocityState[inst.id][currentStep]);
+            let velocity = velocityState[inst.id][currentStep];
+            let timingOffset = 0;
+
+            // Apply humanization if enabled
+            if (humanizationEnabled) {
+              velocity = applyVelocityHumanization(velocity, velocityRandomization);
+              timingOffset = (Math.random() - 0.5) * 2 * timingRandomization;
+            }
+
+            // Play sound with humanization
+            playSound(inst.id, velocity, timingOffset);
           }
         });
         
@@ -1277,6 +1432,98 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   window.addEventListener('mpl-swing-change', (e) => {
     swing = e.detail.swing;
   });
+
+  // Humanization control event listeners
+  if (enableHumanization) {
+    const humanizeEnableCheckbox = document.getElementById('mpl-humanize-enable');
+    const humanizeControlsDiv = document.getElementById('mpl-humanize-controls');
+    const timingSlider = document.getElementById('mpl-timing-slider');
+    const timingValue = document.getElementById('mpl-timing-value');
+    const velocityRandSlider = document.getElementById('mpl-velocity-rand-slider');
+    const velocityRandValue = document.getElementById('mpl-velocity-rand-value');
+    const presetButtons = document.querySelectorAll('.humanize-preset-btn');
+
+    // Enable/disable humanization
+    if (humanizeEnableCheckbox) {
+      humanizeEnableCheckbox.addEventListener('change', (e) => {
+        humanizationEnabled = e.target.checked;
+
+        if (humanizeControlsDiv) {
+          if (humanizationEnabled) {
+            humanizeControlsDiv.style.display = 'block';
+            humanizeControlsDiv.style.opacity = '1';
+            humanizeControlsDiv.style.pointerEvents = 'auto';
+          } else {
+            humanizeControlsDiv.style.opacity = '0.5';
+            humanizeControlsDiv.style.pointerEvents = 'none';
+          }
+        }
+      });
+    }
+
+    // Timing randomization slider
+    if (timingSlider && timingValue) {
+      timingSlider.addEventListener('input', (e) => {
+        timingRandomization = parseFloat(e.target.value);
+        timingValue.textContent = `${timingRandomization}ms`;
+      });
+    }
+
+    // Velocity randomization slider
+    if (velocityRandSlider && velocityRandValue) {
+      velocityRandSlider.addEventListener('input', (e) => {
+        velocityRandomization = parseFloat(e.target.value);
+        velocityRandValue.textContent = `${velocityRandomization}%`;
+      });
+    }
+
+    // Preset buttons
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const timing = parseFloat(btn.dataset.timing);
+        const velocity = parseFloat(btn.dataset.velocity);
+
+        // Update state
+        timingRandomization = timing;
+        velocityRandomization = velocity;
+
+        // Update UI
+        if (timingSlider) timingSlider.value = timing;
+        if (timingValue) timingValue.textContent = `${timing}ms`;
+        if (velocityRandSlider) velocityRandSlider.value = velocity;
+        if (velocityRandValue) velocityRandValue.textContent = `${velocity}%`;
+
+        // Enable humanization if not already enabled
+        if (!humanizationEnabled && humanizeEnableCheckbox) {
+          humanizeEnableCheckbox.checked = true;
+          humanizationEnabled = true;
+          if (humanizeControlsDiv) {
+            humanizeControlsDiv.style.display = 'block';
+            humanizeControlsDiv.style.opacity = '1';
+            humanizeControlsDiv.style.pointerEvents = 'auto';
+          }
+        }
+
+        // Visual feedback
+        btn.style.background = 'rgba(0, 255, 157, 0.2)';
+        btn.style.borderColor = 'rgba(0, 255, 157, 0.5)';
+        setTimeout(() => {
+          btn.style.background = 'rgba(0, 240, 255, 0.1)';
+          btn.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+        }, 300);
+      });
+
+      // Hover effect for preset buttons
+      btn.addEventListener('mouseenter', () => {
+        btn.style.background = 'rgba(0, 240, 255, 0.2)';
+        btn.style.transform = 'translateY(-2px)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.background = 'rgba(0, 240, 255, 0.1)';
+        btn.style.transform = 'translateY(0)';
+      });
+    });
+  }
   
   // Listen for preset save
   window.addEventListener('mpl-preset-save', () => {

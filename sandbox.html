@@ -186,15 +186,17 @@
         // Initialize sequencer
         function initSandbox() {
           initDrumSequencer(
-            instruments, 
-            "mpl-sandbox-pattern", 
+            instruments,
+            "mpl-sandbox-pattern",
             null, // No next lesson in sandbox
             {
               tempo: currentTempo,
               stepCount: currentStepCount,
               swing: currentSwing,
               sandbox: true,
-              autoSave: true
+              autoSave: true,
+              enableVelocity: true,
+              enableHumanization: true
             }
           );
           
