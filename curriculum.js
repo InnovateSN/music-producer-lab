@@ -13,7 +13,34 @@
 
 export const curriculumOverviewUrl = 'labs.html';
 
-export const curriculum = [
+/**
+ * Process curriculum and add automatic display numbers
+ * This allows lessons to be added/removed without manual renumbering
+ */
+function processCurriculumWithDisplayNumbers(curriculumData) {
+  const processed = [];
+
+  for (const category of curriculumData) {
+    const processedCategory = {
+      ...category,
+      lessons: []
+    };
+
+    let displayNumber = 0;
+    for (const lesson of category.lessons) {
+      processedCategory.lessons.push({
+        ...lesson,
+        displayNumber: displayNumber++
+      });
+    }
+
+    processed.push(processedCategory);
+  }
+
+  return processed;
+}
+
+export const curriculum = processCurriculumWithDisplayNumbers([
   // ============================================================
   // DRUMS & RHYTHM MODULE (21 Lessons)
   // ============================================================
@@ -621,11 +648,26 @@ export const curriculum = [
       }
     ]
   }
-];
+]);
 
 // ============================================================
 // HELPER FUNCTIONS
 // ============================================================
+
+/**
+ * Get display number for a lesson by its slug
+ * Returns the automatically calculated sequential number
+ */
+export function getDisplayNumber(lessonSlug) {
+  for (const category of curriculum) {
+    for (const lesson of category.lessons) {
+      if (lesson.slug === lessonSlug) {
+        return lesson.displayNumber;
+      }
+    }
+  }
+  return null;
+}
 
 function findLessonIndex({ lessonKey, slug, curriculumData }) {
   for (let catIndex = 0; catIndex < curriculumData.length; catIndex++) {

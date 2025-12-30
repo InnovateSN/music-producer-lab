@@ -28,7 +28,7 @@ export const lessonConfig = {
   // HERO SECTION
   // ====================
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 14, categoryLabel: "Drums & Rhythm" }),
+    eyebrow: buildHeroEyebrow({ lessonSlug: "lesson-drums-14", categoryLabel: "Drums & Rhythm" }),
     title: "Polyrhythms &",
     titleHighlight: "Metric Modulation",
     subtitle: "Discover the <strong>mathematical beauty of layered rhythms</strong>. Polyrhythms occur when two or more contrasting rhythmic patterns play simultaneously—the '3' in 3:4 means a pattern dividing time into thirds, while the '4' divides into quarters. This creates <strong>rhythmic tension and hypnotic complexity</strong> used everywhere from West African drumming and prog rock to modern electronic music. Master <strong>3-over-4</strong>, <strong>5-over-4</strong>, and <strong>metric modulation</strong> to add sophisticated movement to your productions."
