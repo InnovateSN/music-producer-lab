@@ -44,6 +44,7 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
+    enableVelocity: true, // Essential for breakbeat dynamics and ghost notes
     requiredTempo: 174
   },
   
