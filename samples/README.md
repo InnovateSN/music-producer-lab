@@ -12,7 +12,10 @@ samples/
     ├── hihat/
     ├── clap/
     ├── tom/
-    └── rim/
+    ├── rim/
+    ├── crash/        ← Crash cymbals
+    ├── ride/         ← Ride cymbals
+    └── cymbals/      ← Other cymbals (splash, china, etc.)
 ```
 
 ## 🎵 How to Add Your Samples
@@ -36,6 +39,9 @@ Files must follow this schema:
 - `clap.wav` → Clap sample
 - `tom.wav` → Tom sample
 - `rim.wav` → Rimshot sample
+- `crash.wav` → Crash cymbal sample
+- `ride.wav` → Ride cymbal sample
+- `cymbals.wav` → Other cymbals (splash, china, etc.)
 
 ### 3. Where to Put Files
 
@@ -50,6 +56,12 @@ cp my-snare.wav samples/drums/snare/snare.wav
 
 # Example: add a hi-hat sample
 cp my-hihat.wav samples/drums/hihat/hihat.wav
+
+# Example: add a crash cymbal
+cp my-crash.wav samples/drums/crash/crash.wav
+
+# Example: add a ride cymbal
+cp my-ride.wav samples/drums/ride/ride.wav
 ```
 
 ### 4. Multiple Samples (Optional)
@@ -84,6 +96,9 @@ The system will load the main sample (`{instrument}.wav`) automatically. Variati
 - **Clap**: 0.2 - 0.8 seconds
 - **Tom**: 0.5 - 2 seconds
 - **Rim**: 0.1 - 0.5 seconds
+- **Crash**: 1 - 4 seconds (allow full decay)
+- **Ride**: 1 - 3 seconds (bell hits can be shorter)
+- **Cymbals**: 0.5 - 3 seconds (splash, china, etc.)
 
 ### Normalization
 - Normalize your samples to **-3dB** or **-6dB** to avoid clipping
@@ -119,6 +134,10 @@ Recommended search terms:
 - "909 clap"
 - "acoustic tom"
 - "rimshot"
+- "crash cymbal one shot"
+- "ride cymbal"
+- "splash cymbal"
+- "china cymbal"
 
 **Recommended filters:**
 - License: CC0 (Public Domain)
