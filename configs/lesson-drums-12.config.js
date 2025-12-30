@@ -90,7 +90,7 @@ export const lessonConfig = {
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
       instructionText: "Steady 8th note hi-hats for groove.",
-      patternHint: { enabled: true, note: "Hi-Hat: 8th notes" }
+      patternHint: { enabled: true, note: "Hi-Hat: 1, 3, 5, 7, 9, 11, 13, 15" }
     },
     {
       id: "crash",
@@ -118,7 +118,7 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Rock = driving kick + powerful snare + steady hi-hats + crash accents"
+    note: "Rock Pattern: Kick (1,9,11) + Snare (5,13) + Hi-Hat (8ths) + Crash (1)"
   },
   
   // ====================
