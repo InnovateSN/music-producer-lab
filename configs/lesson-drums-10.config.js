@@ -45,6 +45,7 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     halfTime: true, // Trap often feels like half-time
+    enableVelocity: true, // Essential for rolling hi-hats and 808 dynamics
     requiredTempo: 140
   },
   

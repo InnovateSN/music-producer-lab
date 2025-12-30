@@ -45,6 +45,7 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     showSwingControl: true,
+    enableVelocity: true, // Essential for ghost notes and dynamics
     requiredTempo: 90,
     requiredSwing: 55 // Students must set swing to 55% for boom bap feel
   },
@@ -128,7 +129,7 @@ export const lessonConfig = {
   mode: {
     sandbox: false,
     showTargetHint: true,
-    enablePresets: false,
+    enablePresets: true, // Allow saving boom bap variations
     enableExport: false,
     showSwingControl: true
   },

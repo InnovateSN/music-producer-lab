@@ -44,6 +44,7 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
+    enableVelocity: true, // Essential for hi-hat dynamics and rimshot accents
     requiredTempo: 125
   },
   
