@@ -191,8 +191,20 @@ export const lessonConfig = {
       "Use velocity automation to emphasize the alignment points",
       "Layer timbres: different drum sounds make polyrhythms clearer",
       "Don't overdo it: Even a 2-bar polyrhythmic section can transform a track",
-      "Try recording in slow motion, then speed up to performance tempo"
-    ]
+      "Try recording in slow motion, then speed up to performance tempo",
+      "Explore polyrhythmic artists on your own—search for tracks that challenge your rhythmic perception"
+    ],
+    nextSteps: {
+      title: "Beyond the Basics",
+      description: "You've mastered the fundamentals of polyrhythms—but this is just the beginning. <strong>Advanced rhythm lessons are coming</strong> that will explore nested polyrhythms, metric modulation, and algorithmic rhythm generation. In the meantime, <strong>search the internet</strong> for artists pushing polyrhythmic boundaries and experiment with your own complex ratios.",
+      futureTopics: [
+        "Advanced polyrhythm lessons coming soon: nested ratios (3:4:5), metric modulation, and polymetric composition",
+        "Combining polyrhythms with odd time signatures for extreme complexity",
+        "Micro-timing and groove manipulation techniques",
+        "Generative and algorithmic approaches to polyrhythmic patterns"
+      ],
+      encouragement: "The deeper you go into rhythm, the more musical possibilities open up. Keep exploring, keep experimenting, and trust your ears. The best rhythms are the ones that surprise even you."
+    }
   },
 
   // ====================
