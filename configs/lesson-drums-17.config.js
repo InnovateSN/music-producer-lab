@@ -214,8 +214,20 @@ export const lessonConfig = {
       "Slower tempos make odd meters easier to follow",
       "Anchor the listener with one consistent element (usually bass or kick)",
       "Practice dancing or moving to odd meters—physical feel helps",
-      "Try writing in 4/4 first, then add a beat to make it 5/4"
-    ]
+      "Try writing in 4/4 first, then add a beat to make it 5/4",
+      "Search the internet for more artists using odd time signatures—discover your own favorites"
+    ],
+    nextSteps: {
+      title: "Beyond the Basics",
+      description: "You've learned the fundamentals of odd time signatures—now it's time to <strong>explore on your own</strong> and dive deeper. Search for artists who push rhythmic boundaries, study tracks in 11/8 or 13/8, and experiment with your own odd meter compositions.",
+      futureTopics: [
+        "Advanced rhythm lessons coming soon: metric modulation in odd meters, nested polyrhythms, and algorithmic rhythm generation",
+        "Combining odd meters with polyrhythms for hypnotic complexity",
+        "Live performance techniques for odd meters with loopers and controllers",
+        "Orchestrating odd meters across multiple instruments and layers"
+      ],
+      encouragement: "The journey into advanced rhythm is just beginning. Keep exploring, keep listening, and most importantly—keep creating. The best way to master odd meters is to write music that only <em>you</em> could write."
+    }
   },
 
   // ====================
