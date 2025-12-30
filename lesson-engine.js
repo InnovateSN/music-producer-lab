@@ -185,6 +185,25 @@ function populateExercise(config) {
     tipEl.style.display = 'block';
     tipText.innerHTML = exercise.tip;
   }
+
+  // Video Embed
+  const videoEmbed = document.getElementById('mpl-video-embed');
+  const videoTitle = document.getElementById('mpl-video-title');
+  const videoIframe = document.getElementById('mpl-video-iframe');
+  const videoDesc = document.getElementById('mpl-video-description');
+
+  if (videoEmbed && exercise.videoEmbed?.enabled && exercise.videoEmbed?.url) {
+    videoEmbed.style.display = 'block';
+    if (videoTitle && exercise.videoEmbed.title) {
+      videoTitle.textContent = exercise.videoEmbed.title;
+    }
+    if (videoIframe) {
+      videoIframe.src = exercise.videoEmbed.url;
+    }
+    if (videoDesc && exercise.videoEmbed.description) {
+      videoDesc.textContent = exercise.videoEmbed.description;
+    }
+  }
 }
 
 // ==========================================

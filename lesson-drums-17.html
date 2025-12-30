@@ -45,6 +45,22 @@
               <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
 
+            <!-- VIDEO EMBED (populated by JS) -->
+            <div id="mpl-video-embed" style="display:none; margin-top: var(--space-lg);">
+              <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">
+                <span id="mpl-video-title">Listen to the Original</span>
+              </h3>
+              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000;">
+                <iframe id="mpl-video-iframe"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <p id="mpl-video-description" style="margin-top: var(--space-sm); color: var(--text-muted); font-size: 0.9rem;"></p>
+            </div>
+
             <!-- PATTERN HINT (populated by JS) -->
             <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
               <div class="pattern-hint-label">Target Pattern:</div>
