@@ -587,13 +587,69 @@ function initMixerUI(config) {
   };
 
   // Import mixer functions from sequencer
-  import('./sequencer.js').then(({ setMixerVolume, setMixerPan, getMixerState }) => {
+  import('./sequencer.js').then(({ setMixerVolume, setMixerPan, getMixerState, setMeterUpdateCallback }) => {
     // Clear container
     container.innerHTML = '';
 
     // Create mixer channels container with professional styling
     const channelsContainer = document.createElement('div');
     channelsContainer.className = 'mixer-channels';
+
+    // Meter animation state
+    const meterLevels = {};
+    const meterPeaks = {};
+    const meterDecayIntervals = {};
+
+    // Register callback for real-time meter updates
+    setMeterUpdateCallback((instrument, level) => {
+      // Update meter level
+      meterLevels[instrument] = level * 100; // Convert to percentage
+
+      // Update peak if higher
+      if (!meterPeaks[instrument] || level * 100 > meterPeaks[instrument]) {
+        meterPeaks[instrument] = level * 100;
+      }
+
+      // Update visual elements
+      const meterFill = document.getElementById(`meter-${instrument}`);
+      const meterPeak = document.getElementById(`peak-${instrument}`);
+
+      if (meterFill) {
+        meterFill.style.height = `${level * 100}%`;
+      }
+      if (meterPeak && meterPeaks[instrument]) {
+        meterPeak.style.bottom = `${meterPeaks[instrument]}%`;
+      }
+
+      // Start decay animation
+      if (meterDecayIntervals[instrument]) {
+        clearInterval(meterDecayIntervals[instrument]);
+      }
+
+      meterDecayIntervals[instrument] = setInterval(() => {
+        // Decay meter level
+        if (meterLevels[instrument] > 0) {
+          meterLevels[instrument] = Math.max(0, meterLevels[instrument] - 5); // Decay by 5% per frame
+          if (meterFill) {
+            meterFill.style.height = `${meterLevels[instrument]}%`;
+          }
+        }
+
+        // Decay peak level (slower)
+        if (meterPeaks[instrument] > 0) {
+          meterPeaks[instrument] = Math.max(0, meterPeaks[instrument] - 1.5); // Decay by 1.5% per frame
+          if (meterPeak) {
+            meterPeak.style.bottom = `${meterPeaks[instrument]}%`;
+          }
+        }
+
+        // Stop animation when both are at 0
+        if (meterLevels[instrument] <= 0 && meterPeaks[instrument] <= 0) {
+          clearInterval(meterDecayIntervals[instrument]);
+          meterDecayIntervals[instrument] = null;
+        }
+      }, 50); // Update every 50ms for smooth animation
+    });
 
     instruments.forEach(inst => {
       const mixerState = getMixerState(inst.id);
@@ -658,12 +714,6 @@ function initMixerUI(config) {
         const volume = parseFloat(e.target.value) / 100;
         setMixerVolume(inst.id, volume);
         volValue.textContent = volumeToDb(volume);
-
-        // Animate meter
-        const meterFill = channel.querySelector(`#meter-${inst.id}`);
-        if (meterFill) {
-          meterFill.style.height = `${volume * 100}%`;
-        }
       });
 
       panSlider.addEventListener('input', (e) => {
