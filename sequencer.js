@@ -398,6 +398,18 @@ function playSound(type, velocity = 100, timingOffset = 0) {
     // Get mixer settings for this instrument (if any)
     const mixerSettings = mixerState[baseType] || { volume: 1.0, pan: 0 };
 
+    // Trigger meter update callback if registered
+    if (meterUpdateCallback) {
+      const delay = Math.max(0, timingOffset);
+      if (delay > 0) {
+        setTimeout(() => {
+          meterUpdateCallback(baseType, normalizedVelocity * mixerSettings.volume);
+        }, delay);
+      } else {
+        meterUpdateCallback(baseType, normalizedVelocity * mixerSettings.volume);
+      }
+    }
+
     // Try to play loaded sample first
     const samplePlayed = playSample(baseType, normalizedVelocity, timingOffset, mixerSettings.pan, mixerSettings.volume);
 
@@ -434,6 +446,9 @@ let velocityRandomization = 0; // percentage (0-50% range)
 
 // Mixer state (per-instrument volume and pan)
 const mixerState = {};
+
+// Meter animation callbacks
+let meterUpdateCallback = null;
 
 // Store references for external control
 let sequencerState = null;
@@ -1836,5 +1851,13 @@ function getMixerState(instrument) {
   return mixerState[instrument] || { volume: 1.0, pan: 0 };
 }
 
+/**
+ * Register a callback for meter updates
+ * @param {Function} callback - Function called when a sound is played: callback(instrument, level)
+ */
+function setMeterUpdateCallback(callback) {
+  meterUpdateCallback = callback;
+}
+
 // Export for use in lesson pages
-export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, setMixerVolume, setMixerPan, initMixer, getMixerState };
+export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, setMixerVolume, setMixerPan, initMixer, getMixerState, setMeterUpdateCallback };
