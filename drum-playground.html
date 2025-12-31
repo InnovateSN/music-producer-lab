@@ -280,10 +280,18 @@
 
     </main>
 
-    <div id="footer-placeholder"></div>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
 
     <!-- Core Scripts -->
-    <script src="ui-loader.js" type="module"></script>
     <script type="module">
       import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
 
@@ -821,6 +829,9 @@
       // Start initialization
       initialize();
 
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
+    <script src="navbar.js"></script>
   </body>
 </html>
