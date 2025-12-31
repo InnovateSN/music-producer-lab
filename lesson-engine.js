@@ -410,7 +410,8 @@ function initSequencer(config) {
       enableVelocity: seqConfig?.enableVelocity || false, // Enable velocity lanes
       enableHumanization: seqConfig?.enableHumanization || false, // Enable humanization controls
       requiredTempo: seqConfig?.requiredTempo || null, // Required BPM for validation
-      requiredSwing: seqConfig?.requiredSwing || null // Required swing % for validation
+      requiredSwing: seqConfig?.requiredSwing || null, // Required swing % for validation
+      accentedSteps: seqConfig?.accentedSteps || null // Custom accented steps for beat markers
     }
   );
 }
