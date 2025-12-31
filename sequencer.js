@@ -1868,15 +1868,12 @@ function setMeterUpdateCallback(callback) {
  * Wait for sample library to be loaded
  * @returns {Promise<boolean>} - Resolves to true when library is ready
  */
-let sampleLibraryLoadedPromise = null;
 let sampleLibraryLoadedResolve = null;
+let sampleLibraryLoadedPromise = new Promise((resolve) => {
+  sampleLibraryLoadedResolve = resolve;
+});
 
 function waitForSampleLibrary() {
-  if (!sampleLibraryLoadedPromise) {
-    sampleLibraryLoadedPromise = new Promise((resolve) => {
-      sampleLibraryLoadedResolve = resolve;
-    });
-  }
   return sampleLibraryLoadedPromise;
 }
 

@@ -172,6 +172,52 @@
         font-size: 0.875rem;
       }
 
+      /* Sequencer additional styles */
+      .sequencer-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-sm);
+      }
+
+      .sequencer-label {
+        min-width: 80px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-align: left;
+      }
+
+      .sequencer-grid {
+        display: flex;
+        gap: 4px;
+        flex: 1;
+      }
+
+      .sequencer-step {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--bg-secondary);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .sequencer-step:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-primary);
+      }
+
+      .sequencer-step.active {
+        border-color: transparent;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .sequencer-step.playing {
+        box-shadow: 0 0 16px var(--accent-primary);
+        transform: scale(1.05);
+      }
+
       @media (max-width: 768px) {
         .playground-title {
           font-size: 2rem;
@@ -280,12 +326,20 @@
 
     </main>
 
-    <div id="footer-placeholder"></div>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
 
     <!-- Core Scripts -->
-    <script src="ui-loader.js" type="module"></script>
     <script type="module">
-      import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary } from './sequencer.js';
+      import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
 
       // ==========================================
       // DRUM PLAYGROUND INITIALIZATION
@@ -403,7 +457,7 @@
 
           for (let i = 0; i < stepCount; i++) {
             const cell = document.createElement('button');
-            cell.className = 'sequencer-cell';
+            cell.className = 'sequencer-step';
             cell.dataset.step = i;
             cell.dataset.instrument = inst.id;
             cell.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
@@ -412,9 +466,12 @@
               pattern[inst.id][i] = !pattern[inst.id][i];
               cell.classList.toggle('active', pattern[inst.id][i]);
 
-              // Play sound for preview
+              // Update background color
               if (pattern[inst.id][i]) {
+                cell.style.background = color;
                 playSound(inst.id, 0.8);
+              } else {
+                cell.style.background = '';
               }
             });
 
@@ -665,7 +722,7 @@
 
         playbackInterval = setInterval(() => {
           // Clear previous step highlight
-          document.querySelectorAll('.sequencer-cell.playing').forEach(cell => {
+          document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
             cell.classList.remove('playing');
           });
 
@@ -673,7 +730,7 @@
           currentStep = (currentStep + 1) % stepCount;
 
           // Highlight current step
-          document.querySelectorAll(`.sequencer-cell[data-step="${currentStep}"]`).forEach(cell => {
+          document.querySelectorAll(`.sequencer-step[data-step="${currentStep}"]`).forEach(cell => {
             cell.classList.add('playing');
           });
 
@@ -694,7 +751,7 @@
         currentStep = -1;
 
         // Clear all playing highlights
-        document.querySelectorAll('.sequencer-cell.playing').forEach(cell => {
+        document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
           cell.classList.remove('playing');
         });
       }
@@ -704,8 +761,9 @@
           pattern[inst.id].fill(false);
         });
 
-        document.querySelectorAll('.sequencer-cell.active').forEach(cell => {
+        document.querySelectorAll('.sequencer-step.active').forEach(cell => {
           cell.classList.remove('active');
+          cell.style.background = '';
         });
       }
 
@@ -821,6 +879,9 @@
       // Start initialization
       initialize();
 
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
+    <script src="navbar.js"></script>
   </body>
 </html>
