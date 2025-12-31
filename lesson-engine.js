@@ -79,7 +79,88 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
     setupPresetControls(mergedConfig);
   }
 
+  // Inject Drum Playground banner for drum lessons
+  injectDrumPlaygroundBanner();
+
   console.log('[LessonEngine] Lesson initialized:', mergedConfig.lessonKey);
+}
+
+// ==========================================
+// DRUM PLAYGROUND BANNER
+// ==========================================
+
+function injectDrumPlaygroundBanner() {
+  // Only show on drum lessons
+  const isDrumLesson = window.location.pathname.includes('lesson-drums');
+  if (!isDrumLesson) return;
+
+  // Check if banner already exists
+  if (document.getElementById('drum-playground-banner')) return;
+
+  // Create banner HTML
+  const banner = document.createElement('div');
+  banner.id = 'drum-playground-banner';
+  banner.style.cssText = `
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(179, 102, 255, 0.05) 100%);
+    border: 1px solid var(--accent-cyan);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+    flex-wrap: wrap;
+  `;
+
+  banner.innerHTML = `
+    <div style="display: flex; align-items: center; gap: var(--space-md); flex: 1; min-width: 200px;">
+      <div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.2); border-radius: var(--radius-md); flex-shrink: 0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-cyan);">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 2px;">Practice Tool</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Try this pattern in Drum Playground</div>
+      </div>
+    </div>
+    <a href="drum-playground.html" style="
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-lg);
+      background: var(--accent-cyan);
+      color: var(--bg-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 16px rgba(0,240,255,0.4)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+      <span>Open Playground</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  `;
+
+  // Insert banner after hero section
+  const heroSection = document.getElementById('mpl-hero');
+  if (heroSection && heroSection.nextSibling) {
+    heroSection.parentNode.insertBefore(banner, heroSection.nextSibling);
+  } else {
+    // Fallback: insert at top of main content
+    const mainContent = document.querySelector('main.main-content') || document.querySelector('main');
+    if (mainContent) {
+      mainContent.insertBefore(banner, mainContent.firstChild);
+    }
+  }
 }
 
 // ==========================================

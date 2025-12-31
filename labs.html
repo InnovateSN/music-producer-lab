@@ -260,6 +260,105 @@
       border-color: var(--accent-cyan);
       color: var(--bg-dark);
     }
+
+    /* Playground Highlight Card */
+    .playground-highlight {
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-xl);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(179, 102, 255, 0.05) 100%);
+      border: 2px solid var(--accent-cyan);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glow-cyan);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .playground-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .playground-highlight-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: rgba(0, 240, 255, 0.2);
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-full);
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-md);
+    }
+
+    .playground-highlight-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+      color: var(--text-primary);
+    }
+
+    .playground-highlight-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      max-width: 700px;
+    }
+
+    .playground-highlight-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .playground-highlight-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .playground-highlight-feature svg {
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .playground-highlight-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-xl);
+      background: var(--accent-cyan);
+      color: var(--bg-dark);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all var(--transition-base);
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+    }
+
+    .playground-highlight-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(0, 240, 255, 0.5);
+    }
+
+    .playground-highlight-cta svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .playground-highlight-cta:hover svg {
+      transform: translateX(4px);
+    }
   </style>
 </head>
 <body>
@@ -512,6 +611,52 @@
         header.appendChild(info);
 
         container.appendChild(header);
+
+        // Add Drum Playground highlight card for drums module
+        if (category.slug === 'drums') {
+          const playgroundHighlight = document.createElement('div');
+          playgroundHighlight.className = 'playground-highlight';
+          playgroundHighlight.innerHTML = `
+            <span class="playground-highlight-badge">Practice Tool</span>
+            <h3 class="playground-highlight-title">Drum Playground</h3>
+            <p class="playground-highlight-description">
+              Turn each lesson into reps. Build patterns fast, hear what changes, export the loop to your DAW.
+            </p>
+            <div class="playground-highlight-features">
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13M9 13l12-2"/>
+                </svg>
+                <span>16-step sequencer</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v6m0 4v10M4 10l4 4 4-4M20 6l-4 4-4-4"/>
+                </svg>
+                <span>Mixer + velocity control</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <span>Export WAV</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                <span>Swing + humanization</span>
+              </div>
+            </div>
+            <a href="drum-playground.html" class="playground-highlight-cta">
+              <span>Open Drum Playground</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          `;
+          container.appendChild(playgroundHighlight);
+        }
 
         const grid = document.createElement('div');
         grid.className = 'lessons-grid';
