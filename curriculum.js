@@ -249,28 +249,16 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         configPath: './configs/lesson-drums-19.config.js'
       },
       {
-        slug: 'lesson-drums-20',
-        lessonKey: 'mpl-drums-20-progress',
-        title: 'Masterclass: Complete Drum Production',
-        description: 'Final project: produce a complete multi-genre drum arrangement with all techniques learned.',
-        duration: '30-40 min',
-        level: 'Expert',
+        slug: 'drum-playground',
+        lessonKey: 'mpl-drum-playground',
+        title: '🥁 Drum Playground',
+        description: 'Full-featured drum lab with sample selection, professional mixer, and WAV export. Create custom drum loops and download them!',
+        duration: 'Unlimited',
+        level: 'All Levels',
         depthLevel: 10,
-        badge: 'Premium',
-        pagePath: 'lesson-drums-20.html',
-        configPath: './configs/lesson-drums-20.config.js'
-      },
-      {
-        slug: 'lesson-drums-21',
-        lessonKey: 'mpl-drums-21-practice',
-        title: 'Velocity Practice Playground',
-        description: 'Interactive practice lab with visual examples demonstrating velocity control, dynamics, and practical pattern exercises.',
-        duration: '15-20 min',
-        level: 'Beginner-Intermediate',
-        depthLevel: 3,
-        badge: 'Practice',
-        pagePath: 'lesson-drums-21.html',
-        configPath: './configs/lesson-drums-21.config.js'
+        badge: 'Free',
+        pagePath: 'drum-playground.html',
+        configPath: null
       }
     ]
   },
