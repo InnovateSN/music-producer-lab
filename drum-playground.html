@@ -173,6 +173,13 @@
       }
 
       /* Sequencer additional styles */
+      #playground-sequencer {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: var(--space-lg);
+      }
+
       .sequencer-row {
         display: flex;
         align-items: center;
@@ -196,25 +203,25 @@
       .sequencer-step {
         width: 40px;
         height: 40px;
-        border: 2px solid var(--border-color);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
-        background: var(--bg-secondary);
+        background: rgba(255, 255, 255, 0.05);
         cursor: pointer;
         transition: all 0.2s;
       }
 
       .sequencer-step:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: var(--accent-primary);
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #00d4ff;
       }
 
       .sequencer-step.active {
         border-color: transparent;
-        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
       }
 
       .sequencer-step.playing {
-        box-shadow: 0 0 16px var(--accent-primary);
+        box-shadow: 0 0 20px #00d4ff;
         transform: scale(1.05);
       }
 
