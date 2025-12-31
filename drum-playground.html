@@ -430,7 +430,10 @@
 
       function initSequencer() {
         const container = document.getElementById('playground-sequencer');
-        if (!container) return;
+        if (!container) {
+          console.error('❌ Sequencer container not found!');
+          return;
+        }
 
         container.innerHTML = '';
 
@@ -445,6 +448,8 @@
           'rim': '#10b981',
           'crash': '#ec4899'
         };
+
+        console.log(`🎹 Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
 
         instruments.forEach(inst => {
           const color = instrumentColors[inst.id] || '#00d4ff';
@@ -488,6 +493,8 @@
           row.appendChild(grid);
           container.appendChild(row);
         });
+
+        console.log(`✅ Sequencer created: ${container.querySelectorAll('.sequencer-step').length} total cells`);
       }
 
       // ==========================================
