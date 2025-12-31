@@ -575,85 +575,74 @@ function initMixerUI(config) {
 
   const { instruments } = config;
 
+  // Color palette for different instruments
+  const instrumentColors = {
+    'kick': '#ff5a3d',
+    'snare': '#5f4dff',
+    'hihat': '#00d4ff',
+    'hat': '#00d4ff',
+    'bass': '#a855f7',
+    'clap': '#f59e0b',
+    'perc': '#10b981'
+  };
+
   // Import mixer functions from sequencer
   import('./sequencer.js').then(({ setMixerVolume, setMixerPan, getMixerState }) => {
     // Clear container
     container.innerHTML = '';
 
-    // Create mixer channels container
+    // Create mixer channels container with professional styling
     const channelsContainer = document.createElement('div');
-    channelsContainer.style.cssText = `
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: var(--space-lg);
-      max-width: 1200px;
-      margin: 0 auto;
-    `;
+    channelsContainer.className = 'mixer-channels';
 
     instruments.forEach(inst => {
-      const channel = document.createElement('div');
-      channel.style.cssText = `
-        background: var(--bg-tertiary, #0f1419);
-        border: 1px solid var(--border-color, #1a1f2e);
-        border-radius: 8px;
-        padding: var(--space-md);
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-sm);
-      `;
-
       const mixerState = getMixerState(inst.id);
 
+      // Determine color based on instrument name
+      let color = '#00d4ff'; // default cyan
+      for (const [key, value] of Object.entries(instrumentColors)) {
+        if (inst.id.toLowerCase().includes(key) || inst.label.toLowerCase().includes(key)) {
+          color = value;
+          break;
+        }
+      }
+
+      const channel = document.createElement('div');
+      channel.className = 'channel-strip';
+      channel.dataset.channel = inst.id;
+
       channel.innerHTML = `
-        <div style="text-align: center; margin-bottom: var(--space-xs);">
-          <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">${inst.label}</div>
-          <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Channel</div>
+        <div class="channel-name" style="background: linear-gradient(180deg, ${color}40 0%, ${color}10 100%); border-bottom: 2px solid ${color};">
+          ${inst.label}
         </div>
 
-        <!-- Volume Control -->
-        <div style="margin-bottom: var(--space-sm);">
-          <label style="display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-align: center;">
-            Volume
-          </label>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input
-              type="range"
-              id="mixer-vol-${inst.id}"
-              min="0"
-              max="100"
-              value="${(mixerState.volume * 100).toFixed(0)}"
-              style="flex: 1; cursor: pointer;"
-            />
-          </div>
-          <div style="text-align: center; margin-top: 4px;">
-            <span id="mixer-vol-value-${inst.id}" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
-              ${(mixerState.volume * 100).toFixed(0)}%
-            </span>
-          </div>
+        <div class="channel-meter">
+          <div class="meter-fill" id="meter-${inst.id}" style="height: 0%"></div>
+          <div class="meter-peak" id="peak-${inst.id}" style="bottom: 0%"></div>
         </div>
 
-        <!-- Pan Control -->
-        <div>
-          <label style="display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-align: center;">
-            Pan
-          </label>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 0.65rem; color: var(--text-muted);">L</span>
-            <input
-              type="range"
-              id="mixer-pan-${inst.id}"
-              min="-100"
-              max="100"
-              value="${(mixerState.pan * 100).toFixed(0)}"
-              style="flex: 1; cursor: pointer;"
-            />
-            <span style="font-size: 0.65rem; color: var(--text-muted);">R</span>
-          </div>
-          <div style="text-align: center; margin-top: 4px;">
-            <span id="mixer-pan-value-${inst.id}" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
-              ${mixerState.pan === 0 ? 'C' : (mixerState.pan > 0 ? `R${(mixerState.pan * 100).toFixed(0)}` : `L${Math.abs(mixerState.pan * 100).toFixed(0)}`)}
-            </span>
-          </div>
+        <div class="channel-fader-container">
+          <input type="range" class="vertical-slider" id="mixer-vol-${inst.id}"
+                 min="0" max="100" value="${(mixerState.volume * 100).toFixed(0)}"
+                 orient="vertical" style="height: 140px;">
+          <span class="fader-value" id="mixer-vol-value-${inst.id}">
+            ${volumeToDb(mixerState.volume)}
+          </span>
+        </div>
+
+        <div class="channel-pan">
+          <span class="pan-label">PAN</span>
+          <input type="range" id="mixer-pan-${inst.id}"
+                 min="-100" max="100" value="${(mixerState.pan * 100).toFixed(0)}"
+                 style="width: 70px;">
+          <span class="pan-label" id="mixer-pan-value-${inst.id}">
+            ${panToText(mixerState.pan)}
+          </span>
+        </div>
+
+        <div class="channel-controls">
+          <button class="channel-btn mute" id="mixer-mute-${inst.id}" title="Mute">M</button>
+          <button class="channel-btn solo" id="mixer-solo-${inst.id}" title="Solo">S</button>
         </div>
       `;
 
@@ -662,23 +651,37 @@ function initMixerUI(config) {
       const volValue = channel.querySelector(`#mixer-vol-value-${inst.id}`);
       const panSlider = channel.querySelector(`#mixer-pan-${inst.id}`);
       const panValue = channel.querySelector(`#mixer-pan-value-${inst.id}`);
+      const muteBtn = channel.querySelector(`#mixer-mute-${inst.id}`);
+      const soloBtn = channel.querySelector(`#mixer-solo-${inst.id}`);
 
       volSlider.addEventListener('input', (e) => {
         const volume = parseFloat(e.target.value) / 100;
         setMixerVolume(inst.id, volume);
-        volValue.textContent = `${(volume * 100).toFixed(0)}%`;
+        volValue.textContent = volumeToDb(volume);
+
+        // Animate meter
+        const meterFill = channel.querySelector(`#meter-${inst.id}`);
+        if (meterFill) {
+          meterFill.style.height = `${volume * 100}%`;
+        }
       });
 
       panSlider.addEventListener('input', (e) => {
         const pan = parseFloat(e.target.value) / 100;
         setMixerPan(inst.id, pan);
-        if (pan === 0) {
-          panValue.textContent = 'C';
-        } else if (pan > 0) {
-          panValue.textContent = `R${(pan * 100).toFixed(0)}`;
-        } else {
-          panValue.textContent = `L${Math.abs(pan * 100).toFixed(0)}`;
-        }
+        panValue.textContent = panToText(pan);
+      });
+
+      // Mute/Solo functionality (basic implementation)
+      muteBtn.addEventListener('click', () => {
+        muteBtn.classList.toggle('active');
+        const isMuted = muteBtn.classList.contains('active');
+        setMixerVolume(inst.id, isMuted ? 0 : parseFloat(volSlider.value) / 100);
+      });
+
+      soloBtn.addEventListener('click', () => {
+        soloBtn.classList.toggle('active');
+        // Solo functionality would need more complex implementation
       });
 
       channelsContainer.appendChild(channel);
@@ -686,6 +689,19 @@ function initMixerUI(config) {
 
     container.appendChild(channelsContainer);
   });
+}
+
+// Helper functions for mixer display
+function volumeToDb(volume) {
+  if (volume === 0) return '-∞ dB';
+  const db = 20 * Math.log10(volume);
+  return db.toFixed(1) + ' dB';
+}
+
+function panToText(pan) {
+  if (pan === 0) return 'C';
+  if (pan < 0) return 'L' + Math.abs(Math.round(pan * 100));
+  return 'R' + Math.round(pan * 100);
 }
 
 // ==========================================
