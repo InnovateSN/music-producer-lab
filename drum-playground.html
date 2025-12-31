@@ -466,9 +466,12 @@
               pattern[inst.id][i] = !pattern[inst.id][i];
               cell.classList.toggle('active', pattern[inst.id][i]);
 
-              // Play sound for preview
+              // Update background color
               if (pattern[inst.id][i]) {
+                cell.style.background = color;
                 playSound(inst.id, 0.8);
+              } else {
+                cell.style.background = '';
               }
             });
 
@@ -760,6 +763,7 @@
 
         document.querySelectorAll('.sequencer-step.active').forEach(cell => {
           cell.classList.remove('active');
+          cell.style.background = '';
         });
       }
 
