@@ -411,7 +411,7 @@
 
           for (let i = 0; i < stepCount; i++) {
             const cell = document.createElement('button');
-            cell.className = 'sequencer-cell';
+            cell.className = 'sequencer-step';
             cell.dataset.step = i;
             cell.dataset.instrument = inst.id;
             cell.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
@@ -673,7 +673,7 @@
 
         playbackInterval = setInterval(() => {
           // Clear previous step highlight
-          document.querySelectorAll('.sequencer-cell.playing').forEach(cell => {
+          document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
             cell.classList.remove('playing');
           });
 
@@ -681,7 +681,7 @@
           currentStep = (currentStep + 1) % stepCount;
 
           // Highlight current step
-          document.querySelectorAll(`.sequencer-cell[data-step="${currentStep}"]`).forEach(cell => {
+          document.querySelectorAll(`.sequencer-step[data-step="${currentStep}"]`).forEach(cell => {
             cell.classList.add('playing');
           });
 
@@ -702,7 +702,7 @@
         currentStep = -1;
 
         // Clear all playing highlights
-        document.querySelectorAll('.sequencer-cell.playing').forEach(cell => {
+        document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
           cell.classList.remove('playing');
         });
       }
@@ -712,7 +712,7 @@
           pattern[inst.id].fill(false);
         });
 
-        document.querySelectorAll('.sequencer-cell.active').forEach(cell => {
+        document.querySelectorAll('.sequencer-step.active').forEach(cell => {
           cell.classList.remove('active');
         });
       }
