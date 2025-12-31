@@ -1164,6 +1164,11 @@
           // Initialize mixer state for all instruments (from sequencer.js)
           initMixer(instruments);
 
+          // Set all channels to 50% volume by default
+          instruments.forEach(inst => {
+            setMixerVolume(inst.id, 0.5);
+          });
+
           // Initialize UI components
           initSamplePickers();
           initSequencer();
