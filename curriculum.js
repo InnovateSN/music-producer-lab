@@ -237,18 +237,6 @@ export const curriculum = processCurriculumWithDisplayNumbers([
 
       // --- LEVEL 9-10: EXPERT ---
       {
-        slug: 'lesson-drums-17',
-        lessonKey: 'mpl-drums-17-progress',
-        title: 'Odd Time Signatures',
-        description: 'Break from 4/4 with 5/4, 7/8, and other odd meters. Create unique grooves that stand out.',
-        duration: '25-30 min',
-        level: 'Expert',
-        depthLevel: 9,
-        badge: 'Premium',
-        pagePath: 'lesson-drums-17.html',
-        configPath: './configs/lesson-drums-17.config.js'
-      },
-      {
         slug: 'lesson-drums-18',
         lessonKey: 'mpl-drums-18-progress',
         title: 'Genre Fusion & Hybrid Drums',
