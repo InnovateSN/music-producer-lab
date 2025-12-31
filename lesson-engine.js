@@ -649,6 +649,57 @@ function initMixerUI(config) {
           meterDecayIntervals[instrument] = null;
         }
       }, 50); // Update every 50ms for smooth animation
+
+      // UPDATE MASTER METER: Accumulate all active levels
+      const masterLevel = Math.min(100, level * 100); // Cap at 100%
+
+      if (!meterLevels['master']) meterLevels['master'] = 0;
+      if (!meterPeaks['master']) meterPeaks['master'] = 0;
+
+      // Add to master (simulating mix bus)
+      meterLevels['master'] = Math.min(100, meterLevels['master'] + masterLevel * 0.3); // Scale down to prevent clipping
+
+      // Update master peak
+      if (meterLevels['master'] > meterPeaks['master']) {
+        meterPeaks['master'] = meterLevels['master'];
+      }
+
+      // Update master visual elements
+      const masterMeterFill = document.getElementById('meter-master');
+      const masterMeterPeak = document.getElementById('peak-master');
+
+      if (masterMeterFill) {
+        masterMeterFill.style.height = `${meterLevels['master']}%`;
+      }
+      if (masterMeterPeak) {
+        masterMeterPeak.style.bottom = `${meterPeaks['master']}%`;
+      }
+
+      // Start master decay animation
+      if (meterDecayIntervals['master']) {
+        clearInterval(meterDecayIntervals['master']);
+      }
+
+      meterDecayIntervals['master'] = setInterval(() => {
+        if (meterLevels['master'] > 0) {
+          meterLevels['master'] = Math.max(0, meterLevels['master'] - 5);
+          if (masterMeterFill) {
+            masterMeterFill.style.height = `${meterLevels['master']}%`;
+          }
+        }
+
+        if (meterPeaks['master'] > 0) {
+          meterPeaks['master'] = Math.max(0, meterPeaks['master'] - 1.5);
+          if (masterMeterPeak) {
+            masterMeterPeak.style.bottom = `${meterPeaks['master']}%`;
+          }
+        }
+
+        if (meterLevels['master'] <= 0 && meterPeaks['master'] <= 0) {
+          clearInterval(meterDecayIntervals['master']);
+          meterDecayIntervals['master'] = null;
+        }
+      }, 50);
     });
 
     instruments.forEach(inst => {
@@ -736,6 +787,37 @@ function initMixerUI(config) {
 
       channelsContainer.appendChild(channel);
     });
+
+    // Add MASTER channel strip
+    const masterChannel = document.createElement('div');
+    masterChannel.className = 'channel-strip master-channel';
+    masterChannel.style.cssText = 'min-width: 130px; max-width: 130px; border: 2px solid #fbbf24;';
+
+    const masterColor = '#fbbf24'; // Gold color for master
+    masterChannel.innerHTML = `
+      <div class="channel-name" style="background: linear-gradient(180deg, ${masterColor}60 0%, ${masterColor}20 100%); border-bottom: 3px solid ${masterColor}; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em;">
+        MASTER
+      </div>
+
+      <div class="channel-meter" style="height: 200px;">
+        <div class="meter-fill" id="meter-master" style="height: 0%"></div>
+        <div class="meter-peak" id="peak-master" style="bottom: 0%"></div>
+      </div>
+
+      <div class="channel-fader-container">
+        <div class="fader-value" style="font-size: 1rem; font-weight: 700; color: ${masterColor}; text-shadow: 0 0 8px ${masterColor};">
+          0.0 dB
+        </div>
+      </div>
+
+      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+        <div style="font-size: 0.65rem; color: #64748b; text-align: center;">
+          Mix Output
+        </div>
+      </div>
+    `;
+
+    channelsContainer.appendChild(masterChannel);
 
     container.appendChild(channelsContainer);
   });
