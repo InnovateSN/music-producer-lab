@@ -12,7 +12,7 @@ export const lessonConfig = {
   depthLevel: 9,
   
   nextLessonUrl: "lesson-drums-19.html",
-  prevLessonUrl: "lesson-drums-17.html",
+  prevLessonUrl: "lesson-drums-14.html",
   overviewUrl: "labs.html",
   
   hero: {
