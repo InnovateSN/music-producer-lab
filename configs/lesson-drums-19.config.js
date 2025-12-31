@@ -10,9 +10,9 @@ export const lessonConfig = {
   lessonNumber: 19,
   lessonCategory: "Drums & Rhythm",
   depthLevel: 10,
-  
+
   nextLessonUrl: "lesson-drums-20.html",
-  prevLessonUrl: "lesson-drums-18.html",
+  prevLessonUrl: "lesson-drums-14.html",
   overviewUrl: "labs.html",
   
   hero: {
