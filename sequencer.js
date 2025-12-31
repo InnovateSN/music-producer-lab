@@ -1357,16 +1357,40 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       instruments.forEach(inst => {
         for (let i = 0; i < stepCount; i++) {
           state[inst.id][i] = false;
+          // Reset velocity to default (100)
+          if (velocityState[inst.id]) {
+            velocityState[inst.id][i] = 100;
+          }
         }
       });
-      
-      // Reset UI
+
+      // Reset UI - remove all active states and classes
       document.querySelectorAll('.sequencer-step').forEach((el) => {
         const stepIdx = parseInt(el.dataset.step);
         const beatStart = stepIdx % (stepCount / 4) === 0;
         el.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
         el.style.borderColor = beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)';
+        // Remove active/playing classes
+        el.classList.remove('active', 'playing');
       });
+
+      // Reset velocity UI bars
+      document.querySelectorAll('.velocity-bar').forEach(bar => {
+        const fillEl = bar.querySelector('.velocity-fill');
+        if (fillEl) {
+          fillEl.style.height = '78.74%'; // 100/127 * 100 = 78.74%
+        }
+      });
+
+      // Reset velocity sliders
+      document.querySelectorAll('.sequencer-velocity-slider').forEach(slider => {
+        slider.value = 100;
+      });
+
+      // Save cleared state
+      if (lessonKey) {
+        savePatternState(lessonKey + '-pattern', { state, velocityState });
+      }
     });
   }
   
