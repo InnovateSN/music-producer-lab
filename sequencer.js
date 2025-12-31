@@ -513,6 +513,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
 
   // Preload audio samples (non-blocking - loads in background)
   Promise.all([preloadSamples(), loadCustomSamples()]).then(() => {
+    // Resolve the sample library loaded promise
+    if (sampleLibraryLoadedResolve) {
+      sampleLibraryLoadedResolve(true);
+    }
+
     // Show sample status banner
     const samplesLoaded = Object.keys(loadedSamples).length;
     if (samplesLoaded > 0) {
@@ -1859,5 +1864,55 @@ function setMeterUpdateCallback(callback) {
   meterUpdateCallback = callback;
 }
 
+/**
+ * Wait for sample library to be loaded
+ * @returns {Promise<boolean>} - Resolves to true when library is ready
+ */
+let sampleLibraryLoadedPromise = null;
+let sampleLibraryLoadedResolve = null;
+
+function waitForSampleLibrary() {
+  if (!sampleLibraryLoadedPromise) {
+    sampleLibraryLoadedPromise = new Promise((resolve) => {
+      sampleLibraryLoadedResolve = resolve;
+    });
+  }
+  return sampleLibraryLoadedPromise;
+}
+
+/**
+ * Check if sample library is loaded (synchronously)
+ * @returns {boolean}
+ */
+function isSampleLibraryLoaded() {
+  return Object.keys(sampleLibrary).length > 0 && Object.keys(selectedSamples).length > 0;
+}
+
 // Export for use in lesson pages
-export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, setMixerVolume, setMixerPan, initMixer, getMixerState, setMeterUpdateCallback };
+export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, setMixerVolume, setMixerPan, initMixer, getMixerState, setMeterUpdateCallback, waitForSampleLibrary, isSampleLibraryLoaded };
+
+// ==========================================
+// MODULE-LEVEL INITIALIZATION
+// ==========================================
+
+// Automatically load sample library when module is imported
+// This ensures the library is available for standalone pages like drum-playground
+(async () => {
+  try {
+    await preloadSamples();
+    console.log('✅ Sample library preloaded at module level');
+
+    // Resolve the promise for pages waiting for the library
+    if (sampleLibraryLoadedResolve) {
+      sampleLibraryLoadedResolve(true);
+    }
+  } catch (error) {
+    console.warn('⚠️ Could not preload sample library:', error);
+
+    // Still resolve the promise even if loading failed
+    // This prevents pages from hanging indefinitely
+    if (sampleLibraryLoadedResolve) {
+      sampleLibraryLoadedResolve(false);
+    }
+  }
+})();

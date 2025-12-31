@@ -285,7 +285,7 @@
     <!-- Core Scripts -->
     <script src="ui-loader.js" type="module"></script>
     <script type="module">
-      import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback } from './sequencer.js';
+      import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary } from './sequencer.js';
 
       // ==========================================
       // DRUM PLAYGROUND INITIALIZATION
@@ -778,12 +778,44 @@
       // INITIALIZATION
       // ==========================================
 
-      // Wait for sample library to load
-      setTimeout(() => {
-        initSamplePickers();
-        initSequencer();
-        initMixer();
-      }, 500);
+      // Wait for sample library to load, then initialize everything
+      async function initialize() {
+        try {
+          console.log('⏳ Waiting for sample library...');
+          await waitForSampleLibrary();
+          console.log('✅ Sample library loaded!');
+
+          initSamplePickers();
+          initSequencer();
+          initMixer();
+
+          console.log('✅ Drum Playground initialized!');
+        } catch (error) {
+          console.error('❌ Initialization failed:', error);
+
+          // Show error message to user
+          const container = document.querySelector('.main-content');
+          if (container) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+              background: rgba(239, 68, 68, 0.1);
+              border: 1px solid rgba(239, 68, 68, 0.3);
+              border-radius: 8px;
+              padding: 16px;
+              margin: 20px 0;
+              color: #ef4444;
+            `;
+            errorDiv.innerHTML = `
+              <strong>⚠️ Loading Error</strong><br>
+              Failed to load drum samples. Please refresh the page to try again.
+            `;
+            container.insertBefore(errorDiv, container.firstChild);
+          }
+        }
+      }
+
+      // Start initialization
+      initialize();
 
     </script>
   </body>
