@@ -430,7 +430,7 @@
       // MIXER UI
       // ==========================================
 
-      function initMixer() {
+      function initMixerUI() {
         const container = document.getElementById('playground-mixer');
         if (!container) return;
 
@@ -785,9 +785,13 @@
           await waitForSampleLibrary();
           console.log('✅ Sample library loaded!');
 
+          // Initialize mixer state for all instruments (from sequencer.js)
+          initMixer(instruments);
+
+          // Initialize UI components
           initSamplePickers();
           initSequencer();
-          initMixer();
+          initMixerUI();
 
           console.log('✅ Drum Playground initialized!');
         } catch (error) {
