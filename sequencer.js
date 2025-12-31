@@ -1372,9 +1372,21 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         el.style.borderColor = beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)';
         // Remove active/playing classes
         el.classList.remove('active', 'playing');
+
+        // Reset velocity fill and handle (inline elements)
+        const velocityFill = el.querySelector('.velocity-fill-inline');
+        const velocityHandle = el.querySelector('.velocity-handle');
+        if (velocityFill) {
+          velocityFill.style.height = '78.74%'; // 100/127 * 100
+          velocityFill.style.opacity = '0'; // Hide completely
+        }
+        if (velocityHandle) {
+          velocityHandle.style.bottom = '78.74%'; // Position at default velocity
+          velocityHandle.style.opacity = '0'; // Hide completely
+        }
       });
 
-      // Reset velocity UI bars
+      // Reset velocity UI bars (legacy)
       document.querySelectorAll('.velocity-bar').forEach(bar => {
         const fillEl = bar.querySelector('.velocity-fill');
         if (fillEl) {
@@ -1382,7 +1394,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         }
       });
 
-      // Reset velocity sliders
+      // Reset velocity sliders (legacy)
       document.querySelectorAll('.sequencer-velocity-slider').forEach(slider => {
         slider.value = 100;
       });
