@@ -173,6 +173,13 @@
       }
 
       /* Sequencer additional styles */
+      #playground-sequencer {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: var(--space-lg);
+      }
+
       .sequencer-row {
         display: flex;
         align-items: center;
@@ -194,27 +201,28 @@
       }
 
       .sequencer-step {
-        width: 40px;
+        flex: 1;
+        min-width: 30px;
         height: 40px;
-        border: 2px solid var(--border-color);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
-        background: var(--bg-secondary);
+        background: rgba(255, 255, 255, 0.05);
         cursor: pointer;
         transition: all 0.2s;
       }
 
       .sequencer-step:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: var(--accent-primary);
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #00d4ff;
       }
 
       .sequencer-step.active {
         border-color: transparent;
-        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
       }
 
       .sequencer-step.playing {
-        box-shadow: 0 0 16px var(--accent-primary);
+        box-shadow: 0 0 20px #00d4ff;
         transform: scale(1.05);
       }
 
@@ -423,7 +431,10 @@
 
       function initSequencer() {
         const container = document.getElementById('playground-sequencer');
-        if (!container) return;
+        if (!container) {
+          console.error('❌ Sequencer container not found!');
+          return;
+        }
 
         container.innerHTML = '';
 
@@ -438,6 +449,8 @@
           'rim': '#10b981',
           'crash': '#ec4899'
         };
+
+        console.log(`🎹 Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
 
         instruments.forEach(inst => {
           const color = instrumentColors[inst.id] || '#00d4ff';
@@ -481,6 +494,8 @@
           row.appendChild(grid);
           container.appendChild(row);
         });
+
+        console.log(`✅ Sequencer created: ${container.querySelectorAll('.sequencer-step').length} total cells`);
       }
 
       // ==========================================
