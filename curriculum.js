@@ -237,23 +237,11 @@ export const curriculum = processCurriculumWithDisplayNumbers([
 
       // --- LEVEL 9-10: EXPERT ---
       {
-        slug: 'lesson-drums-18',
-        lessonKey: 'mpl-drums-18-progress',
-        title: 'Genre Fusion & Hybrid Drums',
-        description: 'Combine genre elements for unique sounds. Fuse electronic and acoustic, blend cultural rhythms.',
-        duration: '25-30 min',
-        level: 'Expert',
-        depthLevel: 9,
-        badge: 'Premium',
-        pagePath: 'lesson-drums-18.html',
-        configPath: './configs/lesson-drums-18.config.js'
-      },
-      {
         slug: 'lesson-drums-19',
         lessonKey: 'mpl-drums-19-progress',
-        title: 'Professional Drum Mixing',
-        description: 'Mix drums to professional standards. EQ, compression, parallel processing, and bus techniques.',
-        duration: '25-30 min',
+        title: 'Drum Mixing Basics: Balance & Panning',
+        description: 'Learn mixing fundamentals: volume balance and stereo panning. Get your levels right before processing.',
+        duration: '20-25 min',
         level: 'Expert',
         depthLevel: 10,
         badge: 'Premium',
