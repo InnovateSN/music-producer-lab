@@ -263,6 +263,16 @@
           <input type="range" id="playground-tempo-slider" min="60" max="200" value="120" style="width: 200px;">
         </div>
 
+        <div class="control-group">
+          <label>Swing</label>
+          <div class="tempo-display" id="playground-swing-display" style="font-size: 1.2rem;">0%</div>
+        </div>
+
+        <div class="control-group">
+          <label>Swing Control</label>
+          <input type="range" id="playground-swing-slider" min="0" max="100" value="0" style="width: 200px;">
+        </div>
+
         <div style="flex: 1;"></div>
 
         <button type="button" class="btn btn-outline" id="playground-play">
@@ -312,6 +322,89 @@
         <h2 class="section-title" style="margin-bottom: var(--space-lg);">🎚️ Mixer</h2>
         <div id="playground-mixer" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: var(--space-lg);">
           <!-- Mixer channels will be created by JS -->
+        </div>
+      </section>
+
+      <!-- HUMANIZATION SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎭 Humanization</h2>
+        <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 240, 255, 0.1)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px; padding: var(--space-lg);">
+
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="humanize-enable" style="width: 18px; height: 18px; cursor: pointer;">
+              <span style="font-size: 0.9rem; color: var(--text-secondary);">Enable Humanization</span>
+            </label>
+          </div>
+
+          <div id="humanize-controls" style="opacity: 0.5; pointer-events: none; transition: opacity 0.3s ease;">
+            <!-- Timing Randomization -->
+            <div style="margin-bottom: 16px;">
+              <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">
+                  Timing Randomization
+                </span>
+                <span id="timing-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #00f0ff;">
+                  0ms
+                </span>
+              </label>
+              <input type="range" id="timing-slider" min="0" max="50" step="1" value="0"
+                style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #666; margin-top: 4px;">
+                <span>0ms</span>
+                <span>25ms</span>
+                <span>50ms</span>
+              </div>
+            </div>
+
+            <!-- Velocity Randomization -->
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">
+                  Velocity Randomization
+                </span>
+                <span id="velocity-rand-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #00f0ff;">
+                  0%
+                </span>
+              </label>
+              <input type="range" id="velocity-rand-slider" min="0" max="50" step="1" value="0"
+                style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #666; margin-top: 4px;">
+                <span>0%</span>
+                <span>25%</span>
+                <span>50%</span>
+              </div>
+            </div>
+
+            <!-- Presets -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
+              <div style="font-size: 0.85rem; font-weight: 600; color: #888; margin-bottom: 10px;">
+                Humanization Presets:
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px;">
+                <button type="button" class="humanize-preset-btn" data-timing="8" data-velocity="15"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Subtle</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">8ms / 15%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="15" data-velocity="25"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">MPC 60</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">15ms / 25%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="30" data-velocity="35"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Loose</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">30ms / 35%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="20" data-velocity="40"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Live</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">20ms / 40%</div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -368,6 +461,12 @@
       let currentStep = -1;
       let playbackInterval = null;
       let tempo = 120;
+      let swing = 0;
+
+      // Humanization state
+      let humanizationEnabled = false;
+      let timingRandomization = 0;
+      let velocityRandomization = 0;
 
       // Pattern data
       const pattern = {};
@@ -451,6 +550,69 @@
         };
 
         console.log(`🎹 Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
+
+        // Add step numbers header
+        const headerRow = document.createElement('div');
+        headerRow.style.cssText = 'display: flex; align-items: center; gap: var(--space-md); margin-bottom: 8px;';
+
+        const headerLabel = document.createElement('div');
+        headerLabel.style.cssText = 'min-width: 80px;';
+        headerRow.appendChild(headerLabel);
+
+        const stepNumbersContainer = document.createElement('div');
+        stepNumbersContainer.style.cssText = 'display: flex; gap: 4px; flex: 1;';
+
+        for (let i = 0; i < stepCount; i++) {
+          const stepNum = document.createElement('div');
+          stepNum.style.cssText = `
+            flex: 1;
+            min-width: 30px;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: ${i % 4 === 0 ? '700' : '400'};
+            color: ${i % 4 === 0 ? '#00d4ff' : '#666'};
+            font-family: var(--font-mono, monospace);
+          `;
+          stepNum.textContent = i + 1;
+          stepNumbersContainer.appendChild(stepNum);
+        }
+
+        headerRow.appendChild(stepNumbersContainer);
+        container.appendChild(headerRow);
+
+        // Add beat markers (1, 2, 3, 4)
+        const beatRow = document.createElement('div');
+        beatRow.style.cssText = 'display: flex; align-items: center; gap: var(--space-md); margin-bottom: 12px;';
+
+        const beatLabel = document.createElement('div');
+        beatLabel.style.cssText = 'min-width: 80px; font-size: 0.75rem; color: #888;';
+        beatLabel.textContent = 'Beat';
+        beatRow.appendChild(beatLabel);
+
+        const beatMarkersContainer = document.createElement('div');
+        beatMarkersContainer.style.cssText = 'display: flex; gap: 4px; flex: 1;';
+
+        for (let beat = 1; beat <= 4; beat++) {
+          const beatGroup = document.createElement('div');
+          beatGroup.style.cssText = 'flex: 1; display: flex; gap: 4px;';
+
+          for (let sub = 0; sub < 4; sub++) {
+            const marker = document.createElement('div');
+            marker.style.cssText = `
+              flex: 1;
+              min-width: 30px;
+              height: 4px;
+              background: ${sub === 0 ? '#00d4ff' : 'rgba(255,255,255,0.1)'};
+              border-radius: 2px;
+            `;
+            beatGroup.appendChild(marker);
+          }
+
+          beatMarkersContainer.appendChild(beatGroup);
+        }
+
+        beatRow.appendChild(beatMarkersContainer);
+        container.appendChild(beatRow);
 
         instruments.forEach(inst => {
           const color = instrumentColors[inst.id] || '#00d4ff';
@@ -733,9 +895,19 @@
         isPlaying = true;
         currentStep = -1;
 
-        const stepDuration = (60 / tempo) * 250; // 16th notes
+        const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
 
-        playbackInterval = setInterval(() => {
+        const playStep = () => {
+          // Calculate swing delay
+          let stepDelay = baseStepTime;
+          if (swing > 0) {
+            if (currentStep % 2 === 0) {
+              stepDelay = baseStepTime * (1 + (swing / 100) * 0.5);
+            } else {
+              stepDelay = baseStepTime * (1 - (swing / 100) * 0.5);
+            }
+          }
+
           // Clear previous step highlight
           document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
             cell.classList.remove('playing');
@@ -749,13 +921,32 @@
             cell.classList.add('playing');
           });
 
-          // Play sounds for active steps
+          // Play sounds for active steps with humanization
           instruments.forEach(inst => {
             if (pattern[inst.id][currentStep]) {
-              playSound(inst.id, 100); // MIDI velocity (0-127)
+              let velocity = 100;
+              let timingOffset = 0;
+
+              // Apply humanization if enabled
+              if (humanizationEnabled) {
+                // Velocity humanization
+                const velocityVariation = (Math.random() - 0.5) * 2 * (velocityRandomization / 100) * velocity;
+                velocity = Math.max(1, Math.min(127, Math.round(velocity + velocityVariation)));
+
+                // Timing humanization
+                timingOffset = (Math.random() - 0.5) * 2 * timingRandomization;
+              }
+
+              playSound(inst.id, velocity, timingOffset);
             }
           });
-        }, stepDuration);
+
+          if (isPlaying) {
+            playbackInterval = setTimeout(playStep, stepDelay);
+          }
+        };
+
+        playStep();
       }
 
       function stop() {
@@ -845,6 +1036,97 @@
           stop();
           play();
         }
+      });
+
+      // Swing control
+      const swingSlider = document.getElementById('playground-swing-slider');
+      const swingDisplay = document.getElementById('playground-swing-display');
+
+      swingSlider.addEventListener('input', (e) => {
+        swing = parseInt(e.target.value);
+        swingDisplay.textContent = `${swing}%`;
+
+        // Restart playback if currently playing
+        if (isPlaying) {
+          stop();
+          play();
+        }
+      });
+
+      // Humanization controls
+      const humanizeEnableCheckbox = document.getElementById('humanize-enable');
+      const humanizeControlsDiv = document.getElementById('humanize-controls');
+      const timingSlider = document.getElementById('timing-slider');
+      const timingValue = document.getElementById('timing-value');
+      const velocityRandSlider = document.getElementById('velocity-rand-slider');
+      const velocityRandValue = document.getElementById('velocity-rand-value');
+      const presetButtons = document.querySelectorAll('.humanize-preset-btn');
+
+      // Enable/disable humanization
+      if (humanizeEnableCheckbox) {
+        humanizeEnableCheckbox.addEventListener('change', (e) => {
+          humanizationEnabled = e.target.checked;
+
+          if (humanizeControlsDiv) {
+            if (humanizationEnabled) {
+              humanizeControlsDiv.style.opacity = '1';
+              humanizeControlsDiv.style.pointerEvents = 'auto';
+            } else {
+              humanizeControlsDiv.style.opacity = '0.5';
+              humanizeControlsDiv.style.pointerEvents = 'none';
+            }
+          }
+        });
+      }
+
+      // Timing randomization slider
+      if (timingSlider && timingValue) {
+        timingSlider.addEventListener('input', (e) => {
+          timingRandomization = parseFloat(e.target.value);
+          timingValue.textContent = `${timingRandomization}ms`;
+        });
+      }
+
+      // Velocity randomization slider
+      if (velocityRandSlider && velocityRandValue) {
+        velocityRandSlider.addEventListener('input', (e) => {
+          velocityRandomization = parseFloat(e.target.value);
+          velocityRandValue.textContent = `${velocityRandomization}%`;
+        });
+      }
+
+      // Preset buttons
+      presetButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const timing = parseFloat(btn.dataset.timing);
+          const velocity = parseFloat(btn.dataset.velocity);
+
+          timingRandomization = timing;
+          velocityRandomization = velocity;
+
+          if (timingSlider) timingSlider.value = timing;
+          if (timingValue) timingValue.textContent = `${timing}ms`;
+          if (velocityRandSlider) velocityRandSlider.value = velocity;
+          if (velocityRandValue) velocityRandValue.textContent = `${velocity}%`;
+
+          // Enable humanization if not already enabled
+          if (!humanizationEnabled && humanizeEnableCheckbox) {
+            humanizeEnableCheckbox.checked = true;
+            humanizationEnabled = true;
+            if (humanizeControlsDiv) {
+              humanizeControlsDiv.style.opacity = '1';
+              humanizeControlsDiv.style.pointerEvents = 'auto';
+            }
+          }
+
+          // Visual feedback
+          btn.style.background = 'rgba(0, 255, 157, 0.2)';
+          btn.style.borderColor = 'rgba(0, 255, 157, 0.5)';
+          setTimeout(() => {
+            btn.style.background = 'rgba(0, 240, 255, 0.1)';
+            btn.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+          }, 300);
+        });
       });
 
       // ==========================================
