@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Photo: Parallax Multi-Layer v1</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030508;
+      color: #f0f4ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .bg-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: #0a0f1a;
+      overflow: hidden;
+    }
+
+    /* Photo layers with parallax */
+    .photo-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Layer 1: Very blurred background (synth close-up) */
+    .photo-layer-1 {
+      /* Placeholder: imagine a close-up of synth knobs */
+      background:
+        linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(139, 69, 255, 0.2) 100%),
+        radial-gradient(circle at 30% 40%, rgba(0, 240, 255, 0.15), transparent 50%),
+        #1a1520;
+      filter: blur(40px);
+      opacity: 0.4;
+      transform: scale(1.2);
+      animation: drift-1 40s ease-in-out infinite;
+    }
+
+    /* Layer 2: Medium blur (studio wide shot) */
+    .photo-layer-2 {
+      /* Placeholder: imagine a wide studio shot with monitors */
+      background:
+        linear-gradient(45deg, rgba(23, 23, 37, 0.9) 0%, rgba(15, 22, 36, 0.8) 100%),
+        radial-gradient(circle at 70% 30%, rgba(179, 102, 255, 0.12), transparent 60%);
+      filter: blur(20px);
+      opacity: 0.5;
+      animation: drift-2 35s ease-in-out infinite;
+    }
+
+    /* Layer 3: Slight blur (MIDI keyboard hands) */
+    .photo-layer-3 {
+      /* Placeholder: imagine hands on MIDI keyboard */
+      background:
+        linear-gradient(90deg, rgba(0, 15, 30, 0.85) 0%, rgba(10, 15, 26, 0.9) 50%, rgba(0, 15, 30, 0.85) 100%),
+        radial-gradient(ellipse at 50% 60%, rgba(0, 240, 255, 0.08), transparent 70%);
+      filter: blur(8px);
+      opacity: 0.6;
+      animation: drift-3 30s ease-in-out infinite;
+    }
+
+    /* Layer 4: Sharp focus element (drum pad close-up) - positioned asymmetrically */
+    .photo-layer-4 {
+      /* Placeholder: imagine glowing drum pads */
+      width: 50%;
+      height: 60%;
+      right: -10%;
+      top: 20%;
+      background:
+        radial-gradient(circle at 40% 50%, rgba(0, 240, 255, 0.15), transparent 50%),
+        radial-gradient(circle at 60% 70%, rgba(255, 102, 178, 0.12), transparent 40%),
+        linear-gradient(135deg, rgba(30, 30, 45, 0.4), rgba(20, 25, 40, 0.5));
+      filter: blur(4px);
+      opacity: 0.3;
+      animation: drift-4 25s ease-in-out infinite;
+      border-radius: 20px;
+    }
+
+    @keyframes drift-1 {
+      0%, 100% { transform: translate(0, 0) scale(1.2); }
+      50% { transform: translate(-30px, -20px) scale(1.25); }
+    }
+
+    @keyframes drift-2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -15px); }
+    }
+
+    @keyframes drift-3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-15px, 10px); }
+    }
+
+    @keyframes drift-4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(25px, -25px) scale(1.05); }
+    }
+
+    /* Dark overlay for readability */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(3, 5, 8, 0.75) 0%,
+        rgba(5, 8, 16, 0.85) 50%,
+        rgba(3, 5, 8, 0.8) 100%
+      );
+    }
+
+    /* Vignette effect */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(3, 5, 8, 0.4) 70%,
+        rgba(3, 5, 8, 0.7) 100%
+      );
+    }
+
+    /* Content */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #00f0ff 0%, #b366ff 50%, #ff66b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: #b8c4e0;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #00f0ff 0%, #b366ff 100%);
+      color: #030508;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
+    }
+
+    .demo-label {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #00f0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .photo-note {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 600px;
+      background: rgba(10, 15, 26, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: #7a8ba8;
+      backdrop-filter: blur(20px);
+      z-index: 100;
+    }
+
+    .photo-note strong {
+      color: #00f0ff;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-label">📷 Photo Parallax v1</div>
+
+  <div class="bg-container">
+    <!-- Multiple photo layers with different blur levels -->
+    <div class="photo-layer photo-layer-1"></div>
+    <div class="photo-layer photo-layer-2"></div>
+    <div class="photo-layer photo-layer-3"></div>
+    <div class="photo-layer photo-layer-4"></div>
+
+    <!-- Overlays for depth and readability -->
+    <div class="overlay"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Learn music production by actually producing</h1>
+      <p>
+        Interactive labs where you build real tracks step by step.
+        Not videos. Not theory. <strong>You do the work.</strong>
+      </p>
+      <a href="#" class="cta-button">
+        <span>Start Free Labs</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="photo-note">
+    <strong>💡 Nota tecnica:</strong>
+    I placeholder colorati simulano 4 layer di foto: (1) Synth knobs molto sfocati, (2) Studio wide shot medio blur,
+    (3) MIDI keyboard con leggero blur, (4) Drum pads a fuoco. Ogni layer si muove a velocità diversa (parallax).
+    <br><br>
+    Sostituendo con vere foto si ottiene un effetto depth fotografico molto professionale.
+  </div>
+
+  <script>
+    // Subtle parallax on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const layers = document.querySelectorAll('.photo-layer');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+
+      layers.forEach((layer, index) => {
+        const depth = (index + 1) * 10;
+        const moveX = (x - 0.5) * depth;
+        const moveY = (y - 0.5) * depth;
+        layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
