@@ -469,7 +469,7 @@
               // Update background color
               if (pattern[inst.id][i]) {
                 cell.style.background = color;
-                playSound(inst.id, 0.8);
+                playSound(inst.id, 100); // MIDI velocity (0-127)
               } else {
                 cell.style.background = '';
               }
@@ -737,7 +737,7 @@
           // Play sounds for active steps
           instruments.forEach(inst => {
             if (pattern[inst.id][currentStep]) {
-              playSound(inst.id, 0.8);
+              playSound(inst.id, 100); // MIDI velocity (0-127)
             }
           });
         }, stepDuration);
