@@ -36,7 +36,6 @@
           <ul class="navbar-nav" id="navMenu">
             <li><a href="index.html" class="navbar-link ${isActive('index.html')}">Home</a></li>
             <li><a href="labs.html" class="navbar-link ${isActive('labs.html')}">Labs</a></li>
-            <li><a href="explore.html" class="navbar-link ${isActive('explore.html')}">Explore</a></li>
             <li><a href="learn-tools.html" class="navbar-link ${isActive('learn-tools.html')}">Tools</a></li>
             <li><a href="download.html" class="navbar-link ${isActive('download.html')}">Downloads</a></li>
             <li><a href="about.html" class="navbar-link ${isActive('about.html')}">About</a></li>
