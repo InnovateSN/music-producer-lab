@@ -307,6 +307,40 @@
         </div>
       </section>
 
+      <!-- SAMPLE PICKER SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎛️ Sample Selection</h2>
+        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            <strong style="color: #00d4ff;">How it works:</strong> Each instrument has multiple sample options. Use the dropdown menus below to choose the sound that fits your style. Try different combinations to create your unique drum kit!
+          </p>
+        </div>
+        <div class="sample-picker-container" id="sample-picker-container">
+          <!-- Sample pickers will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- SEQUENCER SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎹 16-Step Sequencer</h2>
+        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
+            <strong style="color: #00d4ff;">How to use:</strong>
+          </p>
+          <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li><strong>Click any cell</strong> to activate/deactivate a drum hit</li>
+            <li><strong>Drag up/down on active cells</strong> to adjust velocity (loudness) - you'll see a colored bar showing the level</li>
+            <li><strong>Numbers 1-16</strong> at the top show the step position</li>
+            <li><strong>Cyan highlighted columns</strong> (1, 5, 9, 13) are the downbeats - perfect for placing kick drums</li>
+            <li><strong>Press Play</strong> to hear your pattern loop</li>
+            <li><strong>Beat markers</strong> below the numbers help you stay on the groove</li>
+          </ul>
+        </div>
+        <div class="sequencer" id="playground-sequencer">
+          <!-- Sequencer will be created by JS -->
+        </div>
+      </section>
+
       <!-- CONTROL PANEL -->
       <div class="control-panel">
         <div class="control-group">
@@ -353,39 +387,6 @@
           <span>Clear All</span>
         </button>
       </div>
-
-      <!-- SAMPLE PICKER SECTION -->
-      <section style="margin-bottom: var(--space-2xl);">
-        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎛️ Sample Selection</h2>
-        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
-          <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
-            <strong style="color: #00d4ff;">How it works:</strong> Each instrument has multiple sample options. Use the dropdown menus below to choose the sound that fits your style. Try different combinations to create your unique drum kit!
-          </p>
-        </div>
-        <div class="sample-picker-container" id="sample-picker-container">
-          <!-- Sample pickers will be populated by JavaScript -->
-        </div>
-      </section>
-
-      <!-- SEQUENCER SECTION -->
-      <section style="margin-bottom: var(--space-2xl);">
-        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎹 16-Step Sequencer</h2>
-        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
-          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
-            <strong style="color: #00d4ff;">How to use:</strong>
-          </p>
-          <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
-            <li><strong>Click any cell</strong> to activate/deactivate a drum hit</li>
-            <li><strong>Numbers 1-16</strong> at the top show the step position</li>
-            <li><strong>Cyan highlighted columns</strong> (1, 5, 9, 13) are the downbeats - perfect for placing kick drums</li>
-            <li><strong>Press Play</strong> to hear your pattern loop</li>
-            <li><strong>Beat markers</strong> below the numbers help you stay on the groove</li>
-          </ul>
-        </div>
-        <div class="sequencer" id="playground-sequencer">
-          <!-- Sequencer will be created by JS -->
-        </div>
-      </section>
 
       <!-- MIXER SECTION -->
       <section style="margin-bottom: var(--space-2xl);">
@@ -619,8 +620,10 @@
 
       // Pattern data
       const pattern = {};
+      const velocityState = {}; // Track velocity for each step (0-127)
       instruments.forEach(inst => {
         pattern[inst.id] = Array(stepCount).fill(false);
+        velocityState[inst.id] = Array(stepCount).fill(100); // Default velocity 100
       });
 
       // ==========================================
@@ -791,19 +794,142 @@
               cell.classList.add('beat-step');
             }
 
-            cell.addEventListener('click', () => {
-              pattern[inst.id][i] = !pattern[inst.id][i];
-              cell.classList.toggle('active', pattern[inst.id][i]);
+            // Add velocity visualization elements
+            const velocityFill = document.createElement('div');
+            velocityFill.className = 'velocity-fill';
+            velocityFill.style.cssText = `
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: ${color};
+              opacity: 0;
+              transition: opacity 0.2s;
+              pointer-events: none;
+              border-radius: 4px;
+            `;
 
-              // Update background color
+            const velocityHandle = document.createElement('div');
+            velocityHandle.className = 'velocity-handle';
+            velocityHandle.style.cssText = `
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: 2px;
+              background: white;
+              opacity: 0;
+              box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+              pointer-events: none;
+            `;
+
+            const velocityTooltip = document.createElement('div');
+            velocityTooltip.className = 'velocity-tooltip';
+            velocityTooltip.style.cssText = `
+              position: absolute;
+              top: -25px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(0, 0, 0, 0.9);
+              color: white;
+              padding: 2px 6px;
+              border-radius: 3px;
+              font-size: 0.7rem;
+              font-weight: 600;
+              opacity: 0;
+              pointer-events: none;
+              white-space: nowrap;
+              z-index: 10;
+            `;
+
+            cell.style.position = 'relative';
+            cell.style.overflow = 'hidden';
+            cell.appendChild(velocityFill);
+            cell.appendChild(velocityHandle);
+            cell.appendChild(velocityTooltip);
+
+            // Interaction logic
+            let isDragging = false;
+            let hasMovedEnough = false;
+            let startY = 0;
+
+            const updateVelocityDisplay = () => {
               if (pattern[inst.id][i]) {
-                cell.style.background = color;
-                playSound(inst.id, 100); // MIDI velocity (0-127)
+                const velocity = velocityState[inst.id][i];
+                const heightPercent = (velocity / 127) * 100;
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityFill.style.opacity = '0.3';
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityHandle.style.opacity = '0.6';
               } else {
-                cell.style.background = '';
+                velocityFill.style.opacity = '0';
+                velocityHandle.style.opacity = '0';
+              }
+            };
+
+            cell.addEventListener('mousedown', (e) => {
+              e.preventDefault();
+              isDragging = true;
+              hasMovedEnough = false;
+              startY = e.clientY;
+            });
+
+            cell.addEventListener('mousemove', (e) => {
+              if (!isDragging) return;
+
+              const deltaY = startY - e.clientY;
+              if (Math.abs(deltaY) > 3) {
+                hasMovedEnough = true;
+              }
+
+              if (hasMovedEnough && pattern[inst.id][i]) {
+                const rect = cell.getBoundingClientRect();
+                const relativeY = e.clientY - rect.top;
+                const heightPercent = Math.max(0, Math.min(100, ((rect.height - relativeY) / rect.height) * 100));
+                const velocity = Math.round((heightPercent / 100) * 127);
+
+                velocityState[inst.id][i] = Math.max(1, velocity);
+
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityTooltip.textContent = velocityState[inst.id][i];
+                velocityTooltip.style.opacity = '1';
               }
             });
 
+            const handleMouseUp = () => {
+              if (isDragging) {
+                if (!hasMovedEnough) {
+                  // Click - toggle step
+                  pattern[inst.id][i] = !pattern[inst.id][i];
+                  cell.classList.toggle('active', pattern[inst.id][i]);
+
+                  // Update background color
+                  if (pattern[inst.id][i]) {
+                    cell.style.background = color;
+                    playSound(inst.id, velocityState[inst.id][i]);
+                  } else {
+                    cell.style.background = '';
+                  }
+
+                  updateVelocityDisplay();
+                }
+
+                isDragging = false;
+                hasMovedEnough = false;
+                velocityTooltip.style.opacity = '0';
+              }
+            };
+
+            cell.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('mouseup', handleMouseUp);
+
+            cell.addEventListener('mouseleave', () => {
+              if (!isDragging) {
+                velocityTooltip.style.opacity = '0';
+              }
+            });
+
+            updateVelocityDisplay();
             grid.appendChild(cell);
           }
 
@@ -1078,7 +1204,7 @@
           // Play sounds for active steps with humanization
           instruments.forEach(inst => {
             if (pattern[inst.id][currentStep]) {
-              let velocity = 100;
+              let velocity = velocityState[inst.id][currentStep]; // Use step velocity
               let timingOffset = 0;
 
               // Apply humanization if enabled
@@ -1119,11 +1245,18 @@
       function clearPattern() {
         instruments.forEach(inst => {
           pattern[inst.id].fill(false);
+          velocityState[inst.id].fill(100); // Reset velocity to default
         });
 
         document.querySelectorAll('.sequencer-step.active').forEach(cell => {
           cell.classList.remove('active');
           cell.style.background = '';
+
+          // Reset velocity display
+          const velocityFill = cell.querySelector('.velocity-fill');
+          const velocityHandle = cell.querySelector('.velocity-handle');
+          if (velocityFill) velocityFill.style.opacity = '0';
+          if (velocityHandle) velocityHandle.style.opacity = '0';
         });
       }
 
