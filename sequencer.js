@@ -175,24 +175,29 @@ async function changeSample(instrument, samplePath) {
 }
 
 /**
- * Play a loaded sample with velocity
+ * Play a loaded sample with velocity and panning
  * @param {string} instrument - Instrument name (kick, snare, etc)
  * @param {number} velocity - Velocity 0-1 (normalized)
  * @param {number} timingOffset - Timing offset in milliseconds (default 0)
+ * @param {number} pan - Pan position -1 (left) to 1 (right), 0 = center (optional)
+ * @param {number} volume - Volume multiplier 0-1 (optional, defaults to 1.0)
  */
-function playSample(instrument, velocity = 1.0, timingOffset = 0) {
+function playSample(instrument, velocity = 1.0, timingOffset = 0, pan = 0, volume = 1.0) {
   const buffer = loadedSamples[instrument];
   if (!buffer) return false; // Sample not loaded
 
   const ctx = getAudioContext();
   const source = ctx.createBufferSource();
   const gainNode = ctx.createGain();
+  const panNode = ctx.createStereoPanner();
 
   source.buffer = buffer;
-  gainNode.gain.value = velocity; // Apply velocity
+  gainNode.gain.value = velocity * volume; // Apply velocity and volume
+  panNode.pan.value = Math.max(-1, Math.min(1, pan)); // Clamp pan to -1...1
 
   source.connect(gainNode);
-  gainNode.connect(ctx.destination);
+  gainNode.connect(panNode);
+  panNode.connect(ctx.destination);
 
   source.start(ctx.currentTime + (timingOffset / 1000));
   return true; // Successfully played sample
@@ -390,20 +395,23 @@ function playSound(type, velocity = 100, timingOffset = 0) {
     // Normalize velocity to 0-1 range for gain
     const normalizedVelocity = Math.max(0, Math.min(127, velocity)) / 127;
 
+    // Get mixer settings for this instrument (if any)
+    const mixerSettings = mixerState[baseType] || { volume: 1.0, pan: 0 };
+
     // Try to play loaded sample first
-    const samplePlayed = playSample(baseType, normalizedVelocity, timingOffset);
+    const samplePlayed = playSample(baseType, normalizedVelocity, timingOffset, mixerSettings.pan, mixerSettings.volume);
 
     // If no sample available, fall back to synthetic sound
     if (!samplePlayed) {
       const sound = drumSounds[baseType] || drumSounds.kick;
       // For synthetic sounds, use setTimeout for timing offset
       if (timingOffset > 0) {
-        setTimeout(() => sound(normalizedVelocity), timingOffset);
+        setTimeout(() => sound(normalizedVelocity * mixerSettings.volume), timingOffset);
       } else if (timingOffset < 0) {
         // Clamp negative offsets to 0 (can't play in the past)
-        sound(normalizedVelocity);
+        sound(normalizedVelocity * mixerSettings.volume);
       } else {
-        sound(normalizedVelocity);
+        sound(normalizedVelocity * mixerSettings.volume);
       }
     }
   } catch (e) {
@@ -423,6 +431,9 @@ let stepCount = 16;
 let humanizationEnabled = false;
 let timingRandomization = 0; // milliseconds (0-50ms range)
 let velocityRandomization = 0; // percentage (0-50% range)
+
+// Mixer state (per-instrument volume and pan)
+const mixerState = {};
 
 // Store references for external control
 let sequencerState = null;
@@ -468,8 +479,25 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  // Load custom samples from instrument config if specified
+  const loadCustomSamples = async () => {
+    const customLoadPromises = instruments
+      .filter(inst => inst.samplePath)
+      .map(async (inst) => {
+        const buffer = await loadSample(inst.samplePath);
+        if (buffer) {
+          loadedSamples[inst.id] = buffer;
+          console.log(`✓ Loaded custom sample for ${inst.id}: ${inst.samplePath}`);
+          return true;
+        }
+        return false;
+      });
+
+    return Promise.all(customLoadPromises);
+  };
+
   // Preload audio samples (non-blocking - loads in background)
-  preloadSamples().then(() => {
+  Promise.all([preloadSamples(), loadCustomSamples()]).then(() => {
     // Show sample status banner
     const samplesLoaded = Object.keys(loadedSamples).length;
     if (samplesLoaded > 0) {
@@ -542,7 +570,12 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   // Store for external access
   sequencerState = state;
   sequencerInstruments = instruments;
-  
+
+  // Initialize mixer if enabled
+  if (options.enableMixer) {
+    initMixer(instruments);
+  }
+
   // Build UI - Full width horizontal layout
   container.innerHTML = '';
   
@@ -1717,5 +1750,55 @@ function savePatternState(key, state) {
   } catch (e) {}
 }
 
+// ====================
+// MIXER FUNCTIONS
+// ====================
+
+/**
+ * Set volume for an instrument
+ * @param {string} instrument - Instrument ID
+ * @param {number} volume - Volume 0.0 to 1.0
+ */
+function setMixerVolume(instrument, volume) {
+  if (!mixerState[instrument]) {
+    mixerState[instrument] = { volume: 1.0, pan: 0 };
+  }
+  mixerState[instrument].volume = Math.max(0, Math.min(1, volume));
+}
+
+/**
+ * Set pan for an instrument
+ * @param {string} instrument - Instrument ID
+ * @param {number} pan - Pan -1.0 (left) to 1.0 (right), 0 = center
+ */
+function setMixerPan(instrument, pan) {
+  if (!mixerState[instrument]) {
+    mixerState[instrument] = { volume: 1.0, pan: 0 };
+  }
+  mixerState[instrument].pan = Math.max(-1, Math.min(1, pan));
+}
+
+/**
+ * Initialize mixer state from config
+ * @param {Array} instruments - Array of instrument configs with defaultVolume and defaultPan
+ */
+function initMixer(instruments) {
+  instruments.forEach(inst => {
+    mixerState[inst.id] = {
+      volume: inst.defaultVolume !== undefined ? inst.defaultVolume : 1.0,
+      pan: inst.defaultPan !== undefined ? inst.defaultPan : 0
+    };
+  });
+}
+
+/**
+ * Get current mixer state for an instrument
+ * @param {string} instrument - Instrument ID
+ * @returns {Object} { volume, pan }
+ */
+function getMixerState(instrument) {
+  return mixerState[instrument] || { volume: 1.0, pan: 0 };
+}
+
 // Export for use in lesson pages
-export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples };
+export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, setMixerVolume, setMixerPan, initMixer, getMixerState };

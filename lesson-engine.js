@@ -384,13 +384,16 @@ function initSequencer(config) {
     return;
   }
   
-  // Convert config instruments to sequencer format
+  // Convert config instruments to sequencer format (preserving all properties)
   const seqInstruments = instruments.map(inst => ({
     id: inst.id,
     label: inst.label,
     color: inst.color,
     target: mode?.sandbox ? [] : (inst.targetSteps || []),
-    instructions: inst.instructionText || ''
+    instructions: inst.instructionText || '',
+    samplePath: inst.samplePath, // Include custom sample path
+    defaultVolume: inst.defaultVolume,
+    defaultPan: inst.defaultPan
   }));
   
   // Initialize the drum sequencer
@@ -409,11 +412,22 @@ function initSequencer(config) {
       enableExport: mode?.enableExport || false,
       enableVelocity: seqConfig?.enableVelocity || false, // Enable velocity lanes
       enableHumanization: seqConfig?.enableHumanization || false, // Enable humanization controls
+      enableMixer: mode?.enableMixer || false, // Enable mixer with volume/pan controls
       requiredTempo: seqConfig?.requiredTempo || null, // Required BPM for validation
       requiredSwing: seqConfig?.requiredSwing || null, // Required swing % for validation
       accentedSteps: seqConfig?.accentedSteps || null // Custom accented steps for beat markers
     }
   );
+
+  // Initialize mixer UI if enabled
+  if (mode?.enableMixer) {
+    initMixerUI(config);
+  }
+
+  // Populate mixing theory if present
+  if (config.mixingTheory) {
+    populateMixingTheory(config);
+  }
 }
 
 // ==========================================
@@ -549,6 +563,157 @@ export async function loadLessonConfig(configUrl, curriculumData = defaultCurric
   } catch (error) {
     console.error('[LessonEngine] Error loading config:', error);
   }
+}
+
+// ==========================================
+// MIXER UI
+// ==========================================
+
+function initMixerUI(config) {
+  const container = document.getElementById('mpl-mixer-container');
+  if (!container) return;
+
+  const { instruments } = config;
+
+  // Import mixer functions from sequencer
+  import('./sequencer.js').then(({ setMixerVolume, setMixerPan, getMixerState }) => {
+    // Clear container
+    container.innerHTML = '';
+
+    // Create mixer channels container
+    const channelsContainer = document.createElement('div');
+    channelsContainer.style.cssText = `
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    `;
+
+    instruments.forEach(inst => {
+      const channel = document.createElement('div');
+      channel.style.cssText = `
+        background: var(--bg-tertiary, #0f1419);
+        border: 1px solid var(--border-color, #1a1f2e);
+        border-radius: 8px;
+        padding: var(--space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      `;
+
+      const mixerState = getMixerState(inst.id);
+
+      channel.innerHTML = `
+        <div style="text-align: center; margin-bottom: var(--space-xs);">
+          <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">${inst.label}</div>
+          <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Channel</div>
+        </div>
+
+        <!-- Volume Control -->
+        <div style="margin-bottom: var(--space-sm);">
+          <label style="display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-align: center;">
+            Volume
+          </label>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input
+              type="range"
+              id="mixer-vol-${inst.id}"
+              min="0"
+              max="100"
+              value="${(mixerState.volume * 100).toFixed(0)}"
+              style="flex: 1; cursor: pointer;"
+            />
+          </div>
+          <div style="text-align: center; margin-top: 4px;">
+            <span id="mixer-vol-value-${inst.id}" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
+              ${(mixerState.volume * 100).toFixed(0)}%
+            </span>
+          </div>
+        </div>
+
+        <!-- Pan Control -->
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-align: center;">
+            Pan
+          </label>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.65rem; color: var(--text-muted);">L</span>
+            <input
+              type="range"
+              id="mixer-pan-${inst.id}"
+              min="-100"
+              max="100"
+              value="${(mixerState.pan * 100).toFixed(0)}"
+              style="flex: 1; cursor: pointer;"
+            />
+            <span style="font-size: 0.65rem; color: var(--text-muted);">R</span>
+          </div>
+          <div style="text-align: center; margin-top: 4px;">
+            <span id="mixer-pan-value-${inst.id}" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
+              ${mixerState.pan === 0 ? 'C' : (mixerState.pan > 0 ? `R${(mixerState.pan * 100).toFixed(0)}` : `L${Math.abs(mixerState.pan * 100).toFixed(0)}`)}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // Add event listeners
+      const volSlider = channel.querySelector(`#mixer-vol-${inst.id}`);
+      const volValue = channel.querySelector(`#mixer-vol-value-${inst.id}`);
+      const panSlider = channel.querySelector(`#mixer-pan-${inst.id}`);
+      const panValue = channel.querySelector(`#mixer-pan-value-${inst.id}`);
+
+      volSlider.addEventListener('input', (e) => {
+        const volume = parseFloat(e.target.value) / 100;
+        setMixerVolume(inst.id, volume);
+        volValue.textContent = `${(volume * 100).toFixed(0)}%`;
+      });
+
+      panSlider.addEventListener('input', (e) => {
+        const pan = parseFloat(e.target.value) / 100;
+        setMixerPan(inst.id, pan);
+        if (pan === 0) {
+          panValue.textContent = 'C';
+        } else if (pan > 0) {
+          panValue.textContent = `R${(pan * 100).toFixed(0)}`;
+        } else {
+          panValue.textContent = `L${Math.abs(pan * 100).toFixed(0)}`;
+        }
+      });
+
+      channelsContainer.appendChild(channel);
+    });
+
+    container.appendChild(channelsContainer);
+  });
+}
+
+// ==========================================
+// MIXING THEORY
+// ==========================================
+
+function populateMixingTheory(config) {
+  const container = document.getElementById('mpl-mixing-theory-section');
+  if (!container || !config.mixingTheory) return;
+
+  const { title, sections } = config.mixingTheory;
+
+  container.innerHTML = `
+    <div class="exercise-box">
+      <div class="section-eyebrow">Learn</div>
+      <h2 class="section-title">${title}</h2>
+      ${sections.map(section => `
+        <div style="margin-top: var(--space-lg);">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--accent-primary); margin-bottom: var(--space-sm);">
+            ${section.heading}
+          </h3>
+          <div style="color: var(--text-secondary); line-height: 1.7; white-space: pre-line;">
+            ${section.content}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
 // Make available on window for non-module scripts

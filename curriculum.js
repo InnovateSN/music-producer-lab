@@ -239,9 +239,9 @@ export const curriculum = processCurriculumWithDisplayNumbers([
       {
         slug: 'lesson-drums-19',
         lessonKey: 'mpl-drums-19-progress',
-        title: 'Professional Drum Mixing',
-        description: 'Mix drums to professional standards. EQ, compression, parallel processing, and bus techniques.',
-        duration: '25-30 min',
+        title: 'Drum Mixing Basics: Balance & Panning',
+        description: 'Learn mixing fundamentals: volume balance and stereo panning. Get your levels right before processing.',
+        duration: '20-25 min',
         level: 'Expert',
         depthLevel: 10,
         badge: 'Premium',
