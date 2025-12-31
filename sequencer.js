@@ -1294,10 +1294,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
 
       isPlaying = true;
       currentStep = 0;
-      
-      const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
-      
+
       const playStep = () => {
+        // Recalculate base step time to pick up tempo changes dynamically
+        const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
+
         // Calculate swing delay
         // Swing works by delaying ALL off-beat sixteenth notes
         // In 16-step: delays steps 2, 4, 6, 8, 10, 12, 14, 16 (all even-numbered steps in UI)
@@ -1529,11 +1530,8 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
   // Listen for tempo changes
   window.addEventListener('mpl-tempo-change', (e) => {
     tempo = e.detail.tempo;
-    // If playing, restart with new tempo
-    if (isPlaying) {
-      stopSequencer();
-      playBtn?.click();
-    }
+    // Note: No need to restart playback - the next scheduled step
+    // will automatically use the new tempo value for timing calculation
   });
   
   // Listen for swing changes
