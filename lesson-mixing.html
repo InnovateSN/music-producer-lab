@@ -11,224 +11,312 @@
     <link rel="stylesheet" href="styles.css">
     <style>
 
-      /* Mixer Console Styles */
+      /* Professional Mixer Console Styles */
       .mixer-console {
-        background: linear-gradient(180deg, #1a1f2e 0%, #0f1219 100%);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
+        background: linear-gradient(180deg, #0a0e14 0%, #050709 100%);
+        border: 2px solid #1a1f2e;
+        border-radius: 12px;
         padding: var(--space-xl);
         margin: var(--space-xl) 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.03);
       }
-      
+
       .mixer-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: var(--space-lg);
         padding-bottom: var(--space-md);
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: 2px solid #1a1f2e;
+        background: linear-gradient(90deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
       }
-      
+
       .mixer-title {
         font-family: var(--font-display);
         font-size: 1.25rem;
         font-weight: 700;
+        background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      
+
       .mixer-transport {
         display: flex;
         gap: var(--space-sm);
       }
-      
+
       .transport-btn {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: var(--bg-tertiary);
-        border: 2px solid var(--border-subtle);
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #1a1f2e 0%, #0f1219 100%);
+        border: 2px solid #2a3340;
         color: var(--text-secondary);
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.2s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       }
-      
+
       .transport-btn:hover {
         border-color: var(--accent-cyan);
         color: var(--accent-cyan);
+        box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+        transform: translateY(-1px);
       }
-      
+
       .transport-btn.playing {
-        background: var(--accent-green);
-        border-color: var(--accent-green);
-        color: var(--bg-dark);
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-color: #10b981;
+        color: white;
+        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
       }
-      
+
       .mixer-channels {
         display: flex;
-        gap: var(--space-md);
+        gap: 12px;
         overflow-x: auto;
-        padding-bottom: var(--space-md);
+        padding: var(--space-md) 0;
+        background: rgba(10, 14, 20, 0.6);
+        border-radius: 8px;
+        padding: var(--space-lg);
       }
-      
+
       .channel-strip {
-        min-width: 100px;
-        background: var(--bg-secondary);
-        border-radius: var(--radius-md);
-        padding: var(--space-md);
+        min-width: 110px;
+        max-width: 110px;
+        background: linear-gradient(180deg, #1a1f2e 0%, #0f1219 100%);
+        border-radius: 8px;
+        padding: 0;
         display: flex;
         flex-direction: column;
-        gap: var(--space-sm);
+        gap: 0;
+        border: 1px solid #2a3340;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
       }
-      
+
+      .channel-strip:hover {
+        border-color: rgba(0, 212, 255, 0.3);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.1);
+      }
+
       .channel-strip.master {
-        background: linear-gradient(180deg, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.05) 100%);
-        border: 1px solid rgba(168, 85, 247, 0.3);
+        background: linear-gradient(180deg, #2a1f3e 0%, #1a0f29 100%);
+        border: 2px solid rgba(168, 85, 247, 0.5);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.2);
       }
-      
+
+      .channel-strip.master:hover {
+        border-color: rgba(168, 85, 247, 0.7);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
+      }
+
       .channel-name {
-        font-size: 0.75rem;
-        font-weight: 600;
+        font-size: 0.7rem;
+        font-weight: 700;
         text-align: center;
-        color: var(--text-primary);
-        padding: var(--space-xs);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-sm);
+        color: white;
+        padding: var(--space-sm);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        border-radius: 8px 8px 0 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
+
       .channel-meter {
-        height: 150px;
-        background: var(--bg-dark);
-        border-radius: var(--radius-sm);
+        height: 180px;
+        background: #000;
         position: relative;
         overflow: hidden;
+        margin: var(--space-sm);
+        border-radius: 4px;
+        border: 1px solid #1a1f2e;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
       }
-      
+
       .meter-fill {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(0deg, var(--accent-green) 0%, var(--accent-green) 60%, var(--accent-amber) 80%, var(--accent-pink) 100%);
-        transition: height 0.1s;
+        background: linear-gradient(0deg,
+          #10b981 0%,
+          #10b981 50%,
+          #f59e0b 75%,
+          #ef4444 90%,
+          #dc2626 100%);
+        transition: height 0.08s ease-out;
+        box-shadow: 0 0 10px currentColor;
       }
-      
+
       .meter-peak {
         position: absolute;
         left: 0;
         right: 0;
-        height: 2px;
-        background: var(--accent-pink);
+        height: 3px;
+        background: #ef4444;
         transition: bottom 0.05s;
+        box-shadow: 0 0 8px #ef4444;
       }
-      
+
       .channel-fader-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--space-xs);
+        gap: var(--space-sm);
+        padding: 0 var(--space-sm);
+        margin: var(--space-md) 0;
       }
-      
+
       .fader-track {
-        width: 8px;
-        height: 120px;
-        background: var(--bg-dark);
-        border-radius: 4px;
+        width: 10px;
+        height: 140px;
+        background: linear-gradient(180deg, #0a0e14 0%, #1a1f2e 100%);
+        border-radius: 5px;
         position: relative;
+        border: 1px solid #2a3340;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
       }
-      
+
       .fader-fill {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: var(--gradient-primary);
-        border-radius: 4px;
+        background: linear-gradient(180deg, #00d4ff 0%, #0891b2 100%);
+        border-radius: 5px;
         transition: height 0.1s;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
       }
-      
+
       .fader-value {
         font-family: var(--font-mono);
         font-size: 0.7rem;
         color: var(--accent-cyan);
+        font-weight: 600;
+        background: rgba(0, 212, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        min-width: 50px;
+        text-align: center;
       }
-      
+
       input[type="range"].vertical-slider {
         -webkit-appearance: slider-vertical;
         writing-mode: bt-lr;
-        width: 30px;
-        height: 120px;
+        width: 40px;
+        height: 140px;
         background: transparent;
+        cursor: grab;
       }
-      
+
+      input[type="range"].vertical-slider:active {
+        cursor: grabbing;
+      }
+
       .channel-pan {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: var(--space-xs);
+        padding: 0 var(--space-sm);
+        margin-bottom: var(--space-sm);
       }
-      
+
       .pan-label {
         font-size: 0.65rem;
         color: var(--text-muted);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
       }
-      
+
       .pan-knob {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #3a3f4a 0%, #1a1f2a 100%);
-        border: 2px solid var(--border-light);
+        background: radial-gradient(circle at 30% 30%, #3a3f4a, #1a1f2a);
+        border: 2px solid #2a3340;
         position: relative;
         cursor: pointer;
+        box-shadow:
+          0 2px 8px rgba(0, 0, 0, 0.6),
+          inset 0 1px 2px rgba(255, 255, 255, 0.1),
+          inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s;
       }
-      
+
+      .pan-knob:hover {
+        border-color: var(--accent-cyan);
+        box-shadow:
+          0 2px 12px rgba(0, 0, 0, 0.6),
+          0 0 15px rgba(0, 212, 255, 0.3),
+          inset 0 1px 2px rgba(255, 255, 255, 0.1);
+      }
+
       .pan-indicator {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 2px;
-        height: 15px;
-        background: var(--accent-cyan);
+        width: 3px;
+        height: 18px;
+        background: linear-gradient(180deg, #00d4ff 0%, #0891b2 100%);
         transform-origin: bottom center;
         transform: translateX(-50%);
-        border-radius: 1px;
+        border-radius: 2px;
+        box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
       }
-      
+
       .channel-controls {
         display: flex;
         justify-content: center;
         gap: var(--space-xs);
+        padding: var(--space-sm);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 0 0 8px 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
-      
+
       .channel-btn {
-        width: 28px;
-        height: 28px;
-        border-radius: var(--radius-sm);
-        background: var(--bg-tertiary);
-        border: 1px solid var(--border-subtle);
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #1a1f2e 0%, #0f1219 100%);
+        border: 2px solid #2a3340;
         color: var(--text-muted);
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         font-weight: 700;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
       }
-      
+
       .channel-btn:hover {
         border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
-      
+
       .channel-btn.mute.active {
-        background: var(--accent-pink);
-        border-color: var(--accent-pink);
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        border-color: #ef4444;
         color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
       }
-      
+
       .channel-btn.solo.active {
-        background: var(--accent-amber);
-        border-color: var(--accent-amber);
-        color: var(--bg-dark);
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        border-color: #f59e0b;
+        color: white;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
       }
       
       /* EQ Section */
@@ -320,37 +408,49 @@
       .mix-status {
         display: flex;
         gap: var(--space-lg);
-        padding: var(--space-md);
-        background: var(--bg-tertiary);
-        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        background: linear-gradient(135deg, rgba(10, 14, 20, 0.8) 0%, rgba(26, 31, 46, 0.6) 100%);
+        border-radius: 8px;
         margin-top: var(--space-lg);
         flex-wrap: wrap;
+        border: 1px solid #2a3340;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
       }
-      
+
       .status-item {
         display: flex;
         flex-direction: column;
         gap: var(--space-xs);
+        padding: var(--space-sm) var(--space-md);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
-      
+
       .status-label {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--text-muted);
         text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
       }
-      
+
       .status-value {
         font-family: var(--font-mono);
-        font-size: 1rem;
-        color: var(--accent-cyan);
+        font-size: 1.1rem;
+        color: #00d4ff;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
       }
-      
+
       .status-value.warning {
-        color: var(--accent-amber);
+        color: #f59e0b;
+        text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
       }
-      
+
       .status-value.danger {
-        color: var(--accent-pink);
+        color: #ef4444;
+        text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
       }
     </style>
   </head>
@@ -657,21 +757,21 @@
         mixerState.channels.forEach((ch, i) => {
           html += `
             <div class="channel-strip" data-channel="${i}">
-              <div class="channel-name" style="border-left: 3px solid ${ch.color}">${ch.name}</div>
+              <div class="channel-name" style="background: linear-gradient(180deg, ${ch.color}40 0%, ${ch.color}10 100%); border-bottom: 2px solid ${ch.color};">${ch.name}</div>
               <div class="channel-meter">
                 <div class="meter-fill" id="meter-${i}" style="height: 0%"></div>
                 <div class="meter-peak" id="peak-${i}" style="bottom: 0%"></div>
               </div>
               <div class="channel-fader-container">
-                <input type="range" class="vertical-slider" id="fader-${i}" 
+                <input type="range" class="vertical-slider" id="fader-${i}"
                        min="0" max="100" value="${ch.level}" orient="vertical"
-                       style="height: 120px;">
+                       style="height: 140px;">
                 <span class="fader-value" id="fader-value-${i}">${levelToDb(ch.level)}</span>
               </div>
               <div class="channel-pan">
                 <span class="pan-label">PAN</span>
-                <input type="range" id="pan-${i}" min="-100" max="100" value="${ch.pan}" 
-                       style="width: 60px;">
+                <input type="range" id="pan-${i}" min="-100" max="100" value="${ch.pan}"
+                       style="width: 70px;">
                 <span class="pan-label" id="pan-value-${i}">${panToText(ch.pan)}</span>
               </div>
               <div class="channel-controls">
@@ -685,15 +785,15 @@
         // Master channel
         html += `
           <div class="channel-strip master">
-            <div class="channel-name">MASTER</div>
+            <div class="channel-name" style="background: linear-gradient(180deg, rgba(168, 85, 247, 0.5) 0%, rgba(168, 85, 247, 0.2) 100%); border-bottom: 2px solid #a855f7;">MASTER</div>
             <div class="channel-meter">
               <div class="meter-fill" id="meter-master" style="height: 0%"></div>
               <div class="meter-peak" id="peak-master" style="bottom: 0%"></div>
             </div>
             <div class="channel-fader-container">
-              <input type="range" class="vertical-slider" id="fader-master" 
+              <input type="range" class="vertical-slider" id="fader-master"
                      min="0" max="100" value="80" orient="vertical"
-                     style="height: 120px;">
+                     style="height: 140px;">
               <span class="fader-value" id="fader-value-master">-2.5 dB</span>
             </div>
             <div class="channel-pan">
