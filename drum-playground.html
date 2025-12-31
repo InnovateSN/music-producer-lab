@@ -211,14 +211,30 @@
         transition: all 0.2s;
       }
 
+      /* Highlight beat steps (downbeats) */
+      .sequencer-step.beat-step {
+        border: 2px solid rgba(0, 212, 255, 0.4);
+        background: rgba(0, 212, 255, 0.1);
+        box-shadow: inset 0 0 8px rgba(0, 212, 255, 0.2);
+      }
+
       .sequencer-step:hover {
         background: rgba(255, 255, 255, 0.15);
+        border-color: #00d4ff;
+      }
+
+      .sequencer-step.beat-step:hover {
+        background: rgba(0, 212, 255, 0.2);
         border-color: #00d4ff;
       }
 
       .sequencer-step.active {
         border-color: transparent;
         box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .sequencer-step.beat-step.active {
+        box-shadow: 0 0 16px rgba(0, 212, 255, 0.6);
       }
 
       .sequencer-step.playing {
@@ -636,6 +652,11 @@
             cell.dataset.step = i;
             cell.dataset.instrument = inst.id;
             cell.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
+
+            // Highlight beat steps (downbeats: 0, 4, 8, 12)
+            if (i % 4 === 0) {
+              cell.classList.add('beat-step');
+            }
 
             cell.addEventListener('click', () => {
               pattern[inst.id][i] = !pattern[inst.id][i];
