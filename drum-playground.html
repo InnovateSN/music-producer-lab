@@ -1175,9 +1175,10 @@
         isPlaying = true;
         currentStep = -1;
 
-        const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
-
         const playStep = () => {
+          // Recalculate base step time to pick up tempo changes dynamically
+          const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
+
           // Calculate swing delay
           let stepDelay = baseStepTime;
           if (swing > 0) {
@@ -1317,12 +1318,8 @@
       tempoSlider.addEventListener('input', (e) => {
         tempo = parseInt(e.target.value);
         tempoDisplay.textContent = `${tempo} BPM`;
-
-        // Restart playback if currently playing
-        if (isPlaying) {
-          stop();
-          play();
-        }
+        // Note: No need to restart playback - the next scheduled step
+        // will automatically use the new tempo value for timing calculation
       });
 
       // Swing control
@@ -1332,12 +1329,8 @@
       swingSlider.addEventListener('input', (e) => {
         swing = parseInt(e.target.value);
         swingDisplay.textContent = `${swing}%`;
-
-        // Restart playback if currently playing
-        if (isPlaying) {
-          stop();
-          play();
-        }
+        // Note: No need to restart playback - the next scheduled step
+        // will automatically use the new swing value for timing calculation
       });
 
       // Humanization controls
