@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Option 3: Cyberpunk Grid Matrix</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030508;
+      color: #f0f4ff;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .bg-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(180deg, #050810 0%, #030508 100%);
+    }
+
+    /* 3D Grid */
+    .grid-container {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      animation: grid-perspective 30s ease-in-out infinite;
+    }
+
+    @keyframes grid-perspective {
+      0%, 100% { transform: rotateX(60deg) rotateZ(0deg); }
+      50% { transform: rotateX(55deg) rotateZ(5deg); }
+    }
+
+    .grid-plane {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(0deg);
+      background-image:
+        linear-gradient(rgba(0, 240, 255, 0.15) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.15) 2px, transparent 2px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      animation: grid-scroll 20s linear infinite;
+    }
+
+    @keyframes grid-scroll {
+      from { transform: translate(-50%, -50%) translateY(0); }
+      to { transform: translate(-50%, -50%) translateY(60px); }
+    }
+
+    /* Neon lines moving through grid */
+    .grid-line {
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #00f0ff 20%,
+        #b366ff 50%,
+        #ff66b2 80%,
+        transparent 100%
+      );
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+      opacity: 0.6;
+      animation: line-move 8s ease-in-out infinite;
+    }
+
+    .grid-line:nth-child(1) {
+      top: 20%;
+      animation-delay: 0s;
+    }
+
+    .grid-line:nth-child(2) {
+      top: 50%;
+      animation-delay: 2s;
+    }
+
+    .grid-line:nth-child(3) {
+      top: 80%;
+      animation-delay: 4s;
+    }
+
+    @keyframes line-move {
+      0% { transform: translateX(-100%); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateX(100%); opacity: 0; }
+    }
+
+    /* Glowing nodes */
+    .grid-nodes {
+      position: absolute;
+      inset: 0;
+    }
+
+    .grid-node {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #00f0ff;
+      border-radius: 50%;
+      box-shadow:
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 30px rgba(0, 240, 255, 0.5);
+      animation: node-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes node-pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #00f0ff 0%, #b366ff 50%, #ff66b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #b8c4e0;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .demo-label {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 255, 157, 0.15);
+      border: 1px solid rgba(0, 255, 157, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #00ff9d;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-label">⚡ Option 3: Cyberpunk Grid</div>
+
+  <div class="bg-container">
+    <div class="grid-container">
+      <div class="grid-plane"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+    </div>
+    <div class="grid-nodes" id="nodes"></div>
+  </div>
+
+  <div class="content">
+    <h1>Music Producer Lab</h1>
+    <p>Learn music production by actually producing. Interactive labs where you build real tracks step by step.</p>
+    <p style="font-size: 0.95rem; color: #7a8ba8;">Background con griglia 3D cyberpunk e linee neon - mantiene vibe tech/futuristica ma più dinamico dei blob standard.</p>
+  </div>
+
+  <script>
+    // Generate random glowing nodes
+    const nodesContainer = document.getElementById('nodes');
+    for (let i = 0; i < 15; i++) {
+      const node = document.createElement('div');
+      node.className = 'grid-node';
+      node.style.left = Math.random() * 100 + '%';
+      node.style.top = Math.random() * 100 + '%';
+      node.style.animationDelay = Math.random() * 3 + 's';
+      nodesContainer.appendChild(node);
+    }
+  </script>
+</body>
+</html>

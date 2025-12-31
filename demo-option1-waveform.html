@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Option 1: Audio Waveform Dynamic</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030508;
+      color: #f0f4ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bg-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(180deg, #050810 0%, #030508 100%);
+      overflow: hidden;
+    }
+
+    /* Waveform Animation */
+    .waveform {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.15;
+    }
+
+    .wave-layer {
+      position: absolute;
+      width: 120%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .wave-layer-1 {
+      animation: wave-drift-1 20s ease-in-out infinite;
+      filter: blur(1px);
+    }
+
+    .wave-layer-2 {
+      animation: wave-drift-2 25s ease-in-out infinite;
+      top: 30%;
+      filter: blur(2px);
+      opacity: 0.6;
+    }
+
+    .wave-layer-3 {
+      animation: wave-drift-3 30s ease-in-out infinite;
+      bottom: 20%;
+      filter: blur(3px);
+      opacity: 0.4;
+    }
+
+    .wave-bar {
+      width: 4px;
+      background: linear-gradient(180deg, #00f0ff 0%, #b366ff 50%, #ff66b2 100%);
+      border-radius: 2px;
+      transform-origin: center;
+    }
+
+    @keyframes wave-drift-1 {
+      0%, 100% { transform: translateY(0) scaleY(1); }
+      25% { transform: translateY(-30px) scaleY(1.2); }
+      50% { transform: translateY(0) scaleY(0.8); }
+      75% { transform: translateY(20px) scaleY(1.1); }
+    }
+
+    @keyframes wave-drift-2 {
+      0%, 100% { transform: translateY(0) scaleY(1); }
+      33% { transform: translateY(40px) scaleY(0.9); }
+      66% { transform: translateY(-20px) scaleY(1.15); }
+    }
+
+    @keyframes wave-drift-3 {
+      0%, 100% { transform: translateY(0) scaleY(1); }
+      40% { transform: translateY(-25px) scaleY(1.05); }
+      80% { transform: translateY(35px) scaleY(0.95); }
+    }
+
+    @keyframes wave-pulse {
+      0%, 100% { height: 80%; }
+      50% { height: 100%; }
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #00f0ff 0%, #b366ff 50%, #ff66b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #b8c4e0;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .demo-label {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #00f0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-label">🎵 Option 1: Audio Waveform</div>
+
+  <div class="bg-container">
+    <div class="waveform">
+      <!-- Wave Layer 1 -->
+      <div class="wave-layer wave-layer-1" id="wave1"></div>
+      <!-- Wave Layer 2 -->
+      <div class="wave-layer wave-layer-2" id="wave2"></div>
+      <!-- Wave Layer 3 -->
+      <div class="wave-layer wave-layer-3" id="wave3"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Music Producer Lab</h1>
+    <p>Learn music production by actually producing. Interactive labs where you build real tracks step by step.</p>
+    <p style="font-size: 0.95rem; color: #7a8ba8;">Background con forme d'onda audio dinamiche - visivamente unico e tematico per la produzione musicale.</p>
+  </div>
+
+  <script>
+    // Generate wave bars dynamically
+    function createWaveBars(container, count, baseHeight) {
+      for (let i = 0; i < count; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'wave-bar';
+        const height = baseHeight + Math.random() * 150;
+        bar.style.height = height + 'px';
+        bar.style.animation = `wave-pulse ${1 + Math.random() * 2}s ease-in-out infinite`;
+        bar.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(bar);
+      }
+    }
+
+    createWaveBars(document.getElementById('wave1'), 80, 100);
+    createWaveBars(document.getElementById('wave2'), 60, 80);
+    createWaveBars(document.getElementById('wave3'), 50, 60);
+  </script>
+</body>
+</html>
