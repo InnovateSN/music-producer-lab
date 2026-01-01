@@ -97,6 +97,25 @@ function injectDrumPlaygroundBanner() {
   // Check if banner already exists
   if (document.getElementById('drum-playground-banner')) return;
 
+  // Extract lesson number from URL (e.g., lesson-drums-5.html -> 5)
+  const lessonMatch = window.location.pathname.match(/lesson-drums-(\d+)/);
+  const lessonNumber = lessonMatch ? parseInt(lessonMatch[1]) : 0;
+
+  // Contextual messages based on lesson progression
+  let message = "Try this pattern in Drum Playground";
+
+  if (lessonNumber >= 1 && lessonNumber <= 3) {
+    message = "Ready to practice this? Build your first loop in the Playground";
+  } else if (lessonNumber >= 4 && lessonNumber <= 7) {
+    message = "Try this kick and snare pattern in the Playground";
+  } else if (lessonNumber >= 8 && lessonNumber <= 12) {
+    message = "Hear swing and velocity changes instantly in the Playground";
+  } else if (lessonNumber >= 13 && lessonNumber <= 18) {
+    message = "Make 3 variations of this pattern and export them";
+  } else if (lessonNumber >= 19 && lessonNumber <= 22) {
+    message = "Use the mixer to balance your drums, then export WAV";
+  }
+
   // Create banner HTML
   const banner = document.createElement('div');
   banner.id = 'drum-playground-banner';
@@ -126,7 +145,7 @@ function injectDrumPlaygroundBanner() {
       </div>
       <div>
         <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 2px;">Practice Tool</div>
-        <div style="font-size: 0.85rem; color: var(--text-muted);">Try this pattern in Drum Playground</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">${message}</div>
       </div>
     </div>
     <a href="drum-playground.html" style="

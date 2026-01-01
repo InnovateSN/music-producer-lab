@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Free Online Drum Machine with WAV Export | Drum Playground</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Free browser-based drum machine with 16-step sequencer, mixer, velocity control, swing, humanization, and WAV export. No download or signup required. Start making beats now.">
+  <meta name="keywords" content="free online drum machine, drum sequencer, 16 step sequencer, online beat maker, drum machine with export, wav export drum machine, browser drum machine, free beat maker, drum programming tool, swing drum machine, velocity control drums">
+  <meta name="author" content="Music Producer Lab">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://music-producer-lab.vercel.app/free-drum-machine.html">
+  <meta property="og:title" content="Free Online Drum Machine with WAV Export | Music Producer Lab">
+  <meta property="og:description" content="Professional 16-step drum sequencer in your browser. Build grooves, humanize patterns, export WAV. Free forever.">
+  <meta property="og:image" content="/assets/og-drum-playground.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online Drum Machine with WAV Export">
+  <meta name="twitter:description" content="16-step sequencer, mixer, swing, humanization, WAV export. Free forever.">
+  <meta name="twitter:image" content="/assets/og-drum-playground.png">
+
+  <!-- Theme & Mobile -->
+  <meta name="theme-color" content="#030508">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://music-producer-lab.vercel.app/free-drum-machine.html">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .landing-hero {
+      padding: calc(100px + var(--space-3xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .landing-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.1) 0%, transparent 40%);
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin: var(--space-3xl) 0;
+    }
+
+    .feature-box {
+      padding: var(--space-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+    }
+
+    .feature-box:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 240, 255, 0.1);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .feature-icon svg {
+      color: var(--accent-cyan);
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: var(--space-3xl) 0;
+      background: var(--gradient-glow);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-glow);
+      margin: var(--space-3xl) 0;
+    }
+
+    .keyword-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+      justify-content: center;
+    }
+
+    .keyword-tag {
+      padding: var(--space-xs) var(--space-md);
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="container">
+      <div class="landing-content">
+        <div class="text-center">
+          <span class="badge badge-primary mb-md">Free Forever · No Signup</span>
+          <h1 class="mb-lg" style="font-size: clamp(2rem, 5vw, 3.5rem); max-width: 900px; margin: 0 auto;">
+            Free Online <span class="text-gradient">Drum Machine</span> with WAV Export
+          </h1>
+          <p class="mb-xl" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto var(--space-xl); color: var(--text-muted);">
+            Professional 16-step sequencer in your browser. Build grooves, humanize patterns, mix your drums, and export WAV files. No download. No signup. Just make beats.
+          </p>
+
+          <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-2xl);">
+            <a href="drum-playground.html" class="btn btn-primary btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Open Drum Machine</span>
+            </a>
+            <a href="#features" class="btn btn-secondary btn-lg">
+              <span>See Features</span>
+            </a>
+          </div>
+
+          <div class="keyword-tags">
+            <span class="keyword-tag">16-Step Sequencer</span>
+            <span class="keyword-tag">WAV Export</span>
+            <span class="keyword-tag">Swing Control</span>
+            <span class="keyword-tag">Velocity Editor</span>
+            <span class="keyword-tag">Humanization</span>
+            <span class="keyword-tag">Pro Mixer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <h2 class="mb-md">Everything You Need to Make Beats</h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+          Not a toy. A professional drum sequencer designed for learning and creating real music.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <!-- Feature 1 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13M9 13l12-2"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">16-Step Sequencer</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Classic step sequencer layout with 7 drum instruments: kick, snare, clap, hi-hat, open hat, rim, and crash. Build patterns like the pros.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v6m0 4v10M4 10l4 4 4-4M20 6l-4 4-4-4"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">Per-Step Velocity Control</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Adjust the volume of each individual hit. Create dynamic patterns with accents and ghost notes. Essential for realistic drum programming.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">Swing & Humanization</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Add groove with swing control. Humanize timing and velocity to make your drums feel less robotic and more natural.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">Professional Mixer</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Volume and pan controls for each drum. Balance your mix like you would in a DAW. Hear your changes in real-time.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">WAV Export</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Export your loops as high-quality WAV files. Use them in your DAW, share with collaborators, or build a sample library.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-sm);">Built for Learning</h3>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Part of Music Producer Lab's drum lessons. Practice patterns from lessons, experiment, and build muscle memory through repetition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Helps You Learn -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <h2 class="mb-md">Why It Helps You Learn Drums</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+          This isn't just another beat maker. It's a <strong>practice tool</strong> designed to turn theory into muscle memory.
+        </p>
+      </div>
+
+      <div class="grid grid-2 gap-xl">
+        <div class="card" style="padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+          <h3 style="margin-bottom: var(--space-md); color: var(--accent-cyan);">Immediate Cause & Effect</h3>
+          <p style="line-height: 1.8; color: var(--text-muted);">
+            Change velocity or swing and <strong>hear it now</strong>. No waiting, no rendering. Your brain learns through instant feedback loops.
+          </p>
+        </div>
+
+        <div class="card" style="padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+          <h3 style="margin-bottom: var(--space-md); color: var(--accent-purple);">Deliberate Practice</h3>
+          <p style="line-height: 1.8; color: var(--text-muted);">
+            Repeat small patterns until consistent. Isolate one skill (timing, groove, dynamics) and master it before moving on.
+          </p>
+        </div>
+
+        <div class="card" style="padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+          <h3 style="margin-bottom: var(--space-md); color: var(--accent-amber);">Real Output</h3>
+          <p style="line-height: 1.8; color: var(--text-muted);">
+            Export WAV and use it in a real track. This isn't "just practice" — you're building a portfolio and gaining confidence.
+          </p>
+        </div>
+
+        <div class="card" style="padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+          <h3 style="margin-bottom: var(--space-md); color: var(--accent-pink);">Zero Friction</h3>
+          <p style="line-height: 1.8; color: var(--text-muted);">
+            No download, installation, or account creation. Open it, make a loop, download it. The fastest path from idea to result.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h2 style="margin-bottom: var(--space-md); font-size: clamp(1.8rem, 4vw, 2.5rem);">
+          Ready to Build Your First Beat?
+        </h2>
+        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto var(--space-xl); color: var(--text-muted);">
+          Free online drum machine. No signup, no download. Open it and start making beats in 10 seconds.
+        </p>
+        <a href="drum-playground.html" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+          </svg>
+          <span>Open Drum Machine</span>
+        </a>
+
+        <p style="margin-top: var(--space-lg); font-size: 0.9rem; color: var(--text-dim);">
+          Want structured lessons? <a href="labs.html#drums" style="color: var(--accent-cyan); text-decoration: underline;">Start the Drums module</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Section -->
+  <section class="section" style="background: var(--bg-secondary); padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="margin-bottom: var(--space-lg);">Free Online Drum Machine: Everything You Need to Know</h2>
+
+        <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md); color: var(--accent-cyan);">What is a 16-step drum sequencer?</h3>
+        <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: var(--space-lg);">
+          A 16-step sequencer divides one bar of music into 16 equal parts, giving you precise control over when each drum hit occurs. This is the same layout used in classic drum machines like the Roland TR-808 and TR-909. It's the standard for electronic music production.
+        </p>
+
+        <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md); color: var(--accent-cyan);">Can I export my drum loops?</h3>
+        <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: var(--space-lg);">
+          Yes! Click the "Export WAV" button to download your loop as a high-quality audio file. Import it into any DAW (Ableton, FL Studio, Logic Pro, etc.) or use it in your productions. The export includes all your mixer settings, velocity changes, and humanization.
+        </p>
+
+        <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md); color: var(--accent-cyan);">Do I need to create an account?</h3>
+        <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: var(--space-lg);">
+          No. This is a completely free online drum machine with no signup required. Just open it and start making beats. We believe in removing barriers between you and making music.
+        </p>
+
+        <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md); color: var(--accent-cyan);">What's the difference between this and other beat makers?</h3>
+        <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: var(--space-lg);">
+          Most online drum machines are toys. This one is a <strong>learning tool</strong> with professional features: per-step velocity control, swing, humanization, a real mixer, and WAV export. It's part of our drum programming curriculum, designed to help you build real skills.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="mpl-logo-icon.svg" alt="" width="32" height="32">
+            <span>Music Producer Lab</span>
+          </div>
+          <p class="footer-tagline">
+            Learn music production by actually producing.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Tools</h4>
+          <ul class="footer-links">
+            <li><a href="drum-playground.html">Drum Machine</a></li>
+            <li><a href="labs.html#drums">Drum Lessons</a></li>
+            <li><a href="labs.html">All Labs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="labs.html#drums">Drums & Rhythm</a></li>
+            <li><a href="labs.html#arrangement">Arrangement</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://github.com/music-producer-lab" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="mpl-year">2025</span> Music Producer Lab. Free forever.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("mpl-year").textContent = new Date().getFullYear();
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
