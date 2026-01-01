@@ -353,6 +353,37 @@
 
       <!-- CONTROL PANEL -->
       <div class="control-panel">
+        <!-- Continue Last Session Button -->
+        <button type="button" id="continue-session-btn" class="btn btn-primary" style="display: none; margin-right: var(--space-sm);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+          <span>Continue Last Session</span>
+        </button>
+
+        <!-- Preset Dropdown -->
+        <div class="control-group">
+          <label>Presets</label>
+          <select id="preset-select" style="padding: var(--space-sm); background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; min-width: 200px;">
+            <option value="">-- Load Preset --</option>
+          </select>
+        </div>
+
+        <!-- Random Preset Button -->
+        <div class="control-group">
+          <button type="button" id="random-preset-btn" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md); font-size: 0.85rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+              <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
+            </svg>
+            Random Preset
+          </button>
+        </div>
+
+        <div style="flex: 1; min-width: 20px;"></div>
+
         <div class="control-group">
           <label>Tempo</label>
           <div class="tempo-display" id="playground-tempo-display">120 BPM</div>
@@ -372,8 +403,6 @@
           <label>Swing Control</label>
           <input type="range" id="playground-swing-slider" min="0" max="100" value="0" style="width: 200px;">
         </div>
-
-        <div style="flex: 1;"></div>
 
         <button type="button" class="btn btn-outline" id="playground-play">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
@@ -601,6 +630,7 @@
     <!-- Core Scripts -->
     <script type="module">
       import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
+      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage } from './playground-enhancements.js';
 
       // ==========================================
       // DRUM PLAYGROUND INITIALIZATION
@@ -678,6 +708,7 @@
           select.addEventListener('change', (e) => {
             changeSample(inst.id, e.target.value);
             console.log(`Changed ${inst.id} sample to:`, e.target.value);
+            triggerAutoSave(); // Auto-save on sample change
           });
 
           row.appendChild(label);
@@ -922,6 +953,10 @@
                   }
 
                   updateVelocityDisplay();
+                  triggerAutoSave(); // Auto-save on pattern change
+                } else {
+                  // Drag - velocity changed
+                  triggerAutoSave(); // Auto-save on velocity change
                 }
 
                 isDragging = false;
@@ -1119,12 +1154,14 @@
             const volume = parseFloat(e.target.value) / 100;
             setMixerVolume(inst.id, volume);
             volValue.textContent = volumeToDb(volume);
+            triggerAutoSave(); // Auto-save on mixer volume change
           });
 
           panSlider.addEventListener('input', (e) => {
             const pan = parseFloat(e.target.value) / 100;
             setMixerPan(inst.id, pan);
             panValue.textContent = panToText(pan);
+            triggerAutoSave(); // Auto-save on mixer pan change
           });
 
           channelsContainer.appendChild(channel);
@@ -1272,6 +1309,143 @@
       }
 
       // ==========================================
+      // PRESET MANAGEMENT
+      // ==========================================
+
+      function updateSequencerUI() {
+        // Color palette matching the one in initSequencer
+        const instrumentColors = {
+          'kick': '#ff5a3d',
+          'snare': '#5f4dff',
+          'hihat': '#00d4ff',
+          'hat': '#00d4ff',
+          'clap': '#f59e0b',
+          'tom': '#a855f7',
+          'rim': '#10b981',
+          'crash': '#ec4899'
+        };
+
+        instruments.forEach(inst => {
+          const color = instrumentColors[inst.id] || '#00d4ff';
+
+          for (let i = 0; i < stepCount; i++) {
+            const cell = document.querySelector(`.sequencer-step[data-step="${i}"][data-instrument="${inst.id}"]`);
+            if (!cell) continue;
+
+            const isActive = pattern[inst.id][i];
+            cell.classList.toggle('active', isActive);
+
+            if (isActive) {
+              cell.style.background = color;
+            } else {
+              cell.style.background = '';
+            }
+
+            // Update velocity display
+            const velocityFill = cell.querySelector('.velocity-fill');
+            const velocityHandle = cell.querySelector('.velocity-handle');
+            if (velocityFill && velocityHandle) {
+              if (isActive) {
+                const velocity = velocityState[inst.id][i];
+                const heightPercent = (velocity / 127) * 100;
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityFill.style.opacity = '0.3';
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityHandle.style.opacity = '0.6';
+              } else {
+                velocityFill.style.opacity = '0';
+                velocityHandle.style.opacity = '0';
+              }
+            }
+          }
+        });
+      }
+
+      function applyPreset(preset) {
+        // Map preset instrument names to our instrument IDs
+        const instrumentMap = {
+          'kick': 'kick',
+          'snare': 'snare',
+          'hihat': 'hihat',
+          'hat': 'hihat',
+          'openhat': 'hihat',
+          'clap': 'clap',
+          'tom': 'tom',
+          'rim': 'rim',
+          'crash': 'crash'
+        };
+
+        // Apply pattern and velocity
+        Object.keys(preset.pattern).forEach(presetInst => {
+          const ourInst = instrumentMap[presetInst];
+          if (ourInst && pattern[ourInst]) {
+            pattern[ourInst] = [...preset.pattern[presetInst]];
+            if (preset.velocity[presetInst]) {
+              velocityState[ourInst] = [...preset.velocity[presetInst]];
+            }
+          }
+        });
+
+        // Apply tempo
+        tempo = preset.bpm;
+        const tempoSlider = document.getElementById('playground-tempo-slider');
+        const tempoDisplay = document.getElementById('playground-tempo-display');
+        if (tempoSlider) tempoSlider.value = preset.bpm;
+        if (tempoDisplay) tempoDisplay.textContent = `${preset.bpm} BPM`;
+
+        // Apply swing
+        swing = preset.swing;
+        const swingSlider = document.getElementById('playground-swing-slider');
+        const swingDisplay = document.getElementById('playground-swing-display');
+        if (swingSlider) swingSlider.value = preset.swing;
+        if (swingDisplay) swingDisplay.textContent = `${preset.swing}%`;
+
+        // Redraw UI
+        updateSequencerUI();
+
+        // Trigger auto-save
+        triggerAutoSave();
+
+        console.log(`[Playground] Loaded preset: ${preset.name}`);
+      }
+
+      function showLearningPrompt(prompt) {
+        let promptEl = document.getElementById('learning-prompt');
+        if (!promptEl) {
+          promptEl = document.createElement('div');
+          promptEl.id = 'learning-prompt';
+          promptEl.style.cssText = `
+            margin: var(--space-md) 0;
+            padding: var(--space-md);
+            background: rgba(179, 102, 255, 0.1);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+          `;
+          const controlPanel = document.querySelector('.control-panel');
+          controlPanel?.insertAdjacentElement('afterend', promptEl);
+        }
+        promptEl.innerHTML = `<strong>💡 Try this:</strong> ${prompt}`;
+      }
+
+      function triggerAutoSave() {
+        saveCurrentState({
+          pattern,
+          velocity: velocityState,
+          tempo,
+          swing,
+          selectedSamples,
+          mixerState: getMixerState(),
+          humanization: {
+            enabled: humanizationEnabled,
+            timing: timingRandomization,
+            velocity: velocityRandomization
+          }
+        });
+      }
+
+      // ==========================================
       // WAV EXPORT FUNCTIONALITY
       // ==========================================
 
@@ -1304,6 +1478,27 @@
             exportStatus.style.display = 'none';
           }, 3000);
 
+          // Show post-export message and track export count
+          const exportCount = incrementExportCount();
+          if (exportCount === 1) {
+            // First export - show special message
+            const message = createPostExportMessage();
+            document.body.appendChild(message);
+
+            document.getElementById('dismiss-export-message')?.addEventListener('click', () => {
+              message.remove();
+            });
+
+            // Auto-remove after 10 seconds
+            setTimeout(() => {
+              if (message.parentNode) message.remove();
+            }, 10000);
+
+            markActivated(); // User is now activated
+          } else {
+            console.log(`[Playground] Export #${exportCount} completed`);
+          }
+
         } catch (error) {
           console.error('Export error:', error);
           exportStatus.textContent = '❌ Export failed: ' + error.message;
@@ -1328,6 +1523,7 @@
       tempoSlider.addEventListener('input', (e) => {
         tempo = parseInt(e.target.value);
         tempoDisplay.textContent = `${tempo} BPM`;
+        triggerAutoSave(); // Auto-save on tempo change
         // Note: No need to restart playback - the next scheduled step
         // will automatically use the new tempo value for timing calculation
       });
@@ -1339,9 +1535,106 @@
       swingSlider.addEventListener('input', (e) => {
         swing = parseInt(e.target.value);
         swingDisplay.textContent = `${swing}%`;
+        triggerAutoSave(); // Auto-save on swing change
         // Note: No need to restart playback - the next scheduled step
         // will automatically use the new swing value for timing calculation
       });
+
+      // ==========================================
+      // PRESET CONTROLS
+      // ==========================================
+
+      // Populate preset dropdown
+      const presetSelect = document.getElementById('preset-select');
+      if (presetSelect) {
+        presetPatterns.forEach(preset => {
+          const option = document.createElement('option');
+          option.value = preset.id;
+          option.textContent = `${preset.name} - ${preset.category}`;
+          presetSelect.appendChild(option);
+        });
+
+        // Load preset handler
+        presetSelect.addEventListener('change', (e) => {
+          const presetId = e.target.value;
+          if (!presetId) return;
+
+          const preset = presetPatterns.find(p => p.id === presetId);
+          if (!preset) return;
+
+          applyPreset(preset);
+          showLearningPrompt(preset.learningPrompt);
+        });
+      }
+
+      // Random preset button
+      const randomPresetBtn = document.getElementById('random-preset-btn');
+      if (randomPresetBtn) {
+        randomPresetBtn.addEventListener('click', () => {
+          const randomPreset = presetPatterns[Math.floor(Math.random() * presetPatterns.length)];
+          if (presetSelect) presetSelect.value = randomPreset.id;
+          applyPreset(randomPreset);
+          showLearningPrompt(randomPreset.learningPrompt);
+        });
+      }
+
+      // Continue Last Session button
+      const continueBtn = document.getElementById('continue-session-btn');
+      const savedState = loadSavedState();
+      if (savedState && continueBtn) {
+        continueBtn.style.display = 'inline-flex';
+        continueBtn.addEventListener('click', () => {
+          // Restore saved state
+          Object.keys(savedState.pattern).forEach(inst => {
+            if (pattern[inst]) {
+              pattern[inst] = [...savedState.pattern[inst]];
+            }
+            if (savedState.velocity && savedState.velocity[inst] && velocityState[inst]) {
+              velocityState[inst] = [...savedState.velocity[inst]];
+            }
+          });
+
+          tempo = savedState.tempo || 120;
+          swing = savedState.swing || 0;
+
+          // Update UI
+          tempoSlider.value = tempo;
+          tempoDisplay.textContent = `${tempo} BPM`;
+          swingSlider.value = swing;
+          swingDisplay.textContent = `${swing}%`;
+
+          // Restore humanization if saved
+          if (savedState.humanization) {
+            humanizationEnabled = savedState.humanization.enabled || false;
+            timingRandomization = savedState.humanization.timing || 0;
+            velocityRandomization = savedState.humanization.velocity || 0;
+
+            const humanizeEnableCheckbox = document.getElementById('humanize-enable');
+            const timingSlider = document.getElementById('timing-slider');
+            const timingValue = document.getElementById('timing-value');
+            const velocityRandSlider = document.getElementById('velocity-rand-slider');
+            const velocityRandValue = document.getElementById('velocity-rand-value');
+            const humanizeControlsDiv = document.getElementById('humanize-controls');
+
+            if (humanizeEnableCheckbox) humanizeEnableCheckbox.checked = humanizationEnabled;
+            if (timingSlider) timingSlider.value = timingRandomization;
+            if (timingValue) timingValue.textContent = `${timingRandomization}ms`;
+            if (velocityRandSlider) velocityRandSlider.value = velocityRandomization;
+            if (velocityRandValue) velocityRandValue.textContent = `${velocityRandomization}%`;
+            if (humanizeControlsDiv) {
+              humanizeControlsDiv.style.opacity = humanizationEnabled ? '1' : '0.5';
+              humanizeControlsDiv.style.pointerEvents = humanizationEnabled ? 'auto' : 'none';
+            }
+          }
+
+          updateSequencerUI();
+
+          // Hide button after use
+          continueBtn.style.display = 'none';
+
+          console.log('[Playground] Restored last session');
+        });
+      }
 
       // Humanization controls
       const humanizeEnableCheckbox = document.getElementById('humanize-enable');
@@ -1366,6 +1659,7 @@
               humanizeControlsDiv.style.pointerEvents = 'none';
             }
           }
+          triggerAutoSave(); // Auto-save on humanization toggle
         });
       }
 
@@ -1374,6 +1668,7 @@
         timingSlider.addEventListener('input', (e) => {
           timingRandomization = parseFloat(e.target.value);
           timingValue.textContent = `${timingRandomization}ms`;
+          triggerAutoSave(); // Auto-save on timing change
         });
       }
 
@@ -1382,6 +1677,7 @@
         velocityRandSlider.addEventListener('input', (e) => {
           velocityRandomization = parseFloat(e.target.value);
           velocityRandValue.textContent = `${velocityRandomization}%`;
+          triggerAutoSave(); // Auto-save on velocity randomization change
         });
       }
 
@@ -1442,6 +1738,31 @@
           initSamplePickers();
           initSequencer();
           initMixerUI();
+
+          // Show activation nudge for first-time users
+          if (shouldShowActivationNudge()) {
+            const nudge = createActivationNudge();
+            const controlPanel = document.querySelector('.control-panel');
+            controlPanel?.insertAdjacentElement('beforebegin', nudge);
+
+            // Dismiss handler
+            document.getElementById('dismiss-nudge')?.addEventListener('click', () => {
+              nudge.remove();
+              markActivated();
+            });
+
+            // Auto-dismiss after first preset load or pattern change
+            const autoDismiss = () => {
+              if (nudge.parentNode) {
+                nudge.remove();
+                markActivated();
+              }
+            };
+            const presetSelectElement = document.getElementById('preset-select');
+            if (presetSelectElement) {
+              presetSelectElement.addEventListener('change', autoDismiss, { once: true });
+            }
+          }
 
           console.log('✅ Drum Playground initialized!');
         } catch (error) {
