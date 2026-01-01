@@ -425,6 +425,16 @@
           </svg>
           <span>Clear All</span>
         </button>
+
+        <button type="button" class="btn btn-primary" id="share-pattern-btn" style="background: linear-gradient(135deg, #00d4ff 0%, #b366ff 100%);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+          <span>Share Link</span>
+        </button>
       </div>
 
       <!-- HUMANIZATION SECTION -->
@@ -630,7 +640,7 @@
     <!-- Core Scripts -->
     <script type="module">
       import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
-      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage } from './playground-enhancements.js';
+      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage, generateShareLink, loadPatternFromURL, createShareModal, trackExport, trackPresetUsed, trackSkillUsed, createProgressWidget, updateProgressWidget } from './playground-enhancements.js';
 
       // ==========================================
       // DRUM PLAYGROUND INITIALIZATION
@@ -957,6 +967,7 @@
                 } else {
                   // Drag - velocity changed
                   triggerAutoSave(); // Auto-save on velocity change
+                  trackSkillUsed('velocity'); // Track velocity skill
                 }
 
                 isDragging = false;
@@ -1155,6 +1166,7 @@
             setMixerVolume(inst.id, volume);
             volValue.textContent = volumeToDb(volume);
             triggerAutoSave(); // Auto-save on mixer volume change
+            trackSkillUsed('mixer'); // Track mixer skill
           });
 
           panSlider.addEventListener('input', (e) => {
@@ -1162,6 +1174,7 @@
             setMixerPan(inst.id, pan);
             panValue.textContent = panToText(pan);
             triggerAutoSave(); // Auto-save on mixer pan change
+            trackSkillUsed('mixer'); // Track mixer skill
           });
 
           channelsContainer.appendChild(channel);
@@ -1480,6 +1493,9 @@
 
           // Show post-export message and track export count
           const exportCount = incrementExportCount();
+          trackExport(); // Track in stats
+          updateProgressWidget(); // Update progress widget
+
           if (exportCount === 1) {
             // First export - show special message
             const message = createPostExportMessage();
@@ -1516,6 +1532,20 @@
       document.getElementById('playground-clear').addEventListener('click', clearPattern);
       document.getElementById('export-wav-btn').addEventListener('click', exportToWav);
 
+      // Share pattern button
+      document.getElementById('share-pattern-btn').addEventListener('click', () => {
+        const shareLink = generateShareLink({
+          pattern,
+          velocity: velocityState,
+          tempo,
+          swing
+        });
+
+        if (shareLink) {
+          createShareModal(shareLink);
+        }
+      });
+
       // Tempo control
       const tempoSlider = document.getElementById('playground-tempo-slider');
       const tempoDisplay = document.getElementById('playground-tempo-display');
@@ -1536,6 +1566,9 @@
         swing = parseInt(e.target.value);
         swingDisplay.textContent = `${swing}%`;
         triggerAutoSave(); // Auto-save on swing change
+        if (swing > 0) {
+          trackSkillUsed('swing'); // Track skill usage
+        }
         // Note: No need to restart playback - the next scheduled step
         // will automatically use the new swing value for timing calculation
       });
@@ -1564,6 +1597,8 @@
 
           applyPreset(preset);
           showLearningPrompt(preset.learningPrompt);
+          trackPresetUsed(preset.id); // Track preset usage
+          updateProgressWidget();
         });
       }
 
@@ -1575,6 +1610,8 @@
           if (presetSelect) presetSelect.value = randomPreset.id;
           applyPreset(randomPreset);
           showLearningPrompt(randomPreset.learningPrompt);
+          trackPresetUsed(randomPreset.id); // Track preset usage
+          updateProgressWidget();
         });
       }
 
@@ -1654,6 +1691,7 @@
             if (humanizationEnabled) {
               humanizeControlsDiv.style.opacity = '1';
               humanizeControlsDiv.style.pointerEvents = 'auto';
+              trackSkillUsed('humanization'); // Track humanization skill
             } else {
               humanizeControlsDiv.style.opacity = '0.5';
               humanizeControlsDiv.style.pointerEvents = 'none';
@@ -1669,6 +1707,9 @@
           timingRandomization = parseFloat(e.target.value);
           timingValue.textContent = `${timingRandomization}ms`;
           triggerAutoSave(); // Auto-save on timing change
+          if (timingRandomization > 0) {
+            trackSkillUsed('humanization'); // Track humanization skill
+          }
         });
       }
 
@@ -1678,6 +1719,9 @@
           velocityRandomization = parseFloat(e.target.value);
           velocityRandValue.textContent = `${velocityRandomization}%`;
           triggerAutoSave(); // Auto-save on velocity randomization change
+          if (velocityRandomization > 0) {
+            trackSkillUsed('humanization'); // Track humanization skill
+          }
         });
       }
 
@@ -1738,6 +1782,83 @@
           initSamplePickers();
           initSequencer();
           initMixerUI();
+
+          // Load pattern from URL if present (shareable link)
+          const urlPattern = loadPatternFromURL();
+          if (urlPattern) {
+            console.log('[Playground] Loading pattern from URL');
+
+            // Apply pattern data
+            Object.keys(urlPattern.pattern).forEach(inst => {
+              if (pattern[inst]) {
+                pattern[inst] = [...urlPattern.pattern[inst]];
+              }
+              if (urlPattern.velocity && urlPattern.velocity[inst] && velocityState[inst]) {
+                velocityState[inst] = [...urlPattern.velocity[inst]];
+              }
+            });
+
+            // Apply tempo and swing
+            tempo = urlPattern.tempo || 120;
+            swing = urlPattern.swing || 0;
+
+            // Update UI
+            const tempoSliderEl = document.getElementById('playground-tempo-slider');
+            const tempoDisplayEl = document.getElementById('playground-tempo-display');
+            const swingSliderEl = document.getElementById('playground-swing-slider');
+            const swingDisplayEl = document.getElementById('playground-swing-display');
+
+            if (tempoSliderEl) tempoSliderEl.value = tempo;
+            if (tempoDisplayEl) tempoDisplayEl.textContent = `${tempo} BPM`;
+            if (swingSliderEl) swingSliderEl.value = swing;
+            if (swingDisplayEl) swingDisplayEl.textContent = `${swing}%`;
+
+            // Redraw sequencer
+            updateSequencerUI();
+
+            // Show toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+              position: fixed;
+              top: 80px;
+              left: 50%;
+              transform: translateX(-50%);
+              padding: var(--space-md) var(--space-xl);
+              background: linear-gradient(135deg, rgba(0, 212, 255, 0.95), rgba(179, 102, 255, 0.95));
+              color: white;
+              border-radius: var(--radius-md);
+              box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+              font-weight: 600;
+              z-index: 10000;
+              animation: slideDown 0.3s ease-out;
+            `;
+            toast.innerHTML = `🔗 Pattern loaded from shared link`;
+            document.body.appendChild(toast);
+
+            // Add animation
+            if (!document.getElementById('toast-animation')) {
+              const style = document.createElement('style');
+              style.id = 'toast-animation';
+              style.textContent = `
+                @keyframes slideDown {
+                  from {
+                    transform: translateX(-50%) translateY(-20px);
+                    opacity: 0;
+                  }
+                  to {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                  }
+                }
+              `;
+              document.head.appendChild(style);
+            }
+
+            setTimeout(() => toast.remove(), 3000);
+          }
+
+          // Create progress tracker widget
+          createProgressWidget();
 
           // Show activation nudge for first-time users
           if (shouldShowActivationNudge()) {
