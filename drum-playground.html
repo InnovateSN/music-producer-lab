@@ -572,13 +572,25 @@
           </p>
         </div>
 
-        <button type="button" class="btn-export" id="export-wav-btn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:8px;vertical-align:middle;">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-          </svg>
-          Export as WAV
-        </button>
-        <div class="export-status" id="export-status" style="display: none;">
+        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+          <button type="button" class="btn-export" id="export-wav-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:8px;vertical-align:middle;">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Export WAV
+          </button>
+
+          <button type="button" class="btn-export" id="export-midi-btn" style="background: linear-gradient(135deg, #b366ff 0%, #8b5cf6 100%);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:8px;vertical-align:middle;">
+              <path d="M9 18V5l12-2v13M9 13l12-2"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+            Export MIDI
+          </button>
+        </div>
+
+        <div class="export-status" id="export-status" style="display: none; margin-top: var(--space-md);">
           <!-- Export status messages -->
         </div>
       </section>
@@ -640,7 +652,7 @@
     <!-- Core Scripts -->
     <script type="module">
       import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
-      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage, generateShareLink, loadPatternFromURL, createShareModal, trackExport, trackPresetUsed, trackSkillUsed, createProgressWidget, updateProgressWidget } from './playground-enhancements.js';
+      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage, generateShareLink, loadPatternFromURL, createShareModal, trackExport, trackPresetUsed, trackSkillUsed, createProgressWidget, updateProgressWidget, getLessonOrigin, createLessonOriginBanner } from './playground-enhancements.js';
 
       // ==========================================
       // DRUM PLAYGROUND INITIALIZATION
@@ -1524,6 +1536,60 @@
       }
 
       // ==========================================
+      // MIDI EXPORT FUNCTIONALITY
+      // ==========================================
+
+      async function exportToMIDI() {
+        const exportBtn = document.getElementById('export-midi-btn');
+        const exportStatus = document.getElementById('export-status');
+
+        try {
+          exportBtn.disabled = true;
+          exportStatus.style.display = 'block';
+          exportStatus.textContent = '🎹 Rendering MIDI file...';
+
+          // Import MIDI export module
+          const { renderPatternToMIDI } = await import('./midi-export.js');
+
+          // Render the pattern to MIDI
+          const midiBlob = await renderPatternToMIDI(
+            pattern,
+            instruments,
+            tempo,
+            stepCount,
+            velocityState,
+            swing
+          );
+
+          // Create download link
+          const url = URL.createObjectURL(midiBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `drum-loop-${tempo}bpm-${Date.now()}.mid`;
+          a.click();
+
+          URL.revokeObjectURL(url);
+
+          exportStatus.textContent = '✅ MIDI file exported successfully!';
+          setTimeout(() => {
+            exportStatus.style.display = 'none';
+          }, 3000);
+
+          // Track export
+          trackExport();
+          updateProgressWidget();
+
+          console.log('[Playground] MIDI export completed');
+
+        } catch (error) {
+          console.error('MIDI export error:', error);
+          exportStatus.textContent = '❌ MIDI export failed: ' + error.message;
+        } finally {
+          exportBtn.disabled = false;
+        }
+      }
+
+      // ==========================================
       // EVENT LISTENERS
       // ==========================================
 
@@ -1531,6 +1597,7 @@
       document.getElementById('playground-stop').addEventListener('click', stop);
       document.getElementById('playground-clear').addEventListener('click', clearPattern);
       document.getElementById('export-wav-btn').addEventListener('click', exportToWav);
+      document.getElementById('export-midi-btn').addEventListener('click', exportToMIDI);
 
       // Share pattern button
       document.getElementById('share-pattern-btn').addEventListener('click', () => {
@@ -1859,6 +1926,12 @@
 
           // Create progress tracker widget
           createProgressWidget();
+
+          // Show lesson origin banner if opened from lesson page
+          const lessonOrigin = getLessonOrigin();
+          if (lessonOrigin) {
+            createLessonOriginBanner(lessonOrigin);
+          }
 
           // Show activation nudge for first-time users
           if (shouldShowActivationNudge()) {

@@ -842,3 +842,126 @@ export function updateProgressWidget() {
     createProgressWidget();
   }
 }
+
+// ==========================================
+// TWO-WAY DEEP LINKING (Lessons ↔ Playground)
+// ==========================================
+
+/**
+ * Get lesson origin from URL (if opened from lesson page)
+ */
+export function getLessonOrigin() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('from'); // e.g. "lesson-drums-3"
+}
+
+/**
+ * Generate playground link from lesson page
+ * Call this from lesson pages to create "Open in Playground" links
+ *
+ * Example usage in lesson page:
+ * const link = generatePlaygroundLink(currentPattern, 'lesson-drums-3');
+ */
+export function generatePlaygroundLink(state, lessonId) {
+  const encoded = serializePattern(state);
+  if (!encoded) return null;
+
+  const baseUrl = window.location.origin + '/drum-playground.html';
+  return `${baseUrl}?pattern=${encoded}&from=${lessonId}`;
+}
+
+/**
+ * Create lesson origin banner (shown when opened from lesson)
+ */
+export function createLessonOriginBanner(lessonId) {
+  // Parse lesson number from ID (e.g., "lesson-drums-3" -> 3)
+  const lessonMatch = lessonId.match(/lesson-drums-(\d+)/);
+  const lessonNumber = lessonMatch ? parseInt(lessonMatch[1]) : null;
+
+  const banner = document.createElement('div');
+  banner.id = 'lesson-origin-banner';
+  banner.style.cssText = `
+    position: sticky;
+    top: 70px;
+    z-index: 98;
+    margin: var(--space-md) 0;
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border: 2px solid rgba(16, 185, 129, 0.4);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+  `;
+
+  const lessonTitle = lessonNumber ? `Lesson ${lessonNumber}` : 'Drum Lesson';
+  const lessonUrl = lessonId ? `${lessonId}.html` : 'labs.html#drums';
+
+  banner.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);">
+      <div style="display: flex; align-items: center; gap: var(--space-md);">
+        <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border-radius: var(--radius-md);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #10b981;">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2px;">
+            Opened from
+          </div>
+          <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">
+            ${lessonTitle}
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: var(--space-sm);">
+        <a href="${lessonUrl}" class="btn btn-sm btn-outline" style="padding: var(--space-xs) var(--space-md); font-size: 0.85rem; text-decoration: none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Lesson
+        </a>
+        <button id="dismiss-lesson-banner" style="background: none; border: none; color: var(--text-dim); cursor: pointer; padding: 4px 8px;" title="Dismiss">×</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(banner);
+
+  // Dismiss handler
+  document.getElementById('dismiss-lesson-banner').addEventListener('click', () => {
+    banner.remove();
+  });
+
+  return banner;
+}
+
+/**
+ * Helper: Insert "Open in Playground" button in lesson pages
+ * This function can be called from lesson-engine.js or individual lesson pages
+ */
+export function insertPlaygroundButton(containerId, getCurrentPattern) {
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+
+  const button = document.createElement('button');
+  button.className = 'btn btn-primary';
+  button.style.cssText = 'margin-top: var(--space-md);';
+  button.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+    Try in Playground
+  `;
+
+  button.addEventListener('click', () => {
+    const pattern = getCurrentPattern();
+    const lessonId = document.body.dataset.lessonId || 'lesson-drums';
+    const link = generatePlaygroundLink(pattern, lessonId);
+
+    if (link) {
+      window.location.href = link;
+    }
+  });
+
+  container.appendChild(button);
+  return button;
+}
