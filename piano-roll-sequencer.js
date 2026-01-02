@@ -342,7 +342,7 @@ let lessonValidation = null;
  * @param {Object} config - Configuration object from lesson config
  * @param {string} containerId - Container element ID
  */
-export function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection') {
+function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection') {
   console.log('[PianoRoll] Starting initialization...', { config, containerId });
 
   const container = document.getElementById(containerId);
