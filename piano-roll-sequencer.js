@@ -343,11 +343,16 @@ let lessonValidation = null;
  * @param {string} containerId - Container element ID
  */
 export function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection') {
+  console.log('[PianoRoll] Starting initialization...', { config, containerId });
+
   const container = document.getElementById(containerId);
   if (!container) {
     console.error('[PianoRoll] Container not found:', containerId);
+    console.error('[PianoRoll] Available elements:', document.querySelectorAll('[id]'));
     return;
   }
+
+  console.log('[PianoRoll] Container found:', container);
 
   // Update state from config
   pianoRollState.tempo = config.sequencer?.tempo || 90;
@@ -358,20 +363,28 @@ export function initPianoRollSequencer(config, containerId = 'mpl-sequencer-coll
   pianoRollState.pitchRange = config.sequencer?.pitchRange || { low: 36, high: 72 };
   lessonValidation = config.validation || null;
 
+  console.log('[PianoRoll] State configured:', pianoRollState);
+
   // Clear container
   container.innerHTML = '';
 
   // Create piano roll UI
+  console.log('[PianoRoll] Creating UI...');
   const pianoRoll = createPianoRollUI();
+  console.log('[PianoRoll] UI created:', pianoRoll);
+
   container.appendChild(pianoRoll);
+  console.log('[PianoRoll] UI appended to container');
 
   // Setup controls
+  console.log('[PianoRoll] Setting up controls...');
   setupPianoRollControls();
 
   // Setup chord display
+  console.log('[PianoRoll] Setting up chord display...');
   setupChordDisplay();
 
-  console.log('[PianoRoll] Initialized:', pianoRollState);
+  console.log('[PianoRoll] ✓ Initialization complete!', pianoRollState);
 }
 
 /**
