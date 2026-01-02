@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Roll Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #error-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4444;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            font-family: monospace;
+            font-size: 14px;
+            z-index: 10000;
+            display: none;
+        }
+        #success-display {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #44ff44;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            z-index: 10000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="error-display"></div>
+    <div id="success-display"></div>
+
+    <div class="container" style="padding: 40px;">
+        <h1>Piano Roll Test Page</h1>
+        <p>This page tests if the piano roll loads correctly.</p>
+
+        <div id="status" style="padding: 20px; background: rgba(0,240,255,0.1); border-radius: 8px; margin: 20px 0;">
+            <h2>Status:</h2>
+            <div id="status-log"></div>
+        </div>
+
+        <div id="mpl-sequencer-collection" style="margin-top: 40px;">
+            <!-- Piano roll will be inserted here -->
+        </div>
+
+        <div id="mpl-sequencer-section"></div>
+    </div>
+
+    <script type="module">
+        const errorDisplay = document.getElementById('error-display');
+        const successDisplay = document.getElementById('success-display');
+        const statusLog = document.getElementById('status-log');
+
+        function log(message, type = 'info') {
+            const p = document.createElement('p');
+            p.style.margin = '5px 0';
+            p.style.color = type === 'error' ? '#ff4444' : type === 'success' ? '#44ff44' : '#00f0ff';
+            p.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            statusLog.appendChild(p);
+            console.log(message);
+        }
+
+        // Global error handler
+        window.addEventListener('error', (e) => {
+            errorDisplay.style.display = 'block';
+            errorDisplay.innerHTML = `
+                <h3>ERROR!</h3>
+                <p><strong>Message:</strong> ${e.message}</p>
+                <p><strong>File:</strong> ${e.filename}</p>
+                <p><strong>Line:</strong> ${e.lineno}:${e.colno}</p>
+            `;
+            log(`ERROR: ${e.message}`, 'error');
+        });
+
+        // Test piano roll import
+        log('Testing piano roll import...');
+
+        try {
+            const { initPianoRollSequencer } = await import('./piano-roll-sequencer.js');
+            log('✓ Piano roll module loaded!', 'success');
+
+            // Test config
+            const testConfig = {
+                sequencer: {
+                    tempo: 90,
+                    stepCount: 16,
+                    bars: 1,
+                    key: 'C',
+                    scale: 'Major',
+                    pitchRange: { low: 36, high: 72 }
+                },
+                validation: {
+                    type: 'exact_chord',
+                    requiredNotes: {
+                        time: 0,
+                        pitches: [60, 64, 67],
+                        simultaneous: true,
+                        chordName: 'C Major'
+                    }
+                },
+                mode: {
+                    sequencerType: 'piano-roll'
+                }
+            };
+
+            log('Initializing piano roll...');
+            initPianoRollSequencer(testConfig, 'mpl-sequencer-collection');
+
+            successDisplay.style.display = 'block';
+            successDisplay.textContent = '✓ Piano roll loaded successfully!';
+            log('✓ Piano roll initialized!', 'success');
+
+        } catch (error) {
+            log(`ERROR: ${error.message}`, 'error');
+            errorDisplay.style.display = 'block';
+            errorDisplay.innerHTML = `
+                <h3>IMPORT ERROR!</h3>
+                <p><strong>Message:</strong> ${error.message}</p>
+                <p><strong>Stack:</strong></p>
+                <pre style="font-size: 11px; overflow: auto;">${error.stack}</pre>
+            `;
+        }
+    </script>
+</body>
+</html>
