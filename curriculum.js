@@ -1,7 +1,15 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains all 45 lessons across 6 categories.
+ * This file contains 65+ lessons across 7 categories:
+ * - Drums & Rhythm (21 lessons)
+ * - Harmony & Melody (20 lessons)
+ * - Arrangement & Songwriting
+ * - Sound Design
+ * - Mixing
+ * - Vocals
+ * - Mastering
+ *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
  * Progression Levels:
@@ -259,6 +267,264 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Free',
         pagePath: 'drum-playground.html',
         configPath: null
+      }
+    ]
+  },
+
+  // ============================================================
+  // HARMONY & MELODY MODULE (20 Lessons)
+  // ============================================================
+  {
+    slug: 'harmony',
+    title: 'Harmony & Melody',
+    description: 'Build chord progressions and write melodies by placing notes and hearing results instantly. Master triads, seventh chords, voice leading, and genre-specific harmony from house to neo-soul.',
+    lessons: [
+      // --- LEVEL 1-3: BEGINNER ---
+      {
+        slug: 'lesson-harmony-1',
+        lessonKey: 'mpl-harmony-1-progress',
+        title: 'Build Your First Chord: Major Triad',
+        description: 'Stack three notes on the same beat to create your first real chord. Understand root, third, and fifth intervals through hands-on practice.',
+        duration: '8-10 min',
+        level: 'Beginner',
+        depthLevel: 1,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-1.html',
+        configPath: './configs/lesson-harmony-1.config.js'
+      },
+      {
+        slug: 'lesson-harmony-2',
+        lessonKey: 'mpl-harmony-2-progress',
+        title: 'Flip the Emotion: Major vs Minor',
+        description: 'Change one note to turn a bright major chord into a darker minor chord. Feel how the third controls the emotional color.',
+        duration: '8-10 min',
+        level: 'Beginner',
+        depthLevel: 1,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-2.html',
+        configPath: './configs/lesson-harmony-2.config.js'
+      },
+      {
+        slug: 'lesson-harmony-3',
+        lessonKey: 'mpl-harmony-3-progress',
+        title: 'Feel Tension: I to V',
+        description: 'Create a two-chord loop that moves from home to tension. Experience the dominant pull that drives most Western music.',
+        duration: '10-12 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-3.html',
+        configPath: './configs/lesson-harmony-3.config.js'
+      },
+      {
+        slug: 'lesson-harmony-4',
+        lessonKey: 'mpl-harmony-4-progress',
+        title: 'Build a Classic: I–IV–V',
+        description: 'Program the most common song backbone progression. Understand how stable and tense chords work together.',
+        duration: '12-14 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-4.html',
+        configPath: './configs/lesson-harmony-4.config.js'
+      },
+      {
+        slug: 'lesson-harmony-5',
+        lessonKey: 'mpl-harmony-5-progress',
+        title: 'Write the Pop Loop: I–V–vi–IV',
+        description: 'Build the modern hit progression used in thousands of songs. Create an endless, satisfying loop that feels complete.',
+        duration: '12-15 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-5.html',
+        configPath: './configs/lesson-harmony-5.config.js'
+      },
+      {
+        slug: 'lesson-harmony-6',
+        lessonKey: 'mpl-harmony-6-progress',
+        title: 'Melody from Chord Tones',
+        description: 'Write your first melody by targeting chord tones on strong beats. Learn safe anchor points that always fit.',
+        duration: '12-16 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Free',
+        pagePath: 'lesson-harmony-6.html',
+        configPath: './configs/lesson-harmony-6.config.js'
+      },
+      {
+        slug: 'lesson-harmony-7',
+        lessonKey: 'mpl-harmony-7-progress',
+        title: 'Stepwise Melody: Use the Scale',
+        description: 'Expand beyond chord tones using passing tones from the major scale. Create melodies that move and breathe.',
+        duration: '12-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-7.html',
+        configPath: './configs/lesson-harmony-7.config.js'
+      },
+
+      // --- LEVEL 4-6: INTERMEDIATE ---
+      {
+        slug: 'lesson-harmony-8',
+        lessonKey: 'mpl-harmony-8-progress',
+        title: 'Upgrade to 7ths: Maj7 & Min7',
+        description: 'Turn basic triads into lush four-note chords. Add the seventh for that smooth, modern sound used in house and R&B.',
+        duration: '12-15 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-8.html',
+        configPath: './configs/lesson-harmony-8.config.js'
+      },
+      {
+        slug: 'lesson-harmony-9',
+        lessonKey: 'mpl-harmony-9-progress',
+        title: 'Create Pull: Dominant 7',
+        description: 'Use G7 to create strong tension that resolves to home. Master the most powerful resolution tool in harmony.',
+        duration: '12-16 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-9.html',
+        configPath: './configs/lesson-harmony-9.config.js'
+      },
+      {
+        slug: 'lesson-harmony-10',
+        lessonKey: 'mpl-harmony-10-progress',
+        title: 'House Loop: Minor to Major Movement',
+        description: 'Build a club-ready 4-bar loop with seventh chords and add a simple topline. Learn house harmonic rhythm.',
+        duration: '15-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-10.html',
+        configPath: './configs/lesson-harmony-10.config.js'
+      },
+      {
+        slug: 'lesson-harmony-11',
+        lessonKey: 'mpl-harmony-11-progress',
+        title: 'Smooth the Jumps: Chord Inversions',
+        description: 'Re-voice chords so notes move by small steps instead of leaps. Make your progressions sound instantly more professional.',
+        duration: '15-18 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-11.html',
+        configPath: './configs/lesson-harmony-11.config.js'
+      },
+      {
+        slug: 'lesson-harmony-12',
+        lessonKey: 'mpl-harmony-12-progress',
+        title: 'Motif Magic: Repeat with Variation',
+        description: 'Write memorable melodies by repeating a short phrase and varying one element. Master the foundation of hooks and riffs.',
+        duration: '14-18 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-12.html',
+        configPath: './configs/lesson-harmony-12.config.js'
+      },
+      {
+        slug: 'lesson-harmony-13',
+        lessonKey: 'mpl-harmony-13-progress',
+        title: 'Hip-Hop Minor Loop: Dark but Catchy',
+        description: 'Build a minor progression with sparse, emotional melody. Learn how space creates impact in modern hip-hop and R&B.',
+        duration: '14-18 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-13.html',
+        configPath: './configs/lesson-harmony-13.config.js'
+      },
+      {
+        slug: 'lesson-harmony-14',
+        lessonKey: 'mpl-harmony-14-progress',
+        title: 'Borrow One Chord: Instant Emotion Shift',
+        description: 'Add a borrowed chord to create dramatic color changes. Master modal interchange for pop and cinematic production.',
+        duration: '15-18 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-14.html',
+        configPath: './configs/lesson-harmony-14.config.js'
+      },
+
+      // --- LEVEL 7-8: ADVANCED ---
+      {
+        slug: 'lesson-harmony-15',
+        lessonKey: 'mpl-harmony-15-progress',
+        title: 'Add9 Color: Make Chords Glow',
+        description: 'Turn plain chords into modern, airy harmonies by adding the ninth. Create shimmer without losing stability.',
+        duration: '14-18 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-15.html',
+        configPath: './configs/lesson-harmony-15.config.js'
+      },
+      {
+        slug: 'lesson-harmony-16',
+        lessonKey: 'mpl-harmony-16-progress',
+        title: 'Neo-Soul Moves: Sus → Resolve',
+        description: 'Build lush progressions with suspended chords and smooth voice leading. Master the DNA of R&B and neo-soul keys.',
+        duration: '16-20 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-16.html',
+        configPath: './configs/lesson-harmony-16.config.js'
+      },
+      {
+        slug: 'lesson-harmony-17',
+        lessonKey: 'mpl-harmony-17-progress',
+        title: 'Dorian Mode: The Cool Minor Sound',
+        description: 'Write groove progressions using Dorian for modern funk, house, and R&B. Escape basic major/minor clichés.',
+        duration: '15-18 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-17.html',
+        configPath: './configs/lesson-harmony-17.config.js'
+      },
+      {
+        slug: 'lesson-harmony-18',
+        lessonKey: 'mpl-harmony-18-progress',
+        title: 'Cinematic Lift: Pedal Tone + Chord Changes',
+        description: 'Create film-style emotion by holding one note while chords shift above it. Master tension in ambient and scoring.',
+        duration: '16-20 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-18.html',
+        configPath: './configs/lesson-harmony-18.config.js'
+      },
+
+      // --- LEVEL 9-10: EXPERT ---
+      {
+        slug: 'lesson-harmony-19',
+        lessonKey: 'mpl-harmony-19-progress',
+        title: 'Reharmonize a Melody: 3 Different Backings',
+        description: 'Take one melody and support it with three different chord progressions. Learn reharmonization for remixes and bridges.',
+        duration: '18-20 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-19.html',
+        configPath: './configs/lesson-harmony-19.config.js'
+      },
+      {
+        slug: 'lesson-harmony-20',
+        lessonKey: 'mpl-harmony-20-progress',
+        title: 'Pro Voicing Pack: Spread, Stack, and Control',
+        description: 'Build professional chord voicings with controlled top notes and counter-melodies. Master record-ready harmony movement.',
+        duration: '18-20 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-20.html',
+        configPath: './configs/lesson-harmony-20.config.js'
       }
     ]
   },
