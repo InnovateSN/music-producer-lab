@@ -251,47 +251,67 @@
           </div>
         </section>
 
-        <!-- INTERACTIVE SEQUENCER PLACEHOLDER -->
-        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
-          <div class="exercise-box" style="background: linear-gradient(135deg, rgba(255,178,138,0.1), rgba(255,90,61,0.05)); border: 2px solid rgba(255,178,138,0.3);">
-            <div class="section-eyebrow">Interactive Exercise</div>
-            <h2 class="section-title">Piano Roll Sequencer: Coming Soon</h2>
-            <p class="section-body">
-              The interactive piano roll for building melodies hands-on is currently in development. For now, practice this lesson in your DAW using the instructions below.
-            </p>
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
 
-            <h3 style="font-size: var(--font-size-lg); margin-top: var(--space-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Try This in Your DAW</h3>
-            <ol class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm); line-height: 1.8;">
-              <li><strong>Set up two MIDI tracks:</strong>
-                <ul style="margin-left: var(--space-md); margin-top: var(--space-xs);">
-                  <li>Track 1: Your chord progression from Lesson 5 (C–G–Am–F) with a pad or piano</li>
-                  <li>Track 2: A new track for your melody with a synth lead or bell sound</li>
-                </ul>
-              </li>
-              <li><strong>Set tempo to 100 BPM</strong></li>
-              <li><strong>Bar 1 (over C major):</strong> Write 4-8 melody notes using only C, E, or G
-                <ul style="margin-left: var(--space-md); margin-top: var(--space-xs);">
-                  <li>Try starting on E, moving to G, then back to C</li>
-                  <li>Use any octave (C4, C5, etc.)</li>
-                </ul>
-              </li>
-              <li><strong>Bar 2 (over G major):</strong> Write melody notes using only G, B, or D</li>
-              <li><strong>Bar 3 (over A minor):</strong> Write melody notes using only A, C, or E</li>
-              <li><strong>Bar 4 (over F major):</strong> Write melody notes using only F, A, or C</li>
-              <li><strong>Loop and refine:</strong> Listen back and adjust the rhythm and contour until it feels natural</li>
-            </ol>
-
-            <div style="background: rgba(0,240,255,0.1); padding: var(--space-md); border-radius: 8px; border-left: 3px solid var(--accent-cyan); margin-top: var(--space-md);">
-              <p style="margin: 0; font-size: 0.95rem;">
-                <strong>Pro Tip:</strong> Start simple - use quarter notes or 8th notes with a clear rhythm. You can add complexity later, but a simple, clear melody is often more memorable than a busy one.
-              </p>
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
-            <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(95,77,255,0.1); border-radius: 8px;">
-              <p style="margin: 0;">
-                <strong>🎯 Exercise Goal:</strong> Create an 8+ note melody using only chord tones that flows naturally over the progression. Once you can write melodies that always harmonize, you understand the melody-harmony relationship.
-              </p>
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
+          </div>
+        </section>
+
+        <!-- PIANO ROLL SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Piano Roll</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Chord</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Piano roll will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              <span>Clear</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Click on the piano roll to place notes.</span>
           </div>
         </section>
 
@@ -320,7 +340,15 @@
       </div>
     </footer>
 
-    <script>
+    <!-- MODULAR LESSON ENGINE -->
+    <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-harmony-6.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
       // Set year in footer
       document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>

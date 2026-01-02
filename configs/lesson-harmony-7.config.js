@@ -106,7 +106,7 @@ export const lessonConfig = {
     showTargetHint: true,
     enablePresets: false,
     enableExport: false,
-    sequencerType: "placeholder"
+    sequencerType: "piano-roll"
   }
 };
 
