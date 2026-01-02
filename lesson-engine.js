@@ -11,6 +11,7 @@
  */
 
 import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
+import { initPianoRollSequencer } from './piano-roll-sequencer.js';
 import { curriculum as defaultCurriculum, getLessonNavigation } from './curriculum.js';
 
 // ==========================================
@@ -478,12 +479,23 @@ function setupModeUI(config) {
 
 function initSequencer(config) {
   const { instruments, lessonKey, nextLessonUrl, sequencer: seqConfig, messages, mode } = config;
-  
+
+  // Check sequencer type (piano-roll for harmony lessons, drums for rhythm lessons)
+  const sequencerType = mode?.sequencerType || 'drums';
+
+  if (sequencerType === 'piano-roll') {
+    // Initialize piano roll sequencer for harmony lessons
+    console.log('[LessonEngine] Initializing piano roll sequencer');
+    initPianoRollSequencer(config, 'mpl-sequencer-collection');
+    return;
+  }
+
+  // Default: Initialize drum sequencer
   if (!instruments || instruments.length === 0) {
     console.error('[LessonEngine] No instruments defined in config');
     return;
   }
-  
+
   // Convert config instruments to sequencer format (preserving all properties)
   const seqInstruments = instruments.map(inst => ({
     id: inst.id,
@@ -495,7 +507,7 @@ function initSequencer(config) {
     defaultVolume: inst.defaultVolume,
     defaultPan: inst.defaultPan
   }));
-  
+
   // Initialize the drum sequencer
   initDrumSequencer(
     seqInstruments,

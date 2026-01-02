@@ -97,8 +97,7 @@ export const lessonConfig = {
     showTargetHint: true,
     enablePresets: false,
     enableExport: false,
-    // Flag to indicate piano roll is not yet implemented
-    sequencerType: "placeholder"  // Will be "piano-roll" when implemented
+    sequencerType: "piano-roll"  // Use piano roll sequencer for harmony lessons
   }
 };
 
