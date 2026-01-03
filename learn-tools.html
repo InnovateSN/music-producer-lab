@@ -235,6 +235,7 @@
                   <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
                     <button id="demo-tempo-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
                     <button id="demo-tempo-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-tempo-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
                   </div>
 
                   <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
@@ -301,6 +302,7 @@
                   <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
                     <button id="demo-swing-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
                     <button id="demo-swing-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-swing-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
                     <button id="demo-swing-preset" class="btn btn-outline" style="min-width: 140px;">Load Demo Pattern</button>
                   </div>
 
@@ -451,6 +453,7 @@
                   <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
                     <button id="demo-humanization-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
                     <button id="demo-humanization-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-humanization-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
                     <button id="demo-humanization-preset" class="btn btn-outline" style="min-width: 140px;">Load Demo Pattern</button>
                   </div>
 
@@ -728,6 +731,7 @@
           controlsDiv.innerHTML = `
             <button id="mpl-seq-play-all-tempo"></button>
             <button id="mpl-seq-stop-all-tempo"></button>
+            <button id="mpl-seq-clear-all-tempo"></button>
           `;
           tempoContainer.parentNode.insertBefore(controlsDiv, tempoContainer);
 
@@ -754,14 +758,19 @@
           // Wire up controls
           const playBtn = document.getElementById('demo-tempo-play');
           const stopBtn = document.getElementById('demo-tempo-stop');
+          const clearBtn = document.getElementById('demo-tempo-clear');
           const internalPlayBtn = document.getElementById('mpl-seq-play-all-tempo');
           const internalStopBtn = document.getElementById('mpl-seq-stop-all-tempo');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-tempo');
 
           if (playBtn && internalPlayBtn) {
             playBtn.addEventListener('click', () => internalPlayBtn.click());
           }
           if (stopBtn && internalStopBtn) {
             stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
           }
 
           // Wire up tempo slider
@@ -787,6 +796,7 @@
           controlsDiv.innerHTML = `
             <button id="mpl-seq-play-all-swing"></button>
             <button id="mpl-seq-stop-all-swing"></button>
+            <button id="mpl-seq-clear-all-swing"></button>
           `;
           swingContainer.parentNode.insertBefore(controlsDiv, swingContainer);
 
@@ -813,15 +823,20 @@
           // Wire up controls
           const playBtn = document.getElementById('demo-swing-play');
           const stopBtn = document.getElementById('demo-swing-stop');
+          const clearBtn = document.getElementById('demo-swing-clear');
           const presetBtn = document.getElementById('demo-swing-preset');
           const internalPlayBtn = document.getElementById('mpl-seq-play-all-swing');
           const internalStopBtn = document.getElementById('mpl-seq-stop-all-swing');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-swing');
 
           if (playBtn && internalPlayBtn) {
             playBtn.addEventListener('click', () => internalPlayBtn.click());
           }
           if (stopBtn && internalStopBtn) {
             stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
           }
 
           // Load demo pattern button
@@ -862,6 +877,7 @@
           controlsDiv.innerHTML = `
             <button id="mpl-seq-play-all-humanization"></button>
             <button id="mpl-seq-stop-all-humanization"></button>
+            <button id="mpl-seq-clear-all-humanization"></button>
           `;
           humanizationContainer.parentNode.insertBefore(controlsDiv, humanizationContainer);
 
@@ -890,15 +906,20 @@
           // Wire up controls
           const playBtn = document.getElementById('demo-humanization-play');
           const stopBtn = document.getElementById('demo-humanization-stop');
+          const clearBtn = document.getElementById('demo-humanization-clear');
           const presetBtn = document.getElementById('demo-humanization-preset');
           const internalPlayBtn = document.getElementById('mpl-seq-play-all-humanization');
           const internalStopBtn = document.getElementById('mpl-seq-stop-all-humanization');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-humanization');
 
           if (playBtn && internalPlayBtn) {
             playBtn.addEventListener('click', () => internalPlayBtn.click());
           }
           if (stopBtn && internalStopBtn) {
             stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
           }
 
           // Load demo pattern button
