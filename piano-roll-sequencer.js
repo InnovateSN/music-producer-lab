@@ -333,6 +333,8 @@ let pianoRollState = {
 
 let playbackIntervalId = null;
 let lessonValidation = null;
+let nextLessonUrl = null;
+let lessonKey = null;
 
 // ==========================================
 // PIANO ROLL UI CREATION
@@ -364,8 +366,11 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
   pianoRollState.scale = config.sequencer?.scale || 'Major';
   pianoRollState.pitchRange = config.sequencer?.pitchRange || { low: 36, high: 72 };
   lessonValidation = config.validation || null;
+  nextLessonUrl = config.nextLessonUrl || null;
+  lessonKey = config.lessonKey || null;
 
   console.log('[PianoRoll] State configured:', pianoRollState);
+  console.log('[PianoRoll] Navigation:', { nextLessonUrl, lessonKey });
 
   // Clear container
   container.innerHTML = '';
@@ -1176,6 +1181,30 @@ function setupPianoRollControls() {
       validateExercise();
     };
   }
+
+  // Next lesson button
+  const nextBtn = document.getElementById('mpl-next-lesson');
+  const statusEl = document.getElementById('mpl-seq-status');
+
+  if (nextBtn && nextLessonUrl) {
+    nextBtn.addEventListener('click', () => {
+      window.location.href = nextLessonUrl;
+    });
+
+    // Check if already completed
+    try {
+      if (lessonKey && localStorage.getItem(lessonKey) === 'completed') {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
+        nextBtn.title = '';
+        if (statusEl) {
+          statusEl.innerHTML = '<span style="color: var(--accent-green);">✓ You\'ve already completed this exercise. Feel free to practice or move to the next lesson!</span>';
+        }
+      }
+    } catch (e) {
+      console.warn('[PianoRoll] localStorage error:', e);
+    }
+  }
 }
 
 // ==========================================
@@ -1207,17 +1236,22 @@ function validateExercise() {
     if (JSON.stringify(notesAtTime) === JSON.stringify(requiredSorted)) {
       // Success!
       if (statusEl) {
-        statusEl.innerHTML = '<span style="color: var(--accent-green);">✓ Perfect! You built the chord correctly.</span>';
+        statusEl.innerHTML = '<span style="color: var(--accent-green);">✓ Perfect! You built the chord correctly. You can now proceed to the next lesson!</span>';
       }
       if (nextBtn) {
         nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
         nextBtn.title = '';
       }
 
       // Mark lesson as complete
-      const lessonKey = window._lessonConfig?.lessonKey;
       if (lessonKey) {
-        localStorage.setItem(lessonKey, 'complete');
+        try {
+          localStorage.setItem(lessonKey, 'completed');
+          console.log('[PianoRoll] Lesson marked as completed:', lessonKey);
+        } catch (e) {
+          console.warn('[PianoRoll] Could not save progress:', e);
+        }
       }
 
       // Play success chord
