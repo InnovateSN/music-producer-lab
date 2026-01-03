@@ -372,6 +372,68 @@ const drumSounds = {
 
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.05);
+  },
+
+  crash: (velocity = 1.0) => {
+    const ctx = getAudioContext();
+
+    // Create bright metallic noise for crash cymbal
+    const bufferSize = ctx.sampleRate * 2.0; // Longer decay for crash
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.5));
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 4000; // Bright, metallic frequency
+    filter.Q.value = 0.3;
+
+    const gain = ctx.createGain();
+    // Apply velocity with longer decay
+    gain.gain.setValueAtTime(0.5 * velocity, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.0);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    noise.start(ctx.currentTime);
+  },
+
+  ride: (velocity = 1.0) => {
+    const ctx = getAudioContext();
+
+    // Create metallic ping sound for ride cymbal
+    const bufferSize = ctx.sampleRate * 0.8;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.3));
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 3500;
+    filter.Q.value = 0.5;
+
+    const gain = ctx.createGain();
+    // Apply velocity
+    gain.gain.setValueAtTime(0.4 * velocity, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    noise.start(ctx.currentTime);
   }
 
 };
@@ -855,6 +917,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const option = document.createElement('option');
         option.value = sample.path;
         option.textContent = sample.name;
+        option.style.cssText = `
+          background: var(--bg-card, #0f1628);
+          color: var(--text-primary, #f0f4ff);
+          padding: 4px;
+        `;
         if (selectedSamples[inst.id] === sample.path) {
           option.selected = true;
         }
