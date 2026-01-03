@@ -855,6 +855,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const option = document.createElement('option');
         option.value = sample.path;
         option.textContent = sample.name;
+        option.style.cssText = `
+          background: var(--bg-card, #0f1628);
+          color: var(--text-primary, #f0f4ff);
+          padding: 4px;
+        `;
         if (selectedSamples[inst.id] === sample.path) {
           option.selected = true;
         }
