@@ -683,73 +683,100 @@ function renderNotes() {
 }
 
 /**
- * Setup note resize functionality and deletion
+ * Setup note interactions: resize and delete
  * @param {HTMLElement} noteBar - Note bar element
+ * @param {HTMLElement} leftHandle - Left resize handle
+ * @param {HTMLElement} rightHandle - Right resize handle
  * @param {Object} note - Note object reference
+ * @param {number} cellWidth - Width of one grid cell
  */
-function setupNoteResize(noteBar, note) {
+function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth) {
   let isResizing = false;
+  let resizeMode = null; // 'left' or 'right'
   let startX = 0;
-  let startDuration = 0;
-  let hasMoved = false;
+  let startNoteStart = 0;
+  let startNoteDuration = 0;
 
-  const resizeHandle = noteBar.querySelector('.note-resize-handle');
-
-  const onMouseDown = (e) => {
-    // Right-click or middle-click to delete
-    if (e.button === 2 || e.button === 1) {
-      e.preventDefault();
+  // Click on note body to delete
+  noteBar.addEventListener('click', (e) => {
+    // Only delete if clicking the body (not the handles)
+    if (!e.target.classList.contains('note-resize-handle-left') &&
+        !e.target.classList.contains('note-resize-handle-right')) {
       deleteNote(note);
-      return;
     }
+  });
 
-    isResizing = true;
-    startX = e.clientX;
-    startDuration = note.duration;
-    hasMoved = false;
+  // Prevent context menu
+  noteBar.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  // LEFT HANDLE - Move note start position
+  leftHandle.addEventListener('mousedown', (e) => {
     e.stopPropagation();
     e.preventDefault();
-  };
+    isResizing = true;
+    resizeMode = 'left';
+    startX = e.clientX;
+    startNoteStart = note.start;
+    startNoteDuration = note.duration;
+  });
 
+  // RIGHT HANDLE - Extend/shorten note
+  rightHandle.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    isResizing = true;
+    resizeMode = 'right';
+    startX = e.clientX;
+    startNoteStart = note.start;
+    startNoteDuration = note.duration;
+  });
+
+  // Global mouse move
   const onMouseMove = (e) => {
     if (!isResizing) return;
 
     const deltaX = e.clientX - startX;
-
-    // Only start resizing if moved more than 3 pixels
-    if (Math.abs(deltaX) < 3) return;
-    hasMoved = true;
-
-    const cellWidth = noteBar.offsetWidth / note.duration;
     const deltaCells = Math.round(deltaX / cellWidth);
 
-    // Calculate new duration (minimum 1 step)
-    const newDuration = Math.max(1, Math.min(pianoRollState.stepCount - note.start, startDuration + deltaCells));
+    if (deltaCells === 0) return; // No change
 
-    if (newDuration !== note.duration) {
-      note.duration = newDuration;
-      renderNotes();
-      updateChordDisplay();
+    if (resizeMode === 'left') {
+      // Moving the start position
+      // New start = old start + delta (but keep within bounds)
+      const newStart = Math.max(0, Math.min(pianoRollState.stepCount - 1, startNoteStart + deltaCells));
+      // Adjust duration to compensate
+      const deltaStart = newStart - startNoteStart;
+      const newDuration = Math.max(1, startNoteDuration - deltaStart);
+
+      // Only update if both are valid
+      if (newStart + newDuration <= pianoRollState.stepCount) {
+        note.start = newStart;
+        note.duration = newDuration;
+        renderNotes();
+        updateChordDisplay();
+      }
+    } else if (resizeMode === 'right') {
+      // Extending/shortening from the right
+      const newDuration = Math.max(1, startNoteDuration + deltaCells);
+
+      // Make sure note doesn't extend past the grid
+      if (note.start + newDuration <= pianoRollState.stepCount) {
+        note.duration = newDuration;
+        renderNotes();
+        updateChordDisplay();
+      }
     }
   };
 
+  // Global mouse up
   const onMouseUp = () => {
     if (isResizing) {
-      // If didn't move, it's a click - delete the note
-      if (!hasMoved) {
-        deleteNote(note);
-      } else {
-        console.log('[PianoRoll] Note resized:', note);
-      }
+      console.log('[PianoRoll] Note edited:', note);
       isResizing = false;
+      resizeMode = null;
     }
   };
 
-  // Prevent context menu on right-click
-  noteBar.addEventListener('contextmenu', (e) => e.preventDefault());
-
-  resizeHandle.addEventListener('mousedown', onMouseDown);
-  noteBar.addEventListener('mousedown', onMouseDown);
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 }
@@ -784,18 +811,18 @@ function renderNote(note) {
   const firstCell = cellsContainer.querySelector(`[data-step="${note.start}"]`);
   if (!firstCell) return;
 
-  // Create visual note bar that spans the duration
+  // Calculate position and width based on grid
+  const cellWidth = firstCell.offsetWidth;
+  const cellHeight = firstCell.offsetHeight;
+  const left = firstCell.offsetLeft;
+  const width = cellWidth * note.duration;
+
+  // Create visual note bar
   const noteBar = document.createElement('div');
   noteBar.className = 'piano-roll-note';
   noteBar.dataset.pitch = note.pitch;
   noteBar.dataset.start = note.start;
   noteBar.dataset.duration = note.duration;
-
-  // Calculate position and width
-  const cellWidth = firstCell.offsetWidth;
-  const cellHeight = firstCell.offsetHeight;
-  const left = firstCell.offsetLeft;
-  const width = cellWidth * note.duration;
 
   noteBar.style.cssText = `
     position: absolute;
@@ -806,32 +833,64 @@ function renderNote(note) {
     background: linear-gradient(135deg, rgba(255, 90, 61, 0.9), rgba(255, 178, 138, 0.8));
     border: 2px solid rgba(255, 90, 61, 1);
     border-radius: 4px;
-    pointer-events: all;
-    z-index: 10;
     box-shadow: 0 2px 8px rgba(255, 90, 61, 0.4);
-    cursor: ew-resize;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
   `;
 
-  // Add resize handle on the right edge
-  const resizeHandle = document.createElement('div');
-  resizeHandle.className = 'note-resize-handle';
-  resizeHandle.style.cssText = `
+  // LEFT RESIZE HANDLE - Move note start position
+  const leftHandle = document.createElement('div');
+  leftHandle.className = 'note-resize-handle-left';
+  leftHandle.style.cssText = `
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: ew-resize;
+    border-radius: 4px 0 0 4px;
+    transition: background 0.1s;
+    z-index: 12;
+  `;
+  leftHandle.addEventListener('mouseenter', () => {
+    leftHandle.style.background = 'rgba(255, 255, 255, 0.6)';
+  });
+  leftHandle.addEventListener('mouseleave', () => {
+    leftHandle.style.background = 'rgba(255, 255, 255, 0.3)';
+  });
+
+  // RIGHT RESIZE HANDLE - Extend/shorten note duration
+  const rightHandle = document.createElement('div');
+  rightHandle.className = 'note-resize-handle-right';
+  rightHandle.style.cssText = `
     position: absolute;
     right: 0;
     top: 0;
-    width: 8px;
+    width: 6px;
     height: 100%;
-    background: rgba(255, 90, 61, 0.8);
+    background: rgba(255, 255, 255, 0.3);
     cursor: ew-resize;
     border-radius: 0 4px 4px 0;
+    transition: background 0.1s;
+    z-index: 12;
   `;
-  noteBar.appendChild(resizeHandle);
+  rightHandle.addEventListener('mouseenter', () => {
+    rightHandle.style.background = 'rgba(255, 255, 255, 0.6)';
+  });
+  rightHandle.addEventListener('mouseleave', () => {
+    rightHandle.style.background = 'rgba(255, 255, 255, 0.3)';
+  });
+
+  noteBar.appendChild(leftHandle);
+  noteBar.appendChild(rightHandle);
 
   cellsContainer.style.position = 'relative';
   cellsContainer.appendChild(noteBar);
 
-  // Add resize functionality
-  setupNoteResize(noteBar, note);
+  // Setup interactions
+  setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth);
 }
 
 // ==========================================
