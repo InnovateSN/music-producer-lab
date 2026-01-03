@@ -683,7 +683,7 @@ function renderNotes() {
 }
 
 /**
- * Setup note interactions: resize and delete
+ * Setup note interactions: resize, move pitch, and delete
  * @param {HTMLElement} noteBar - Note bar element
  * @param {HTMLElement} leftHandle - Left resize handle
  * @param {HTMLElement} rightHandle - Right resize handle
@@ -692,19 +692,14 @@ function renderNotes() {
  */
 function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth) {
   let isResizing = false;
+  let isDraggingPitch = false;
   let resizeMode = null; // 'left' or 'right'
   let startX = 0;
+  let startY = 0;
   let startNoteStart = 0;
   let startNoteDuration = 0;
-
-  // Click on note body to delete
-  noteBar.addEventListener('click', (e) => {
-    // Only delete if clicking the body (not the handles)
-    if (!e.target.classList.contains('note-resize-handle-left') &&
-        !e.target.classList.contains('note-resize-handle-right')) {
-      deleteNote(note);
-    }
-  });
+  let startNotePitch = 0;
+  let hasMoved = false;
 
   // Prevent context menu
   noteBar.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -731,39 +726,76 @@ function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth
     startNoteDuration = note.duration;
   });
 
+  // NOTE BODY - Drag to change pitch or click to delete
+  noteBar.addEventListener('mousedown', (e) => {
+    // Ignore if clicking on handles
+    if (e.target.classList.contains('note-resize-handle-left') ||
+        e.target.classList.contains('note-resize-handle-right')) {
+      return;
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+    isDraggingPitch = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startNotePitch = note.pitch;
+    hasMoved = false;
+
+    // Visual feedback
+    noteBar.style.opacity = '0.7';
+    noteBar.style.cursor = 'move';
+  });
+
   // Global mouse move
   const onMouseMove = (e) => {
-    if (!isResizing) return;
+    if (isResizing) {
+      // HORIZONTAL RESIZE
+      const deltaX = e.clientX - startX;
+      const deltaCells = Math.round(deltaX / cellWidth);
 
-    const deltaX = e.clientX - startX;
-    const deltaCells = Math.round(deltaX / cellWidth);
+      if (deltaCells === 0) return; // No change
 
-    if (deltaCells === 0) return; // No change
+      if (resizeMode === 'left') {
+        // Moving the start position
+        const newStart = Math.max(0, Math.min(pianoRollState.stepCount - 1, startNoteStart + deltaCells));
+        const deltaStart = newStart - startNoteStart;
+        const newDuration = Math.max(1, startNoteDuration - deltaStart);
 
-    if (resizeMode === 'left') {
-      // Moving the start position
-      // New start = old start + delta (but keep within bounds)
-      const newStart = Math.max(0, Math.min(pianoRollState.stepCount - 1, startNoteStart + deltaCells));
-      // Adjust duration to compensate
-      const deltaStart = newStart - startNoteStart;
-      const newDuration = Math.max(1, startNoteDuration - deltaStart);
+        if (newStart + newDuration <= pianoRollState.stepCount) {
+          note.start = newStart;
+          note.duration = newDuration;
+          renderNotes();
+          updateChordDisplay();
+        }
+      } else if (resizeMode === 'right') {
+        // Extending/shortening from the right
+        const newDuration = Math.max(1, startNoteDuration + deltaCells);
 
-      // Only update if both are valid
-      if (newStart + newDuration <= pianoRollState.stepCount) {
-        note.start = newStart;
-        note.duration = newDuration;
-        renderNotes();
-        updateChordDisplay();
+        if (note.start + newDuration <= pianoRollState.stepCount) {
+          note.duration = newDuration;
+          renderNotes();
+          updateChordDisplay();
+        }
       }
-    } else if (resizeMode === 'right') {
-      // Extending/shortening from the right
-      const newDuration = Math.max(1, startNoteDuration + deltaCells);
+    } else if (isDraggingPitch) {
+      // VERTICAL PITCH CHANGE
+      const deltaY = e.clientY - startY;
 
-      // Make sure note doesn't extend past the grid
-      if (note.start + newDuration <= pianoRollState.stepCount) {
-        note.duration = newDuration;
-        renderNotes();
-        updateChordDisplay();
+      // Check if moved enough to trigger drag (3px threshold)
+      if (Math.abs(deltaY) > 3 || Math.abs(e.clientX - startX) > 3) {
+        hasMoved = true;
+      }
+
+      if (hasMoved && Math.abs(deltaY) > 5) {
+        // Find the piano roll row at current mouse Y position
+        const newPitch = getPitchAtY(e.clientY);
+
+        if (newPitch !== null && newPitch !== note.pitch) {
+          note.pitch = newPitch;
+          renderNotes();
+          updateChordDisplay();
+        }
       }
     }
   };
@@ -771,14 +803,52 @@ function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth
   // Global mouse up
   const onMouseUp = () => {
     if (isResizing) {
-      console.log('[PianoRoll] Note edited:', note);
+      console.log('[PianoRoll] Note resized:', note);
       isResizing = false;
       resizeMode = null;
+    } else if (isDraggingPitch) {
+      // Reset visual feedback
+      noteBar.style.opacity = '1';
+      noteBar.style.cursor = 'pointer';
+
+      if (!hasMoved) {
+        // Click without movement = delete
+        deleteNote(note);
+      } else {
+        console.log('[PianoRoll] Note pitch changed:', note);
+      }
+
+      isDraggingPitch = false;
+      hasMoved = false;
     }
   };
 
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
+}
+
+/**
+ * Get the pitch at a given Y coordinate
+ * @param {number} y - Y coordinate in viewport
+ * @returns {number|null} - MIDI pitch or null
+ */
+function getPitchAtY(y) {
+  const rows = document.querySelectorAll('.piano-roll-row');
+  let closestPitch = null;
+  let closestDistance = Infinity;
+
+  rows.forEach(row => {
+    const rect = row.getBoundingClientRect();
+    const rowCenterY = rect.top + rect.height / 2;
+    const distance = Math.abs(y - rowCenterY);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestPitch = parseInt(row.dataset.pitch);
+    }
+  });
+
+  return closestPitch;
 }
 
 /**
