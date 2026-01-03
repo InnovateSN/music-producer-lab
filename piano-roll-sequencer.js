@@ -321,6 +321,7 @@ function detectSeventhChord(sorted, pitchClasses) {
 let pianoRollState = {
   notes: [], // Array of { pitch: 60, start: 0, duration: 4 }
   tempo: 90,
+  swing: 0, // Swing amount 0-100
   stepCount: 16,
   bars: 1,
   key: 'C',
@@ -356,6 +357,7 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
 
   // Update state from config
   pianoRollState.tempo = config.sequencer?.tempo || 90;
+  pianoRollState.swing = config.sequencer?.swing || 0;
   pianoRollState.stepCount = config.sequencer?.stepCount || 16;
   pianoRollState.bars = config.sequencer?.bars || 1;
   pianoRollState.key = config.sequencer?.key || 'C';
@@ -681,6 +683,96 @@ function renderNotes() {
 }
 
 /**
+ * Setup note resize functionality and deletion
+ * @param {HTMLElement} noteBar - Note bar element
+ * @param {Object} note - Note object reference
+ */
+function setupNoteResize(noteBar, note) {
+  let isResizing = false;
+  let startX = 0;
+  let startDuration = 0;
+  let hasMoved = false;
+
+  const resizeHandle = noteBar.querySelector('.note-resize-handle');
+
+  const onMouseDown = (e) => {
+    // Right-click or middle-click to delete
+    if (e.button === 2 || e.button === 1) {
+      e.preventDefault();
+      deleteNote(note);
+      return;
+    }
+
+    isResizing = true;
+    startX = e.clientX;
+    startDuration = note.duration;
+    hasMoved = false;
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  const onMouseMove = (e) => {
+    if (!isResizing) return;
+
+    const deltaX = e.clientX - startX;
+
+    // Only start resizing if moved more than 3 pixels
+    if (Math.abs(deltaX) < 3) return;
+    hasMoved = true;
+
+    const cellWidth = noteBar.offsetWidth / note.duration;
+    const deltaCells = Math.round(deltaX / cellWidth);
+
+    // Calculate new duration (minimum 1 step)
+    const newDuration = Math.max(1, Math.min(pianoRollState.stepCount - note.start, startDuration + deltaCells));
+
+    if (newDuration !== note.duration) {
+      note.duration = newDuration;
+      renderNotes();
+      updateChordDisplay();
+    }
+  };
+
+  const onMouseUp = () => {
+    if (isResizing) {
+      // If didn't move, it's a click - delete the note
+      if (!hasMoved) {
+        deleteNote(note);
+      } else {
+        console.log('[PianoRoll] Note resized:', note);
+      }
+      isResizing = false;
+    }
+  };
+
+  // Prevent context menu on right-click
+  noteBar.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  resizeHandle.addEventListener('mousedown', onMouseDown);
+  noteBar.addEventListener('mousedown', onMouseDown);
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+}
+
+/**
+ * Delete a note from the piano roll
+ * @param {Object} note - Note to delete
+ */
+function deleteNote(note) {
+  const index = pianoRollState.notes.findIndex(
+    n => n.pitch === note.pitch && n.start === note.start
+  );
+
+  if (index >= 0) {
+    pianoRollState.notes.splice(index, 1);
+    playNote(note.pitch, 0.1, 0.3); // Short click sound
+    renderNotes();
+    updateChordDisplay();
+    console.log('[PianoRoll] Note deleted:', note);
+  }
+}
+
+/**
  * Render a single note visual
  * @param {Object} note - { pitch, start, duration }
  */
@@ -692,8 +784,54 @@ function renderNote(note) {
   const firstCell = cellsContainer.querySelector(`[data-step="${note.start}"]`);
   if (!firstCell) return;
 
-  // Note visual element won't be rendered as separate element,
-  // instead we'll use cell background color changes (already done above)
+  // Create visual note bar that spans the duration
+  const noteBar = document.createElement('div');
+  noteBar.className = 'piano-roll-note';
+  noteBar.dataset.pitch = note.pitch;
+  noteBar.dataset.start = note.start;
+  noteBar.dataset.duration = note.duration;
+
+  // Calculate position and width
+  const cellWidth = firstCell.offsetWidth;
+  const cellHeight = firstCell.offsetHeight;
+  const left = firstCell.offsetLeft;
+  const width = cellWidth * note.duration;
+
+  noteBar.style.cssText = `
+    position: absolute;
+    left: ${left}px;
+    top: 0;
+    width: ${width}px;
+    height: ${cellHeight}px;
+    background: linear-gradient(135deg, rgba(255, 90, 61, 0.9), rgba(255, 178, 138, 0.8));
+    border: 2px solid rgba(255, 90, 61, 1);
+    border-radius: 4px;
+    pointer-events: all;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(255, 90, 61, 0.4);
+    cursor: ew-resize;
+  `;
+
+  // Add resize handle on the right edge
+  const resizeHandle = document.createElement('div');
+  resizeHandle.className = 'note-resize-handle';
+  resizeHandle.style.cssText = `
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    background: rgba(255, 90, 61, 0.8);
+    cursor: ew-resize;
+    border-radius: 0 4px 4px 0;
+  `;
+  noteBar.appendChild(resizeHandle);
+
+  cellsContainer.style.position = 'relative';
+  cellsContainer.appendChild(noteBar);
+
+  // Add resize functionality
+  setupNoteResize(noteBar, note);
 }
 
 // ==========================================
@@ -718,8 +856,27 @@ function startPlayback() {
     // Play notes that start at this step
     const notesToPlay = pianoRollState.notes.filter(n => n.start === pianoRollState.currentStep);
     if (notesToPlay.length > 0) {
-      const midiNotes = notesToPlay.map(n => n.pitch);
-      playChord(midiNotes, 0.5, 0.5);
+      // Calculate note duration in seconds based on BPM and note length
+      const stepsPerBeat = pianoRollState.stepCount / 4; // 16 steps = 4 beats
+      const secondsPerBeat = 60 / pianoRollState.tempo;
+
+      // Calculate swing delay for offbeat notes
+      const isOffbeat = pianoRollState.currentStep % 2 === 1;
+      const swingDelay = isOffbeat ? (pianoRollState.swing / 100) * (stepDuration / 2000) : 0;
+
+      notesToPlay.forEach(note => {
+        const noteDurationInBeats = note.duration / stepsPerBeat;
+        const noteDurationInSeconds = noteDurationInBeats * secondsPerBeat;
+
+        // Apply swing delay
+        if (swingDelay > 0) {
+          setTimeout(() => {
+            playNote(note.pitch, noteDurationInSeconds, 0.6);
+          }, swingDelay * 1000);
+        } else {
+          playNote(note.pitch, noteDurationInSeconds, 0.6);
+        }
+      });
     }
 
     // Advance step
