@@ -16,7 +16,7 @@ export const lessonConfig = {
   // ====================
   // NAVIGATION
   // ====================
-  nextLessonUrl: "labs.html",  // End of beginner lessons
+  nextLessonUrl: "lesson-harmony-8.html",
   prevLessonUrl: "lesson-harmony-6.html",
   overviewUrl: "labs.html",
 
