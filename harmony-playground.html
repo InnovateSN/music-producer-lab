@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Harmony Playground - Free Online Piano Roll & Chord Lab | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free online piano roll with chord builder, melody writer, voice leading tools, and WAV export. Practice harmony, build progressions, export your music." />
+  <meta name="keywords" content="harmony playground, free piano roll, chord builder, melody writer, online sequencer, music theory practice, voice leading, chord progressions, wav export">
+  <meta name="theme-color" content="#030508">
+  <meta property="og:title" content="Harmony Playground - Free Online Piano Roll & Chord Lab">
+  <meta property="og:description" content="Piano roll sequencer with chord builder, melody tools, and WAV export. Free forever.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://music-producer-lab.vercel.app/harmony-playground.html">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .playground-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-2xl) 0;
+      background: linear-gradient(180deg, rgba(138, 77, 255, 0.1) 0%, transparent 100%);
+      border-radius: 16px;
+    }
+    .playground-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+    .playground-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .control-panel {
+      display: flex;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tempo-display {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+    }
+    .chord-presets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .chord-preset-btn {
+      padding: var(--space-sm);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chord-preset-btn:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-2xl) 0;
+    }
+    .feature-card {
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+    .feature-card h3 {
+      color: var(--accent-purple);
+      margin-bottom: var(--space-sm);
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main class="main-content container">
+    <!-- Header -->
+    <div class="playground-header">
+      <h1 class="playground-title">🎹 Harmony Playground</h1>
+      <p class="playground-subtitle">
+        Free piano roll sequencer for building chord progressions, writing melodies, and practicing music theory. Export WAV files for your productions.
+      </p>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="control-panel">
+      <div class="control-group">
+        <label>Tempo</label>
+        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+          <input type="range" id="mpl-tempo-slider" min="60" max="200" value="120" style="width: 120px;" />
+          <span class="tempo-display" id="mpl-tempo-display">120 BPM</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Key</label>
+        <select id="mpl-key-select" style="padding: var(--space-xs); background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 6px;">
+          <option value="C">C Major</option>
+          <option value="G">G Major</option>
+          <option value="D">D Major</option>
+          <option value="A">A Major</option>
+          <option value="E">E Major</option>
+          <option value="F">F Major</option>
+          <option value="Am">A Minor</option>
+          <option value="Em">E Minor</option>
+          <option value="Dm">D Minor</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Instrument</label>
+        <select id="mpl-instrument-select" style="padding: var(--space-xs); background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 6px;">
+          <option value="piano">Grand Piano</option>
+          <option value="electric-piano">Electric Piano</option>
+          <option value="synth">Synthesizer</option>
+          <option value="strings">Strings</option>
+          <option value="organ">Organ</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Scale Highlight</label>
+        <input type="checkbox" id="mpl-scale-highlight" style="width: 20px; height: 20px;" />
+      </div>
+    </div>
+
+    <!-- Main Controls -->
+    <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap;">
+      <button id="mpl-seq-play" class="btn btn-primary" style="min-width: 120px;">▶ Play</button>
+      <button id="mpl-seq-stop" class="btn btn-secondary" style="min-width: 120px;">⏹ Stop</button>
+      <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width: 120px;">🗑 Clear</button>
+      <button id="mpl-export-wav" class="btn btn-primary" style="min-width: 120px; background: var(--accent-purple);">💾 Export WAV</button>
+    </div>
+
+    <!-- Piano Roll Sequencer -->
+    <section class="sequencer-section">
+      <div class="section-eyebrow">Piano Roll Sequencer</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Harmony</h2>
+      
+      <div class="sequencer" id="mpl-sequencer-collection">
+        <!-- Piano roll will be created by JS -->
+      </div>
+
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top: var(--space-md);">
+        <span>Click on the piano roll to place notes. Build chords and melodies.</span>
+      </div>
+    </section>
+
+    <!-- Chord Presets -->
+    <section style="margin-top: var(--space-2xl);">
+      <div class="section-eyebrow">Quick Chord Presets</div>
+      <h2 class="section-title">One-Click Chords</h2>
+      <p class="section-body" style="margin-bottom: var(--space-lg);">
+        Click a chord preset to instantly add it to the current bar. Great for learning and quick composition.
+      </p>
+
+      <div class="chord-presets">
+        <button class="chord-preset-btn" data-chord="Cmaj">C Major</button>
+        <button class="chord-preset-btn" data-chord="Cmaj7">C Maj7</button>
+        <button class="chord-preset-btn" data-chord="Dm7">D min7</button>
+        <button class="chord-preset-btn" data-chord="Em7">E min7</button>
+        <button class="chord-preset-btn" data-chord="Fmaj7">F Maj7</button>
+        <button class="chord-preset-btn" data-chord="G7">G7</button>
+        <button class="chord-preset-btn" data-chord="Am7">A min7</button>
+        <button class="chord-preset-btn" data-chord="Bdim">B dim</button>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>🎼 Full Piano Roll</h3>
+        <p class="section-body">Multi-octave piano roll for chords, melodies, and bass lines. Click to place notes, drag to adjust length.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎹 Multiple Instruments</h3>
+        <p class="section-body">Choose from piano, electric piano, synth, strings, and organ. Each with realistic samples.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎵 Scale Highlighting</h3>
+        <p class="section-body">Enable scale highlighting to see which notes are in your selected key. Perfect for learning and staying in key.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>💾 WAV Export</h3>
+        <p class="section-body">Export your progressions and melodies as high-quality WAV files. Use them in your DAW projects.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎓 Learning Tool</h3>
+        <p class="section-body">Practice chord progressions, voice leading, and melody writing. Apply what you learned in the lessons.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>⚡ Free Forever</h3>
+        <p class="section-body">No sign-up, no limits, no payment. A gift to music producers learning harmony and melody.</p>
+      </div>
+    </div>
+
+    <!-- Tips Section -->
+    <section style="margin-top: var(--space-2xl); padding: var(--space-xl); background: var(--bg-secondary); border-radius: 12px;">
+      <h2 class="section-title">Tips for Using the Harmony Playground</h2>
+      <div style="display: grid; gap: var(--space-md); margin-top: var(--space-lg);">
+        <div>
+          <h3 style="color: var(--accent-purple);">Building Chord Progressions</h3>
+          <p class="section-body">Stack 3-4 notes vertically to create chords. Try common progressions like I-V-vi-IV (C-G-Am-F) or ii-V-I (Dm-G-C).</p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent-purple);">Voice Leading</h3>
+          <p class="section-body">Keep common tones between chords and move other notes by small steps. This creates smooth, professional-sounding progressions.</p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent-purple);">Adding Melody</h3>
+          <p class="section-body">Place single notes above your chords. Target chord tones on strong beats (beats 1 and 3) for stable, grounded melodies.</p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent-purple);">Exporting</h3>
+          <p class="section-body">When you're happy with your creation, click "Export WAV" to download a high-quality audio file. Import it into your DAW and keep creating!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Lessons -->
+    <div style="text-align: center; margin-top: var(--space-2xl); padding: var(--space-xl);">
+      <h2 class="section-title">Want to Learn More?</h2>
+      <p class="section-body" style="margin-bottom: var(--space-lg);">
+        The Harmony Playground is free practice space. To learn professional techniques step-by-step, check out our complete harmony and melody curriculum.
+      </p>
+      <a href="labs.html" class="btn btn-primary" style="font-size: 1.1rem;">Browse All Lessons</a>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { initHarmonyPlayground } from './harmony-playground-engine.js';
+    initHarmonyPlayground();
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
