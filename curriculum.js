@@ -360,7 +360,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-18 min',
         level: 'Beginner',
         depthLevel: 3,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-7.html',
         configPath: './configs/lesson-harmony-7.config.js'
       },
@@ -374,7 +374,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-15 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-8.html',
         configPath: './configs/lesson-harmony-8.config.js'
       },
@@ -386,7 +386,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-16 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-9.html',
         configPath: './configs/lesson-harmony-9.config.js'
       },
@@ -398,7 +398,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-20 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-10.html',
         configPath: './configs/lesson-harmony-10.config.js'
       },
@@ -410,7 +410,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-11.html',
         configPath: './configs/lesson-harmony-11.config.js'
       },
@@ -422,7 +422,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-18 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-12.html',
         configPath: './configs/lesson-harmony-12.config.js'
       },
@@ -434,7 +434,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-18 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-13.html',
         configPath: './configs/lesson-harmony-13.config.js'
       },
@@ -446,7 +446,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-14.html',
         configPath: './configs/lesson-harmony-14.config.js'
       },
@@ -460,7 +460,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-18 min',
         level: 'Advanced',
         depthLevel: 7,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-15.html',
         configPath: './configs/lesson-harmony-15.config.js'
       },
@@ -472,7 +472,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '16-20 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-16.html',
         configPath: './configs/lesson-harmony-16.config.js'
       },
@@ -484,7 +484,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-17.html',
         configPath: './configs/lesson-harmony-17.config.js'
       },
@@ -496,7 +496,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '16-20 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-18.html',
         configPath: './configs/lesson-harmony-18.config.js'
       },
@@ -510,7 +510,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Expert',
         depthLevel: 9,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-19.html',
         configPath: './configs/lesson-harmony-19.config.js'
       },
@@ -522,7 +522,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Expert',
         depthLevel: 10,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-harmony-20.html',
         configPath: './configs/lesson-harmony-20.config.js'
       }
