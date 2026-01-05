@@ -626,6 +626,10 @@ function createPianoKeyLabel(pitch) {
   label.textContent = noteName;
   label.style.cssText = `
     width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    flex-shrink: 0;
+    flex-grow: 0;
     display: flex;
     align-items: center;
     justify-content: center;
