@@ -498,6 +498,7 @@ function createStepHeader() {
       font-weight: ${isBeat ? '700' : '400'};
       box-sizing: border-box;
       border: 1px solid transparent;
+      ${isBeat ? 'border-left: 2px solid rgba(0, 240, 255, 0.5); background: rgba(0, 240, 255, 0.08);' : ''}
     `;
     stepsContainer.appendChild(stepNum);
   }
@@ -580,6 +581,7 @@ function createPianoRow(pitch) {
       height: 20px;
       background: ${cellColor};
       border: 1px solid ${isBeat ? 'rgba(0, 240, 255, 0.15)' : 'rgba(255,255,255,0.05)'};
+      ${isBeat ? 'border-left: 2px solid rgba(0, 240, 255, 0.5);' : ''}
       cursor: pointer;
       transition: all 0.1s ease;
       position: relative;
