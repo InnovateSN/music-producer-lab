@@ -658,6 +658,52 @@
           container.appendChild(playgroundHighlight);
         }
 
+        // Add Harmony Playground highlight card for harmony module
+        if (category.slug === 'harmony') {
+          const playgroundHighlight = document.createElement('div');
+          playgroundHighlight.className = 'playground-highlight';
+          playgroundHighlight.innerHTML = `
+            <span class="playground-highlight-badge">Practice Tool</span>
+            <h3 class="playground-highlight-title">🎹 Harmony Playground</h3>
+            <p class="playground-highlight-description">
+              Free piano roll for building chord progressions and melodies. Practice voice leading, export your creations.
+            </p>
+            <div class="playground-highlight-features">
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/>
+                </svg>
+                <span>Multi-octave piano roll</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13M9 13l12-2"/>
+                </svg>
+                <span>Chord detection</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <span>Export WAV</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v6m0 4v10M4 10l4 4 4-4M20 6l-4 4-4-4"/>
+                </svg>
+                <span>Multiple instruments</span>
+              </div>
+            </div>
+            <a href="harmony-playground.html" class="playground-highlight-cta">
+              <span>Open Harmony Playground</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          `;
+          container.appendChild(playgroundHighlight);
+        }
+
         const grid = document.createElement('div');
         grid.className = 'lessons-grid';
         (category.lessons || []).forEach((lesson, index) => {
