@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title id="mpl-page-title">Lesson 0 · Music Production Fundamentals | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" id="mpl-meta-description" content="Free Lesson 0 from Music Producer Lab: Learn essential music production concepts - DAWs, loops, tempo, bars, beats, and time organization for absolute beginners." />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
@@ -15,228 +15,40 @@
 
     <main class="main-content container">
 
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (populated by JS) -->
         <section class="hero" id="mpl-hero" aria-label="Lesson hero">
           <div class="hero-copy">
-            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Lesson 0 · Fundamentals</div>
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
             <h1 class="hero-title" id="mpl-hero-title">
-              <span id="mpl-hero-title-main">Music Production Fundamentals:</span>
-              <span id="mpl-hero-title-highlight"> <span>Understanding the Basics</span>.</span>
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
             </h1>
-            <p class="hero-subtitle" id="mpl-hero-subtitle">Before you start making beats, learn the essential concepts: <strong><a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAWs</a></strong>, <strong><a href="glossary.html#loop" style="color: var(--accent-cyan); text-decoration: underline;">loops</a></strong>, <strong><a href="glossary.html#tempo" style="color: var(--accent-cyan); text-decoration: underline;">tempo</a></strong>, <strong><a href="glossary.html#bar" style="color: var(--accent-cyan); text-decoration: underline;">bars</a></strong>, <strong><a href="glossary.html#beat" style="color: var(--accent-cyan); text-decoration: underline;">beats</a></strong>, and how music is organized in time. This lesson is designed for absolute beginners with zero prior knowledge.</p>
-          </div>
-
-          <aside class="hero-visual" aria-hidden="true">
-            <div class="hero-visual-header">
-              <div class="hero-visual-title">Free lesson</div>
-              <div class="hero-visual-pill">Fundamentals</div>
-            </div>
-            <div class="hero-visual-grid">
-              <div class="hero-visual-main">
-                <div class="hero-visual-main-title">Theory + Practice</div>
-                <div class="hero-visual-waves">
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                  <div class="hero-visual-wave"></div>
-                </div>
-                <div class="hero-visual-metrics">
-                  <div class="hero-visual-metric">
-                    <span>Mode</span>
-                    <strong>Sandbox</strong>
-                  </div>
-                  <div class="hero-visual-metric">
-                    <span>Time</span>
-                    <strong>15–20 min</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-visual-side-card">
-                <div class="hero-visual-side-label">Goal</div>
-                <div class="hero-visual-pill-list">
-                  <div class="hero-visual-pill-tag">Understand core concepts</div>
-                  <div class="hero-visual-pill-tag">Get comfortable with the interface</div>
-                </div>
-                <div class="hero-visual-footer">
-                  <span>Perfect for beginners</span>
-                  <span>No prior knowledge needed</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <!-- THEORY CONTENT SECTION -->
-        <section class="theory-section" style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
-          <div class="section-eyebrow">Theory</div>
-          <h2 class="section-title">Essential Concepts for Music Production</h2>
-          <p class="section-body" style="margin-bottom: var(--space-xl);">
-            If you're completely new to music production, these concepts will help you understand what you're doing when you create beats. Don't worry about memorizing everything - you'll internalize these ideas naturally as you work through the lessons.
-          </p>
-
-          <!-- Theory Cards Grid -->
-          <div style="display: grid; gap: var(--space-lg); margin-bottom: var(--space-xl);">
-
-            <!-- Card: What is a DAW -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">What is a DAW?</h3>
-              <p class="section-body">
-                A <strong>DAW (Digital Audio Workstation)</strong> is the main software people use to create music on a computer. Examples include Ableton Live, FL Studio, Logic Pro, and GarageBand. Think of it as a recording studio inside your laptop.
-              </p>
-              <p class="section-body">
-                A DAW lets you do two big things: You can <strong>play and record <a href="glossary.html#audio" style="color: var(--accent-cyan); text-decoration: underline;">audio</a></strong> (like a voice, guitar, or drum sample), and you can <strong>write musical instructions</strong> using a grid - like telling the DAW "play this sound here." Those instructions are not sound by themselves - they're like a recipe.
-              </p>
-              <p class="section-body" style="margin-bottom: 0;">
-                The sequencer you'll see below is a simplified version of what most DAWs have.
-              </p>
-            </div>
-
-            <!-- Card: What is a Loop -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">What is a Loop?</h3>
-              <p class="section-body">
-                A <strong>loop</strong> is a short piece of music that repeats. Think of it like a small wheel that turns again and again. In dance music, loops are often <strong>one bar long</strong>. When that bar repeats, you get a steady <a href="glossary.html#groove" style="color: var(--accent-cyan); text-decoration: underline;">groove</a> that people can move to.
-              </p>
-              <p class="section-body" style="margin-bottom: 0;">
-                When you press Play on the sequencer, you'll hear a loop. The pattern plays from start to finish, then immediately starts over. This repetition is the foundation of most electronic music.
-              </p>
-            </div>
-
-            <!-- Card: Tempo and BPM -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Tempo and BPM</h3>
-              <p class="section-body">
-                <strong>Tempo</strong> is the speed of the music, measured in <strong><a href="glossary.html#bpm" style="color: var(--accent-cyan); text-decoration: underline;">BPM</a> (beats per minute)</strong>. If the tempo is 120 BPM, there are 120 beats in one minute.
-              </p>
-              <p class="section-body">
-                <strong>Higher BPM</strong> feels faster and more energetic. <strong>Lower BPM</strong> feels slower and heavier. Most house and techno tracks are around 120-140 BPM. Hip-hop is usually 80-100 BPM. The exact number isn't important right now - what matters is that the grid and counting always follow the tempo.
-              </p>
-            </div>
-
-            <!-- Card: Bars and Beats -->
-            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(255,90,61,0.08), rgba(255,178,138,0.08));">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Understanding Bars and Beats</h3>
-              <p class="section-body">
-                Most dance music is in <strong><a href="glossary.html#4-4-time" style="color: var(--accent-cyan); text-decoration: underline;">4/4 time</a></strong> (pronounced "four four"), which means there are <strong>four beats in every bar</strong>. A <strong>beat</strong> is the basic pulse you would naturally clap to.
-              </p>
-              <p class="section-body">
-                If you count along with a typical club track, you count like this:
-              </p>
-              <div style="font-family: monospace; background: rgba(0,0,0,0.3); padding: var(--space-md); border-radius: 8px; margin: var(--space-md) 0; text-align: center; line-height: 2;">
-                <div style="color: #ff8a65; font-size: 1.1em; font-weight: bold;">one - two - three - four</div>
-                <div style="color: #ff8a65; font-size: 1.1em; font-weight: bold;">one - two - three - four</div>
-                <div style="margin-top: var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-size: 0.9em;">
-                  ↑ Bar 1 repeats → Bar 2 repeats ↑
-                </div>
-              </div>
-              <p class="section-body" style="margin-bottom: 0;">
-                Each time you reach "four" and start again at "one," you've completed <strong>one bar</strong>. A bar is simply a container that holds a fixed number of beats.
-              </p>
-            </div>
-
-            <!-- Card: The 16-Step Grid -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Why the Grid Has 16 Steps</h3>
-              <p class="section-body">
-                The sequencer grid has <strong>16 steps</strong> for one bar. Why 16? Because each of the 4 beats is divided into 4 smaller pieces: <strong>4 × 4 = 16</strong>.
-              </p>
-              <p class="section-body">
-                These smaller divisions are called <strong><a href="glossary.html#sixteenth-notes" style="color: var(--accent-cyan); text-decoration: underline;">sixteenth notes</a></strong>. The <a href="glossary.html#grid" style="color: var(--accent-cyan); text-decoration: underline;">grid</a> is not random - it's a visual way of showing time. This 16-step grid lets you place sounds precisely in time.
-              </p>
-              <div style="font-family: monospace; background: rgba(255,255,255,0.03); padding: var(--space-md); border-radius: 8px; line-height: 1.8; margin: var(--space-md) 0; overflow-x: auto;">
-                <div style="color: rgba(255,255,255,0.5);">Steps:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16</div>
-                <div style="color: #ff8a65; margin-top: var(--space-xs);">Grid:   ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·</div>
-                <div style="margin-top: var(--space-sm); color: rgba(255,255,255,0.6); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-sm);">
-                  <div>Beats:  |-- 1 --|-- 2 --|-- 3 --|-- 4 --|</div>
-                  <div style="margin-top: var(--space-xs);">Main:   ●           ●           ●           ●</div>
-                </div>
-              </div>
-              <p class="section-body" style="margin-bottom: 0;">
-                <strong>Steps 1, 5, 9, and 13</strong> (marked with ●) represent the four main beats (<a href="glossary.html#quarter-notes" style="color: var(--accent-cyan); text-decoration: underline;">quarter notes</a>). Everything in between gives you more precision for creating interesting rhythms.
-              </p>
-            </div>
-
-            <!-- Card: Notes Without Music Theory Stress -->
-            <div class="exercise-box" style="background: linear-gradient(135deg, rgba(95,77,255,0.08), rgba(138,155,255,0.08));">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Notes Without Music Theory Stress</h3>
-              <p class="section-body">
-                Even if you don't know music theory, you can understand timing as divisions of the bar:
-              </p>
-              <div style="font-family: monospace; background: rgba(0,0,0,0.3); padding: var(--space-md); border-radius: 8px; margin: var(--space-md) 0; line-height: 1.8;">
-                <div style="color: #ff8a65;"><strong>Quarter notes</strong> (4 per bar):</div>
-                <div style="color: #ff5a3d; margin-left: var(--space-md);">●       ●       ●       ●</div>
-                <div style="color: rgba(255,255,255,0.5); margin-left: var(--space-md); font-size: 0.85em;">1       2       3       4</div>
-
-                <div style="color: #8a9bff; margin-top: var(--space-md);"><strong><a href="glossary.html#eighth-notes" style="color: var(--accent-cyan); text-decoration: underline;">Eighth notes</a></strong> (8 per bar):</div>
-                <div style="color: #5f4dff; margin-left: var(--space-md);">●   ●   ●   ●   ●   ●   ●   ●</div>
-
-                <div style="color: #81c784; margin-top: var(--space-md);"><strong>Sixteenth notes</strong> (16 per bar):</div>
-                <div style="color: #66bb6a; margin-left: var(--space-md);">● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ●</div>
-                <div style="color: rgba(255,255,255,0.5); margin-left: var(--space-md); font-size: 0.75em;">← More division = More precision →</div>
-              </div>
-              <p class="section-body" style="margin-bottom: 0;">
-                A beat is like a big step when walking. A subdivision is like smaller steps inside the big step. The 16-step grid shows sixteenth notes, giving you maximum precision.
-              </p>
-            </div>
-
-            <!-- Card: Audio vs MIDI -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Audio vs MIDI</h3>
-              <p class="section-body">
-                <strong>Audio</strong> is recorded sound - actual sound waves captured in a file (like WAV or MP3). You can hear audio directly.
-              </p>
-              <p class="section-body">
-                <strong><a href="glossary.html#midi" style="color: var(--accent-cyan); text-decoration: underline;">MIDI</a></strong> is just instructions - it tells the computer "play this sound at this time." MIDI itself makes no sound; it's like a player piano roll. The actual kick sound is an audio sample that gets triggered by your MIDI instructions.
-              </p>
-              <p class="section-body" style="margin-bottom: 0;">
-                In the sequencer below, when you click a step, you're creating a <strong>MIDI note</strong>. The sound you hear is an <strong>audio sample</strong> being triggered.
-              </p>
-            </div>
-
-            <!-- Card: Listening Like a Producer -->
-            <div class="exercise-box">
-              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--accent-primary);">Listening Like a Producer</h3>
-              <p class="section-body">
-                When you press Play on the sequencer, focus on two things:
-              </p>
-              <ol class="section-body" style="margin-left: var(--space-md); margin-top: var(--space-sm);">
-                <li><strong>Does it feel even?</strong> Like a metronome you could dance to?</li>
-                <li><strong>Does it loop smoothly?</strong> Does the end flow back to the start without feeling like it stumbles?</li>
-              </ol>
-              <p class="section-body" style="margin-bottom: 0;">
-                If it feels uneven, a hit is probably off the beat. If it stumbles at the loop point, the first beat might not be clearly marked. These are the foundations of good rhythm programming.
-              </p>
-            </div>
-
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
           </div>
         </section>
 
-        <!-- EXERCISE INSTRUCTIONS -->
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
-            <div class="section-eyebrow">Practice</div>
-            <h2 class="section-title" id="mpl-exercise-title">Experiment with the Sequencer</h2>
-            <p class="section-body" id="mpl-exercise-description">This lesson is in <strong>sandbox mode</strong> - there's no right or wrong answer. Click around, press play, and get familiar with the interface. Understanding how the grid works will prepare you for all future lessons.</p>
-
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
             <div class="exercise-steps" id="mpl-exercise-steps-wrap">
               <h3>What to do:</h3>
-              <ol class="exercise-checklist" id="mpl-exercise-steps">
-                <li><strong>Click on any step</strong> in the grid to activate it (it will light up).</li>
-                <li>Press <strong>Play</strong> to hear your pattern loop continuously.</li>
-                <li>Notice how the playhead moves from left to right across 16 steps, then repeats.</li>
-                <li>Try different patterns. There are no mistakes - just experiments!</li>
-                <li>When you feel comfortable, click <strong>Next Lesson</strong> to continue.</li>
-              </ol>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
             </div>
 
-            <div class="exercise-tip" style="display:block;">
-              <strong>Tip:</strong> <span>Try clicking different steps on the Kick row, then press Play. Notice how the sound repeats in a loop!</span>
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
             </div>
 
-            <!-- Next Lesson Button -->
-            <div style="margin-top: var(--space-xl); display: flex; justify-content: center;">
-              <button class="btn btn-primary" onclick="window.location.href='lesson-drums-1.html'" style="min-width: 200px;">
-                <span>Next Lesson &rarr;</span>
-              </button>
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
             </div>
           </div>
         </section>
@@ -245,7 +57,7 @@
         <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
           <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
           <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
-
+          
           <div class="sequencer" id="mpl-sequencer-collection">
             <!-- Sequencer will be created by JS -->
           </div>
@@ -260,10 +72,19 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               <span>Stop</span>
             </button>
-            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all" style="display:none;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
               <span>Clear</span>
             </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <!-- PRESET CONTROLS (hidden by default) -->
+            <div id="mpl-preset-controls" style="display:none;gap:0.5rem;margin-left:0.5rem;">
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-save">Save</button>
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-load">Load</button>
+            </div>
 
             <div style="margin-left:auto;display:flex;gap:0.75rem;">
               <div id="mpl-seq-prev-lesson-wrap">
@@ -272,17 +93,70 @@
                 </button>
               </div>
               <div id="mpl-seq-next-lesson-wrap">
-                <button class="btn btn-primary" id="mpl-next-lesson" onclick="window.location.href='lesson-drums-1.html'">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
                   <span>Next Lesson &rarr;</span>
                 </button>
               </div>
             </div>
+          </div>
+
+          <!-- TEMPO/SWING CONTROLS (for sandbox mode) -->
+          <div id="mpl-advanced-controls" style="display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-tempo-slider" style="font-size:0.85rem;color:var(--text-muted);">Tempo:</label>
+              <input type="range" id="mpl-tempo-slider" min="60" max="180" value="120" style="width:100px;">
+              <span id="mpl-tempo-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:50px;">120 BPM</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-swing-slider" style="font-size:0.85rem;color:var(--text-muted);">Swing:</label>
+              <input type="range" id="mpl-swing-slider" min="0" max="100" value="0" style="width:100px;">
+              <span id="mpl-swing-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:40px;">0%</span>
+            </div>
+          </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            <span>Sandbox mode - experiment freely! When ready, click Next Lesson.</span>
+            <span>Complete the exercise to unlock the next lesson.</span>
           </div>
         </section>
 
+        <!-- FOOTER -->
+        <footer class="footer" id="mpl-footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab</div>
+          <div><a class="footer-link" id="mpl-footer-overview-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
+      
+      <!-- LESSON ENGINE SCRIPT -->
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+      <!--
+        HOW TO USE THIS TEMPLATE:
+        
+        1. Create a config file (e.g., configs/lesson-drums-5.config.js)
+        2. Copy this template to your lesson file (e.g., lesson-drums-5-new.html)
+        3. Update the script import at the bottom to point to your config
+        
+        Example:
+
+<script type="module">
+          import { lessonConfig } from './configs/lesson-drums-5.config.js';
+          import { initLessonFromConfig } from './lesson-engine.js';
+          initLessonFromConfig(lessonConfig);
+        </script>
+      -->
+
+      
+      <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-0.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
     </main>
 
     <!-- FOOTER -->
@@ -295,19 +169,7 @@
         </nav>
       </div>
     </footer>
-
-    <!-- LESSON ENGINE -->
-    <script type="module">
-      // Import lesson config and engine
-      import { lessonConfig } from './configs/lesson-drums-0.config.js';
-      import { initLessonFromConfig } from './lesson-engine.js';
-
-      // Initialize lesson from config
-      initLessonFromConfig(lessonConfig);
-
-      // Set year in footer
-      document.getElementById("mpl-year").textContent = new Date().getFullYear();
-    </script>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
     <script src="navbar.js"></script>
   </body>
 </html>
