@@ -23,13 +23,13 @@
               <span>Learn Our</span>
               <span class="gradient-text"> Tools.</span>
             </h1>
-            <p class="hero-subtitle">Master the Music Producer Lab sequencer with this complete guide. Learn how to use velocity controls, tempo settings, swing, and all the features that bring your beats to life.</p>
+            <p class="hero-subtitle">Master the Music Producer Lab sequencers with this complete guide. Learn the drum sequencer for beats (velocity, tempo, swing, humanization) and the piano roll for chords, melodies, and bass lines.</p>
           </div>
 
           <aside class="hero-visual" aria-hidden="true">
             <div class="hero-visual-header">
               <div class="hero-visual-title">Interactive Sequencer</div>
-              <div class="hero-visual-pill">6 Core Tools</div>
+              <div class="hero-visual-pill">7 Core Tools</div>
             </div>
             <div class="hero-visual-grid">
               <div class="hero-visual-main">
@@ -54,9 +54,9 @@
                 <div class="hero-visual-side-label">You'll Learn</div>
                 <div class="hero-visual-pill-list">
                   <div class="hero-visual-pill-tag">Step Programming</div>
+                  <div class="hero-visual-pill-tag">Piano Roll</div>
                   <div class="hero-visual-pill-tag">Velocity Control</div>
                   <div class="hero-visual-pill-tag">Tempo & Swing</div>
-                  <div class="hero-visual-pill-tag">Pattern Hints</div>
                 </div>
               </div>
             </div>
@@ -464,6 +464,88 @@
 
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
                   <strong>🎯 Pro Tip:</strong> Start with <a href="glossary.html#humanization" style="color: var(--accent-cyan); text-decoration: underline;">humanization</a> OFF to build your pattern perfectly on the grid. Then enable humanization to add life. Toggle it on/off to hear the difference—it's subtle but makes all the difference!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PIANO ROLL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #7</div>
+            <h2 class="section-title">Piano Roll <span class="gradient-text">Sequencer</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is the Piano Roll?</h3>
+              <div class="exercise-description">
+                <p>The <strong>Piano Roll</strong> is an advanced sequencer used in harmony and melody lessons. Unlike the drum sequencer's step grid, the piano roll lets you create <strong>polyphonic music</strong> - chords, melodies, and bass lines with precise pitch control.</p>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Understanding the Interface:</h4>
+                  <ul class="exercise-steps">
+                    <li><strong>Vertical Axis (Left):</strong> Piano keys showing note names (C4, D#4, E4, etc.) - higher notes at the top</li>
+                    <li><strong>Horizontal Axis (Top):</strong> Step numbers showing time positions (1, 2, 3...)</li>
+                    <li><strong>Grid Cells:</strong> Click any cell to place a note at that pitch and time</li>
+                    <li><strong>Beat Markers:</strong> Vertical cyan lines mark each beat (every 4 steps) for easy timing</li>
+                    <li><strong>Note Bars:</strong> Orange bars show active notes - width indicates duration</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">How to Use the Piano Roll:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Click a grid cell</strong> to add a note at that pitch and step</li>
+                    <li><strong>Click an existing note</strong> to delete it</li>
+                    <li><strong>Click piano keys</strong> (left column) to preview that note's sound</li>
+                    <li><strong>Drag note handles</strong> (left/right edges) to change duration or start position</li>
+                    <li><strong>Drag note vertically</strong> to change its pitch</li>
+                    <li><strong>Scroll horizontally</strong> to see long patterns (64+ steps) - look for the cyan hint banner</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(95, 77, 255, 0.1); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Visual Features:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;">🎹 <strong>White keys:</strong> Natural notes (C, D, E, F, G, A, B) - lighter background</li>
+                    <li style="padding: var(--space-xs) 0;">🎹 <strong>Black keys:</strong> Sharp notes (C#, D#, F#, G#, A#) - darker background</li>
+                    <li style="padding: var(--space-xs) 0;">✨ <strong>Scale highlighting:</strong> Notes in the current scale have subtle cyan tint</li>
+                    <li style="padding: var(--space-xs) 0;">📊 <strong>Beat columns:</strong> Thick cyan borders mark each beat for precise timing</li>
+                    <li style="padding: var(--space-xs) 0;">🔄 <strong>Scroll indicator:</strong> Cyan banner appears when pattern needs horizontal scrolling</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(0, 240, 255, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">🎼 Chord Detection:</h4>
+                  <p style="margin: 0; line-height: 1.6;">The piano roll automatically detects and displays chords as you build them! When you place multiple notes at the same time position, the <strong>Current Chord</strong> display shows the chord name (e.g., "C Major", "F minor", "G Dominant 7"). This helps you learn music theory while creating.</p>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255, 170, 0, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">💡 Piano Roll Tips:</h4>
+                  <ul style="margin: 0; padding-left: var(--space-md); line-height: 1.8;">
+                    <li><strong>Building Chords:</strong> Click 3 notes vertically aligned (same step) to create triads</li>
+                    <li><strong>Creating Melodies:</strong> Place single notes across different steps horizontally</li>
+                    <li><strong>Precise Timing:</strong> Use the beat markers (cyan lines) to align notes with beats</li>
+                    <li><strong>Listen First:</strong> Click piano keys to hear notes before placing them</li>
+                    <li><strong>Long Patterns:</strong> If you see "← Scorri orizzontalmente →", drag the grid left/right</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(138, 43, 226, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Piano Roll Use Cases:</h4>
+                  <div style="display: grid; gap: var(--space-sm); margin-top: var(--space-sm);">
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: var(--accent-cyan);">Harmony Lessons:</strong> Build chord progressions (I–IV–V, ii–V–I)
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: var(--accent-primary);">Bass Lines:</strong> Program walking bass, synth bass, sub bass
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: #ffaa00);">Melody Creation:</strong> Compose lead melodies, hooks, motifs
+                    </div>
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong>🎹 Pro Tip:</strong> The piano roll is used in <strong>Harmony & Melody</strong> and <strong>Bass & Low End</strong> lessons. Start with simple triads (3 notes), then progress to complex chord voicings and melodies. The chord detector is your friend - watch it as you build to learn music theory!
                 </div>
               </div>
             </div>
