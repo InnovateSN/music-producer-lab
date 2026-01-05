@@ -496,6 +496,8 @@ function createStepHeader() {
       font-family: var(--font-mono, monospace);
       color: ${isBeat ? 'var(--accent-cyan)' : 'rgba(255,255,255,0.4)'};
       font-weight: ${isBeat ? '700' : '400'};
+      box-sizing: border-box;
+      border: 1px solid transparent;
     `;
     stepsContainer.appendChild(stepNum);
   }
@@ -581,6 +583,7 @@ function createPianoRow(pitch) {
       cursor: pointer;
       transition: all 0.1s ease;
       position: relative;
+      box-sizing: border-box;
     `;
 
     // Click to add/remove note
