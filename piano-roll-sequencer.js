@@ -436,6 +436,45 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
  * @returns {HTMLElement} - Piano roll container
  */
 function createPianoRollUI() {
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `
+    position: relative;
+  `;
+
+  // Add scroll hint if there are many steps
+  if (pianoRollState.stepCount > 32) {
+    const scrollHint = document.createElement('div');
+    scrollHint.className = 'piano-roll-scroll-hint';
+    scrollHint.innerHTML = '← Scorri orizzontalmente per vedere tutti gli step →';
+    scrollHint.style.cssText = `
+      text-align: center;
+      padding: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.25), rgba(0, 240, 255, 0.15));
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      border-radius: 6px;
+      color: var(--accent-cyan);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-mono, monospace);
+      animation: pulse-hint 2s ease-in-out infinite;
+    `;
+    wrapper.appendChild(scrollHint);
+
+    // Add CSS animation
+    if (!document.getElementById('piano-roll-hint-style')) {
+      const style = document.createElement('style');
+      style.id = 'piano-roll-hint-style';
+      style.textContent = `
+        @keyframes pulse-hint {
+          0%, 100% { opacity: 0.8; }
+          50% { opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
   const container = document.createElement('div');
   container.className = 'piano-roll-container';
   container.style.cssText = `
@@ -457,7 +496,8 @@ function createPianoRollUI() {
   const grid = createPianoGrid();
   container.appendChild(grid);
 
-  return container;
+  wrapper.appendChild(container);
+  return wrapper;
 }
 
 /**
