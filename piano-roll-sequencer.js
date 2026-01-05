@@ -120,6 +120,12 @@ const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 
 const WHITE_KEYS = [0, 2, 4, 5, 7, 9, 11]; // C, D, E, F, G, A, B
 const BLACK_KEYS = [1, 3, 6, 8, 10]; // C#, D#, F#, G#, A#
 
+// UI Constants
+const PIANO_KEY_LABEL_WIDTH = 80; // Width in pixels for piano key labels
+
+// Debug flag - set to false in production
+const DEBUG_MODE = false;
+
 /**
  * Get note name from MIDI number
  * @param {number} midiNote - MIDI note number
@@ -381,7 +387,7 @@ let lessonKey = null;
  * @param {string} containerId - Container element ID
  */
 function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection') {
-  console.log('[PianoRoll] Starting initialization...', { config, containerId });
+  if (DEBUG_MODE) console.log('[PianoRoll] Starting initialization...', { config, containerId });
 
   const container = document.getElementById(containerId);
   if (!container) {
@@ -390,7 +396,7 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
     return;
   }
 
-  console.log('[PianoRoll] Container found:', container);
+  if (DEBUG_MODE) console.log('[PianoRoll] Container found:', container);
 
   // Update state from config
   pianoRollState.tempo = config.sequencer?.tempo || 90;
@@ -406,29 +412,29 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
   nextLessonUrl = config.nextLessonUrl || null;
   lessonKey = config.lessonKey || null;
 
-  console.log('[PianoRoll] State configured:', pianoRollState);
-  console.log('[PianoRoll] Navigation:', { nextLessonUrl, lessonKey });
+  if (DEBUG_MODE) console.log('[PianoRoll] State configured:', pianoRollState);
+  if (DEBUG_MODE) console.log('[PianoRoll] Navigation:', { nextLessonUrl, lessonKey });
 
   // Clear container
   container.innerHTML = '';
 
   // Create piano roll UI
-  console.log('[PianoRoll] Creating UI...');
+  if (DEBUG_MODE) console.log('[PianoRoll] Creating UI...');
   const pianoRoll = createPianoRollUI();
-  console.log('[PianoRoll] UI created:', pianoRoll);
+  if (DEBUG_MODE) console.log('[PianoRoll] UI created:', pianoRoll);
 
   container.appendChild(pianoRoll);
-  console.log('[PianoRoll] UI appended to container');
+  if (DEBUG_MODE) console.log('[PianoRoll] UI appended to container');
 
   // Setup controls
-  console.log('[PianoRoll] Setting up controls...');
+  if (DEBUG_MODE) console.log('[PianoRoll] Setting up controls...');
   setupPianoRollControls();
 
   // Setup chord display
-  console.log('[PianoRoll] Setting up chord display...');
+  if (DEBUG_MODE) console.log('[PianoRoll] Setting up chord display...');
   setupChordDisplay();
 
-  console.log('[PianoRoll] ✓ Initialization complete!', pianoRollState);
+  if (DEBUG_MODE) console.log('[PianoRoll] ✓ Initialization complete!', pianoRollState);
 }
 
 /**
@@ -445,7 +451,9 @@ function createPianoRollUI() {
   if (pianoRollState.stepCount > 32) {
     const scrollHint = document.createElement('div');
     scrollHint.className = 'piano-roll-scroll-hint';
-    scrollHint.innerHTML = '← Scorri orizzontalmente per vedere tutti gli step →';
+    scrollHint.innerHTML = '← Scroll horizontally to see all steps →';
+    scrollHint.setAttribute('role', 'status');
+    scrollHint.setAttribute('aria-live', 'polite');
     scrollHint.style.cssText = `
       text-align: center;
       padding: var(--space-sm);
@@ -461,7 +469,7 @@ function createPianoRollUI() {
     `;
     wrapper.appendChild(scrollHint);
 
-    // Add CSS animation
+    // Add CSS animation with reduced motion support
     if (!document.getElementById('piano-roll-hint-style')) {
       const style = document.createElement('style');
       style.id = 'piano-roll-hint-style';
@@ -470,6 +478,31 @@ function createPianoRollUI() {
           0%, 100% { opacity: 0.8; }
           50% { opacity: 1; }
         }
+
+        /* Focus states for keyboard navigation */
+        .piano-roll-cell:focus {
+          outline: 3px solid var(--accent-cyan, #00f0ff) !important;
+          outline-offset: -2px;
+          z-index: 100;
+        }
+
+        .piano-key-label:focus {
+          outline: 3px solid var(--accent-cyan, #00f0ff) !important;
+          outline-offset: -2px;
+          background: rgba(0, 240, 255, 0.2) !important;
+        }
+
+        .piano-roll-note:focus {
+          outline: 3px solid var(--accent-purple, #8b5cf6) !important;
+          outline-offset: 2px;
+          z-index: 1000;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .piano-roll-scroll-hint {
+            animation: none !important;
+          }
+        }
       `;
       document.head.appendChild(style);
     }
@@ -477,6 +510,8 @@ function createPianoRollUI() {
 
   const container = document.createElement('div');
   container.className = 'piano-roll-container';
+  container.setAttribute('role', 'region');
+  container.setAttribute('aria-label', 'Piano roll sequencer grid');
   container.style.cssText = `
     display: flex;
     flex-direction: column;
@@ -510,7 +545,7 @@ function createStepHeader() {
   header.style.cssText = `
     display: flex;
     margin-bottom: var(--space-sm);
-    padding-left: 80px;
+    padding-left: ${PIANO_KEY_LABEL_WIDTH}px;
   `;
 
   // Step numbers
@@ -609,6 +644,9 @@ function createPianoRow(pitch) {
     cell.className = 'piano-roll-cell';
     cell.dataset.pitch = pitch;
     cell.dataset.step = step;
+    cell.setAttribute('role', 'button');
+    cell.setAttribute('aria-label', `Step ${step + 1}, ${getNoteNameFromMidi(pitch)}`);
+    cell.setAttribute('tabindex', '0');
 
     const isBeat = step % stepsPerBeat === 0;
     const cellColor = isWhite
@@ -632,6 +670,14 @@ function createPianoRow(pitch) {
     cell.addEventListener('click', (e) => {
       toggleNote(pitch, step);
       e.stopPropagation();
+    });
+
+    // Keyboard accessibility (Enter or Space to toggle)
+    cell.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleNote(pitch, step);
+      }
     });
 
     // Hover effect
@@ -666,10 +712,13 @@ function createPianoKeyLabel(pitch) {
   const isC = (pitch % 12) === 0;
 
   label.textContent = noteName;
+  label.setAttribute('role', 'button');
+  label.setAttribute('aria-label', `Preview note ${noteName}`);
+  label.setAttribute('tabindex', '0');
   label.style.cssText = `
-    width: 80px;
-    min-width: 80px;
-    max-width: 80px;
+    width: ${PIANO_KEY_LABEL_WIDTH}px;
+    min-width: ${PIANO_KEY_LABEL_WIDTH}px;
+    max-width: ${PIANO_KEY_LABEL_WIDTH}px;
     flex-shrink: 0;
     flex-grow: 0;
     display: flex;
@@ -685,13 +734,23 @@ function createPianoKeyLabel(pitch) {
     box-sizing: border-box;
   `;
 
-  // Click piano key to preview sound
-  label.addEventListener('click', () => {
+  const playPreview = () => {
     playNote(pitch, 0.5, 0.6);
     label.style.background = 'rgba(0, 240, 255, 0.3)';
     setTimeout(() => {
       label.style.background = isWhite ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.3)';
     }, 200);
+  };
+
+  // Click piano key to preview sound
+  label.addEventListener('click', playPreview);
+
+  // Keyboard support for piano keys
+  label.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      playPreview();
+    }
   });
 
   return label;
@@ -731,7 +790,7 @@ function toggleNote(pitch, step) {
   // Update chord display
   updateChordDisplay();
 
-  console.log('[PianoRoll] Notes:', pianoRollState.notes);
+  if (DEBUG_MODE) console.log('[PianoRoll] Notes:', pianoRollState.notes);
 }
 
 /**
