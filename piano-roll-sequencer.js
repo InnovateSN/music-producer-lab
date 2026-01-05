@@ -40,27 +40,58 @@ function midiToFrequency(midiNote) {
  * @param {number} midiNote - MIDI note number
  * @param {number} duration - Note duration in seconds
  * @param {number} velocity - Note velocity (0-1)
+ * @param {Object} options - Synthesis options
+ * @param {string} options.waveform - Oscillator waveform ('triangle', 'sawtooth', 'sine', 'square')
+ * @param {boolean} options.bassMode - Enable bass-optimized synthesis
  */
-function playNote(midiNote, duration = 1.0, velocity = 0.7) {
+function playNote(midiNote, duration = 1.0, velocity = 0.7, options = {}) {
   try {
     const ctx = getAudioContext();
     const now = ctx.currentTime;
 
+    // Determine waveform (bass mode uses sawtooth, default is triangle)
+    const waveform = options.waveform || (options.bassMode ? 'sawtooth' : 'triangle');
+    const isBass = options.bassMode || false;
+
     // Create oscillator
     const oscillator = ctx.createOscillator();
-    oscillator.type = 'triangle'; // Warm tone, good for harmony
+    oscillator.type = waveform;
     oscillator.frequency.value = midiToFrequency(midiNote);
+
+    // Create filter for bass (lowpass to remove harsh highs)
+    let filterNode = null;
+    if (isBass) {
+      filterNode = ctx.createBiquadFilter();
+      filterNode.type = 'lowpass';
+      filterNode.frequency.value = 800; // Cut highs for smoother bass
+      filterNode.Q.value = 1;
+    }
 
     // Create gain envelope (ADSR)
     const gainNode = ctx.createGain();
     gainNode.gain.setValueAtTime(0, now);
-    gainNode.gain.linearRampToValueAtTime(velocity * 0.3, now + 0.01); // Attack
-    gainNode.gain.exponentialRampToValueAtTime(velocity * 0.2, now + 0.1); // Decay
-    gainNode.gain.setValueAtTime(velocity * 0.2, now + duration - 0.05); // Sustain
-    gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration); // Release
 
-    // Connect and start
-    oscillator.connect(gainNode);
+    if (isBass) {
+      // Bass envelope: longer attack, sustained body
+      gainNode.gain.linearRampToValueAtTime(velocity * 0.4, now + 0.005); // Fast attack
+      gainNode.gain.exponentialRampToValueAtTime(velocity * 0.35, now + 0.1); // Slight decay
+      gainNode.gain.setValueAtTime(velocity * 0.35, now + duration - 0.08); // Long sustain
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration); // Smooth release
+    } else {
+      // Harmony envelope: standard ADSR
+      gainNode.gain.linearRampToValueAtTime(velocity * 0.3, now + 0.01); // Attack
+      gainNode.gain.exponentialRampToValueAtTime(velocity * 0.2, now + 0.1); // Decay
+      gainNode.gain.setValueAtTime(velocity * 0.2, now + duration - 0.05); // Sustain
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration); // Release
+    }
+
+    // Connect audio graph
+    if (filterNode) {
+      oscillator.connect(filterNode);
+      filterNode.connect(gainNode);
+    } else {
+      oscillator.connect(gainNode);
+    }
     gainNode.connect(ctx.destination);
 
     oscillator.start(now);
@@ -75,9 +106,10 @@ function playNote(midiNote, duration = 1.0, velocity = 0.7) {
  * @param {Array<number>} midiNotes - Array of MIDI note numbers
  * @param {number} duration - Chord duration in seconds
  * @param {number} velocity - Chord velocity (0-1)
+ * @param {Object} options - Synthesis options (passed to playNote)
  */
-function playChord(midiNotes, duration = 1.0, velocity = 0.7) {
-  midiNotes.forEach(note => playNote(note, duration, velocity));
+function playChord(midiNotes, duration = 1.0, velocity = 0.7, options = {}) {
+  midiNotes.forEach(note => playNote(note, duration, velocity, options));
 }
 
 // ==========================================
@@ -328,7 +360,10 @@ let pianoRollState = {
   scale: 'Major',
   pitchRange: { low: 36, high: 72 }, // C2 to C5 (3 octaves)
   isPlaying: false,
-  currentStep: 0
+  currentStep: 0,
+  // Bass mode synthesis options
+  bassMode: false,
+  waveform: 'triangle' // Default: triangle for harmony, sawtooth for bass
 };
 
 let playbackIntervalId = null;
@@ -365,6 +400,8 @@ function initPianoRollSequencer(config, containerId = 'mpl-sequencer-collection'
   pianoRollState.key = config.sequencer?.key || 'C';
   pianoRollState.scale = config.sequencer?.scale || 'Major';
   pianoRollState.pitchRange = config.sequencer?.pitchRange || { low: 36, high: 72 };
+  pianoRollState.bassMode = config.pianoRoll?.bassMode || false;
+  pianoRollState.waveform = config.pianoRoll?.waveform || (pianoRollState.bassMode ? 'sawtooth' : 'triangle');
   lessonValidation = config.validation || null;
   nextLessonUrl = config.nextLessonUrl || null;
   lessonKey = config.lessonKey || null;
@@ -1003,12 +1040,17 @@ function startPlayback() {
         const noteDurationInSeconds = noteDurationInBeats * secondsPerBeat;
 
         // Apply swing delay
+        const synthOptions = {
+          bassMode: pianoRollState.bassMode,
+          waveform: pianoRollState.waveform
+        };
+
         if (swingDelay > 0) {
           setTimeout(() => {
-            playNote(note.pitch, noteDurationInSeconds, 0.6);
+            playNote(note.pitch, noteDurationInSeconds, 0.6, synthOptions);
           }, swingDelay * 1000);
         } else {
-          playNote(note.pitch, noteDurationInSeconds, 0.6);
+          playNote(note.pitch, noteDurationInSeconds, 0.6, synthOptions);
         }
       });
     }
