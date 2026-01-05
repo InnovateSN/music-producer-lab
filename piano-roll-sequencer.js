@@ -636,6 +636,7 @@ function createPianoKeyLabel(pitch) {
     background: ${isWhite ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.3)'};
     border-right: 1px solid rgba(0, 240, 255, 0.2);
     cursor: pointer;
+    box-sizing: border-box;
   `;
 
   // Click piano key to preview sound
