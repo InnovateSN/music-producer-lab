@@ -2,7 +2,7 @@
  * Music Producer Lab - Interactive Drum Sequencer
  * A modular 16/8/32-step sequencer for the interactive lessons
  * Full-width horizontal layout with step numbers
- * 
+ *
  * Features:
  * - Variable step count (8, 16, 32)
  * - Swing support
@@ -11,6 +11,10 @@
  * - Preset save/load
  * - Responsive design
  */
+
+// Import toast notifications and debug utilities
+import { toast } from './toast-notifications.js';
+import { debug } from './debug.js';
 
 // Audio Context (Web Audio API)
 let audioContext = null;
@@ -1713,9 +1717,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
         presets[presetName] = presetData;
         localStorage.setItem('mpl-presets', JSON.stringify(presets));
-        alert(`Preset "${presetName}" saved!`);
+        toast.success(`Preset "${presetName}" saved!`);
       } catch (e) {
         console.error('Failed to save preset:', e);
+        toast.error('Failed to save preset. Please try again.');
       }
     }
   });
@@ -1726,7 +1731,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       const presets = JSON.parse(localStorage.getItem('mpl-presets') || '{}');
       const presetNames = Object.keys(presets);
       if (presetNames.length === 0) {
-        alert('No presets saved yet!');
+        toast.warning('No presets saved yet!');
         return;
       }
       const presetName = prompt(`Available presets:\n${presetNames.join('\n')}\n\nEnter preset name to load:`);
@@ -1742,10 +1747,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         });
         // Update UI
         updateSequencerUI(state, instruments, stepCount, velocityState);
-        alert(`Preset "${presetName}" loaded!`);
+        toast.success(`Preset "${presetName}" loaded!`);
       }
     } catch (e) {
       console.error('Failed to load preset:', e);
+      toast.error('Failed to load preset. Please try again.');
     }
   });
 
