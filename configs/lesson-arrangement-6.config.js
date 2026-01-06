@@ -21,7 +21,27 @@ export const lessonConfig = {
     titleHighlight: "Structures",
     subtitle: "Master <strong>build-drop-breakdown cycles</strong>. Learn <strong>tension building</strong> and <strong>impact moments</strong>."
   },
-  
+
+  // ====================
+  // EXERCISE INFO
+  // ====================
+  exercise: {
+    title: "Build an EDM Track Structure",
+    description: "Create a classic EDM arrangement using the <strong>Build-Drop-Breakdown</strong> cycle. This structure is essential for house, techno, trance, and most electronic dance music. Learn to control energy flow and create maximum impact.",
+    tip: "The drop should feel like a payoff after the buildup. Use all 4-5 arrangement elements in the drop for maximum energy, then strip back to 2-3 elements in the breakdown.",
+    steps: [
+      { text: "<strong>Start with an Intro</strong> (8-16 bars) - DJ-friendly, minimal elements" },
+      { text: "<strong>Add a Buildup</strong> (8-16 bars) - Rising tension with risers and filter sweeps" },
+      { text: "<strong>Create the Drop</strong> (16-32 bars) - Full energy with all elements" },
+      { text: "<strong>Add a Breakdown</strong> (8-16 bars) - Strip back to create contrast" },
+      { text: "<strong>Repeat the cycle</strong> - Second buildup and drop for a complete track" },
+      { text: "<strong>End with an Outro</strong> (8 bars) - DJ-friendly minimal ending" }
+    ]
+  },
+
+  // ====================
+  // SECTION DEFINITIONS
+  // ====================
   sections: [
     { id: "intro", name: "Intro", bars: "8-16", energy: 30, description: "DJ-friendly, minimal" },
     { id: "buildup", name: "Buildup", bars: "8-16", energy: 70, description: "Rising tension" },
