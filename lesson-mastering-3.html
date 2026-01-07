@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+      </main>
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-mastering-3.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+    <script src="navbar.js"></script>
+  </body>
+</html>
