@@ -1,15 +1,16 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 133 lessons across 8 categories:
+ * This file contains 149 lessons across 9 categories:
  * - Drums & Rhythm (23 lessons)
  * - Harmony & Melody (20 lessons)
- * - Bass & Low End (20 lessons) ✨ EXPANDED
+ * - Music Theory Fundamentals (8 lessons) ✨ NEW
+ * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
- * - Sound Design (15 lessons) ✨ EXPANDED
- * - Mixing (15 lessons) ✨ EXPANDED
- * - Vocals (12 lessons) ✨ EXPANDED
- * - Mastering (10 lessons) ✨ EXPANDED
+ * - Sound Design (15 lessons)
+ * - Mixing (15 lessons)
+ * - Vocals (12 lessons)
+ * - Mastering (10 lessons)
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
@@ -531,8 +532,119 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
+  // MUSIC THEORY FUNDAMENTALS MODULE (8 Lessons)
   // ============================================================
-  // BASS & LOW END MODULE (10 Lessons)
+  {
+    slug: 'music-theory',
+    title: 'Music Theory Fundamentals',
+    description: 'Master the foundational concepts of music theory: intervals, scales, modes, rhythm notation, key signatures, and chord construction. Build a solid theoretical foundation for all music production.',
+    lessons: [
+      // --- LEVEL 1-2: BEGINNER ---
+      {
+        slug: 'lesson-theory-1',
+        lessonKey: 'mpl-theory-1-progress',
+        title: 'Intervals & Half Steps',
+        description: 'Learn the building blocks of all music: intervals. Understand half steps, whole steps, and how to measure distance between notes.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 1,
+        badge: 'Free',
+        pagePath: 'lesson-theory-1.html',
+        configPath: './configs/lesson-theory-1.config.js'
+      },
+      {
+        slug: 'lesson-theory-2',
+        lessonKey: 'mpl-theory-2-progress',
+        title: 'Major & Minor Scales Construction',
+        description: 'Build major and minor scales from scratch using interval formulas. Understand the W-W-H-W-W-W-H pattern that creates every major scale.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-theory-2.html',
+        configPath: './configs/lesson-theory-2.config.js'
+      },
+      {
+        slug: 'lesson-theory-3',
+        lessonKey: 'mpl-theory-3-progress',
+        title: 'Note Names & Staff Reading',
+        description: 'Master note names on the treble and bass clef. Learn how to read and write music notation efficiently.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-theory-3.html',
+        configPath: './configs/lesson-theory-3.config.js'
+      },
+
+      // --- LEVEL 3-4: INTERMEDIATE ---
+      {
+        slug: 'lesson-theory-4',
+        lessonKey: 'mpl-theory-4-progress',
+        title: 'The 7 Modes: Complete Guide',
+        description: 'Master all 7 modes derived from the major scale: Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, and Locrian. Understand their unique characteristics and applications.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-4.html',
+        configPath: './configs/lesson-theory-4.config.js'
+      },
+      {
+        slug: 'lesson-theory-5',
+        lessonKey: 'mpl-theory-5-progress',
+        title: 'Rhythm Notation & Time Signatures',
+        description: 'Learn to read and write rhythms. Master note values, rests, ties, dots, and how time signatures organize music.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-5.html',
+        configPath: './configs/lesson-theory-5.config.js'
+      },
+      {
+        slug: 'lesson-theory-6',
+        lessonKey: 'mpl-theory-6-progress',
+        title: 'Key Signatures & Circle of Fifths',
+        description: 'Understand key signatures and how the circle of fifths organizes all 12 keys. Learn sharps, flats, and relative major/minor relationships.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-6.html',
+        configPath: './configs/lesson-theory-6.config.js'
+      },
+
+      // --- LEVEL 5-6: ADVANCED ---
+      {
+        slug: 'lesson-theory-7',
+        lessonKey: 'mpl-theory-7-progress',
+        title: 'Chord Construction Theory',
+        description: 'Build chords from intervals: triads, seventh chords, extensions (9ths, 11ths, 13ths), and alterations. Master the theoretical foundation of harmony.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-7.html',
+        configPath: './configs/lesson-theory-7.config.js'
+      },
+      {
+        slug: 'lesson-theory-8',
+        lessonKey: 'mpl-theory-8-progress',
+        title: 'Functional Harmony & Roman Numerals',
+        description: 'Understand chord function: tonic, subdominant, dominant. Learn Roman numeral analysis and how chords create tension and resolution.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-8.html',
+        configPath: './configs/lesson-theory-8.config.js'
+      }
+    ]
+  },
+
+  // ============================================================
+  // BASS & LOW END MODULE (20 Lessons)
   // ============================================================
   {
     slug: 'bass',
