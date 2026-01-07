@@ -1,10 +1,11 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 149 lessons across 9 categories:
+ * This file contains 159 lessons across 10 categories:
  * - Drums & Rhythm (23 lessons)
  * - Harmony & Melody (20 lessons)
  * - Music Theory Fundamentals (8 lessons) ✨ NEW
+ * - Ear Training (10 lessons) ✨ NEW
  * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
  * - Sound Design (15 lessons)
@@ -639,6 +640,142 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-theory-8.html',
         configPath: './configs/lesson-theory-8.config.js'
+      }
+    ]
+  },
+
+  // ============================================================
+  // EAR TRAINING MODULE (10 Lessons)
+  // ============================================================
+  {
+    slug: 'ear-training',
+    title: 'Ear Training',
+    description: 'Develop critical listening skills: interval recognition, chord identification, rhythm dictation, and genre analysis. Train your ears to hear like a professional producer.',
+    lessons: [
+      // --- LEVEL 1-3: BEGINNER ---
+      {
+        slug: 'lesson-ear-1',
+        lessonKey: 'mpl-ear-1-progress',
+        title: 'Interval Recognition: Melodic',
+        description: 'Train your ear to recognize intervals played one note at a time. Master the foundational skill for transcription and melody writing.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-ear-1.html',
+        configPath: './configs/lesson-ear-1.config.js'
+      },
+      {
+        slug: 'lesson-ear-2',
+        lessonKey: 'mpl-ear-2-progress',
+        title: 'Interval Recognition: Harmonic',
+        description: 'Identify intervals played simultaneously. Essential for understanding chord voicings and harmonic structure.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Free',
+        pagePath: 'lesson-ear-2.html',
+        configPath: './configs/lesson-ear-2.config.js'
+      },
+      {
+        slug: 'lesson-ear-3',
+        lessonKey: 'mpl-ear-3-progress',
+        title: 'Chord Quality Identification',
+        description: 'Distinguish between major, minor, diminished, and augmented triads by ear. Build the foundation for advanced chord recognition.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-3.html',
+        configPath: './configs/lesson-ear-3.config.js'
+      },
+
+      // --- LEVEL 4-6: INTERMEDIATE ---
+      {
+        slug: 'lesson-ear-4',
+        lessonKey: 'mpl-ear-4-progress',
+        title: 'Scale & Mode Recognition',
+        description: 'Identify scales and modes by their characteristic sound. Recognize major, minor, and modal patterns in music.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-4.html',
+        configPath: './configs/lesson-ear-4.config.js'
+      },
+      {
+        slug: 'lesson-ear-5',
+        lessonKey: 'mpl-ear-5-progress',
+        title: 'Rhythm Pattern Recognition',
+        description: 'Transcribe and identify rhythm patterns. Train your ear to recognize note values, syncopation, and groove elements.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-5.html',
+        configPath: './configs/lesson-ear-5.config.js'
+      },
+      {
+        slug: 'lesson-ear-6',
+        lessonKey: 'mpl-ear-6-progress',
+        title: 'Pitch Accuracy Training',
+        description: 'Develop perfect pitch awareness and relative pitch skills. Improve your ability to sing and identify specific pitches.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-6.html',
+        configPath: './configs/lesson-ear-6.config.js'
+      },
+      {
+        slug: 'lesson-ear-7',
+        lessonKey: 'mpl-ear-7-progress',
+        title: 'Melodic Dictation Basics',
+        description: 'Transcribe simple melodies by ear. Combine interval recognition, rhythm, and pitch to write what you hear.',
+        duration: '20-22 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-7.html',
+        configPath: './configs/lesson-ear-7.config.js'
+      },
+
+      // --- LEVEL 7-9: ADVANCED ---
+      {
+        slug: 'lesson-ear-8',
+        lessonKey: 'mpl-ear-8-progress',
+        title: 'Chord Progression Ear Training',
+        description: 'Identify common chord progressions and harmonic movement. Recognize I-IV-V, ii-V-I, and other foundational patterns by ear.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-8.html',
+        configPath: './configs/lesson-ear-8.config.js'
+      },
+      {
+        slug: 'lesson-ear-9',
+        lessonKey: 'mpl-ear-9-progress',
+        title: 'Genre & Style Identification',
+        description: 'Recognize musical genres and production styles by their sonic characteristics. Analyze arrangement, instrumentation, and mixing approach.',
+        duration: '20-25 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-9.html',
+        configPath: './configs/lesson-ear-9.config.js'
+      },
+      {
+        slug: 'lesson-ear-10',
+        lessonKey: 'mpl-ear-10-progress',
+        title: 'Advanced Harmonic Dictation',
+        description: 'Transcribe complex chord progressions with extensions, alterations, and voice leading. Master professional-level harmonic ear training.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-10.html',
+        configPath: './configs/lesson-ear-10.config.js'
       }
     ]
   },
