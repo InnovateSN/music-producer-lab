@@ -1,10 +1,10 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 123 lessons across 8 categories:
- * - Drums & Rhythm (21 lessons)
+ * This file contains 133 lessons across 8 categories:
+ * - Drums & Rhythm (23 lessons)
  * - Harmony & Melody (20 lessons)
- * - Bass & Low End (10 lessons)
+ * - Bass & Low End (20 lessons) ✨ EXPANDED
  * - Arrangement & Songwriting (20 lessons)
  * - Sound Design (15 lessons) ✨ EXPANDED
  * - Mixing (15 lessons) ✨ EXPANDED
@@ -655,6 +655,130 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         depthLevel: 8,
         pagePath: 'lesson-bass-10.html',
         configPath: './configs/lesson-bass-10.config.js'
+      },
+
+      // --- NEW ADVANCED LESSONS (11-15) ---
+      {
+        slug: 'lesson-bass-11',
+        lessonKey: 'mpl-bass-11-progress',
+        title: 'Funk Bass: Slap, Pop & Groove',
+        description: 'Master funk bass patterns with syncopated rhythms, ghost notes, and percussive techniques. Create that classic P-Funk bounce.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-11.html',
+        configPath: './configs/lesson-bass-11.config.js'
+      },
+      {
+        slug: 'lesson-bass-12',
+        lessonKey: 'mpl-bass-12-progress',
+        title: 'Jazz Walking Bass: Advanced Techniques',
+        description: 'Build sophisticated walking basslines with chromatic approaches, chord tone targets, and rhythmic displacement.',
+        duration: '20-25 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-12.html',
+        configPath: './configs/lesson-bass-12.config.js'
+      },
+      {
+        slug: 'lesson-bass-13',
+        lessonKey: 'mpl-bass-13-progress',
+        title: 'Blues Bass: Turnarounds & Patterns',
+        description: 'Learn the 12-bar blues bass foundation with turnarounds, walking patterns, and classic blues vocabulary.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-13.html',
+        configPath: './configs/lesson-bass-13.config.js'
+      },
+      {
+        slug: 'lesson-bass-14',
+        lessonKey: 'mpl-bass-14-progress',
+        title: 'R&B Bass: Smooth & Syncopated',
+        description: 'Create sultry R&B basslines with smooth movement, syncopation, and space. Master the art of saying more with less.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-14.html',
+        configPath: './configs/lesson-bass-14.config.js'
+      },
+      {
+        slug: 'lesson-bass-15',
+        lessonKey: 'mpl-bass-15-progress',
+        title: 'Reggae & Dub Bass: Heavy Low End',
+        description: 'Program massive reggae basslines with emphasis on the one and three. Master dub bass with delay and space.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-15.html',
+        configPath: './configs/lesson-bass-15.config.js'
+      },
+
+      // --- EXPERT LESSONS (16-20) ---
+      {
+        slug: 'lesson-bass-16',
+        lessonKey: 'mpl-bass-16-progress',
+        title: 'UK Garage & Grime Bass',
+        description: 'Create skippy UK Garage bass and dark Grime sub-bass patterns. Master the UK bass sound with 2-step rhythms.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-16.html',
+        configPath: './configs/lesson-bass-16.config.js'
+      },
+      {
+        slug: 'lesson-bass-17',
+        lessonKey: 'mpl-bass-17-progress',
+        title: 'Bass Synthesis & Sound Design',
+        description: 'Design bass sounds from scratch using synthesis. Master filters, envelopes, oscillators, and modulation for massive bass tones.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-17.html',
+        configPath: './configs/lesson-bass-17.config.js'
+      },
+      {
+        slug: 'lesson-bass-18',
+        lessonKey: 'mpl-bass-18-progress',
+        title: 'Bass EQ & Frequency Management',
+        description: 'Carve perfect bass frequencies with EQ. Remove mud, boost clarity, and manage the sub-to-mid relationship professionally.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-18.html',
+        configPath: './configs/lesson-bass-18.config.js'
+      },
+      {
+        slug: 'lesson-bass-19',
+        lessonKey: 'mpl-bass-19-progress',
+        title: 'Bass Expression & Automation',
+        description: 'Bring bass to life with automation, pitch glides, portamento, and expression control. Add movement and emotion.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-19.html',
+        configPath: './configs/lesson-bass-19.config.js'
+      },
+      {
+        slug: 'lesson-bass-20',
+        lessonKey: 'mpl-bass-20-progress',
+        title: 'Masterclass: Complete Bass Production',
+        description: 'Final project: create a professional multi-genre bass production from synthesis to mixing. Showcase all techniques learned.',
+        duration: '35-45 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-20.html',
+        configPath: './configs/lesson-bass-20.config.js'
       }
     ]
   },
