@@ -1,15 +1,15 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 75+ lessons across 8 categories:
+ * This file contains 123 lessons across 8 categories:
  * - Drums & Rhythm (21 lessons)
  * - Harmony & Melody (20 lessons)
- * - Bass & Low End (10 lessons) ✨ NEW
+ * - Bass & Low End (10 lessons)
  * - Arrangement & Songwriting (20 lessons)
- * - Sound Design
- * - Mixing
- * - Vocals
- * - Mastering
+ * - Sound Design (15 lessons) ✨ EXPANDED
+ * - Mixing (15 lessons) ✨ EXPANDED
+ * - Vocals (12 lessons) ✨ EXPANDED
+ * - Mastering (10 lessons) ✨ EXPANDED
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
@@ -917,93 +917,697 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
-  // SOUND DESIGN MODULE (Placeholder)
+  // SOUND DESIGN MODULE (15 Lessons)
   // ============================================================
   {
     slug: 'sound-design',
     title: 'Sound Design',
-    description: 'Craft your own patches with synthesis and sampling techniques.',
+    description: 'Craft your own patches with synthesis and sampling techniques. Learn subtractive, FM, and wavetable synthesis, create sampler instruments, and design professional sample packs.',
     lessons: [
+      // BEGINNER (1-4)
       {
-        slug: 'lesson-sound-design',
-        lessonKey: 'mpl-sound-design-1',
+        slug: 'lesson-sound-design-1',
+        lessonKey: 'mpl-sound-design-1-progress',
         title: 'Subtractive Synthesis Basics',
-        description: 'Oscillators, filters, and envelopes for punchy basses and leads.',
-        duration: '12-15 min',
+        description: 'Master oscillators, filters, and envelopes - the foundation of analog-style synthesis.',
+        duration: '15-18 min',
         level: 'Beginner',
         depthLevel: 1,
         badge: 'Free',
-        pagePath: 'lesson-sound-design.html',
-        configPath: null
+        pagePath: 'lesson-sound-design-1.html',
+        configPath: './configs/lesson-sound-design-1.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-2',
+        lessonKey: 'mpl-sound-design-2-progress',
+        title: 'LFOs & Modulation',
+        description: 'Add movement and life to your sounds with low-frequency oscillators and modulation routing.',
+        duration: '12-15 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-sound-design-2.html',
+        configPath: './configs/lesson-sound-design-2.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-3',
+        lessonKey: 'mpl-sound-design-3-progress',
+        title: 'FM Synthesis Fundamentals',
+        description: 'Explore frequency modulation to create complex, evolving timbres.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-sound-design-3.html',
+        configPath: './configs/lesson-sound-design-3.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-4',
+        lessonKey: 'mpl-sound-design-4-progress',
+        title: 'Wavetable Synthesis',
+        description: 'Navigate through wavetables to create modern, digital textures.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-4.html',
+        configPath: './configs/lesson-sound-design-4.config.js'
+      },
+
+      // INTERMEDIATE (5-9)
+      {
+        slug: 'lesson-sound-design-5',
+        lessonKey: 'mpl-sound-design-5-progress',
+        title: 'Sampling Fundamentals',
+        description: 'Record, edit, and process samples for use in your productions.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-5.html',
+        configPath: './configs/lesson-sound-design-5.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-6',
+        lessonKey: 'mpl-sound-design-6-progress',
+        title: 'Sound Layering Techniques',
+        description: 'Combine multiple sounds to create rich, complex textures.',
+        duration: '15-20 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-6.html',
+        configPath: './configs/lesson-sound-design-6.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-7',
+        lessonKey: 'mpl-sound-design-7-progress',
+        title: 'Sample Pack Creation',
+        description: 'Design and organize professional sample packs for distribution or sale.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-7.html',
+        configPath: './configs/lesson-sound-design-7.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-8',
+        lessonKey: 'mpl-sound-design-8-progress',
+        title: 'Granular Synthesis',
+        description: 'Manipulate tiny grains of sound to create atmospheric textures and effects.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-8.html',
+        configPath: './configs/lesson-sound-design-8.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-9',
+        lessonKey: 'mpl-sound-design-9-progress',
+        title: 'FX Sound Design',
+        description: 'Create impacts, risers, sweeps, and transitions for electronic music.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-9.html',
+        configPath: './configs/lesson-sound-design-9.config.js'
+      },
+
+      // ADVANCED (10-13)
+      {
+        slug: 'lesson-sound-design-10',
+        lessonKey: 'mpl-sound-design-10-progress',
+        title: 'Multi-Sampled Instruments',
+        description: 'Build professional sampler instruments with velocity layers and round robins.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-10.html',
+        configPath: './configs/lesson-sound-design-10.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-11',
+        lessonKey: 'mpl-sound-design-11-progress',
+        title: 'Foley & Sound Effects',
+        description: 'Record and design realistic sound effects for film, games, and media.',
+        duration: '22-28 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-11.html',
+        configPath: './configs/lesson-sound-design-11.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-12',
+        lessonKey: 'mpl-sound-design-12-progress',
+        title: 'Audio for Video Games',
+        description: 'Create interactive, non-linear audio that responds to gameplay.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-12.html',
+        configPath: './configs/lesson-sound-design-12.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-13',
+        lessonKey: 'mpl-sound-design-13-progress',
+        title: 'Cinematic Sound Design',
+        description: 'Design dramatic sounds for film, trailers, and visual media.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-13.html',
+        configPath: './configs/lesson-sound-design-13.config.js'
+      },
+
+      // EXPERT (14-15)
+      {
+        slug: 'lesson-sound-design-14',
+        lessonKey: 'mpl-sound-design-14-progress',
+        title: 'Advanced Synthesis Techniques',
+        description: 'Combine multiple synthesis methods to create signature sounds.',
+        duration: '30-35 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-14.html',
+        configPath: './configs/lesson-sound-design-14.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-15',
+        lessonKey: 'mpl-sound-design-15-progress',
+        title: 'Masterclass: Complete Sound Library',
+        description: 'Final project: create a complete, professional sound library from scratch.',
+        duration: '45-60 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-15.html',
+        configPath: './configs/lesson-sound-design-15.config.js'
       }
     ]
   },
 
   // ============================================================
-  // MIXING MODULE (Placeholder)
+  // MIXING MODULE (15 Lessons)
   // ============================================================
   {
     slug: 'mixing',
     title: 'Mixing',
-    description: 'Balance levels, carve space with EQ, and use dynamics to glue your track.',
+    description: 'Master professional mixing techniques: gain staging, EQ, compression, reverb, automation, and genre-specific workflows. Balance levels, carve space, and glue your tracks together.',
     lessons: [
+      // BEGINNER (1-4)
       {
-        slug: 'lesson-mixing',
-        lessonKey: 'mpl-mixing-1',
+        slug: 'lesson-mixing-1',
+        lessonKey: 'mpl-mixing-1-progress',
         title: 'Gain Staging & Levels',
-        description: 'Set healthy headroom and balance before diving into processing.',
-        duration: '12-15 min',
+        description: 'Set healthy headroom and balance before diving into processing. Master proper gain structure.',
+        duration: '15-18 min',
         level: 'Beginner',
         depthLevel: 1,
         badge: 'Free',
-        pagePath: 'lesson-mixing.html',
-        configPath: null
+        pagePath: 'lesson-mixing-1.html',
+        configPath: './configs/lesson-mixing-1.config.js'
+      },
+      {
+        slug: 'lesson-mixing-2',
+        lessonKey: 'mpl-mixing-2-progress',
+        title: 'EQ Fundamentals',
+        description: 'Learn frequency ranges, filtering, and how to carve space in your mix with equalization.',
+        duration: '18-22 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-mixing-2.html',
+        configPath: './configs/lesson-mixing-2.config.js'
+      },
+      {
+        slug: 'lesson-mixing-3',
+        lessonKey: 'mpl-mixing-3-progress',
+        title: 'Compression Basics',
+        description: 'Control dynamics with compression: threshold, ratio, attack, release, and makeup gain.',
+        duration: '18-22 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-mixing-3.html',
+        configPath: './configs/lesson-mixing-3.config.js'
+      },
+      {
+        slug: 'lesson-mixing-4',
+        lessonKey: 'mpl-mixing-4-progress',
+        title: 'Reverb & Space',
+        description: 'Create depth and dimension with reverb. Learn room types, pre-delay, and reverb techniques.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-4.html',
+        configPath: './configs/lesson-mixing-4.config.js'
+      },
+
+      // INTERMEDIATE (5-9)
+      {
+        slug: 'lesson-mixing-5',
+        lessonKey: 'mpl-mixing-5-progress',
+        title: 'Delay & Time-Based Effects',
+        description: 'Master delay, echo, chorus, and flanger for rhythmic and spatial enhancement.',
+        duration: '15-18 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-5.html',
+        configPath: './configs/lesson-mixing-5.config.js'
+      },
+      {
+        slug: 'lesson-mixing-6',
+        lessonKey: 'mpl-mixing-6-progress',
+        title: 'Panning & Stereo Width',
+        description: 'Create a wide, immersive mix with strategic panning and stereo imaging techniques.',
+        duration: '15-18 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-6.html',
+        configPath: './configs/lesson-mixing-6.config.js'
+      },
+      {
+        slug: 'lesson-mixing-7',
+        lessonKey: 'mpl-mixing-7-progress',
+        title: 'Sidechain & Ducking',
+        description: 'Use sidechain compression to create space, pumping effects, and rhythmic movement.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-7.html',
+        configPath: './configs/lesson-mixing-7.config.js'
+      },
+      {
+        slug: 'lesson-mixing-8',
+        lessonKey: 'mpl-mixing-8-progress',
+        title: 'Automation in Mixing',
+        description: 'Bring your mix to life with volume, pan, and effect automation throughout the arrangement.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-8.html',
+        configPath: './configs/lesson-mixing-8.config.js'
+      },
+      {
+        slug: 'lesson-mixing-9',
+        lessonKey: 'mpl-mixing-9-progress',
+        title: 'Parallel Processing',
+        description: 'Blend wet and dry signals with parallel compression, reverb, and distortion for depth.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-9.html',
+        configPath: './configs/lesson-mixing-9.config.js'
+      },
+
+      // ADVANCED (10-13)
+      {
+        slug: 'lesson-mixing-10',
+        lessonKey: 'mpl-mixing-10-progress',
+        title: 'Mixing Drums',
+        description: 'Professional drum mixing: kick-bass relationship, drum bus processing, and punch.',
+        duration: '22-28 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-10.html',
+        configPath: './configs/lesson-mixing-10.config.js'
+      },
+      {
+        slug: 'lesson-mixing-11',
+        lessonKey: 'mpl-mixing-11-progress',
+        title: 'Mixing Bass & Low End',
+        description: 'Control your low frequencies: sub bass management, kick-bass separation, and clarity.',
+        duration: '22-28 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-11.html',
+        configPath: './configs/lesson-mixing-11.config.js'
+      },
+      {
+        slug: 'lesson-mixing-12',
+        lessonKey: 'mpl-mixing-12-progress',
+        title: 'Mixing Vocals & Leads',
+        description: 'Make vocals sit perfectly in the mix with de-essing, dynamic EQ, and spatial effects.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-12.html',
+        configPath: './configs/lesson-mixing-12.config.js'
+      },
+      {
+        slug: 'lesson-mixing-13',
+        lessonKey: 'mpl-mixing-13-progress',
+        title: 'Genre-Specific Mixing',
+        description: 'Learn mixing approaches for different genres: EDM, hip-hop, rock, pop, and electronic.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-13.html',
+        configPath: './configs/lesson-mixing-13.config.js'
+      },
+
+      // EXPERT (14-15)
+      {
+        slug: 'lesson-mixing-14',
+        lessonKey: 'mpl-mixing-14-progress',
+        title: 'Reference Tracks & Critical Listening',
+        description: 'Develop your ears: A/B comparison, frequency analysis, and mixing to professional standards.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-14.html',
+        configPath: './configs/lesson-mixing-14.config.js'
+      },
+      {
+        slug: 'lesson-mixing-15',
+        lessonKey: 'mpl-mixing-15-progress',
+        title: 'Masterclass: Complete Mix Project',
+        description: 'Final project: mix a complete multi-track project from raw stems to final stereo mix.',
+        duration: '45-60 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-15.html',
+        configPath: './configs/lesson-mixing-15.config.js'
       }
     ]
   },
 
   // ============================================================
-  // VOCALS MODULE (Placeholder)
+  // VOCALS MODULE (12 Lessons)
   // ============================================================
   {
     slug: 'vocals',
     title: 'Vocals',
-    description: 'Capture, edit, and process vocals so they sit naturally in your mix.',
+    description: 'Capture, edit, tune, and process vocals to perfection. Learn recording techniques, vocal editing, pitch correction, effects chains, and layering for professional vocal production.',
     lessons: [
+      // BEGINNER (1-3)
       {
-        slug: 'lesson-vocals',
-        lessonKey: 'mpl-vocals-1',
-        title: 'Vocal Chain Essentials',
-        description: 'EQ, compression, and time-based effects for a reliable go-to vocal chain.',
-        duration: '12-15 min',
+        slug: 'lesson-vocals-1',
+        lessonKey: 'mpl-vocals-1-progress',
+        title: 'Vocal Recording Setup',
+        description: 'Choose the right microphone, set up your recording space, and capture clean vocal takes.',
+        duration: '18-22 min',
         level: 'Beginner',
         depthLevel: 1,
         badge: 'Free',
-        pagePath: 'lesson-vocals.html',
-        configPath: null
+        pagePath: 'lesson-vocals-1.html',
+        configPath: './configs/lesson-vocals-1.config.js'
+      },
+      {
+        slug: 'lesson-vocals-2',
+        lessonKey: 'mpl-vocals-2-progress',
+        title: 'Vocal Recording Techniques',
+        description: 'Master mic technique, gain staging, and capturing multiple takes for comping.',
+        duration: '18-22 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-vocals-2.html',
+        configPath: './configs/lesson-vocals-2.config.js'
+      },
+      {
+        slug: 'lesson-vocals-3',
+        lessonKey: 'mpl-vocals-3-progress',
+        title: 'Vocal Editing Fundamentals',
+        description: 'Clean up recordings: remove breaths, pops, and noise. Learn comping and timing adjustments.',
+        duration: '20-25 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-vocals-3.html',
+        configPath: './configs/lesson-vocals-3.config.js'
+      },
+
+      // INTERMEDIATE (4-7)
+      {
+        slug: 'lesson-vocals-4',
+        lessonKey: 'mpl-vocals-4-progress',
+        title: 'Pitch Correction & Tuning',
+        description: 'Use Auto-Tune, Melodyne, and manual pitch correction for natural or creative effects.',
+        duration: '22-28 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-4.html',
+        configPath: './configs/lesson-vocals-4.config.js'
+      },
+      {
+        slug: 'lesson-vocals-5',
+        lessonKey: 'mpl-vocals-5-progress',
+        title: 'Vocal Chain Essentials',
+        description: 'Build a professional vocal chain: EQ, compression, de-essing, and saturation.',
+        duration: '22-28 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-5.html',
+        configPath: './configs/lesson-vocals-5.config.js'
+      },
+      {
+        slug: 'lesson-vocals-6',
+        lessonKey: 'mpl-vocals-6-progress',
+        title: 'Vocal Effects & Processing',
+        description: 'Add reverb, delay, chorus, and modulation for depth, space, and character.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-6.html',
+        configPath: './configs/lesson-vocals-6.config.js'
+      },
+      {
+        slug: 'lesson-vocals-7',
+        lessonKey: 'mpl-vocals-7-progress',
+        title: 'Vocal Doubling & Layering',
+        description: 'Create thick, wide vocals with doubling, harmonies, and layering techniques.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-7.html',
+        configPath: './configs/lesson-vocals-7.config.js'
+      },
+
+      // ADVANCED (8-10)
+      {
+        slug: 'lesson-vocals-8',
+        lessonKey: 'mpl-vocals-8-progress',
+        title: 'Harmony & Backing Vocals',
+        description: 'Arrange and produce harmony vocals, ad-libs, and background vocal stacks.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-8.html',
+        configPath: './configs/lesson-vocals-8.config.js'
+      },
+      {
+        slug: 'lesson-vocals-9',
+        lessonKey: 'mpl-vocals-9-progress',
+        title: 'Creative Vocal Production',
+        description: 'Vocal chopping, sampling, vocoding, and experimental vocal processing techniques.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-9.html',
+        configPath: './configs/lesson-vocals-9.config.js'
+      },
+      {
+        slug: 'lesson-vocals-10',
+        lessonKey: 'mpl-vocals-10-progress',
+        title: 'Genre-Specific Vocal Production',
+        description: 'Learn vocal production approaches for hip-hop, pop, R&B, electronic, and rock.',
+        duration: '28-35 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-10.html',
+        configPath: './configs/lesson-vocals-10.config.js'
+      },
+
+      // EXPERT (11-12)
+      {
+        slug: 'lesson-vocals-11',
+        lessonKey: 'mpl-vocals-11-progress',
+        title: 'Advanced Vocal Mixing',
+        description: 'Master automation, parallel processing, and advanced techniques for radio-ready vocals.',
+        duration: '30-35 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-11.html',
+        configPath: './configs/lesson-vocals-11.config.js'
+      },
+      {
+        slug: 'lesson-vocals-12',
+        lessonKey: 'mpl-vocals-12-progress',
+        title: 'Masterclass: Complete Vocal Production',
+        description: 'Final project: record, edit, tune, and mix a complete vocal production from scratch.',
+        duration: '45-60 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-12.html',
+        configPath: './configs/lesson-vocals-12.config.js'
       }
     ]
   },
 
   // ============================================================
-  // MASTERING MODULE (Placeholder)
+  // MASTERING MODULE (10 Lessons)
   // ============================================================
   {
     slug: 'mastering',
     title: 'Mastering',
-    description: 'Apply the final polish with limiting, stereo shaping, and loudness targets.',
+    description: 'Apply the final polish with limiting, stereo shaping, and loudness targets. Learn professional mastering workflows, metering, and optimization for streaming platforms.',
     lessons: [
+      // BEGINNER (1-3)
       {
-        slug: 'lesson-mastering',
-        lessonKey: 'mpl-mastering-1',
-        title: 'Mastering Essentials',
-        description: 'Learn core mastering moves to prep your track for streaming.',
-        duration: '15-20 min',
+        slug: 'lesson-mastering-1',
+        lessonKey: 'mpl-mastering-1-progress',
+        title: 'Mastering Fundamentals',
+        description: 'Understand the mastering process, signal chain, and how mastering differs from mixing.',
+        duration: '18-22 min',
         level: 'Beginner',
         depthLevel: 1,
         badge: 'Free',
-        pagePath: 'lesson-mastering.html',
-        configPath: null
+        pagePath: 'lesson-mastering-1.html',
+        configPath: './configs/lesson-mastering-1.config.js'
+      },
+      {
+        slug: 'lesson-mastering-2',
+        lessonKey: 'mpl-mastering-2-progress',
+        title: 'Metering & Analysis',
+        description: 'Master LUFS, peak meters, spectrum analyzers, and phase correlation tools.',
+        duration: '18-22 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-mastering-2.html',
+        configPath: './configs/lesson-mastering-2.config.js'
+      },
+      {
+        slug: 'lesson-mastering-3',
+        lessonKey: 'mpl-mastering-3-progress',
+        title: 'Mastering EQ',
+        description: 'Use linear phase and mid-side EQ to shape the final tonal balance.',
+        duration: '20-25 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-mastering-3.html',
+        configPath: './configs/lesson-mastering-3.config.js'
+      },
+
+      // INTERMEDIATE (4-6)
+      {
+        slug: 'lesson-mastering-4',
+        lessonKey: 'mpl-mastering-4-progress',
+        title: 'Mastering Compression & Dynamics',
+        description: 'Control dynamics with multiband compression and gentle mastering compression.',
+        duration: '22-28 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-4.html',
+        configPath: './configs/lesson-mastering-4.config.js'
+      },
+      {
+        slug: 'lesson-mastering-5',
+        lessonKey: 'mpl-mastering-5-progress',
+        title: 'Stereo Enhancement & Width',
+        description: 'Widen your mix with mid-side processing and stereo imaging tools.',
+        duration: '18-22 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-5.html',
+        configPath: './configs/lesson-mastering-5.config.js'
+      },
+      {
+        slug: 'lesson-mastering-6',
+        lessonKey: 'mpl-mastering-6-progress',
+        title: 'Limiting & Loudness Maximization',
+        description: 'Achieve competitive loudness without distortion using professional limiters.',
+        duration: '22-28 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-6.html',
+        configPath: './configs/lesson-mastering-6.config.js'
+      },
+
+      // ADVANCED (7-9)
+      {
+        slug: 'lesson-mastering-7',
+        lessonKey: 'mpl-mastering-7-progress',
+        title: 'Mastering for Streaming Platforms',
+        description: 'Optimize your masters for Spotify, Apple Music, YouTube, and other streaming services.',
+        duration: '22-28 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-7.html',
+        configPath: './configs/lesson-mastering-7.config.js'
+      },
+      {
+        slug: 'lesson-mastering-8',
+        lessonKey: 'mpl-mastering-8-progress',
+        title: 'Stem Mastering',
+        description: 'Master using grouped stems for more control and flexibility in the mastering stage.',
+        duration: '25-30 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-8.html',
+        configPath: './configs/lesson-mastering-8.config.js'
+      },
+      {
+        slug: 'lesson-mastering-9',
+        lessonKey: 'mpl-mastering-9-progress',
+        title: 'Genre-Specific Mastering',
+        description: 'Learn mastering approaches for EDM, hip-hop, rock, pop, and electronic music.',
+        duration: '28-35 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-9.html',
+        configPath: './configs/lesson-mastering-9.config.js'
+      },
+
+      // EXPERT (10)
+      {
+        slug: 'lesson-mastering-10',
+        lessonKey: 'mpl-mastering-10-progress',
+        title: 'Masterclass: Professional Mastering Project',
+        description: 'Final project: master a complete album or EP with consistent sonic character across all tracks.',
+        duration: '45-60 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mastering-10.html',
+        configPath: './configs/lesson-mastering-10.config.js'
       }
     ]
   }
