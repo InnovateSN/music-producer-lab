@@ -1,29 +1,69 @@
+#!/bin/bash
+
+declare -A lessons
+
+lessons[1]="Mastering Fundamentals|Understanding the Mastering Process|Learn what mastering is, how it differs from mixing, and the complete mastering signal chain.|20-25 min|Beginner|1"
+lessons[2]="Metering & Analysis|LUFS, Peak Meters & Spectrum Analysis|Master loudness standards (LUFS), peak meters, spectrum analyzers, and phase correlation tools.|20-25 min|Beginner|2"
+lessons[3]="Mastering EQ|Linear Phase & Mid-Side Processing|Use linear phase and mid-side EQ to shape the final tonal balance without phase issues.|22-28 min|Beginner|2"
+lessons[4]="Mastering Compression & Dynamics|Control Without Crushing|Apply gentle mastering compression and multiband dynamics to glue the mix together.|25-30 min|Intermediate|4"
+lessons[5]="Stereo Enhancement & Width|Widen Your Mix Professionally|Use mid-side processing and stereo imaging tools to create width while maintaining mono compatibility.|22-28 min|Intermediate|4"
+lessons[6]="Limiting & Loudness Maximization|Achieve Competitive Loudness|Master professional limiting techniques to achieve competitive loudness without distortion.|25-30 min|Intermediate|5"
+lessons[7]="Mastering for Streaming Platforms|Spotify, Apple Music, YouTube|Optimize your masters for streaming services with proper loudness targets and encoding.|25-30 min|Advanced|7"
+lessons[8]="Stem Mastering|Master with Grouped Stems|Use grouped stems for more control and flexibility in the mastering stage.|28-35 min|Advanced|8"
+lessons[9]="Genre-Specific Mastering|Different Approaches for Different Styles|Learn mastering approaches for EDM, hip-hop, rock, pop, and electronic music.|28-35 min|Advanced|8"
+lessons[10]="Masterclass: Professional Mastering Project|Master a Complete Album or EP|Final project: master a complete album or EP with consistent sonic character across all tracks.|50-60 min|Expert|10"
+
+for i in {1..10}; do
+  IFS='|' read -r title subtitle description duration level depth <<< "${lessons[$i]}"
+  
+  next=$((i + 1))
+  prev=$((i - 1))
+  
+  if [ $i -eq 1 ]; then
+    prev_url="lesson-vocals-12.html"
+  else
+    prev_url="lesson-mastering-$prev.html"
+  fi
+  
+  if [ $i -eq 10 ]; then
+    next_url="labs.html"
+  else
+    next_url="lesson-mastering-$next.html"
+  fi
+  
+  if [ $i -le 3 ]; then
+    badge="Free"
+  else
+    badge="Premium"
+  fi
+
+  cat > "lesson-mastering-$i.config.js" << EOF
 /**
  * Music Producer Lab - Lesson Configuration
- * Lesson: Mastering 10 - Masterclass: Professional Mastering Project
+ * Lesson: Mastering $i - $title
  */
 
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
-  lessonKey: "mpl-mastering-10-progress",
-  lessonNumber: 10,
+  lessonKey: "mpl-mastering-$i-progress",
+  lessonNumber: $i,
   lessonCategory: "Mastering",
   
-  nextLessonUrl: "labs.html",
-  prevLessonUrl: "lesson-mastering-9.html",
+  nextLessonUrl: "$next_url",
+  prevLessonUrl: "$prev_url",
   overviewUrl: "labs.html",
   
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 10, categoryLabel: "Mastering" }),
-    title: "Masterclass: Professional Mastering Project:",
-    titleHighlight: "Master a Complete Album or EP",
-    subtitle: "Final project: master a complete album or EP with consistent sonic character across all tracks. Master professional mastering techniques for commercial release-ready audio."
+    eyebrow: buildHeroEyebrow({ lessonNumber: $i, categoryLabel: "Mastering" }),
+    title: "$title:",
+    titleHighlight: "$subtitle",
+    subtitle: "$description Master professional mastering techniques for commercial release-ready audio."
   },
   
   exercise: {
-    title: "Master Masterclass: Professional Mastering Project",
-    description: "Final project: master a complete album or EP with consistent sonic character across all tracks. This lesson covers the professional mastering techniques used to prepare tracks for distribution.",
+    title: "Master $title",
+    description: "$description This lesson covers the professional mastering techniques used to prepare tracks for distribution.",
     tip: "Mastering is subtle work. Less is more. If you can't hear the difference, you might be doing it right.",
     steps: [
       '<strong>Study mastering theory</strong> — Understand the role of mastering in production.',
@@ -38,8 +78,8 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Masterclass: Professional Mastering Project',
-        content: `Masterclass: Professional Mastering Project is the final step in audio production, preparing your mix for distribution and ensuring it translates across all playback systems.
+        title: 'Understanding $title',
+        content: \`$title is the final step in audio production, preparing your mix for distribution and ensuring it translates across all playback systems.
 
 **Core Mastering Concepts:**
 - The difference between mixing and mastering
@@ -64,11 +104,11 @@ The mastering engineer's job is to:
 - Prepare different versions (streaming, CD, vinyl, etc.)
 - Provide the final deliverable files
 
-Understanding Masterclass: Professional Mastering Project means knowing when to apply it and when to leave things alone.`
+Understanding $title means knowing when to apply it and when to leave things alone.\`
       },
       {
         title: 'Professional Mastering Techniques',
-        content: `Apply Masterclass: Professional Mastering Project with professional standards and workflows:
+        content: \`Apply $title with professional standards and workflows:
 
 **Pre-Mastering Checklist:**
 - Mix is final and approved
@@ -108,7 +148,7 @@ Understanding Masterclass: Professional Mastering Project means knowing when to 
 - **CD** — No normalization, target -8 to -6 LUFS
 - **Vinyl** — Special considerations for low-end and stereo width
 
-Always deliver masters at -14 LUFS integrated for streaming, and provide alternate masters for other formats if needed.`
+Always deliver masters at -14 LUFS integrated for streaming, and provide alternate masters for other formats if needed.\`
       }
     ]
   },
@@ -123,7 +163,7 @@ Always deliver masters at -14 LUFS integrated for streaming, and provide alterna
   
   messages: applyMessagePreset("default", {
     initial: "Complete this mastering lesson to advance.",
-    success: "🎉 Excellent! You've mastered Masterclass: Professional Mastering Project. Your masters are release-ready!",
+    success: "🎉 Excellent! You've mastered $title. Your masters are release-ready!",
     error: "Review the mastering concepts and try again.",
     alreadyCompleted: "You've completed this mastering technique. Keep practicing!"
   }),
@@ -139,3 +179,10 @@ Always deliver masters at -14 LUFS integrated for streaming, and provide alterna
 if (typeof window !== 'undefined') {
   window.LESSON_CONFIG = lessonConfig;
 }
+EOF
+  
+  echo "Created lesson-mastering-$i.config.js - $title"
+done
+
+echo ""
+echo "✅ Successfully regenerated all 10 Mastering config files!"
