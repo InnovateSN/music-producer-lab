@@ -1,8 +1,8 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 155 lessons across 10 categories:
- * - Drums & Rhythm (23 lessons)
+ * This file contains 162 lessons across 10 categories:
+ * - Drums & Rhythm (23 lessons) ✨ EXPANDED
  * - Harmony & Melody (28 lessons) ✨ EXPANDED
  * - Music Theory Fundamentals (8 lessons)
  * - Ear Training (10 lessons)
@@ -11,7 +11,7 @@
  * - Sound Design (15 lessons)
  * - Mixing (15 lessons)
  * - Vocals (12 lessons)
- * - Mastering (6 lessons)
+ * - Mastering (10 lessons) ✨ EXPANDED
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
@@ -245,6 +245,54 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         pagePath: 'lesson-drums-14.html',
         configPath: './configs/lesson-drums-14.config.js'
       },
+      {
+        slug: 'lesson-drums-15',
+        lessonKey: 'mpl-drums-15-progress',
+        title: 'Advanced Hi-Hat Techniques',
+        description: 'Master open/closed hi-hat patterns, rolls, crescendos, and pedal hi-hat techniques for dynamic grooves.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-15.html',
+        configPath: './configs/lesson-drums-15.config.js'
+      },
+      {
+        slug: 'lesson-drums-16',
+        lessonKey: 'mpl-drums-16-progress',
+        title: 'Advanced Fills & Transitions',
+        description: 'Build dramatic fills that bridge sections smoothly. Learn tom rolls, crash patterns, and fill placement strategies.',
+        duration: '20-24 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-16.html',
+        configPath: './configs/lesson-drums-16.config.js'
+      },
+      {
+        slug: 'lesson-drums-17',
+        lessonKey: 'mpl-drums-17-progress',
+        title: 'Drum Layering & Parallel Processing',
+        description: 'Stack multiple drum sounds and process layers independently. Create massive, professional drum tones.',
+        duration: '22-26 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-17.html',
+        configPath: './configs/lesson-drums-17.config.js'
+      },
+      {
+        slug: 'lesson-drums-18',
+        lessonKey: 'mpl-drums-18-progress',
+        title: 'Swing & Shuffle Variations',
+        description: 'Go beyond basic swing. Learn triplet-based shuffles, half-time shuffle, and swing percentages for different genres.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-18.html',
+        configPath: './configs/lesson-drums-18.config.js'
+      },
 
       // --- LEVEL 9-10: EXPERT ---
       {
@@ -258,6 +306,42 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-drums-19.html',
         configPath: './configs/lesson-drums-19.config.js'
+      },
+      {
+        slug: 'lesson-drums-20',
+        lessonKey: 'mpl-drums-20-progress',
+        title: 'Live Drum Recording Simulation',
+        description: 'Program drums that sound like a real drummer playing. Master room ambience, overhead mic bleed, and natural dynamics.',
+        duration: '24-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-20.html',
+        configPath: './configs/lesson-drums-20.config.js'
+      },
+      {
+        slug: 'lesson-drums-21',
+        lessonKey: 'mpl-drums-21-progress',
+        title: 'Advanced Polyrhythms & Cross-Rhythms',
+        description: 'Layer complex independent rhythms across drums. Create 5/4 over 4/4, metric displacement, and phase shifting patterns.',
+        duration: '22-26 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-21.html',
+        configPath: './configs/lesson-drums-21.config.js'
+      },
+      {
+        slug: 'lesson-drums-22',
+        lessonKey: 'mpl-drums-22-progress',
+        title: 'Mixing Drums for Loudness & Punch',
+        description: 'Achieve competitive loudness without losing dynamics. Learn compression, saturation, and limiting techniques for modern drums.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-22.html',
+        configPath: './configs/lesson-drums-22.config.js'
       },
       {
         slug: 'drum-playground',
