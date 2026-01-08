@@ -1,16 +1,16 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 162 lessons across 10 categories:
+ * This file contains 175 lessons across 10 categories:
  * - Drums & Rhythm (23 lessons) ✨ EXPANDED
  * - Harmony & Melody (28 lessons) ✨ EXPANDED
  * - Music Theory Fundamentals (8 lessons)
  * - Ear Training (10 lessons)
  * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
- * - Sound Design (15 lessons)
- * - Mixing (15 lessons)
- * - Vocals (12 lessons)
+ * - Sound Design (20 lessons) ✨ EXPANDED
+ * - Mixing (20 lessons) ✨ EXPANDED
+ * - Vocals (15 lessons) ✨ EXPANDED
  * - Mastering (10 lessons) ✨ EXPANDED
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
@@ -2025,6 +2025,42 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-vocals-12.html',
         configPath: './configs/lesson-vocals-12.config.js'
+      },
+      {
+        slug: 'lesson-vocals-13',
+        lessonKey: 'mpl-vocals-13-progress',
+        title: 'Vocal Effects & Creative Processing',
+        description: 'Master delay, reverb, distortion, and modulation effects for creative vocal treatments. Build vocal soundscapes and character.',
+        duration: '22-26 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-13.html',
+        configPath: './configs/lesson-vocals-13.config.js'
+      },
+      {
+        slug: 'lesson-vocals-14',
+        lessonKey: 'mpl-vocals-14-progress',
+        title: 'Vocal Layering & Stacking Techniques',
+        description: 'Stack vocals for massive choruses and thick textures. Learn octave doubling, stereo widening, and blend techniques.',
+        duration: '20-24 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-14.html',
+        configPath: './configs/lesson-vocals-14.config.js'
+      },
+      {
+        slug: 'lesson-vocals-15',
+        lessonKey: 'mpl-vocals-15-progress',
+        title: 'Advanced Vocal Editing & Timing',
+        description: 'Precision vocal editing for professional results. Master timing correction, breath control, and seamless comp editing.',
+        duration: '24-28 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-15.html',
+        configPath: './configs/lesson-vocals-15.config.js'
       }
     ]
   },
