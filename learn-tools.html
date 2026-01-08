@@ -544,6 +544,27 @@
                   </div>
                 </div>
 
+                <!-- INTERACTIVE DEMO: Piano Roll -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">🎮 Try It Now: Piano Roll Sequencer</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click on the grid to place notes. Try building a C major chord (C-E-G) on step 1, then create a simple melody!</p>
+
+                  <!-- Piano Roll Container -->
+                  <div id="demo-piano-roll-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <button id="demo-piano-play" class="btn btn-primary" style="min-width: 100px;">▶️ Play</button>
+                    <button id="demo-piano-stop" class="btn btn-secondary" style="min-width: 100px;">⏹ Stop</button>
+                    <button id="demo-piano-clear" class="btn btn-secondary" style="min-width: 100px;">🗑 Clear</button>
+                    <button id="demo-piano-preset" class="btn btn-outline" style="min-width: 160px;">Load C Major Chord</button>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Build a C major chord (C4-E4-G4) on step 1, then create a melody by placing single notes on different steps!
+                  </div>
+                </div>
+
                 <div class="exercise-tip" style="margin-top: var(--space-lg);">
                   <strong>🎹 Pro Tip:</strong> The piano roll is used in <strong>Harmony & Melody</strong> and <strong>Bass & Low End</strong> lessons. Start with simple triads (3 notes), then progress to complex chord voicings and melodies. The chord detector is your friend - watch it as you build to learn music theory!
                 </div>
@@ -656,6 +677,7 @@
     <!-- Interactive Demo Scripts -->
     <script type="module">
       import { initDrumSequencer } from './sequencer.js';
+      import { initPianoRoll } from './piano-roll-sequencer.js';
 
       // Demo 1: Step Grid Programming (Basic - No Velocity)
       const stepGridInstruments = [
@@ -1092,6 +1114,77 @@
           });
         }
       }, 900);
+
+      // Initialize Piano Roll Demo
+      setTimeout(() => {
+        const pianoRollContainer = document.getElementById('demo-piano-roll-sequencer');
+        if (pianoRollContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-piano"></button>
+            <button id="mpl-seq-stop-all-piano"></button>
+            <button id="mpl-seq-clear-all-piano"></button>
+          `;
+          pianoRollContainer.parentNode.insertBefore(controlsDiv, pianoRollContainer);
+
+          // Initialize piano roll with C major scale context
+          initPianoRoll(
+            {
+              stepCount: 16,
+              pitchRange: { min: 48, max: 72 }, // C3 to C5 (2 octaves)
+              tempo: 120,
+              sandbox: true,
+              scale: {
+                root: 'C',
+                mode: 'major',
+                notes: [60, 62, 64, 65, 67, 69, 71, 72] // C major scale (MIDI)
+              },
+              targetNotes: [], // No validation in sandbox mode
+              autoSaveState: false
+            },
+            'demo-piano-roll', // localStorage key
+            null, // no next lesson
+            'demo-piano-roll-sequencer' // container ID
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-piano-play');
+          const stopBtn = document.getElementById('demo-piano-stop');
+          const clearBtn = document.getElementById('demo-piano-clear');
+          const presetBtn = document.getElementById('demo-piano-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-piano');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-piano');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-piano');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+
+          // Load C major chord preset
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Load C major triad (C4-E4-G4) on step 0
+              window.dispatchEvent(new CustomEvent('mpl-piano-load-pattern', {
+                detail: {
+                  notes: [
+                    { pitch: 60, step: 0, duration: 4, velocity: 100 }, // C4
+                    { pitch: 64, step: 0, duration: 4, velocity: 100 }, // E4
+                    { pitch: 67, step: 0, duration: 4, velocity: 100 }  // G4
+                  ]
+                }
+              }));
+            });
+          }
+        }
+      }, 1100);
     </script>
   </body>
 </html>
