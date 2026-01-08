@@ -1,11 +1,11 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 159 lessons across 10 categories:
+ * This file contains 167 lessons across 10 categories:
  * - Drums & Rhythm (23 lessons)
- * - Harmony & Melody (20 lessons)
- * - Music Theory Fundamentals (8 lessons) ✨ NEW
- * - Ear Training (10 lessons) ✨ NEW
+ * - Harmony & Melody (28 lessons) ✨ EXPANDED
+ * - Music Theory Fundamentals (8 lessons)
+ * - Ear Training (10 lessons)
  * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
  * - Sound Design (15 lessons)
@@ -528,6 +528,104 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Free',
         pagePath: 'lesson-harmony-20.html',
         configPath: './configs/lesson-harmony-20.config.js'
+      },
+
+      // --- ADVANCED HARMONY (Levels 10-12) ---
+      {
+        slug: 'lesson-harmony-21',
+        lessonKey: 'mpl-harmony-21-progress',
+        title: 'Secondary Dominants: Tonicization',
+        description: 'Master V/ii, V/iii, V/IV, V/V, and V/vi. Learn how to temporarily tonicize any chord in a progression for harmonic richness.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-21.html',
+        configPath: './configs/lesson-harmony-21.config.js'
+      },
+      {
+        slug: 'lesson-harmony-22',
+        lessonKey: 'mpl-harmony-22-progress',
+        title: 'Tritone Substitution: Jazz Reharmonization',
+        description: 'Replace dominant chords with their tritone substitutes. Master the most powerful reharmonization technique in jazz.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-22.html',
+        configPath: './configs/lesson-harmony-22.config.js'
+      },
+      {
+        slug: 'lesson-harmony-23',
+        lessonKey: 'mpl-harmony-23-progress',
+        title: 'Chromatic Reharmonization Techniques',
+        description: 'Add chromatic passing chords, chromatic mediants, and augmented sixth chords. Create sophisticated harmonic movement.',
+        duration: '22-25 min',
+        level: 'Expert',
+        depthLevel: 11,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-23.html',
+        configPath: './configs/lesson-harmony-23.config.js'
+      },
+      {
+        slug: 'lesson-harmony-24',
+        lessonKey: 'mpl-harmony-24-progress',
+        title: 'Jazz Harmony: Complex Extensions',
+        description: 'Master 9ths, 11ths, 13ths, alterations (b9, #9, #11, b13), and upper structure triads. Build professional jazz voicings.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 11,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-24.html',
+        configPath: './configs/lesson-harmony-24.config.js'
+      },
+      {
+        slug: 'lesson-harmony-25',
+        lessonKey: 'mpl-harmony-25-progress',
+        title: 'Blues Harmony: 12-Bar & Turnarounds',
+        description: 'Master blues progressions, quick-change patterns, turnarounds, and substitutions. From Delta blues to bebop blues.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 11,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-25.html',
+        configPath: './configs/lesson-harmony-25.config.js'
+      },
+      {
+        slug: 'lesson-harmony-26',
+        lessonKey: 'mpl-harmony-26-progress',
+        title: 'Funk & Soul Harmony',
+        description: 'Master funk chord voicings, slash chords, sus chords, and R&B progressions. Create groovy, sophisticated harmony.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 12,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-26.html',
+        configPath: './configs/lesson-harmony-26.config.js'
+      },
+      {
+        slug: 'lesson-harmony-27',
+        lessonKey: 'mpl-harmony-27-progress',
+        title: 'Counterpoint Basics: Two-Voice Writing',
+        description: 'Learn species counterpoint, voice leading rules, and how to write independent melodic lines that work together harmonically.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 12,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-27.html',
+        configPath: './configs/lesson-harmony-27.config.js'
+      },
+      {
+        slug: 'lesson-harmony-28',
+        lessonKey: 'mpl-harmony-28-progress',
+        title: 'Modal Interchange & Polytonality',
+        description: 'Borrow chords from parallel modes and combine multiple keys simultaneously. Master advanced modern harmony techniques.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 12,
+        badge: 'Premium',
+        pagePath: 'lesson-harmony-28.html',
+        configPath: './configs/lesson-harmony-28.config.js'
       }
     ]
   },
