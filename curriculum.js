@@ -1,7 +1,7 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 167 lessons across 10 categories:
+ * This file contains 155 lessons across 10 categories:
  * - Drums & Rhythm (23 lessons)
  * - Harmony & Melody (28 lessons) ✨ EXPANDED
  * - Music Theory Fundamentals (8 lessons)
@@ -11,7 +11,7 @@
  * - Sound Design (15 lessons)
  * - Mixing (15 lessons)
  * - Vocals (12 lessons)
- * - Mastering (10 lessons)
+ * - Mastering (6 lessons)
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
