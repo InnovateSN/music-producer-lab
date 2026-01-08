@@ -1,15 +1,17 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 123 lessons across 8 categories:
- * - Drums & Rhythm (21 lessons)
+ * This file contains 159 lessons across 10 categories:
+ * - Drums & Rhythm (23 lessons)
  * - Harmony & Melody (20 lessons)
- * - Bass & Low End (10 lessons)
+ * - Music Theory Fundamentals (8 lessons) ✨ NEW
+ * - Ear Training (10 lessons) ✨ NEW
+ * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
- * - Sound Design (15 lessons) ✨ EXPANDED
- * - Mixing (15 lessons) ✨ EXPANDED
- * - Vocals (12 lessons) ✨ EXPANDED
- * - Mastering (10 lessons) ✨ EXPANDED
+ * - Sound Design (15 lessons)
+ * - Mixing (15 lessons)
+ * - Vocals (12 lessons)
+ * - Mastering (10 lessons)
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
@@ -531,8 +533,255 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
+  // MUSIC THEORY FUNDAMENTALS MODULE (8 Lessons)
   // ============================================================
-  // BASS & LOW END MODULE (10 Lessons)
+  {
+    slug: 'music-theory',
+    title: 'Music Theory Fundamentals',
+    description: 'Master the foundational concepts of music theory: intervals, scales, modes, rhythm notation, key signatures, and chord construction. Build a solid theoretical foundation for all music production.',
+    lessons: [
+      // --- LEVEL 1-2: BEGINNER ---
+      {
+        slug: 'lesson-theory-1',
+        lessonKey: 'mpl-theory-1-progress',
+        title: 'Intervals & Half Steps',
+        description: 'Learn the building blocks of all music: intervals. Understand half steps, whole steps, and how to measure distance between notes.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 1,
+        badge: 'Free',
+        pagePath: 'lesson-theory-1.html',
+        configPath: './configs/lesson-theory-1.config.js'
+      },
+      {
+        slug: 'lesson-theory-2',
+        lessonKey: 'mpl-theory-2-progress',
+        title: 'Major & Minor Scales Construction',
+        description: 'Build major and minor scales from scratch using interval formulas. Understand the W-W-H-W-W-W-H pattern that creates every major scale.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-theory-2.html',
+        configPath: './configs/lesson-theory-2.config.js'
+      },
+      {
+        slug: 'lesson-theory-3',
+        lessonKey: 'mpl-theory-3-progress',
+        title: 'Note Names & Staff Reading',
+        description: 'Master note names on the treble and bass clef. Learn how to read and write music notation efficiently.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-theory-3.html',
+        configPath: './configs/lesson-theory-3.config.js'
+      },
+
+      // --- LEVEL 3-4: INTERMEDIATE ---
+      {
+        slug: 'lesson-theory-4',
+        lessonKey: 'mpl-theory-4-progress',
+        title: 'The 7 Modes: Complete Guide',
+        description: 'Master all 7 modes derived from the major scale: Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, and Locrian. Understand their unique characteristics and applications.',
+        duration: '20-25 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-4.html',
+        configPath: './configs/lesson-theory-4.config.js'
+      },
+      {
+        slug: 'lesson-theory-5',
+        lessonKey: 'mpl-theory-5-progress',
+        title: 'Rhythm Notation & Time Signatures',
+        description: 'Learn to read and write rhythms. Master note values, rests, ties, dots, and how time signatures organize music.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-5.html',
+        configPath: './configs/lesson-theory-5.config.js'
+      },
+      {
+        slug: 'lesson-theory-6',
+        lessonKey: 'mpl-theory-6-progress',
+        title: 'Key Signatures & Circle of Fifths',
+        description: 'Understand key signatures and how the circle of fifths organizes all 12 keys. Learn sharps, flats, and relative major/minor relationships.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-6.html',
+        configPath: './configs/lesson-theory-6.config.js'
+      },
+
+      // --- LEVEL 5-6: ADVANCED ---
+      {
+        slug: 'lesson-theory-7',
+        lessonKey: 'mpl-theory-7-progress',
+        title: 'Chord Construction Theory',
+        description: 'Build chords from intervals: triads, seventh chords, extensions (9ths, 11ths, 13ths), and alterations. Master the theoretical foundation of harmony.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-7.html',
+        configPath: './configs/lesson-theory-7.config.js'
+      },
+      {
+        slug: 'lesson-theory-8',
+        lessonKey: 'mpl-theory-8-progress',
+        title: 'Functional Harmony & Roman Numerals',
+        description: 'Understand chord function: tonic, subdominant, dominant. Learn Roman numeral analysis and how chords create tension and resolution.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-theory-8.html',
+        configPath: './configs/lesson-theory-8.config.js'
+      }
+    ]
+  },
+
+  // ============================================================
+  // EAR TRAINING MODULE (10 Lessons)
+  // ============================================================
+  {
+    slug: 'ear-training',
+    title: 'Ear Training',
+    description: 'Develop critical listening skills: interval recognition, chord identification, rhythm dictation, and genre analysis. Train your ears to hear like a professional producer.',
+    lessons: [
+      // --- LEVEL 1-3: BEGINNER ---
+      {
+        slug: 'lesson-ear-1',
+        lessonKey: 'mpl-ear-1-progress',
+        title: 'Interval Recognition: Melodic',
+        description: 'Train your ear to recognize intervals played one note at a time. Master the foundational skill for transcription and melody writing.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 2,
+        badge: 'Free',
+        pagePath: 'lesson-ear-1.html',
+        configPath: './configs/lesson-ear-1.config.js'
+      },
+      {
+        slug: 'lesson-ear-2',
+        lessonKey: 'mpl-ear-2-progress',
+        title: 'Interval Recognition: Harmonic',
+        description: 'Identify intervals played simultaneously. Essential for understanding chord voicings and harmonic structure.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Free',
+        pagePath: 'lesson-ear-2.html',
+        configPath: './configs/lesson-ear-2.config.js'
+      },
+      {
+        slug: 'lesson-ear-3',
+        lessonKey: 'mpl-ear-3-progress',
+        title: 'Chord Quality Identification',
+        description: 'Distinguish between major, minor, diminished, and augmented triads by ear. Build the foundation for advanced chord recognition.',
+        duration: '15-18 min',
+        level: 'Beginner',
+        depthLevel: 3,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-3.html',
+        configPath: './configs/lesson-ear-3.config.js'
+      },
+
+      // --- LEVEL 4-6: INTERMEDIATE ---
+      {
+        slug: 'lesson-ear-4',
+        lessonKey: 'mpl-ear-4-progress',
+        title: 'Scale & Mode Recognition',
+        description: 'Identify scales and modes by their characteristic sound. Recognize major, minor, and modal patterns in music.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 4,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-4.html',
+        configPath: './configs/lesson-ear-4.config.js'
+      },
+      {
+        slug: 'lesson-ear-5',
+        lessonKey: 'mpl-ear-5-progress',
+        title: 'Rhythm Pattern Recognition',
+        description: 'Transcribe and identify rhythm patterns. Train your ear to recognize note values, syncopation, and groove elements.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-5.html',
+        configPath: './configs/lesson-ear-5.config.js'
+      },
+      {
+        slug: 'lesson-ear-6',
+        lessonKey: 'mpl-ear-6-progress',
+        title: 'Pitch Accuracy Training',
+        description: 'Develop perfect pitch awareness and relative pitch skills. Improve your ability to sing and identify specific pitches.',
+        duration: '18-20 min',
+        level: 'Intermediate',
+        depthLevel: 5,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-6.html',
+        configPath: './configs/lesson-ear-6.config.js'
+      },
+      {
+        slug: 'lesson-ear-7',
+        lessonKey: 'mpl-ear-7-progress',
+        title: 'Melodic Dictation Basics',
+        description: 'Transcribe simple melodies by ear. Combine interval recognition, rhythm, and pitch to write what you hear.',
+        duration: '20-22 min',
+        level: 'Intermediate',
+        depthLevel: 6,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-7.html',
+        configPath: './configs/lesson-ear-7.config.js'
+      },
+
+      // --- LEVEL 7-9: ADVANCED ---
+      {
+        slug: 'lesson-ear-8',
+        lessonKey: 'mpl-ear-8-progress',
+        title: 'Chord Progression Ear Training',
+        description: 'Identify common chord progressions and harmonic movement. Recognize I-IV-V, ii-V-I, and other foundational patterns by ear.',
+        duration: '20-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-8.html',
+        configPath: './configs/lesson-ear-8.config.js'
+      },
+      {
+        slug: 'lesson-ear-9',
+        lessonKey: 'mpl-ear-9-progress',
+        title: 'Genre & Style Identification',
+        description: 'Recognize musical genres and production styles by their sonic characteristics. Analyze arrangement, instrumentation, and mixing approach.',
+        duration: '20-25 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-9.html',
+        configPath: './configs/lesson-ear-9.config.js'
+      },
+      {
+        slug: 'lesson-ear-10',
+        lessonKey: 'mpl-ear-10-progress',
+        title: 'Advanced Harmonic Dictation',
+        description: 'Transcribe complex chord progressions with extensions, alterations, and voice leading. Master professional-level harmonic ear training.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-ear-10.html',
+        configPath: './configs/lesson-ear-10.config.js'
+      }
+    ]
+  },
+
+  // ============================================================
+  // BASS & LOW END MODULE (20 Lessons)
   // ============================================================
   {
     slug: 'bass',
@@ -655,6 +904,130 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         depthLevel: 8,
         pagePath: 'lesson-bass-10.html',
         configPath: './configs/lesson-bass-10.config.js'
+      },
+
+      // --- NEW ADVANCED LESSONS (11-15) ---
+      {
+        slug: 'lesson-bass-11',
+        lessonKey: 'mpl-bass-11-progress',
+        title: 'Funk Bass: Slap, Pop & Groove',
+        description: 'Master funk bass patterns with syncopated rhythms, ghost notes, and percussive techniques. Create that classic P-Funk bounce.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-11.html',
+        configPath: './configs/lesson-bass-11.config.js'
+      },
+      {
+        slug: 'lesson-bass-12',
+        lessonKey: 'mpl-bass-12-progress',
+        title: 'Jazz Walking Bass: Advanced Techniques',
+        description: 'Build sophisticated walking basslines with chromatic approaches, chord tone targets, and rhythmic displacement.',
+        duration: '20-25 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-12.html',
+        configPath: './configs/lesson-bass-12.config.js'
+      },
+      {
+        slug: 'lesson-bass-13',
+        lessonKey: 'mpl-bass-13-progress',
+        title: 'Blues Bass: Turnarounds & Patterns',
+        description: 'Learn the 12-bar blues bass foundation with turnarounds, walking patterns, and classic blues vocabulary.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-13.html',
+        configPath: './configs/lesson-bass-13.config.js'
+      },
+      {
+        slug: 'lesson-bass-14',
+        lessonKey: 'mpl-bass-14-progress',
+        title: 'R&B Bass: Smooth & Syncopated',
+        description: 'Create sultry R&B basslines with smooth movement, syncopation, and space. Master the art of saying more with less.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-14.html',
+        configPath: './configs/lesson-bass-14.config.js'
+      },
+      {
+        slug: 'lesson-bass-15',
+        lessonKey: 'mpl-bass-15-progress',
+        title: 'Reggae & Dub Bass: Heavy Low End',
+        description: 'Program massive reggae basslines with emphasis on the one and three. Master dub bass with delay and space.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-15.html',
+        configPath: './configs/lesson-bass-15.config.js'
+      },
+
+      // --- EXPERT LESSONS (16-20) ---
+      {
+        slug: 'lesson-bass-16',
+        lessonKey: 'mpl-bass-16-progress',
+        title: 'UK Garage & Grime Bass',
+        description: 'Create skippy UK Garage bass and dark Grime sub-bass patterns. Master the UK bass sound with 2-step rhythms.',
+        duration: '20-25 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-16.html',
+        configPath: './configs/lesson-bass-16.config.js'
+      },
+      {
+        slug: 'lesson-bass-17',
+        lessonKey: 'mpl-bass-17-progress',
+        title: 'Bass Synthesis & Sound Design',
+        description: 'Design bass sounds from scratch using synthesis. Master filters, envelopes, oscillators, and modulation for massive bass tones.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-17.html',
+        configPath: './configs/lesson-bass-17.config.js'
+      },
+      {
+        slug: 'lesson-bass-18',
+        lessonKey: 'mpl-bass-18-progress',
+        title: 'Bass EQ & Frequency Management',
+        description: 'Carve perfect bass frequencies with EQ. Remove mud, boost clarity, and manage the sub-to-mid relationship professionally.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-18.html',
+        configPath: './configs/lesson-bass-18.config.js'
+      },
+      {
+        slug: 'lesson-bass-19',
+        lessonKey: 'mpl-bass-19-progress',
+        title: 'Bass Expression & Automation',
+        description: 'Bring bass to life with automation, pitch glides, portamento, and expression control. Add movement and emotion.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-19.html',
+        configPath: './configs/lesson-bass-19.config.js'
+      },
+      {
+        slug: 'lesson-bass-20',
+        lessonKey: 'mpl-bass-20-progress',
+        title: 'Masterclass: Complete Bass Production',
+        description: 'Final project: create a professional multi-genre bass production from synthesis to mixing. Showcase all techniques learned.',
+        duration: '35-45 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-bass-20.html',
+        configPath: './configs/lesson-bass-20.config.js'
       }
     ]
   },

@@ -1,6 +1,6 @@
 /**
  * Music Producer Lab - Lesson Configuration
- * Lesson: Sound Design '"$i"' - [LESSON_TITLE]
+ * Lesson: Sound Design 3 - FM Synthesis Fundamentals
  */
 
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
@@ -9,49 +9,119 @@ export const lessonConfig = {
   // ====================
   // LESSON METADATA
   // ====================
-  lessonKey: "mpl-sound-design-'"$i"'-progress",
-  lessonNumber: '"$i"',
+  lessonKey: "mpl-sound-design-3-progress",
+  lessonNumber: 3,
   lessonCategory: "Sound Design",
   
   // ====================
   // NAVIGATION
   // ====================
-  nextLessonUrl: "lesson-sound-design-'"$((i+1))"'.html",
-  prevLessonUrl: "lesson-sound-design-'"$((i-1))"'.html",
+  nextLessonUrl: "lesson-sound-design-4.html",
+  prevLessonUrl: "lesson-sound-design-2.html",
   overviewUrl: "labs.html",
   
   // ====================
   // HERO SECTION
   // ====================
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: '"$i"', categoryLabel: "Sound Design" }),
-    title: "[LESSON_TITLE]:",
-    titleHighlight: "[SUBTITLE]",
-    subtitle: "[DESCRIPTION]"
+    eyebrow: buildHeroEyebrow({ lessonNumber: 3, categoryLabel: "Sound Design" }),
+    title: "FM Synthesis Fundamentals:",
+    titleHighlight: "Create Complex Evolving Timbres",
+    subtitle: "Explore frequency modulation to create complex, metallic, and bell-like tones that are impossible with subtractive synthesis. Master professional sound design techniques used in modern music production."
   },
   
   // ====================
   // EXERCISE INFO
   // ====================
   exercise: {
-    title: "[EXERCISE_TITLE]",
-    description: "[EXERCISE_DESCRIPTION]",
-    tip: "[TIP]",
+    title: "Explore FM Synthesis Fundamentals",
+    description: "Explore frequency modulation to create complex, metallic, and bell-like tones that are impossible with subtractive synthesis. This lesson covers the essential concepts and practical techniques you need to master this sound design method.",
+    tip: "Listen critically to how each parameter affects the sound. Small changes can have dramatic results in sound design.",
     steps: [
-      { text: "[STEP_1]" },
-      { text: "[STEP_2]" },
-      { text: "[STEP_3]" }
+      '<strong>Study the theory</strong> — Read through the sound design concepts and understand the signal flow.',
+      '<strong>Analyze the examples</strong> — Listen to reference sounds and identify key characteristics.',
+      '<strong>Experiment with parameters</strong> — Try different settings and hear how they change the sound.',
+      '<strong>Create variations</strong> — Design multiple versions exploring different timbres.',
+      '<strong>Save your presets</strong> — Document successful sounds for future use.',
+      'Complete the lesson when ready to move forward.'
     ]
   },
+  
+  // ====================
+  // THEORY SECTIONS
+  // ====================
+  theory: {
+    sections: [
+      {
+        title: 'Understanding FM Synthesis Fundamentals',
+        content: `FM Synthesis Fundamentals is a fundamental sound design technique that shapes the sonic character of your productions.
+
+**Key Concepts:**
+- Core synthesis principles and signal flow
+- Parameter relationships and interactions  
+- Frequency spectrum considerations
+- Timbral characteristics and sonic possibilities
+- Common applications in music production
+
+**Professional Applications:**
+Modern producers use FM Synthesis Fundamentals for:
+- Creating signature sounds and textures
+- Designing genre-specific timbres
+- Building unique sonic identities
+- Crafting sounds that cut through mixes
+- Generating movement and evolution in arrangements
+
+Understanding these concepts gives you complete control over your sound palette.`
+      },
+      {
+        title: 'Practical Sound Design Workflow',
+        content: `Professional sound designers follow systematic approaches to achieve desired results:
+
+**Design Process:**
+1. **Define the goal** — Know what sound you're trying to create
+2. **Choose the method** — Select appropriate synthesis technique
+3. **Start simple** — Begin with basic waveforms and build complexity
+4. **Shape with filters** — Sculpt the frequency content
+5. **Add movement** — Use envelopes and modulation
+6. **Layer if needed** — Combine multiple sounds for richness
+7. **Process and polish** — Apply effects and finalize
+
+**Critical Listening:**
+- A/B compare with reference sounds
+- Analyze frequency spectrum with analyzers
+- Check mono compatibility
+- Test in context with other mix elements
+
+**Common Mistakes to Avoid:**
+- Over-processing before establishing the core sound
+- Too many modulation sources creating chaos
+- Ignoring the frequency spectrum balance
+- Not considering the sound's role in the arrangement
+
+Study professional productions and reverse-engineer the sounds you admire.`
+      }
+    ]
+  },
+  
+  // ====================
+  // LEARNING OBJECTIVES
+  // ====================
+  learningObjectives: [
+    "Master the fundamental concepts of FM Synthesis Fundamentals",
+    "Understand signal flow and parameter relationships",
+    "Apply sound design techniques to practical productions",
+    "Develop critical listening skills for timbre and texture",
+    "Create professional-quality sounds for your productions"
+  ],
   
   // ====================
   // COMPLETION MESSAGES
   // ====================
   messages: applyMessagePreset("default", {
-    initial: "Complete this lesson to unlock the next sound design topic.",
-    success: "🎉 Excellent! You've mastered this sound design technique!",
-    error: "Review the content and try again.",
-    alreadyCompleted: "You've already completed this lesson. Keep exploring!"
+    initial: "Complete this lesson to master FM Synthesis Fundamentals techniques.",
+    success: "🎉 Excellent! You've mastered FM Synthesis Fundamentals. Your sound design skills are growing!",
+    error: "Review the theory and try again.",
+    alreadyCompleted: "You've completed this lesson. Keep practicing these techniques!"
   }),
   
   // ====================
