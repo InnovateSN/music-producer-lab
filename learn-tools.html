@@ -1119,33 +1119,36 @@
       setTimeout(() => {
         const pianoRollContainer = document.getElementById('demo-piano-roll-sequencer');
         if (pianoRollContainer) {
-          // Create internal control buttons
+          // Create internal control buttons (piano roll expects these IDs)
           const controlsDiv = document.createElement('div');
           controlsDiv.style.display = 'none';
           controlsDiv.innerHTML = `
-            <button id="mpl-seq-play-all-piano"></button>
-            <button id="mpl-seq-stop-all-piano"></button>
-            <button id="mpl-seq-clear-all-piano"></button>
+            <button id="mpl-seq-play-all"></button>
+            <button id="mpl-seq-stop-all"></button>
+            <button id="mpl-seq-clear-all"></button>
           `;
           pianoRollContainer.parentNode.insertBefore(controlsDiv, pianoRollContainer);
 
           // Initialize piano roll with C major scale context
           initPianoRoll(
             {
-              stepCount: 16,
-              pitchRange: { min: 48, max: 72 }, // C3 to C5 (2 octaves)
-              tempo: 120,
-              sandbox: true,
-              scale: {
-                root: 'C',
-                mode: 'major',
-                notes: [60, 62, 64, 65, 67, 69, 71, 72] // C major scale (MIDI)
+              sequencer: {
+                tempo: 120,
+                stepCount: 16,
+                pitchRange: { low: 48, high: 72 }, // C3 to C5 (2 octaves)
+                key: 'C',
+                scale: 'Major',
+                swing: 0,
+                bars: 1
               },
-              targetNotes: [], // No validation in sandbox mode
-              autoSaveState: false
+              pianoRoll: {
+                bassMode: false,
+                waveform: 'triangle'
+              },
+              validation: null,
+              nextLessonUrl: null,
+              lessonKey: 'demo-piano-roll'
             },
-            'demo-piano-roll', // localStorage key
-            null, // no next lesson
             'demo-piano-roll-sequencer' // container ID
           );
 
@@ -1154,9 +1157,9 @@
           const stopBtn = document.getElementById('demo-piano-stop');
           const clearBtn = document.getElementById('demo-piano-clear');
           const presetBtn = document.getElementById('demo-piano-preset');
-          const internalPlayBtn = document.getElementById('mpl-seq-play-all-piano');
-          const internalStopBtn = document.getElementById('mpl-seq-stop-all-piano');
-          const internalClearBtn = document.getElementById('mpl-seq-clear-all-piano');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all');
 
           if (playBtn && internalPlayBtn) {
             playBtn.addEventListener('click', () => internalPlayBtn.click());
