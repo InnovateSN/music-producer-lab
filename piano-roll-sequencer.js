@@ -1420,8 +1420,12 @@ function validateExercise() {
 // EXPORTS
 // ==========================================
 
+// Alias for backward compatibility
+const initPianoRoll = initPianoRollSequencer;
+
 export {
   initPianoRollSequencer,
+  initPianoRoll,
   pianoRollState,
   playNote,
   playChord,
