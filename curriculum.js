@@ -1670,7 +1670,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
-  // MIXING MODULE (15 Lessons)
+  // MIXING MODULE (20 Lessons) ✨ EXPANDED
   // ============================================================
   {
     slug: 'mixing',
@@ -1863,6 +1863,68 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-mixing-15.html',
         configPath: './configs/lesson-mixing-15.config.js'
+      },
+
+      // ADVANCED EXPERT (16-20)
+      {
+        slug: 'lesson-mixing-16',
+        lessonKey: 'mpl-mixing-16-progress',
+        title: 'Advanced Parallel Processing',
+        description: 'Master parallel compression, saturation, and distortion to add power and character without losing dynamics.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-16.html',
+        configPath: './configs/lesson-mixing-16.config.js'
+      },
+      {
+        slug: 'lesson-mixing-17',
+        lessonKey: 'mpl-mixing-17-progress',
+        title: 'Mid-Side Processing & Stereo Imaging',
+        description: 'Control stereo width with mid-side EQ, compression, and enhancement for professional spatial mixing.',
+        duration: '28-32 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-17.html',
+        configPath: './configs/lesson-mixing-17.config.js'
+      },
+      {
+        slug: 'lesson-mixing-18',
+        lessonKey: 'mpl-mixing-18-progress',
+        title: 'Mixing for Streaming Platforms',
+        description: 'Optimize your mixes for Spotify, Apple Music, YouTube with loudness normalization and format-specific techniques.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-18.html',
+        configPath: './configs/lesson-mixing-18.config.js'
+      },
+      {
+        slug: 'lesson-mixing-19',
+        lessonKey: 'mpl-mixing-19-progress',
+        title: 'Stem Mixing & Bus Processing',
+        description: 'Organize complex mixes with stem groups, bus compression, and group processing for cohesive sound.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-19.html',
+        configPath: './configs/lesson-mixing-19.config.js'
+      },
+      {
+        slug: 'lesson-mixing-20',
+        lessonKey: 'mpl-mixing-20-progress',
+        title: 'Advanced Automation Techniques',
+        description: 'Master dynamic mixing with volume rides, effect automation, and movement for engaging, professional mixes.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-20.html',
+        configPath: './configs/lesson-mixing-20.config.js'
       }
     ]
   },
