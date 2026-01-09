@@ -1472,7 +1472,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
-  // SOUND DESIGN MODULE (15 Lessons)
+  // SOUND DESIGN MODULE (20 Lessons) ✨ EXPANDED
   // ============================================================
   {
     slug: 'sound-design',
@@ -1665,6 +1665,68 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-sound-design-15.html',
         configPath: './configs/lesson-sound-design-15.config.js'
+      },
+
+      // ADVANCED EXPERT (16-20)
+      {
+        slug: 'lesson-sound-design-16',
+        lessonKey: 'mpl-sound-design-16-progress',
+        title: 'Advanced Modular Synthesis',
+        description: 'Master complex modulation routing, CV control, and modular synthesis techniques for dynamic, evolving sounds.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-16.html',
+        configPath: './configs/lesson-sound-design-16.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-17',
+        lessonKey: 'mpl-sound-design-17-progress',
+        title: 'Granular Synthesis & Texture Design',
+        description: 'Create atmospheric textures and experimental sounds with granular synthesis and micro-sampling techniques.',
+        duration: '25-32 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-17.html',
+        configPath: './configs/lesson-sound-design-17.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-18',
+        lessonKey: 'mpl-sound-design-18-progress',
+        title: 'Physical Modeling & Analog Emulation',
+        description: 'Design realistic acoustic instruments and vintage analog sounds through physical modeling and circuit emulation.',
+        duration: '30-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-18.html',
+        configPath: './configs/lesson-sound-design-18.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-19',
+        lessonKey: 'mpl-sound-design-19-progress',
+        title: 'Spectral Processing & Resynthesis',
+        description: 'Transform sounds at the spectral level with FFT processing, vocoding, and spectral resynthesis techniques.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-19.html',
+        configPath: './configs/lesson-sound-design-19.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-20',
+        lessonKey: 'mpl-sound-design-20-progress',
+        title: 'Sound Design for Visual Media',
+        description: 'Master cinematic sound design: impacts, risers, transitions, and atmospheric textures for film and games.',
+        duration: '32-40 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-20.html',
+        configPath: './configs/lesson-sound-design-20.config.js'
       }
     ]
   },
