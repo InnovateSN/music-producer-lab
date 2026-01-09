@@ -39,6 +39,13 @@ yarn-error.log*
 dist/
 build/
 .cache/
+.next/
+out/
+
+# Package manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Testing
 coverage/
