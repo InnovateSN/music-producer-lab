@@ -1,73 +1,39 @@
-/**
- * Music Producer Lab - Lesson Configuration
- * Lesson: Drums 20 - Masterclass: Complete Drum Production
- */
-
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-drums-20-progress",
   lessonNumber: 20,
   lessonCategory: "Drums & Rhythm",
-  depthLevel: 10,
-  
-  nextLessonUrl: null,
+  depthLevel: 9,
+  nextLessonUrl: "lesson-drums-21.html",
   prevLessonUrl: "lesson-drums-19.html",
   overviewUrl: "labs.html",
-  
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 20, categoryLabel: "Drums & Rhythm" }),
-    title: "Masterclass:",
-    titleHighlight: "Complete Drum Production",
-    subtitle: "Your <strong>final challenge</strong>: produce a complete <strong>multi-section drum arrangement</strong> applying everything you've learned."
+    eyebrow: buildHeroEyebrow({ lessonSlug: "lesson-drums-20", categoryLabel: "Drums & Rhythm" }),
+    title: "Live Drum Recording",
+    titleHighlight: "Simulation",
+    subtitle: "Program drums that <strong>sound like a real drummer playing</strong>. Master <strong>room ambience</strong>, <strong>overhead mic bleed</strong>, and <strong>natural dynamics</strong> that make programmed drums feel human. This is the secret to rock, indie, and organic electronic productions."
   },
-  
-  sequencer: {
-    tempo: 120,
-    stepCount: 64,
-    swing: 0,
-    showBeatMarkers: true,
-    enableVelocity: true,
-    enableSections: true,
-    requiredTempo: 120
-  },
-  
+  sequencer: { tempo: 115, stepCount: 16, swing: 12, showBeatMarkers: true, showStepNumbers: true, autoSaveState: true, enableVelocity: true, enableHumanization: true, requiredTempo: 115 },
   exercise: {
-    title: "Create a 16-Bar Drum Arrangement",
-    description: "Build a complete drum production with intro, verse, build, drop, and breakdown.",
+    title: "Simulate Live Rock Drum Take",
+    description: "Create a <strong>rock drum pattern with human feel</strong>. Use <strong>swing</strong>, <strong>velocity variation</strong>, and <strong>humanization</strong> to make it sound like a drummer, not a machine.",
+    tip: "Real drummers never hit every note at the same velocity. Vary hi-hat velocities between 70-100, and add 15-20% humanization!",
     steps: [
-      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
-      { text: "<strong>Intro (4 bars):</strong> Stripped down, builds anticipation." },
-      { text: "<strong>Verse (4 bars):</strong> Full groove with ghost notes." },
-      { text: "<strong>Build (2 bars):</strong> Rising energy, fill at end." },
-      { text: "<strong>Drop (4 bars):</strong> Maximum energy, full kit." },
-      { text: "<strong>Breakdown (2 bars):</strong> Minimal contrast." }
+      { text: "<strong>Set tempo to 115 BPM, swing to 12%</strong>." },
+      { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13, velocity 115-120." },
+      { text: "<strong>Snare:</strong> Steps 5, 13, velocity 110-118 (slight variation)." },
+      { text: "<strong>Hi-Hat:</strong> 8th notes, varying velocities 70-100." },
+      { text: "<strong>Enable humanization:</strong> Timing 15ms, Velocity 20%." },
+      { text: "<strong>Listen:</strong> It should groove like a human performance." }
     ]
   },
-  
-  requirements: [
-    { id: "sounds", text: "At least 4 different drum sounds" },
-    { id: "velocity", text: "Velocity variation for dynamics" },
-    { id: "fill", text: "At least one fill transition" },
-    { id: "ghost", text: "Ghost notes in at least one section" },
-    { id: "energy", text: "Clear energy contrast between sections" },
-    { id: "humanize", text: "Applied humanization" }
+  instruments: [
+    { id: "kick", label: "Kick", color: "linear-gradient(135deg, #e17055, #d63031)", targetSteps: [0, 4, 8, 12], targetVelocities: { 0: 118, 4: 115, 8: 120, 12: 117 }, instructionText: "Kick with velocity variation.", patternHint: { enabled: true } },
+    { id: "snare", label: "Snare", color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)", targetSteps: [4, 12], targetVelocities: { 4: 112, 12: 116 }, instructionText: "Snare backbeat, varied velocity.", patternHint: { enabled: true } },
+    { id: "hihat", label: "Hi-Hat", color: "linear-gradient(135deg, #00cec9, #0984e3)", targetSteps: [0,2,4,6,8,10,12,14], targetVelocities: { 0: 85, 2: 75, 4: 90, 6: 70, 8: 88, 10: 78, 12: 95, 14: 72 }, instructionText: "8th notes with human velocity variation.", patternHint: { enabled: true } }
   ],
-  
-  messages: applyMessagePreset("drums", {
-    initial: "Create your masterpiece—a complete drum arrangement!",
-    success: "🏆 MASTERCLASS COMPLETE! You're now a professional drum programmer!",
-    error: "Check the requirements—make sure all sections are filled."
-  }),
-  
-  mode: { sandbox: true, showVelocityLane: true, showSections: true },
-  
-  learningObjectives: [
-    "Apply all drum programming techniques in one project",
-    "Create a complete multi-section drum arrangement",
-    "Use automation for dynamic variation",
-    "Produce industry-ready drum tracks"
-  ]
+  theory: { sections: [{ title: "Human Simulation Techniques", content: "**Velocity Variation:** Real drummers vary every hit (±10-20 velocity). **Timing:** Slight rushing/dragging (5-20ms humanization). **Swing:** 10-15% swing adds natural groove. **Overhead Bleed:** Subtle room ambience/reverb simulates live recording. **Performance Arcs:** Drummers get louder in choruses, softer in verses." }] },
+  learningObjectives: ["Simulate live drummer performance dynamics", "Use humanization settings effectively", "Create natural velocity variations", "Apply swing for organic groove", "Understand mic bleed and room ambience"],
+  validation: applyMessagePreset("drumSequencer", "correct-placement")
 };
-
-if (typeof window !== 'undefined') window.LESSON_CONFIG = lessonConfig;

@@ -1,17 +1,17 @@
 /**
  * Music Producer Lab - Complete Curriculum
  *
- * This file contains 155 lessons across 10 categories:
- * - Drums & Rhythm (23 lessons)
+ * This file contains 175 lessons across 10 categories:
+ * - Drums & Rhythm (23 lessons) ✨ EXPANDED
  * - Harmony & Melody (28 lessons) ✨ EXPANDED
  * - Music Theory Fundamentals (8 lessons)
  * - Ear Training (10 lessons)
  * - Bass & Low End (20 lessons)
  * - Arrangement & Songwriting (20 lessons)
- * - Sound Design (15 lessons)
- * - Mixing (15 lessons)
- * - Vocals (12 lessons)
- * - Mastering (6 lessons)
+ * - Sound Design (20 lessons) ✨ EXPANDED
+ * - Mixing (20 lessons) ✨ EXPANDED
+ * - Vocals (15 lessons) ✨ EXPANDED
+ * - Mastering (10 lessons) ✨ EXPANDED
  *
  * Lesson keys match exactly what each HTML file uses for progress tracking.
  *
@@ -245,6 +245,54 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         pagePath: 'lesson-drums-14.html',
         configPath: './configs/lesson-drums-14.config.js'
       },
+      {
+        slug: 'lesson-drums-15',
+        lessonKey: 'mpl-drums-15-progress',
+        title: 'Advanced Hi-Hat Techniques',
+        description: 'Master open/closed hi-hat patterns, rolls, crescendos, and pedal hi-hat techniques for dynamic grooves.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 7,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-15.html',
+        configPath: './configs/lesson-drums-15.config.js'
+      },
+      {
+        slug: 'lesson-drums-16',
+        lessonKey: 'mpl-drums-16-progress',
+        title: 'Advanced Fills & Transitions',
+        description: 'Build dramatic fills that bridge sections smoothly. Learn tom rolls, crash patterns, and fill placement strategies.',
+        duration: '20-24 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-16.html',
+        configPath: './configs/lesson-drums-16.config.js'
+      },
+      {
+        slug: 'lesson-drums-17',
+        lessonKey: 'mpl-drums-17-progress',
+        title: 'Drum Layering & Parallel Processing',
+        description: 'Stack multiple drum sounds and process layers independently. Create massive, professional drum tones.',
+        duration: '22-26 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-17.html',
+        configPath: './configs/lesson-drums-17.config.js'
+      },
+      {
+        slug: 'lesson-drums-18',
+        lessonKey: 'mpl-drums-18-progress',
+        title: 'Swing & Shuffle Variations',
+        description: 'Go beyond basic swing. Learn triplet-based shuffles, half-time shuffle, and swing percentages for different genres.',
+        duration: '18-22 min',
+        level: 'Advanced',
+        depthLevel: 8,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-18.html',
+        configPath: './configs/lesson-drums-18.config.js'
+      },
 
       // --- LEVEL 9-10: EXPERT ---
       {
@@ -258,6 +306,42 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-drums-19.html',
         configPath: './configs/lesson-drums-19.config.js'
+      },
+      {
+        slug: 'lesson-drums-20',
+        lessonKey: 'mpl-drums-20-progress',
+        title: 'Live Drum Recording Simulation',
+        description: 'Program drums that sound like a real drummer playing. Master room ambience, overhead mic bleed, and natural dynamics.',
+        duration: '24-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-20.html',
+        configPath: './configs/lesson-drums-20.config.js'
+      },
+      {
+        slug: 'lesson-drums-21',
+        lessonKey: 'mpl-drums-21-progress',
+        title: 'Advanced Polyrhythms & Cross-Rhythms',
+        description: 'Layer complex independent rhythms across drums. Create 5/4 over 4/4, metric displacement, and phase shifting patterns.',
+        duration: '22-26 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-21.html',
+        configPath: './configs/lesson-drums-21.config.js'
+      },
+      {
+        slug: 'lesson-drums-22',
+        lessonKey: 'mpl-drums-22-progress',
+        title: 'Mixing Drums for Loudness & Punch',
+        description: 'Achieve competitive loudness without losing dynamics. Learn compression, saturation, and limiting techniques for modern drums.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-drums-22.html',
+        configPath: './configs/lesson-drums-22.config.js'
       },
       {
         slug: 'drum-playground',
@@ -1388,7 +1472,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
   },
 
   // ============================================================
-  // SOUND DESIGN MODULE (15 Lessons)
+  // SOUND DESIGN MODULE (20 Lessons) ✨ EXPANDED
   // ============================================================
   {
     slug: 'sound-design',
@@ -1581,12 +1665,74 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-sound-design-15.html',
         configPath: './configs/lesson-sound-design-15.config.js'
+      },
+
+      // ADVANCED EXPERT (16-20)
+      {
+        slug: 'lesson-sound-design-16',
+        lessonKey: 'mpl-sound-design-16-progress',
+        title: 'Advanced Modular Synthesis',
+        description: 'Master complex modulation routing, CV control, and modular synthesis techniques for dynamic, evolving sounds.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-16.html',
+        configPath: './configs/lesson-sound-design-16.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-17',
+        lessonKey: 'mpl-sound-design-17-progress',
+        title: 'Granular Synthesis & Texture Design',
+        description: 'Create atmospheric textures and experimental sounds with granular synthesis and micro-sampling techniques.',
+        duration: '25-32 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-17.html',
+        configPath: './configs/lesson-sound-design-17.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-18',
+        lessonKey: 'mpl-sound-design-18-progress',
+        title: 'Physical Modeling & Analog Emulation',
+        description: 'Design realistic acoustic instruments and vintage analog sounds through physical modeling and circuit emulation.',
+        duration: '30-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-18.html',
+        configPath: './configs/lesson-sound-design-18.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-19',
+        lessonKey: 'mpl-sound-design-19-progress',
+        title: 'Spectral Processing & Resynthesis',
+        description: 'Transform sounds at the spectral level with FFT processing, vocoding, and spectral resynthesis techniques.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-19.html',
+        configPath: './configs/lesson-sound-design-19.config.js'
+      },
+      {
+        slug: 'lesson-sound-design-20',
+        lessonKey: 'mpl-sound-design-20-progress',
+        title: 'Sound Design for Visual Media',
+        description: 'Master cinematic sound design: impacts, risers, transitions, and atmospheric textures for film and games.',
+        duration: '32-40 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-sound-design-20.html',
+        configPath: './configs/lesson-sound-design-20.config.js'
       }
     ]
   },
 
   // ============================================================
-  // MIXING MODULE (15 Lessons)
+  // MIXING MODULE (20 Lessons) ✨ EXPANDED
   // ============================================================
   {
     slug: 'mixing',
@@ -1779,6 +1925,68 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-mixing-15.html',
         configPath: './configs/lesson-mixing-15.config.js'
+      },
+
+      // ADVANCED EXPERT (16-20)
+      {
+        slug: 'lesson-mixing-16',
+        lessonKey: 'mpl-mixing-16-progress',
+        title: 'Advanced Parallel Processing',
+        description: 'Master parallel compression, saturation, and distortion to add power and character without losing dynamics.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-16.html',
+        configPath: './configs/lesson-mixing-16.config.js'
+      },
+      {
+        slug: 'lesson-mixing-17',
+        lessonKey: 'mpl-mixing-17-progress',
+        title: 'Mid-Side Processing & Stereo Imaging',
+        description: 'Control stereo width with mid-side EQ, compression, and enhancement for professional spatial mixing.',
+        duration: '28-32 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-17.html',
+        configPath: './configs/lesson-mixing-17.config.js'
+      },
+      {
+        slug: 'lesson-mixing-18',
+        lessonKey: 'mpl-mixing-18-progress',
+        title: 'Mixing for Streaming Platforms',
+        description: 'Optimize your mixes for Spotify, Apple Music, YouTube with loudness normalization and format-specific techniques.',
+        duration: '22-28 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-18.html',
+        configPath: './configs/lesson-mixing-18.config.js'
+      },
+      {
+        slug: 'lesson-mixing-19',
+        lessonKey: 'mpl-mixing-19-progress',
+        title: 'Stem Mixing & Bus Processing',
+        description: 'Organize complex mixes with stem groups, bus compression, and group processing for cohesive sound.',
+        duration: '25-30 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-19.html',
+        configPath: './configs/lesson-mixing-19.config.js'
+      },
+      {
+        slug: 'lesson-mixing-20',
+        lessonKey: 'mpl-mixing-20-progress',
+        title: 'Advanced Automation Techniques',
+        description: 'Master dynamic mixing with volume rides, effect automation, and movement for engaging, professional mixes.',
+        duration: '28-35 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-mixing-20.html',
+        configPath: './configs/lesson-mixing-20.config.js'
       }
     ]
   },
@@ -1941,6 +2149,42 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         badge: 'Premium',
         pagePath: 'lesson-vocals-12.html',
         configPath: './configs/lesson-vocals-12.config.js'
+      },
+      {
+        slug: 'lesson-vocals-13',
+        lessonKey: 'mpl-vocals-13-progress',
+        title: 'Vocal Effects & Creative Processing',
+        description: 'Master delay, reverb, distortion, and modulation effects for creative vocal treatments. Build vocal soundscapes and character.',
+        duration: '22-26 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-13.html',
+        configPath: './configs/lesson-vocals-13.config.js'
+      },
+      {
+        slug: 'lesson-vocals-14',
+        lessonKey: 'mpl-vocals-14-progress',
+        title: 'Vocal Layering & Stacking Techniques',
+        description: 'Stack vocals for massive choruses and thick textures. Learn octave doubling, stereo widening, and blend techniques.',
+        duration: '20-24 min',
+        level: 'Expert',
+        depthLevel: 9,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-14.html',
+        configPath: './configs/lesson-vocals-14.config.js'
+      },
+      {
+        slug: 'lesson-vocals-15',
+        lessonKey: 'mpl-vocals-15-progress',
+        title: 'Advanced Vocal Editing & Timing',
+        description: 'Precision vocal editing for professional results. Master timing correction, breath control, and seamless comp editing.',
+        duration: '24-28 min',
+        level: 'Expert',
+        depthLevel: 10,
+        badge: 'Premium',
+        pagePath: 'lesson-vocals-15.html',
+        configPath: './configs/lesson-vocals-15.config.js'
       }
     ]
   },
