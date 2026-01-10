@@ -105,9 +105,12 @@ export default async function TeacherDashboard() {
               <h2 className="text-xl font-semibold text-gray-900">
                 Your Classes
               </h2>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+              <a
+                href="/teacher/create-class"
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+              >
                 + New Class
-              </button>
+              </a>
             </div>
 
             {classes.length === 0 ? (
