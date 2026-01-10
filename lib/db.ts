@@ -3,45 +3,54 @@ import { neon } from '@neondatabase/serverless';
 // Neon serverless driver
 const sql = neon(process.env.DATABASE_URL!);
 
-// Helper function to execute queries
+// Helper function to execute queries with Neon's HTTP API
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
-    // Build parameterized query by replacing $1, $2, etc. with actual values
-    // This is a workaround for Neon's template string requirement
-    let processedQuery = queryText;
-    const processedParams: any[] = [];
+    // Neon expects template literal format, but we use PostgreSQL-style $1, $2, etc.
+    // Convert to template literal format
 
-    // If params are provided, we need to handle them
-    if (params && params.length > 0) {
-      // For Neon, we'll use a different approach - directly interpolate safely
-      // by escaping values
-      for (let i = 0; i < params.length; i++) {
-        const placeholder = `$${i + 1}`;
-        const value = params[i];
-
-        // Convert to safe SQL value
-        let safeValue: string;
-        if (value === null || value === undefined) {
-          safeValue = 'NULL';
-        } else if (typeof value === 'string') {
-          // Escape single quotes
-          safeValue = `'${value.replace(/'/g, "''")}'`;
-        } else if (typeof value === 'number' || typeof value === 'boolean') {
-          safeValue = String(value);
-        } else if (value instanceof Date) {
-          safeValue = `'${value.toISOString()}'`;
-        } else if (typeof value === 'object') {
-          safeValue = `'${JSON.stringify(value).replace(/'/g, "''")}'`;
-        } else {
-          safeValue = String(value);
-        }
-
-        processedQuery = processedQuery.replace(placeholder, safeValue);
-      }
+    if (!params || params.length === 0) {
+      // No parameters - create a template literal from the string
+      const templateArray = Object.assign([queryText], { raw: [queryText] }) as TemplateStringsArray;
+      const result = await sql(templateArray);
+      return result as T[];
     }
 
-    // Execute the query using Neon's sql template
-    const result = await sql([processedQuery] as any);
+    // For parameterized queries, convert $1, $2, etc. to template literal positions
+    const parts: string[] = [];
+    const values: any[] = [];
+
+    let currentPart = '';
+
+    for (let i = 0; i < queryText.length; i++) {
+      if (queryText[i] === '$' && i + 1 < queryText.length) {
+        // Check if next character(s) form a number
+        let numStr = '';
+        let j = i + 1;
+        while (j < queryText.length && /\d/.test(queryText[j])) {
+          numStr += queryText[j];
+          j++;
+        }
+
+        if (numStr) {
+          // Found a parameter placeholder like $1, $2, etc.
+          const paramNum = parseInt(numStr);
+          parts.push(currentPart);
+          values.push(params[paramNum - 1]);
+          currentPart = '';
+          i = j - 1; // Skip the number
+          continue;
+        }
+      }
+      currentPart += queryText[i];
+    }
+    parts.push(currentPart); // Add the final part
+
+    // Create a proper template literal array
+    const templateArray = Object.assign([...parts], { raw: [...parts] }) as TemplateStringsArray;
+
+    // Execute with Neon's template literal syntax
+    const result = await sql(templateArray, ...values);
     return result as T[];
   } catch (error) {
     console.error('Database query error:', error);
