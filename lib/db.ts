@@ -4,12 +4,49 @@ import { neon } from '@neondatabase/serverless';
 const sql = neon(process.env.DATABASE_URL!);
 
 // Helper function to execute queries
-export async function query<T = any>(queryText: string, params?: any[]): Promise<T[]> {
+export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
-    const result = await sql(queryText, params);
+    // Build parameterized query by replacing $1, $2, etc. with actual values
+    // This is a workaround for Neon's template string requirement
+    let processedQuery = queryText;
+    const processedParams: any[] = [];
+
+    // If params are provided, we need to handle them
+    if (params && params.length > 0) {
+      // For Neon, we'll use a different approach - directly interpolate safely
+      // by escaping values
+      for (let i = 0; i < params.length; i++) {
+        const placeholder = `$${i + 1}`;
+        const value = params[i];
+
+        // Convert to safe SQL value
+        let safeValue: string;
+        if (value === null || value === undefined) {
+          safeValue = 'NULL';
+        } else if (typeof value === 'string') {
+          // Escape single quotes
+          safeValue = `'${value.replace(/'/g, "''")}'`;
+        } else if (typeof value === 'number' || typeof value === 'boolean') {
+          safeValue = String(value);
+        } else if (value instanceof Date) {
+          safeValue = `'${value.toISOString()}'`;
+        } else if (typeof value === 'object') {
+          safeValue = `'${JSON.stringify(value).replace(/'/g, "''")}'`;
+        } else {
+          safeValue = String(value);
+        }
+
+        processedQuery = processedQuery.replace(placeholder, safeValue);
+      }
+    }
+
+    // Execute the query using Neon's sql template
+    const result = await sql([processedQuery] as any);
     return result as T[];
   } catch (error) {
     console.error('Database query error:', error);
+    console.error('Query:', queryText);
+    console.error('Params:', params);
     throw error;
   }
 }
