@@ -733,6 +733,370 @@
     </div>
   </section>
 
+  <!-- Schools vs Individuals Section -->
+  <section class="section" style="background: var(--bg-primary);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="badge badge-primary mb-md">Choose Your Path</span>
+        <h2 class="mb-md">For Schools & For Individuals</h2>
+        <p style="max-width: 650px; margin: 0 auto; font-size: 1.05rem; color: var(--text-muted);">
+          Whether you're an educator looking for curriculum or an individual exploring music production, we've got you covered.
+        </p>
+      </div>
+
+      <!-- Toggle Switch -->
+      <div style="display: flex; justify-content: center; margin-bottom: var(--space-2xl);">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 4px; display: inline-flex; gap: 4px;">
+          <button id="toggle-schools" class="toggle-btn active" style="padding: var(--space-md) var(--space-xl); border: none; background: var(--gradient-primary); color: white; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all var(--transition-base); box-shadow: var(--glow-cyan);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            For Schools
+          </button>
+          <button id="toggle-individuals" class="toggle-btn" style="padding: var(--space-md) var(--space-xl); border: none; background: transparent; color: var(--text-secondary); border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all var(--transition-base);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            For Individuals
+          </button>
+        </div>
+      </div>
+
+      <!-- Schools Content -->
+      <div id="schools-content" class="audience-content">
+        <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
+          <!-- Left Column: Benefits -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-cyan);">Built for Education</h3>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+              <!-- Compliance -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">COPPA & GDPR Compliant</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Safe for K-12 classrooms. No personal data collection, no tracking, no third-party ads.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Classroom Management -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-purple);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Classroom Management</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Track student progress, assign labs, view completion rates. Simple dashboard for educators.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- No Installation -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-green);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="2" y1="12" x2="22" y2="12"/>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Browser-Based Platform</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Zero installation. Works on Chromebooks, iPads, PCs, and Macs. Just open a browser.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LMS Integration -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-amber);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(255, 177, 66, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                      <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">LMS Integration Ready</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Integrate with Google Classroom, Canvas, Schoology. Export grades and completion data.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Pricing & CTA -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-cyan);">School Pricing</h3>
+
+            <div class="card" style="background: var(--gradient-glow); padding: var(--space-2xl); text-align: center; margin-bottom: var(--space-xl);">
+              <div style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); margin-bottom: var(--space-sm);">
+                Volume Pricing
+              </div>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-xl);">
+                Affordable per-student rates for classrooms, schools, and districts
+              </p>
+              <ul style="list-style: none; text-align: left; margin-bottom: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>25-99 students: <strong>$5/student/year</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>100-499 students: <strong>$4/student/year</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>500+ students: <strong>Custom pricing</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">✓</span>
+                  <span>Teacher accounts <strong>free</strong></span>
+                </li>
+              </ul>
+              <a href="mailto:schools@musicproducerlab.com" class="btn btn-primary btn-lg" style="width: 100%;">
+                Request School Quote
+              </a>
+            </div>
+
+            <div style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
+              <h4 style="margin-bottom: var(--space-md);">What's Included</h4>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); font-size: 0.9rem;">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>All 20+ interactive labs</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Teacher dashboard & analytics</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Assignment creation & grading</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Priority email support</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Curriculum guides & lesson plans</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individuals Content -->
+      <div id="individuals-content" class="audience-content" style="display: none;">
+        <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
+          <!-- Left Column: Benefits -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-purple);">Learn at Your Own Pace</h3>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+              <!-- Free to Start -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-green);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Free to Start</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Access core drum sequencer and basic labs immediately. No credit card required.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Creative Freedom -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-purple);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                      <path d="M2 2l7.586 7.586"/>
+                      <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Creative Freedom</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Experiment freely. No grades, no deadlines. Learn the fundamentals, then break the rules.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Self-Paced Learning -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Learn at Your Speed</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      10 minutes a day or 2-hour sessions. Progress saves automatically. Start where you left off.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Export & Portfolio -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-amber);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(255, 177, 66, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Export Your Work</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Export WAV and MIDI files. Take your creations to your DAW. Build your portfolio.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Pricing & CTA -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-purple);">Individual Pricing</h3>
+
+            <div class="card" style="background: var(--gradient-glow); padding: var(--space-2xl); text-align: center; margin-bottom: var(--space-xl);">
+              <div style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); margin-bottom: var(--space-sm);">
+                $0
+              </div>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-xl);">
+                Free forever for core features
+              </p>
+              <ul style="list-style: none; text-align: left; margin-bottom: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Drum sequencer playground</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>5 beginner labs (drums, melody, structure)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Export to WAV & MIDI</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Community Discord access</span>
+                </li>
+              </ul>
+              <a href="labs.html" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: var(--space-md);">
+                Start Free
+              </a>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">No credit card required</p>
+            </div>
+
+            <div style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); box-shadow: var(--glow-purple);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+                <h4>Pro Access</h4>
+                <span class="badge badge-secondary">Coming Soon</span>
+              </div>
+              <div style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-sm);">
+                $9<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);">/month</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); font-size: 0.9rem; margin-bottom: var(--space-lg);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>All 20+ labs (drums, harmony, mixing, mastering)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Advanced effects & synthesizers</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Unlimited project saves</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Priority support</span>
+                </li>
+              </ul>
+              <button class="btn btn-secondary" style="width: 100%;" disabled>
+                Notify Me When Available
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Toggle between Schools and Individuals
+    const schoolsBtn = document.getElementById('toggle-schools');
+    const individualsBtn = document.getElementById('toggle-individuals');
+    const schoolsContent = document.getElementById('schools-content');
+    const individualsContent = document.getElementById('individuals-content');
+
+    schoolsBtn.addEventListener('click', () => {
+      schoolsBtn.style.background = 'var(--gradient-primary)';
+      schoolsBtn.style.color = 'white';
+      schoolsBtn.style.boxShadow = 'var(--glow-cyan)';
+      individualsBtn.style.background = 'transparent';
+      individualsBtn.style.color = 'var(--text-secondary)';
+      individualsBtn.style.boxShadow = 'none';
+      schoolsContent.style.display = 'block';
+      individualsContent.style.display = 'none';
+    });
+
+    individualsBtn.addEventListener('click', () => {
+      individualsBtn.style.background = 'var(--gradient-secondary)';
+      individualsBtn.style.color = 'white';
+      individualsBtn.style.boxShadow = 'var(--glow-purple)';
+      schoolsBtn.style.background = 'transparent';
+      schoolsBtn.style.color = 'var(--text-secondary)';
+      schoolsBtn.style.boxShadow = 'none';
+      individualsContent.style.display = 'block';
+      schoolsContent.style.display = 'none';
+    });
+  </script>
+
   <!-- Who Is It For Section -->
   <section class="section">
     <div class="container">
