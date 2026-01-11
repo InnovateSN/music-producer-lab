@@ -151,7 +151,11 @@
 
       <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">😴</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(255, 102, 196, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-pink);">Passive Tutorials</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
             You watch hours of videos, take notes, but when you open your DAW... blank screen.
@@ -160,7 +164,12 @@
         </div>
 
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">📚</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-purple);">Theory Without Context</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
             Learning EQ curves before you've mixed a track is like reading about swimming before touching water.
@@ -169,7 +178,14 @@
         </div>
 
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">🔄</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-cyan);">No Guided Practice</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
             They give you information but leave you alone. "Now go and practice" - but practice <em>what</em>?
@@ -178,7 +194,12 @@
         </div>
 
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">⏰</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(255, 204, 0, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-amber);">Tutorial Overload</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
             200 YouTube tabs. 15 half-watched courses. Still no finished tracks.
@@ -353,6 +374,144 @@
     </div>
   </section>
 
+  <!-- Platform Demo Section -->
+  <section class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="badge badge-primary mb-md">Platform Preview</span>
+        <h2 class="mb-lg">See the platform in action</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.05rem; color: var(--text-muted);">
+          Interactive drum sequencers, piano rolls, and mixing consoles — all in your browser.
+          No installation, no configuration. <strong>Just open and create.</strong>
+        </p>
+      </div>
+
+      <div class="grid grid-2 gap-xl">
+        <!-- Drum Playground Preview -->
+        <div class="card" style="background: var(--bg-card); padding: 0; border: 1px solid var(--border-glow); overflow: hidden; position: relative;">
+          <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <!-- Grid background -->
+            <div style="position: absolute; inset: 0; background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.3;"></div>
+            <!-- Step sequencer visualization -->
+            <div style="position: relative; z-index: 1; display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; max-width: 90%; padding: var(--space-xl);">
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+            </div>
+          </div>
+          <div style="padding: var(--space-xl);">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+              <div style="width: 32px; height: 32px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <h3 style="margin: 0; font-size: 1.2rem;">16-Step Drum Sequencer</h3>
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-lg);">
+              Program beats with our intuitive step sequencer. Place kicks, snares, and hi-hats on a 16-step grid.
+              Hear results instantly, adjust velocity, and export to your DAW.
+            </p>
+            <a href="drum-playground.html" class="btn btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan); width: 100%;">
+              <span>Try Drum Playground</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Piano Roll Preview -->
+        <div class="card" style="background: var(--bg-card); padding: 0; border: 1px solid var(--border-glow); overflow: hidden; position: relative;">
+          <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(179, 102, 255, 0.1) 0%, rgba(179, 102, 255, 0.05) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <!-- Piano keys background -->
+            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 60px; background: rgba(255,255,255,0.05); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1;"></div>
+            </div>
+            <!-- Note blocks -->
+            <div style="position: relative; z-index: 1; display: flex; gap: 8px; padding: var(--space-xl); margin-left: 60px;">
+              <div style="width: 80px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-start; margin-top: 20px;"></div>
+              <div style="width: 120px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: center;"></div>
+              <div style="width: 60px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-end; margin-bottom: 20px;"></div>
+              <div style="width: 100px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-start; margin-top: 40px;"></div>
+            </div>
+          </div>
+          <div style="padding: var(--space-xl);">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+              <div style="width: 32px; height: 32px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                  <path d="M9 18V5l12-2v13"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <circle cx="18" cy="16" r="3"/>
+                </svg>
+              </div>
+              <h3 style="margin: 0; font-size: 1.2rem;">Piano Roll & Melodies</h3>
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-lg);">
+              Create melodies and basslines with our piano roll editor. Draw notes, adjust lengths,
+              and experiment with different scales. Perfect for learning music theory through practice.
+            </p>
+            <a href="labs.html#harmony" class="btn btn-secondary" style="border-color: var(--accent-purple); color: var(--accent-purple); width: 100%;">
+              <span>Explore Harmony Labs</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Elements Feature -->
+      <div class="text-center" style="margin-top: var(--space-2xl); padding: var(--space-2xl); background: var(--gradient-glow); border-radius: var(--radius-lg); border: 1px solid var(--border-glow);">
+        <div style="display: flex; justify-content: center; gap: var(--space-2xl); flex-wrap: wrap; margin-bottom: var(--space-xl);">
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: var(--space-sm);">Real-time</div>
+            <div style="color: var(--text-muted);">Instant audio feedback</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-purple); margin-bottom: var(--space-sm);">Browser-based</div>
+            <div style="color: var(--text-muted);">No installation needed</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-green); margin-bottom: var(--space-sm);">Export</div>
+            <div style="color: var(--text-muted);">WAV & MIDI files</div>
+          </div>
+        </div>
+        <p style="max-width: 600px; margin: 0 auto var(--space-lg); font-size: 1.05rem;">
+          Every lab includes <strong>interactive controls</strong> you manipulate directly.
+          No passive watching — you shape the sound yourself.
+        </p>
+        <a href="labs.html" class="btn btn-primary btn-lg">
+          Start Creating Now
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- How It Works Section -->
   <section class="section">
     <div class="container">
@@ -364,9 +523,39 @@
         </p>
       </div>
 
+      <!-- Visual Timeline -->
+      <div style="max-width: 1000px; margin: 0 auto var(--space-2xl); padding: 0 var(--space-xl);">
+        <div style="display: flex; justify-content: space-between; align-items: center; position: relative;">
+          <!-- Timeline Line -->
+          <div style="position: absolute; top: 32px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-purple) 50%, var(--accent-green) 100%); z-index: 0;"></div>
+
+          <!-- Step Indicators -->
+          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1;">
+            <div style="width: 64px; height: 64px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow-cyan); border: 4px solid var(--bg-primary);">
+              <span style="font-size: 1.5rem; font-weight: 900; color: white;">1</span>
+            </div>
+            <div style="margin-top: var(--space-md); font-weight: 600; color: var(--accent-cyan); text-align: center;">Choose Lab</div>
+          </div>
+
+          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1;">
+            <div style="width: 64px; height: 64px; background: var(--gradient-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow-purple); border: 4px solid var(--bg-primary);">
+              <span style="font-size: 1.5rem; font-weight: 900; color: white;">2</span>
+            </div>
+            <div style="margin-top: var(--space-md); font-weight: 600; color: var(--accent-purple); text-align: center;">Follow & Experiment</div>
+          </div>
+
+          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1;">
+            <div style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-cyan) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(0, 255, 157, 0.3); border: 4px solid var(--bg-primary);">
+              <span style="font-size: 1.5rem; font-weight: 900; color: white;">3</span>
+            </div>
+            <div style="margin-top: var(--space-md); font-weight: 600; color: var(--accent-green); text-align: center;">Apply to DAW</div>
+          </div>
+        </div>
+      </div>
+
       <div style="max-width: 900px; margin: 0 auto;">
         <!-- Step 1 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-2xl); margin-bottom: var(--space-xl); border: 1px solid var(--border-glow); position: relative; overflow: hidden;">
+        <div class="card" style="background: var(--bg-card); padding: var(--space-2xl); margin-bottom: var(--space-lg); border: 1px solid var(--border-glow); position: relative; overflow: hidden;">
           <div style="position: absolute; top: 0; right: 0; font-size: 8rem; font-family: var(--font-display); font-weight: 900; color: rgba(0, 240, 255, 0.05); line-height: 1; padding: var(--space-lg);">01</div>
           <div style="position: relative; z-index: 1;">
             <div style="display: flex; align-items: flex-start; gap: var(--space-xl);">
@@ -381,6 +570,25 @@
                   Open a free lab (Drums, Arrangement, Sound Design...). Each lab takes you through completing
                   <strong>a real track</strong> in 10-15 minutes. Not abstract theory - real music.
                 </p>
+
+                <!-- Visual: Lab Selection Preview -->
+                <div style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(0, 240, 255, 0.02) 100%); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border: 1px solid rgba(0, 240, 255, 0.2);">
+                  <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-md);">
+                    <div style="flex: 1; background: rgba(0, 240, 255, 0.1); padding: var(--space-sm); border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; border: 1px solid var(--accent-cyan);">
+                      <div style="font-weight: 700; color: var(--accent-cyan);">Drums</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(255, 255, 255, 0.02); padding: var(--space-sm); border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; border: 1px solid var(--border-subtle);">
+                      <div style="color: var(--text-muted);">Harmony</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(255, 255, 255, 0.02); padding: var(--space-sm); border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; border: 1px solid var(--border-subtle);">
+                      <div style="color: var(--text-muted);">Mixing</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+                    → Click any category to start immediately
+                  </div>
+                </div>
+
                 <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
                   <li style="display: flex; align-items: center; gap: var(--space-sm);">
                     <span style="color: var(--accent-cyan);">✓</span>
@@ -400,8 +608,16 @@
           </div>
         </div>
 
+        <!-- Flow Arrow 1→2 -->
+        <div style="text-align: center; margin: var(--space-md) 0;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" style="opacity: 0.5;">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19 12 12 19 5 12"/>
+          </svg>
+        </div>
+
         <!-- Step 2 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-2xl); margin-bottom: var(--space-xl); border: 1px solid var(--border-glow); position: relative; overflow: hidden;">
+        <div class="card" style="background: var(--bg-card); padding: var(--space-2xl); margin-bottom: var(--space-lg); border: 1px solid var(--border-glow); position: relative; overflow: hidden;">
           <div style="position: absolute; top: 0; right: 0; font-size: 8rem; font-family: var(--font-display); font-weight: 900; color: rgba(179, 102, 255, 0.05); line-height: 1; padding: var(--space-lg);">02</div>
           <div style="position: relative; z-index: 1;">
             <div style="display: flex; align-items: flex-start; gap: var(--space-xl);">
@@ -417,6 +633,26 @@
                   Each lab gives you <strong>clear instructions</strong>: "Place kick on beat 1 and 3", "Try compression ratio 4:1, listen, adjust".
                   You'll experiment, compare, and build ear training — not just follow blindly.
                 </p>
+
+                <!-- Visual: Interactive Workflow -->
+                <div style="background: linear-gradient(135deg, rgba(179, 102, 255, 0.05) 0%, rgba(179, 102, 255, 0.02) 100%); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border: 1px solid rgba(179, 102, 255, 0.2);">
+                  <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                    <div style="flex: 0 0 32px; height: 32px; background: var(--accent-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white;">1</div>
+                    <div style="flex: 1; font-size: 0.9rem; color: var(--text-secondary);">Place kick drum on beat 1 & 3</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                    <div style="flex: 0 0 32px; height: 32px; background: rgba(179, 102, 255, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white; border: 2px solid var(--accent-purple);">2</div>
+                    <div style="flex: 1; font-size: 0.9rem; color: var(--text-muted);">Add snare on beat 2 & 4</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                    <div style="flex: 0 0 32px; height: 32px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); border: 2px solid var(--border-subtle);">3</div>
+                    <div style="flex: 1; font-size: 0.9rem; color: var(--text-muted);">Layer hi-hats on every 8th note</div>
+                  </div>
+                  <div style="margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-subtle); font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+                    🎧 Listen after each step • Compare variations • Build intuition
+                  </div>
+                </div>
+
                 <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
                   <li style="display: flex; align-items: center; gap: var(--space-sm);">
                     <span style="color: var(--accent-purple);">✓</span>
@@ -434,6 +670,14 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Flow Arrow 2→3 -->
+        <div style="text-align: center; margin: var(--space-md) 0;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" style="opacity: 0.5;">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19 12 12 19 5 12"/>
+          </svg>
         </div>
 
         <!-- Step 3 -->
@@ -454,6 +698,29 @@
                     The interface looks different, but the concepts are identical: kick placement, EQ cuts, automation shapes.
                     This repetition is where real skill lives.
                   </p>
+
+                  <!-- Visual: Lab to DAW Transfer -->
+                  <div style="background: linear-gradient(135deg, rgba(0, 255, 157, 0.05) 0%, rgba(0, 255, 157, 0.02) 100%); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border: 1px solid rgba(0, 255, 157, 0.2);">
+                    <div style="display: flex; align-items: center; gap: var(--space-lg);">
+                      <div style="flex: 1; text-align: center;">
+                        <div style="background: rgba(0, 240, 255, 0.1); padding: var(--space-md); border-radius: var(--radius-sm); margin-bottom: var(--space-sm); border: 1px solid var(--accent-cyan);">
+                          <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">MPL Lab</div>
+                          <div style="font-size: 0.7rem; color: var(--text-muted);">Learn concept</div>
+                        </div>
+                      </div>
+                      <div style="color: var(--accent-green); font-weight: 700;">→</div>
+                      <div style="flex: 1; text-align: center;">
+                        <div style="background: rgba(0, 255, 157, 0.1); padding: var(--space-md); border-radius: var(--radius-sm); margin-bottom: var(--space-sm); border: 1px solid var(--accent-green);">
+                          <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); margin-bottom: 4px;">Your DAW</div>
+                          <div style="font-size: 0.7rem; color: var(--text-muted);">Apply technique</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-subtle); font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+                      Works with: Ableton • FL Studio • Logic Pro • Bitwig • Reaper • Any DAW
+                    </div>
+                  </div>
+
                   <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
                     <li style="display: flex; align-items: center; gap: var(--space-sm);">
                       <span style="color: var(--accent-green);">✓</span>
@@ -574,6 +841,370 @@
     </div>
   </section>
 
+  <!-- Schools vs Individuals Section -->
+  <section class="section" style="background: var(--bg-primary);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="badge badge-primary mb-md">Choose Your Path</span>
+        <h2 class="mb-md">For Schools & For Individuals</h2>
+        <p style="max-width: 650px; margin: 0 auto; font-size: 1.05rem; color: var(--text-muted);">
+          Whether you're an educator looking for curriculum or an individual exploring music production, we've got you covered.
+        </p>
+      </div>
+
+      <!-- Toggle Switch -->
+      <div style="display: flex; justify-content: center; margin-bottom: var(--space-2xl);">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 4px; display: inline-flex; gap: 4px;">
+          <button id="toggle-schools" class="toggle-btn active" style="padding: var(--space-md) var(--space-xl); border: none; background: var(--gradient-primary); color: white; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all var(--transition-base); box-shadow: var(--glow-cyan);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            For Schools
+          </button>
+          <button id="toggle-individuals" class="toggle-btn" style="padding: var(--space-md) var(--space-xl); border: none; background: transparent; color: var(--text-secondary); border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all var(--transition-base);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            For Individuals
+          </button>
+        </div>
+      </div>
+
+      <!-- Schools Content -->
+      <div id="schools-content" class="audience-content">
+        <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
+          <!-- Left Column: Benefits -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-cyan);">Built for Education</h3>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+              <!-- Compliance -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">COPPA & GDPR Compliant</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Safe for K-12 classrooms. No personal data collection, no tracking, no third-party ads.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Classroom Management -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-purple);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Classroom Management</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Track student progress, assign labs, view completion rates. Simple dashboard for educators.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- No Installation -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-green);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="2" y1="12" x2="22" y2="12"/>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Browser-Based Platform</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Zero installation. Works on Chromebooks, iPads, PCs, and Macs. Just open a browser.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LMS Integration -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-amber);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(255, 177, 66, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                      <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">LMS Integration Ready</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Integrate with Google Classroom, Canvas, Schoology. Export grades and completion data.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Pricing & CTA -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-cyan);">School Pricing</h3>
+
+            <div class="card" style="background: var(--gradient-glow); padding: var(--space-2xl); text-align: center; margin-bottom: var(--space-xl);">
+              <div style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); margin-bottom: var(--space-sm);">
+                Volume Pricing
+              </div>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-xl);">
+                Affordable per-student rates for classrooms, schools, and districts
+              </p>
+              <ul style="list-style: none; text-align: left; margin-bottom: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>25-99 students: <strong>$5/student/year</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>100-499 students: <strong>$4/student/year</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>500+ students: <strong>Custom pricing</strong></span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">✓</span>
+                  <span>Teacher accounts <strong>free</strong></span>
+                </li>
+              </ul>
+              <a href="mailto:schools@musicproducerlab.com" class="btn btn-primary btn-lg" style="width: 100%;">
+                Request School Quote
+              </a>
+            </div>
+
+            <div style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
+              <h4 style="margin-bottom: var(--space-md);">What's Included</h4>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); font-size: 0.9rem;">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>All 20+ interactive labs</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Teacher dashboard & analytics</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Assignment creation & grading</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Priority email support</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-cyan);">→</span>
+                  <span>Curriculum guides & lesson plans</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individuals Content -->
+      <div id="individuals-content" class="audience-content" style="display: none;">
+        <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
+          <!-- Left Column: Benefits -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-purple);">Learn at Your Own Pace</h3>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+              <!-- Free to Start -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-green);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Free to Start</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Access core drum sequencer and basic labs immediately. No credit card required.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Creative Freedom -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-purple);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                      <path d="M2 2l7.586 7.586"/>
+                      <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Creative Freedom</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Experiment freely. No grades, no deadlines. Learn the fundamentals, then break the rules.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Self-Paced Learning -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Learn at Your Speed</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      10 minutes a day or 2-hour sessions. Progress saves automatically. Start where you left off.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Export & Portfolio -->
+              <div class="card" style="background: var(--bg-card); padding: var(--space-lg); border-left: 4px solid var(--accent-amber);">
+                <div style="display: flex; gap: var(--space-md);">
+                  <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(255, 177, 66, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin-bottom: var(--space-sm);">Export Your Work</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                      Export WAV and MIDI files. Take your creations to your DAW. Build your portfolio.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Pricing & CTA -->
+          <div>
+            <h3 style="font-size: 1.75rem; margin-bottom: var(--space-xl); color: var(--accent-purple);">Individual Pricing</h3>
+
+            <div class="card" style="background: var(--gradient-glow); padding: var(--space-2xl); text-align: center; margin-bottom: var(--space-xl);">
+              <div style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); margin-bottom: var(--space-sm);">
+                $0
+              </div>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-xl);">
+                Free forever for core features
+              </p>
+              <ul style="list-style: none; text-align: left; margin-bottom: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Drum sequencer playground</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>5 beginner labs (drums, melody, structure)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Export to WAV & MIDI</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-green);">✓</span>
+                  <span>Community Discord access</span>
+                </li>
+              </ul>
+              <a href="labs.html" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: var(--space-md);">
+                Start Free
+              </a>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">No credit card required</p>
+            </div>
+
+            <div style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); box-shadow: var(--glow-purple);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+                <h4>Pro Access</h4>
+                <span class="badge badge-secondary">Coming Soon</span>
+              </div>
+              <div style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-sm);">
+                $9<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);">/month</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); font-size: 0.9rem; margin-bottom: var(--space-lg);">
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>All 20+ labs (drums, harmony, mixing, mastering)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Advanced effects & synthesizers</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Unlimited project saves</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: var(--space-sm);">
+                  <span style="color: var(--accent-purple);">→</span>
+                  <span>Priority support</span>
+                </li>
+              </ul>
+              <button class="btn btn-secondary" style="width: 100%;" disabled>
+                Notify Me When Available
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Toggle between Schools and Individuals
+    const schoolsBtn = document.getElementById('toggle-schools');
+    const individualsBtn = document.getElementById('toggle-individuals');
+    const schoolsContent = document.getElementById('schools-content');
+    const individualsContent = document.getElementById('individuals-content');
+
+    schoolsBtn.addEventListener('click', () => {
+      schoolsBtn.style.background = 'var(--gradient-primary)';
+      schoolsBtn.style.color = 'white';
+      schoolsBtn.style.boxShadow = 'var(--glow-cyan)';
+      individualsBtn.style.background = 'transparent';
+      individualsBtn.style.color = 'var(--text-secondary)';
+      individualsBtn.style.boxShadow = 'none';
+      schoolsContent.style.display = 'block';
+      individualsContent.style.display = 'none';
+    });
+
+    individualsBtn.addEventListener('click', () => {
+      individualsBtn.style.background = 'var(--gradient-secondary)';
+      individualsBtn.style.color = 'white';
+      individualsBtn.style.boxShadow = 'var(--glow-purple)';
+      schoolsBtn.style.background = 'transparent';
+      schoolsBtn.style.color = 'var(--text-secondary)';
+      schoolsBtn.style.boxShadow = 'none';
+      individualsContent.style.display = 'block';
+      schoolsContent.style.display = 'none';
+    });
+  </script>
+
   <!-- Who Is It For Section -->
   <section class="section">
     <div class="container">
@@ -588,7 +1219,11 @@
       <div class="grid grid-3 gap-lg" style="margin-bottom: var(--space-2xl);">
         <!-- Absolute Beginners -->
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border-left: 4px solid var(--accent-cyan); transition: all var(--transition-base);">
-          <div style="font-size: 2rem; margin-bottom: var(--space-md);">🌱</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); font-size: 1.25rem;">Absolute Beginners</h3>
           <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-md);">
             Never opened a DAW? <strong>Good starting point.</strong> Labs introduce concepts through doing — you'll build a simple 4-bar loop
@@ -601,7 +1236,13 @@
 
         <!-- Frustrated Self-Taught -->
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border-left: 4px solid var(--accent-purple); transition: all var(--transition-base);">
-          <div style="font-size: 2rem; margin-bottom: var(--space-md);">🔄</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); font-size: 1.25rem;">Frustrated Self-Taught</h3>
           <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-md);">
             Watched 100+ tutorials but can't finish a beat? You need
@@ -614,7 +1255,11 @@
 
         <!-- Intermediate Producers -->
         <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border-left: 4px solid var(--accent-green); transition: all var(--transition-base);">
-          <div style="font-size: 2rem; margin-bottom: var(--space-md);">⚡</div>
+          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom: var(--space-md); font-size: 1.25rem;">Intermediate Producers</h3>
           <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-md);">
             Know how to make beats but want to <strong>refine mixing, mastering, arrangement?</strong>
@@ -845,103 +1490,196 @@
 
       <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
         <!-- FAQ 1 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">💰 How much does Music Producer Lab cost?</h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            <strong>The basic labs are completely free.</strong> No credit card required, no registration needed.
-            Open your browser and start. Some advanced labs require a subscription, but you already have 20+ free labs to get started.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">How much does Music Producer Lab cost?</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              <strong>The basic labs are completely free.</strong> No credit card required, no registration needed.
+              Open your browser and start. Some advanced labs require a subscription, but you already have 20+ free labs to get started.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 2 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">🎹 Do I need a specific DAW?</h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            <strong>No.</strong> Labs work in the browser - no installation needed. When you apply the skills to your DAW,
-            the concepts work with Ableton, FL Studio, Logic, Bitwig, Reaper, any software.
-            We teach universal principles, not program-specific tricks.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 2h6l3 7H6l3-7zM4 9h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9z"/>
+                <line x1="10" y1="14" x2="10" y2="17"/>
+                <line x1="14" y1="14" x2="14" y2="17"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">Do I need a specific DAW?</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              <strong>No.</strong> Labs work in the browser - no installation needed. When you apply the skills to your DAW,
+              the concepts work with Ableton, FL Studio, Logic, Bitwig, Reaper, any software.
+              We teach universal principles, not program-specific tricks.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 3 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-green);">
-            ⏱️ How long does it take to complete a lab?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            Each lab takes <strong>10-15 minutes</strong> on average. Some shorter (5 min), others longer (20 min).
-            They're designed to be completed in a coffee break. You can do one lab a day or 5 in an afternoon - you set the pace.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-green);">
+              How long does it take to complete a lab?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              Each lab takes <strong>10-15 minutes</strong> on average. Some shorter (5 min), others longer (20 min).
+              They're designed to be completed in a coffee break. You can do one lab a day or 5 in an afternoon - you set the pace.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 4 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-pink);">
-            🎵 Do I need to know music theory?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            <strong>No.</strong> You don't need to read sheet music or know scales. We teach you what you need <em>when</em> you need it.
-            If you need to program a bassline, we explain the right notes at that moment - learning by doing.
-            Theory comes later, if you want to dive deeper.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255, 102, 196, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-pink);">
+              Do I need to know music theory?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              <strong>No.</strong> You don't need to read sheet music or know scales. We teach you what you need <em>when</em> you need it.
+              If you need to program a bassline, we explain the right notes at that moment - learning by doing.
+              Theory comes later, if you want to dive deeper.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 5 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">
-            🎧 Can I use the tracks I create in the labs?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            <strong>Yes!</strong> Everything you produce in the labs is yours. You can publish it, remix it, use it as a foundation for bigger projects.
-            The sounds provided in the labs are royalty-free for personal and commercial use.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">
+              Can I use the tracks I create in the labs?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              <strong>Yes!</strong> Everything you produce in the labs is yours. You can publish it, remix it, use it as a foundation for bigger projects.
+              The sounds provided in the labs are royalty-free for personal and commercial use.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 6 -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">
-            🚀 Are there any age limitations?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            <strong>There are no age limitations.</strong> Music production is for everyone - whether you're starting at 12 or 70.
-            All you need is curiosity and willingness to experiment.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">
+              Are there any age limitations?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              <strong>There are no age limitations.</strong> Music production is for everyone - whether you're starting at 12 or 70.
+              All you need is curiosity and willingness to experiment.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 7 - NEW: Differentiating question -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">
-            📺 How is this different from YouTube tutorials?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            YouTube teaches you <em>concepts</em>. Labs make you <strong>do the work</strong>. Instead of watching someone EQ a kick drum,
-            you adjust the frequency knob yourself, hear the difference, make mistakes, and correct them.
-            <strong>Active practice beats passive watching</strong> — that's proven learning science, not marketing.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-cyan);">
+              How is this different from YouTube tutorials?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              YouTube teaches you <em>concepts</em>. Labs make you <strong>do the work</strong>. Instead of watching someone EQ a kick drum,
+              you adjust the frequency knob yourself, hear the difference, make mistakes, and correct them.
+              <strong>Active practice beats passive watching</strong> — that's proven learning science, not marketing.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 8 - NEW: Skill transfer -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-green);">
-            🔄 What skills actually transfer to my DAW?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            Everything fundamental: <strong>rhythm programming, gain staging, EQ frequency zones, compression ratios, reverb send levels, arrangement structure</strong>.
-            DAWs have different interfaces but identical concepts. Once you understand "cut 200Hz to remove mud," you can do that in any software.
-            Think of labs as flight simulators — different controls, same principles.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 255, 157, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-green);">
+              What skills actually transfer to my DAW?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              Everything fundamental: <strong>rhythm programming, gain staging, EQ frequency zones, compression ratios, reverb send levels, arrangement structure</strong>.
+              DAWs have different interfaces but identical concepts. Once you understand "cut 200Hz to remove mud," you can do that in any software.
+              Think of labs as flight simulators — different controls, same principles.
+            </p>
+          </div>
         </div>
 
         <!-- FAQ 9 - NEW: What makes interactive better -->
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">
-            ⚡ Why do interactive labs work better than courses?
-          </h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            Because you can't fake doing. In a video course, you can watch 10 hours and <em>feel</em> productive without building anything.
-            Labs force output: <strong>every session ends with something you made</strong>. That immediate feedback loop (try → hear → adjust → improve)
-            builds skill faster than any amount of note-taking. Plus, you can't fall behind — work at your own pace.
-          </p>
+        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg);">
+          <div style="flex-shrink: 0;">
+            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: var(--space-md); font-size: 1.2rem; color: var(--accent-purple);">
+              Why do interactive labs work better than courses?
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              Because you can't fake doing. In a video course, you can watch 10 hours and <em>feel</em> productive without building anything.
+              Labs force output: <strong>every session ends with something you made</strong>. That immediate feedback loop (try → hear → adjust → improve)
+              builds skill faster than any amount of note-taking. Plus, you can't fall behind — work at your own pace.
+            </p>
+          </div>
         </div>
       </div>
 
