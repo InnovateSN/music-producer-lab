@@ -91,13 +91,103 @@ export const lessonConfig = {
   }),
   
   // ====================
+  // VALIDATION RULES
+  // ====================
+  validation: {
+    type: "drum_pattern",
+    requiredInstruments: [
+      {
+        id: "kick",
+        targetSteps: [0, 4, 8, 12], // Steps 1, 5, 9, 13
+        tolerance: 0, // Exact match required
+        minHitsRequired: 4
+      }
+    ],
+    requiredTempo: 120,
+    tempoTolerance: 0 // Must be exactly 120 BPM
+  },
+
+  // ====================
+  // THEORY CONTENT
+  // ====================
+  theory: {
+    sections: [
+      {
+        title: "What is \"4 on the Floor\"?",
+        content: `
+**Definition:**
+"4 on the floor" is a drum pattern where the kick (bass drum) hits on every beat of a 4/4 measure. The term comes from the kick drum literally hitting "on the floor" - meaning the downbeats.
+
+**Why It Works:**
+- **Simplicity**: The pattern is predictable and easy to follow
+- **Physical Response**: Your body naturally moves to steady quarter note pulses
+- **Universal**: Works across genres - house, techno, disco, pop, EDM
+- **Space**: Leaves room for other elements like hi-hats, snares, and melodies
+
+**Musical Context:**
+In 4/4 time (the most common time signature), each bar has four quarter note beats. When you count "1-2-3-4", you're counting quarter notes. Placing a kick on each count creates the "4 on the floor" pattern.
+
+**The Grid:**
+In a 16-step sequencer, each bar is divided into 16 sixteenth notes. The four quarter note beats fall on steps 1, 5, 9, and 13. This is why these positions are highlighted - they mark the main beats.
+
+**Historical Note:**
+This pattern became the foundation of disco in the 1970s (think Donna Summer, Bee Gees), then dominated house music in the 1980s-90s (Frankie Knuckles, Daft Punk), and continues in modern EDM (Calvin Harris, deadmau5). It's the most-used kick pattern in electronic music history.
+        `
+      },
+      {
+        title: "How to Apply This in Your DAW",
+        content: `
+**Step 1: Set Your Grid**
+- Open your DAW (Ableton, FL Studio, Logic, etc.)
+- Set the grid to quarter notes (1/4)
+- Or use a step sequencer if your DAW has one
+
+**Step 2: Place Kick Drums**
+- Load a kick drum sample
+- Place one kick hit on beat 1, 2, 3, and 4 of your bar
+- The kick should align with the grid lines
+
+**Step 3: Listen and Adjust**
+- Play the loop
+- Ensure kicks are evenly spaced
+- Adjust volume if needed (kicks should be prominent but not distorting)
+
+**Common Mistakes to Avoid:**
+- **Too Quiet**: Kick should be the loudest element initially
+- **Uneven Spacing**: Make sure kicks are exactly on the beat
+- **Wrong BPM**: House music typically uses 120-130 BPM
+- **Overcomplicating**: Resist adding fills or variations at this stage
+
+**Next Steps:**
+Once you have a solid 4-on-the-floor kick, you'll add:
+1. Hi-hats on the offbeats (lesson 2)
+2. Snare or clap on beats 2 and 4 (lesson 3)
+3. Additional percussion layers (lessons 4-5)
+        `
+      }
+    ]
+  },
+
+  // ====================
+  // LEARNING OBJECTIVES
+  // ====================
+  learningObjectives: [
+    "Understand what \"4 on the floor\" means and why it's foundational to electronic music",
+    "Place kick drums on the four main beats (steps 1, 5, 9, 13) in a 16-step sequencer",
+    "Set and maintain proper tempo (120 BPM) for house music",
+    "Recognize the relationship between quarter notes and a 16-step grid",
+    "Apply the 4-on-the-floor pattern in any DAW using a quarter note grid"
+  ],
+
+  // ====================
   // MODE FLAGS
   // ====================
   mode: {
     sandbox: false,
     showTargetHint: true,
     enablePresets: false,
-    enableExport: false
+    enableExport: false,
+    sequencerType: 'drums'
   }
 };
 
