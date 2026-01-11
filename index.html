@@ -149,12 +149,74 @@
         <p>You'll finish real tracks, not just collect information.</p>
       </div>
 
+      <style>
+        @keyframes glow-pulse {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 20px rgba(255, 102, 196, 0.3));
+          }
+          50% {
+            filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 102, 196, 0.5));
+          }
+        }
+        @keyframes glow-pulse-purple {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 20px rgba(179, 102, 255, 0.3));
+          }
+          50% {
+            filter: brightness(1.2) drop-shadow(0 0 30px rgba(179, 102, 255, 0.5));
+          }
+        }
+        @keyframes glow-pulse-cyan {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 20px rgba(0, 240, 255, 0.3));
+          }
+          50% {
+            filter: brightness(1.2) drop-shadow(0 0 30px rgba(0, 240, 255, 0.5));
+          }
+        }
+        @keyframes glow-pulse-amber {
+          0%, 100% {
+            filter: brightness(1) drop-shadow(0 0 20px rgba(255, 204, 0, 0.3));
+          }
+          50% {
+            filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 204, 0, 0.5));
+          }
+        }
+        .problem-card {
+          position: relative;
+          overflow: visible;
+        }
+        .problem-card-image {
+          width: 160px;
+          height: 160px;
+          margin: 0 auto var(--space-lg);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .problem-card-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .problem-card-image.animate-pink img {
+          animation: glow-pulse 3s ease-in-out infinite;
+        }
+        .problem-card-image.animate-purple img {
+          animation: glow-pulse-purple 3s ease-in-out infinite 0.5s;
+        }
+        .problem-card-image.animate-cyan img {
+          animation: glow-pulse-cyan 3s ease-in-out infinite 1s;
+        }
+        .problem-card-image.animate-amber img {
+          animation: glow-pulse-amber 3s ease-in-out infinite 1.5s;
+        }
+      </style>
+
       <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(255, 102, 196, 0.1); border-radius: var(--radius-md);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-            </svg>
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
+          <div class="problem-card-image animate-pink">
+            <img src="images/mpl_passive_tutorials.png" alt="Passive Tutorials" />
           </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-pink);">Passive Tutorials</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
@@ -163,12 +225,9 @@
           </p>
         </div>
 
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-            </svg>
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
+          <div class="problem-card-image animate-purple">
+            <img src="images/mpl_theory_without_context.png" alt="Theory Without Context" />
           </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-purple);">Theory Without Context</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
@@ -177,14 +236,9 @@
           </p>
         </div>
 
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-              <line x1="9" y1="9" x2="9.01" y2="9"/>
-              <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </svg>
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
+          <div class="problem-card-image animate-cyan">
+            <img src="images/mpl_no_guided_practice.png" alt="No Guided Practice" />
           </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-cyan);">No Guided Practice</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
@@ -193,12 +247,9 @@
           </p>
         </div>
 
-        <div class="card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
-          <div style="width: 48px; height: 48px; margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: center; background: rgba(255, 204, 0, 0.1); border-radius: var(--radius-md);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
+          <div class="problem-card-image animate-amber">
+            <img src="images/mpl_tutorial_overload.png" alt="Tutorial Overload" />
           </div>
           <h3 style="margin-bottom: var(--space-md); color: var(--accent-amber);">Tutorial Overload</h3>
           <p style="color: var(--text-muted); line-height: 1.8;">
