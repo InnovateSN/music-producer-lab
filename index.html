@@ -374,6 +374,144 @@
     </div>
   </section>
 
+  <!-- Platform Demo Section -->
+  <section class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="badge badge-primary mb-md">Platform Preview</span>
+        <h2 class="mb-lg">See the platform in action</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.05rem; color: var(--text-muted);">
+          Interactive drum sequencers, piano rolls, and mixing consoles — all in your browser.
+          No installation, no configuration. <strong>Just open and create.</strong>
+        </p>
+      </div>
+
+      <div class="grid grid-2 gap-xl">
+        <!-- Drum Playground Preview -->
+        <div class="card" style="background: var(--bg-card); padding: 0; border: 1px solid var(--border-glow); overflow: hidden; position: relative;">
+          <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <!-- Grid background -->
+            <div style="position: absolute; inset: 0; background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.3;"></div>
+            <!-- Step sequencer visualization -->
+            <div style="position: relative; z-index: 1; display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; max-width: 90%; padding: var(--space-xl);">
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 60px; background: var(--accent-cyan); border-radius: 4px; box-shadow: var(--glow-cyan);"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+              <div style="width: 20px; height: 30px; background: rgba(0, 240, 255, 0.2); border-radius: 4px;"></div>
+            </div>
+          </div>
+          <div style="padding: var(--space-xl);">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+              <div style="width: 32px; height: 32px; background: rgba(0, 240, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <h3 style="margin: 0; font-size: 1.2rem;">16-Step Drum Sequencer</h3>
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-lg);">
+              Program beats with our intuitive step sequencer. Place kicks, snares, and hi-hats on a 16-step grid.
+              Hear results instantly, adjust velocity, and export to your DAW.
+            </p>
+            <a href="drum-playground.html" class="btn btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan); width: 100%;">
+              <span>Try Drum Playground</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Piano Roll Preview -->
+        <div class="card" style="background: var(--bg-card); padding: 0; border: 1px solid var(--border-glow); overflow: hidden; position: relative;">
+          <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(179, 102, 255, 0.1) 0%, rgba(179, 102, 255, 0.05) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <!-- Piano keys background -->
+            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 60px; background: rgba(255,255,255,0.05); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border-subtle);"></div>
+              <div style="flex: 1;"></div>
+            </div>
+            <!-- Note blocks -->
+            <div style="position: relative; z-index: 1; display: flex; gap: 8px; padding: var(--space-xl); margin-left: 60px;">
+              <div style="width: 80px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-start; margin-top: 20px;"></div>
+              <div style="width: 120px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: center;"></div>
+              <div style="width: 60px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-end; margin-bottom: 20px;"></div>
+              <div style="width: 100px; height: 20px; background: var(--accent-purple); border-radius: 4px; box-shadow: var(--glow-purple); align-self: flex-start; margin-top: 40px;"></div>
+            </div>
+          </div>
+          <div style="padding: var(--space-xl);">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+              <div style="width: 32px; height: 32px; background: rgba(179, 102, 255, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2">
+                  <path d="M9 18V5l12-2v13"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <circle cx="18" cy="16" r="3"/>
+                </svg>
+              </div>
+              <h3 style="margin: 0; font-size: 1.2rem;">Piano Roll & Melodies</h3>
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: var(--space-lg);">
+              Create melodies and basslines with our piano roll editor. Draw notes, adjust lengths,
+              and experiment with different scales. Perfect for learning music theory through practice.
+            </p>
+            <a href="labs.html#harmony" class="btn btn-secondary" style="border-color: var(--accent-purple); color: var(--accent-purple); width: 100%;">
+              <span>Explore Harmony Labs</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Elements Feature -->
+      <div class="text-center" style="margin-top: var(--space-2xl); padding: var(--space-2xl); background: var(--gradient-glow); border-radius: var(--radius-lg); border: 1px solid var(--border-glow);">
+        <div style="display: flex; justify-content: center; gap: var(--space-2xl); flex-wrap: wrap; margin-bottom: var(--space-xl);">
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: var(--space-sm);">Real-time</div>
+            <div style="color: var(--text-muted);">Instant audio feedback</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-purple); margin-bottom: var(--space-sm);">Browser-based</div>
+            <div style="color: var(--text-muted);">No installation needed</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-green); margin-bottom: var(--space-sm);">Export</div>
+            <div style="color: var(--text-muted);">WAV & MIDI files</div>
+          </div>
+        </div>
+        <p style="max-width: 600px; margin: 0 auto var(--space-lg); font-size: 1.05rem;">
+          Every lab includes <strong>interactive controls</strong> you manipulate directly.
+          No passive watching — you shape the sound yourself.
+        </p>
+        <a href="labs.html" class="btn btn-primary btn-lg">
+          Start Creating Now
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- How It Works Section -->
   <section class="section">
     <div class="container">
