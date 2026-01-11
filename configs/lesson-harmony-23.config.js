@@ -207,4 +207,9 @@ Think of chromatic harmony as "spice" - a little goes a long way!
     "Apply chromatic voice leading techniques",
     "Balance chromatic and diatonic harmony effectively"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

@@ -220,4 +220,9 @@ Blues is about FEEL more than exact notes. The shuffle/swing rhythm, dynamics, a
     "Apply blues scale over blues progressions",
     "Recognize blues form in different genres (Delta, Chicago, jazz, rock)"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

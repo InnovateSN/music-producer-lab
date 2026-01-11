@@ -262,4 +262,9 @@ Apply loosely: Drums + bass + melody = three-voice counterpoint in modern produc
     "Use contrary and oblique motion for independent voice leading",
     "Apply contrapuntal thinking to modern music production"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

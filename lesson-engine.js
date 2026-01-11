@@ -483,6 +483,41 @@ function initSequencer(config) {
   // Check sequencer type (piano-roll for harmony lessons, drums for rhythm lessons)
   const sequencerType = mode?.sequencerType || 'drums';
 
+  // Theory-only lessons (no sequencer)
+  if (sequencerType === 'none' || (!instruments && sequencerType === 'drums')) {
+    console.log('[LessonEngine] Theory-only lesson, hiding sequencer section');
+    const sequencerSection = document.getElementById('mpl-sequencer-section');
+    if (sequencerSection) {
+      sequencerSection.style.display = 'none';
+    }
+
+    // Show completion/navigation section for theory-only lessons
+    const completionSection = document.getElementById('mpl-completion-section');
+    if (completionSection) {
+      completionSection.style.display = 'block';
+
+      // Set next lesson URL if available
+      const nextBtn = document.getElementById('mpl-next-lesson-btn');
+      if (nextBtn && nextLessonUrl) {
+        nextBtn.href = nextLessonUrl;
+      }
+
+      // Hide completion message (no exercise to complete)
+      const completionMessage = document.getElementById('mpl-completion-message');
+      if (completionMessage) {
+        completionMessage.style.display = 'none';
+      }
+
+      // Change title to "Ready for Next Lesson?"
+      const completionTitle = document.querySelector('.completion-title');
+      if (completionTitle) {
+        completionTitle.textContent = 'Ready for the Next Lesson?';
+      }
+    }
+
+    return;
+  }
+
   if (sequencerType === 'piano-roll') {
     // Initialize piano roll sequencer for harmony lessons
     console.log('[LessonEngine] Initializing piano roll sequencer');

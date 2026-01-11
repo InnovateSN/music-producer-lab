@@ -240,4 +240,9 @@ Polytonality is advanced - use sparingly. Even Stravinsky used it for specific d
     "Experiment with polytonality and bitonality for modern sounds",
     "Apply modal interchange to create emotional depth in progressions"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };
