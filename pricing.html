@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Music Producer Lab for Schools</title>
+    <meta name="description" content="Affordable music production education for UK schools. From £24 per student per year. 175 interactive lessons, teacher dashboards, and progress tracking.">
+    <link rel="icon" href="/mpl-favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Pricing Page Specific Styles */
+        .pricing-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .pricing-hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .pricing-hero p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .pricing-card .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .pricing-card .price {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .pricing-card .price sup {
+            font-size: 0.4em;
+            vertical-align: super;
+        }
+
+        .pricing-card .price-period {
+            font-size: 0.4em;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .pricing-card .price-subtitle {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card ul li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 12px;
+        }
+
+        .pricing-card ul li.disabled {
+            opacity: 0.4;
+        }
+
+        .pricing-card ul li.disabled::before {
+            content: "✗";
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .cta-button.secondary:hover {
+            background: #f7f7ff;
+        }
+
+        .trust-section {
+            background: #f9fafb;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .trust-section h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .trust-stat {
+            padding: 20px;
+        }
+
+        .trust-stat .number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .trust-stat .label {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .comparison-table h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .check {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .cross {
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .faq-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: #667eea;
+            display: inline-block;
+            width: auto;
+            padding: 18px 50px;
+        }
+
+        .final-cta .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero h1 {
+                font-size: 2em;
+            }
+
+            .pricing-hero p {
+                font-size: 1.1em;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card .price {
+                font-size: 2.5em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (reuse from main site) -->
+    <nav style="background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <a href="/index.html" style="font-size: 1.5em; font-weight: bold; color: #667eea; text-decoration: none;">
+                Music Producer Lab
+            </a>
+            <div>
+                <a href="/index.html" style="margin: 0 15px; text-decoration: none; color: #333;">Home</a>
+                <a href="/learn-tools.html" style="margin: 0 15px; text-decoration: none; color: #333;">Features</a>
+                <a href="/pricing.html" style="margin: 0 15px; text-decoration: none; color: #667eea; font-weight: 600;">Pricing</a>
+                <a href="/contact.html" style="margin: 0 15px; text-decoration: none; color: #333;">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Empower your students with professional music production education. From £24 per student per year.</p>
+        <p style="font-size: 0.9em; margin-top: 20px;">✓ No hidden fees &nbsp;&nbsp; ✓ Cancel anytime &nbsp;&nbsp; ✓ 3 months free trial</p>
+    </section>
+
+    <!-- Pricing Cards -->
+    <div class="pricing-container">
+        <div class="pricing-cards">
+            <!-- Small Plan -->
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <p class="subtitle">Perfect for small music departments</p>
+                <div class="price">
+                    <sup>£</sup>1,200<span class="price-period">/year</span>
+                </div>
+                <p class="price-subtitle">£24 per student • Up to 50 students</p>
+                <a href="mailto:innovatesolutionsnow@gmail.com?subject=Free Trial Request - Starter Plan" class="cta-button secondary">Start Free Trial</a>
+                <ul>
+                    <li>Up to 50 student accounts</li>
+                    <li>175 interactive lessons</li>
+                    <li>Teacher dashboard</li>
+                    <li>Progress tracking & reports</li>
+                    <li>Email support</li>
+                    <li>Cloud-based (no installation)</li>
+                    <li class="disabled">Priority support</li>
+                    <li class="disabled">Custom branding</li>
+                </ul>
+            </div>
+
+            <!-- Medium Plan (Featured) -->
+            <div class="pricing-card featured">
+                <h3>Professional</h3>
+                <p class="subtitle">Most popular for secondary schools</p>
+                <div class="price">
+                    <sup>£</sup>3,200<span class="price-period">/year</span>
+                </div>
+                <p class="price-subtitle">£16 per student • Up to 200 students</p>
+                <a href="mailto:innovatesolutionsnow@gmail.com?subject=Free Trial Request - Professional Plan" class="cta-button">Start Free Trial</a>
+                <ul>
+                    <li>Up to 200 student accounts</li>
+                    <li>175 interactive lessons</li>
+                    <li>Teacher dashboard</li>
+                    <li>Progress tracking & reports</li>
+                    <li>Priority email support</li>
+                    <li>Cloud-based (no installation)</li>
+                    <li>Multiple classes & teachers</li>
+                    <li>Export student reports (CSV)</li>
+                </ul>
+            </div>
+
+            <!-- Large Plan -->
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <p class="subtitle">For large schools & trusts</p>
+                <div class="price">
+                    <sup>£</sup>6,500<span class="price-period">/year</span>
+                </div>
+                <p class="price-subtitle">£13 per student • Up to 500 students</p>
+                <a href="mailto:innovatesolutionsnow@gmail.com?subject=Free Trial Request - Enterprise Plan" class="cta-button secondary">Start Free Trial</a>
+                <ul>
+                    <li>Up to 500 student accounts</li>
+                    <li>175 interactive lessons</li>
+                    <li>Advanced teacher dashboard</li>
+                    <li>Progress tracking & analytics</li>
+                    <li>Priority support (1 business day)</li>
+                    <li>Cloud-based (no installation)</li>
+                    <li>Unlimited classes & teachers</li>
+                    <li>School admin panel</li>
+                    <li>Custom branding (coming soon)</li>
+                    <li>Dedicated account manager</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <h2>Trusted by Music Educators Across the UK</h2>
+        <div class="trust-stats">
+            <div class="trust-stat">
+                <div class="number">175</div>
+                <div class="label">Interactive Lessons</div>
+            </div>
+            <div class="trust-stat">
+                <div class="number">10</div>
+                <div class="label">Core Modules</div>
+            </div>
+            <div class="trust-stat">
+                <div class="number">100%</div>
+                <div class="label">Cloud-Based</div>
+            </div>
+            <div class="trust-stat">
+                <div class="number">£0</div>
+                <div class="label">Setup Cost</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <div class="comparison-table">
+        <h2>Compare Plans</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Starter</th>
+                    <th>Professional</th>
+                    <th>Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Maximum Students</strong></td>
+                    <td>50</td>
+                    <td>200</td>
+                    <td>500+</td>
+                </tr>
+                <tr>
+                    <td><strong>Interactive Lessons</strong></td>
+                    <td><span class="check">✓</span> 175 lessons</td>
+                    <td><span class="check">✓</span> 175 lessons</td>
+                    <td><span class="check">✓</span> 175 lessons</td>
+                </tr>
+                <tr>
+                    <td><strong>Teacher Dashboard</strong></td>
+                    <td><span class="check">✓</span> Basic</td>
+                    <td><span class="check">✓</span> Standard</td>
+                    <td><span class="check">✓</span> Advanced</td>
+                </tr>
+                <tr>
+                    <td><strong>Progress Tracking</strong></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Multiple Classes</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span> Unlimited</td>
+                </tr>
+                <tr>
+                    <td><strong>Multiple Teachers</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span> Unlimited</td>
+                </tr>
+                <tr>
+                    <td><strong>School Admin Panel</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Export Reports</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span> CSV</td>
+                    <td><span class="check">✓</span> CSV & PDF</td>
+                </tr>
+                <tr>
+                    <td><strong>Support Response Time</strong></td>
+                    <td>3 business days</td>
+                    <td>1 business day</td>
+                    <td>Same day</td>
+                </tr>
+                <tr>
+                    <td><strong>Account Manager</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Annual Cost</strong></td>
+                    <td><strong>£1,200</strong></td>
+                    <td><strong>£3,200</strong></td>
+                    <td><strong>£6,500</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <h3>How does the free trial work?</h3>
+            <p>We offer a <strong>3-month free trial</strong> with full access to all features. No credit card required. Simply email us to request access, and we'll set up your school account within 24 hours.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What's included in the 175 lessons?</h3>
+            <p>Our curriculum covers 10 core modules: Drums & Rhythm, Harmony & Melody, Music Theory, Ear Training, Bass & Low End, Arrangement, Sound Design, Mixing, Vocals, and Mastering. Each lesson includes interactive tools, practical exercises, and theory.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Do we need to install any software?</h3>
+            <p>No! Music Producer Lab is 100% cloud-based. Students access everything through their web browser. Works on Windows, Mac, Chromebooks, and tablets. No installation, no IT headaches.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can we add more students later?</h3>
+            <p>Absolutely! You can upgrade your plan at any time. We'll prorate the cost for the remainder of your billing period. Contact us for flexible pricing if you need custom student limits.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is there a setup fee?</h3>
+            <p>No setup fees, no hidden costs. The price you see is what you pay. We'll have you up and running within 24 hours of signing up.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How do teachers track student progress?</h3>
+            <p>Teachers get a comprehensive dashboard showing each student's progress, time spent, completed lessons, and achievement certificates. You can export reports in CSV format for school records.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What payment methods do you accept?</h3>
+            <p>We accept bank transfer (BACS), school purchase orders, and invoicing. We'll send you an invoice after your free trial ends, and you have 30 days to pay.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What if we want to cancel?</h3>
+            <p>You can cancel anytime with 30 days notice. No penalties, no questions asked. We want you to stay because you love the platform, not because you're locked in.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is this suitable for GCSE/A-Level Music Technology?</h3>
+            <p>Yes! Our curriculum aligns with GCSE and A-Level Music Technology specifications. Students learn production techniques, music theory, mixing, and mastering - all key components of exam boards like Edexcel, AQA, and OCR.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Do you offer discounts for MATs (Multi-Academy Trusts)?</h3>
+            <p>Yes! We offer special pricing for Multi-Academy Trusts and school groups. Contact us at <a href="mailto:innovatesolutionsnow@gmail.com" style="color: #667eea;">innovatesolutionsnow@gmail.com</a> for a custom quote.</p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to Transform Your Music Department?</h2>
+        <p>Start your 3-month free trial today. No credit card required.</p>
+        <a href="mailto:innovatesolutionsnow@gmail.com?subject=Free Trial Request" class="cta-button">Start Free Trial</a>
+        <p style="font-size: 0.9em; margin-top: 30px; opacity: 0.9;">
+            Questions? Email us at <a href="mailto:innovatesolutionsnow@gmail.com" style="color: white; text-decoration: underline;">innovatesolutionsnow@gmail.com</a>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1a202c; color: white; padding: 40px 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 20px;">© 2024 Music Producer Lab. All rights reserved.</p>
+            <div>
+                <a href="/index.html" style="color: #a0aec0; margin: 0 15px; text-decoration: none;">Home</a>
+                <a href="/learn-tools.html" style="color: #a0aec0; margin: 0 15px; text-decoration: none;">Features</a>
+                <a href="/pricing.html" style="color: #a0aec0; margin: 0 15px; text-decoration: none;">Pricing</a>
+                <a href="/contact.html" style="color: #a0aec0; margin: 0 15px; text-decoration: none;">Contact</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #718096;">
+                Empowering the next generation of music producers
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

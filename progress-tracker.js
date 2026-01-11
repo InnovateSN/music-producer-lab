@@ -74,10 +74,53 @@
         this.data.lastUpdated = new Date().toISOString();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
         this.dispatchEvent('progress-saved', this.data);
+
+        // Also save to cloud if user is signed in
+        this.saveToCloud();
+
         return true;
       } catch (e) {
         console.error('Failed to save progress:', e);
         return false;
+      }
+    }
+
+    /**
+     * Save progress to cloud (async, fail silently if not authenticated)
+     */
+    async saveToCloud() {
+      try {
+        // Check if user is signed in
+        if (!window.MplAuth || !window.MplAuth.isSignedIn) {
+          return; // Silently skip if not signed in
+        }
+
+        // Check if MplApi is available
+        if (!window.MplApi || !window.MplApi.progress) {
+          console.log('MplApi not available, skipping cloud sync');
+          return;
+        }
+
+        // Save each completed lab to cloud
+        for (const [labId, labData] of Object.entries(this.data.progress.labs)) {
+          if (labData.completed) {
+            try {
+              await window.MplApi.progress.save(labId, {
+                status: 'completed',
+                completion_percentage: 100,
+                time_spent_seconds: Math.round((labData.timeSpent || 0) * 60), // Convert minutes to seconds
+                module_name: labData.category,
+              });
+            } catch (error) {
+              console.error(`Failed to sync lab ${labId}:`, error);
+            }
+          }
+        }
+
+        console.log('✅ Progress synced to cloud');
+      } catch (error) {
+        // Fail silently - local storage is still working
+        console.error('Cloud sync failed (non-critical):', error);
       }
     }
 
