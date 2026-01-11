@@ -490,6 +490,31 @@ function initSequencer(config) {
     if (sequencerSection) {
       sequencerSection.style.display = 'none';
     }
+
+    // Show completion/navigation section for theory-only lessons
+    const completionSection = document.getElementById('mpl-completion-section');
+    if (completionSection) {
+      completionSection.style.display = 'block';
+
+      // Set next lesson URL if available
+      const nextBtn = document.getElementById('mpl-next-lesson-btn');
+      if (nextBtn && nextLessonUrl) {
+        nextBtn.href = nextLessonUrl;
+      }
+
+      // Hide completion message (no exercise to complete)
+      const completionMessage = document.getElementById('mpl-completion-message');
+      if (completionMessage) {
+        completionMessage.style.display = 'none';
+      }
+
+      // Change title to "Ready for Next Lesson?"
+      const completionTitle = document.querySelector('.completion-title');
+      if (completionTitle) {
+        completionTitle.textContent = 'Ready for the Next Lesson?';
+      }
+    }
+
     return;
   }
 
