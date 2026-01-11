@@ -146,6 +146,152 @@ export const lessonConfig = {
   },
   
   // ====================
+  // THEORY CONTENT
+  // ====================
+  theory: {
+    sections: [
+      {
+        title: "Why Transitions Make or Break Your Track",
+        content: `
+**The Problem with Hard Cuts:**
+Imagine watching a movie where every scene change is a jarring jump—no fade, no camera movement, just BAM, new scene. That's what arrangements sound like without proper transitions. Even if your individual sections are brilliant, hard cuts between them sound amateur and disrupt the listening experience.
+
+**Transitions are Emotional Bridges:**
+Great transitions do more than connect sections—they guide the listener's emotional journey. They create anticipation before big moments, provide relief after intense sections, and maintain momentum throughout the song. Professional producers spend significant time crafting transitions because they know: the journey between sections is just as important as the sections themselves.
+
+**The Energy Direction Principle:**
+Every transition should match the energy direction between sections. Moving from low to high energy? Use a riser or filter opening. Moving from high to low? Use a fall or filter closing. Transitions that fight against natural energy flow feel wrong, even if listeners can't articulate why.
+
+**The 5 Essential Transition Techniques:**
+Every professional track uses combinations of these five core techniques. Master them, and you'll never have an awkward section change again.
+
+**Real-World Context:**
+Listen to any professional EDM track and count the transitions. In a typical 3-minute track, you'll find 10-15 transition moments using various techniques. In pop/rock, drum fills and filter sweeps are everywhere—often subtle, but always present. The absence of transitions is one of the clearest markers of amateur production.
+        `
+      },
+      {
+        title: "The 5 Transition Techniques Explained",
+        content: `
+**1. Risers (Uplifters) - The Tension Builders:**
+Risers sweep upward in pitch, intensity, or both, creating mounting tension. They're essentially audio manifestations of anticipation. The brain interprets rising pitch as increasing importance, making risers perfect before drops, choruses, or any high-energy section.
+
+*How to Create:*
+- Use white noise or synth pads with automation on pitch/filter frequency
+- Gradually increase volume over 4-8 bars
+- Common in EDM: the classic "noise riser" before every drop
+- Add reverb for size and impact
+
+*When to Use:* Before drops, before choruses, during buildups, any moment requiring tension
+
+
+**2. Falls (Downlifters) - The Release:**
+Falls sweep downward, releasing built-up energy and signaling relaxation. They're the exhale after the riser's inhale. Falls tell the listener "the peak is over, we're settling into something new."
+
+*How to Create:*
+- Reverse of a riser: decreasing pitch/filter frequency
+- Works perfectly after drops to transition into breakdowns
+- Often shorter than risers (1-2 bars vs 4-8)
+- Combine with reverb tails for smoothness
+
+*When to Use:* After drops, into breakdowns, after choruses, any energy decrease
+
+
+**3. Filter Sweeps - The Frequency Shapers:**
+Filter sweeps gradually open or close a low-pass filter, changing the brightness and perceived energy of elements. Opening a filter (low to high frequency) builds energy by adding brightness. Closing a filter (high to low) reduces energy by making sounds muffled and distant.
+
+*How to Create:*
+- Apply a low-pass filter to drums, bass, or full mix
+- Automate cutoff frequency over 2-8 bars
+- Opening = building energy, closing = reducing energy
+- The "underwater to surface" effect
+
+*When to Use:* Intros (opening), outros (closing), buildups, transitions between any sections, creating the "radio turning on/off" effect
+
+
+**4. Drum Fills - The Section Signals:**
+Drum fills are short rhythmic breaks that signal "something's about to change." They're the drummer's announcement that a new section is coming. Even in electronic music with programmed drums, fills serve this critical signaling function.
+
+*How to Create:*
+- Replace the last 1-2 bars of a section with variation
+- Common patterns: snare rolls, tom cascades, kick patterns
+- Keep them short—fills that are too long lose impact
+- Use crescendos (increasing volume) for extra emphasis
+
+*When to Use:* End of verses before choruses, every 8-16 bars for variation, before any significant section change, to prevent monotony
+
+
+**5. Silence / Gaps - The Impact Multipliers:**
+Brief moments of silence before big moments make them hit exponentially harder. Even 1/4 to 1/2 second of silence before a drop can make it feel 10x more impactful. Silence creates a micro-reset in the listener's brain, making the subsequent sound feel fresh and massive.
+
+*How to Create:*
+- Mute all elements for 1/4 to 1 beat before the drop/chorus
+- Often combined with the tail end of a riser
+- Don't overdo it—too much silence breaks the flow
+- The "breath before the scream" effect
+
+*When to Use:* Immediately before massive drops, before final choruses, for dramatic effect, to create "wait for it..." moments
+        `
+      },
+      {
+        title: "Choosing and Combining Transitions",
+        content: `
+**The Energy Direction Matrix:**
+
+**Verse → Buildup (Low to Medium Energy):**
+- Use drum fills to signal the change
+- Add filter sweeps (opening) for subtle energy increase
+- Light risers if the buildup is intense
+
+**Buildup → Chorus/Drop (Medium to High Energy):**
+- Risers are essential—create maximum tension
+- Often combine riser + silence (final 1/4 beat)
+- Filter fully opening at the peak moment
+
+**Chorus/Drop → Breakdown (High to Low Energy):**
+- Falls immediately after the peak
+- Filter sweeps (closing) for the underwater effect
+- Reverb tails to smooth the transition
+
+**Breakdown → Buildup (Low to Medium Energy):**
+- Filter sweeps (opening) to reintroduce brightness
+- Light risers in the final bars
+- Drum fills to signal incoming energy
+
+
+**Combining Multiple Techniques:**
+Professional producers layer transitions for maximum impact:
+- Riser + Filter Opening + Drum Fill = Triple threat before drop
+- Fall + Filter Closing = Smooth post-drop transition
+- Silence + Riser = Maximum tension before payoff
+
+**Timing Matters:**
+- Short transitions (1-2 bars): Quick changes, maintains energy
+- Medium transitions (4 bars): Standard, gives time for anticipation
+- Long transitions (8+ bars): Buildups, extended tension
+
+
+**Common Mistakes:**
+- **Every transition the same**: Becomes predictable and boring
+- **Too many layers**: Risers + falls + fills + everything = messy
+- **Wrong energy direction**: Rising transition into a breakdown = confusion
+- **No transitions**: Sounds like a DJ poorly mixing two tracks
+- **Too obvious**: Subtlety often works better than constant WHOOSH sounds
+
+
+**Pro Tip - Reference Listening:**
+Pull up three professional tracks in your genre. Listen specifically for transitions—ignore everything else. You'll hear:
+- Transitions every 4-8 bars minimum
+- Combinations of techniques used together
+- Subtle use of filter sweeps you might have missed
+- Strategic silence before big moments
+
+Learn by listening, then apply these techniques intentionally in your own work. Transitions aren't optional flourishes—they're structural necessities that separate amateur productions from professional releases.
+        `
+      }
+    ]
+  },
+
+  // ====================
   // LEARNING OBJECTIVES
   // ====================
   learningObjectives: [
