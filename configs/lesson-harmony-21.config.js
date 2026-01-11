@@ -178,4 +178,9 @@ You can chain secondary dominants in the circle of fifths:
     "Use secondary dominants to create harmonic interest and tonicization",
     "Understand the difference between diatonic and chromatic harmony"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

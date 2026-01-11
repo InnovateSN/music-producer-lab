@@ -200,4 +200,9 @@ You can think of tritone sub as a "lazy dominant" - it wants to resolve down by 
     "Use tritone substitution on secondary dominants",
     "Recognize tritone subs in jazz standards and lead sheets"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

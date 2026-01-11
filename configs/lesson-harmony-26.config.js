@@ -193,5 +193,10 @@ In funk, RHYTHM is more important than harmony. A simple Dm9 with perfect 16th-n
     "Apply 16th-note rhythmic techniques to chord playing",
     "Create modal vamps and groove-oriented progressions",
     "Understand the relationship between rhythm and harmony in funk"
-  ]
+  ],
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

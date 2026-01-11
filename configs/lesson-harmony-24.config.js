@@ -223,4 +223,9 @@ Extensions are spices - use tastefully!
     "Use upper structure triads for modern jazz sounds",
     "Understand the difference between natural extensions and alterations"
   ]
+
+  mode: {
+    sandbox: false,
+    sequencerType: 'none'  // Theory-only lesson, no sequencer
+  }
 };

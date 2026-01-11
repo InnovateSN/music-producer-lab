@@ -483,6 +483,16 @@ function initSequencer(config) {
   // Check sequencer type (piano-roll for harmony lessons, drums for rhythm lessons)
   const sequencerType = mode?.sequencerType || 'drums';
 
+  // Theory-only lessons (no sequencer)
+  if (sequencerType === 'none' || (!instruments && sequencerType === 'drums')) {
+    console.log('[LessonEngine] Theory-only lesson, hiding sequencer section');
+    const sequencerSection = document.getElementById('mpl-sequencer-section');
+    if (sequencerSection) {
+      sequencerSection.style.display = 'none';
+    }
+    return;
+  }
+
   if (sequencerType === 'piano-roll') {
     // Initialize piano roll sequencer for harmony lessons
     console.log('[LessonEngine] Initializing piano roll sequencer');
