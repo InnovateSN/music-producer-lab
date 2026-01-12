@@ -562,6 +562,8 @@ p {
   box-shadow: var(--glow-cyan);
   border: none;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  padding: var(--space-md) var(--space-2xl);
 }
 
 .btn-primary:hover {
