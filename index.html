@@ -152,110 +152,144 @@
       <style>
         @keyframes glow-pulse {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 20px rgba(255, 102, 196, 0.3));
+            filter: brightness(1.1) blur(8px) drop-shadow(0 0 40px rgba(255, 102, 196, 0.6));
+            transform: scale(1);
           }
           50% {
-            filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 102, 196, 0.5));
+            filter: brightness(1.4) blur(6px) drop-shadow(0 0 60px rgba(255, 102, 196, 0.8));
+            transform: scale(1.05);
           }
         }
         @keyframes glow-pulse-purple {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 20px rgba(179, 102, 255, 0.3));
+            filter: brightness(1.1) blur(8px) drop-shadow(0 0 40px rgba(179, 102, 255, 0.6));
+            transform: scale(1);
           }
           50% {
-            filter: brightness(1.2) drop-shadow(0 0 30px rgba(179, 102, 255, 0.5));
+            filter: brightness(1.4) blur(6px) drop-shadow(0 0 60px rgba(179, 102, 255, 0.8));
+            transform: scale(1.05);
           }
         }
         @keyframes glow-pulse-cyan {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 20px rgba(0, 240, 255, 0.3));
+            filter: brightness(1.1) blur(8px) drop-shadow(0 0 40px rgba(0, 240, 255, 0.6));
+            transform: scale(1);
           }
           50% {
-            filter: brightness(1.2) drop-shadow(0 0 30px rgba(0, 240, 255, 0.5));
+            filter: brightness(1.4) blur(6px) drop-shadow(0 0 60px rgba(0, 240, 255, 0.8));
+            transform: scale(1.05);
           }
         }
         @keyframes glow-pulse-amber {
           0%, 100% {
-            filter: brightness(1) drop-shadow(0 0 20px rgba(255, 204, 0, 0.3));
+            filter: brightness(1.1) blur(8px) drop-shadow(0 0 40px rgba(255, 204, 0, 0.6));
+            transform: scale(1);
           }
           50% {
-            filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 204, 0, 0.5));
+            filter: brightness(1.4) blur(6px) drop-shadow(0 0 60px rgba(255, 204, 0, 0.8));
+            transform: scale(1.05);
           }
         }
         .problem-card {
           position: relative;
-          overflow: visible;
+          overflow: hidden;
+          min-height: 400px;
         }
-        .problem-card-image {
-          width: 160px;
-          height: 160px;
-          margin: 0 auto var(--space-lg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .problem-card-bg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 320px;
+          height: 320px;
+          pointer-events: none;
+          z-index: 0;
         }
-        .problem-card-image img {
+        .problem-card-bg img {
           width: 100%;
           height: 100%;
           object-fit: contain;
+          opacity: 0.25;
+          mix-blend-mode: screen;
         }
-        .problem-card-image.animate-pink img {
-          animation: glow-pulse 3s ease-in-out infinite;
+        .problem-card-bg.animate-pink img {
+          animation: glow-pulse 4s ease-in-out infinite;
         }
-        .problem-card-image.animate-purple img {
-          animation: glow-pulse-purple 3s ease-in-out infinite 0.5s;
+        .problem-card-bg.animate-purple img {
+          animation: glow-pulse-purple 4s ease-in-out infinite 0.5s;
         }
-        .problem-card-image.animate-cyan img {
-          animation: glow-pulse-cyan 3s ease-in-out infinite 1s;
+        .problem-card-bg.animate-cyan img {
+          animation: glow-pulse-cyan 4s ease-in-out infinite 1s;
         }
-        .problem-card-image.animate-amber img {
-          animation: glow-pulse-amber 3s ease-in-out infinite 1.5s;
+        .problem-card-bg.animate-amber img {
+          animation: glow-pulse-amber 4s ease-in-out infinite 1.5s;
+        }
+        .problem-card-content {
+          position: relative;
+          z-index: 1;
+          padding: var(--space-lg) 0;
+        }
+        .problem-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, transparent 0%, var(--bg-card) 100%);
+          z-index: 0;
+          pointer-events: none;
         }
       </style>
 
       <div class="grid grid-2 gap-xl" style="margin-bottom: var(--space-2xl);">
-        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
-          <div class="problem-card-image animate-pink">
-            <img src="images/mpl_passive_tutorials.png" alt="Passive Tutorials" />
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
+          <div class="problem-card-bg animate-pink">
+            <img src="images/mpl_passive_tutorials.png" alt="Passive Tutorials Background" />
           </div>
-          <h3 style="margin-bottom: var(--space-md); color: var(--accent-pink);">Passive Tutorials</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">
-            You watch hours of videos, take notes, but when you open your DAW... blank screen.
-            <strong>Watching builds knowledge. Doing builds skill.</strong> Our labs focus on muscle memory, not just concepts.
-          </p>
+          <div class="problem-card-content" style="text-align: center;">
+            <h3 style="margin-bottom: var(--space-md); color: var(--accent-pink); font-size: 1.5rem;">Passive Tutorials</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">
+              You watch hours of videos, take notes, but when you open your DAW... blank screen.
+              <strong>Watching builds knowledge. Doing builds skill.</strong> Our labs focus on muscle memory, not just concepts.
+            </p>
+          </div>
         </div>
 
-        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
-          <div class="problem-card-image animate-purple">
-            <img src="images/mpl_theory_without_context.png" alt="Theory Without Context" />
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
+          <div class="problem-card-bg animate-purple">
+            <img src="images/mpl_theory_without_context.png" alt="Theory Without Context Background" />
           </div>
-          <h3 style="margin-bottom: var(--space-md); color: var(--accent-purple);">Theory Without Context</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">
-            Learning EQ curves before you've mixed a track is like reading about swimming before touching water.
-            <strong>We introduce theory when you need it</strong> — right when you're placing that kick or balancing that bass.
-          </p>
+          <div class="problem-card-content" style="text-align: center;">
+            <h3 style="margin-bottom: var(--space-md); color: var(--accent-purple); font-size: 1.5rem;">Theory Without Context</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">
+              Learning EQ curves before you've mixed a track is like reading about swimming before touching water.
+              <strong>We introduce theory when you need it</strong> — right when you're placing that kick or balancing that bass.
+            </p>
+          </div>
         </div>
 
-        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
-          <div class="problem-card-image animate-cyan">
-            <img src="images/mpl_no_guided_practice.png" alt="No Guided Practice" />
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
+          <div class="problem-card-bg animate-cyan">
+            <img src="images/mpl_no_guided_practice.png" alt="No Guided Practice Background" />
           </div>
-          <h3 style="margin-bottom: var(--space-md); color: var(--accent-cyan);">No Guided Practice</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">
-            They give you information but leave you alone. "Now go and practice" - but practice <em>what</em>?
-            <strong>Without structured guidance, you end up going in circles.</strong>
-          </p>
+          <div class="problem-card-content" style="text-align: center;">
+            <h3 style="margin-bottom: var(--space-md); color: var(--accent-cyan); font-size: 1.5rem;">No Guided Practice</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">
+              They give you information but leave you alone. "Now go and practice" - but practice <em>what</em>?
+              <strong>Without structured guidance, you end up going in circles.</strong>
+            </p>
+          </div>
         </div>
 
-        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle); text-align: center;">
-          <div class="problem-card-image animate-amber">
-            <img src="images/mpl_tutorial_overload.png" alt="Tutorial Overload" />
+        <div class="card problem-card" style="background: var(--bg-card); padding: var(--space-xl); border: 1px solid var(--border-subtle);">
+          <div class="problem-card-bg animate-amber">
+            <img src="images/mpl_tutorial_overload.png" alt="Tutorial Overload Background" />
           </div>
-          <h3 style="margin-bottom: var(--space-md); color: var(--accent-amber);">Tutorial Overload</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">
-            200 YouTube tabs. 15 half-watched courses. Still no finished tracks.
-            <strong>The problem isn't motivation — it's lack of structure.</strong> Our labs give you a clear sequence with measurable progress.
-          </p>
+          <div class="problem-card-content" style="text-align: center;">
+            <h3 style="margin-bottom: var(--space-md); color: var(--accent-amber); font-size: 1.5rem;">Tutorial Overload</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">
+              200 YouTube tabs. 15 half-watched courses. Still no finished tracks.
+              <strong>The problem isn't motivation — it's lack of structure.</strong> Our labs give you a clear sequence with measurable progress.
+            </p>
+          </div>
         </div>
       </div>
 
