@@ -1060,7 +1060,7 @@ p {
 
 .hero-image {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   z-index: 1;
