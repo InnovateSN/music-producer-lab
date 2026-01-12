@@ -155,7 +155,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-drums-7.html',
         configPath: './configs/lesson-drums-7.config.js'
       },
@@ -167,7 +167,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-drums-8.html',
         configPath: './configs/lesson-drums-8.config.js'
       },
@@ -179,7 +179,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-drums-9.html',
         configPath: './configs/lesson-drums-9.config.js'
       },
@@ -191,7 +191,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-drums-10.html',
         configPath: './configs/lesson-drums-10.config.js'
       },
@@ -203,7 +203,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-drums-11.html',
         configPath: './configs/lesson-drums-11.config.js'
       },
@@ -547,7 +547,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-18 min',
         level: 'Advanced',
         depthLevel: 7,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-15.html',
         configPath: './configs/lesson-harmony-15.config.js'
       },
@@ -559,7 +559,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '16-20 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-16.html',
         configPath: './configs/lesson-harmony-16.config.js'
       },
@@ -571,7 +571,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-17.html',
         configPath: './configs/lesson-harmony-17.config.js'
       },
@@ -583,7 +583,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '16-20 min',
         level: 'Advanced',
         depthLevel: 8,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-18.html',
         configPath: './configs/lesson-harmony-18.config.js'
       },
@@ -597,7 +597,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Expert',
         depthLevel: 9,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-19.html',
         configPath: './configs/lesson-harmony-19.config.js'
       },
@@ -609,7 +609,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Expert',
         depthLevel: 10,
-        badge: 'Free',
+        badge: 'Premium',
         pagePath: 'lesson-harmony-20.html',
         configPath: './configs/lesson-harmony-20.config.js'
       },
@@ -769,7 +769,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-theory-4.html',
         configPath: './configs/lesson-theory-4.config.js'
       },
@@ -867,7 +867,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Beginner',
         depthLevel: 3,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-ear-3.html',
         configPath: './configs/lesson-ear-3.config.js'
       },
@@ -881,7 +881,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-ear-4.html',
         configPath: './configs/lesson-ear-4.config.js'
       },
@@ -893,7 +893,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-20 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-ear-5.html',
         configPath: './configs/lesson-ear-5.config.js'
       },
@@ -1016,6 +1016,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-14 min',
         level: 'Intermediate',
         depthLevel: 4,
+        badge: 'Free',
         pagePath: 'lesson-bass-4.html',
         configPath: './configs/lesson-bass-4.config.js'
       },
@@ -1027,6 +1028,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-14 min',
         level: 'Intermediate',
         depthLevel: 4,
+        badge: 'Free',
         pagePath: 'lesson-bass-5.html',
         configPath: './configs/lesson-bass-5.config.js'
       },
@@ -1038,6 +1040,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-16 min',
         level: 'Intermediate',
         depthLevel: 5,
+        badge: 'Free',
         pagePath: 'lesson-bass-6.html',
         configPath: './configs/lesson-bass-6.config.js'
       },
@@ -1049,6 +1052,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '12-14 min',
         level: 'Intermediate',
         depthLevel: 5,
+        badge: 'Free',
         pagePath: 'lesson-bass-7.html',
         configPath: './configs/lesson-bass-7.config.js'
       },
@@ -1062,6 +1066,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-16 min',
         level: 'Advanced',
         depthLevel: 7,
+        badge: 'Free',
         pagePath: 'lesson-bass-8.html',
         configPath: './configs/lesson-bass-8.config.js'
       },
@@ -1073,6 +1078,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '14-16 min',
         level: 'Advanced',
         depthLevel: 7,
+        badge: 'Free',
         pagePath: 'lesson-bass-9.html',
         configPath: './configs/lesson-bass-9.config.js'
       },
@@ -1084,6 +1090,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '16-18 min',
         level: 'Advanced',
         depthLevel: 8,
+        badge: 'Free',
         pagePath: 'lesson-bass-10.html',
         configPath: './configs/lesson-bass-10.config.js'
       },
@@ -1280,7 +1287,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-5.html',
         configPath: './configs/lesson-arrangement-5.config.js'
       },
@@ -1292,7 +1299,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-6.html',
         configPath: './configs/lesson-arrangement-6.config.js'
       },
@@ -1304,7 +1311,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-7.html',
         configPath: './configs/lesson-arrangement-7.config.js'
       },
@@ -1316,7 +1323,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-20 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-8.html',
         configPath: './configs/lesson-arrangement-8.config.js'
       },
@@ -1328,7 +1335,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-9.html',
         configPath: './configs/lesson-arrangement-9.config.js'
       },
@@ -1340,7 +1347,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-arrangement-10.html',
         configPath: './configs/lesson-arrangement-10.config.js'
       },
@@ -1524,7 +1531,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Beginner',
         depthLevel: 3,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-4.html',
         configPath: './configs/lesson-sound-design-4.config.js'
       },
@@ -1538,7 +1545,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-5.html',
         configPath: './configs/lesson-sound-design-5.config.js'
       },
@@ -1550,7 +1557,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-20 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-6.html',
         configPath: './configs/lesson-sound-design-6.config.js'
       },
@@ -1562,7 +1569,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-7.html',
         configPath: './configs/lesson-sound-design-7.config.js'
       },
@@ -1574,7 +1581,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-8.html',
         configPath: './configs/lesson-sound-design-8.config.js'
       },
@@ -1586,7 +1593,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-9.html',
         configPath: './configs/lesson-sound-design-9.config.js'
       },
@@ -1600,7 +1607,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '25-30 min',
         level: 'Advanced',
         depthLevel: 7,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-sound-design-10.html',
         configPath: './configs/lesson-sound-design-10.config.js'
       },
@@ -1784,7 +1791,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Beginner',
         depthLevel: 3,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-4.html',
         configPath: './configs/lesson-mixing-4.config.js'
       },
@@ -1798,7 +1805,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-5.html',
         configPath: './configs/lesson-mixing-5.config.js'
       },
@@ -1810,7 +1817,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '15-18 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-6.html',
         configPath: './configs/lesson-mixing-6.config.js'
       },
@@ -1822,7 +1829,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-7.html',
         configPath: './configs/lesson-mixing-7.config.js'
       },
@@ -1834,7 +1841,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-8.html',
         configPath: './configs/lesson-mixing-8.config.js'
       },
@@ -1846,7 +1853,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 6,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-9.html',
         configPath: './configs/lesson-mixing-9.config.js'
       },
@@ -1860,7 +1867,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '22-28 min',
         level: 'Advanced',
         depthLevel: 7,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mixing-10.html',
         configPath: './configs/lesson-mixing-10.config.js'
       },
@@ -2046,7 +2053,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '22-28 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-vocals-4.html',
         configPath: './configs/lesson-vocals-4.config.js'
       },
@@ -2058,7 +2065,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '22-28 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-vocals-5.html',
         configPath: './configs/lesson-vocals-5.config.js'
       },
@@ -2070,7 +2077,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-vocals-6.html',
         configPath: './configs/lesson-vocals-6.config.js'
       },
@@ -2082,7 +2089,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '20-25 min',
         level: 'Intermediate',
         depthLevel: 5,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-vocals-7.html',
         configPath: './configs/lesson-vocals-7.config.js'
       },
@@ -2096,7 +2103,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '25-30 min',
         level: 'Advanced',
         depthLevel: 7,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-vocals-8.html',
         configPath: './configs/lesson-vocals-8.config.js'
       },
@@ -2244,7 +2251,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '22-28 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mastering-4.html',
         configPath: './configs/lesson-mastering-4.config.js'
       },
@@ -2256,7 +2263,7 @@ export const curriculum = processCurriculumWithDisplayNumbers([
         duration: '18-22 min',
         level: 'Intermediate',
         depthLevel: 4,
-        badge: 'Premium',
+        badge: 'Free',
         pagePath: 'lesson-mastering-5.html',
         configPath: './configs/lesson-mastering-5.config.js'
       },
