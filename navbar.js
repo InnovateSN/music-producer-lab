@@ -57,7 +57,7 @@
             </div>
 
             <!-- Auth Buttons (shown when not signed in) -->
-            <div id="auth-buttons" style="display: none; align-items: center; gap: 0.75rem;">
+            <div id="auth-buttons" style="display: flex; align-items: center; gap: 0.75rem;">
               <button onclick="window.MplAuth.signIn()" class="btn btn-secondary btn-sm" style="border: 1px solid var(--border-medium);">
                 Sign In
               </button>
