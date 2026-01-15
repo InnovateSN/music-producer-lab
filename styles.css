@@ -536,6 +536,14 @@ p {
 /* --------------------------------------------------------------------------
    BUTTONS
    -------------------------------------------------------------------------- */
+/* Universal button font rule - apply Orbitron to all buttons */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  font-family: var(--font-display);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
