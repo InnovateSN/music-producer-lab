@@ -1430,5 +1430,7 @@ export {
   playNote,
   playChord,
   detectChord,
-  getNoteNameFromMidi
+  getNoteNameFromMidi,
+  renderNotes,
+  updateChordDisplay
 };

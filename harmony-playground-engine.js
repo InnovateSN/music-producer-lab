@@ -3,7 +3,12 @@
  * Initializes the piano roll sequencer for the harmony playground
  */
 
-import { initPianoRollSequencer } from './piano-roll-sequencer.js';
+import {
+  initPianoRollSequencer,
+  pianoRollState,
+  renderNotes,
+  updateChordDisplay
+} from './piano-roll-sequencer.js';
 
 export function initHarmonyPlayground() {
   console.log('[HarmonyPlayground] Initializing...');
@@ -48,6 +53,60 @@ export function initHarmonyPlayground() {
   connectControlPanel();
 
   console.log('[HarmonyPlayground] ✓ Initialized');
+}
+
+/**
+ * Chord preset voicings (MIDI note numbers)
+ * Each chord is an array of pitches in a comfortable voicing
+ */
+const CHORD_PRESETS = {
+  'C-major': [48, 52, 55, 60],      // C3, E3, G3, C4
+  'C-minor': [48, 51, 55, 60],      // C3, Eb3, G3, C4
+  'G-major': [43, 47, 50, 55],      // G2, B2, D3, G3
+  'G-minor': [43, 46, 50, 55],      // G2, Bb2, D3, G3
+  'F-major': [41, 45, 48, 53],      // F2, A2, C3, F3
+  'F-minor': [41, 44, 48, 53],      // F2, Ab2, C3, F3
+  'A-minor': [45, 48, 52, 57],      // A2, C3, E3, A3
+  'D-minor': [50, 53, 57, 62],      // D3, F3, A3, D4
+  'E-minor': [52, 55, 59, 64],      // E3, G3, B3, E4
+};
+
+/**
+ * Insert a chord preset into the piano roll
+ * @param {string} chordName - Name of the chord preset
+ */
+function insertChordPreset(chordName) {
+  const voicing = CHORD_PRESETS[chordName];
+  if (!voicing) {
+    console.warn(`[HarmonyPlayground] Unknown chord preset: ${chordName}`);
+    return;
+  }
+
+  // Determine insertion position (start at step 0 or current step if playing)
+  const insertStep = pianoRollState.isPlaying ? pianoRollState.currentStep : 0;
+
+  // Insert each note of the chord
+  voicing.forEach(pitch => {
+    // Check if note already exists at this position
+    const existingIndex = pianoRollState.notes.findIndex(
+      n => n.pitch === pitch && n.start === insertStep
+    );
+
+    // Only add if not already present
+    if (existingIndex === -1) {
+      pianoRollState.notes.push({
+        pitch: pitch,
+        start: insertStep,
+        duration: 8  // 2 beats (8 steps in 16-step grid)
+      });
+    }
+  });
+
+  // Re-render the piano roll
+  renderNotes();
+  updateChordDisplay();
+
+  console.log(`[HarmonyPlayground] Inserted ${chordName} chord at step ${insertStep}`);
 }
 
 /**
@@ -103,8 +162,8 @@ function connectControlPanel() {
       const chordName = e.target.dataset.chord;
       console.log(`[HarmonyPlayground] Chord preset clicked: ${chordName}`);
 
-      // TODO: Implement chord preset insertion
-      // This would insert pre-made chord voicings into the piano roll
+      // Insert chord preset into piano roll
+      insertChordPreset(chordName);
     });
   });
 }
