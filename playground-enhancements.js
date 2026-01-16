@@ -788,7 +788,7 @@ export function createProgressWidget() {
           <span style="font-size: 1rem; font-weight: 700; color: #00d4ff;">${stats.exportsTotal}</span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.8rem; color: var(--text-muted);">🎵 Presets Tried</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);"><img src="images/notamusicale.png" alt="🎵" style="width: 1em; vertical-align: middle;"> Presets Tried</span>
           <span style="font-size: 1rem; font-weight: 700; color: #b366ff;">${presetsUsed.size}</span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
