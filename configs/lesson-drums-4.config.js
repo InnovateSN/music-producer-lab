@@ -36,7 +36,9 @@ export const lessonConfig = {
   sequencer: {
     tempo: 120,
     stepCount: 16,
-    swing: 0
+    swing: 0,
+    enableVelocity: true, // Enable velocity control for practice
+    requiredTempo: 120
   },
   
   // ====================
@@ -47,6 +49,7 @@ export const lessonConfig = {
     description: "Make your beat more energetic by adding <strong>16th-note movement</strong> to the hi-hats. You'll add one extra hi-hat hit to create that modern, danceable feel.",
     tip: "That extra hi-hat on step 8 creates anticipation. It's a small change that makes a big difference!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick row:</strong> Steps <strong>1, 5, 9, 13</strong> (unchanged)." },
       { text: "<strong>Snare row:</strong> Steps <strong>5 and 13</strong> (unchanged)." },
       { text: "<strong>Hi-Hat row:</strong> Start with eighth notes <strong>(1, 3, 5, 7, 9, 11, 13, 15)</strong> then add step <strong>8</strong>." },

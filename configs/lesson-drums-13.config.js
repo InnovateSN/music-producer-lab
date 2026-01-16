@@ -45,7 +45,10 @@ export const lessonConfig = {
     showStepNumbers: true,
     autoSaveState: true,
     enableVelocity: true,
-    enableHumanization: true
+    enableHumanization: true,
+    showSwingControl: true,
+    requiredTempo: 90, // Students must set tempo to 90 BPM for hip-hop feel
+    requiredSwing: 54 // Students must add 54% swing for MPC-style groove (Step 5)
   },
   
   // ====================
@@ -54,12 +57,13 @@ export const lessonConfig = {
   exercise: {
     title: "Humanize a Beat",
     description: "Apply humanization techniques to transform a robotic pattern into a living, breathing groove.",
-    tip: "Start subtle—5-10ms timing variation and 10-15% velocity randomization. You can always add more.",
+    tip: "Start subtle—8-15ms timing variation and 15-25% velocity randomization. You can always add more.",
     steps: [
-      { text: "<strong>Step 1:</strong> Program the basic kick-snare-hihat pattern." },
-      { text: "<strong>Step 2:</strong> Apply 10ms timing randomization to hi-hats only." },
-      { text: "<strong>Step 3:</strong> Create velocity curve: louder downbeats, softer off-beats." },
-      { text: "<strong>Step 4:</strong> Add 54% swing for MPC-style groove." }
+      { text: "<strong>Step 1:</strong> Set the tempo to 90 BPM for a classic hip-hop feel." },
+      { text: "<strong>Step 2:</strong> Program the basic kick-snare-hihat pattern." },
+      { text: "<strong>Step 3:</strong> Apply 15ms timing randomization to hi-hats only." },
+      { text: "<strong>Step 4:</strong> Create velocity curve: louder downbeats, softer off-beats." },
+      { text: "<strong>Step 5:</strong> Add 54% <a href=\"glossary.html#swing\" style=\"color: var(--accent-cyan); text-decoration: underline;\">swing</a> for MPC-style groove." }
     ]
   },
   
@@ -89,7 +93,7 @@ export const lessonConfig = {
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
       instructionText: "Hi-hats get most humanization—timing and velocity.",
-      patternHint: { enabled: true, note: "Apply swing + velocity curve" }
+      patternHint: { enabled: true, note: "Apply <a href=\"glossary.html#swing\" style=\"color: var(--accent-cyan); text-decoration: underline;\">swing</a> + <a href=\"glossary.html#velocity\" style=\"color: var(--accent-cyan); text-decoration: underline;\">velocity</a> curve" }
     }
   ],
   
@@ -160,7 +164,8 @@ export const lessonConfig = {
     enablePresets: true,
     enableExport: false,
     showVelocityLane: true,
-    showHumanizeControls: true
+    showHumanizeControls: true,
+    showSwingControl: true
   },
   
   // ====================

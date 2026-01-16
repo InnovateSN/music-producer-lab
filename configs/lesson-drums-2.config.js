@@ -24,7 +24,8 @@ export const lessonConfig = {
   sequencer: {
     tempo: 120,
     stepCount: 16,
-    swing: 0
+    swing: 0,
+    requiredTempo: 120
   },
   
   exercise: {
@@ -32,6 +33,7 @@ export const lessonConfig = {
     description: "The <strong>backbeat</strong> is the snare hitting on beats 2 and 4. Combined with the kick on 1, 2, 3, 4, this creates the foundation of rock, pop, and most modern music.",
     tip: "The backbeat creates a call-and-response between kick and snare. Kick pushes forward, snare answers back!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick row:</strong> Keep the 4-on-the-floor pattern (steps 1, 5, 9, 13)." },
       { text: "<strong>Snare row:</strong> Add snare on steps <strong>5 and 13</strong> (beats 2 and 4)." },
       { text: "Notice how the snare \"answers\" the kick on beats 2 and 4." },

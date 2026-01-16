@@ -39,7 +39,8 @@ export const lessonConfig = {
   sequencer: {
     tempo: 120,
     stepCount: 16,
-    swing: 0
+    swing: 0,
+    requiredTempo: 120
   },
 
   // ====================
@@ -50,6 +51,7 @@ export const lessonConfig = {
     description: "This lesson is in <strong>sandbox mode</strong> - there's no right or wrong answer. Click around, press play, and get familiar with the interface. Understanding how the grid works will prepare you for all future lessons.",
     tip: "Try clicking different steps on the Kick row, then press Play. Notice how the sound repeats in a loop!",
     steps: [
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
       { text: "<strong>Click on any step</strong> in the grid to activate it (it will light up)." },
       { text: "Press <strong>Play</strong> to hear your pattern loop continuously." },
       { text: "Notice how the playhead moves from left to right across 16 steps, then repeats." },

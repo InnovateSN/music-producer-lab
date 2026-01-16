@@ -1,9 +1,10 @@
 /**
  * Music Producer Lab - Lesson Configuration
- * Lesson: Drums 10 - Trap & 808 Patterns
- * 
- * This lesson teaches modern trap production including rolling hi-hats,
- * 808 bass programming, and signature trap rhythms.
+ * Lesson: Drums 10 - Half Time Patterns
+ *
+ * This lesson teaches half-time drum programming at 140 BPM, covering
+ * trap, dubstep, future bass, and other modern electronic genres that
+ * use the half-time feel (140 BPM perceived as 70 BPM).
  */
 
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
@@ -29,9 +30,9 @@ export const lessonConfig = {
   // ====================
   hero: {
     eyebrow: buildHeroEyebrow({ lessonNumber: 10, categoryLabel: "Drums & Rhythm" }),
-    title: "Trap &",
-    titleHighlight: "808 Patterns",
-    subtitle: "Master <strong>modern trap production</strong>. Program <strong>rolling hi-hats</strong>, <strong>808 bass patterns</strong>, and the signature rhythms that define contemporary music."
+    title: "Half Time",
+    titleHighlight: "Patterns",
+    subtitle: "Master <strong>half-time drum programming</strong> at 140 BPM. Learn the signature rhythm used in <strong>trap</strong>, <strong>dubstep</strong>, <strong>future bass</strong>, and modern electronic music—where snare on beat 3 creates a 70 BPM feel."
   },
   
   // ====================
@@ -44,21 +45,24 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    halfTime: true // Trap often feels like half-time
+    halfTime: true, // Trap often feels like half-time
+    enableVelocity: true, // Essential for rolling hi-hats and 808 dynamics
+    requiredTempo: 140
   },
   
   // ====================
   // EXERCISE
   // ====================
   exercise: {
-    title: "Build a Trap Beat",
-    description: "Create a modern trap pattern with rolling hi-hats, sparse snare placement, and strategic 808s.",
-    tip: "In trap, less is more for the low end. Let the 808s breathe and fill the space between with hi-hat rolls.",
+    title: "Build a Half-Time Pattern",
+    description: "Create the signature half-time rhythm where 140 BPM feels like 70 BPM. The snare on beat 3 (step 9) creates the laid-back, powerful groove used in trap, dubstep, and future bass.",
+    tip: "Half-time magic: The snare hits on beat 3 instead of beats 2 & 4, making it feel like half the tempo!",
     steps: [
-      { text: "<strong>808:</strong> Sparse placement on steps 1 and 9 (powerful but not constant)." },
-      { text: "<strong>Snare:</strong> Backbeat on steps 5 and 13 (clap + snare layered)." },
-      { text: "<strong>Hi-Hat (Closed):</strong> Rolling 16ths on every step for energy." },
-      { text: "<strong>Hi-Hat (Open):</strong> Accent hits on steps 3 and 11 for variation." }
+      { text: "<strong>Set the tempo to 140 BPM</strong> using the Tempo slider." },
+      { text: "<strong>808:</strong> Heavy on step 1 (the downbeat)." },
+      { text: "<strong>Snare/Clap:</strong> Step 9 only—this is the half-time backbeat!" },
+      { text: "<strong>Hi-Hat (Closed):</strong> 8th notes on steps 1, 3, 5, 7, 9, 11, 13, 15." },
+      { text: "<strong>Hi-Hat (Open):</strong> Rolling accents on steps 14 and 16." }
     ]
   },
   
@@ -67,47 +71,47 @@ export const lessonConfig = {
   // ====================
   instruments: [
     {
-      id: "808",
+      id: "kick",
       label: "808",
       color: "linear-gradient(135deg, #e17055, #d63031)",
-      targetSteps: [0, 8],
-      instructionText: "808 bass/kick on 1 and 9—sparse but powerful.",
+      targetSteps: [0],
+      instructionText: "808 bass/kick on step 1—the powerful downbeat.",
       patternHint: {
         enabled: true,
-        note: "808: 1, 9 (let it breathe)"
+        note: "808: step 1 (downbeat)"
       }
     },
     {
       id: "snare",
       label: "Snare/Clap",
       color: "linear-gradient(135deg, #fdcb6e, #f39c12)",
-      targetSteps: [4, 12],
-      instructionText: "Snare + clap layered on beats 2 and 4.",
+      targetSteps: [8],
+      instructionText: "Snare on step 9—the half-time backbeat that defines the groove.",
       patternHint: {
         enabled: true,
-        note: "Snare: 5, 13 (backbeat)"
+        note: "Snare: step 9 (half-time backbeat)"
       }
     },
     {
-      id: "hihat-closed",
+      id: "hihat",
       label: "Hi-Hat (Closed)",
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
-      targetSteps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      instructionText: "Rolling 16th notes—the signature trap hi-hat pattern.",
+      targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
+      instructionText: "8th note hi-hats (steps 1, 3, 5, 7, 9, 11, 13, 15) for steady pulse.",
       patternHint: {
         enabled: true,
-        note: "Closed HH: every step (rolling)"
+        note: "Closed HH: 8th notes"
       }
     },
     {
-      id: "hihat-open",
+      id: "rim",
       label: "Hi-Hat (Open)",
       color: "linear-gradient(135deg, #a29bfe, #6c5ce7)",
-      targetSteps: [2, 10],
-      instructionText: "Open hi-hat accents on steps 3 and 11.",
+      targetSteps: [13, 15],
+      instructionText: "Open hi-hat accents on steps 14 and 16 for rolling feel.",
       patternHint: {
         enabled: true,
-        note: "Open HH: 3, 11 (accents)"
+        note: "Open HH: steps 14, 16 (rolling accents)"
       }
     }
   ],
@@ -117,17 +121,17 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Trap = Rolling hi-hats + sparse 808 + layered snare/clap"
+    note: "Half-time = Snare on beat 3 (step 9) makes 140 BPM feel like 70 BPM"
   },
-  
+
   // ====================
   // MESSAGES
   // ====================
   messages: applyMessagePreset("drums", {
-    initial: "Build the trap pattern. Remember: rolling hi-hats and sparse 808!",
-    success: "🎉 That's fire! You've got the trap sound down. Rolling hats + 808 = modern classic.",
-    error: "Check your pattern—trap needs rolling hi-hats (every step) and sparse 808 placement.",
-    alreadyCompleted: "You've mastered trap drums! Try adding triplet rolls and velocity variation."
+    initial: "Build the half-time pattern. Key: Snare on step 9 creates the half-tempo feel!",
+    success: "🎉 Perfect! That's the half-time groove. Notice how 140 BPM feels like 70 BPM?",
+    error: "Check the snare placement—it should be on step 9 (beat 3) for the half-time feel.",
+    alreadyCompleted: "You've mastered half-time! This pattern works for trap, dubstep, and future bass."
   }),
   
   // ====================
@@ -145,17 +149,21 @@ export const lessonConfig = {
   // GENRE INFO
   // ====================
   genreInfo: {
-    name: "Trap",
-    tempoRange: { min: 130, max: 160 },
-    halfTime: { min: 65, max: 80 },
-    origins: "Atlanta, early 2000s",
-    keyArtists: ["Lex Luger", "Metro Boomin", "Southside", "TM88", "Pi'erre Bourne"],
+    name: "Half-Time / 140 BPM Styles",
+    tempoRange: { min: 135, max: 150 },
+    perceivedTempo: { min: 67, max: 75 },
+    subgenres: [
+      { name: "Trap", tempo: "135-145 BPM", character: "Rolling hi-hats, 808 bass, sparse snare" },
+      { name: "Dubstep", tempo: "138-142 BPM", character: "Heavy wobble bass, aggressive snare" },
+      { name: "Future Bass", tempo: "140-150 BPM", character: "Melodic, wide synths, chopped vocals" },
+      { name: "Half-Time DnB", tempo: "85 BPM (170÷2)", character: "DnB tempo, half-time feel" }
+    ],
+    keyProducers: ["Skrillex", "RL Grime", "Flume", "Metro Boomin", "Zomboy"],
     characteristics: [
-      "Rolling hi-hats with triplet rolls",
-      "808 as combined kick/bass",
-      "Sparse, impactful snare/clap",
-      "Heavy use of ad-libs and vocal chops",
-      "Dark, minor key melodies"
+      "Snare on beat 3 creates half-tempo feel",
+      "140 BPM feels like 70 BPM",
+      "Perfect for builds and drops",
+      "16th-note patterns create syncopation"
     ]
   },
   
@@ -163,22 +171,11 @@ export const lessonConfig = {
   // LEARNING OBJECTIVES
   // ====================
   learningObjectives: [
-    "Program rolling hi-hat patterns (16ths + triplets)",
-    "Use 808 as combined kick and bass instrument",
-    "Create sparse but impactful snare/clap placement",
-    "Understand the half-time feel in trap production"
-  ],
-  
-  // ====================
-  // 808 CONFIGURATION
-  // ====================
-  bass808Config: {
-    pitchGlide: true,
-    glideTime: "16th",
-    decay: "long",
-    distortion: "subtle",
-    tuning: "Key of track"
-  }
+    "Understand half-time rhythm: snare on beat 3 instead of 2 & 4",
+    "Program patterns that make 140 BPM feel like 70 BPM",
+    "Apply half-time to trap, dubstep, future bass, and more",
+    "Use 16th-note subdivisions for syncopation and fills"
+  ]
 };
 
 if (typeof window !== 'undefined') {

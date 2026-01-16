@@ -1,3 +1,5 @@
+import { getDisplayNumber } from '../curriculum.js';
+
 const baseMessages = {
   initial: "Complete the exercise to unlock the next lesson.",
   alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
@@ -28,9 +30,18 @@ export function applyMessagePreset(presetKey = "default", overrides = {}) {
   };
 }
 
-export function buildHeroEyebrow({ lessonNumber, categoryLabel }) {
-  const lessonLabel = typeof lessonNumber === "number" && !Number.isNaN(lessonNumber)
-    ? `Lesson ${lessonNumber}`
+export function buildHeroEyebrow({ lessonNumber, categoryLabel, lessonSlug }) {
+  // Use automatic display number from curriculum if lessonSlug provided
+  let displayNum = lessonNumber;
+  if (lessonSlug) {
+    const autoNumber = getDisplayNumber(lessonSlug);
+    if (autoNumber !== null) {
+      displayNum = autoNumber;
+    }
+  }
+
+  const lessonLabel = typeof displayNum === "number" && !Number.isNaN(displayNum)
+    ? `Lesson ${displayNum}`
     : "Lesson";
   const category = categoryLabel || "Lesson";
   return `${lessonLabel} · ${category}`;

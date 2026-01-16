@@ -1,0 +1,186 @@
+{
+  "kick": [
+    {
+      "name": "Dusty Kick",
+      "file": "Ghosthack-AC23_Dusty Kick_.wav",
+      "path": "samples/drums/kick/Ghosthack-AC23_Dusty Kick_.wav"
+    },
+    {
+      "name": "Kick Clean",
+      "file": "Ghosthack-AC23_Kick_Clean.wav",
+      "path": "samples/drums/kick/Ghosthack-AC23_Kick_Clean.wav"
+    },
+    {
+      "name": "Kick Dirt",
+      "file": "Ghosthack-AC23_Kick_Dirt.wav",
+      "path": "samples/drums/kick/Ghosthack-AC23_Kick_Dirt.wav"
+    },
+    {
+      "name": "Shatter Kick",
+      "file": "Ghosthack-AC23_Shatter Kick_.wav",
+      "path": "samples/drums/kick/Ghosthack-AC23_Shatter Kick_.wav"
+    },
+    {
+      "name": "Wrecked Kick",
+      "file": "Ghosthack-AC23_Wrecked Kick_.wav",
+      "path": "samples/drums/kick/Ghosthack-AC23_Wrecked Kick_.wav"
+    }
+  ],
+  "snare": [
+    {
+      "name": "Breeze Snare",
+      "file": "Ghosthack-AC23_Breeze Snare.wav",
+      "path": "samples/drums/snare/Ghosthack-AC23_Breeze Snare.wav"
+    },
+    {
+      "name": "Cobra Snare",
+      "file": "Ghosthack-AC23_Cobra Snare.wav",
+      "path": "samples/drums/snare/Ghosthack-AC23_Cobra Snare.wav"
+    },
+    {
+      "name": "Crystal Snare",
+      "file": "Ghosthack-AC23_Crystal Snare.wav",
+      "path": "samples/drums/snare/Ghosthack-AC23_Crystal Snare.wav"
+    },
+    {
+      "name": "Kind Snare",
+      "file": "Ghosthack-AC23_Kind Snare.wav",
+      "path": "samples/drums/snare/Ghosthack-AC23_Kind Snare.wav"
+    },
+    {
+      "name": "Texture Snare",
+      "file": "Ghosthack-AC23_Texture Snare.wav",
+      "path": "samples/drums/snare/Ghosthack-AC23_Texture Snare.wav"
+    }
+  ],
+  "hihat": [
+    {
+      "name": "Basic Hihat",
+      "file": "Ghosthack-AC23_Basic Hihat.wav",
+      "path": "samples/drums/hihat/Ghosthack-AC23_Basic Hihat.wav"
+    },
+    {
+      "name": "Central Hihat",
+      "file": "Ghosthack-AC23_Central Hihat.wav",
+      "path": "samples/drums/hihat/Ghosthack-AC23_Central Hihat.wav"
+    },
+    {
+      "name": "Glamour Hihat",
+      "file": "Ghosthack-AC23_Glamour Hihat.wav",
+      "path": "samples/drums/hihat/Ghosthack-AC23_Glamour Hihat.wav"
+    },
+    {
+      "name": "March Hihat",
+      "file": "Ghosthack-AC23_March Hihat.wav",
+      "path": "samples/drums/hihat/Ghosthack-AC23_March Hihat.wav"
+    },
+    {
+      "name": "Panic Hihat",
+      "file": "Ghosthack-AC23_Panic Hihat.wav",
+      "path": "samples/drums/hihat/Ghosthack-AC23_Panic Hihat.wav"
+    }
+  ],
+  "clap": [
+    {
+      "name": "Drip Clap",
+      "file": "Ghosthack-AC23_Drip Clap.wav",
+      "path": "samples/drums/clap/Ghosthack-AC23_Drip Clap.wav"
+    },
+    {
+      "name": "Friction Clap",
+      "file": "Ghosthack-AC23_Friction Clap.wav",
+      "path": "samples/drums/clap/Ghosthack-AC23_Friction Clap.wav"
+    },
+    {
+      "name": "Lo Fi Clap",
+      "file": "Ghosthack-AC23_Lo_Fi Clap.wav",
+      "path": "samples/drums/clap/Ghosthack-AC23_Lo_Fi Clap.wav"
+    },
+    {
+      "name": "Malfunction Clap",
+      "file": "Ghosthack-AC23_Malfunction Clap.wav",
+      "path": "samples/drums/clap/Ghosthack-AC23_Malfunction Clap.wav"
+    },
+    {
+      "name": "Motor Clap",
+      "file": "Ghosthack-AC23_Motor Clap.wav",
+      "path": "samples/drums/clap/Ghosthack-AC23_Motor Clap.wav"
+    }
+  ],
+  "tom": [
+    {
+      "name": "Tom Bitcrush",
+      "file": "Ghosthack-AC23_Tom_Bitcrush.wav",
+      "path": "samples/drums/tom/Ghosthack-AC23_Tom_Bitcrush.wav"
+    },
+    {
+      "name": "Tom Castle",
+      "file": "Ghosthack-AC23_Tom_Castle.wav",
+      "path": "samples/drums/tom/Ghosthack-AC23_Tom_Castle.wav"
+    },
+    {
+      "name": "Tom Digital",
+      "file": "Ghosthack-AC23_Tom_Digital.wav",
+      "path": "samples/drums/tom/Ghosthack-AC23_Tom_Digital.wav"
+    },
+    {
+      "name": "Tom Dreamy",
+      "file": "Ghosthack-AC23_Tom_Dreamy.wav",
+      "path": "samples/drums/tom/Ghosthack-AC23_Tom_Dreamy.wav"
+    },
+    {
+      "name": "Tom Heavy",
+      "file": "Ghosthack-AC23_Tom_Heavy.wav",
+      "path": "samples/drums/tom/Ghosthack-AC23_Tom_Heavy.wav"
+    }
+  ],
+  "rim": [
+    {
+      "name": "Rimshot LM1 16",
+      "file": "Rimshot LM1 16.wav",
+      "path": "samples/drums/rim/Rimshot LM1 16.wav"
+    },
+    {
+      "name": "Rimshot LM1 17",
+      "file": "Rimshot LM1 17.wav",
+      "path": "samples/drums/rim/Rimshot LM1 17.wav"
+    },
+    {
+      "name": "Rimshot LM1 18",
+      "file": "Rimshot LM1 18.wav",
+      "path": "samples/drums/rim/Rimshot LM1 18.wav"
+    },
+    {
+      "name": "Rimshot LM1 19",
+      "file": "Rimshot LM1 19.wav",
+      "path": "samples/drums/rim/Rimshot LM1 19.wav"
+    },
+    {
+      "name": "Rimshot LM1 20",
+      "file": "Rimshot LM1 20.wav",
+      "path": "samples/drums/rim/Rimshot LM1 20.wav"
+    }
+  ],
+  "crash": [
+    {
+      "name": "Crash 14inch",
+      "file": "BT-Cymbal Crash 14inch.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 14inch.wav"
+    },
+    {
+      "name": "Crash 78 Size",
+      "file": "BT-Cymbal Crash 78 Size.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 78 Size.wav"
+    },
+    {
+      "name": "Crash 78 Size 2",
+      "file": "BT-Cymbal Crash 78 Size 2.wav",
+      "path": "samples/drums/crash/BT-Cymbal Crash 78 Size 2.wav"
+    },
+    {
+      "name": "Crash Default",
+      "file": "crash.wav",
+      "path": "samples/drums/crash/crash.wav"
+    }
+  ]
+}

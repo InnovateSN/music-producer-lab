@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title id="mpl-page-title">Lesson 11 | Music Producer Lab</title>
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
@@ -24,9 +24,8 @@
               <span id="mpl-hero-title-highlight"></span>
             </h1>
             <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
           </div>
-
-          <!-- Hero visual section -->
         </section>
 
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
@@ -35,7 +34,7 @@
             <div class="section-eyebrow">Exercise</div>
             <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
             <p class="section-body" id="mpl-exercise-description"></p>
-
+            
             <div class="exercise-steps" id="mpl-exercise-steps-wrap">
               <h3>What to do:</h3>
               <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
@@ -58,7 +57,7 @@
         <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
           <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
           <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
-
+          
           <div class="sequencer" id="mpl-sequencer-collection">
             <!-- Sequencer will be created by JS -->
           </div>
@@ -66,25 +65,52 @@
           <!-- CONTROLS -->
           <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Play</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Stop</span>
             </button>
-            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all" style="display:none;">
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Clear</span>
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
               <span>Check Exercise</span>
             </button>
 
-            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                <span>Next Lesson &rarr;</span>
-              </button>
+            <!-- PRESET CONTROLS (hidden by default) -->
+            <div id="mpl-preset-controls" style="display:none;gap:0.5rem;margin-left:0.5rem;">
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-save">Save</button>
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-load">Load</button>
+            </div>
+
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEMPO/SWING CONTROLS (for sandbox mode) -->
+          <div id="mpl-advanced-controls" style="display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-tempo-slider" style="font-size:0.85rem;color:var(--text-muted);">Tempo:</label>
+              <input type="range" id="mpl-tempo-slider" min="60" max="180" value="120" style="width:100px;">
+              <span id="mpl-tempo-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:50px;">120 BPM</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-swing-slider" style="font-size:0.85rem;color:var(--text-muted);">Swing:</label>
+              <input type="range" id="mpl-swing-slider" min="0" max="100" value="0" style="width:100px;">
+              <span id="mpl-swing-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:40px;">0%</span>
             </div>
           </div>
 
@@ -93,6 +119,44 @@
           </div>
         </section>
 
+        <!-- FOOTER -->
+        <footer class="footer" id="mpl-footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab</div>
+          <div><a class="footer-link" id="mpl-footer-overview-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
+      
+      <!-- LESSON ENGINE SCRIPT -->
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+      <!--
+        HOW TO USE THIS TEMPLATE:
+        
+        1. Create a config file (e.g., configs/lesson-drums-5.config.js)
+        2. Copy this template to your lesson file (e.g., lesson-drums-5-new.html)
+        3. Update the script import at the bottom to point to your config
+        
+        Example:
+
+<script type="module">
+          import { lessonConfig } from './configs/lesson-drums-5.config.js';
+          import { initLessonFromConfig } from './lesson-engine.js';
+          initLessonFromConfig(lessonConfig);
+        </script>
+      -->
+
+      
+      <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-11.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
     </main>
 
     <!-- FOOTER -->
@@ -105,20 +169,7 @@
         </nav>
       </div>
     </footer>
-
-    <!-- MODULAR LESSON ENGINE -->
-
-<script type="module">
-      // Import lesson config and engine
-      import { lessonConfig } from './configs/lesson-drums-11.config.js';
-      import { initLessonFromConfig } from './lesson-engine.js';
-
-      // Initialize lesson from config
-      initLessonFromConfig(lessonConfig);
-
-      // Set year in footer
-      document.getElementById("mpl-year").textContent = new Date().getFullYear();
-    </script>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
     <script src="navbar.js"></script>
   </body>
 </html>

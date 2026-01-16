@@ -44,7 +44,8 @@ export const lessonConfig = {
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 120
   },
   
   // ====================
@@ -55,7 +56,8 @@ export const lessonConfig = {
     description: "Create a driving rock pattern using kick, snare, hi-hats, and a crash cymbal to mark the downbeat.",
     tip: "Rock drums are about POWER and DYNAMICS. Add a crash on beat 1 to signal the start of the section!",
     steps: [
-      { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13 (driving quarter notes)." },
+      { text: "<strong>Set the tempo to 120 BPM</strong> using the Tempo slider." },
+      { text: "<strong>Kick:</strong> Steps 1, 9, 11 (syncopated rock pattern)." },
       { text: "<strong>Snare:</strong> Steps 5 and 13 (powerful backbeat)." },
       { text: "<strong>Hi-Hat:</strong> 8th notes (1, 3, 5, 7, 9, 11, 13, 15)." },
       { text: "<strong>Crash:</strong> Step 1 to mark the section start." }
@@ -70,9 +72,9 @@ export const lessonConfig = {
       id: "kick",
       label: "Kick",
       color: "linear-gradient(135deg, #e17055, #d63031)",
-      targetSteps: [0, 4, 8, 12],
-      instructionText: "Driving quarter note kick pattern.",
-      patternHint: { enabled: true, note: "Kick: 1, 5, 9, 13" }
+      targetSteps: [0, 8, 10],
+      instructionText: "Syncopated rock kick pattern.",
+      patternHint: { enabled: true, note: "Kick: 1, 9, 11" }
     },
     {
       id: "snare",
@@ -88,7 +90,7 @@ export const lessonConfig = {
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
       targetSteps: [0, 2, 4, 6, 8, 10, 12, 14],
       instructionText: "Steady 8th note hi-hats for groove.",
-      patternHint: { enabled: true, note: "Hi-Hat: 8th notes" }
+      patternHint: { enabled: true, note: "Hi-Hat: 1, 3, 5, 7, 9, 11, 13, 15" }
     },
     {
       id: "crash",
@@ -116,7 +118,7 @@ export const lessonConfig = {
   // ====================
   patternHint: {
     enabled: true,
-    note: "Rock = driving kick + powerful snare + steady hi-hats + crash accents"
+    note: "Rock Pattern: Kick (1,9,11) + Snare (5,13) + Hi-Hat (8ths) + Crash (1)"
   },
   
   // ====================

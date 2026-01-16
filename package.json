@@ -1,0 +1,31 @@
+{
+  "name": "music-producer-lab",
+  "version": "1.0.0",
+  "description": "Interactive music production learning platform with B2B features",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:setup": "node database/execute-schema.js"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^6.36.7",
+    "@neondatabase/serverless": "^1.0.2",
+    "next": "^16.1.1",
+    "pg": "^8.16.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "resend": "^6.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.6",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

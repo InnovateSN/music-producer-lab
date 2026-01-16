@@ -43,7 +43,9 @@ export const lessonConfig = {
     swing: 0,
     showBeatMarkers: true,
     showStepNumbers: true,
-    autoSaveState: true
+    autoSaveState: true,
+    enableVelocity: true, // Essential for breakbeat dynamics and ghost notes
+    requiredTempo: 174
   },
   
   // ====================
@@ -54,6 +56,7 @@ export const lessonConfig = {
     description: "Create the classic drum and bass two-step pattern with syncopated kick, half-time snare, and driving hi-hats.",
     tip: "At 174 BPM with snare on 2 and 4, it feels like 87 BPM—that's the rolling two-step groove!",
     steps: [
+      { text: "<strong>Set the tempo to 174 BPM</strong> using the Tempo slider." },
       { text: "<strong>Kick:</strong> Syncopated on steps 1, 7, 10 for that rolling feel." },
       { text: "<strong>Snare:</strong> Half-time backbeat on steps 5 and 13." },
       { text: "<strong>Hi-Hat:</strong> Driving 8th notes (1, 3, 5, 7, 9, 11, 13, 15)." },

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 28 · Harmony & Melody · Modal Interchange | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 28 from Music Producer Lab: master borrowed chords, modal interchange, and polytonality for modern harmony." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+      <div class="hero-copy">
+        <div class="hero-copy-eyebrow">Harmony & Melody · Lesson 28</div>
+        <h1 class="hero-title"><span>Modal Interchange:</span><span id="mpl-hero-title-highlight">Borrowed Chords & Polytonality</span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
+      </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Expert harmony</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 28</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Expert</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20–25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
+
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Piano Roll</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Progression</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play" class="btn btn-primary" style="min-width:100px;">▶ Play</button>
+        <button id="mpl-seq-stop" class="btn btn-secondary" style="min-width:100px;">⏹ Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;">🗑 Clear</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click on the piano roll to place notes.</span></div>
+    </section>
+
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon">🎉</div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-harmony-28.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>

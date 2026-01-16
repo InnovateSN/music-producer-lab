@@ -1,115 +1,39 @@
-/**
- * Music Producer Lab - Lesson Configuration
- * Lesson: Drums 16 - Drum Sound Design & Layering
- * 
- * This lesson teaches drum sound design through layering techniques,
- * processing chains, and frequency-based sample stacking.
- */
-
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
-  // ====================
-  // LESSON METADATA
-  // ====================
   lessonKey: "mpl-drums-16-progress",
   lessonNumber: 16,
   lessonCategory: "Drums & Rhythm",
   depthLevel: 8,
-  
-  // ====================
-  // NAVIGATION
-  // ====================
   nextLessonUrl: "lesson-drums-17.html",
   prevLessonUrl: "lesson-drums-15.html",
   overviewUrl: "labs.html",
-  
-  // ====================
-  // HERO SECTION
-  // ====================
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 16, categoryLabel: "Drums & Rhythm" }),
-    title: "Drum Sound Design &",
-    titleHighlight: "Layering",
-    subtitle: "Design <strong>custom drum sounds</strong>. Master <strong>kick layering</strong>, <strong>snare stacks</strong>, and <strong>processing chains</strong> for signature textures."
+    eyebrow: buildHeroEyebrow({ lessonSlug: "lesson-drums-16", categoryLabel: "Drums & Rhythm" }),
+    title: "Advanced Fills &",
+    titleHighlight: "Transitions",
+    subtitle: "Build <strong>dramatic drum fills</strong> that bridge song sections seamlessly. Master <strong>tom rolls</strong>, <strong>crash patterns</strong>, and <strong>fill placement strategies</strong> that create excitement without derailing the groove. Learn when to use simple vs complex fills, how to build tension, and the art of the perfect transition."
   },
-  
-  // ====================
-  // EXERCISE
-  // ====================
+  sequencer: { tempo: 105, stepCount: 16, swing: 0, showBeatMarkers: true, showStepNumbers: true, autoSaveState: true, enableVelocity: true, requiredTempo: 105 },
   exercise: {
-    title: "Design a Layered Kick",
-    description: "Create a punchy, full kick using 3 frequency-specific layers.",
-    tip: "Always check phase alignment—zoom in on waveforms to ensure transients line up.",
+    title: "Create Tom Roll Fill",
+    description: "Build a classic <strong>tom roll fill</strong> that transitions between sections. Use <strong>high, mid, and low toms</strong> in descending order with a <strong>crash cymbal accent</strong> on beat 1.",
+    tip: "Fills should lead INTO the downbeat, not land ON it. End fills on step 15-16 so the crash hits step 1 of the next bar!",
     steps: [
-      { text: "<strong>Sub layer:</strong> Sine wave or 808 sub (LP at 80Hz)." },
-      { text: "<strong>Body layer:</strong> Acoustic kick sample (BP 80-250Hz)." },
-      { text: "<strong>Click layer:</strong> Transient sample (HP at 2kHz)." },
-      { text: "<strong>Glue:</strong> Bus compression (2-4dB gain reduction)." }
+      { text: "<strong>Set tempo to 105 BPM</strong>." },
+      { text: "<strong>High Tom:</strong> Steps 13, 14 (16th notes)." },
+      { text: "<strong>Mid Tom:</strong> Step 15." },
+      { text: "<strong>Low Tom (Floor):</strong> Step 16." },
+      { text: "<strong>Crash:</strong> Step 1 (next bar - imagine it!)." },
+      { text: "<strong>Velocities:</strong> Crescendo from 90 → 120 across toms." }
     ]
   },
-  
-  // ====================
-  // LAYER TEMPLATES
-  // ====================
-  layerTemplates: {
-    kick: [
-      { id: "sub", name: "Sub Layer", freqRange: "20-80 Hz", description: "Pure weight and chest-shaking power" },
-      { id: "body", name: "Body Layer", freqRange: "80-250 Hz", description: "Warmth and tonal character" },
-      { id: "punch", name: "Punch Layer", freqRange: "1-4 kHz", description: "Cut-through transient" },
-      { id: "click", name: "Click Layer", freqRange: "4-10 kHz", description: "Attack definition" }
-    ],
-    snare: [
-      { id: "body", name: "Body", freqRange: "150-400 Hz", description: "Fundamental tone" },
-      { id: "crack", name: "Crack", freqRange: "2-5 kHz", description: "Snappy attack" },
-      { id: "tail", name: "Tail", freqRange: "5-12 kHz", description: "Wire rattle, air" }
-    ]
-  },
-  
-  // ====================
-  // PROCESSING CHAIN
-  // ====================
-  processingChain: [
-    { id: "eq", name: "EQ", icon: "🎚️", description: "Shape frequencies" },
-    { id: "comp", name: "Compression", icon: "🔨", description: "Control dynamics" },
-    { id: "transient", name: "Transient Shaper", icon: "📊", description: "Shape attack/decay" },
-    { id: "saturation", name: "Saturation", icon: "🌊", description: "Add harmonics" },
-    { id: "limiter", name: "Limiter", icon: "🔊", description: "Final loudness" }
+  instruments: [
+    { id: "tom1", label: "High Tom", color: "linear-gradient(135deg, #ff6b6b, #ee5a6f)", targetSteps: [12, 13], targetVelocities: { 12: 90, 13: 100 }, instructionText: "High tom on steps 13-14.", patternHint: { enabled: true } },
+    { id: "tom2", label: "Mid Tom", color: "linear-gradient(135deg, #f9ca24, #f0932b)", targetSteps: [14], targetVelocities: { 14: 110 }, instructionText: "Mid tom on step 15.", patternHint: { enabled: true } },
+    { id: "tom3", label: "Low Tom", color: "linear-gradient(135deg, #6c5ce7, #a29bfe)", targetSteps: [15], targetVelocities: { 15: 120 }, instructionText: "Low tom on step 16.", patternHint: { enabled: true } }
   ],
-  
-  // ====================
-  // MESSAGES
-  // ====================
-  messages: applyMessagePreset("drums", {
-    initial: "Build a layered kick with sub, body, and click!",
-    success: "🔊 That kick hits hard! Great layer balance and phase alignment.",
-    error: "Check your frequency splits—layers shouldn't overlap too much.",
-    alreadyCompleted: "You've mastered drum layering! Design your own signature sounds."
-  }),
-  
-  // ====================
-  // MODE FLAGS
-  // ====================
-  mode: {
-    sandbox: true,
-    showTargetHint: false,
-    enablePresets: true,
-    enableExport: true,
-    showVelocityLane: true,
-    showLayerStack: true
-  },
-  
-  // ====================
-  // LEARNING OBJECTIVES
-  // ====================
-  learningObjectives: [
-    "Layer multiple kick samples by frequency band",
-    "Create snare stacks with body, crack, and tail",
-    "Apply processing chains for cohesive drum sounds",
-    "Design signature drum sounds unique to your style"
-  ]
+  theory: { sections: [{ title: "Fill Construction Principles", content: "**Rule of thumb:** Fills should be 1-2 bars maximum. Longer fills lose impact. **Placement:** Last 2 beats of a bar (steps 13-16 in 16-step grid). **Velocity:** Build energy with crescendo. **Simplicity:** Simple fills often work better than complex ones." }] },
+  learningObjectives: ["Build effective tom roll fills", "Use velocity crescendos for drama", "Place fills strategically between sections", "Balance simplicity and complexity", "Create smooth transitions"],
+  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity")
 };
-
-if (typeof window !== 'undefined') {
-  window.LESSON_CONFIG = lessonConfig;
-}

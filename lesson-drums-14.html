@@ -54,6 +54,23 @@
           </div>
         </section>
 
+        <!-- TOOLS GUIDE BANNER -->
+        <div class="exercise-box" style="margin-top: var(--space-2xl); background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(95, 77, 255, 0.08) 100%); border: 1px solid rgba(0, 240, 255, 0.2);">
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <span style="font-size: 2rem;">🎛️</span>
+            <div style="flex: 1;">
+              <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);">
+                Need Help with Our Tools?
+              </h3>
+              <p style="margin: 0; color: var(--text-muted);">
+                Not sure how to use velocity controls, tempo, or swing?
+                <a href="learn-tools.html" style="color: var(--accent-primary); text-decoration: underline; font-weight: 600;">Visit our Tools Guide →</a>
+                for complete tutorials on all sequencer features.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- SEQUENCER SECTION -->
         <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
           <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
@@ -66,27 +83,33 @@
           <!-- CONTROLS -->
           <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Play</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Stop</span>
             </button>
             <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
               <span>Clear</span>
             </button>
             <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
               <span>Check Exercise</span>
             </button>
 
-            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                <span>Next Lesson &rarr;</span>
-              </button>
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
             </div>
-          </div>
 
           <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
             <span>Complete the exercise to unlock the next lesson.</span>

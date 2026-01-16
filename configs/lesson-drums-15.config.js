@@ -1,178 +1,132 @@
 /**
  * Music Producer Lab - Lesson Configuration
- * Lesson: Drums 15 - Percussion Layering & World Rhythms
+ * Lesson: Drums 15 - Advanced Hi-Hat Techniques
  * 
- * This lesson teaches percussion layering, clave patterns, and world rhythm
- * traditions from Latin, African, Brazilian, and other cultures.
+ * Master open/closed hi-hat patterns, rolls, crescendos, and pedal hi-hat techniques
+ * for dynamic, expressive grooves.
  */
 
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
-  // ====================
-  // LESSON METADATA
-  // ====================
   lessonKey: "mpl-drums-15-progress",
   lessonNumber: 15,
   lessonCategory: "Drums & Rhythm",
-  depthLevel: 8,
+  depthLevel: 7,
   
-  // ====================
-  // NAVIGATION
-  // ====================
   nextLessonUrl: "lesson-drums-16.html",
   prevLessonUrl: "lesson-drums-14.html",
   overviewUrl: "labs.html",
   
-  // ====================
-  // HERO SECTION
-  // ====================
   hero: {
-    eyebrow: buildHeroEyebrow({ lessonNumber: 15, categoryLabel: "Drums & Rhythm" }),
-    title: "Percussion Layering &",
-    titleHighlight: "World Rhythms",
-    subtitle: "Add <strong>percussion layers</strong> from global traditions. Master <strong>clave patterns</strong>, <strong>Afrobeat rhythms</strong>, and <strong>Latin percussion</strong>."
+    eyebrow: buildHeroEyebrow({ lessonSlug: "lesson-drums-15", categoryLabel: "Drums & Rhythm" }),
+    title: "Advanced Hi-Hat",
+    titleHighlight: "Techniques",
+    subtitle: "Transform your hi-hats from static timekeepers into <strong>dynamic, expressive elements</strong>. Learn <strong>open/closed hat patterns</strong> that breathe, <strong>hi-hat rolls</strong> for buildups, <strong>crescendos</strong> that add tension, and <strong>pedal hi-hat</strong> techniques for foot-controlled accents. These techniques separate amateur beats from professional grooves—the difference between robotic and human feel."
   },
   
-  // ====================
-  // SEQUENCER CONFIG
-  // ====================
   sequencer: {
-    tempo: 100,
+    tempo: 110,
     stepCount: 16,
     swing: 0,
     showBeatMarkers: true,
     showStepNumbers: true,
     autoSaveState: true,
-    enableVelocity: true
+    enableVelocity: true,
+    requiredTempo: 110
   },
   
-  // ====================
-  // EXERCISE
-  // ====================
   exercise: {
-    title: "Layer a Latin Groove",
-    description: "Build a layered percussion groove using clave, congas, shaker, and cowbell.",
-    tip: "The clave is your guide—every other part should respect its pattern.",
+    title: "Build Open/Closed Hi-Hat Pattern",
+    description: "Create a groove with <strong>closed hi-hats on 8th notes</strong> and <strong>open hi-hats on accents</strong>. The open hats ring longer, creating rhythmic emphasis and dynamic contrast. This technique is essential for house, techno, funk, and rock grooves.",
+    tip: "Open hats should be louder (velocity 110-127) than closed hats (velocity 70-90) to cut through the mix. The contrast is what creates the groove!",
     steps: [
-      { text: "<strong>Clave:</strong> 3-2 son clave (steps 1, 4, 7, 12, 16)." },
-      { text: "<strong>Congas:</strong> Tumbao pattern—slaps on 2 and 4." },
-      { text: "<strong>Shaker:</strong> 16th notes for pulse and movement." },
-      { text: "<strong>Cowbell:</strong> Offbeat hits (2, 6, 10, 14)." }
+      { text: "<strong>Set tempo to 110 BPM</strong>." },
+      { text: "<strong>Kick:</strong> Steps 1, 5, 9, 13 (four on the floor)." },
+      { text: "<strong>Snare:</strong> Steps 5, 13 (backbeat)." },
+      { text: "<strong>Closed Hi-Hat:</strong> All 16 steps (16th notes), velocity 75." },
+      { text: "<strong>Open Hi-Hat:</strong> Steps 4, 12 (before snares), velocity 115." },
+      { text: "<strong>Listen:</strong> The open hats create accents that drive the groove forward." }
     ]
   },
   
-  // ====================
-  // INSTRUMENTS
-  // ====================
   instruments: [
     {
-      id: "clave",
-      label: "Clave",
-      color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)",
-      targetSteps: [0, 3, 6, 11, 15],
-      instructionText: "The 3-2 son clave pattern.",
-      patternHint: { enabled: true, note: "3-2: steps 1,4,7 | 12,16" }
-    },
-    {
-      id: "congas",
-      label: "Congas",
+      id: "kick",
+      label: "Kick",
       color: "linear-gradient(135deg, #e17055, #d63031)",
-      targetSteps: [3, 7, 11, 15],
-      instructionText: "Tumbao—slaps and open tones.",
-      patternHint: { enabled: true, note: "Slaps on backbeats" }
+      targetSteps: [0, 4, 8, 12],
+      instructionText: "Four on the floor kick pattern.",
+      patternHint: { enabled: true, note: "Kick: 1, 5, 9, 13" }
     },
     {
-      id: "shaker",
-      label: "Shaker",
+      id: "snare",
+      label: "Snare",
+      color: "linear-gradient(135deg, #ffeaa7, #fdcb6e)",
+      targetSteps: [4, 12],
+      instructionText: "Backbeat on 2 and 4.",
+      patternHint: { enabled: true, note: "Snare: 5, 13" }
+    },
+    {
+      id: "hihat",
+      label: "Closed HH",
       color: "linear-gradient(135deg, #00cec9, #0984e3)",
-      targetSteps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      instructionText: "Continuous 16th note pulse.",
-      patternHint: { enabled: true, note: "All 16th notes" }
+      targetSteps: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      targetVelocities: { 0:75, 1:75, 2:75, 3:75, 4:75, 5:75, 6:75, 7:75, 8:75, 9:75, 10:75, 11:75, 12:75, 13:75, 14:75, 15:75 },
+      instructionText: "16th note closed hi-hats, velocity 75.",
+      patternHint: { enabled: true, note: "All 16 steps, vel 75" }
     },
     {
-      id: "cowbell",
-      label: "Cowbell",
-      color: "linear-gradient(135deg, #fdcb6e, #f39c12)",
-      targetSteps: [1, 5, 9, 13],
-      instructionText: "Offbeat cowbell pattern.",
-      patternHint: { enabled: true, note: "Offbeats: &'s" }
+      id: "openhat",
+      label: "Open HH",
+      color: "linear-gradient(135deg, #a29bfe, #6c5ce7)",
+      targetSteps: [3, 11],
+      targetVelocities: { 3: 115, 11: 115 },
+      instructionText: "Open hi-hats on steps 4 and 12, velocity 115.",
+      patternHint: { enabled: true, note: "Steps 4, 12, vel 115" }
     }
   ],
   
-  // ====================
-  // CLAVE PATTERNS
-  // ====================
-  clavePatterns: [
-    {
-      id: "son-32",
-      name: "3-2 Son Clave",
-      pattern: [0, 3, 6, 11, 15],
-      description: "Most common. 3 hits bar 1, 2 hits bar 2."
-    },
-    {
-      id: "son-23",
-      name: "2-3 Son Clave",
-      pattern: [3, 7, 8, 11, 14],
-      description: "Reversed—starts with 2 notes."
-    },
-    {
-      id: "rumba-32",
-      name: "3-2 Rumba Clave",
-      pattern: [0, 3, 7, 11, 15],
-      description: "3rd note moved late. More syncopated."
-    },
-    {
-      id: "bossa",
-      name: "Bossa Nova Clave",
-      pattern: [0, 3, 6, 10, 12],
-      description: "Brazilian variation for bossa nova."
-    }
-  ],
-  
-  // ====================
-  // WORLD RHYTHMS
-  // ====================
-  worldRhythms: [
-    { id: "afro-cuban", name: "Afro-Cuban", instruments: ["Clave", "Congas", "Bongos", "Timbales"] },
-    { id: "brazilian", name: "Brazilian", instruments: ["Surdo", "Pandeiro", "Tamborim", "Agogô"] },
-    { id: "west-african", name: "West African", instruments: ["Djembe", "Talking Drum", "Shekere"] },
-    { id: "caribbean", name: "Caribbean", instruments: ["Steel Drum", "Nyabinghi Drums", "Shaker"] }
-  ],
-  
-  // ====================
-  // MESSAGES
-  // ====================
-  messages: applyMessagePreset("drums", {
-    initial: "Build a Latin groove with clave, congas, shaker, and cowbell!",
-    success: "🌍 Beautiful layering! The percussion parts interlock perfectly with the clave.",
-    error: "Check your clave placement—it's the foundation for everything else.",
-    alreadyCompleted: "You've mastered world percussion! Try exploring other regional styles."
-  }),
-  
-  // ====================
-  // MODE FLAGS
-  // ====================
-  mode: {
-    sandbox: false,
-    showTargetHint: true,
-    enablePresets: true,
-    enableExport: false,
-    showVelocityLane: true,
-    showClaveGuide: true
+  theory: {
+    sections: [
+      {
+        title: "Hi-Hat Techniques Explained",
+        content: `
+**Open vs. Closed Hi-Hats:**
+- **Closed:** Short, tight sound (chick). Acts as timekeeper, usually quieter.
+- **Open:** Ringing, sustained sound (tsss). Creates accents and emphasis.
+- **Technique:** In real drumming, drummers use foot pressure on the pedal to control openness.
+
+**Common Patterns:**
+1. **House/Techno:** 16th note closed hats with open hats on off-beats
+2. **Funk:** Syncopated open hats with tight closed hat groove
+3. **Rock:** 8th note closed hats with open hat crashes on backbeats
+
+**Hi-Hat Rolls:**
+- Fast 32nd or 64th notes building in velocity
+- Used in transitions, buildups, drops
+- Creates tension before breakdowns
+
+**Crescendo Technique:**
+- Gradually increase velocity from 60 → 127 over 8-16 steps
+- Creates building energy without changing the pattern
+- Essential for electronic music buildups
+        `
+      }
+    ]
   },
   
-  // ====================
-  // LEARNING OBJECTIVES
-  // ====================
   learningObjectives: [
-    "Layer congas, bongos, and shakers effectively",
-    "Understand and apply clave patterns",
-    "Program Afrobeat and world rhythms",
-    "Create Latin percussion grooves with proper interlocking"
-  ]
+    "Program realistic open/closed hi-hat patterns with proper velocity",
+    "Create hi-hat rolls and crescendos for transitions",
+    "Use pedal hi-hat techniques for foot-controlled accents",
+    "Understand when to use open vs closed hi-hats for maximum groove impact",
+    "Apply advanced hi-hat techniques across genres (house, funk, rock)"
+  ],
+  
+  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
+  messagePresets: {
+    success: "🎉 Perfect! Your hi-hat technique is professional-level. Open hats add the accents that make grooves breathe!",
+    incorrect: "Not quite. Check your hi-hat velocities and placement. Open hats should be louder than closed hats."
+  }
 };
-
-if (typeof window !== 'undefined') {
-  window.LESSON_CONFIG = lessonConfig;
-}

@@ -1,124 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title id="mpl-page-title">Lesson 20 | Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
-    <meta name="theme-color" content="#030508">
-    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div id="navbar-placeholder"></div>
-
-    <main class="main-content container">
-
-        <!-- HERO SECTION (populated by JS) -->
-        <section class="hero" id="mpl-hero" aria-label="Lesson hero">
-          <div class="hero-copy">
-            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
-            <h1 class="hero-title" id="mpl-hero-title">
-              <span id="mpl-hero-title-main">Lesson</span>
-              <span id="mpl-hero-title-highlight"></span>
-            </h1>
-            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
-          </div>
-
-          <!-- Hero visual section -->
-        </section>
-
-        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
-        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
-          <div class="exercise-box">
-            <div class="section-eyebrow">Exercise</div>
-            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
-            <p class="section-body" id="mpl-exercise-description"></p>
-
-            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
-              <h3>What to do:</h3>
-              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
-            </div>
-
-            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
-              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
-            </div>
-
-            <!-- PATTERN HINT (populated by JS) -->
-            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
-              <div class="pattern-hint-label">Target Pattern:</div>
-              <div id="mpl-pattern-hint-grid"></div>
-              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SEQUENCER SECTION -->
-        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
-          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
-          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
-
-          <div class="sequencer" id="mpl-sequencer-collection">
-            <!-- Sequencer will be created by JS -->
-          </div>
-
-          <!-- CONTROLS -->
-          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
-            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              <span>Play</span>
-            </button>
-            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-              <span>Stop</span>
-            </button>
-            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-              <span>Clear</span>
-            </button>
-            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
-              <span>Check Exercise</span>
-            </button>
-
-            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
-              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
-                <span>Next Lesson &rarr;</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
-            <span>Complete the exercise to unlock the next lesson.</span>
-          </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
-        <nav class="footer-nav">
-          <a href="labs.html">Labs</a>
-          <a href="index.html">Home</a>
-        </nav>
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 20 · Drums & Rhythm | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 20 from Music Producer Lab: advanced drums & rhythm production techniques." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero">
+      <div class="hero-copy">
+        <div class="hero-copy-eyebrow">Drums & Rhythm · Lesson 20</div>
+        <h1 class="hero-title"><span id="mpl-hero-title">Loading...</span><span id="mpl-hero-title-highlight"></span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
       </div>
-    </footer>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Advanced drums</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 20</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Advanced</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20-25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
 
-    <!-- MODULAR LESSON ENGINE -->
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
 
-<script type="module">
-      // Import lesson config and engine
-      import { lessonConfig } from './configs/lesson-drums-20.config.js';
-      import { initLessonFromConfig } from './lesson-engine.js';
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Drum Sequencer</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Pattern</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play-all" class="btn btn-primary" style="min-width:100px;">▶ Play</button>
+        <button id="mpl-seq-stop-all" class="btn btn-secondary" style="min-width:100px;">⏹ Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;">🗑 Clear</button>
+        <button id="mpl-seq-check" class="btn btn-primary" style="min-width:140px;">✓ Check Pattern</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click steps to activate them.</span></div>
+    </section>
 
-      // Initialize lesson from config
-      initLessonFromConfig(lessonConfig);
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon">🎉</div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      // Set year in footer
-      document.getElementById("mpl-year").textContent = new Date().getFullYear();
-    </script>
-    <script src="navbar.js"></script>
-  </body>
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-drums-20.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="navbar.js"></script>
+</body>
 </html>
