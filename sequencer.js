@@ -602,7 +602,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       `;
 
       banner.innerHTML = `
-        <div style="flex-shrink: 0; font-size: 1.5rem;">🎵</div>
+        <div style="flex-shrink: 0; font-size: 1.5rem;"><img src="images/notamusicale.png" alt="🎵" style="width: 1.5em; vertical-align: middle;"></div>
         <div style="flex: 1;">
           <div style="font-weight: 700; color: var(--accent-green, #00ff9d); margin-bottom: 2px;">
             ${samplesLoaded} Custom Samples Loaded
