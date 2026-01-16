@@ -1610,6 +1610,51 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
     swing = e.detail.swing;
   });
 
+  // Listen for pattern load requests (from Load Demo Pattern buttons)
+  window.addEventListener('mpl-load-pattern', (e) => {
+    const patternData = e.detail.pattern;
+
+    // First, clear all current steps
+    instruments.forEach(inst => {
+      for (let i = 0; i < stepCount; i++) {
+        state[inst.id][i] = false;
+      }
+    });
+
+    // Load the new pattern
+    Object.keys(patternData).forEach(instrumentId => {
+      const steps = patternData[instrumentId];
+      const instrument = instruments.find(inst => inst.id === instrumentId);
+
+      if (instrument && steps) {
+        steps.forEach(stepIndex => {
+          if (stepIndex >= 0 && stepIndex < stepCount) {
+            state[instrument.id][stepIndex] = true;
+          }
+        });
+      }
+    });
+
+    // Update UI to reflect the loaded pattern
+    document.querySelectorAll('.sequencer-step').forEach((el) => {
+      const instId = el.dataset.instrument;
+      const stepIdx = parseInt(el.dataset.step);
+      const isActive = state[instId] && state[instId][stepIdx];
+      const beatStart = stepIdx % (stepCount / 4) === 0;
+
+      if (isActive) {
+        el.classList.add('active');
+        el.style.background = 'rgba(0, 240, 255, 0.4)';
+        el.style.borderColor = 'rgba(0, 240, 255, 0.6)';
+      } else {
+        el.classList.remove('active');
+        el.style.background = beatStart ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255,255,255,0.03)';
+        el.style.borderColor = beatStart ? 'rgba(0, 240, 255, 0.2)' : 'rgba(255,255,255,0.1)';
+      }
+    });
+  });
+
+
   // Humanization control event listeners
   if (enableHumanization) {
     const humanizeEnableCheckbox = document.getElementById('mpl-humanize-enable');
