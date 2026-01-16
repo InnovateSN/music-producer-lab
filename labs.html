@@ -584,7 +584,7 @@
       cta.textContent = isComingSoon ? 'Coming Soon' : 'Start Lab';
       if (!isComingSoon && lesson.pagePath) {
         cta.href = lesson.pagePath;
-        cta.innerHTML += '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        cta.innerHTML += '<img src="images/arrowright.png" alt="→" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-left: 8px;">';
       }
       article.appendChild(cta);
 
@@ -662,9 +662,7 @@
             </div>
             <a href="drum-playground.html" class="playground-highlight-cta">
               <span>Open Drum Playground</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
+              <img src="images/arrowright.png" alt="→" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 8px;">
             </a>
           `;
           container.appendChild(playgroundHighlight);
@@ -708,9 +706,7 @@
             </div>
             <a href="harmony-playground.html" class="playground-highlight-cta">
               <span>Open Harmony Playground</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
+              <img src="images/arrowright.png" alt="→" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 8px;">
             </a>
           `;
           container.appendChild(playgroundHighlight);
