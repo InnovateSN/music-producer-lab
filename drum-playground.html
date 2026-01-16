@@ -271,7 +271,7 @@
 
       <!-- PLAYGROUND HEADER -->
       <div class="playground-header">
-        <h1 class="playground-title">🥁 Drum Playground</h1>
+        <h1 class="playground-title"><img src="images/drum.png" alt="Drum" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Drum Playground</h1>
         <p class="playground-subtitle">
           Create custom drum loops, choose your samples, and export your beats as WAV files
         </p>
@@ -280,14 +280,14 @@
       <!-- WELCOME GUIDE -->
       <section style="margin-bottom: var(--space-2xl); padding: var(--space-xl); background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px;">
         <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: var(--space-md); color: var(--text-primary);">
-          👋 Welcome to the Drum Playground!
+          <img src="images/love.png" alt="Welcome" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Welcome to the Drum Playground!
         </h2>
         <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-md);">
           This is your creative space to build professional drum loops from scratch. Whether you're a beginner learning rhythm patterns or a producer crafting your next beat, you have all the tools you need right here.
         </p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); margin-top: var(--space-lg);">
           <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">🎛️</div>
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/gear.png" alt="Controls" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
             <strong style="color: var(--text-primary);">Choose Your Sounds</strong>
             <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
               Pick from multiple samples for each instrument
@@ -301,7 +301,7 @@
             </p>
           </div>
           <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">🎚️</div>
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/gear.png" alt="Mixer" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
             <strong style="color: var(--text-primary);">Mix & Shape</strong>
             <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
               Adjust volume, pan, swing, and humanization
@@ -319,7 +319,7 @@
 
       <!-- SAMPLE PICKER SECTION -->
       <section style="margin-bottom: var(--space-2xl);">
-        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎛️ Sample Selection</h2>
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/gear.png" alt="Controls" style="width: 1.5em; height: 1.5em; vertical-align: middle;"> Sample Selection</h2>
         <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
           <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
             <strong style="color: #00d4ff;">How it works:</strong> Each instrument has multiple sample options. Use the dropdown menus below to choose the sound that fits your style. Try different combinations to create your unique drum kit!
@@ -532,7 +532,7 @@
 
       <!-- MIXER SECTION -->
       <section style="margin-bottom: var(--space-2xl);">
-        <h2 class="section-title" style="margin-bottom: var(--space-md);">🎚️ Mixer</h2>
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/gear.png" alt="Mixer" style="width: 1.5em; height: 1.5em; vertical-align: middle;"> Mixer</h2>
         <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
           <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
             <strong style="color: #00d4ff;">Mixing controls:</strong>
@@ -558,7 +558,7 @@
 
         <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: var(--space-md); margin-bottom: var(--space-lg); text-align: left;">
           <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
-            <strong style="color: #10b981;">📥 How to export:</strong>
+            <strong style="color: #10b981;"><img src="images/mpldownload.png" alt="Download" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> How to export:</strong>
           </p>
           <ol style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
             <li>Create your drum pattern in the sequencer above</li>
@@ -1005,7 +1005,7 @@
           container.appendChild(row);
         });
 
-        console.log(`✅ Sequencer created: ${container.querySelectorAll('.sequencer-step').length} total cells`);
+        console.log(`<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Sequencer created: ${container.querySelectorAll('.sequencer-step').length} total cells`);
       }
 
       // ==========================================
@@ -1481,7 +1481,7 @@
         try {
           exportBtn.disabled = true;
           exportStatus.style.display = 'block';
-          exportStatus.textContent = '🎵 Rendering your loop...';
+          exportStatus.textContent = '<img src="images/notamusicale.png" alt="Music" style="width: 1em; height: 1em; vertical-align: middle;"> Rendering your loop...';
 
           // Import necessary functions
           const { renderPatternToWav } = await import('./wav-export.js');
@@ -1498,7 +1498,7 @@
 
           URL.revokeObjectURL(url);
 
-          exportStatus.textContent = '✅ Loop exported successfully!';
+          exportStatus.textContent = '<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Loop exported successfully!';
           setTimeout(() => {
             exportStatus.style.display = 'none';
           }, 3000);
@@ -1570,7 +1570,7 @@
 
           URL.revokeObjectURL(url);
 
-          exportStatus.textContent = '✅ MIDI file exported successfully!';
+          exportStatus.textContent = '<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> MIDI file exported successfully!';
           setTimeout(() => {
             exportStatus.style.display = 'none';
           }, 3000);
@@ -1833,9 +1833,9 @@
       // Wait for sample library to load, then initialize everything
       async function initialize() {
         try {
-          console.log('⏳ Waiting for sample library...');
+          console.log('<img src="images/orologio.png" alt="Loading" style="width: 1em; height: 1em; vertical-align: middle;"> Waiting for sample library...');
           await waitForSampleLibrary();
-          console.log('✅ Sample library loaded!');
+          console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Sample library loaded!');
 
           // Initialize mixer state for all instruments (from sequencer.js)
           initMixer(instruments);
@@ -1958,7 +1958,7 @@
             }
           }
 
-          console.log('✅ Drum Playground initialized!');
+          console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Drum Playground initialized!');
         } catch (error) {
           console.error('❌ Initialization failed:', error);
 
