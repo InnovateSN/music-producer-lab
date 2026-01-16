@@ -91,7 +91,7 @@ export const lessonConfig = {
     {
       type: "silence",
       name: "Silence / Gaps",
-      icon: "🔇",
+      icon: '<img src="images/speakeroff.png" alt="🔇" style="width: 1.5em; height: 1.5em;">',
       color: "gray",
       description: "Brief silence before impact. Even 1/4 beat of silence before a drop makes it hit 10x harder.",
       uses: ["Before big drops", "Dramatic effect", "Reset listener"],
