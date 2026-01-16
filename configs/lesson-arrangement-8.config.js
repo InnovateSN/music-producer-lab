@@ -57,7 +57,7 @@ export const lessonConfig = {
   dynamicTechniques: [
     {
       name: "Element Subtraction",
-      icon: '<img src="images/speakeroff.png" alt="🔇" style="width: 1.5em; height: 1.5em;">',
+      icon: '<img src="images/speakeroff.png" alt="🔇" style="width: 1.5em;">',
       description: "Remove instruments instead of adding them. Drop the drums, bass, or pads to create instant contrast.",
       examples: ["Verse after chorus", "Post-chorus breakdown", "Bridge section"],
       energyChange: "Drop 30-50%"

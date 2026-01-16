@@ -709,7 +709,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       </div>
       <div style="flex: 1;">
         <div style="font-weight: 700; color: var(--accent-cyan, #00f0ff); margin-bottom: 4px; font-size: 0.9rem;">
-          <img src="images/idea.png" alt="💡" style="width: 1.2em; height: 1.2em; vertical-align: middle;"> Velocity Control Active
+          <img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Velocity Control Active
         </div>
         <div style="color: var(--text-muted, #a0aec0); line-height: 1.4;">
           <strong>Click</strong> to toggle on/off •

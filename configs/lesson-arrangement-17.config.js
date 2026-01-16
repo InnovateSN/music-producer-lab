@@ -70,7 +70,7 @@ export const lessonConfig = {
     },
     {
       name: "Volume Swell",
-      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em; height: 1.5em;">',
+      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em;">',
       description: "Fade out current section, fade in next section",
       timing: "Last 1-2 bars",
       impact: "Low - smooth transition"

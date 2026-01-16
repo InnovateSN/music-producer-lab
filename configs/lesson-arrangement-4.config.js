@@ -40,7 +40,7 @@ export const lessonConfig = {
   elements: [
     {
       name: "Foundation",
-      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em; height: 1.5em;">',
+      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em;">',
       color: "#e17055",
       description: "The low-end elements that ground your song. Usually bass and drums working together.",
       examples: ["Kick + Bass", "808", "Drums + Synth Bass", "Upright Bass + Drums"],

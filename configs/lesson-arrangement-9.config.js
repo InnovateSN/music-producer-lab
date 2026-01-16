@@ -58,7 +58,7 @@ export const lessonConfig = {
     {
       name: "Sub Bass",
       range: "20-60Hz",
-      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em; height: 1.5em;">',
+      icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em;">',
       color: "#e74c3c",
       allowedElements: 1,
       typical: ["808", "Sub bass", "Kick fundamental"],
