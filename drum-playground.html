@@ -746,7 +746,7 @@
       function initSequencer() {
         const container = document.getElementById('playground-sequencer');
         if (!container) {
-          console.error('❌ Sequencer container not found!');
+          console.error('✗ Sequencer container not found!');
           return;
         }
 
@@ -1529,7 +1529,7 @@
 
         } catch (error) {
           console.error('Export error:', error);
-          exportStatus.textContent = '❌ Export failed: ' + error.message;
+          exportStatus.textContent = '✗ Export failed: ' + error.message;
         } finally {
           exportBtn.disabled = false;
         }
@@ -1583,7 +1583,7 @@
 
         } catch (error) {
           console.error('MIDI export error:', error);
-          exportStatus.textContent = '❌ MIDI export failed: ' + error.message;
+          exportStatus.textContent = '✗ MIDI export failed: ' + error.message;
         } finally {
           exportBtn.disabled = false;
         }
@@ -1960,7 +1960,7 @@
 
           console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Drum Playground initialized!');
         } catch (error) {
-          console.error('❌ Initialization failed:', error);
+          console.error('✗ Initialization failed:', error);
 
           // Show error message to user
           const container = document.querySelector('.main-content');
