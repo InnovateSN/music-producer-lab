@@ -115,8 +115,35 @@
 <body>
   <div class="noise-overlay" aria-hidden="true"></div>
   
-  <!-- Navigation (loaded by navbar.js) -->
-  <div id="navbar-placeholder"></div>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="index.html" class="navbar-link">Home</a></li>
+        <li><a href="learn-tools.html" class="navbar-link">Tools</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <!-- Downloads page hidden until content is ready
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        -->
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+        <a href="labs.html" class="btn btn-primary btn-sm">Start Learning</a>
+      </div>
+    </div>
+  </nav>
   
   <!-- Hero -->
   <section class="about-hero">
