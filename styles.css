@@ -158,6 +158,10 @@
   text-shadow: none;
 }
 
+[data-theme="light"] .navbar-nav {
+  background: rgba(250, 251, 252, 0.98);
+}
+
 /* --------------------------------------------------------------------------
    RESET & BASE
    -------------------------------------------------------------------------- */
@@ -513,7 +517,10 @@ p {
     justify-content: flex-start;
     padding: var(--space-xl);
     gap: var(--space-lg);
-    background: var(--bg-primary);
+    background: rgba(5, 8, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: inset 1px 0 0 var(--border-subtle);
     transform: translateX(-100%);
     transition: transform var(--transition-base);
   }
