@@ -2099,7 +2099,7 @@ input[type="reset"] {
 
 .sections-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-xl);
   margin-top: var(--space-2xl);
 }
@@ -2237,17 +2237,17 @@ input[type="reset"] {
 
 @media (max-width: 480px) {
   .sequencer-step {
-    min-width: 28px;
-    height: 36px;
+    min-width: 24px;
+    height: 44px; /* iOS minimum touch target */
   }
-  
+
   .sequencer-label {
     width: 40px !important;
   }
-  
+
   .sequencer-step-number {
     font-size: 0.6rem !important;
-    min-width: 28px !important;
+    min-width: 24px !important;
   }
 }
 
@@ -3240,6 +3240,99 @@ input[type="range"].vertical-slider:active {
   border-color: #f59e0b;
   color: white;
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Mixer Mobile Responsive */
+@media (max-width: 768px) {
+  .channel-strip {
+    min-width: 95px;
+    max-width: 95px;
+  }
+
+  .channel-meter {
+    height: 150px;
+  }
+
+  .fader-track {
+    height: 120px;
+  }
+
+  input[type="range"].vertical-slider {
+    height: 120px;
+  }
+
+  .channel-name {
+    font-size: 0.65rem;
+    padding: 6px;
+  }
+
+  .pan-knob {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mixer-channels {
+    gap: 8px;
+    padding: var(--space-md);
+  }
+
+  .channel-strip {
+    min-width: 80px;
+    max-width: 80px;
+  }
+
+  .channel-meter {
+    height: 120px;
+    margin: 6px;
+  }
+
+  .fader-track {
+    height: 100px;
+    width: 8px;
+  }
+
+  input[type="range"].vertical-slider {
+    height: 100px;
+    width: 32px;
+  }
+
+  .channel-name {
+    font-size: 0.6rem;
+    padding: 4px;
+  }
+
+  .fader-value {
+    font-size: 0.65rem;
+    min-width: 40px;
+    padding: 1px 4px;
+  }
+
+  .pan-knob {
+    width: 35px;
+    height: 35px;
+  }
+
+  .pan-indicator {
+    width: 2px;
+    height: 14px;
+  }
+
+  .pan-label {
+    font-size: 0.6rem;
+  }
+
+  .channel-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+
+  .channel-controls {
+    gap: 4px;
+    padding: 6px;
+  }
 }
 
 /* Mix Status */

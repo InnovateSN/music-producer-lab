@@ -120,7 +120,7 @@
       <div class="control-group">
         <label>Tempo</label>
         <div style="display: flex; align-items: center; gap: var(--space-sm);">
-          <input type="range" id="mpl-tempo-slider" min="60" max="200" value="120" style="width: 120px;" />
+          <input type="range" id="mpl-tempo-slider" min="60" max="200" value="120" style="width: 100%; max-width: 120px;" />
           <span class="tempo-display" id="mpl-tempo-display">120 BPM</span>
         </div>
       </div>
@@ -159,10 +159,10 @@
 
     <!-- Main Controls -->
     <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap;">
-      <button id="mpl-seq-play" class="btn btn-primary" style="min-width: 120px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
-      <button id="mpl-seq-stop" class="btn btn-secondary" style="min-width: 120px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
-      <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width: 120px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
-      <button id="mpl-export-wav" class="btn btn-primary" style="min-width: 120px; background: var(--accent-purple);"><img src="images/upload.png" alt="Download" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Export WAV</button>
+      <button id="mpl-seq-play" class="btn btn-primary" style="flex: 1; min-width: 100px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+      <button id="mpl-seq-stop" class="btn btn-secondary" style="flex: 1; min-width: 100px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+      <button id="mpl-seq-clear-all" class="btn btn-secondary" style="flex: 1; min-width: 100px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+      <button id="mpl-export-wav" class="btn btn-primary" style="flex: 1; min-width: 100px; background: var(--accent-purple);"><img src="images/upload.png" alt="Download" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Export WAV</button>
     </div>
 
     <!-- Piano Roll Sequencer -->
