@@ -1310,11 +1310,11 @@ input[type="reset"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
+  background: transparent;
   border-radius: var(--radius-lg);
   font-size: 1.75rem;
   margin-bottom: var(--space-lg);
-  box-shadow: var(--glow-cyan);
+  box-shadow: none;
 }
 
 .feature-content {
