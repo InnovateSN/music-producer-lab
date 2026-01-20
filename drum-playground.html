@@ -611,7 +611,7 @@
             </ul>
           </div>
           <div>
-            <h3 style="color: #f59e0b; font-size: 1rem; margin-bottom: var(--space-sm);">🔥 Advanced Techniques</h3>
+            <h3 style="color: #f59e0b; font-size: 1rem; margin-bottom: var(--space-sm);">Advanced Techniques</h3>
             <ul style="color: var(--text-secondary); line-height: 1.8; font-size: 0.875rem; margin: 0; padding-left: 20px;">
               <li>Add 15-20% swing for a shuffled, groovy feel</li>
               <li>Pan hi-hats left and right for width</li>
@@ -746,7 +746,7 @@
       function initSequencer() {
         const container = document.getElementById('playground-sequencer');
         if (!container) {
-          console.error('✗ Sequencer container not found!');
+          console.error('Error: Sequencer container not found!');
           return;
         }
 
@@ -764,7 +764,7 @@
           'crash': '#ec4899'
         };
 
-        console.log(`🎹 Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
+        console.log(`Piano: Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
 
         // Add step numbers header
         const headerRow = document.createElement('div');
@@ -1529,7 +1529,7 @@
 
         } catch (error) {
           console.error('Export error:', error);
-          exportStatus.textContent = '✗ Export failed: ' + error.message;
+          exportStatus.textContent = 'Error: Export failed: ' + error.message;
         } finally {
           exportBtn.disabled = false;
         }
@@ -1546,7 +1546,7 @@
         try {
           exportBtn.disabled = true;
           exportStatus.style.display = 'block';
-          exportStatus.textContent = '🎹 Rendering MIDI file...';
+          exportStatus.textContent = 'Piano: Rendering MIDI file...';
 
           // Import MIDI export module
           const { renderPatternToMIDI } = await import('./midi-export.js');
@@ -1583,7 +1583,7 @@
 
         } catch (error) {
           console.error('MIDI export error:', error);
-          exportStatus.textContent = '✗ MIDI export failed: ' + error.message;
+          exportStatus.textContent = 'Error: MIDI export failed: ' + error.message;
         } finally {
           exportBtn.disabled = false;
         }
@@ -1960,7 +1960,7 @@
 
           console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Drum Playground initialized!');
         } catch (error) {
-          console.error('✗ Initialization failed:', error);
+          console.error('Error: Initialization failed:', error);
 
           // Show error message to user
           const container = document.querySelector('.main-content');
@@ -1990,5 +1990,6 @@
       document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
     <script src="navbar.js"></script>
-  </body>
+  <script src="js/theme-switcher.js"></script>
+</body>
 </html>

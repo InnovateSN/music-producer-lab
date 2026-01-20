@@ -428,7 +428,7 @@
             </div>
             <span class="chain-arrow">→</span>
             <div class="chain-block" data-plugin="deesser">
-              <div class="chain-block-icon">✨</div>
+              <div class="chain-block-icon"><img src="images/fulmine.png" alt="Effect" style="width: 24px; height: 24px;"></div>
               <div class="chain-block-name">De-esser</div>
               <div class="chain-block-number">Step 3</div>
             </div>
@@ -540,7 +540,7 @@
         },
         'deesser': {
           name: 'De-esser',
-          icon: '✨',
+          icon: 'effect',
           description: 'Tame harsh sibilance ("S", "T", "SH" sounds) that gets exaggerated by compression. It\'s a frequency-specific compressor.',
           params: [
             { name: 'Frequency', value: '4-8 kHz', desc: 'Where sibilance lives' },
@@ -669,5 +669,6 @@
     </footer>
     <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
     <script src="navbar.js"></script>
-  </body>
+  <script src="js/theme-switcher.js"></script>
+</body>
 </html>
