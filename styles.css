@@ -1683,6 +1683,210 @@ input[type="reset"] {
   box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
 }
 
+/* --------------------------------------------------------------------------
+   THEME PICKER
+   -------------------------------------------------------------------------- */
+.theme-picker {
+  position: relative;
+  display: inline-block;
+}
+
+.theme-picker-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.theme-picker-trigger:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-medium);
+  transform: translateY(-1px);
+}
+
+.theme-picker-trigger:focus {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.theme-picker-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.theme-picker-label {
+  font-weight: 500;
+}
+
+.theme-picker-chevron {
+  opacity: 0.7;
+  transition: transform var(--transition-base);
+}
+
+.theme-picker-trigger[aria-expanded="true"] .theme-picker-chevron {
+  transform: rotate(180deg);
+}
+
+.theme-picker-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 340px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-md);
+  display: none;
+  z-index: var(--z-modal);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-picker-dropdown.open {
+  display: block;
+}
+
+.theme-picker-header {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.theme-picker-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.theme-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  width: 100%;
+}
+
+.theme-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateX(4px);
+  background: var(--bg-tertiary);
+}
+
+.theme-card:focus {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.theme-card.active {
+  border-color: var(--accent-green);
+  background: var(--bg-tertiary);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+
+.theme-card-preview {
+  display: flex;
+  gap: 6px;
+  margin-bottom: var(--space-sm);
+}
+
+.theme-preview-color {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-card-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.theme-card-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.theme-card-checkmark {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 24px;
+  height: 24px;
+  background: var(--accent-green);
+  color: var(--bg-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .theme-picker-dropdown {
+    width: 300px;
+    max-width: calc(100vw - 32px);
+  }
+
+  .theme-picker-label {
+    display: none; /* Hide label text on mobile, show only icon */
+  }
+
+  .theme-preview-color {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* iOS Safari: Ensure touch targets are 44x44px minimum */
+@media (max-width: 768px) {
+  .theme-picker-trigger {
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--space-sm);
+  }
+
+  .theme-card {
+    min-height: 88px; /* Ensures adequate touch target with padding */
+  }
+}
+
 
 /* --------------------------------------------------------------------------
    PROGRESS BADGE

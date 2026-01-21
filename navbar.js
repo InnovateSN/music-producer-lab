@@ -48,12 +48,22 @@
               <span class="progress-badge" id="progress-badge">0/90</span>
             </a>
 
-            <!-- Theme Toggle -->
-            <div class="theme-toggle-wrapper">
-              <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                <span class="theme-toggle-icon"></span>
+            <!-- Theme Picker -->
+            <div class="theme-picker">
+              <button class="theme-picker-trigger" id="themePickerTrigger" aria-haspopup="true" aria-expanded="false" aria-label="Choose theme">
+                <span class="theme-picker-icon">🎨</span>
+                <span class="theme-picker-label" id="themePickerLabel">Dark Cyberpunk</span>
+                <svg class="theme-picker-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
               </button>
-              <span class="theme-toggle-label" id="themeLabel">Dark</span>
+
+              <div class="theme-picker-dropdown" id="themePickerDropdown" role="menu" aria-labelledby="themePickerTrigger">
+                <div class="theme-picker-header">Choose Theme</div>
+                <div class="theme-picker-grid" id="themePickerGrid">
+                  <!-- Theme cards populated by JavaScript -->
+                </div>
+              </div>
             </div>
 
             <!-- Auth Buttons (shown when not signed in) -->
@@ -162,35 +172,143 @@
       });
     }
 
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const themeLabel = document.getElementById('themeLabel');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    // Theme Picker
+    initThemePicker();
+  }
 
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      if (themeLabel) {
-        themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+  // Initialize theme picker
+  function initThemePicker() {
+    const trigger = document.getElementById('themePickerTrigger');
+    const dropdown = document.getElementById('themePickerDropdown');
+    const grid = document.getElementById('themePickerGrid');
+    const label = document.getElementById('themePickerLabel');
+
+    if (!trigger || !dropdown || !grid || !window.ThemeRegistry || !window.ThemeManager) {
+      console.warn('[Navbar] Theme picker elements or ThemeManager not found');
+      return;
+    }
+
+    // Populate theme cards
+    const themes = window.ThemeRegistry.getAllThemes();
+    const currentTheme = window.ThemeManager.getCurrentTheme();
+
+    grid.innerHTML = themes.map(function(theme) {
+      const isActive = theme.id === currentTheme;
+      return `
+        <button class="theme-card ${isActive ? 'active' : ''}"
+                data-theme-id="${theme.id}"
+                role="menuitemradio"
+                aria-checked="${isActive}"
+                tabindex="${isActive ? '0' : '-1'}">
+          <div class="theme-card-preview">
+            ${theme.previewColors.map(function(color) {
+              return `<div class="theme-preview-color" style="background: ${color}"></div>`;
+            }).join('')}
+          </div>
+          <div class="theme-card-name">${theme.name}</div>
+          <div class="theme-card-description">${theme.description}</div>
+          ${isActive ? '<div class="theme-card-checkmark">✓</div>' : ''}
+        </button>
+      `;
+    }).join('');
+
+    // Update label with current theme name
+    const activeTheme = window.ThemeRegistry.getTheme(currentTheme);
+    if (activeTheme) {
+      label.textContent = activeTheme.name;
+    }
+
+    // Toggle dropdown
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+
+      if (isOpen) {
+        // Focus first theme card
+        const firstCard = grid.querySelector('.theme-card');
+        if (firstCard) {
+          setTimeout(function() { firstCard.focus(); }, 50);
+        }
       }
-    }
+    });
 
-    // Initialize theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (!prefersDark.matches) {
-      setTheme('light');
-    } else {
-      setTheme('dark');
-    }
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.theme-picker')) {
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    // Handle theme selection
+    grid.addEventListener('click', function(e) {
+      const card = e.target.closest('.theme-card');
+      if (!card) return;
+
+      const themeId = card.dataset.themeId;
+      window.ThemeManager.applyTheme(themeId);
+
+      // Update UI
+      grid.querySelectorAll('.theme-card').forEach(function(c) {
+        c.classList.remove('active');
+        c.setAttribute('aria-checked', 'false');
+        const checkmark = c.querySelector('.theme-card-checkmark');
+        if (checkmark) checkmark.remove();
       });
-    }
+
+      card.classList.add('active');
+      card.setAttribute('aria-checked', 'true');
+      card.insertAdjacentHTML('beforeend', '<div class="theme-card-checkmark">✓</div>');
+
+      const theme = window.ThemeRegistry.getTheme(themeId);
+      if (theme) {
+        label.textContent = theme.name;
+      }
+
+      // Close dropdown and return focus
+      dropdown.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.focus();
+    });
+
+    // Keyboard navigation
+    dropdown.addEventListener('keydown', function(e) {
+      const cards = Array.from(grid.querySelectorAll('.theme-card'));
+      const currentIndex = cards.findIndex(function(card) {
+        return card === document.activeElement;
+      });
+
+      switch(e.key) {
+        case 'Escape':
+          dropdown.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+          e.preventDefault();
+          break;
+
+        case 'ArrowDown':
+          const nextIndex = (currentIndex + 1) % cards.length;
+          cards[nextIndex].focus();
+          e.preventDefault();
+          break;
+
+        case 'ArrowUp':
+          const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+          cards[prevIndex].focus();
+          e.preventDefault();
+          break;
+
+        case 'Enter':
+        case ' ':
+          if (document.activeElement.classList.contains('theme-card')) {
+            document.activeElement.click();
+            e.preventDefault();
+          }
+          break;
+      }
+    });
+  }
   }
 
   // Initialize when DOM is ready
