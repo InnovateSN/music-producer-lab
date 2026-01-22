@@ -4,599 +4,216 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Free Downloads | Music Producer Lab</title>
-  
-  <meta name="description" content="Download free sample packs, presets, project files, and guides to enhance your music production journey.">
+
+  <meta name="description" content="Free sample packs, presets, and guides coming soon to Music Producer Lab.">
   <meta name="theme-color" content="#030508">
-  
+
   <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
-  
+
   <style>
-    .download-hero {
-      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+    .coming-soon-hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       background: var(--gradient-hero);
       position: relative;
+      padding: var(--space-3xl) var(--space-lg);
     }
-    
-    .download-hero::before {
+
+    .coming-soon-hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse at 30% 20%, rgba(0, 255, 157, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.06) 0%, transparent 40%);
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(0, 255, 157, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.1) 0%, transparent 40%);
     }
-    
-    .download-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: var(--space-xl);
+
+    .coming-soon-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    
-    @media (max-width: 400px) {
-      .download-grid {
-        grid-template-columns: 1fr;
+
+    .coming-soon-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--space-xl);
+      background: var(--gradient-glow);
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: var(--glow-cyan);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
       }
     }
-    
-    .download-card {
+
+    .coming-soon-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+      text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+    }
+
+    .coming-soon-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .coming-soon-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+      text-align: left;
+    }
+
+    .feature-item {
+      padding: var(--space-lg);
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
+      border-radius: var(--radius-lg);
       transition: all var(--transition-base);
     }
-    
-    .download-card:hover {
+
+    .feature-item:hover {
       border-color: var(--border-glow);
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
     }
-    
-    .download-card-preview {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      background: var(--bg-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    
-    .download-card-preview::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-glow);
-      opacity: 0.5;
-    }
-    
-    .download-card-icon {
-      position: relative;
-      z-index: 1;
-      width: 64px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      color: var(--accent-cyan);
-    }
-    
-    .download-card-content {
-      padding: var(--space-xl);
-    }
-    
-    .download-card-category {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent-green);
-      margin-bottom: var(--space-sm);
-    }
-    
-    .download-card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: var(--space-sm);
-    }
-    
-    .download-card-description {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: var(--space-lg);
-    }
-    
-    .download-card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-md);
-      margin-bottom: var(--space-lg);
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-    
-    .download-card-meta span {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-    }
-    
-    .download-btn {
-      width: 100%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      background: var(--gradient-primary);
-      border: none;
-      border-radius: var(--radius-md);
-      color: var(--bg-dark);
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      text-decoration: none;
-    }
-    
-    .download-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--glow-cyan);
-    }
-    
-    .coming-soon-badge {
-      position: absolute;
-      top: var(--space-md);
-      right: var(--space-md);
-      padding: var(--space-xs) var(--space-sm);
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .download-card.coming-soon {
-      opacity: 0.6;
-    }
-    
-    .download-card.coming-soon .download-btn {
-      background: var(--bg-secondary);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    
-    .category-section {
-      margin-bottom: var(--space-3xl);
-    }
-    
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-xl);
-    }
-    
-    .category-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--gradient-glow);
-      border-radius: var(--radius-md);
-      color: var(--accent-cyan);
-    }
-    
-    .category-title {
-      font-size: 1.5rem;
-    }
-    
-    .newsletter-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: var(--space-3xl);
-      text-align: center;
-      margin-top: var(--space-3xl);
-    }
-    
-    .newsletter-title {
-      font-size: 1.5rem;
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
       margin-bottom: var(--space-md);
-    }
-    
-    .newsletter-description {
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto var(--space-xl);
-    }
-    
-    .newsletter-form {
       display: flex;
-      gap: var(--space-md);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    @media (max-width: 600px) {
-      .newsletter-form {
-        flex-direction: column;
-      }
-    }
-    
-    .newsletter-input {
-      flex: 1;
-      padding: var(--space-md) var(--space-lg);
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 212, 255, 0.1);
       border-radius: var(--radius-md);
-      color: var(--text-primary);
+      color: var(--accent-cyan);
+    }
+
+    .feature-title {
       font-size: 1rem;
-    }
-    
-    .newsletter-input:focus {
-      outline: none;
-      border-color: var(--accent-cyan);
-    }
-    
-    .newsletter-btn {
-      padding: var(--space-md) var(--space-xl);
-      background: var(--gradient-primary);
-      border: none;
-      border-radius: var(--radius-md);
-      color: var(--bg-dark);
       font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .coming-soon-title {
+        font-size: 2rem;
+      }
+
+      .coming-soon-icon {
+        width: 80px;
+        height: 80px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="noise-overlay" aria-hidden="true"></div>
-  
-  <!-- Navigation (loaded by navbar.js) -->
+
+  <!-- Navigation -->
   <div id="navbar-placeholder"></div>
-  
-  <!-- Hero -->
-  <section class="download-hero">
-    <div class="container" style="position: relative; z-index: 1;">
-      <span class="badge badge-success mb-md">100% Free</span>
-      <h1 class="mb-md">Free Downloads</h1>
-      <p style="max-width: 600px; font-size: 1.1rem;">
-        Sample packs, presets, project files, and guides to help you
-        practice what you learn in the labs. All free, no signup required.
+
+  <!-- Coming Soon Hero -->
+  <section class="coming-soon-hero">
+    <div class="coming-soon-content">
+      <div class="coming-soon-icon">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <path d="M7 10l5 5 5-5"/>
+          <path d="M12 15V3"/>
+        </svg>
+      </div>
+
+      <h1 class="coming-soon-title">Downloads Coming Soon</h1>
+      <p class="coming-soon-subtitle">
+        We're preparing free sample packs, presets, and project files to help you master music production.
+        Check back soon!
       </p>
-    </div>
-  </section>
-  
-  <main class="section">
-    <div class="container">
-      <!-- Sample Packs -->
-      <section class="category-section">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18V5l12-2v13"/>
-              <circle cx="6" cy="18" r="3"/>
-              <circle cx="18" cy="16" r="3"/>
-            </svg>
+
+      <a href="index.html" class="btn btn-primary btn-lg" style="margin-top: var(--space-lg);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+
+      <div class="coming-soon-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/drum.png" alt="Drums" style="width: 24px; height: 24px;">
           </div>
-          <h2 class="category-title">Sample Packs</h2>
+          <div class="feature-title">Drum Samples</div>
+          <div class="feature-desc">Professional drum kits and one-shots</div>
         </div>
 
-        <div class="download-grid">
-          <article class="download-card">
-            <div class="download-card-preview">
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 6v6l4 2"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">Drums</span>
-              <h3 class="download-card-title">MPL Drum Starter Kit</h3>
-              <p class="download-card-description">
-                Essential drum samples to practice with the rhythm labs.
-                Kicks, snares, hi-hats, and percussion.
-              </p>
-              <div class="download-card-meta">
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                  </svg>
-                  48 samples
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                  </svg>
-                  12 MB
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                  Royalty-free
-                </span>
-              </div>
-              <a href="assets/downloads/drum-pattern-cheatsheet.txt" download="MPL-Drum-Starter-Kit.txt" class="download-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                <span>Download Free</span>
-              </a>
-            </div>
-          </article>
-          
-          <article class="download-card">
-            <div class="download-card-preview">
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M2 10v3M6 6v12M10 8v8M14 4v16M18 8v8M22 10v3"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">Synth</span>
-              <h3 class="download-card-title">Essential One-Shots</h3>
-              <p class="download-card-description">
-                Synth stabs, bass hits, and melodic one-shots perfect for
-                arrangement and sound design practice.
-              </p>
-              <div class="download-card-meta">
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                  </svg>
-                  32 samples
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                  </svg>
-                  8 MB
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                  Royalty-free
-                </span>
-              </div>
-              <a href="assets/downloads/eq-frequency-guide.txt" download="MPL-Essential-One-Shots.txt" class="download-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                <span>Download Free</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="download-card coming-soon">
-            <div class="download-card-preview">
-              <span class="coming-soon-badge">Coming Soon</span>
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">FX</span>
-              <h3 class="download-card-title">Transition FX Pack</h3>
-              <p class="download-card-description">
-                Risers, downlifters, impacts, and sweeps for your arrangements.
-              </p>
-              <div class="download-card-meta">
-                <span>64 samples</span>
-                <span>Coming Q1 2026</span>
-              </div>
-              <span class="download-btn" aria-disabled="true">Coming Soon</span>
-            </div>
-          </article>
-        </div>
-      </section>
-      
-      <!-- Guides & PDFs -->
-      <section class="category-section">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
-            </svg>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/notamusicale.png" alt="Presets" style="width: 24px; height: 24px;">
           </div>
-          <h2 class="category-title">Guides & Cheatsheets</h2>
+          <div class="feature-title">Synth Presets</div>
+          <div class="feature-desc">Ready-to-use sound presets</div>
         </div>
 
-        <div class="download-grid">
-          <article class="download-card">
-            <div class="download-card-preview">
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">PDF Guide</span>
-              <h3 class="download-card-title">Drum Pattern Cheatsheet</h3>
-              <p class="download-card-description">
-                Common drum patterns for house, techno, hip-hop, and more.
-                Print it out and keep it by your workstation.
-              </p>
-              <div class="download-card-meta">
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  </svg>
-                  PDF
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  </svg>
-                  2 pages
-                </span>
-              </div>
-              <a href="assets/downloads/drum-pattern-cheatsheet.txt" download="MPL-Drum-Pattern-Cheatsheet.txt" class="download-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                <span>Download Free</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="download-card">
-            <div class="download-card-preview">
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 21v-7M12 21V3M20 21v-11"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">PDF Guide</span>
-              <h3 class="download-card-title">EQ Frequency Guide</h3>
-              <p class="download-card-description">
-                Reference guide for EQ frequencies. Know where to cut and
-                boost for different instruments.
-              </p>
-              <div class="download-card-meta">
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  </svg>
-                  PDF
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  </svg>
-                  1 page
-                </span>
-              </div>
-              <a href="assets/downloads/eq-frequency-guide.txt" download="MPL-EQ-Frequency-Guide.txt" class="download-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                <span>Download Free</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="download-card coming-soon">
-            <div class="download-card-preview">
-              <span class="coming-soon-badge">Coming Soon</span>
-              <div class="download-card-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <path d="M3 9h18M9 21V9"/>
-                </svg>
-              </div>
-            </div>
-            <div class="download-card-content">
-              <span class="download-card-category">PDF Guide</span>
-              <h3 class="download-card-title">Song Structure Templates</h3>
-              <p class="download-card-description">
-                Arrangement templates for different genres and track lengths.
-              </p>
-              <div class="download-card-meta">
-                <span>PDF</span>
-                <span>Coming Q1 2026</span>
-              </div>
-              <span class="download-btn">Coming Soon</span>
-            </div>
-          </article>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/gear.png" alt="Projects" style="width: 24px; height: 24px;">
+          </div>
+          <div class="feature-title">Project Files</div>
+          <div class="feature-desc">Study full productions</div>
         </div>
-      </section>
-
-      <!-- Newsletter -->
-      <section class="newsletter-section">
-        <h2 class="newsletter-title">Get notified of new downloads</h2>
-        <p class="newsletter-description">
-          We release new free resources regularly. Subscribe to be the first
-          to know when new sample packs and guides drop.
-        </p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing! Check your email for confirmation.');">
-          <input type="email" class="newsletter-input" placeholder="your@email.com" required>
-          <button type="submit" class="newsletter-btn">Subscribe</button>
-        </form>
-      </section>
-    </div>
-  </main>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
-        </p>
       </div>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
   </footer>
-  
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
-    });
-    
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      navToggle.classList.toggle('active');
-    });
-    
-    const themeToggle = document.getElementById('themeToggle');
-    const themeLabel = document.getElementById('themeLabel');
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      if (themeLabel) themeLabel.textContent = savedTheme === 'light' ? 'Light' : 'Dark';
-    }
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      if (themeLabel) themeLabel.textContent = next === 'light' ? 'Light' : 'Dark';
-      localStorage.setItem('theme', next);
-    });
+    document.getElementById("mpl-year").textContent = new Date().getFullYear();
   </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
 </body>
 </html>

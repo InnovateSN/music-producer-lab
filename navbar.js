@@ -51,8 +51,8 @@
             <!-- Theme Picker -->
             <div class="theme-picker">
               <button class="theme-picker-trigger" id="themePickerTrigger" aria-haspopup="true" aria-expanded="false" aria-label="Choose theme">
-                <span class="theme-picker-icon">🎨</span>
-                <span class="theme-picker-label" id="themePickerLabel">Dark Cyberpunk</span>
+                <span class="theme-picker-icon"><img src="gear.png" alt="Theme" style="width: 16px; height: 16px; vertical-align: middle;"></span>
+                <span class="theme-picker-label" id="themePickerLabel">Select your theme</span>
                 <svg class="theme-picker-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 9l6 6 6-6"/>
                 </svg>
@@ -95,14 +95,14 @@
                   <div id="user-email" style="font-size: 0.85rem; color: var(--text-muted); word-break: break-all;">user@example.com</div>
                 </div>
                 <a href="/progress.html" style="display: block; padding: 0.75rem; color: var(--text-primary); text-decoration: none; border-radius: var(--radius-sm); transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
-                  📊 My Progress
+                  <img src="images/stats.png" alt="Progress" style="width: 1em; height: 1em; vertical-align: middle;"> My Progress
                 </a>
                 <button onclick="window.MplAuth.openUserProfile()" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--text-primary); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
-                  ⚙️ Settings
+                  <img src="images/gear.png" alt="Settings" style="width: 1em; height: 1em; vertical-align: middle;"> Settings
                 </button>
                 <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid var(--border-subtle);">
                 <button onclick="window.MplAuth.signOut()" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--accent-pink); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
-                  🚪 Sign Out
+                  <img src="images/arrowright.png" alt="Sign Out" style="width: 1em; height: 1em; vertical-align: middle;"> Sign Out
                 </button>
               </div>
             </div>
@@ -207,16 +207,13 @@
           </div>
           <div class="theme-card-name">${theme.name}</div>
           <div class="theme-card-description">${theme.description}</div>
-          ${isActive ? '<div class="theme-card-checkmark">✓</div>' : ''}
+          ${isActive ? '<div class="theme-card-checkmark"><img src="images/mplscudo_check.png" alt="Active" style="width: 20px; height: 20px;"></div>' : ''}
         </button>
       `;
     }).join('');
 
-    // Update label with current theme name
-    const activeTheme = window.ThemeRegistry.getTheme(currentTheme);
-    if (activeTheme) {
-      label.textContent = activeTheme.name;
-    }
+    // Set fixed label text
+    label.textContent = 'Select your theme';
 
     // Toggle dropdown
     trigger.addEventListener('click', function(e) {
@@ -259,12 +256,9 @@
 
       card.classList.add('active');
       card.setAttribute('aria-checked', 'true');
-      card.insertAdjacentHTML('beforeend', '<div class="theme-card-checkmark">✓</div>');
+      card.insertAdjacentHTML('beforeend', '<div class="theme-card-checkmark"><img src="images/mplscudo_check.png" alt="Active" style="width: 20px; height: 20px;"></div>');
 
-      const theme = window.ThemeRegistry.getTheme(themeId);
-      if (theme) {
-        label.textContent = theme.name;
-      }
+      // Label stays as "Select your theme" - no update needed
 
       // Close dropdown and return focus
       dropdown.classList.remove('open');

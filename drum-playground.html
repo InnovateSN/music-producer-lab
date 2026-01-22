@@ -31,11 +31,9 @@
       .playground-title {
         font-size: 3rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--text-primary);
         margin-bottom: var(--space-sm);
+        text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
       }
 
       .playground-subtitle {
@@ -404,27 +402,32 @@
           <input type="range" id="playground-swing-slider" min="0" max="100" value="0" style="width: 100%; max-width: 200px;">
         </div>
 
-        <button type="button" class="btn btn-outline" id="playground-play">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          <span>Play</span>
-        </button>
+        <div class="control-group">
+          <label>Playback</label>
+          <div style="display: flex; gap: var(--space-sm);">
+            <button type="button" class="btn btn-outline" id="playground-play">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Play</span>
+            </button>
 
-        <button type="button" class="btn btn-outline" id="playground-stop">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
-            <rect x="6" y="4" width="4" height="16"/>
-            <rect x="14" y="4" width="4" height="16"/>
-          </svg>
-          <span>Stop</span>
-        </button>
+            <button type="button" class="btn btn-outline" id="playground-stop">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+              </svg>
+              <span>Stop</span>
+            </button>
 
-        <button type="button" class="btn btn-outline" id="playground-clear">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
-            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-          </svg>
-          <span>Clear All</span>
-        </button>
+            <button type="button" class="btn btn-outline" id="playground-clear">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
+                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+              </svg>
+              <span>Clear All</span>
+            </button>
+          </div>
+        </div>
 
         <button type="button" class="btn btn-primary" id="share-pattern-btn" style="background: linear-gradient(135deg, #00d4ff 0%, #b366ff 100%);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">

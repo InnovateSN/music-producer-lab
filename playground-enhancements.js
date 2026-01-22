@@ -552,7 +552,7 @@ export function createShareModal(shareLink) {
 
   modal.innerHTML = `
     <div style="margin-bottom: var(--space-lg);">
-      <h3 style="margin: 0 0 var(--space-sm); color: var(--text-primary); font-size: 1.3rem;">🔗 Share this pattern</h3>
+      <h3 style="margin: 0 0 var(--space-sm); color: var(--text-primary); font-size: 1.3rem;"><img src="images/arrowright.png" alt="Share" style="width: 1.2em; height: 1.2em; vertical-align: middle;"> Share this pattern</h3>
       <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Anyone with this link can load your pattern instantly</p>
     </div>
 
@@ -784,15 +784,15 @@ export function createProgressWidget() {
     <div id="stats-content">
       <div style="display: grid; gap: var(--space-sm);">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.8rem; color: var(--text-muted);">💾 Exports</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);"><img src="images/mpldownload.png" alt="Download" style="width: 1em; vertical-align: middle;"> Exports</span>
           <span style="font-size: 1rem; font-weight: 700; color: #00d4ff;">${stats.exportsTotal}</span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.8rem; color: var(--text-muted);"><img src="images/notamusicale.png" alt="🎵" style="width: 1em; vertical-align: middle;"> Presets Tried</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);"><img src="images/notamusicale.png" alt="Music" style="width: 1em; vertical-align: middle;"> Presets Tried</span>
           <span style="font-size: 1rem; font-weight: 700; color: #b366ff;">${presetsUsed.size}</span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.8rem; color: var(--text-muted);">📅 Practice Days</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);"><img src="images/mplstellinacalendario.png" alt="Calendar" style="width: 1em; vertical-align: middle;"> Practice Days</span>
           <span style="font-size: 1rem; font-weight: 700; color: #10b981;">${practiceDays.size}</span>
         </div>
       </div>
