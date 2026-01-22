@@ -8,7 +8,7 @@
 
   const STORAGE_KEY = 'mpl-theme';
   const OLD_STORAGE_KEY = 'theme';
-  const DEFAULT_THEME = 'dark-cyberpunk';
+  const DEFAULT_THEME = 'sunset';
 
   /**
    * Migrate from old theme localStorage key to new key
