@@ -75,14 +75,14 @@
       category: 'light',
       previewColors: ['#4d9fff', '#b366ff', '#ff7733'],
       variables: {
-        // Color Palette - Light Professional (improved contrast)
-        '--bg-dark': '#d5d8e0',
-        '--bg-primary': '#e8ebf0',
-        '--bg-secondary': '#d8dce5',
-        '--bg-tertiary': '#c8cdd8',
-        '--bg-card': '#f0f2f7',
-        '--bg-card-hover': '#e0e4ea',
-        '--bg-elevated': '#f8f9fb',
+        // Color Palette - Light Professional (darker, less bright)
+        '--bg-dark': '#c0c4d0',
+        '--bg-primary': '#d8dce5',
+        '--bg-secondary': '#c8cdd8',
+        '--bg-tertiary': '#b8bdc8',
+        '--bg-card': '#e0e4ea',
+        '--bg-card-hover': '#d0d4e0',
+        '--bg-elevated': '#e8ebf0',
 
         // Text Colors
         '--text-primary': '#1a1f2e',
