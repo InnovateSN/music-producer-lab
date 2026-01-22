@@ -14,8 +14,16 @@
    * Migrate from old theme localStorage key to new key
    */
   function migrateOldTheme() {
+    // Check if current theme is deprecated 'light', migrate to 'ocean'
+    const currentTheme = localStorage.getItem(STORAGE_KEY);
+    if (currentTheme === 'light') {
+      localStorage.setItem(STORAGE_KEY, 'ocean');
+      console.log('[Theme Manager] Migrated deprecated light theme to ocean');
+      return;
+    }
+
     // Check if new key already exists
-    if (localStorage.getItem(STORAGE_KEY)) {
+    if (currentTheme) {
       return; // Already migrated or using new system
     }
 
@@ -28,7 +36,7 @@
     // Map old values to new theme IDs
     const themeMap = {
       'dark': 'dark-cyberpunk',
-      'light': 'light'
+      'light': 'ocean'
     };
 
     const newTheme = themeMap[oldTheme] || DEFAULT_THEME;
