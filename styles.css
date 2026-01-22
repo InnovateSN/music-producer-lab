@@ -3741,3 +3741,17 @@ input[type="range"].vertical-slider:active {
     bottom: 16px;
   }
 }
+
+/* Lesson hero two-column layout - responsive */
+@media (max-width: 768px) {
+  .hero[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: var(--space-xl) !important;
+  }
+  
+  .hero-visual {
+    order: -1;
+    max-width: 300px !important;
+    margin: 0 auto;
+  }
+}
