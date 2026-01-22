@@ -779,7 +779,10 @@ export function createProgressWidget() {
       <h4 style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
         Practice Stats
       </h4>
-      <button id="toggle-stats" style="background: none; border: none; color: var(--text-dim); cursor: pointer; padding: 4px; font-size: 1rem;" title="Toggle stats">−</button>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span id="toggle-label" style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Hide</span>
+        <button id="toggle-stats" style="background: none; border: none; color: var(--text-dim); cursor: pointer; padding: 4px; font-size: 1rem;" title="Toggle stats">−</button>
+      </div>
     </div>
     <div id="stats-content">
       <div style="display: grid; gap: var(--space-sm);">
@@ -813,6 +816,7 @@ export function createProgressWidget() {
 
   // Toggle functionality
   const toggleBtn = document.getElementById('toggle-stats');
+  const toggleLabel = document.getElementById('toggle-label');
   const statsContent = document.getElementById('stats-content');
   let isCollapsed = false;
 
@@ -821,10 +825,12 @@ export function createProgressWidget() {
     if (isCollapsed) {
       statsContent.style.display = 'none';
       toggleBtn.textContent = '+';
+      toggleLabel.textContent = 'Show';
       widget.style.transform = 'scale(0.95)';
     } else {
       statsContent.style.display = 'block';
       toggleBtn.textContent = '−';
+      toggleLabel.textContent = 'Hide';
       widget.style.transform = 'scale(1)';
     }
   });
