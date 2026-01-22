@@ -140,9 +140,7 @@ function injectDrumPlaygroundBanner() {
   banner.innerHTML = `
     <div style="display: flex; align-items: center; gap: var(--space-md); flex: 1; min-width: 200px;">
       <div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(0, 240, 255, 0.2); border-radius: var(--radius-md); flex-shrink: 0;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-cyan);">
-          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-        </svg>
+        <img src="images/drum.png" alt="Drum Playground" style="width: 24px; height: 24px;">
       </div>
       <div>
         <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 2px;">Practice Tool</div>
@@ -164,21 +162,25 @@ function injectDrumPlaygroundBanner() {
       white-space: nowrap;
     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 16px rgba(0,240,255,0.4)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
       <span>Open Playground</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
+      <img src="images/arrowright.png" alt="Arrow" style="width: 16px; height: 16px;">
     </a>
   `;
 
-  // Insert banner after hero section
-  const heroSection = document.getElementById('mpl-hero');
-  if (heroSection && heroSection.nextSibling) {
-    heroSection.parentNode.insertBefore(banner, heroSection.nextSibling);
+  // Insert banner before exercise section (at end of educational content)
+  const exerciseSection = document.getElementById('mpl-exercise-section');
+  if (exerciseSection) {
+    exerciseSection.parentNode.insertBefore(banner, exerciseSection);
   } else {
-    // Fallback: insert at top of main content
-    const mainContent = document.querySelector('main.main-content') || document.querySelector('main');
-    if (mainContent) {
-      mainContent.insertBefore(banner, mainContent.firstChild);
+    // Fallback: insert after hero section
+    const heroSection = document.getElementById('mpl-hero');
+    if (heroSection && heroSection.nextSibling) {
+      heroSection.parentNode.insertBefore(banner, heroSection.nextSibling);
+    } else {
+      // Last fallback: insert at top of main content
+      const mainContent = document.querySelector('main.main-content') || document.querySelector('main');
+      if (mainContent) {
+        mainContent.insertBefore(banner, mainContent.firstChild);
+      }
     }
   }
 }

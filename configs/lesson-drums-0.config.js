@@ -73,6 +73,16 @@ export const lessonConfig = {
       patternHint: {
         label: "Kick"
       }
+    },
+    {
+      id: "snare",
+      label: "Snare",
+      color: "linear-gradient(135deg,#b366ff,#d4a5ff)",
+      targetSteps: [], // Sandbox mode - no target pattern
+      instructionText: "Sandbox mode: Click anywhere to place snare hits and experiment!",
+      patternHint: {
+        label: "Snare"
+      }
     }
   ],
 
