@@ -51,7 +51,7 @@
             <!-- Theme Picker -->
             <div class="theme-picker">
               <button class="theme-picker-trigger" id="themePickerTrigger" aria-haspopup="true" aria-expanded="false" aria-label="Choose theme">
-                <span class="theme-picker-icon"><img src="gear.png" alt="Theme" style="width: 16px; height: 16px; vertical-align: middle;"></span>
+                <span class="theme-picker-icon"><img src="images/gear.png" alt="Theme" style="width: 16px; height: 16px; vertical-align: middle;"></span>
                 <span class="theme-picker-label" id="themePickerLabel">Select your theme</span>
                 <svg class="theme-picker-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 9l6 6 6-6"/>
