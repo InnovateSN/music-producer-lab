@@ -166,20 +166,31 @@ function injectDrumPlaygroundBanner() {
     </a>
   `;
 
-  // Insert banner before exercise section (at end of educational content)
-  const exerciseSection = document.getElementById('mpl-exercise-section');
-  if (exerciseSection) {
-    exerciseSection.parentNode.insertBefore(banner, exerciseSection);
+  // Insert banner at end of page (after sequencer section, before footer)
+  const sequencerSection = document.getElementById('mpl-sequencer-section');
+  const footer = document.getElementById('mpl-footer');
+
+  if (sequencerSection && footer) {
+    // Insert after sequencer, before footer
+    sequencerSection.parentNode.insertBefore(banner, footer);
+  } else if (sequencerSection) {
+    // Insert after sequencer section
+    sequencerSection.insertAdjacentElement('afterend', banner);
   } else {
-    // Fallback: insert after hero section
-    const heroSection = document.getElementById('mpl-hero');
-    if (heroSection && heroSection.nextSibling) {
-      heroSection.parentNode.insertBefore(banner, heroSection.nextSibling);
+    // Fallback: insert before exercise section
+    const exerciseSection = document.getElementById('mpl-exercise-section');
+    if (exerciseSection) {
+      exerciseSection.parentNode.insertBefore(banner, exerciseSection);
     } else {
-      // Last fallback: insert at top of main content
-      const mainContent = document.querySelector('main.main-content') || document.querySelector('main');
-      if (mainContent) {
-        mainContent.insertBefore(banner, mainContent.firstChild);
+      // Last fallback: insert after hero section
+      const heroSection = document.getElementById('mpl-hero');
+      if (heroSection && heroSection.nextSibling) {
+        heroSection.parentNode.insertBefore(banner, heroSection.nextSibling);
+      } else {
+        const mainContent = document.querySelector('main.main-content') || document.querySelector('main');
+        if (mainContent) {
+          mainContent.insertBefore(banner, mainContent.firstChild);
+        }
       }
     }
   }
