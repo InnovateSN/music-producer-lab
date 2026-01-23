@@ -46,7 +46,7 @@
   - [x] lesson-drums-18.html
   - [x] lesson-drums-20.html
   - [x] lesson-drums-21.html
-- [ ] **Task 1.3**: Glossary audit (10 sample lessons) - Generate report
+- [x] **Task 1.3**: Glossary audit (10 sample lessons) - Generate report (commit: 31aff1c)
 - [ ] **Task 1.4**: Fix alt text emoji (21 lessons: mixing/sound-design/vocals)
 
 #### Bridge App Agent - MVP Tasks
