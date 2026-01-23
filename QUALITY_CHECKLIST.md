@@ -112,7 +112,40 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 ---
 
-## 6. ASK USER WHEN IN DOUBT ❓
+## 6. UI CLARITY & PURPOSE 🎯
+
+### Rules:
+- ✅ **Every UI element must serve a clear purpose**
+- ❌ **No redundant or duplicate information**
+- ✅ Visual elements should add value, not clutter
+- ✅ Icons and legends should clarify, not confuse
+- 🔍 **The Test**: "If I remove this element, does the user lose information or understanding?"
+  - If NO → Element is redundant, remove it
+  - If YES → Element is valuable, keep it
+
+### Action Items:
+- [ ] Review all visual elements (icons, legends, labels, helper text)
+- [ ] Ask: "Is this element necessary or redundant?"
+- [ ] Ask: "Does this clarify or confuse?"
+- [ ] Ask: "Is the same information shown elsewhere more clearly?"
+- [ ] Remove redundant elements (duplicate legends, unnecessary icons, repeated text)
+- [ ] Keep only elements that add unique value
+
+### Examples of Redundancy to Avoid:
+- ❌ Legend explaining what colored cells show when colors already make it obvious
+- ❌ Icon + text repeating the same information shown in a grid above
+- ❌ Helper text that duplicates instructions already present
+- ❌ Labels that state the obvious (e.g., "Grid" label on an obvious grid)
+
+### Examples of Good UI Elements:
+- ✅ Legends that decode non-obvious symbols or colors
+- ✅ Icons that add visual hierarchy or category identification
+- ✅ Helper text that provides context not visible elsewhere
+- ✅ Labels that clarify ambiguous UI sections
+
+---
+
+## 7. ASK USER WHEN IN DOUBT ❓
 
 ### Rules:
 - 👨‍💻 **Developer Role (Claude)**: Implement, improve, suggest
@@ -137,7 +170,7 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 For each page:
 
-1. **Run through checklist items 1-6**
+1. **Run through checklist items 1-7**
 2. **Document findings** (issues, questions, improvements made)
 3. **Make improvements** where I have authority (no user approval needed)
 4. **Ask user** for decisions on:
@@ -166,5 +199,5 @@ When applying this checklist to existing pages, prioritize:
 
 - This checklist is **mandatory** for all new pages
 - Existing pages should be **gradually validated** using this checklist
-- If a page passes all 6 checks → Consider it **production-ready** ✅
-- Update this document if new quality standards emerge
+- If a page passes all 7 checks → Consider it **production-ready** ✅
+- Update this document if new quality standards emerge (Section 6 was added 2026-01-23 based on user feedback about UI clarity)
