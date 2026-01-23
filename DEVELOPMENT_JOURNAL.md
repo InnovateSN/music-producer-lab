@@ -103,10 +103,36 @@
   - Merged to main on 2026-01-23
   - **Result**: Button now works correctly - click navigates to next lesson
 
+- [x] **Hotfix #3: lesson-drums-1 missing educational content** (commit: ca59530) ✅ COMPLETE
+  - Issue: lesson-drums-1.html jumped from hero section directly to exercise with no educational content
+  - Root cause: Template had extra closing `</div>` tag and missing 300+ lines of content between hero and exercise
+  - Discovery: lesson-drums-1.config.js already contained 2,200+ words of theory content but HTML wasn't rendering it
+  - Fix: Removed extra closing div tag + inserted complete educational content section (242 lines)
+  - Content added:
+    - Introduction to "4 on the Floor" pattern (most important drum pattern in electronic music)
+    - 4 key concept cards: Pattern definition, tempo sweet spot (120-130 BPM), disco era origins, cross-genre applications
+    - Visual 16-step grid showing kick placement on steps 1, 5, 9, 13
+    - Count-along guide ("ONE-two-three-four")
+    - 3 common mistakes: wrong step placement, wrong tempo, kick too quiet/loud
+    - "Why This Matters" section with 4 benefits (foundation, physical impact, building block, industry standard)
+    - 20+ glossary links (drum-pattern, kick-drum, quarter-note, beat, sequencer, bpm, tempo, bar, 4-on-the-floor, etc.)
+  - Images used: drum.png, orologio.png, notamusicale.png, speaker.png, idea.png, questionmark.png, X_gray.png, fulmine.png, mplscudo_check.png
+  - Quality checklist: ✅ No emoji, ✅ PNG images only, ✅ Glossary links extensive
+  - Files modified: lesson-drums-1.html (242 insertions, 1 deletion)
+  - Branch: claude/fix-lesson-drums-1-content-SzKbP
+  - Merged to main on 2026-01-23
+  - **Result**: lesson-drums-1 now has complete educational content explaining foundational 4-on-the-floor pattern
+  - **Follow-up fix** (commit: 1b1a04b): Removed tiny 16px icons from grid cells (steps 1, 5, 9, 13), enlarged legend icon from 16px to 28px
+    - User feedback: icons in grid cells were too small and some didn't display (kick.png missing)
+    - Grid now cleaner with just colored cells showing kick placement
+    - Legend icon more visible at 28px
+
 #### Pull Requests Created
 - PR #1: Sprint 1 Complete (claude/sprint-1-complete-SzKbP) - Merged by user
 - PR #2: Sandbox Next Button Fix (claude/fix-sandbox-next-button-SzKbP) - Pushed (incomplete fix)
 - PR #3: Next Button Click Handler (claude/fix-next-button-click-handler-SzKbP) - Pushed (complete fix)
+- PR #4: lesson-drums-1 Educational Content (claude/fix-lesson-drums-1-content-SzKbP) - Pushed (ready to merge)
+- PR #5: Journal Update + Visual Fix (claude/update-journal-hotfix3-SzKbP) - Pushed (includes Hotfix #3 docs + sequencer grid icon cleanup)
 
 #### Notes & Decisions
 - Default icon choices: X_gray.png (error), check_green.png (celebration)
