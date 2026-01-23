@@ -436,13 +436,18 @@ function setupNavigation(config) {
     }
   }
 
-  // Next lesson button (handled by sequencer)
+  // Next lesson button
   const nextBtn = document.getElementById('mpl-next-lesson');
   if (nextBtn) {
-    if (!nextLessonUrl) {
+    if (nextLessonUrl) {
+      nextBtn.onclick = () => window.location.href = nextLessonUrl;
+      nextBtn.disabled = false;
+      nextBtn.style.display = 'inline-flex';
+    } else {
       // Hide next button if no next lesson
       const wrapper = document.getElementById('mpl-seq-next-lesson-wrap');
       if (wrapper) wrapper.style.display = 'none';
+      else nextBtn.style.display = 'none';
     }
   }
 }
