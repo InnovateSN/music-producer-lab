@@ -145,7 +145,44 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 ---
 
-## 7. ASK USER WHEN IN DOUBT ❓
+## 7. EDUCATIONAL CONTENT COMPLETENESS 📖
+
+### Rules:
+- ✅ **Every lesson must have educational content** between hero and exercise sections
+- ❌ **No lesson should jump directly from hero to exercise** without teaching
+- ✅ Educational content must include:
+  - What You'll Learn (introduction)
+  - Key Concepts (4 concept cards minimum)
+  - Visual Examples/Patterns (diagrams, grids)
+  - Common Mistakes (3 mistakes minimum)
+  - Why This Matters (benefits section)
+- 📏 **Minimum**: ~250 lines of educational HTML content
+- 🔗 **Glossary links**: All technical terms must link to glossary
+
+### Action Items:
+- [ ] Verify lesson has educational section between hero and exercise
+- [ ] Check content structure: Introduction → Key Concepts → Visual Examples → Mistakes → Benefits
+- [ ] Verify minimum 4 key concept cards
+- [ ] Verify minimum 3 common mistakes
+- [ ] Verify "Why This Matters" section with benefits
+- [ ] Verify "What's Next" preview of next lesson
+- [ ] Ensure all technical terms link to glossary
+- [ ] Verify content is ~250+ lines (not just 80-100 line template)
+
+### What to Look For:
+- ❌ **RED FLAG**: Lesson jumps from `</section>` (hero) directly to `<section class="exercise-instructions">`
+- ✅ **CORRECT**: Lesson has `<!-- EDUCATIONAL CONTENT -->` section between hero and exercise
+- ❌ **RED FLAG**: File is only 80-182 lines (likely template without content)
+- ✅ **CORRECT**: File is 400+ lines (includes full educational content)
+
+### Examples:
+- ✅ **Complete**: lesson-drums-0.html (486 lines with full educational content)
+- ✅ **Complete**: lesson-drums-1.html (420 lines with full educational content)
+- ❌ **Incomplete**: lesson-drums-2.html (182 lines, missing educational content) ← Fix these!
+
+---
+
+## 8. ASK USER WHEN IN DOUBT ❓
 
 ### Rules:
 - 👨‍💻 **Developer Role (Claude)**: Implement, improve, suggest
@@ -170,7 +207,7 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 For each page:
 
-1. **Run through checklist items 1-7**
+1. **Run through checklist items 1-8**
 2. **Document findings** (issues, questions, improvements made)
 3. **Make improvements** where I have authority (no user approval needed)
 4. **Ask user** for decisions on:
@@ -199,5 +236,7 @@ When applying this checklist to existing pages, prioritize:
 
 - This checklist is **mandatory** for all new pages
 - Existing pages should be **gradually validated** using this checklist
-- If a page passes all 7 checks → Consider it **production-ready** ✅
-- Update this document if new quality standards emerge (Section 6 was added 2026-01-23 based on user feedback about UI clarity)
+- If a page passes all 8 checks → Consider it **production-ready** ✅
+- Update this document if new quality standards emerge:
+  - Section 6 was added 2026-01-23 based on user feedback about UI clarity
+  - Section 7 was added 2026-01-23 after discovering 178 lessons missing educational content
