@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 backend/node_modules/
+bridge/node_modules/
+bridge/dist/
+bridge/out/
 
 # Backups
 *-BACKUP.html
