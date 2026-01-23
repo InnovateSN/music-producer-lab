@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Music Producer Lab Bridge - Status</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Music Producer Lab Bridge</h1>
+      <p class="version">v1.0.0 MVP</p>
+    </header>
+
+    <main>
+      <section class="status-section">
+        <h2>Ableton Link Status</h2>
+        <div class="status-item">
+          <span class="label">Link Enabled:</span>
+          <span class="value" id="link-enabled">
+            <span class="status-indicator status-inactive"></span> Initializing...
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="label">Tempo:</span>
+          <span class="value" id="tempo">120.0 BPM</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Connected Peers:</span>
+          <span class="value" id="peers">0</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Beat Position:</span>
+          <span class="value" id="beat">0.0</span>
+        </div>
+      </section>
+
+      <section class="status-section">
+        <h2>WebSocket Server</h2>
+        <div class="status-item">
+          <span class="label">Server Status:</span>
+          <span class="value" id="ws-status">
+            <span class="status-indicator status-inactive"></span> Initializing...
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="label">Browser Connections:</span>
+          <span class="value" id="browser-connections">0</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Port:</span>
+          <span class="value" id="ws-port">8080</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Running in background. Close this window to hide (app will continue running in system tray).</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

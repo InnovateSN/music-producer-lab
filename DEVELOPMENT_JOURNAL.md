@@ -50,10 +50,30 @@
 - [x] **Task 1.4**: Fix alt text emoji (13 lessons found with emoji: mixing/sound-design/vocals) (commit: a8b694d)
 
 #### Bridge App Agent - MVP Tasks
-- [ ] **Task 2.1**: Project initialization (/bridge/ folder, npm setup)
-- [ ] **Task 2.2**: Link Manager module (abletonlink integration)
-- [ ] **Task 2.3**: WebSocket Server module (localhost:8080)
-- [ ] **Task 2.4**: System Tray integration (status window)
+- [x] **Task 2.1**: Project initialization (/bridge/ folder, npm setup, base files created)
+  - Created directory structure: src/main, src/renderer, src/shared, assets
+  - Initialized npm with dependencies: electron, abletonlink, ws, electron-store, electron-builder
+  - Created electron.js (main process), preload.js (security bridge)
+  - Created status window: index.html, styles.css, app.js
+  - Updated root .gitignore to exclude bridge build artifacts
+- [x] **Task 2.2**: Link Manager module (abletonlink integration)
+  - Created src/main/link-manager.js with full Link integration
+  - Methods: setTempo, getTempo, getNumPeers, enable, disable, getState
+  - State update loop broadcasts tempo, beat, phase, peers every 500ms
+  - Console logging for debugging and monitoring
+- [x] **Task 2.3**: WebSocket Server module (localhost:8080)
+  - Created src/main/ws-server.js with full WebSocket server
+  - Handles multiple client connections with connection tracking
+  - Implements protocol: link_state broadcasts, set_tempo, set_playing, get_state commands
+  - Created src/shared/protocol.js with message type definitions
+  - Created src/shared/constants.js with configuration values
+  - Error handling and validation for all incoming commands
+- [x] **Task 2.4**: System Tray integration (status window)
+  - Created src/main/tray-manager.js with full TrayManager class
+  - Dynamic menu updates showing Link and WebSocket status
+  - Tooltip updates with real-time connection info
+  - Actions: Open Status Window, Settings (placeholder), Quit
+  - Status window UI already created in Task 2.1 (index.html, styles.css, app.js)
 - [ ] **Task 2.5**: Integration testing (browser ↔ DAW sync)
 
 #### Pull Requests Created
@@ -98,7 +118,7 @@
 - Alt text fixes: 0 / 21 lessons
 
 ### Bridge App Progress
-- Modules completed: 0 / 4
+- Modules completed: 4 / 5 (Tasks 2.1-2.4 complete)
 - Integration tests passed: 0 / 5
 
 ---

@@ -1,0 +1,25 @@
+{
+  "name": "music-producer-lab-bridge",
+  "version": "1.0.0",
+  "description": "Desktop bridge app enabling Ableton Link synchronization between Music Producer Lab website and DAWs/hardware",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": ["ableton-link", "music-production", "websocket", "bridge"],
+  "author": "Music Producer Lab",
+  "license": "MIT",
+  "dependencies": {
+    "abletonlink": "^0.2.0-beta.0",
+    "electron": "^40.0.0",
+    "electron-store": "^11.0.2",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^26.4.0"
+  }
+}
