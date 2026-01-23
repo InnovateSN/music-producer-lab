@@ -83,8 +83,18 @@
   - Merge commit: Completed on 2026-01-23
   - Ready for manual testing: `cd bridge && npm start`
 
+#### 🐛 Hotfixes (User Testing Feedback)
+- [x] **Hotfix: Sandbox mode next button** (commit: dbde3c8)
+  - Issue: "Go to next lesson" button in lesson-drums-0.html was disabled and unclickable
+  - Cause: Sandbox mode logic didn't auto-enable next button despite alwaysShowNextButton config
+  - Fix: Added auto-enable logic in lesson-engine.js setupModeUI() function
+  - Files modified: lesson-engine.js (10 lines added)
+  - Branch: claude/fix-sandbox-next-button-SzKbP
+  - Merged to main on 2026-01-23
+
 #### Pull Requests Created
-- (None yet - agents starting work)
+- PR #1: Sprint 1 Complete (claude/sprint-1-complete-SzKbP) - Merged by user
+- PR #2: Sandbox Next Button Fix (claude/fix-sandbox-next-button-SzKbP) - Auto-merged
 
 #### Notes & Decisions
 - Default icon choices: X_gray.png (error), check_green.png (celebration)
