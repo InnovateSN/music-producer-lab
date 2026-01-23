@@ -39,7 +39,7 @@
 - Development Journal created
 
 #### Site Dev Agent - Sprint 1 Tasks
-- [ ] **Task 1.1**: Fix lesson-drums-0 emoji violations (4x ❌) → `/images/X_gray.png`
+- [x] **Task 1.1**: Fix lesson-drums-0 emoji violations (4x ❌) → `/images/X_gray.png` (commit: e24dbaa)
 - [ ] **Task 1.2**: Fix completion emoji in 5 lessons (🎉) → `/images/check_green.png`
   - [ ] lesson-drums-15.html
   - [ ] lesson-drums-16.html
