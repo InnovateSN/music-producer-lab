@@ -68,7 +68,12 @@
   - Created src/shared/protocol.js with message type definitions
   - Created src/shared/constants.js with configuration values
   - Error handling and validation for all incoming commands
-- [ ] **Task 2.4**: System Tray integration (status window)
+- [x] **Task 2.4**: System Tray integration (status window)
+  - Created src/main/tray-manager.js with full TrayManager class
+  - Dynamic menu updates showing Link and WebSocket status
+  - Tooltip updates with real-time connection info
+  - Actions: Open Status Window, Settings (placeholder), Quit
+  - Status window UI already created in Task 2.1 (index.html, styles.css, app.js)
 - [ ] **Task 2.5**: Integration testing (browser ↔ DAW sync)
 
 #### Pull Requests Created
@@ -113,7 +118,7 @@
 - Alt text fixes: 0 / 21 lessons
 
 ### Bridge App Progress
-- Modules completed: 3 / 5 (Tasks 2.1-2.3 complete)
+- Modules completed: 4 / 5 (Tasks 2.1-2.4 complete)
 - Integration tests passed: 0 / 5
 
 ---
