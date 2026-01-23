@@ -473,6 +473,16 @@ function setupModeUI(config) {
     // Update status message
     const status = document.getElementById('mpl-seq-status');
     if (status) status.textContent = 'Sandbox mode - experiment freely with the sequencer!';
+
+    // Auto-enable next button in sandbox mode with alwaysShowNextButton
+    if (mode?.alwaysShowNextButton) {
+      const nextBtn = document.getElementById('mpl-next-lesson');
+      if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
+        nextBtn.title = 'Continue to next lesson';
+      }
+    }
   }
 
   // Show advanced controls if enabled (sandbox, showTempoControl, or showSwingControl)
