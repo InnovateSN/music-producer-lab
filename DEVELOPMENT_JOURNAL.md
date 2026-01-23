@@ -84,17 +84,29 @@
   - Ready for manual testing: `cd bridge && npm start`
 
 #### 🐛 Hotfixes (User Testing Feedback)
-- [x] **Hotfix: Sandbox mode next button** (commit: dbde3c8)
+- [x] **Hotfix #1: Sandbox mode next button (INCOMPLETE)** (commit: dbde3c8)
   - Issue: "Go to next lesson" button in lesson-drums-0.html was disabled and unclickable
   - Cause: Sandbox mode logic didn't auto-enable next button despite alwaysShowNextButton config
   - Fix: Added auto-enable logic in lesson-engine.js setupModeUI() function
   - Files modified: lesson-engine.js (10 lines added)
   - Branch: claude/fix-sandbox-next-button-SzKbP
   - Merged to main on 2026-01-23
+  - **Result**: Button enabled visually but click still did nothing (missing onclick handler)
+
+- [x] **Hotfix #2: Next button click handler** (commit: c7bbffa) ✅ WORKING
+  - Issue: "Go to next lesson" button was enabled but clicking did nothing
+  - Root cause: setupNavigation() didn't add onclick handler to next button (only to previous button)
+  - Architecture flaw: Next button delegated to sequencer instead of having direct handler
+  - Fix: Added `nextBtn.onclick = () => window.location.href = nextLessonUrl;` in setupNavigation()
+  - Files modified: lesson-engine.js (lines 439-447 replaced, 7 insertions, 2 deletions)
+  - Branch: claude/fix-next-button-click-handler-SzKbP
+  - Merged to main on 2026-01-23
+  - **Result**: Button now works correctly - click navigates to next lesson
 
 #### Pull Requests Created
 - PR #1: Sprint 1 Complete (claude/sprint-1-complete-SzKbP) - Merged by user
-- PR #2: Sandbox Next Button Fix (claude/fix-sandbox-next-button-SzKbP) - Auto-merged
+- PR #2: Sandbox Next Button Fix (claude/fix-sandbox-next-button-SzKbP) - Pushed (incomplete fix)
+- PR #3: Next Button Click Handler (claude/fix-next-button-click-handler-SzKbP) - Pushed (complete fix)
 
 #### Notes & Decisions
 - Default icon choices: X_gray.png (error), check_green.png (celebration)
