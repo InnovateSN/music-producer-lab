@@ -159,6 +159,12 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 - 📏 **Minimum**: ~250 lines of educational HTML content
 - 🔗 **Glossary links**: All technical terms must link to glossary
 
+### What to Look For:
+- ❌ **RED FLAG**: Lesson jumps from `</section>` (hero) directly to `<section class="exercise-instructions">`
+- ✅ **CORRECT**: Lesson has `<!-- EDUCATIONAL CONTENT -->` section between hero and exercise
+- ❌ **RED FLAG**: File is only 80-182 lines (likely template without content)
+- ✅ **CORRECT**: File is 400+ lines (includes full educational content)
+
 ### Action Items:
 - [ ] Verify lesson has educational section between hero and exercise
 - [ ] Check content structure: Introduction → Key Concepts → Visual Examples → Mistakes → Benefits
@@ -167,13 +173,8 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 - [ ] Verify "Why This Matters" section with benefits
 - [ ] Verify "What's Next" preview of next lesson
 - [ ] Ensure all technical terms link to glossary
+- [ ] Check file line count (`wc -l lesson-file.html`)
 - [ ] Verify content is ~250+ lines (not just 80-100 line template)
-
-### What to Look For:
-- ❌ **RED FLAG**: Lesson jumps from `</section>` (hero) directly to `<section class="exercise-instructions">`
-- ✅ **CORRECT**: Lesson has `<!-- EDUCATIONAL CONTENT -->` section between hero and exercise
-- ❌ **RED FLAG**: File is only 80-182 lines (likely template without content)
-- ✅ **CORRECT**: File is 400+ lines (includes full educational content)
 
 ### Examples:
 - ✅ **Complete**: lesson-drums-0.html (486 lines with full educational content)
@@ -182,7 +183,30 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 ---
 
-## 8. ASK USER WHEN IN DOUBT ❓
+## 8. SAMPLE DROPDOWN MESSAGE VALIDATION 🎵
+
+### Rules:
+- ✅ **"Custom Samples Loaded" banner** should ONLY appear when dropdown menus are actually available
+- ❌ **If dropdown menus are NOT available** → Remove/hide the entire banner
+- ✅ **If dropdown menus ARE enabled and visible** → Keep the banner with dropdown message
+- 🔍 **The Test**: Check if `sampleLibrary` has entries (controlled in sequencer.js)
+
+### What to Look For:
+- ❌ **WRONG**: Banner shows "Use the dropdowns below..." but no dropdowns exist
+- ✅ **CORRECT**: Banner only appears when `Object.keys(sampleLibrary).length > 0`
+
+### Action Items:
+- [ ] Test lesson sequencer in browser
+- [ ] Check if dropdown menus appear below each instrument row
+- [ ] Verify banner presence matches dropdown availability
+- [ ] If banner shows without dropdowns → Report bug in sequencer.js
+
+### Technical Note:
+This is controlled in `sequencer.js` lines 588-622. The banner should only render when `Object.keys(sampleLibrary).length > 0`, not just when `loadedSamples.length > 0`.
+
+---
+
+## 9. ASK USER WHEN IN DOUBT ❓
 
 ### Rules:
 - 👨‍💻 **Developer Role (Claude)**: Implement, improve, suggest
@@ -207,7 +231,7 @@ This checklist must be applied to **EVERY PAGE** before considering it complete.
 
 For each page:
 
-1. **Run through checklist items 1-8**
+1. **Run through checklist items 1-9**
 2. **Document findings** (issues, questions, improvements made)
 3. **Make improvements** where I have authority (no user approval needed)
 4. **Ask user** for decisions on:
@@ -236,7 +260,8 @@ When applying this checklist to existing pages, prioritize:
 
 - This checklist is **mandatory** for all new pages
 - Existing pages should be **gradually validated** using this checklist
-- If a page passes all 8 checks → Consider it **production-ready** ✅
+- If a page passes all 9 checks → Consider it **production-ready** ✅
 - Update this document if new quality standards emerge:
-  - Section 6 was added 2026-01-23 based on user feedback about UI clarity
-  - Section 7 was added 2026-01-23 after discovering 178 lessons missing educational content
+  - Section 6 added 2026-01-23 (UI clarity standard)
+  - Section 7 added 2026-01-23 (Educational content completeness)
+  - Section 8 added 2026-01-24 (Sample dropdown message validation)
