@@ -584,9 +584,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
       sampleLibraryLoadedResolve(true);
     }
 
-    // Show sample status banner
+    // Show sample status banner (only when dropdown menus are available)
     const samplesLoaded = Object.keys(loadedSamples).length;
-    if (samplesLoaded > 0) {
+    const hasDropdownOptions = Object.keys(sampleLibrary).length > 0;
+
+    if (hasDropdownOptions) {
       const banner = document.createElement('div');
       banner.style.cssText = `
         background: linear-gradient(135deg, rgba(0, 255, 157, 0.15), rgba(0, 240, 255, 0.15));
@@ -605,10 +607,10 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         <div style="flex-shrink: 0; font-size: 1.5rem;"><img src="images/notamusicale.png" alt="🎵" style="width: 1.5em; vertical-align: middle;"></div>
         <div style="flex: 1;">
           <div style="font-weight: 700; color: var(--accent-green, #00ff9d); margin-bottom: 2px;">
-            ${samplesLoaded} Custom Samples Loaded
+            ${Object.keys(sampleLibrary).length} Sample Options Available
           </div>
           <div style="color: var(--text-muted, #a0aec0); font-size: 0.8rem;">
-            ${Object.keys(sampleLibrary).length > 0 ? 'Use the dropdowns below each instrument to change samples' : 'Using your custom audio samples'}
+            Use the dropdowns below each instrument to change samples
           </div>
         </div>
       `;
