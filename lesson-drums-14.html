@@ -116,6 +116,271 @@
           </div>
         </section>
 
+    <!-- ============================================= -->
+    <!-- EDUCATIONAL CONTENT: Polyrhythms & Modulation -->
+    <!-- ============================================= -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card);">
+
+        <!-- INTRODUCTION -->
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-lg); background: linear-gradient(135deg, #6c5ce7, #a29bfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Polyrhythms: The Mathematical Beauty of Rhythm</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          A <strong>polyrhythm</strong> occurs when two or more <em>conflicting</em> rhythmic patterns play simultaneously—creating <strong>rhythmic tension</strong> that resolves cyclically. The most common polyrhythm, <strong>3-over-4 (3:4)</strong>, layers a pattern repeating every <strong>3 pulses</strong> against a pattern repeating every <strong>4 pulses</strong>. This mathematical relationship creates hypnotic grooves found in <strong>West African drumming</strong>, <strong>progressive rock</strong>, and <strong>experimental electronic music</strong>.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+          Polyrhythms predate modern music by millennia—found in <strong>13th-century African djembe traditions</strong>, <strong>Indian talas</strong> from 2000+ years ago, and <strong>Cuban son clave</strong>. In contemporary music, artists like <strong>Radiohead</strong> ("15 Step"), <strong>Tool</strong> ("Schism"), <strong>Aphex Twin</strong>, and <strong>Flying Lotus</strong> use polyrhythms to create <em>disorienting, hypnotic complexity</em> that challenges traditional 4/4 structures.
+        </p>
+
+        <div style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #6c5ce7; margin-bottom: var(--space-xl);">
+          <p style="font-style: italic; color: var(--text-primary); margin: 0; line-height: 1.7;">
+            <strong>The Mnemonic Trick:</strong> Say <em>"Nice cup of tea"</em> out loud in rhythm—<strong>that's a 3:4 polyrhythm!</strong> The phrase naturally divides into 3 syllables against 4 beats. This mnemonic helps internalize the pattern before programming it.
+          </p>
+        </div>
+
+        <!-- KEY CONCEPTS -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Key Concepts in Polyrhythms</h3>
+
+        <!-- Concept 1: Understanding Ratios -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #6c5ce7;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #6c5ce7;">
+            1. Understanding Polyrhythmic Ratios (3:4, 5:4, 7:4)
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Polyrhythms are expressed as <strong>ratios</strong>—the numbers tell you how many pulses each pattern contains. In <strong>3:4</strong>, the first pattern divides time into <strong>3 equal parts</strong> while the second divides it into <strong>4 equal parts</strong>. Both patterns loop simultaneously, creating tension as they drift apart and resolution when they realign.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            To program a polyrhythm, you need a grid that accommodates both patterns. This grid size is the <strong>Lowest Common Multiple (LCM)</strong> of the two numbers. For <strong>3:4</strong>, the LCM is <strong>12</strong> (the smallest number divisible by both 3 and 4). So you need a <strong>12-step sequencer</strong>: the "3" pattern hits every <strong>4 steps</strong> (12÷3=4), and the "4" pattern hits every <strong>3 steps</strong> (12÷4=3).
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Common Ratios & Grid Sizes:</strong><br>
+            • <strong>2:3</strong> → 6-step grid (simple shuffle feel)<br>
+            • <strong>3:4</strong> → 12-step grid (most musical, common in prog rock)<br>
+            • <strong>5:4</strong> → 20-step grid (hypnotic, African-influenced)<br>
+            • <strong>7:4</strong> → 28-step grid (very complex, use sparingly)
+          </p>
+        </div>
+
+        <!-- Concept 2: The 3:4 Polyrhythm -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #a29bfe;">
+            2. The 3:4 Polyrhythm: "Nice Cup of Tea"
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            The <strong>3:4 polyrhythm</strong> is the most accessible and musically useful polyrhythm. In this lesson, you'll program it using a <strong>12-step grid</strong> at <strong>100 BPM</strong>. The <strong>kick</strong> represents the "4" (hitting on steps 1, 4, 7, 10), and the <strong>hi-hat</strong> represents the "3" (hitting on steps 1, 5, 9).
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Why it works:</strong> Both patterns align perfectly on <strong>step 1</strong> (the downbeat), then drift apart throughout the bar, creating <strong>rhythmic tension</strong>. On step 13 (the next bar), they realign again—creating a satisfying <strong>cyclical resolution</strong>. This "drift and return" is what makes polyrhythms hypnotic.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Famous Example:</strong> Radiohead's <em>"15 Step"</em> uses a 5/4 time signature with a 4/4 feel—this creates a polyrhythmic <em>tension</em> between the drums and the guitar. Tool's <em>"Schism"</em> layers 5/8 and 6/8, creating complex polyrhythmic textures.
+          </p>
+        </div>
+
+        <!-- Concept 3: Metric Modulation -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #00cec9;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #00cec9;">
+            3. Metric Modulation: Changing Tempo Through Rhythm
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Metric modulation</strong> is an advanced technique where you <em>change tempo</em> by treating one subdivision as a new beat. For example: if you're at <strong>120 BPM</strong> and the <strong>eighth notes</strong> become the new <strong>quarter notes</strong>, the tempo doubles to <strong>240 BPM</strong>. This creates <em>seamless tempo transitions</em> without jarring jumps.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            This technique was pioneered by classical composer <strong>Elliott Carter</strong> and adopted by prog/math rock bands like <strong>Tool</strong>, <strong>Meshuggah</strong>, and <strong>King Crimson</strong>. In electronic music, producers use metric modulation to create <strong>buildups, breakdowns, and drops</strong> that feel organic rather than abrupt.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Example:</strong> Start at <strong>90 BPM</strong> with triplets. Make the triplet the new beat—suddenly you're at <strong>135 BPM</strong> (a 3:2 ratio increase). Tool's <em>"Lateralus"</em> uses this to transition between sections seamlessly.
+          </p>
+        </div>
+
+        <!-- Concept 4: Polymeter vs Polyrhythm -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #fdcb6e;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #fdcb6e;">
+            4. Polymeter vs Polyrhythm: Don't Confuse Them!
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Polyrhythm:</strong> Different subdivisions of the <em>same pulse</em>. Example: 3 against 4 in the same tempo—both patterns fit into the same bar length. The patterns conflict rhythmically but share the same underlying pulse.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Polymeter:</strong> Different <em>time signatures</em> playing simultaneously. Example: bass in 3/4 while drums play 4/4. The bar lengths are different—one instrument finishes 3 beats while the other finishes 4 beats. This creates a <em>metric</em> conflict, not just a rhythmic one.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Famous Polymeter Example:</strong> Pink Floyd's <em>"Money"</em> is in <strong>7/4 time</strong>—the entire band plays in an unusual meter. This is polymeter if layered against a 4/4 track, but when the whole band plays 7/4, it's just an odd time signature.
+          </p>
+        </div>
+
+        <!-- VISUAL BREAKDOWN -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">3:4 Polyrhythm Visual Breakdown (12 Steps)</h3>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); font-family: var(--font-mono); border: 1px solid rgba(108, 92, 231, 0.3);">
+          <div style="margin-bottom: var(--space-lg);">
+            <div style="font-weight: 600; color: #e17055; margin-bottom: var(--space-sm);">Kick Pattern (The "4" in 3:4):</div>
+            <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">1</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">4</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">7</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">10</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Divides 12 steps into <strong>4 equal parts</strong> (every 3 steps)
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-lg);">
+            <div style="font-weight: 600; color: #00cec9; margin-bottom: var(--space-sm);">Hi-Hat Pattern (The "3" in 3:4):</div>
+            <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">1</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">5</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 10px 4px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">9</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Divides 12 steps into <strong>3 equal parts</strong> (every 4 steps)
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <div style="font-weight: 600; color: #fdcb6e; margin-bottom: var(--space-sm);">Snare Pattern (Backbeat Anchor):</div>
+            <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 10px 4px; border-radius: 4px; text-align: center; color: #333; font-weight: 700;">4</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 10px 4px; border-radius: 4px; text-align: center; color: #333; font-weight: 700;">10</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 10px 4px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Backbeat on steps 4 and 10 helps listeners orient within the complexity
+            </div>
+          </div>
+
+          <div style="background: rgba(108, 92, 231, 0.15); padding: var(--space-md); border-radius: var(--radius-sm); border: 1px solid rgba(108, 92, 231, 0.3);">
+            <strong style="color: #6c5ce7;">The Magic:</strong> Notice how kick and hi-hat <strong>only align on step 1</strong>. Between steps 1-12, they drift apart—creating <em>rhythmic tension</em>. When they realign on step 1 of the next cycle, it creates a satisfying <strong>resolution</strong>. This cyclical tension/release is the essence of polyrhythms.
+          </div>
+        </div>
+
+        <!-- COMMON MISTAKES -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Common Polyrhythm Mistakes</h3>
+
+        <div style="display: grid; gap: var(--space-lg); margin-bottom: var(--space-xl);">
+
+          <!-- Mistake 1 -->
+          <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #ff6b6b;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">
+              ❌ Mistake #1: Using the Wrong Grid Size
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              Beginners often try to program a <strong>3:4 polyrhythm on a 16-step grid</strong>. This doesn't work because 16 isn't the LCM of 3 and 4 (which is 12). Using the wrong grid size means the patterns won't align properly, and the polyrhythm won't resolve cyclically.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> Always calculate the <strong>LCM (Lowest Common Multiple)</strong> first. For 3:4, use 12 steps. For 5:4, use 20 steps. For 2:3, use 6 steps. The grid size determines whether the polyrhythm will work mathematically.
+            </p>
+          </div>
+
+          <!-- Mistake 2 -->
+          <div style="background: linear-gradient(135deg, rgba(254, 202, 87, 0.1), rgba(254, 202, 87, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #feca57;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">
+              ❌ Mistake #2: Overusing Complex Ratios (7:4, 11:8)
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              Complex polyrhythms like <strong>7:4</strong> or <strong>11:8</strong> sound impressive on paper, but they can be <em>disorienting and chaotic</em> in practice. If listeners can't perceive the pattern, it just sounds random. Even prog rock bands use complex ratios <strong>sparingly</strong>.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> Start with <strong>2:3</strong> and <strong>3:4</strong>—these are musical and perceptible. Use <strong>5:4</strong> for exotic flair. Save 7:4+ for <em>special moments</em> where you want maximum disorientation. Less is more.
+            </p>
+          </div>
+
+          <!-- Mistake 3 -->
+          <div style="background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(162, 155, 254, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #a29bfe;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #a29bfe; margin-bottom: var(--space-sm);">
+              ❌ Mistake #3: No Anchor Point (Everything Polyrhythmic)
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              If <em>every element</em> is polyrhythmic, listeners have nothing to latch onto. The result is <strong>rhythmic chaos</strong>—interesting for 30 seconds, exhausting for 3 minutes. Polyrhythms need a <strong>reference point</strong> to create tension against.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> Keep the <strong>kick or snare</strong> on a simple, steady pulse (like the backbeat). Layer polyrhythmic <strong>hi-hats or percussion</strong> on top. This gives listeners an <em>anchor</em> while still creating complexity. The contrast between simple and complex is what makes polyrhythms work.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- WHY THIS MATTERS -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Why Polyrhythms Matter</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1)); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border: 1px solid rgba(108, 92, 231, 0.3);">
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-lg);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🌍</span>
+              <div>
+                <strong style="color: var(--text-primary);">Ancient Global Tradition:</strong>
+                <span style="color: var(--text-secondary);"> Polyrhythms connect your music to <strong>millennia of human culture</strong>—from West African djembe circles to Indian tabla traditions to Cuban son clave. Understanding polyrhythms means understanding <strong>rhythmic languages</strong> spoken across continents and centuries.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🎼</span>
+              <div>
+                <strong style="color: var(--text-primary);">Genre-Defining Complexity:</strong>
+                <span style="color: var(--text-secondary);"> Polyrhythms are the <strong>signature sound</strong> of progressive rock (Tool, King Crimson), experimental electronic (Aphex Twin, Autechre), and math rock (Don Caballero, Battles). If you want to produce in these genres, polyrhythms are <em>non-negotiable</em>.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🧠</span>
+              <div>
+                <strong style="color: var(--text-primary);">Rhythmic Intelligence:</strong>
+                <span style="color: var(--text-secondary);"> Programming polyrhythms <strong>trains your brain</strong> to think in multiple time layers simultaneously. This skill transfers to <em>all rhythm programming</em>—making you better at groove, swing, and complex beat construction across any genre.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">✨</span>
+              <div>
+                <strong style="color: var(--text-primary);">Hypnotic Engagement:</strong>
+                <span style="color: var(--text-secondary);"> Polyrhythms create <strong>cyclical tension and resolution</strong> that keeps listeners engaged. The brain tries to <em>predict the pattern</em>, and when it resolves on the downbeat, there's a <strong>satisfying "click" of understanding</strong>. This psychological engagement is why polyrhythms are so compelling.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WHAT'S NEXT -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">What's Next?</h3>
+
+        <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          Now that you've mastered the <strong>3:4 polyrhythm</strong> and understand the mathematical principles behind ratios and grid sizing, you're ready to explore <strong>advanced hi-hat techniques</strong>. You'll learn how to use open and closed hi-hats, rolls, and crescendos to add <strong>dynamic expression</strong> and <strong>rhythmic variation</strong> to your beats.
+        </p>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #0984e3;">
+          <p style="margin: 0; line-height: 1.7; color: var(--text-secondary);">
+            <strong style="color: var(--text-primary);">Up Next:</strong> In <strong>Lesson 15</strong>, you'll dive into <strong>Advanced Hi-Hat Techniques</strong>—mastering open/closed hi-hat patterns, hi-hat rolls for buildups, crescendo techniques, and pedal hi-hat articulations. These skills transform static timekeepers into <em>breathing, expressive</em> rhythmic elements.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- END EDUCATIONAL CONTENT -->
+
     </main>
 
     <!-- FOOTER -->
