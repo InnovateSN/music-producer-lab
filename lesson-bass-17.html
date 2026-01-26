@@ -61,6 +61,309 @@
         <!-- SEQUENCER CONTAINER (populated by JS) -->
         <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
 
+        <!-- THEORY SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow">Theory</div>
+          <h2 class="section-title">Bass Synthesis & Sound Design</h2>
+
+          <div class="exercise-box">
+            <h3>What You're Actually Making</h3>
+            <p>You're learning to <strong>design bass sounds from scratch</strong> using synthesis. Instead of using presets or samples, you'll build bass tones by combining <strong>oscillators</strong> (sound generators), <strong>filters</strong> (tone shapers), <strong>envelopes</strong> (movement), and <strong>modulation</strong> (animation). This is how professional producers create signature bass sounds.</p>
+
+            <p>From the Moog bass on Michael Jackson's "Thriller" to the 808 sub on Travis Scott tracks, from the Reese bass in jungle to the FM bass in DnB — all synthesized from simple building blocks. Understanding synthesis unlocks infinite bass possibilities and makes you a sound designer, not just a preset user.</p>
+
+            <p>This lesson teaches subtractive synthesis fundamentals and how to layer sub, mid, and top frequencies for professional fullness.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Oscillators: The Sound Source</h3>
+            <p>Oscillators generate the raw waveform — the starting point of your bass sound. Each waveform has a distinct character:</p>
+
+            <p><strong>1. Sine Wave — Pure Sub-Bass:</strong></p>
+            <pre>
+Shape: Smooth, round wave
+Harmonics: NONE (only fundamental frequency)
+Sound: Pure, clean, deep
+Usage: Sub-bass layer (40-80 Hz)
+Examples: 808 sub, reggae bass, grime sub
+</pre>
+            <p>Sine waves are perfect for sub because they have no harmonics to muddy the low end. Use for felt weight, not heard presence.</p>
+
+            <p><strong>2. Triangle Wave — Warm Sub/Mid:</strong></p>
+            <pre>
+Shape: Triangle, angular
+Harmonics: Odd harmonics only (softer than square)
+Sound: Warm, hollow, soft
+Usage: Warm mid-bass (80-200 Hz)
+Examples: Moog-style bass, vintage synth bass
+</pre>
+            <p>Triangle adds a bit more character than sine while staying relatively clean.</p>
+
+            <p><strong>3. Sawtooth Wave — Aggressive, Bright:</strong></p>
+            <pre>
+Shape: Ramp, sharp edge
+Harmonics: ALL harmonics (rich, complex)
+Sound: Bright, aggressive, buzzy
+Usage: Mid-bass layer (80-500 Hz), lead bass
+Examples: Reese bass, techno bass, DnB bass
+</pre>
+            <p>Sawtooth is the workhorse of electronic bass. Rich harmonic content means it can be shaped heavily with filters.</p>
+
+            <p><strong>4. Square Wave — Hollow, Nasal:</strong></p>
+            <pre>
+Shape: Square, 50% duty cycle
+Harmonics: Odd harmonics only (like triangle but louder)
+Sound: Hollow, nasal, video-game-like
+Usage: Retro bass, chip-tune, lo-fi
+Examples: NES/Gameboy bass, lo-fi hip-hop
+</pre>
+            <p>Square wave is thin and nasal — use for character, not weight.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Filters: Tone Shaping</h3>
+            <p>Filters remove frequencies from the oscillator's output, sculpting the tone:</p>
+
+            <p><strong>Low-Pass Filter (Most Common for Bass):</strong></p>
+            <pre>
+Function: Removes HIGH frequencies, keeps LOW
+Cutoff: Frequency where filtering starts (e.g. 400 Hz)
+Resonance: Emphasis/peak at cutoff frequency
+
+Example:
+Sawtooth wave (bright) → Low-pass at 300 Hz → Dark, warm bass
+</pre>
+            <ul>
+              <li><strong>Low cutoff (100-300 Hz):</strong> Dark, sub-focused, minimal mids</li>
+              <li><strong>Medium cutoff (300-800 Hz):</strong> Warm, balanced, present</li>
+              <li><strong>High cutoff (800-2k Hz):</strong> Bright, aggressive, cutting</li>
+              <li><strong>Resonance (0-50%):</strong> Adds emphasis at cutoff, can create "wah" character</li>
+            </ul>
+
+            <p><strong>High-Pass Filter:</strong></p>
+            <pre>
+Function: Removes LOW frequencies, keeps HIGH
+Usage: Clean up subsonic rumble (<30 Hz)
+       Remove mud from mid-bass layer (cut below 80 Hz)
+</pre>
+            <p>Use high-pass at 30-40 Hz on all bass to remove speaker-damaging subsonic content.</p>
+
+            <p><strong>Band-Pass Filter:</strong></p>
+            <pre>
+Function: Keeps ONLY middle frequencies
+Usage: Telephone effect, vocal-like bass, mid-focused bass
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Envelopes: Movement Over Time (ADSR)</h3>
+            <p>Envelopes control how parameters change over time. The most common is <strong>ADSR</strong>:</p>
+
+            <pre>
+A = ATTACK (how long to reach full level)
+D = DECAY (how long to drop to sustain level)
+S = SUSTAIN (level held while note is pressed)
+R = RELEASE (how long to fade after note release)
+
+Visual:
+     /\ (Attack + Decay)
+    /  \______ (Sustain)
+   /          \ (Release)
+</pre>
+
+            <p><strong>Bass Envelope Settings:</strong></p>
+
+            <p><strong>1. Sub-Bass (Immediate Impact):</strong></p>
+            <pre>
+Attack: 0ms (instant)
+Decay: 100-300ms (quick drop)
+Sustain: 80-100% (full level)
+Release: 50-100ms (short tail)
+
+Result: Immediate punch, sustained body
+</pre>
+
+            <p><strong>2. Mid-Bass (Slight Softness):</strong></p>
+            <pre>
+Attack: 10-30ms (slight ramp)
+Decay: 200-500ms
+Sustain: 60-80%
+Release: 100-300ms
+
+Result: Softer attack, more natural
+</pre>
+
+            <p><strong>3. Pluck Bass (Short, Percussive):</strong></p>
+            <pre>
+Attack: 1-5ms
+Decay: 100-400ms
+Sustain: 0% (drops to silence)
+Release: 50ms
+
+Result: Short, plucky, decaying tone
+</pre>
+
+            <p><strong>Filter Envelope (Modulation):</strong></p>
+            <p>Apply an envelope to the filter cutoff for movement:</p>
+            <pre>
+Attack: 0ms → Cutoff: 2000 Hz (opens bright)
+Decay: 300ms → Cutoff: 400 Hz (closes to dark)
+
+Result: "Wah" effect, opening and closing filter
+Classic Moog bass technique
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Modulation: Animation and Movement</h3>
+            <p>Modulation uses <strong>LFOs</strong> (Low Frequency Oscillators) or other sources to animate parameters:</p>
+
+            <p><strong>LFO to Filter Cutoff (Wobble Bass):</strong></p>
+            <pre>
+LFO Shape: Sine, square, or saw wave
+LFO Rate: 1/8 note (tempo-synced)
+LFO Depth: 50-100% (wide sweep)
+Target: Filter cutoff (100 Hz → 1000 Hz)
+
+Result: "Wub-wub-wub" wobble (dubstep)
+</pre>
+
+            <p><strong>LFO to Pitch (Vibrato):</strong></p>
+            <pre>
+LFO Shape: Sine wave (smooth)
+LFO Rate: 5-7 Hz (slow wobble)
+LFO Depth: ±10-30 cents (subtle)
+Target: Oscillator pitch
+
+Result: Singing, expressive vibrato
+</pre>
+
+            <p><strong>LFO to Amplitude (Tremolo):</strong></p>
+            <pre>
+LFO Shape: Sine or square
+LFO Rate: 1/16 note (tempo-synced)
+LFO Depth: 20-50%
+Target: Volume
+
+Result: Rhythmic pulsing, gated effect
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Bass Layering: Sub + Mid + Top</h3>
+            <p>Professional bass uses <strong>three layers</strong> for fullness across all playback systems:</p>
+
+            <p><strong>Layer 1: Sub-Bass (40-80 Hz):</strong></p>
+            <ul>
+              <li><strong>Waveform:</strong> Sine wave (pure, no harmonics)</li>
+              <li><strong>Filter:</strong> Low-pass at 100 Hz (remove everything above)</li>
+              <li><strong>Envelope:</strong> 0ms attack, full sustain</li>
+              <li><strong>Purpose:</strong> Felt weight on large systems (clubs, cars)</li>
+            </ul>
+
+            <p><strong>Layer 2: Mid-Bass (80-500 Hz):</strong></p>
+            <ul>
+              <li><strong>Waveform:</strong> Sawtooth or filtered square</li>
+              <li><strong>Filter:</strong> Low-pass at 300-600 Hz</li>
+              <li><strong>Envelope:</strong> 10-20ms attack, 70% sustain</li>
+              <li><strong>Purpose:</strong> Body and warmth on home speakers</li>
+            </ul>
+
+            <p><strong>Layer 3: Top Texture (500-2000 Hz):</strong></p>
+            <ul>
+              <li><strong>Waveform:</strong> Sawtooth with distortion/saturation</li>
+              <li><strong>Filter:</strong> High-pass at 500 Hz (remove low end)</li>
+              <li><strong>Envelope:</strong> Short, percussive</li>
+              <li><strong>Purpose:</strong> Definition on phones, laptops, small speakers</li>
+            </ul>
+
+            <p><strong>Why Layer?</strong></p>
+            <pre>
+Sub alone: Inaudible on phones/laptops
+Mid alone: No weight on large systems
+Top alone: Thin, no body
+
+Layered: Full spectrum, translates everywhere
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Classic Bass Sounds</h3>
+
+            <p><strong>1. Moog Bass (Analog Warmth):</strong></p>
+            <pre>
+Oscillator: Triangle or sawtooth
+Filter: Low-pass, resonance 20-40%
+Filter Envelope: Fast attack, medium decay
+Character: Warm, punchy, vintage
+
+Famous: Michael Jackson "Thriller", Dr. Dre beats
+</pre>
+
+            <p><strong>2. Reese Bass (Jungle/DnB):</strong></p>
+            <pre>
+Oscillator 1: Sawtooth at 0 cents
+Oscillator 2: Sawtooth at +7 cents (detuned)
+Filter: Low-pass at 300-600 Hz
+Character: Thick, metallic, beating
+
+Famous: UK jungle, drum & bass, dubstep
+</pre>
+
+            <p><strong>3. 808 Sub-Bass (Hip-Hop):</strong></p>
+            <pre>
+Oscillator: Sine wave
+Pitch Envelope: Slight pitch drop (808 signature)
+Filter: Low-pass at 80-100 Hz (pure sub)
+Character: Deep, clean, felt not heard
+
+Famous: Trap, hip-hop, modern R&B
+</pre>
+
+            <p><strong>4. FM Bass (Aggressive):</strong></p>
+            <pre>
+Method: Frequency modulation (one oscillator modulates another)
+Result: Metallic, digital, harmonically rich
+Character: Aggressive, cutting, modern
+
+Famous: Neurofunk DnB, bass house
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Common Mistakes</h3>
+            <ul>
+              <li><strong>No Sub Layer:</strong> Mid-bass alone doesn't translate on large systems. Always layer a sine sub (40-80 Hz) for weight.</li>
+              <li><strong>Too Many Harmonics in Sub:</strong> Using sawtooth for sub creates mud. Sub should be sine wave — pure, clean, no harmonics.</li>
+              <li><strong>No High-Pass Filter:</strong> Not removing subsonic content (<30 Hz) wastes headroom and can damage speakers. Always high-pass at 30-40 Hz.</li>
+              <li><strong>Too Much Resonance:</strong> 80%+ resonance creates harsh, ringing tones. Keep resonance at 10-40% for musicality.</li>
+              <li><strong>No Envelope on Filter:</strong> Static filters sound lifeless. Animate filter cutoff with envelopes for movement and expression.</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Why This Matters</h3>
+            <p><strong>Understanding synthesis makes you a sound designer.</strong> Instead of scrolling through 10,000 presets hoping to find "the right bass," you can design exactly what you hear in your head. Learning bass synthesis gives you:</p>
+
+            <ul>
+              <li><strong>Signature sound:</strong> Create bass tones that are uniquely yours</li>
+              <li><strong>Technical mastery:</strong> Understand oscillators, filters, envelopes, modulation</li>
+              <li><strong>Genre fluency:</strong> Know how to make Moog bass, Reese bass, 808 sub, FM bass</li>
+              <li><strong>Problem-solving:</strong> Fix thin, muddy, or lifeless bass sounds</li>
+              <li><strong>Production efficiency:</strong> Design bass faster than searching presets</li>
+            </ul>
+
+            <p>Every legendary producer has signature bass sounds: <strong>Dr. Dre's Moog bass</strong>, <strong>Skrillex's FM screeches</strong>, <strong>Flume's layered texture bass</strong>, <strong>Deadmau5's progressive house bass</strong>. They didn't find these in preset packs — they designed them.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>What's Next</h3>
+            <p>Now that you've mastered bass synthesis and can design sounds from scratch, you're ready for <strong>Lesson 18: Bass EQ & Frequency Management</strong>. While synthesis creates the sound, EQ shapes it to fit the mix. You'll learn how to <strong>remove mud</strong>, <strong>boost clarity</strong>, and manage the <strong>sub-to-mid relationship</strong> so your bass sits perfectly with kicks, vocals, and other elements.</p>
+
+            <p>This is where sound design meets mixing — the final step to professional bass production.</p>
+          </div>
+        </section>
+
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
