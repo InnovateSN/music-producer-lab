@@ -33,6 +33,75 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Audio for Video Games: Interactive Sound Design</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              Game audio is fundamentally different from linear media—it's <strong>interactive and non-linear</strong>. Sounds must respond to player actions, adapt to game states, and never become repetitive despite potentially hours of play. This requires <strong>adaptive systems</strong>, <strong>randomization</strong>, <strong>layered audio</strong>, and specialized <strong>middleware tools</strong> like Wwise and FMOD. Understanding these concepts opens doors to the massive game industry, where audio is a critical component of player experience.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Interactive" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Interactive Audio</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Game sounds <strong>react to player input</strong>: footsteps change with surface, weapons respond to input, music adapts to intensity. Parameters from the game engine (<strong>health, speed, danger level</strong>) control audio in real-time. This requires thinking in systems, not just sounds.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Variation" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Variation Systems</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Repetition kills immersion. Combat this with: <strong>Round-robins</strong> (cycle through variations), <strong>random pitch/volume</strong> within ranges, <strong>random containers</strong> (multiple sounds per event), <strong>layered randomization</strong>. A single "footstep" event might trigger from 20+ samples with randomized processing.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Middleware" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Middleware Tools</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Wwise</strong> and <strong>FMOD</strong> are industry-standard game audio tools. They handle playback, mixing, randomization, and integration with game engines (Unity, Unreal). Learn at least one—most game audio jobs require middleware proficiency.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Optimization" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Optimization</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Games have <strong>memory and CPU limits</strong>. Use compressed formats where possible. Limit simultaneous voices. Implement <strong>voice stealing</strong> (stop quiet sounds for loud ones). Stream long files; load short files to memory. Optimization is part of game audio design.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Thinking Linearly:</strong>
+                <span style="color: var(--text-secondary);"> Game audio isn't a timeline—it's a system. Design for every possible player action, not just what you imagine they'll do.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Insufficient Variation:</strong>
+                <span style="color: var(--text-secondary);"> Players might hear the same sound 1000 times. Without variation, it becomes annoying. Always plan for repetition—randomize everything.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Ignoring Context:</strong>
+                <span style="color: var(--text-secondary);"> The same gun sounds different in a cave vs. outdoors. Build systems that adapt to environment, not static sounds that ignore surroundings.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Massive Industry:</strong> Video games are bigger than film and music combined. Constant demand for audio talent.</li>
+                <li><strong>Player Experience:</strong> Audio feedback makes games feel responsive and satisfying. It's essential, not decorative.</li>
+                <li><strong>Unique Challenges:</strong> Interactivity and non-linearity require different thinking than linear media.</li>
+                <li><strong>Creative Technology:</strong> Game audio combines creative sound design with technical implementation skills.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">

@@ -33,6 +33,75 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Multi-Sampled Instruments: Professional Sampler Programming</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Multi-sampled instruments</strong> capture real instruments at multiple pitches, velocities, and articulations—then map them intelligently so they play naturally from a MIDI keyboard. This is how professional virtual instruments like Kontakt libraries achieve their realism. Building your own multi-sampled instruments requires <strong>recording multiple samples</strong>, <strong>editing them cleanly</strong>, <strong>mapping across the keyboard</strong>, and <strong>programming velocity layers and round-robins</strong>. Master this and create playable instruments from any sound source.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Sampling" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Recording Strategy</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Record every <strong>minor 3rd or major 2nd</strong> across the range (C, D#, F#, A or C, D, E, F#, etc.). Capture <strong>3-5 velocity layers</strong> per note (pp, mp, mf, f, ff). Record <strong>3-4 round-robins</strong> at each velocity to avoid machine-gun effect.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Editing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Sample Editing</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Trim</strong> to exact start (zero-crossing). <strong>Normalize</strong> velocity layers consistently. Add <strong>loop points</strong> for sustained sounds. Apply subtle <strong>fade-outs</strong>. Name systematically: <strong>"Piano_C3_v3_rr2.wav"</strong> (note, velocity layer, round-robin).</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Mapping" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Keyboard Mapping</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Assign samples to <strong>key zones</strong>—each sample covers its recorded pitch plus a few notes either side (pitch-shifted by the sampler). Set <strong>velocity splits</strong> for layers. Configure <strong>round-robin cycling</strong> so repeated notes trigger different samples.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Tools" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Sampler Tools</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Popular samplers: <strong>Kontakt</strong> (industry standard), <strong>Ableton Sampler</strong>, <strong>Logic EXS24/Sampler</strong>, <strong>Decent Sampler</strong> (free). Each has different mapping workflows but similar concepts. Kontakt offers the most scripting power for complex instruments.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Too Few Samples:</strong>
+                <span style="color: var(--text-secondary);"> Large pitch shifts sound unnatural. Sample at least every minor 3rd to keep transposition under 3 semitones. More samples = more realism.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">No Round-Robins:</strong>
+                <span style="color: var(--text-secondary);"> Repeated notes with the same sample create the "machine gun" effect. Record at least 3 variations per note/velocity to cycle through.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Inconsistent Recording:</strong>
+                <span style="color: var(--text-secondary);"> Variations in mic position, room noise, or performance between samples create an uneven instrument. Record all samples in one session with consistent setup.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Custom Instruments:</strong> Turn any sound into a playable, expressive instrument.</li>
+                <li><strong>Professional Libraries:</strong> This is exactly how commercial Kontakt libraries are built.</li>
+                <li><strong>Unique Sounds:</strong> Sample sources no one else has—your voice, found objects, rare instruments.</li>
+                <li><strong>Commercial Opportunity:</strong> Well-made sample instruments sell on platforms like Kontakt Hub and Plugin Boutique.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">

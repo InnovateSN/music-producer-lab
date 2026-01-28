@@ -33,6 +33,75 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">FM Synthesis: Complex Timbres Through Modulation</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>FM (Frequency Modulation) synthesis</strong> creates complex timbres by modulating one oscillator's frequency with another. Unlike subtractive synthesis, FM generates harmonics rather than filtering them away. The result: bright, metallic, bell-like, and crystalline sounds impossible with traditional methods. Made famous by the <strong>Yamaha DX7</strong> in the 1980s, FM is responsible for iconic sounds from electric pianos to bass to sci-fi textures. Understanding FM unlocks a unique sonic palette.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Operators" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Operators & Carriers</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">FM uses <strong>operators</strong>—each is an oscillator with its own envelope. <strong>Carriers</strong> produce the sound you hear. <strong>Modulators</strong> modify carrier frequencies, creating harmonic complexity. The <strong>ratio</strong> between them determines harmonic content—simple ratios (2:1) = musical; complex ratios = metallic/inharmonic.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Algorithms" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Algorithms</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Algorithms</strong> define how operators connect—which modulates which. Different algorithms produce different sounds. Stacked modulators = more complex harmonics. Parallel carriers = layered tones. Most FM synths offer 8-32 algorithm presets to explore.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Index" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Modulation Index</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">The <strong>modulation index</strong> (mod depth/amount) controls how much the modulator affects the carrier. Low index = subtle harmonics. High index = bright, aggressive, even noisy. Animate the index with envelopes for evolving timbres—this is key to expressive FM sounds.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Classic Sounds" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Classic FM Sounds</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Electric piano</strong> (DX7 Rhodes), <strong>bells and chimes</strong>, <strong>metallic basses</strong>, <strong>plucked strings</strong>, <strong>glassy pads</strong>. FM excels at percussive, bright sounds with complex attack transients that subtractive can't achieve.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Random Ratio Tweaking:</strong>
+                <span style="color: var(--text-secondary);"> FM is mathematical—small ratio changes have huge effects. Learn what specific ratios do (1:1 = fundamental emphasis, 1:2 = octave harmonics) rather than random tweaking.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Static Modulation Index:</strong>
+                <span style="color: var(--text-secondary);"> The magic of FM is in movement. Use envelopes on the modulation amount so sounds evolve from bright attack to mellow sustain—just like real instruments.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Overcomplicating Algorithms:</strong>
+                <span style="color: var(--text-secondary);"> Start with simple 2-operator FM. One carrier + one modulator can create amazing sounds. Add complexity only when you understand the basics.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Unique Timbres:</strong> FM creates sounds impossible with subtractive synthesis—crystalline, metallic, evolving.</li>
+                <li><strong>Classic Sounds:</strong> The DX7 electric piano, bass, and bells are still used in every genre.</li>
+                <li><strong>CPU Efficient:</strong> FM generates complex harmonics without heavy filtering—great for large arrangements.</li>
+                <li><strong>Modern Revival:</strong> Native Instruments FM8, Arturia DX7 V, and Ableton Operator keep FM relevant.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
