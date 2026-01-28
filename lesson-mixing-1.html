@@ -33,6 +33,200 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Gain Staging: The Invisible Foundation of Every Great Mix</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Gain staging</strong> is the process of managing <a href="glossary.html#volume" style="color: var(--accent-cyan); text-decoration: underline;">volume</a> levels at every point in your signal chain—from the raw audio track to the final <a href="glossary.html#master-bus" style="color: var(--accent-cyan); text-decoration: underline;">master bus</a>. Think of it as the <strong>plumbing of your mix</strong>: if the water pressure (signal level) is wrong at any point, everything downstream suffers. Too hot and you get <a href="glossary.html#clipping" style="color: var(--accent-cyan); text-decoration: underline;">clipping</a> and distortion; too quiet and you lose detail in the noise floor. Professional engineers spend significant time getting gain staging right <strong>before touching any EQ, compression, or effects</strong>. It's the single most impactful step you can take to improve your mixes—and the one beginners skip most often. In this lesson, you'll learn the principles of proper <a href="glossary.html#gain" style="color: var(--accent-cyan); text-decoration: underline;">gain</a> structure, headroom management, and level balancing that separates amateur mixes from professional productions.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: What is Gain Staging -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/speaker.png" alt="Signal" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">What is Gain Staging?</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Gain staging means setting the <strong>correct signal level</strong> at every point in your chain: input trim, channel fader, plugin input/output, bus levels, and master output. The goal is to keep signals in the <strong>"sweet spot"</strong>—loud enough for quality processing but quiet enough to avoid <a href="glossary.html#clipping" style="color: var(--accent-cyan); text-decoration: underline;">clipping</a>. In a <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>, aim for peaks around <strong>-18 to -12 dBFS</strong> per channel. This gives plugins optimal headroom to work their magic.
+                </p>
+              </div>
+
+              <!-- Concept 2: Headroom -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/stats.png" alt="Headroom" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Headroom: Your Safety Net</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Headroom</strong> is the space between your signal's peak level and 0 dBFS (digital maximum). With <strong>6-12 dB of headroom</strong> on your master bus, you have room for transients, EQ boosts, and bus processing without clipping. A mix peaking at -6 dB on the master gives the mastering engineer plenty of space. <strong>Headroom isn't wasted space—it's breathing room</strong> that makes everything sound better.
+                </p>
+              </div>
+
+              <!-- Concept 3: Unity Gain -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/gear.png" alt="Unity" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Unity Gain Principle</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Unity gain</strong> means the signal coming out of a <a href="glossary.html#plugin" style="color: var(--accent-cyan); text-decoration: underline;">plugin</a> is the <strong>same volume</strong> as the signal going in. This is crucial for honest A/B comparisons. Louder always sounds "better" to our ears (<strong>Fletcher-Munson effect</strong>), so if a plugin boosts volume, you'll think it sounds great even if it's making things worse. Always match output to input level when evaluating processing.
+                </p>
+              </div>
+
+              <!-- Concept 4: Signal Flow -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Signal Flow" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">The Signal Flow Chain</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Audio flows through a specific chain: <strong>Input Trim → Insert Effects → Channel Fader → Send Effects → Bus/Group → Master Bus</strong>. At each stage, the level can change. Professional engineers check levels at <strong>every junction</strong>. If your kick peaks at -3 dB before an <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> boost, that boost could push it into clipping. Managing each stage prevents cascading level problems.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: GAIN STAGING SIGNAL FLOW -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Signal Flow: Good vs. Bad Gain Staging</h3>
+
+              <!-- Good gain staging -->
+              <div style="margin-bottom: var(--space-xl);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/check_green.png" alt="Good" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Correct: Each stage at healthy levels
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Raw Audio</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">-18 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">EQ (+3 dB)</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">-15 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Compressor</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">-14 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Fader</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">-12 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Master Bus</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #10b981;">-6 dB</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bad gain staging -->
+              <div>
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/X_gray.png" alt="Bad" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Wrong: Levels too hot, clipping at master
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Raw Audio</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">-3 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">EQ (+3 dB)</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">0 dB!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Compressor</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">+2 dB!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Fader</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">+1 dB!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Master Bus</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">CLIP!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+
+              <!-- Mistake 1 -->
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Mixing Too Loud From the Start</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The most common beginner mistake is setting individual tracks too loud, which causes the <a href="glossary.html#master-bus" style="color: var(--accent-cyan); text-decoration: underline;">master bus</a> to clip before you even start mixing. Start with <strong>all faders at -10 to -15 dB</strong> and build your balance from there. Your master should never hit 0 dBFS during mixing—leave that for the mastering stage.
+                </p>
+              </div>
+
+              <!-- Mistake 2 -->
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Ignoring Plugin Gain Changes</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Every <a href="glossary.html#plugin" style="color: var(--accent-cyan); text-decoration: underline;">plugin</a> in your chain changes the signal level. An <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> boost adds volume, <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">compression</a> with makeup gain adds volume, saturators add volume. If you don't compensate with output gain controls, each plugin stacks more level. <strong>Always match input and output levels</strong> when adding processing.
+                </p>
+              </div>
+
+              <!-- Mistake 3 -->
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Using the Master Fader as a Volume Knob</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  When the mix gets too loud, beginners pull down the master fader. This <strong>doesn't fix the problem</strong>—it just masks it. The individual channels are still too hot, still overloading buses and plugins. Instead, <strong>select all channels and reduce them together</strong>, or use a <a href="glossary.html#gain" style="color: var(--accent-cyan); text-decoration: underline;">gain</a> utility plugin at the start of each chain. Fix the source, not the symptom.
+                </p>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Clean Processing</strong> — Plugins sound better when fed the right level. Compressors, saturators, and EQs are designed for specific input ranges.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Mastering Ready</strong> — A well-staged mix translates perfectly to mastering. No surprises, no re-work.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Better Mix Decisions</strong> — When levels are consistent, you can trust your ears. Volume differences trick your brain into thinking louder = better.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional Standard</strong> — Every studio engineer and mixer starts with gain staging. It's the first step in every professional workflow.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- THEORY SECTION (populated by JS from config) -->
+        <section id="mpl-theory-section" style="margin-bottom: var(--space-2xl);"></section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
