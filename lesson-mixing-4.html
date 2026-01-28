@@ -33,6 +33,190 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Reverb & Space: Placing Your Sounds in a Three-Dimensional World</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Reverb</strong> is the most powerful tool for creating a sense of <strong>depth and space</strong> in your mix. In the real world, every sound bounces off walls, ceilings, and floors before reaching your ears. <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">Reverb</a> simulates these reflections digitally, letting you place instruments in anything from a tiny closet to a massive cathedral. Understanding reverb types, <strong>pre-delay</strong>, <strong>decay time</strong>, and the <strong>wet/dry balance</strong> is essential to creating mixes that feel immersive without becoming a muddy wash of sound. In this lesson, you'll learn how to use reverb intentionally, choosing the right type for each element and controlling its parameters to build a cohesive spatial environment in your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Reverb Types -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Reverb Types" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Reverb Types</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The four main reverb types each have a distinct character. <strong>Hall reverb</strong> simulates large concert halls with long, lush tails. <strong>Room reverb</strong> provides a natural, tight ambience. <strong>Plate reverb</strong> uses a vibrating metal sheet model for bright, dense reflections—perfect for vocals. <strong>Spring reverb</strong> has a characteristic "boing" quality beloved in guitar amps and vintage recordings.
+                </p>
+              </div>
+
+              <!-- Concept 2: Pre-Delay -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Pre-Delay" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Pre-Delay & Clarity</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Pre-delay</strong> is the time gap between the original sound and the first reflections. Setting it to <strong>20-80 ms</strong> lets the dry signal speak clearly before the reverb kicks in. This keeps vocals intelligible and <a href="glossary.html#transient" style="color: var(--accent-cyan); text-decoration: underline;">transients</a> punchy even with long reverb tails. Without pre-delay, reverb smears the attack of your sound, making everything feel distant and unclear.
+                </p>
+              </div>
+
+              <!-- Concept 3: Decay Time -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Decay" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Decay Time & Tail</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Decay time</strong> (RT60) is how long the reverb tail takes to fade by 60 dB. Short decays (<strong>0.3-1s</strong>) keep things tight for fast <a href="glossary.html#tempo" style="color: var(--accent-cyan); text-decoration: underline;">tempo</a> tracks. Long decays (<strong>2-5s</strong>) create epic, cinematic spaces for ballads and ambient music. Match decay to your song's tempo—a general rule is the reverb tail should fade before the next musical phrase begins.
+                </p>
+              </div>
+
+              <!-- Concept 4: Wet/Dry & Early Reflections -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Wet/Dry" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Wet/Dry & Early Reflections</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The <strong>wet/dry</strong> balance controls how much reverb vs. original signal you hear. On a send/return bus, keep it <strong>100% wet</strong> and use the send level to blend. <strong>Early reflections</strong> arrive before the main reverb tail and define the perceived size and shape of the room. Boosting early reflections adds intimacy; reducing them creates a more diffuse, ethereal space.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: REVERB SIGNAL FLOW -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Reverb Signal: Dry → Early Reflections → Tail</h3>
+
+              <div style="margin-bottom: var(--space-xl);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/check_green.png" alt="Good" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> How reverb builds over time
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Dry Signal</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">0 ms</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Pre-Delay</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple);">30 ms</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Early Reflections</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">30-80 ms</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Diffuse Tail</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-magenta);">80 ms - 3s+</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Silence</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #10b981;">-60 dB</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/X_gray.png" alt="Bad" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Wrong: No pre-delay, too much wet signal, mud everywhere
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Dry Signal</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">Buried</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Pre-Delay</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">0 ms!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Wet Level</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">80%!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Result</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">MUD!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Using the Same Reverb on Everything</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Beginners often slap one hall <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a> on every track. This creates a flat, one-dimensional space. Instead, use <strong>2-3 different reverbs</strong>: a short room for drums, a plate for vocals, and a hall for pads. This creates <strong>depth layers</strong> that make your mix feel three-dimensional.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Reverb on Bass and Kick</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Adding reverb to <a href="glossary.html#bass" style="color: var(--accent-cyan); text-decoration: underline;">bass</a> and <a href="glossary.html#kick-drum" style="color: var(--accent-cyan); text-decoration: underline;">kick drum</a> creates low-end mud that destroys your mix's foundation. Low <a href="glossary.html#frequency" style="color: var(--accent-cyan); text-decoration: underline;">frequencies</a> build up rapidly in reverb tails. If you must add space to low-end elements, use a <strong>very short room</strong> with a <a href="glossary.html#high-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">high-pass filter</a> on the reverb return cutting below 200-300 Hz.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Too Much Reverb Masking the Mix</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Reverb sounds impressive in solo but quickly clutters a full mix. Always <strong>set reverb levels in context</strong> with all tracks playing. A good test: if you can clearly hear the reverb tail, it's probably too loud. Reverb should be <strong>felt, not heard</strong>. Pull it back until it disappears, then nudge it up slightly.
+                </p>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Depth & Dimension</strong> — Reverb creates front-to-back depth, turning a flat mix into a living, breathing space.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Emotional Impact</strong> — A long hall reverb evokes grandeur; a tight room feels intimate. Reverb shapes the emotional tone of your music.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Glue & Cohesion</strong> — Shared reverbs make separate recordings sound like they were performed in the same space together.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Genre Definition</strong> — From bone-dry hip-hop to drenched shoegaze, reverb choices define your genre and sonic identity.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- THEORY SECTION (populated by JS from config) -->
+        <section id="mpl-theory-section" style="margin-bottom: var(--space-2xl);"></section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
