@@ -33,6 +33,75 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mastering for Streaming: Spotify, Apple Music, YouTube</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Streaming platforms</strong> are the primary way people consume music today, and each platform has specific loudness normalization standards. Understanding these standards helps you master for optimal playback. This lesson covers the loudness targets, codec considerations, and best practices for delivering masters that sound great on Spotify, Apple Music, YouTube, and other streaming services.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Spotify" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Spotify</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Target: <strong>-14 LUFS integrated</strong>. Spotify normalizes using "Loud," "Normal," and "Quiet" modes. Most users are on Normal (-14 LUFS). Tracks louder than -14 get turned down; quieter tracks may be turned up. Uses <strong>Ogg Vorbis</strong> codec (320 kbps max for Premium).</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Apple" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Apple Music</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Target: <strong>-16 LUFS integrated</strong> with <strong>-1 dBTP true peak</strong>. Apple uses "Sound Check" normalization. Supports lossless (<strong>ALAC</strong>) and spatial audio (Dolby Atmos). Apple's mastering guidelines recommend more dynamics than other platforms.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="YouTube" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">YouTube</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Target: <strong>-14 LUFS</strong>. YouTube only turns DOWN loud content (no turn-up). Heavily compressed audio may sound quieter than intended. Uses <strong>AAC</strong> codec. Upload at high quality (1080p+ video) to get better audio encoding.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Delivery" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Delivery Specs</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Deliver <strong>WAV or AIFF</strong>, <strong>16-bit/44.1 kHz</strong> (or 24-bit for hi-res platforms). True peak: <strong>-1 dBTP</strong> or lower. Integrated loudness: <strong>-14 to -16 LUFS</strong> depending on platform. Distributors convert to platform formats—deliver the highest quality source.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Mastering Too Loud:</strong>
+                <span style="color: var(--text-secondary);"> A -8 LUFS master will be turned down 6 dB on Spotify. That crushed dynamic range is still crushed, but now also quieter. Dynamic masters sound better after normalization.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Ignoring Codec Conversion:</strong>
+                <span style="color: var(--text-secondary);"> Platforms convert your master to lossy formats. Leave true peak headroom (-1 dBTP) because encoding can create new peaks. Test your master through encode/decode cycles.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">One Master for All Platforms:</strong>
+                <span style="color: var(--text-secondary);"> Consider different masters for different contexts—a slightly louder master for Spotify/YouTube, a more dynamic one for Apple Music/Tidal. The extra work pays off in optimized playback.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Optimal Playback:</strong> Masters that match platform targets sound their best after normalization.</li>
+                <li><strong>Competitive Sound:</strong> Your track plays back-to-back with commercial releases—it should sound comparable.</li>
+                <li><strong>Preserved Intent:</strong> Understanding normalization helps you master to sound exactly as intended on each platform.</li>
+                <li><strong>Future-Proofing:</strong> As platforms evolve and standards change, understanding the principles helps you adapt.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">

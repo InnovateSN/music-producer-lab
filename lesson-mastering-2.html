@@ -33,6 +33,80 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Metering & Analysis: See What You Hear</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              Professional mastering relies on <strong>accurate metering</strong> as much as trained ears. <strong>LUFS meters</strong> measure perceived loudness, <strong>peak meters</strong> catch digital overs, <strong>spectrum analyzers</strong> reveal frequency balance, and <strong>phase correlation meters</strong> ensure mono compatibility. Understanding these tools lets you make objective decisions and meet streaming platform requirements. This lesson covers every essential meter you need for professional mastering in your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="LUFS" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">LUFS (Loudness Units)</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>LUFS</strong> measures perceived loudness, accounting for how humans hear. Streaming targets: Spotify <strong>-14 LUFS</strong>, Apple Music <strong>-16 LUFS</strong>, YouTube <strong>-14 LUFS</strong>. Integrated LUFS = average loudness; Short-term = last 3 seconds; Momentary = 400ms window.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Peak" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">True Peak Metering</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>True Peak</strong> catches inter-sample peaks that standard meters miss. Keep true peak below <strong>-1 dBTP</strong> (or -2 dBTP for safety) to prevent <a href="glossary.html#clipping" style="color: var(--accent-cyan); text-decoration: underline;">clipping</a> during codec conversion. Regular peak meters can miss peaks that cause distortion on streaming platforms.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Spectrum" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Spectrum Analysis</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Spectrum analyzers show frequency distribution. Compare your master to references—look for similar overall shape. Watch for excessive sub (<30 Hz), muddy low-mids (200-400 Hz), or harsh highs (3-5 kHz). Use <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> to address imbalances you see.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Phase" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Phase Correlation</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">The correlation meter shows stereo relationship: <strong>+1 = mono</strong>, <strong>0 = uncorrelated</strong>, <strong>-1 = out of phase</strong>. Keep it mostly positive (above 0). Negative correlation = phase cancellation on mono systems. Wide stereo is fine, but watch for excessive negative readings.</p>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Mixing with Your Eyes:</strong>
+                <span style="color: var(--text-secondary);"> Meters inform decisions, but don't let them override your ears. A track can look "wrong" on a meter but sound perfect. Use meters to confirm what you hear, not replace listening.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Ignoring True Peak:</strong>
+                <span style="color: var(--text-secondary);"> Standard peak meters miss inter-sample peaks. Your master might show -0.3 dB peak but actually clip after encoding. Always use true peak metering and leave headroom.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Chasing Loudness Numbers:</strong>
+                <span style="color: var(--text-secondary);"> Don't crush your master to hit a LUFS target. Streaming platforms normalize anyway—a dynamic -14 LUFS master will sound better than a crushed -8 LUFS master after normalization.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Platform Compliance:</strong> Meet streaming platform requirements to avoid unwanted normalization or rejection.</li>
+                <li><strong>Objective Reference:</strong> Meters give you data when ear fatigue sets in or your room acoustics deceive you.</li>
+                <li><strong>Quality Control:</strong> Catch phase problems, clipping, and frequency imbalances before release.</li>
+                <li><strong>Professional Standards:</strong> Broadcast and streaming standards require specific loudness targets—meters ensure compliance.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">

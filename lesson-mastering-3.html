@@ -33,6 +33,80 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mastering EQ: Linear Phase & Mid-Side Processing</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>EQ in mastering</strong> is fundamentally different from mixing EQ. You're working on a complete stereo mix, so every adjustment affects everything. <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">Mastering EQ</a> requires subtle moves—often 0.5-2 dB—and specialized techniques. <strong>Linear phase EQ</strong> prevents phase smearing on transients. <strong>Mid-Side EQ</strong> lets you process the center and sides independently. These tools give you surgical precision for shaping the final tonal balance.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Linear Phase" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Linear Phase EQ</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Standard EQ causes <strong>phase shift</strong> around boosted/cut frequencies—usually fine in mixing, but problematic on a full master. <strong>Linear phase EQ</strong> eliminates this, preserving transient clarity. Trade-off: increased latency and potential pre-ringing on sharp cuts. Use it for broad tonal shaping.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Mid-Side" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Mid-Side EQ</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Mid</strong> = center (kick, snare, bass, vocals). <strong>Side</strong> = stereo information (room, width, effects). M/S EQ lets you brighten the sides without affecting vocals, or tighten bass in the center without touching stereo effects. Incredibly powerful for mastering.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Subtle" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Subtle is Key</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Mastering EQ moves are typically <strong>0.5-2 dB</strong>. If you need more than 3 dB, the problem is in the mix. Use wide Q values for gentle slopes. A/B frequently—if bypassing the EQ sounds better, remove it. Less is more; every change affects everything.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Common Moves" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Common Mastering EQ Moves</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>High-pass at 20-30 Hz</strong> to remove sub rumble. <strong>Cut 200-400 Hz</strong> if muddy. <strong>Boost 2-4 kHz</strong> for presence. <strong>Shelf boost 10kHz+</strong> for air. <strong>Cut 3-5 kHz</strong> if harsh. Always compare to reference tracks.</p>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Heavy-Handed EQ:</strong>
+                <span style="color: var(--text-secondary);"> Boosting 6 dB in mastering is like shouting—it destroys balance. If you need dramatic EQ, the mix needs revision. Master EQ is refinement, not transformation.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Narrow Q Surgical Cuts:</strong>
+                <span style="color: var(--text-secondary);"> Tight Q notches work in mixing to fix individual tracks, but in mastering they create audible artifacts. Use broad, gentle curves—they sound more natural on a full mix.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Over-Boosting the Sides:</strong>
+                <span style="color: var(--text-secondary);"> M/S processing is powerful but dangerous. Too much side boost creates an artificial, hollow sound. Monitor in mono to check that center elements remain solid when you adjust sides.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Tonal Balance:</strong> EQ is your primary tool for achieving commercial frequency balance that translates everywhere.</li>
+                <li><strong>Phase Integrity:</strong> Linear phase preserves the punch and clarity that minimum-phase EQ can smear.</li>
+                <li><strong>Surgical Control:</strong> M/S lets you fix problems in specific areas (like muddy center bass) without affecting the rest.</li>
+                <li><strong>Reference Matching:</strong> EQ helps you match the tonal character of professional reference tracks.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">

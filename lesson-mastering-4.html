@@ -33,6 +33,75 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mastering Compression: Glue Without Crushing</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Mastering compression</strong> serves a different purpose than mix compression. Instead of shaping individual sounds, you're gently "gluing" the entire mix together, controlling overall dynamics, and adding subtle density. The key word is <strong>gentle</strong>—typically 1-3 dB of gain reduction with slow attack and release times. <strong>Multiband compression</strong> lets you control different frequency ranges independently, solving problems that broadband compression can't address.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Glue" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Glue Compression</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Mastering compressors "glue" the mix, making elements feel cohesive. Use <strong>slow attack (30-100 ms)</strong> to preserve transients and <strong>auto/slow release</strong>. Ratio <strong>1.5:1 to 3:1</strong>. Aim for <strong>1-3 dB gain reduction</strong> on peaks. If you're compressing more, you're crushing.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Multiband" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Multiband Compression</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Multiband splits the signal into frequency bands, compressing each independently. Use it to <strong>tighten loose bass</strong> without affecting highs, or <strong>control harsh vocals</strong> without dulling the mix. Crossover points are critical—poor placement causes phase issues.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Parallel" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Parallel Compression</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Blend heavily compressed signal with the original for density without losing dynamics. Set up a <strong>send to a crushed compressor</strong> (10:1+, fast attack/release) and blend it low. Adds body and excitement while keeping transients from the dry signal.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Settings" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Typical Settings</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Ratio:</strong> 1.5:1 to 3:1. <strong>Attack:</strong> 30-100 ms. <strong>Release:</strong> Auto or 100-300 ms. <strong>Threshold:</strong> Set for 1-3 dB GR on peaks. <strong>Knee:</strong> Soft for transparency. If it sounds compressed, you've gone too far.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Over-Compression:</strong>
+                <span style="color: var(--text-secondary);"> More than 3-4 dB gain reduction in mastering usually means you're crushing dynamics. The limiter should handle loudness—let the compressor just glue.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Fast Attack Killing Transients:</strong>
+                <span style="color: var(--text-secondary);"> Fast attack times (under 10 ms) clamp down on transients, making drums sound flat and lifeless. Mastering compression should let transients through.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Multiband Without Purpose:</strong>
+                <span style="color: var(--text-secondary);"> Don't use multiband compression just because you have it. Each band introduces phase relationships. Only use it when you have a specific problem to solve.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Cohesion:</strong> Glue compression makes the mix feel like one unified piece, not separate elements.</li>
+                <li><strong>Consistent Energy:</strong> Gentle dynamics control keeps energy even throughout the song.</li>
+                <li><strong>Headroom Management:</strong> Compression tames peaks, giving your limiter an easier job for cleaner loudness.</li>
+                <li><strong>Problem Solving:</strong> Multiband lets you fix frequency-specific dynamic issues the mixer missed.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
