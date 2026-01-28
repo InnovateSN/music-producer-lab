@@ -88,7 +88,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build both C major (C-E-G) and C minor (C-Eb-G) to hear the difference.",
-    success: "🎉 Perfect! You can now hear and build the difference between major and minor chords. This unlocks all chord construction.",
+    success: "Perfect! You can now hear and build the difference between major and minor chords. This unlocks all chord construction.",
     error: "Make sure you have C major (C-E-G) and C minor (C-Eb-G). The only difference should be E vs Eb."
   }),
 

@@ -85,7 +85,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Practice building the C major triad (C-E-G) in your DAW.",
-    success: "🎉 Perfect! You've built your first chord. You now understand the root-third-fifth structure that creates all major triads.",
+    success: "Perfect! You've built your first chord. You now understand the root-third-fifth structure that creates all major triads.",
     error: "Make sure you have exactly C, E, and G playing simultaneously. Check the note positions in your piano roll."
   }),
 

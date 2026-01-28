@@ -116,7 +116,7 @@ In later lessons, we'll learn sidechain compression to make them work perfectly 
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Place a C3 note on step 1 to complete the exercise.",
-    success: "🎉 Perfect! You've created your first bass note. This is the foundation all bass patterns build from.",
+    success: "Perfect! You've created your first bass note. This is the foundation all bass patterns build from.",
     error: "Not quite. Make sure you have a C3 note on step 1 (beat 1)."
   }),
 

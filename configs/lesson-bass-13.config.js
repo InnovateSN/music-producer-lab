@@ -150,7 +150,7 @@ Blues bassists like Willie Dixon, Duck Dunn, and Donald "Duck" Dunn are masters 
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Program the blues bass pattern to complete this lesson.",
-    success: "🎉 Bluesy! You've got that classic foundation. Willie Dixon would be proud!",
+    success: "Bluesy! You've got that classic foundation. Willie Dixon would be proud!",
     error: "Not quite there. Check your root-fifth pattern and chromatic turnaround.",
     alreadyCompleted: "You've mastered blues bass. That's the backbone of rock and roll!"
   }),

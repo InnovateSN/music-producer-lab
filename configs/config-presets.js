@@ -3,7 +3,7 @@ import { getDisplayNumber } from '../curriculum.js';
 const baseMessages = {
   initial: "Complete the exercise to unlock the next lesson.",
   alreadyCompleted: "You've already completed this exercise. Feel free to practice or move to the next lesson!",
-  success: "🎉 Correct! Great job! You can now proceed to the next lesson.",
+  success: "Correct! Great job! You can now proceed to the next lesson.",
   error: "Not quite right. Double check the highlighted steps!"
 };
 

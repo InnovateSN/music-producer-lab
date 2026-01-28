@@ -61,7 +61,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build C → Ab → F → G. The Ab chord (Ab-C-Eb) is borrowed from C minor - notice the Eb creates drama and color!",
-    success: "🎉 Excellent! You've mastered modal interchange. That Ab chord creates instant cinematic drama - it's used in countless pop, rock, and film scores!",
+    success: "Excellent! You've mastered modal interchange. That Ab chord creates instant cinematic drama - it's used in countless pop, rock, and film scores!",
     error: "Check: C = C-E-G, Ab = Ab-C-Eb (note the Eb!), F = F-A-C, G = G-B-D. The Ab chord contains notes from C minor, creating that dramatic shift."
   }),
 

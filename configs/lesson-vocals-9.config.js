@@ -115,7 +115,7 @@ Study vocal productions in your genre and understand what makes them work.`
   
   messages: applyMessagePreset("default", {
     initial: "Complete this vocal production lesson to advance.",
-    success: "🎉 Excellent! You've mastered Creative Vocal Production. Your vocal productions are pro-level!",
+    success: "Excellent! You've mastered Creative Vocal Production. Your vocal productions are pro-level!",
     error: "Review the vocal production concepts and try again.",
     alreadyCompleted: "You've completed this vocal technique. Keep refining your skills!"
   }),

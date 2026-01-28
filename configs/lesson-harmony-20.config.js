@@ -95,7 +95,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Voice Fmaj9 → Gm7 → Cmaj9 → Am7 with separated registers: low bass, mid body, high melody. Top notes should move smoothly: G→F→D→C.",
-    success: "🎉 Congratulations! You've completed the Harmony & Melody curriculum and mastered professional voicing! You now have the harmonic skills of a professional producer and arranger. Ready to explore the Harmony Playground!",
+    success: "Congratulations! You've completed the Harmony & Melody curriculum and mastered professional voicing! You now have the harmonic skills of a professional producer and arranger. Ready to explore the Harmony Playground!",
     error: "Separate registers: Bass in low octave (roots), body in middle (3rd/5th/7th), top voice high (9th or color tone). Top notes create melody: G→F→D→C."
   }),
 

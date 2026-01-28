@@ -94,7 +94,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Write a melody using chord tones on strong beats (1 and 3) and any scale note on weak beats. Include at least 4 passing tones.",
-    success: "🎉 Congratulations! You've completed the beginner harmony and melody lessons. You can now write chord progressions and melodies with professional techniques!",
+    success: "Congratulations! You've completed the beginner harmony and melody lessons. You can now write chord progressions and melodies with professional techniques!",
     error: "Check: Strong beats (1 and 3) should use chord tones. All notes should be from C major scale (C-D-E-F-G-A-B). Include at least 4 passing tones."
   }),
 

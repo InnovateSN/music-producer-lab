@@ -104,7 +104,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Build an arrangement with 64-96 bars to complete this exercise.",
-    success: "🎉 Excellent! Your arrangement has great structure. You've completed this lesson!",
+    success: "Excellent! Your arrangement has great structure. You've completed this lesson!",
     error: "Not quite there yet. Make sure you have an intro, at least one chorus/drop, and an outro.",
     alreadyCompleted: "You've already completed this exercise. Feel free to experiment more!"
   }),

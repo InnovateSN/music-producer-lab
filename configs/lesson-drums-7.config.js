@@ -153,7 +153,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Add ghost notes and vary your velocity to complete this exercise.",
-    success: "🎉 Excellent dynamics! Your groove has real human feel now. Proceed to the next lesson!",
+    success: "Excellent dynamics! Your groove has real human feel now. Proceed to the next lesson!",
     error: "Check your ghost notes—they should be soft (velocity 25-40) and your accents should be loud (100+).",
     alreadyCompleted: "You've mastered ghost notes! Feel free to experiment with different velocity patterns."
   }),

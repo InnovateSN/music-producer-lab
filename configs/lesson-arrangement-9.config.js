@@ -94,7 +94,7 @@ export const lessonConfig = {
     {
       name: "High Mids",
       range: "2kHz-6kHz",
-      icon: "✨",
+      icon: "",
       color: "#3498db",
       allowedElements: 2,
       typical: ["Vocal presence", "Synth leads", "Hi-hats", "Cymbals"],

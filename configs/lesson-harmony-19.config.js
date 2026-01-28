@@ -83,7 +83,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Melody: C-D-E-D-C-G-E-C (repeated 3 times). Bars 1-2: C→G. Bars 3-4: Am→Em. Bars 5-6: Fmaj7→Em7→Dm7→G7. Same melody, different chords!",
-    success: "🎉 Brilliant! You've mastered reharmonization - the art of harmonic transformation. Notice how the same melody feels completely different with different chord choices!",
+    success: "Brilliant! You've mastered reharmonization - the art of harmonic transformation. Notice how the same melody feels completely different with different chord choices!",
     error: "Keep the melody IDENTICAL in all 3 sections: C-D-E-D-C-G-E-C. Only change the chords underneath. Section 1: C→G, Section 2: Am→Em, Section 3: Fmaj7→Em7→Dm7→G7."
   }),
 

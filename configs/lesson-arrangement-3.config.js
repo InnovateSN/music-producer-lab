@@ -150,7 +150,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Build your arrangement to meet all checklist requirements.",
-    success: "🎉 Amazing! You've created a complete, professional arrangement!",
+    success: "Amazing! You've created a complete, professional arrangement!",
     error: "Almost there! Check the requirements that aren't checked yet.",
     alreadyCompleted: "You've completed this module! Feel free to experiment more."
   }),

@@ -74,7 +74,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Complete the bass pattern exercise.",
-    success: "🎉 Excellent! You've mastered this bass technique.",
+    success: "Excellent! You've mastered this bass technique.",
     error: "Not quite. Check the target pattern and try again."
   }),
 
