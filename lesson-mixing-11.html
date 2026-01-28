@@ -33,6 +33,138 @@
           </div>
         </section>
 
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mixing Bass & Low End: Control the Foundation</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              The <strong>low end</strong> (20-200 Hz) is where amateur mixes struggle and professional mixes shine. A well-controlled <a href="glossary.html#bass" style="color: var(--accent-cyan); text-decoration: underline;">bass</a> provides weight and groove without overwhelming the mix. This lesson covers critical techniques for taming sub frequencies, achieving <strong>mono compatibility</strong> below 100 Hz, managing the relationship between bass and <a href="glossary.html#kick" style="color: var(--accent-cyan); text-decoration: underline;">kick</a>, and using <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a>, <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">compression</a>, and <a href="glossary.html#saturation" style="color: var(--accent-cyan); text-decoration: underline;">saturation</a> to craft bass that translates from laptop speakers to club systems. Master the low end, and your mixes will sound powerful on any playback system.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Sub Bass Control -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Sub Bass" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Sub Bass Control</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The sub region (<strong>20-60 Hz</strong>) requires surgical control. Use a <strong>high-pass filter</strong> on everything except kick and bass to remove rumble. High-pass the bass itself at 30-40 Hz to remove inaudible energy that eats headroom. Sub frequencies should be <strong>mono</strong>—use a stereo imaging plugin to collapse frequencies below 100 Hz. This ensures translation on all systems.
+                </p>
+              </div>
+
+              <!-- Concept 2: EQ Carving -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="EQ Carving" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">EQ Carving: Kick vs Bass</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The kick and bass share the 60-120 Hz range—both can't dominate. Choose who owns the <strong>sub</strong> (usually kick around 60 Hz) and who owns the <strong>low-mid punch</strong> (usually bass around 80-100 Hz). Cut 3-6 dB on one where you boost the other. Use a spectrum analyzer to visualize this. The "frequency pocket" approach creates clarity and power.
+                </p>
+              </div>
+
+              <!-- Concept 3: Bass Compression -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Compression" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Bass Compression Techniques</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Bass needs consistent level to support the groove. Use a <strong>medium-slow attack (20-50 ms)</strong> to preserve note articulation. <strong>Fast release</strong> keeps the level even between notes. Aim for <strong>4-8 dB gain reduction</strong> on peaks. Consider <strong>multiband compression</strong> to control sub frequencies independently—this prevents low notes from triggering compression on the entire signal.
+                </p>
+              </div>
+
+              <!-- Concept 4: Harmonic Enhancement -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Harmonics" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Harmonic Enhancement</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Small speakers can't reproduce sub bass, but they can play the <strong>harmonics</strong> (80, 120, 160 Hz). <a href="glossary.html#saturation" style="color: var(--accent-cyan); text-decoration: underline;">Saturation</a> adds these harmonics, making bass audible on laptops and phones. Use parallel saturation or plugins like Decapitator, SansAmp, or FabFilter Saturn. The psychoacoustic effect lets listeners perceive bass they can't technically hear.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: LOW END SPECTRUM -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Low End Spectrum: Who Owns What?</h3>
+
+              <div style="font-family: monospace; color: var(--text-secondary);">
+                <div style="display: flex; height: 80px; align-items: flex-end; gap: 2px; margin-bottom: var(--space-md);">
+                  <div style="width: 20%; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: linear-gradient(to top, var(--accent-orange), rgba(255, 90, 61, 0.3)); width: 80%; height: 70px; border-radius: 4px 4px 0 0;"></div>
+                    <span style="font-size: 0.75rem; margin-top: 4px;">20-60 Hz</span>
+                    <span style="font-size: 0.7rem; color: var(--accent-orange);">SUB</span>
+                  </div>
+                  <div style="width: 20%; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: linear-gradient(to top, var(--accent-purple), rgba(95, 77, 255, 0.3)); width: 80%; height: 60px; border-radius: 4px 4px 0 0;"></div>
+                    <span style="font-size: 0.75rem; margin-top: 4px;">60-100 Hz</span>
+                    <span style="font-size: 0.7rem; color: var(--accent-purple);">THUMP</span>
+                  </div>
+                  <div style="width: 20%; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: linear-gradient(to top, var(--accent-cyan), rgba(0, 212, 255, 0.3)); width: 80%; height: 50px; border-radius: 4px 4px 0 0;"></div>
+                    <span style="font-size: 0.75rem; margin-top: 4px;">100-200 Hz</span>
+                    <span style="font-size: 0.7rem; color: var(--accent-cyan);">BODY</span>
+                  </div>
+                  <div style="width: 20%; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: linear-gradient(to top, var(--accent-magenta), rgba(179, 102, 255, 0.3)); width: 80%; height: 40px; border-radius: 4px 4px 0 0;"></div>
+                    <span style="font-size: 0.75rem; margin-top: 4px;">200-400 Hz</span>
+                    <span style="font-size: 0.7rem; color: var(--accent-magenta);">WARMTH</span>
+                  </div>
+                  <div style="width: 20%; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: linear-gradient(to top, var(--text-muted), rgba(100, 100, 100, 0.3)); width: 80%; height: 25px; border-radius: 4px 4px 0 0;"></div>
+                    <span style="font-size: 0.75rem; margin-top: 4px;">400+ Hz</span>
+                    <span style="font-size: 0.7rem; color: var(--text-muted);">HARMONICS</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-around; font-size: 0.8rem; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+                  <span><span style="color: var(--accent-orange);">●</span> Kick owns 50-60 Hz</span>
+                  <span><span style="color: var(--accent-purple);">●</span> Bass owns 80-100 Hz</span>
+                  <span><span style="color: var(--accent-cyan);">●</span> Both share carefully</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Too Much Sub Bass:</strong>
+                <span style="color: var(--text-secondary);"> Beginners crank sub frequencies to "feel" the bass, but this eats headroom and causes distortion on small speakers. The sub should be felt, not overwhelming. Check your mix on multiple systems—if it sounds boomy on headphones but thin on laptop speakers, your sub is too loud and lacks harmonics.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Stereo Bass Below 100 Hz:</strong>
+                <span style="color: var(--text-secondary);"> Stereo information in the sub range causes phase cancellation on mono systems (clubs, many Bluetooth speakers). Your powerful bass vanishes. Always keep frequencies below 100 Hz in mono using a utility plugin or stereo width control.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Monitoring on Non-Flat Systems:</strong>
+                <span style="color: var(--text-secondary);"> Consumer headphones and speakers boost bass artificially. If you mix on these, you'll under-compensate, resulting in thin bass on accurate systems. Use flat studio monitors or reference headphones, or at least know your system's bias and compensate.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Translation:</strong> A well-managed low end sounds good everywhere—from earbuds to club systems. Poor low end sounds different on every system.</li>
+                <li><strong>Headroom:</strong> Sub frequencies contain the most energy. Controlling them gives you more headroom for loudness in mastering.</li>
+                <li><strong>Clarity:</strong> Muddy low end masks the entire mix. Clean bass lets every other element shine through.</li>
+                <li><strong>Physical Impact:</strong> The low end is what makes music feel powerful. Done right, it moves bodies and creates emotion.</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
           <div class="exercise-box">
