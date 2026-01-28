@@ -19,7 +19,7 @@ Starting systematic QA testing from landing page (index.html) through all naviga
 - [x] Glossary (glossary.html) - ISSUES FOUND ⚠️
 - [x] Tools guide (learn-tools.html) - PASSED ✅
 - [x] Sample lesson deep-dive (lesson-drums-10.html) - PASSED ✅
-- [ ] Remaining sample lessons (9/10 pending)
+- [x] Sample lessons (9 categories) - ALL FAILED ❌ (Session 2)
 - [ ] Full lesson testing (173/174 pending)
 
 ---
@@ -198,18 +198,167 @@ Starting systematic QA testing from landing page (index.html) through all naviga
 
 ---
 
+### Lesson: lesson-harmony-10.html (Harmony Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 228 lines (below 250 minimum)
+- No structured Key Concepts cards
+- No Common Mistakes section
+- No "Why This Matters" section
+- No glossary links
+- Emoji in config success message
+
+**Notes**: Has 6 educational boxes in theory section but lacks required structural sections.
+
+---
+
+### Lesson: lesson-bass-10.html (Bass Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 178 lines (bare template, below 250 minimum)
+- No educational content in HTML between hero and exercise
+- No Key Concepts, Common Mistakes, or "Why This Matters" sections
+- No glossary links
+- Emoji in config success message
+- Duplicate footer sections, leftover template comments
+
+---
+
+### Lesson: lesson-arrangement-10.html (Arrangement Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 164 lines (bare template, below 250 minimum)
+- No educational content in HTML between hero and exercise
+- No structured Key Concepts cards in HTML
+- No glossary links
+- 8+ emoji in config file
+- Educational content only in config JS, not rendered as static HTML
+
+---
+
+### Lesson: lesson-mixing-10.html (Mixing Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 98 lines (identical bare template)
+- No educational content between hero and exercise
+- No Key Concepts, Common Mistakes, or "Why This Matters"
+- No glossary links
+- Emoji in config success message
+- Duplicate `</main>` tag
+
+---
+
+### Lesson: lesson-mastering-5.html (Mastering Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 98 lines (identical bare template)
+- No educational content between hero and exercise
+- No Key Concepts, Common Mistakes, or "Why This Matters"
+- No glossary links
+- Emoji in config success message
+- Duplicate `</main>` tag
+
+---
+
+### Lesson: lesson-sound-design-10.html (Sound Design Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 98 lines (identical bare template)
+- No educational content between hero and exercise
+- No Key Concepts, Common Mistakes, or "Why This Matters"
+- No glossary links
+- Emoji in config success message
+- Duplicate `</main>` tag
+
+---
+
+### Lesson: lesson-ear-5.html (Ear Training Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 58 lines (minimal shell)
+- No educational content in HTML (injected from config at runtime)
+- No structured Key Concepts cards
+- No "Why This Matters" section
+- No glossary links
+
+---
+
+### Lesson: lesson-theory-4.html (Theory Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 58 lines (minimal shell)
+- No educational content in HTML
+- No structured Key Concepts cards
+- No "Why This Matters" section
+- No glossary links
+
+---
+
+### Lesson: lesson-vocals-8.html (Vocals Category)
+**Status**: ❌ TESTED - FAILED
+**Date**: January 28, 2026 - 00:20
+
+**Failures**:
+- 98 lines (bare template)
+- No educational content between hero and exercise
+- No Key Concepts or "Why This Matters"
+- No glossary links
+- Emoji in config success message
+- Invalid HTML: duplicate `</main>` tags
+
+---
+
+## Systemic Issues Found (Session 2)
+
+### ISSUE #003 [HIGH]: Most lessons are bare templates without educational HTML content
+- **Scope**: Estimated 150+ of 174 lessons affected
+- **Description**: Lessons use 58-98 line HTML templates with no static educational content. Content exists only in config JS files and may or may not render at runtime. The Quality Checklist requires 250+ lines of educational HTML.
+- **Required sections missing**: Key Concepts (4+ cards), Common Mistakes (3+), "Why This Matters", glossary links
+- **Impact**: Lessons do not meet production quality standards
+
+### ISSUE #004 [MEDIUM]: Emoji in config success messages
+- **Scope**: At least 7 of 9 tested configs contain party popper emoji in success messages
+- **Description**: Config files use `"🎉 Excellent! You've mastered..."` pattern
+- **Fix**: Replace emoji with text or image references
+
+### ISSUE #005 [LOW]: Invalid HTML structure in template-based lessons
+- **Scope**: Multiple lessons (mixing, mastering, sound-design, vocals patterns)
+- **Description**: Duplicate `</main>` closing tags creating invalid HTML
+- **Fix**: Remove duplicate `</main>` tag
+
+---
+
 ## Issues Summary
 
 **Critical Issues**: 0 found
-**High Priority Issues**: 0 found
-**Medium Priority Issues**: 1 found
-**Low Priority Issues**: 1 found
+**High Priority Issues**: 1 found
+**Medium Priority Issues**: 2 found
+**Low Priority Issues**: 2 found
 
-**Total Issues**: 2
+**Total Issues**: 5
 
 ### Issues Found:
-1. **#001 [MEDIUM]**: Missing glossary term "hi-hat-roll" (linked from lesson-drums-10.html)
-2. **#002 [LOW]**: Empty glossary link "glossary.html#" in lesson-drums-10.html
+1. **#001 [MEDIUM]**: Missing glossary term "hi-hat-roll" - **FIXED** (Jan 28, 2026)
+2. **#002 [LOW]**: Empty glossary link "glossary.html#" - **NOT REPRODUCED** (link not found on re-test)
+3. **#003 [HIGH]**: ~150+ lessons are bare templates without educational HTML content
+4. **#004 [MEDIUM]**: Emoji in config success messages (7+ configs affected)
+5. **#005 [LOW]**: Invalid HTML - duplicate `</main>` tags in template-based lessons
 
 ---
 

@@ -1,7 +1,7 @@
 # Music Producer Lab - Issue Tracker
 
-**Last Updated**: January 27, 2026
-**QA Testing Session**: In Progress
+**Last Updated**: January 28, 2026
+**QA Testing Session**: In Progress (Session 2)
 
 ---
 
@@ -15,21 +15,23 @@
 ## High Priority (Significant UX Impact)
 > Issues that significantly impact user experience
 
-*No high priority issues found yet*
+- [ ] **#003**: ~150+ lessons are bare templates without educational HTML content
 
 ---
 
 ## Medium Priority (Minor UX Issues)
 > Issues that affect usability but don't block functionality
 
-- [ ] **#001**: Missing glossary term "hi-hat-roll"
+- [x] **#001**: Missing glossary term "hi-hat-roll" - **FIXED**
+- [ ] **#004**: Emoji in config success messages (7+ configs affected)
 
 ---
 
 ## Low Priority (Polish/Enhancement)
 > Minor visual issues or potential enhancements
 
-- [ ] **#002**: Empty glossary link in lesson-drums-10.html
+- [x] **#002**: Empty glossary link in lesson-drums-10.html - **NOT REPRODUCED**
+- [ ] **#005**: Invalid HTML - duplicate `</main>` tags in template-based lessons
 
 ---
 
@@ -39,31 +41,50 @@
 - **Severity**: Medium
 - **Pages Affected**: lesson-drums-10.html, possibly others
 - **Description**: Lesson links to glossary.html#hi-hat-roll but this term doesn't exist in the glossary
-- **Steps to Reproduce**:
-  1. Open lesson-drums-10.html
-  2. Find link to "hi-hat-roll" glossary term
-  3. Click the link
-  4. Page navigates to glossary.html but term doesn't exist
-- **Expected Behavior**: Link should navigate to glossary entry for "hi-hat-roll"
-- **Actual Behavior**: Link goes to glossary.html but term definition is missing
-- **Status**: Open
+- **Status**: **FIXED** (January 28, 2026)
+- **Fix Applied**: Added "hi-hat-roll" definition to glossary.html between "hi-hat" and "high-pass-filter" entries
 - **Date Found**: January 27, 2026
-- **Fix Needed**: Either add "hi-hat-roll" term to glossary.html OR change link to use existing term like "hi-hat"
 
 ### #002: Empty Glossary Link
 - **Severity**: Low
 - **Pages Affected**: lesson-drums-10.html, possibly others
 - **Description**: Found link to "glossary.html#" with no term specified
-- **Steps to Reproduce**:
-  1. Open lesson-drums-10.html
-  2. Search for href="glossary.html#"
-  3. Click the link
-  4. Page navigates to glossary but doesn't scroll to any specific term
-- **Expected Behavior**: Link should include term anchor (#term-name) to scroll to specific definition
-- **Actual Behavior**: Link goes to top of glossary page
-- **Status**: Open
+- **Status**: **NOT REPRODUCED** - Re-tested January 28, 2026. No empty glossary links found in lesson-drums-10.html. All glossary links have valid anchors.
 - **Date Found**: January 27, 2026
-- **Fix Needed**: Add proper term anchor to the link or remove link if term is not needed
+
+### #003: Bare Template Lessons Missing Educational HTML Content
+- **Severity**: High
+- **Pages Affected**: Estimated 150+ of 174 lessons (all categories except some Drums lessons)
+- **Description**: Most lesson HTML files are 58-98 line bare templates with no static educational content between the hero and exercise sections. Educational content exists only in config JS files. The Quality Checklist requires 250+ lines of educational HTML including: Key Concepts (4+ cards), Common Mistakes (3+), "Why This Matters" section, and glossary links.
+- **Categories Tested (all FAILED)**:
+  - Harmony (lesson-harmony-10.html) - 228 lines, has some content but missing required sections
+  - Bass (lesson-bass-10.html) - 178 lines, bare template
+  - Arrangement (lesson-arrangement-10.html) - 164 lines, bare template
+  - Mixing (lesson-mixing-10.html) - 98 lines, bare template
+  - Mastering (lesson-mastering-5.html) - 98 lines, bare template
+  - Sound Design (lesson-sound-design-10.html) - 98 lines, bare template
+  - Ear Training (lesson-ear-5.html) - 58 lines, minimal shell
+  - Theory (lesson-theory-4.html) - 58 lines, minimal shell
+  - Vocals (lesson-vocals-8.html) - 98 lines, bare template
+- **Status**: Open
+- **Date Found**: January 28, 2026
+- **Fix Needed**: Add complete educational HTML content to each lesson file (Key Concepts, Common Mistakes, Why This Matters, glossary links). This is a major effort affecting 150+ files.
+
+### #004: Emoji in Config Success Messages
+- **Severity**: Medium
+- **Pages Affected**: At least 7 of 9 tested config files (likely most of 174 configs)
+- **Description**: Config JS files contain party popper emoji (U+1F389) in success messages, e.g., `"🎉 Excellent! You've mastered..."`. Quality Checklist rule: NO EMOJI ALLOWED.
+- **Status**: Open
+- **Date Found**: January 28, 2026
+- **Fix Needed**: Replace emoji with text or image references in all config success messages
+
+### #005: Invalid HTML - Duplicate `</main>` Tags
+- **Severity**: Low
+- **Pages Affected**: Multiple template-based lessons (mixing, mastering, sound-design, vocals patterns confirmed)
+- **Description**: HTML files contain duplicate `</main>` closing tags, creating invalid HTML structure
+- **Status**: Open
+- **Date Found**: January 28, 2026
+- **Fix Needed**: Remove duplicate `</main>` tag from affected files
 
 ---
 
