@@ -111,6 +111,14 @@ export const lessonConfig = {
     title: "Build an Arrangement with the 5 Elements",
     description: "Use the interactive builder to understand how elements combine. Keep under 5 elements for clarity!",
     tip: "Start with Foundation, add elements one by one, and notice how the 'fullness' changes.",
+    steps: [
+      { text: "<strong>Start with Foundation</strong> — Click the Foundation element to add kick and bass as your low-end anchor." },
+      { text: "<strong>Add a Pad</strong> — Layer in a pad element to create harmonic context and fill the mid-range." },
+      { text: "<strong>Introduce Rhythm</strong> — Add a rhythm element (guitar, arpeggio, or percussion) to create forward motion." },
+      { text: "<strong>Bring in the Lead</strong> — Add the lead element that listeners will focus on (vocals, synth, or melody)." },
+      { text: "<strong>Experiment with Fills</strong> — Try adding fills for transitions, then notice how 5+ elements can feel cluttered." },
+      { text: "<strong>Apply the 4-5 Rule</strong> — Remove elements until you have 4-5 playing together. Notice how the mix sounds clearer." }
+    ],
     validation: {
       minElementsCombined: 3, // User must try at least 3 elements together
       maxBeforeWarning: 5
