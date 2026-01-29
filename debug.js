@@ -1,29 +1,40 @@
 /**
  * Music Producer Lab - Debug Logging Utility
- * Conditional logging that can be disabled in production
+ * Conditional logging that is DISABLED in production for security
  *
  * Usage:
  *   import { debug } from './debug.js';
  *   debug.log('Message', data);
  *   debug.warn('Warning', data);
  *   debug.error('Error', data);
+ *
+ * Debug mode is only available in development environments (localhost).
+ * URL parameters and localStorage cannot enable debug in production.
  */
 
+// Check if we're in a development environment
+const isDevelopment = () => {
+  const hostname = window.location.hostname;
+  return hostname === 'localhost' || hostname === '127.0.0.1' || hostname.endsWith('.local');
+};
+
 // Check if debug mode is enabled
-// Enable via URL parameter: ?debug=true
-// Or localStorage: localStorage.setItem('mpl-debug', 'true')
+// SECURITY: Debug mode is restricted to development environments only
 const isDebugEnabled = () => {
-  // Check URL parameter
+  // Only allow debug mode in development environments
+  if (!isDevelopment()) {
+    return false;
+  }
+
+  // In development, check URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('debug') === 'true') return true;
 
-  // Check localStorage
+  // In development, check localStorage
   if (localStorage.getItem('mpl-debug') === 'true') return true;
 
-  // Check hostname (enable for localhost)
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return true;
-
-  return false;
+  // Default to enabled in development for convenience
+  return true;
 };
 
 const DEBUG = isDebugEnabled();
