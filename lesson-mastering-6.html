@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,75 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Limiting & Loudness: Achieve Competitive Volume</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              The <strong>limiter</strong> is the final processor in the mastering chain—it sets the ceiling and determines how loud your master will be. Professional limiters use advanced algorithms to increase perceived loudness while minimizing distortion. This lesson covers how limiters work, how to set them properly, and how to achieve competitive loudness without destroying dynamics. Remember: streaming platforms normalize loudness, so crushing your master is counterproductive.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Limiter" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">How Limiters Work</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">A limiter is a compressor with <strong>infinite ratio</strong>—nothing passes the ceiling. It catches peaks and pushes up the overall level. Modern limiters use <strong>lookahead</strong> to anticipate peaks and <strong>oversampling</strong> to catch inter-sample peaks. The result: louder masters with controlled distortion.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Ceiling" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">True Peak Ceiling</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Set the output ceiling to <strong>-1.0 dBTP</strong> (or -2 dBTP for extra safety). This leaves headroom for codec conversion. Enable <strong>true peak limiting</strong> to catch inter-sample peaks. Streaming platforms penalize clips—even invisible ones can cause distortion after encoding.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Loudness" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Loudness Targets</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Streaming targets: <strong>Spotify -14 LUFS</strong>, <strong>Apple -16 LUFS</strong>, <strong>YouTube -14 LUFS</strong>. Don't master louder than -8 LUFS—streaming will turn you down anyway, and your dynamics will be crushed. A dynamic -12 to -14 LUFS master will sound better after normalization than a crushed -6 LUFS master.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Quality" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Quality Limiters</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Top mastering limiters: <strong>FabFilter Pro-L 2</strong>, <strong>iZotope Ozone Maximizer</strong>, <strong>Waves L2/L3</strong>, <strong>Limitless</strong>, <strong>Weiss Compressor</strong>. Each has different character—some are transparent, others add warmth. Try different algorithms for different material.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Loudness War Mentality:</strong>
+                <span style="color: var(--text-secondary);"> Crushing to -6 LUFS is counterproductive. Streaming normalization means louder isn't better—it's just more distorted. Dynamic masters win after normalization.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Ignoring Inter-Sample Peaks:</strong>
+                <span style="color: var(--text-secondary);"> Standard peak meters miss ISPs. Always use true peak limiting and metering. ISPs cause audible distortion after codec conversion, even if your meters look clean.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Limiting Too Hard:</strong>
+                <span style="color: var(--text-secondary);"> If you see constant 6+ dB gain reduction, you're destroying transients and creating distortion. Back off and let compression upstream do more work.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Competitive Loudness:</strong> Your master needs to sound comparable to commercial releases at similar perceived volume.</li>
+                <li><strong>Platform Compliance:</strong> Meeting streaming loudness targets ensures your master sounds as intended after normalization.</li>
+                <li><strong>Preserved Dynamics:</strong> Good limiting achieves loudness while keeping punch and energy intact.</li>
+                <li><strong>Distortion Control:</strong> Proper technique minimizes audible artifacts from limiting.</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +133,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

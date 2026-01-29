@@ -145,7 +145,7 @@ These techniques create interest while maintaining harmonic clarity. Ray Brown, 
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Program the walking bass line to complete this lesson.",
-    success: "🎉 Swingin'! Your walking bass is sophisticated and smooth. Ray Brown would approve!",
+    success: "Swingin'! Your walking bass is sophisticated and smooth. Ray Brown would approve!",
     error: "Check your chord tones and chromatic approaches. Target notes should be on beats 1 and 3.",
     alreadyCompleted: "You've mastered jazz walking bass. That's some serious chops!"
   }),

@@ -127,7 +127,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Build the classic techno beat pattern to complete this exercise.",
-    success: "🎉 Perfect! That's the authentic techno groove! The rimshot accents add great rhythmic texture.",
+    success: "Perfect! That's the authentic techno groove! The rimshot accents add great rhythmic texture.",
     error: "Check your pattern—make sure all instruments match the target steps shown above.",
     alreadyCompleted: "You've mastered techno drums! Try experimenting with tempo and variations."
   }),

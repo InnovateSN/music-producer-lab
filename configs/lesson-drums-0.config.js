@@ -99,7 +99,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Explore freely, then click 'Complete Lesson' when you're ready to continue.",
-    success: "🎉 Great! You're ready to start building your first beat pattern.",
+    success: "Great! You're ready to start building your first beat pattern.",
     error: "" // No error in sandbox mode
   }),
 

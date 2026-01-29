@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -32,6 +32,190 @@
           </div>
           </div>
         </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Automation in Mixing: Bringing Your Mix to Life Over Time</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong><a href="glossary.html#automation" style="color: var(--accent-cyan); text-decoration: underline;">Automation</a></strong> is the process of programming changes to any parameter over time—<a href="glossary.html#volume" style="color: var(--accent-cyan); text-decoration: underline;">volume</a>, <a href="glossary.html#panning" style="color: var(--accent-cyan); text-decoration: underline;">panning</a>, effects, filters, and more. A static mix where nothing changes sounds lifeless and boring. Professional mixes are <strong>constantly evolving</strong>: vocals ride up during quiet verses, filter sweeps build tension before drops, effect throws punctuate key phrases, and volume automation guides the listener's attention through the arrangement. In this lesson, you'll master <strong>volume rides</strong>, <strong>filter sweeps</strong>, <strong>effect throws</strong>, and <strong>arrangement dynamics</strong> that transform a flat mix into a living, breathing production.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Volume Automation -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/stats.png" alt="Volume" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Volume Automation & Rides</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Volume automation</strong> is the most fundamental form—adjusting fader levels throughout the song. <strong>Vocal rides</strong> keep the lead vocal consistently audible: boost quiet words by <strong>1-3 dB</strong>, tuck loud phrases back. Automate instrument levels to create contrast between sections—drop the guitar <strong>2 dB in verses</strong>, push it up in choruses. This creates <a href="glossary.html#dynamic-range" style="color: var(--accent-cyan); text-decoration: underline;">dynamic range</a> that holds listener attention.
+                </p>
+              </div>
+
+              <!-- Concept 2: Filter Sweeps -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/gear.png" alt="Filter" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Filter Sweeps & Builds</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Automating a <a href="glossary.html#low-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">low-pass filter</a> from closed to open creates classic build-up tension. Start a <a href="glossary.html#bar" style="color: var(--accent-cyan); text-decoration: underline;">bar</a> or two before the drop with the filter at <strong>500 Hz</strong>, then sweep it open to <strong>20 kHz</strong> right at the drop. Combine with a <a href="glossary.html#high-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">high-pass filter</a> sweep on the bass to thin out the low end before slamming it back in. These techniques create massive energy shifts.
+                </p>
+              </div>
+
+              <!-- Concept 3: Effect Throws -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Throws" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Effect Throws</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  An <strong>effect throw</strong> is a momentary burst of <a href="glossary.html#delay" style="color: var(--accent-cyan); text-decoration: underline;">delay</a> or <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a> on a specific word or phrase. Automate the send level: keep it at <strong>-inf</strong> normally, then spike it to <strong>0 dB for one beat</strong> on the last word of a vocal line. The echo trails off dramatically, filling the gap before the next phrase. This is a staple of professional vocal mixing and adds polish and interest.
+                </p>
+              </div>
+
+              <!-- Concept 4: Arrangement Dynamics -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Dynamics" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Builds, Drops & Dynamics</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Automation shapes the emotional arc of your song. <strong>Builds</strong>: gradually increase <a href="glossary.html#volume" style="color: var(--accent-cyan); text-decoration: underline;">volume</a>, add layers, open filters, increase reverb size. <strong>Drops</strong>: suddenly cut elements, slam in the full arrangement, widen <a href="glossary.html#stereo" style="color: var(--accent-cyan); text-decoration: underline;">stereo</a> width. <strong>Breakdowns</strong>: strip back to minimal elements, automate effects wet. Think of automation as directing a film—you control exactly where the listener's attention goes and how the energy flows.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: AUTOMATION CURVES -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Automation Through a Song Structure</h3>
+
+              <div style="margin-bottom: var(--space-xl);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/check_green.png" alt="Good" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Dynamic mix that evolves with the arrangement
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Intro</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">Filtered</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Verse</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple);">-3 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Build</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">Rising</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Chorus</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #10b981;">Full!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Breakdown</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-magenta);">Stripped</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/X_gray.png" alt="Bad" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Wrong: Static mix — same levels and settings throughout
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Intro</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">0 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Verse</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">0 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Chorus</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">0 dB</div>
+                  </div>
+                  <div style="color: var(--text-muted);">→</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Result</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">BORING!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Automating Before the Mix Is Balanced</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Don't start writing automation until your static mix is solid. If you automate <a href="glossary.html#volume" style="color: var(--accent-cyan); text-decoration: underline;">volume</a> rides on a poorly balanced mix, you'll spend hours compensating for problems that should be fixed with basic <a href="glossary.html#gain" style="color: var(--accent-cyan); text-decoration: underline;">gain</a> staging and EQ. Get the foundation right first, then use automation to refine and polish.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Too Many Automation Points</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Over-automating creates erratic, unnatural changes. Use <strong>smooth curves</strong> rather than jagged point-by-point edits. For vocal rides, draw gentle hills and valleys rather than individual word-by-word spikes. Most <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAWs</a> offer automation smoothing tools—use them to create natural-sounding transitions.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Forgetting to Automate Effects Returns</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Static <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a> and <a href="glossary.html#delay" style="color: var(--accent-cyan); text-decoration: underline;">delay</a> sends sound predictable and lifeless. Automate send levels to add more reverb in choruses, push delay throws on key phrases, and pull effects back in intimate sections. This <strong>dynamic effects use</strong> is what separates amateur and professional mixes.
+                </p>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Emotional Arc</strong> — Automation creates the journey from quiet moments to powerful climaxes that keeps listeners engaged.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Vocal Clarity</strong> — Volume rides ensure the vocal is always perfectly audible, regardless of the singer's dynamics.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Energy Management</strong> — Builds and drops become impactful when automation guides the listener's expectations and surprises them.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional Polish</strong> — Automation is the final 10% that separates a good mix from a great one—it's where the art lives.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- THEORY SECTION (populated by JS from config) -->
+        <section id="mpl-theory-section" style="margin-bottom: var(--space-2xl);"></section>
 
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
@@ -64,7 +248,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

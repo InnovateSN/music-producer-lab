@@ -161,7 +161,7 @@ Study reference tracks in your genre. Understand how professional mixers use $ti
   
   messages: applyMessagePreset("default", {
     initial: "Complete this mixing lesson to advance your skills.",
-    success: "🎉 Excellent! You've mastered $title. Your mixes are improving!",
+    success: "Excellent! You've mastered $title. Your mixes are improving!",
     error: "Review the mixing concepts and try again.",
     alreadyCompleted: "You've completed this mixing technique. Keep practicing!"
   }),

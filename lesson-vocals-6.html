@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,47 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Vocal Effects: Adding Depth, Space & Character</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              After processing, <strong>effects</strong> add dimension and character to vocals. <strong>Reverb</strong> creates space and depth. <strong>Delay</strong> adds rhythmic interest. <strong>Chorus and modulation</strong> thicken the sound. Used well, effects make vocals feel larger than life while sitting perfectly in the mix.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Reverb</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Create space and depth.</strong> Short reverb (0.5-1s) for intimate vocals. Long reverb (2-4s) for epic, atmospheric sound. Pre-delay (20-50ms) keeps vocal upfront while adding space.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Delay</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Rhythmic echoes.</strong> Sync delay to tempo (1/4, 1/8, dotted 1/8). Use feedback for multiple repeats. Slapback delay (80-120ms) adds thickness without obvious echo.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Chorus & Modulation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Thicken and widen.</strong> Chorus creates subtle pitch variation that thickens vocals. Flanger adds swirling movement. Use sparingly—heavy modulation sounds dated.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Send vs Insert</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Blend control.</strong> Use effects on sends (aux tracks) to blend wet/dry precisely. Multiple vocals can share the same reverb, creating cohesion. Inserts are for dedicated effects.</p>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Effects Best Practices</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
+                <li><strong>EQ your reverb:</strong> High-pass reverb to avoid muddy low end</li>
+                <li><strong>Automate delay:</strong> Throw delay on specific words for emphasis</li>
+                <li><strong>Less is more:</strong> Dry vocals often sit better in dense mixes</li>
+                <li><strong>Check in mono:</strong> Stereo effects can disappear in mono</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +105,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

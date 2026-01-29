@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,75 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Sound Layering: Building Rich, Complex Textures</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Sound layering</strong> combines multiple sounds to create something greater than the sum of its parts. A single synth or sample rarely fills the frequency spectrum satisfyingly—layering adds depth, width, and complexity. The secret: each layer should serve a specific purpose in a specific frequency range. Layer a <strong>sub bass</strong> for low-end weight, a <strong>mid growl</strong> for body, and a <strong>top click</strong> for attack. Proper layering is how professional sounds achieve their massive, polished character.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Frequency" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Frequency Division</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Each layer occupies a frequency range: <strong>Sub (20-80 Hz)</strong>—pure low-end. <strong>Low-mid (80-300 Hz)</strong>—body and warmth. <strong>Mid (300-2k Hz)</strong>—presence. <strong>High (2k+ Hz)</strong>—air and detail. Use EQ to carve each layer's space.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Timing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Transient Layering</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>Attack + Body + Tail.</strong> Layer a clicky attack sample for punch, a sustained body for tone, and a reverb/release tail for space. Align transients precisely—even 5ms offset causes phase issues and weakens impact.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Processing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Group Processing</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">After layering, route to a <strong>group bus</strong>. Apply glue compression (2-4 dB reduction) to make layers feel unified. Saturation adds harmonic cohesion. EQ the group as one sound. This transforms separate layers into a single instrument.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Balance" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Level Balance</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">More layers ≠ better sound. <strong>Two perfect layers</strong> beat five mediocre ones. Balance levels so each layer contributes without masking others. If you can't hear a layer clearly when solo'd, it might be unnecessary.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Frequency Stacking:</strong>
+                <span style="color: var(--text-secondary);"> If layers compete for the same frequencies, they cancel each other out. Use EQ to give each layer its own space—cut where others live.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Phase Cancellation:</strong>
+                <span style="color: var(--text-secondary);"> Similar layers slightly out of time create thin, hollow sounds. Zoom in and align transients. Check mono—phase issues become obvious.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Too Many Layers:</strong>
+                <span style="color: var(--text-secondary);"> Every layer you add reduces clarity. If you're using more than 4-5 layers, question whether each one is truly necessary. Simplify.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Full-Spectrum Sounds:</strong> Single sources rarely fill the frequency spectrum. Layering creates completeness.</li>
+                <li><strong>Professional Quality:</strong> Every commercial track uses layering—drums, synths, vocals, everything.</li>
+                <li><strong>Creative Control:</strong> Design sounds that combine the best characteristics of multiple sources.</li>
+                <li><strong>Problem Solving:</strong> Need more attack? More body? More air? Layer the solution.</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +133,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

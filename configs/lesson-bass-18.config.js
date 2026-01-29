@@ -130,7 +130,7 @@ Study reference tracks to hear these techniques in action.`
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Complete the bass exercise to master this technique.",
-    success: "🎉 Excellent! You've mastered Bass EQ & Frequency Management. Professional-level skills!",
+    success: "Excellent! You've mastered Bass EQ & Frequency Management. Professional-level skills!",
     error: "Review the theory and target pattern. Pay attention to the key characteristics.",
     alreadyCompleted: "You've completed this lesson. Keep practicing these professional techniques!"
   }),

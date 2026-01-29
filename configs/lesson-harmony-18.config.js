@@ -65,7 +65,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Hold C bass pedal (C2) throughout. Play C → F → Am → G chords above it. The sustained bass creates cinematic atmosphere!",
-    success: "🎉 Brilliant! You've mastered pedal tones - the secret to cinematic builds and ambient atmosphere. Notice how the unchanging bass creates tension as chords shift!",
+    success: "Brilliant! You've mastered pedal tones - the secret to cinematic builds and ambient atmosphere. Notice how the unchanging bass creates tension as chords shift!",
     error: "Hold C (low C2) for all 4 bars. Above it: Bar 1 = C major (C-E-G), Bar 2 = F (F-A-C), Bar 3 = Am (A-C-E), Bar 4 = G (G-B-D)."
   }),
 

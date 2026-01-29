@@ -116,7 +116,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Build the two-step pattern at 174 BPM!",
-    success: "🎉 Massive! That's the classic DnB two-step. The energy is incredible!",
+    success: "Massive! That's the classic DnB two-step. The energy is incredible!",
     error: "Check your kick placement—DnB kicks are syncopated (1, 7, 10), not straight.",
     alreadyCompleted: "You've mastered DnB drums! Try experimenting with Amen break variations."
   }),

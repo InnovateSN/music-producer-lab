@@ -100,7 +100,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Add hi-hats on eighth notes to unlock the next lesson.",
-    success: "🎉 Correct! You've mastered eighth-note hi-hats. Proceed to the next lesson.",
+    success: "Correct! You've mastered eighth-note hi-hats. Proceed to the next lesson.",
     error: "Not quite right. Check that hi-hats are on all odd steps (1, 3, 5, 7, 9, 11, 13, 15)!"
   }),
   

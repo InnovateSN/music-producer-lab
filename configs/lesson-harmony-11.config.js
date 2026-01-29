@@ -63,7 +63,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build C → Am → F → G using inversions. Keep notes close together - minimize jumping between chords.",
-    success: "🎉 Excellent! Notice how smooth the chord changes feel when notes move by small steps. This is voice leading - the foundation of professional harmony writing!",
+    success: "Excellent! Notice how smooth the chord changes feel when notes move by small steps. This is voice leading - the foundation of professional harmony writing!",
     error: "Try to keep common tones between chords. Use inversions (different notes on bottom) to reduce large jumps. Goal is smooth, stepwise motion between chords."
   }),
 

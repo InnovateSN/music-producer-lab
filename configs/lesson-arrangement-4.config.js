@@ -76,7 +76,7 @@ export const lessonConfig = {
     },
     {
       name: "Fills",
-      icon: "✨",
+      icon: "",
       color: "#fd79a8",
       description: "Short, attention-grabbing elements in gaps or transitions.",
       examples: ["Drum Fills", "Vocal Ad-libs", "FX Sweeps", "Guitar Licks", "One-shots"],
@@ -122,7 +122,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Experiment with the 5 elements to understand how they combine.",
-    success: "🎉 You understand the 5 elements! Now you can build clear, professional arrangements.",
+    success: "You understand the 5 elements! Now you can build clear, professional arrangements.",
     error: "Try combining more elements to see how they interact.",
     alreadyCompleted: "You've mastered the 5 elements framework!"
   }),

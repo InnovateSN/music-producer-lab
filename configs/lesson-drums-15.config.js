@@ -126,7 +126,7 @@ export const lessonConfig = {
   
   validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
   messagePresets: {
-    success: "🎉 Perfect! Your hi-hat technique is professional-level. Open hats add the accents that make grooves breathe!",
+    success: "Perfect! Your hi-hat technique is professional-level. Open hats add the accents that make grooves breathe!",
     incorrect: "Not quite. Check your hi-hat velocities and placement. Open hats should be louder than closed hats."
   }
 };

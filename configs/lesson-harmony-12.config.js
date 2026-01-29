@@ -65,7 +65,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Create a short motif and repeat it 3 times with variations. Change pitch, rhythm, or contour each time while keeping it recognizable.",
-    success: "🎉 Brilliant! You've mastered motif development - the secret to memorable melodies. Notice how repetition makes it catchy while variation keeps it interesting!",
+    success: "Brilliant! You've mastered motif development - the secret to memorable melodies. Notice how repetition makes it catchy while variation keeps it interesting!",
     error: "Create a clear 2-3 note pattern in bar 1, then repeat it with variations in bars 2-4. Use chord tones (C-E-G, G-B-D, A-C-E, F-A-C) as anchor points."
   }),
 

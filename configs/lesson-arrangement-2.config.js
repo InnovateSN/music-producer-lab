@@ -131,7 +131,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Add transitions to all 3 slots to complete this exercise.",
-    success: "🎉 Excellent! Your transitions make musical sense! You've completed this lesson.",
+    success: "Excellent! Your transitions make musical sense! You've completed this lesson.",
     error: "Add some transitions first! Select a tool and click the (+) slots.",
     alreadyCompleted: "You've already completed this exercise. Feel free to experiment more!"
   }),

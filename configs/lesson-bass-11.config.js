@@ -131,7 +131,7 @@ Even electronic producers sample and synthesize funk bass to add organic groove 
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Program the funk bass groove to complete this lesson.",
-    success: "🎉 Funky! You've got that P-Funk bounce! The groove is infectious.",
+    success: "Funky! You've got that P-Funk bounce! The groove is infectious.",
     error: "Not quite the funk. Check velocity dynamics and syncopation placement.",
     alreadyCompleted: "You've mastered funk bass. That pocket is tight!"
   }),

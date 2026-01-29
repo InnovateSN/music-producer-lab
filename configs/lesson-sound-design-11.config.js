@@ -119,7 +119,7 @@ Study professional productions and reverse-engineer the sounds you admire.`
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Complete this lesson to master Foley & Sound Effects techniques.",
-    success: "🎉 Excellent! You've mastered Foley & Sound Effects. Your sound design skills are growing!",
+    success: "Excellent! You've mastered Foley & Sound Effects. Your sound design skills are growing!",
     error: "Review the theory and try again.",
     alreadyCompleted: "You've completed this lesson. Keep practicing these techniques!"
   }),

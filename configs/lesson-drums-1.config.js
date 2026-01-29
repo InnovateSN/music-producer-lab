@@ -86,7 +86,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Complete the kick exercise to unlock the next lesson.",
-    success: "🎉 Correct! Great job! You can now proceed to the next lesson.",
+    success: "Correct! Great job! You can now proceed to the next lesson.",
     error: "Not quite right. Make sure you have kicks on steps 1, 5, 9, and 13!"
   }),
   

@@ -129,7 +129,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Build the half-time pattern. Key: Snare on step 9 creates the half-tempo feel!",
-    success: "🎉 Perfect! That's the half-time groove. Notice how 140 BPM feels like 70 BPM?",
+    success: "Perfect! That's the half-time groove. Notice how 140 BPM feels like 70 BPM?",
     error: "Check the snare placement—it should be on step 9 (beat 3) for the half-time feel.",
     alreadyCompleted: "You've mastered half-time! This pattern works for trap, dubstep, and future bass."
   }),

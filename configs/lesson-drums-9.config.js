@@ -118,7 +118,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Build the boom bap pattern. Remember: the kick is SYNCOPATED!",
-    success: "🎉 Classic boom bap! That swing and syncopation is what makes heads nod. You've got the groove!",
+    success: "Classic boom bap! That swing and syncopation is what makes heads nod. You've got the groove!",
     error: "Check your kick placement—boom bap kicks are on 1, 8, 9, 11 (not 4-on-the-floor like house).",
     alreadyCompleted: "You've mastered boom bap! Try adding ghost notes and varying velocity for more flavor."
   }),

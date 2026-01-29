@@ -102,7 +102,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build the I–IV–V–I progression (C → F → G → C) to create a complete musical statement.",
-    success: "🎉 Excellent! You've built the most important progression in popular music. You can now create complete songs with just three chords.",
+    success: "Excellent! You've built the most important progression in popular music. You can now create complete songs with just three chords.",
     error: "Check your progression: Bar 1 = C-E-G (I), Bar 2 = F-A-C (IV), Bar 3 = G-B-D (V), Bar 4 = C-E-G (I)."
   }),
 

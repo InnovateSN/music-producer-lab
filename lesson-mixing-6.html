@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -32,6 +32,185 @@
           </div>
           </div>
         </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Panning & Stereo Width: Sculpting the Left-Right Dimension</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong><a href="glossary.html#panning" style="color: var(--accent-cyan); text-decoration: underline;">Panning</a></strong> is the art of placing sounds across the <a href="glossary.html#stereo" style="color: var(--accent-cyan); text-decoration: underline;">stereo</a> field, from hard left to hard right. While <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> separates instruments by frequency and <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a> creates depth, panning gives each element its own horizontal position. A well-panned mix sounds wide, clear, and immersive—every instrument has its own seat on the stage. In this lesson, you'll learn <strong>LCR panning</strong>, <strong><a href="glossary.html#mono" style="color: var(--accent-cyan); text-decoration: underline;">mono</a> compatibility</strong>, <strong>frequency-dependent panning decisions</strong>, and the <strong>Haas effect</strong> for creating perceived width from mono sources.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: LCR Panning -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/speakerwave.png" alt="LCR" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">LCR Panning Strategy</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>LCR (Left-Center-Right)</strong> panning means committing each element to one of three positions: hard left, dead center, or hard right. This bold approach creates maximum separation and clarity. <strong>Center</strong>: kick, <a href="glossary.html#snare-drum" style="color: var(--accent-cyan); text-decoration: underline;">snare</a>, <a href="glossary.html#bass" style="color: var(--accent-cyan); text-decoration: underline;">bass</a>, lead vocal. <strong>Left/Right</strong>: guitars, keys, backing vocals, percussion. LCR forces decisive mix choices instead of vague "slightly off-center" placements.
+                </p>
+              </div>
+
+              <!-- Concept 2: Stereo Field -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/cuffie.png" alt="Stereo" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">The Stereo Field</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The stereo field is your horizontal canvas. Think of it like a stage: the audience expects <strong>vocals and rhythm section center-stage</strong>, with supporting instruments spread across the width. Balance is key—if you pan a guitar hard left, place something of similar energy hard right. An <strong>unbalanced stereo image</strong> makes listeners uncomfortable and sounds amateur on headphones.
+                </p>
+              </div>
+
+              <!-- Concept 3: Mono Compatibility -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/speaker.png" alt="Mono" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Mono Compatibility</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Many listening environments sum stereo to <a href="glossary.html#mono" style="color: var(--accent-cyan); text-decoration: underline;">mono</a>: phone speakers, club systems, Bluetooth speakers. If your mix relies on stereo tricks, it may collapse or lose elements in mono. <strong>Always check your mix in mono.</strong> If something disappears, it means phase cancellation is occurring. The fix: slightly adjust timing, use mid-side EQ, or widen with complementary processing rather than simple panning.
+                </p>
+              </div>
+
+              <!-- Concept 4: Haas Effect -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/fulmine.png" alt="Haas" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Haas Effect & Frequency Panning</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The <strong>Haas effect</strong> creates perceived width by delaying one channel by <strong>10-30 ms</strong>. The brain interprets the earlier signal as the source direction while the delayed copy adds spaciousness. <strong>Frequency-dependent panning</strong> means keeping low <a href="glossary.html#frequency" style="color: var(--accent-cyan); text-decoration: underline;">frequencies</a> centered (below 200 Hz) for power, while spreading higher frequencies wider for sparkle and air.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: STEREO FIELD MAP -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Typical Stereo Placement Map</h3>
+
+              <div style="margin-bottom: var(--space-xl);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/check_green.png" alt="Good" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Balanced panning with energy spread evenly
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Hard Left</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">Guitar L</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Left</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple);">Hi-Hat</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Center</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan);">Kick/Snare/Bass/Vox</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Right</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple);">Perc</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 90px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Hard Right</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange);">Guitar R</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-md); font-size: 0.95rem;">
+                  <img src="images/X_gray.png" alt="Bad" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;"> Wrong: Everything center or lopsided panning
+                </h4>
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.3);">
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Left</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">Empty!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Center</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">Everything!</div>
+                  </div>
+                  <div style="color: var(--text-muted);">|</div>
+                  <div style="text-align: center; padding: var(--space-sm) var(--space-md); background: var(--bg-card); border-radius: var(--radius-sm); min-width: 100px;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Right</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">Empty!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Panning Bass or Kick Off-Center</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Low-frequency elements like <a href="glossary.html#kick-drum" style="color: var(--accent-cyan); text-decoration: underline;">kick</a> and <a href="glossary.html#bass" style="color: var(--accent-cyan); text-decoration: underline;">bass</a> should always stay <strong>dead center</strong>. Panning low end to one side creates an unbalanced, lopsided feeling and causes problems on speaker systems. Sub frequencies below 200 Hz are essentially non-directional—panning them wastes energy and creates phase issues.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Never Checking in Mono</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  If you only mix on headphones in stereo, you'll never catch phase cancellation problems. When stereo signals are summed to mono, out-of-phase content cancels out and <strong>disappears completely</strong>. This is catastrophic for listeners on phone speakers or club sound systems. Always toggle your master to mono and verify nothing vanishes.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Over-Widening with Stereo Plugins</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Stereo widening <a href="glossary.html#plugin" style="color: var(--accent-cyan); text-decoration: underline;">plugins</a> sound impressive in solo but often cause severe mono compatibility issues. They work by manipulating phase relationships, which means collapsed mono playback loses those widened elements. Use widening sparingly and <strong>always verify mono compatibility</strong> after applying any stereo enhancement.
+                </p>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Clarity & Separation</strong> — Proper panning gives every instrument its own space, reducing frequency masking and improving intelligibility.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Immersive Experience</strong> — A wide stereo image pulls the listener inside the music, creating an enveloping sonic experience.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Translation</strong> — Mono-compatible mixes sound great on every playback system, from studio monitors to phone speakers.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional Sound</strong> — Thoughtful stereo placement is a hallmark of professional mixes and separates amateurs from pros.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- THEORY SECTION (populated by JS from config) -->
+        <section id="mpl-theory-section" style="margin-bottom: var(--space-2xl);"></section>
 
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
@@ -64,7 +243,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

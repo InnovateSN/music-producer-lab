@@ -67,7 +67,7 @@ export const lessonConfig = {
   
   messages: applyMessagePreset("drums", {
     initial: "Add the snare backbeat to unlock the next lesson.",
-    success: "🎉 Correct! You've mastered the backbeat. Proceed to the next lesson.",
+    success: "Correct! You've mastered the backbeat. Proceed to the next lesson.",
     error: "Not quite right. Check both the kick (1, 5, 9, 13) and snare (5, 13) patterns!"
   }),
   

@@ -102,7 +102,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build the progression: Cmaj7 → Am7 → G7 → Cmaj7. Listen for how G7 creates tension that demands resolution.",
-    success: "🎉 Perfect! You've mastered the dominant 7th resolution. This V7 → I movement is the engine that drives thousands of songs. Now you understand functional harmony!",
+    success: "Perfect! You've mastered the dominant 7th resolution. This V7 → I movement is the engine that drives thousands of songs. Now you understand functional harmony!",
     error: "Check: Cmaj7 = C-E-G-B, Am7 = A-C-E-G, G7 = G-B-D-F. Make sure G7 (bar 3) uses F (not F#) for the flat seventh that creates tension."
   }),
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,47 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Harmony & Backing Vocals: Building Vocal Arrangements</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Harmony vocals</strong> add richness, emotion, and professional polish to any production. From simple thirds to complex stacks, backing vocals transform a solo voice into a choir. This lesson covers <strong>harmony writing</strong>, <strong>ad-libs</strong>, <strong>vocal stacking</strong>, and arrangement techniques used in pop, R&B, and beyond.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Basic Harmonies</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Thirds and fifths.</strong> A third above the melody is the most common harmony. Fifths add power. Sixths create sweetness. Stay in key—harmonies follow the chord tones.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Ad-Libs</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Spontaneous vocal flourishes.</strong> "Yeah," "oh," runs, and fills between phrases. Record multiple takes of improvised ad-libs. Select the best moments and place them in gaps.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Vocal Stacking</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Multiple layers of the same harmony.</strong> Record each harmony part 2-4 times. Pan duplicates left and right. Creates massive, choir-like sound from one singer.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Arrangement Tips</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Build across the song.</strong> Verse: minimal harmonies. Pre-chorus: add one harmony. Chorus: full stack. Bridge: strip back for contrast. Final chorus: biggest arrangement.</p>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Mixing Backing Vocals</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
+                <li><strong>Lower than lead:</strong> Backings support, not compete</li>
+                <li><strong>More reverb:</strong> Push backs further back with more reverb</li>
+                <li><strong>EQ differently:</strong> Cut presence frequencies to make room for lead</li>
+                <li><strong>Bus together:</strong> Process all backs through one bus for cohesion</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +105,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

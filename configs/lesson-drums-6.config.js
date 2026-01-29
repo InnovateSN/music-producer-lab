@@ -103,7 +103,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Master syncopation to complete the drums module!",
-    success: "🎉 Congratulations! You've completed the Drums module. Explore other categories or practice more!",
+    success: "Congratulations! You've completed the Drums module. Explore other categories or practice more!",
     error: "Not quite right. Check the syncopated kick pattern (1, 3, 6, 11) and keep the backbeat steady!"
   }),
   

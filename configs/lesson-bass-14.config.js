@@ -147,7 +147,7 @@ Modern producers like Frank Dukes, OVO Sound, and The Neptunes use this approach
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Program the R&B bass line to complete this lesson.",
-    success: "🎉 Smooth! That's a sultry R&B groove. Pino Palladino vibes!",
+    success: "Smooth! That's a sultry R&B groove. Pino Palladino vibes!",
     error: "Not quite there. Check your note placement and remember: less is more in R&B.",
     alreadyCompleted: "You've mastered R&B bass. That's some smooth soul!"
   }),

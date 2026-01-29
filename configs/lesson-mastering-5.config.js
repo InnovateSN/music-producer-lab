@@ -123,7 +123,7 @@ Always deliver masters at -14 LUFS integrated for streaming, and provide alterna
   
   messages: applyMessagePreset("default", {
     initial: "Complete this mastering lesson to advance.",
-    success: "🎉 Excellent! You've mastered Stereo Enhancement & Width. Your masters are release-ready!",
+    success: "Excellent! You've mastered Stereo Enhancement & Width. Your masters are release-ready!",
     error: "Review the mastering concepts and try again.",
     alreadyCompleted: "You've completed this mastering technique. Keep practicing!"
   }),

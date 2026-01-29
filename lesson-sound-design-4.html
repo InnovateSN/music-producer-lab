@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,75 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Wavetable Synthesis: Modern Digital Sound Design</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Wavetable synthesis</strong> stores multiple waveforms in a table and lets you sweep between them, creating evolving, morphing timbres. Unlike static oscillators, wavetables provide continuous tonal evolution—from smooth to aggressive, simple to complex. This method dominates modern electronic music, powering synths like <strong>Serum, Massive, Vital</strong>, and <strong>Pigments</strong>. Wavetable synthesis combines the harmonic richness of FM with the intuitive control of subtractive synthesis.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Wavetables" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">What's a Wavetable?</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">A wavetable is a collection of single-cycle waveforms arranged sequentially. The <strong>position</strong> parameter selects which waveform plays. Morphing between positions creates smooth timbral transitions—from soft sine to harsh digital, or anywhere in between.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Position" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Position Modulation</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">The key to wavetable sound design: <strong>modulate the position</strong>. Use LFOs for rhythmic movement, envelopes for attack-to-sustain evolution, or mod wheel for real-time performance control. Static position = boring; animated position = alive.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Custom" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Custom Wavetables</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Modern synths let you <strong>import audio</strong> and convert it to wavetables. Import vocals, instruments, or any sound—the synth extracts single cycles. This creates completely unique, personalized timbres. Draw your own waveforms for ultimate control.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Processing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Beyond the Oscillator</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Wavetable synths typically include <strong>filters, effects, and modulators</strong> like any subtractive synth. The wavetable is just the oscillator—you still shape it with filters, envelopes, and effects. Layer multiple wavetable oscillators for massive sounds.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Static Wavetable Position:</strong>
+                <span style="color: var(--text-secondary);"> If you're not modulating the wavetable position, you're missing the point. The magic is in the movement—add an LFO or envelope immediately.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Ignoring the Filter:</strong>
+                <span style="color: var(--text-secondary);"> Wavetables can be harsh and digital. Use the filter to tame brightness and add warmth. Even aggressive sounds benefit from filter shaping.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Too Many Oscillators:</strong>
+                <span style="color: var(--text-secondary);"> Wavetables are already harmonically complex. One well-designed wavetable oscillator often sounds better than stacking four mediocre ones.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Modern Standard:</strong> Serum, Vital, Massive—wavetable synths dominate electronic music production.</li>
+                <li><strong>Evolving Timbres:</strong> Create sounds that morph and breathe, impossible with static oscillators.</li>
+                <li><strong>Infinite Possibilities:</strong> Import any audio to create custom wavetables—truly unique sounds.</li>
+                <li><strong>Visual Workflow:</strong> See the waveform as you design—intuitive and educational.</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +133,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

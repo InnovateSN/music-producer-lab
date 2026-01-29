@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,154 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Genre-Specific Mixing: Adapt Your Approach to the Style</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              Different genres have different mixing conventions, and understanding these expectations is crucial for making your tracks fit in—or intentionally stand out. A <strong>hip-hop</strong> mix prioritizes heavy sub bass and punchy drums, while an <strong>EDM</strong> mix demands bright, wide synths and aggressive limiting. <strong>Rock</strong> relies on guitar distortion and natural room sounds, while <strong>pop</strong> requires polished, radio-ready clarity. In this lesson, you'll learn the characteristic traits of major genres and how to apply <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a>, <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">compression</a>, <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a>, and other processing to match genre expectations in your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Hip-Hop/Trap -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Hip-Hop" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Hip-Hop & Trap</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Sub bass is king</strong>—heavy 808s dominate the 40-80 Hz range. Kicks often layer with the 808, tuned to the same key. <a href="glossary.html#hi-hat" style="color: var(--accent-cyan); text-decoration: underline;">Hi-hats</a> are crispy and present, often with <a href="glossary.html#hi-hat-roll" style="color: var(--accent-cyan); text-decoration: underline;">hi-hat rolls</a>. Vocals sit upfront with heavy compression and ad-libs panned wide. Use <a href="glossary.html#sidechain" style="color: var(--accent-cyan); text-decoration: underline;">sidechain</a> compression to duck the bass under the kick. Overall: punchy, hard-hitting, bass-forward.
+                </p>
+              </div>
+
+              <!-- Concept 2: Electronic/EDM -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="EDM" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Electronic & EDM</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Bright, wide, loud.</strong> Synths are pushed high (10-16 kHz air boost) with wide stereo imaging. Kick drums are punchy and tight with short decay. Bass is often a sub + mid layer for translation. Heavy <a href="glossary.html#sidechain" style="color: var(--accent-cyan); text-decoration: underline;">sidechain pumping</a> on synths creates the characteristic "breathing" effect. Aggressive limiting in mastering pushes loudness. Big reverbs on builds, tight mixes in drops.
+                </p>
+              </div>
+
+              <!-- Concept 3: Rock/Metal -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Rock" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Rock & Metal</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Guitars are central</strong>—double-tracked and panned hard L/R for width. High gain distortion needs careful mid-range management to avoid mud. Bass guitar locks with kick drum for tight low end. Drums use room mics for natural ambience. Snare has crack (3-5 kHz) and body. Less limiting than EDM—dynamics matter. Vocals cut through with presence boost (3-4 kHz). Raw energy over polish.
+                </p>
+              </div>
+
+              <!-- Concept 4: Pop/R&B -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Pop" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Pop & R&B</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Vocals are everything</strong>—crystal clear, compressed, de-essed, and upfront. Instrumental elements support but never compete. Drums are tight and polished. Bass is controlled and clean. Wide stereo spread on pads and synths. Everything is EQ'd for clarity and separation. Professional polish and radio-ready loudness. Reference commercial releases constantly—pop has narrow tolerance for "wrong" sounds.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: GENRE COMPARISON -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Genre Characteristic Comparison</h3>
+
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: var(--text-secondary);">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-subtle);">
+                      <th style="text-align: left; padding: 12px; color: var(--text-primary);">Element</th>
+                      <th style="text-align: center; padding: 12px; color: var(--accent-orange);">Hip-Hop</th>
+                      <th style="text-align: center; padding: 12px; color: var(--accent-purple);">EDM</th>
+                      <th style="text-align: center; padding: 12px; color: var(--accent-cyan);">Rock</th>
+                      <th style="text-align: center; padding: 12px; color: var(--accent-magenta);">Pop</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: 10px; font-weight: bold;">Sub Bass</td>
+                      <td style="text-align: center; padding: 10px;">Heavy (dominant)</td>
+                      <td style="text-align: center; padding: 10px;">Tight (sidechained)</td>
+                      <td style="text-align: center; padding: 10px;">Moderate</td>
+                      <td style="text-align: center; padding: 10px;">Controlled</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: 10px; font-weight: bold;">Drums</td>
+                      <td style="text-align: center; padding: 10px;">Punchy, crispy hats</td>
+                      <td style="text-align: center; padding: 10px;">Tight, aggressive</td>
+                      <td style="text-align: center; padding: 10px;">Room mics, natural</td>
+                      <td style="text-align: center; padding: 10px;">Polished, tight</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: 10px; font-weight: bold;">Vocals</td>
+                      <td style="text-align: center; padding: 10px;">Upfront, ad-libs wide</td>
+                      <td style="text-align: center; padding: 10px;">Processed, effects</td>
+                      <td style="text-align: center; padding: 10px;">Raw, present</td>
+                      <td style="text-align: center; padding: 10px;">Crystal clear, center</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: 10px; font-weight: bold;">Stereo Width</td>
+                      <td style="text-align: center; padding: 10px;">Moderate (focus mono)</td>
+                      <td style="text-align: center; padding: 10px;">Very wide</td>
+                      <td style="text-align: center; padding: 10px;">Guitars L/R</td>
+                      <td style="text-align: center; padding: 10px;">Wide, balanced</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; font-weight: bold;">Dynamics</td>
+                      <td style="text-align: center; padding: 10px;">Punchy, controlled</td>
+                      <td style="text-align: center; padding: 10px;">Limited, loud</td>
+                      <td style="text-align: center; padding: 10px;">Dynamic, energy</td>
+                      <td style="text-align: center; padding: 10px;">Polished, radio-ready</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Applying EDM Processing to Acoustic Music:</strong>
+                <span style="color: var(--text-secondary);"> Heavy sidechain pumping, extreme limiting, and synthetic-sounding processing can destroy the natural feel of acoustic, folk, or jazz recordings. These genres need space, dynamics, and organic sound. Know when to step back.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Not Studying Reference Tracks:</strong>
+                <span style="color: var(--text-secondary);"> Each genre has established conventions. If you don't reference professional releases in the same style, you might be mixing blind. Import 2-3 reference tracks into your session and A/B constantly. Match their tonal balance, loudness, and spatial characteristics.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Ignoring the Audience Expectations:</strong>
+                <span style="color: var(--text-secondary);"> A lo-fi hip-hop track with overly clean, bright mixing will feel wrong to its audience. Similarly, a metal track without aggressive energy will disappoint fans. Understand who will listen and what they expect—then deliver or subvert intentionally.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Context is Everything:</strong> A "good" mix is one that serves the genre and artist. What works in one context fails in another.</li>
+                <li><strong>Client Satisfaction:</strong> Artists expect their genre's conventions. Understanding these builds trust and speeds up workflow.</li>
+                <li><strong>Versatility:</strong> The more genres you can mix competently, the more clients you can serve and the more work you'll get.</li>
+                <li><strong>Creative Freedom:</strong> Once you know the rules, you can break them intentionally for artistic effect. First learn convention, then innovate.</li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
@@ -64,7 +212,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

@@ -61,7 +61,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build Esus2 → E and Asus4 → Amaj7. Sus chords float (no third), then resolve when the third appears.",
-    success: "🎉 Perfect! You've mastered suspension and resolution - the secret to neo-soul and R&B harmony. Notice how sus chords create gentle tension that melts into the third!",
+    success: "Perfect! You've mastered suspension and resolution - the secret to neo-soul and R&B harmony. Notice how sus chords create gentle tension that melts into the third!",
     error: "Check: Esus2 = E-F#-B (no G#), E = E-G#-B, Asus4 = A-D-E (no C#), Amaj7 = A-C#-E-G#. Sus chords have no third!"
   }),
 

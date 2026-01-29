@@ -91,7 +91,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Write a melody using only chord tones (1-3-5 of each chord) over your progression.",
-    success: "🎉 Perfect! You've written a melody that harmonizes beautifully. You understand how chord tones create stable, fitting melodies.",
+    success: "Perfect! You've written a melody that harmonizes beautifully. You understand how chord tones create stable, fitting melodies.",
     error: "Check that all your melody notes are chord tones: Bar 1 (C/E/G), Bar 2 (G/B/D), Bar 3 (A/C/E), Bar 4 (F/A/C)."
   }),
 

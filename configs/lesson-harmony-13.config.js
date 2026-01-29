@@ -66,7 +66,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build Am7 → Fmaj7 → C → G in A minor. Add a sparse melody (6-8 notes) using A minor pentatonic. Leave space - less is more!",
-    success: "🎉 Perfect! You've captured that dark, emotional hip-hop vibe. Notice how space and simplicity create impact - this is the sound of modern trap and R&B!",
+    success: "Perfect! You've captured that dark, emotional hip-hop vibe. Notice how space and simplicity create impact - this is the sound of modern trap and R&B!",
     error: "Keep it minimal: Am7 = A-C-E-G, Fmaj7 = F-A-C-E, C = C-E-G, G = G-B-D. Melody should be sparse (6-8 notes) using A-C-D-E-G with lots of space."
   }),
 

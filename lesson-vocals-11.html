@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,47 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Advanced Vocal Mixing: Automation & Parallel Processing</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Advanced vocal mixing</strong> goes beyond static processing to create dynamic, radio-ready vocals. <strong>Automation</strong> adjusts levels and effects in real-time throughout the song. <strong>Parallel processing</strong> blends processed copies with the original for aggressive effects without losing naturalness. These techniques separate amateur mixes from professional productions.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Volume Automation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Ride the vocal fader.</strong> Automate volume word-by-word to keep every syllable audible. Boost quiet words, reduce loud peaks. This is the #1 technique for professional vocal clarity.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Effect Automation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Change effects throughout the song.</strong> More reverb on the chorus. Delay throws on specific words. Filter sweeps for transitions. Automate sends and plugin parameters for dynamic interest.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Parallel Compression</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Blend crushed with clean.</strong> Send vocal to a bus with heavy compression (10:1+, fast attack). Blend this "crushed" signal with the original. Adds aggression and presence while preserving dynamics.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Parallel Saturation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Add grit without destroying.</strong> Same concept as parallel compression—heavily saturate a copy, blend to taste. Adds harmonics and excitement while keeping the clean vocal intact.</p>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Automation Workflow</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
+                <li><strong>Static mix first:</strong> Get the best static balance before automating</li>
+                <li><strong>Automate volume last:</strong> After all processing is set</li>
+                <li><strong>Use clip gain:</strong> Pre-fader automation for consistent input levels</li>
+                <li><strong>Write in passes:</strong> First pass = major moves, second = fine-tuning</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -64,7 +105,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

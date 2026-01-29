@@ -65,7 +65,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build the house loop: Am7 → Fmaj7 → Cmaj7 → Em7. Add a melody targeting chord tones on beats 1 and 3.",
-    success: "🎉 Perfect! You've created a classic house chord progression. Notice how it loops seamlessly - this pattern is used in thousands of deep house and melodic techno tracks!",
+    success: "Perfect! You've created a classic house chord progression. Notice how it loops seamlessly - this pattern is used in thousands of deep house and melodic techno tracks!",
     error: "Check: Am7 = A-C-E-G, Fmaj7 = F-A-C-E, Cmaj7 = C-E-G-B, Em7 = E-G-B-D. Melody should have 8-12 notes with chord tones on strong beats."
   }),
 

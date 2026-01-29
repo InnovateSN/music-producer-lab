@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -30,6 +30,148 @@
           <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
           </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mixing Vocals & Leads: Make Your Focus Elements Shine</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Vocals</strong> and <strong>lead elements</strong> are the focal point of most productions—the parts listeners connect with emotionally. These elements must sit <strong>upfront in the mix</strong>, with clarity and presence, while still blending naturally with the instrumental. This lesson covers the complete vocal chain: <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> for clarity, <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">compression</a> for consistency, <strong>de-essing</strong> for harshness control, and <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a>/<a href="glossary.html#delay" style="color: var(--accent-cyan); text-decoration: underline;">delay</a> for space. You'll learn how to make vocals sound professional, polished, and emotionally engaging in your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Vocal EQ -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Vocal EQ" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Vocal EQ: Clarity & Presence</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>High-pass at 80-100 Hz</strong> removes rumble and proximity effect. Cut <strong>200-400 Hz</strong> to reduce muddiness and boxiness. Boost <strong>2-5 kHz</strong> for presence and intelligibility—this is where consonants live. Add <strong>10-12 kHz air</strong> for sparkle. Always EQ in context with the instrumental playing—solo sounds different than in the mix.
+                </p>
+              </div>
+
+              <!-- Concept 2: Vocal Compression -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Compression" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Vocal Compression Chain</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Professional vocals use <strong>serial compression</strong>—multiple compressors doing light work. First stage: <strong>gentle leveling</strong> (2-3 dB, slow attack) to even out dynamics. Second stage: <strong>character compression</strong> (4-6 dB, faster attack) for punch and "glue." Use a <strong>limiter</strong> at the end to catch peaks. The goal: consistent level without obvious pumping.
+                </p>
+              </div>
+
+              <!-- Concept 3: De-essing -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="De-essing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">De-essing & Harshness Control</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Sibilance</strong> ("S" and "T" sounds) lives around <strong>5-8 kHz</strong> and becomes harsh after compression. A <a href="glossary.html#de-esser" style="color: var(--accent-cyan); text-decoration: underline;">de-esser</a> dynamically reduces these frequencies only when they spike. Set the threshold so it only triggers on harsh "S" sounds, not regular syllables. Place the de-esser <strong>after compression</strong> (which exaggerates sibilance). Use sparingly—over-de-essing creates a lisp.
+                </p>
+              </div>
+
+              <!-- Concept 4: Vocal Space -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Vocal Space" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Reverb & Delay for Space</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Vocals need space to breathe without getting pushed back in the mix. Use <strong>short plate reverb</strong> (1-1.5s decay) for polish, with <strong>high pre-delay (40-80 ms)</strong> to maintain upfront presence. Add a <strong>1/8 or 1/4 note delay</strong> (timed to tempo) for rhythmic depth. Keep reverb/delay levels low—you should feel them more than hear them. EQ the reverb return to cut lows and harsh highs.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: VOCAL SIGNAL CHAIN -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Professional Vocal Signal Chain</h3>
+
+              <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); font-family: monospace; color: var(--text-secondary);">
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-cyan); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">1</span>
+                  <span style="color: var(--accent-cyan);">HPF</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">80-100 Hz</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-orange); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">2</span>
+                  <span style="color: var(--accent-orange);">EQ (Cut)</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Remove mud</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-purple); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">3</span>
+                  <span style="color: var(--accent-purple);">COMP 1</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Level (2-3 dB)</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-purple); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">4</span>
+                  <span style="color: var(--accent-purple);">COMP 2</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Character (4-6 dB)</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-magenta); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">5</span>
+                  <span style="color: var(--accent-magenta);">DE-ESS</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">5-8 kHz</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--accent-orange); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">6</span>
+                  <span style="color: var(--accent-orange);">EQ (Boost)</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Presence + Air</span>
+                </div>
+                <span style="color: var(--accent-cyan); align-self: center;">→</span>
+                <div style="padding: 12px 16px; background: var(--bg-card); border-radius: 6px; border: 2px solid var(--text-muted); text-align: center;">
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">7</span>
+                  <span style="color: var(--text-secondary);">LIMITER</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Catch peaks</span>
+                </div>
+              </div>
+              <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--space-md);">↓ Send to Reverb/Delay buses for spatial processing</p>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Vocals Too Loud or Too Quiet:</strong>
+                <span style="color: var(--text-secondary);"> Vocals should feel like they're "riding on top" of the mix without overpowering it. If you can clearly hear every word but the vocal still blends with the instrumental, you've got it right. Check at low volumes—if the vocal disappears, it's too quiet.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Over-Processing for "Polish":</strong>
+                <span style="color: var(--text-secondary);"> Beginners often add too much compression, EQ boost, and effects trying to make vocals sound "professional." This results in harsh, lifeless, over-processed sound. Professional vocals often use subtle processing—the source recording matters more than the chain.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Reverb Pushing Vocals Back:</strong>
+                <span style="color: var(--text-secondary);"> Too much reverb without pre-delay makes vocals sound distant. Use high pre-delay (40-80 ms) so the dry vocal speaks clearly before the reverb tail begins. This maintains upfront presence while still adding space.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Emotional Connection:</strong> Vocals carry lyrics and melody—the parts listeners connect with most deeply. Clear, present vocals create emotional impact.</li>
+                <li><strong>Mix Judgment:</strong> Industry professionals often judge a mix by its vocals first. Great vocal mixing is a hallmark of professional production.</li>
+                <li><strong>Intelligibility:</strong> If listeners can't understand the words, they disconnect. Proper processing ensures clarity without harshness.</li>
+                <li><strong>Artist Satisfaction:</strong> Vocalists care deeply about how they sound. A well-mixed vocal builds trust and confidence with your clients.</li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
@@ -64,7 +206,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

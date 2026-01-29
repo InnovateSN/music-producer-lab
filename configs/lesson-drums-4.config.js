@@ -103,7 +103,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Add 16th-note movement to unlock the next lesson.",
-    success: "🎉 Correct! You've added rhythmic movement with 16th notes. Proceed to the next lesson.",
+    success: "Correct! You've added rhythmic movement with 16th notes. Proceed to the next lesson.",
     error: "Not quite right. Remember to add step 8 to your eighth-note hi-hat pattern!"
   }),
   

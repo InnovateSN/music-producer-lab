@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson · Music Producer Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
@@ -32,6 +32,172 @@
           </div>
           </div>
         </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">EQ: Sculpting Space for Every Sound</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">Equalization (EQ)</a> is the art of shaping the <a href="glossary.html#frequency" style="color: var(--accent-cyan); text-decoration: underline;">frequency</a> content of audio—boosting what you want and cutting what you don't. Every sound occupies a range in the <strong>frequency spectrum</strong> (20 Hz to 20 kHz), and when multiple sounds compete for the same range, the mix becomes <strong>muddy and unclear</strong>. EQ is your primary tool for creating <strong>separation and clarity</strong>. Think of the frequency spectrum as a limited physical space: a <a href="glossary.html#kick-drum" style="color: var(--accent-cyan); text-decoration: underline;">kick drum</a> and a bass synth both live in the low end—EQ lets you carve out room so both can coexist without masking each other. In this lesson, you'll learn the different types of EQ filters, when to cut vs. boost, and the frequency ranges every producer needs to know by heart.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Subtractive vs Additive EQ -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/speakerwave.png" alt="EQ" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Cut First, Boost Second</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Subtractive EQ</strong> (cutting problem frequencies) should always come before <strong>additive EQ</strong> (boosting desired frequencies). Cutting removes mud, rumble, and harshness <strong>without adding volume</strong>. Boosting adds energy but also adds level, potentially causing <a href="glossary.html#clipping" style="color: var(--accent-cyan); text-decoration: underline;">clipping</a>. The golden rule: <strong>"If you can achieve the same result by cutting elsewhere, do that instead of boosting."</strong>
+                </p>
+              </div>
+
+              <!-- Concept 2: Filter Types -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/gear.png" alt="Filters" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Essential Filter Types</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong><a href="glossary.html#high-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">High-Pass Filter</a> (HPF)</strong>: Removes everything below a set frequency—essential for cleaning rumble from vocals, guitars, and synths. <strong><a href="glossary.html#low-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">Low-Pass Filter</a> (LPF)</strong>: Removes highs—useful for taming harsh cymbals or creating distance. <strong>Bell/Parametric</strong>: Boosts or cuts a specific range with adjustable width (Q factor). <strong>Shelf</strong>: Boosts or cuts everything above or below a frequency.
+                </p>
+              </div>
+
+              <!-- Concept 3: Frequency Ranges -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/stats.png" alt="Spectrum" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">The Frequency Map</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Sub-Bass (20-60 Hz)</strong>: Felt more than heard—kick and bass power. <strong>Bass (60-250 Hz)</strong>: Warmth and body. <strong>Low-Mids (250-500 Hz)</strong>: Muddiness zone—cut here for clarity. <strong>Mids (500 Hz-2 kHz)</strong>: Core tone of most instruments. <strong>Upper-Mids (2-4 kHz)</strong>: Presence and intelligibility. <strong>Highs (4-10 kHz)</strong>: Brightness, air, and detail. <strong>Air (10-20 kHz)</strong>: Sparkle and shimmer.
+                </p>
+              </div>
+
+              <!-- Concept 4: Q Factor -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Q Factor" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Q Factor: Width Matters</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  The <strong>Q factor</strong> (quality factor) controls how wide or narrow your EQ adjustment is. <strong>Narrow Q (high value, e.g. 8-12)</strong>: Surgical cuts to remove specific problem frequencies like resonances or hum. <strong>Wide Q (low value, e.g. 0.5-2)</strong>: Gentle, musical boosts that shape the overall tone. Rule of thumb: <strong>cut narrow, boost wide</strong>. Narrow boosts sound unnatural; wide cuts remove too much.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: FREQUENCY SPECTRUM MAP -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">The Frequency Spectrum: Know Your Ranges</h3>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 2px;">
+                <div style="background: linear-gradient(180deg, rgba(255, 90, 61, 0.3), rgba(255, 90, 61, 0.1)); padding: var(--space-md); border-radius: var(--radius-sm) 0 0 var(--radius-sm); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-orange);">SUB-BASS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">20-60 Hz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Kick power, sub bass</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(255, 159, 67, 0.3), rgba(255, 159, 67, 0.1)); padding: var(--space-md); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: #ff9f43;">BASS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">60-250 Hz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Warmth, body</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(254, 202, 87, 0.3), rgba(254, 202, 87, 0.1)); padding: var(--space-md); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: #feca57;">LOW-MIDS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">250-500 Hz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Mud zone!</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1)); padding: var(--space-md); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: #10b981;">MIDS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">500 Hz-2 kHz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Core tone</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.1)); padding: var(--space-md); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan);">UPPER-MIDS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">2-4 kHz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Presence</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(95, 77, 255, 0.3), rgba(95, 77, 255, 0.1)); padding: var(--space-md); text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-purple);">HIGHS</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">4-10 kHz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Brightness</div>
+                </div>
+                <div style="background: linear-gradient(180deg, rgba(179, 102, 255, 0.3), rgba(179, 102, 255, 0.1)); padding: var(--space-md); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; text-align: center;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-magenta);">AIR</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">10-20 kHz</div>
+                  <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px;">Sparkle, shimmer</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+
+              <!-- Mistake 1 -->
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Boosting Instead of Cutting</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Beginners instinctively boost what they want louder. But if a vocal sounds dull, the problem might not be "not enough highs"—it might be <strong>too much low-mid buildup (250-500 Hz)</strong>. Cutting the mud reveals the brightness that was always there. <strong>Subtractive EQ is more transparent</strong> and preserves headroom. Always ask: "Can I fix this by cutting somewhere else?"
+                </p>
+              </div>
+
+              <!-- Mistake 2 -->
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">EQing in Solo</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  A sound that sounds perfect in solo often disappears in the full mix—or clashes with other elements. <strong>Always EQ in context</strong> (with the full mix playing). A kick drum needs different EQ when played alongside bass vs. when solo'd. The mix is the final judge, not the individual track.
+                </p>
+              </div>
+
+              <!-- Mistake 3 -->
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Skipping the High-Pass Filter</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Almost every track in your mix (except kick and bass) benefits from a <a href="glossary.html#high-pass-filter" style="color: var(--accent-cyan); text-decoration: underline;">high-pass filter</a>. Vocals, guitars, synths, and percussion all pick up <strong>low-frequency rumble</strong> that muddies the mix. Setting an HPF at 80-120 Hz on non-bass elements instantly cleans up the low end, giving your <a href="glossary.html#kick-drum" style="color: var(--accent-cyan); text-decoration: underline;">kick</a> and bass room to breathe.
+                </p>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Clarity & Separation</strong> — EQ gives every instrument its own space. A clear mix lets listeners hear every element distinctly.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Mix Translation</strong> — A well-EQ'd mix sounds great on earbuds, car speakers, and studio monitors alike.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Problem Solving</strong> — Muddy mix? Harsh vocals? Thin drums? EQ is almost always part of the solution.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Most Used Tool</strong> — EQ is the #1 plugin used in professional mixing. Master it and you're halfway to great mixes.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- THEORY SECTION (populated by JS from config) -->
+        <section id="mpl-theory-section" style="margin-bottom: var(--space-2xl);"></section>
 
         <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
         <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
@@ -64,7 +230,6 @@
         <!-- COMPLETION MESSAGE (populated by JS) -->
         <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
 
-      </main>
 
       <!-- SCRIPT IMPORTS -->
       <script type="module">

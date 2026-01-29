@@ -66,7 +66,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build Dm7 → Em7 → Dm7 → Cmaj7 in D Dorian. Use D-E-F-G-A-B-C scale, emphasizing the B natural (6th degree).",
-    success: "🎉 Excellent! You've mastered Dorian mode - that cool, funky minor sound. Notice how the raised 6th (B) creates brightness while keeping the minor vibe!",
+    success: "Excellent! You've mastered Dorian mode - that cool, funky minor sound. Notice how the raised 6th (B) creates brightness while keeping the minor vibe!",
     error: "Check: Dm7 = D-F-A-C, Em7 = E-G-B-D, Cmaj7 = C-E-G-B. Melody uses D Dorian scale (D-E-F-G-A-B-C) with B natural, not Bb!"
   }),
 

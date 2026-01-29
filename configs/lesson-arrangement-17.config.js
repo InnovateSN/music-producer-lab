@@ -84,7 +84,7 @@ export const lessonConfig = {
     },
     {
       name: "Texture Change",
-      icon: "✨",
+      icon: "",
       description: "Abruptly change reverb/delay/distortion amount",
       timing: "Exactly on section change",
       impact: "Medium - sonic shift"

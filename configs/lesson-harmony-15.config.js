@@ -61,7 +61,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("harmony", {
     initial: "Build Dadd9, Gmaj9, Bm7(11), Aadd9. The 9th (2nd scale degree up an octave) adds shimmer and space.",
-    success: "🎉 Beautiful! You've mastered extended harmony. These add9 and 9th chords create that modern, airy sound used in indie, ambient, and electronic music!",
+    success: "Beautiful! You've mastered extended harmony. These add9 and 9th chords create that modern, airy sound used in indie, ambient, and electronic music!",
     error: "Check: Dadd9 = D-F#-A-E, Gmaj9 = G-B-D-F#-A, Bm7(11) = B-D-F#-A-E, Aadd9 = A-C#-E-B. The 9th adds color without tension."
   }),
 

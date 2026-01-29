@@ -102,7 +102,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build the four seventh chords: Cmaj7 (C-E-G-B), Dm7 (D-F-A-C), Em7 (E-G-B-D), Fmaj7 (F-A-C-E). Stack all four notes vertically.",
-    success: "🎉 Excellent! You've mastered seventh chords. Notice how they sound richer and more sophisticated than basic triads. This is the foundation of modern harmony in house, R&B, and jazz.",
+    success: "Excellent! You've mastered seventh chords. Notice how they sound richer and more sophisticated than basic triads. This is the foundation of modern harmony in house, R&B, and jazz.",
     error: "Check each chord: Cmaj7 = C-E-G-B, Dm7 = D-F-A-C, Em7 = E-G-B-D, Fmaj7 = F-A-C-E. Make sure all four notes are stacked vertically on the correct beat."
   }),
 

@@ -102,7 +102,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build the I–V–vi–IV pop progression (C → G → Am → F) for an infinitely loopable cycle.",
-    success: "🎉 Amazing! You've built the most popular progression in modern pop. You now have the foundation for countless hit songs.",
+    success: "Amazing! You've built the most popular progression in modern pop. You now have the foundation for countless hit songs.",
     error: "Check your progression: Bar 1 = C-E-G (I), Bar 2 = G-B-D (V), Bar 3 = A-C-E (vi), Bar 4 = F-A-C (IV)."
   }),
 

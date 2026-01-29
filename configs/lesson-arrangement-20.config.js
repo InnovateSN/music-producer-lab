@@ -123,7 +123,7 @@ export const lessonConfig = {
 
   messages: applyMessagePreset("arrangement", {
     initial: "Create your arrangement masterpiece using all 19 techniques!",
-    success: "🎉🏆 INCREDIBLE! You've created a professional-grade arrangement. You've mastered the art of arrangement. This is radio-ready, mix-ready, and ready to share with the world. Congratulations!",
+    success: "INCREDIBLE! You've created a professional-grade arrangement. You've mastered the art of arrangement. This is radio-ready, mix-ready, and ready to share with the world. Congratulations!",
     error: "Check the requirements—make sure you're applying all the techniques you've learned.",
     alreadyCompleted: "You've completed the entire Arrangement course! You're now a master arranger. Go create something amazing!"
   }),
@@ -182,7 +182,7 @@ export const lessonConfig = {
       {
         title: "Congratulations! Your Complete Arrangement Journey",
         content: `
-**🎉 You've Mastered Arrangement & Songwriting! 🎉**
+**You've Mastered Arrangement & Songwriting! **
 
 You've completed **all 20 lessons** in the Arrangement & Songwriting category. This is a massive achievement. Let's reflect on your journey from basic structure to professional arrangement mastery.
 
@@ -609,7 +609,7 @@ You've mastered **Arrangement & Songwriting**. Here's the logical progression fo
 - **Why:** The final 10% of polish that makes tracks sound "pro."
 
 **Recommended Order:**
-1. **Arrangement** ← You just completed this! 🎉
+1. **Arrangement** ← You just completed this! 
 2. **Sound Design** ← Learn to create unique sounds
 3. **Mixing** ← Make it sound professional
 4. **Mastering** ← Final polish before release
@@ -701,7 +701,7 @@ Go create something incredible. Apply these 19 techniques. Build a track that sh
 
 **You've earned this.**
 
-**Now go make something amazing. 🎶**
+**Now go make something amazing. **
 
 ---
 
@@ -716,7 +716,7 @@ Go create something incredible. Apply these 19 techniques. Build a track that sh
 
 **You're a professional arranger.**
 
-**Congratulations! 🎉🏆**
+**Congratulations! **
         `
       }
     ]

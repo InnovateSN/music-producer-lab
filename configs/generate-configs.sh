@@ -54,7 +54,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("default", {
     initial: "Complete this lesson to unlock the next sound design topic.",
-    success: "🎉 Excellent! You've mastered this sound design technique!",
+    success: "Excellent! You've mastered this sound design technique!",
     error: "Review the content and try again.",
     alreadyCompleted: "You've already completed this lesson. Keep exploring!"
   }),
@@ -110,7 +110,7 @@ export const lessonConfig = {
   },
   messages: applyMessagePreset("default", {
     initial: "Complete this mixing lesson to continue.",
-    success: "🎉 Great work! Your mixing skills are improving!",
+    success: "Great work! Your mixing skills are improving!",
     error: "Review the techniques and try again.",
     alreadyCompleted: "You've mastered this mixing technique!"
   }),
@@ -160,7 +160,7 @@ export const lessonConfig = {
   },
   messages: applyMessagePreset("default", {
     initial: "Complete this vocal production lesson to continue.",
-    success: "🎉 Perfect! Your vocal production skills are growing!",
+    success: "Perfect! Your vocal production skills are growing!",
     error: "Review the vocal techniques and try again.",
     alreadyCompleted: "You've mastered this vocal technique!"
   }),
@@ -210,7 +210,7 @@ export const lessonConfig = {
   },
   messages: applyMessagePreset("default", {
     initial: "Complete this mastering lesson to continue.",
-    success: "🎉 Excellent! Your mastering knowledge is expanding!",
+    success: "Excellent! Your mastering knowledge is expanding!",
     error: "Review the mastering concepts and try again.",
     alreadyCompleted: "You've mastered this mastering technique!"
   }),

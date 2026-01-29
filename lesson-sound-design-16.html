@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lesson 16 · Sound Design | Music Producer Lab</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=1200, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Free Lesson 16 from Music Producer Lab: advanced sound design and synthesis techniques." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="lesson-styles.css" />
@@ -25,6 +25,46 @@
       <div class="hero-actions">
         <button id="mark-complete-btn" class="btn btn-primary">Mark as Complete</button>
         <a href="labs.html" class="btn btn-secondary">Back to Overview</a>
+      </div>
+    </section>
+
+    <!-- EDUCATIONAL CONTENT -->
+    <section class="educational-content" style="margin: 2rem 0;">
+      <div style="padding: 2rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 12px;">
+        <div style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--accent-cyan, #00d4ff); margin-bottom: 0.5rem;">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Advanced Modular Synthesis: Complex Signal Routing</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary, #aaa); margin-bottom: 1.5rem;">
+          <strong>Modular synthesis</strong> takes sound design to its most fundamental level—individual modules for oscillators, filters, envelopes, and effects, connected via <strong>patch cables</strong>. Unlike fixed-architecture synths, modular systems let you route signals anywhere: audio through control inputs, envelopes controlling other envelopes, feedback loops creating chaos. This flexibility enables sounds impossible on traditional synthesizers but requires deep understanding of <strong>CV (control voltage)</strong>, <strong>gates</strong>, and <strong>signal flow</strong>.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #ff5a3d; margin: 0 0 0.5rem 0;">CV & Gate Signals</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>CV (Control Voltage)</strong> is continuous—controls pitch, filter cutoff, amplitude. <strong>Gate</strong> is on/off—triggers envelopes, sequences. <strong>Trigger</strong> is a short pulse. Understanding these signal types is fundamental to patching.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: 8px; border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #5f4dff; margin: 0 0 0.5rem 0;">Modulation Sources</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>LFOs, envelopes, sequencers, random/S&H, function generators</strong>—all produce CV. Complex patches layer multiple modulation sources, creating evolving, organic textures that breathe and shift over time.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #00d4ff; margin: 0 0 0.5rem 0;">Feedback & Self-Patching</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;">Route a module's output back to its input for <strong>feedback</strong>. Controlled feedback creates harmonic complexity; extreme feedback creates chaos. This is where modular gets truly experimental.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: 8px; border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #b366ff; margin: 0 0 0.5rem 0;">Software vs Hardware</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>VCV Rack</strong> (free) and <strong>Softube Modular</strong> offer hardware-accurate emulation. Learn patching concepts in software before investing in Eurorack hardware. The principles transfer directly.</p>
+          </div>
+        </div>
+
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
+          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
+            <li><strong>Ultimate Flexibility:</strong> No preset limitations—if you can imagine a signal path, you can patch it.</li>
+            <li><strong>Deep Understanding:</strong> Modular teaches synthesis fundamentals better than any fixed synth.</li>
+            <li><strong>Unique Sounds:</strong> Generative patches create sounds that never repeat exactly—truly alive.</li>
+          </ul>
+        </div>
       </div>
     </section>
 

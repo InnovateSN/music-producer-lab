@@ -91,7 +91,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("harmony", {
     initial: "Build the I to V progression (C major to G major) to hear tension and resolution.",
-    success: "🎉 Perfect! You've created your first chord progression. You now understand how chords create tension (V) and resolution (I).",
+    success: "Perfect! You've created your first chord progression. You now understand how chords create tension (V) and resolution (I).",
     error: "Check your chords: Bar 1 should have C-E-G (I), and bar 2 should have G-B-D (V). Make sure they're on beat 1 of each bar."
   }),
 
