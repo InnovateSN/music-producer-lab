@@ -14,6 +14,10 @@ import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
 import { initPianoRollSequencer } from './piano-roll-sequencer.js';
 import { curriculum as defaultCurriculum, getLessonNavigation } from './curriculum.js';
 
+// Only log in development
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const log = isDev ? console.log.bind(console) : function() {};
+
 // ==========================================
 // MAIN INITIALIZATION
 // ==========================================
@@ -83,7 +87,7 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
   // Inject Drum Playground banner for drum lessons
   injectDrumPlaygroundBanner();
 
-  console.log('[LessonEngine] Lesson initialized:', mergedConfig.lessonKey);
+  log('[LessonEngine] Lesson initialized:', mergedConfig.lessonKey);
 }
 
 // ==========================================
@@ -513,7 +517,7 @@ function initSequencer(config) {
 
   // Theory-only lessons (no sequencer)
   if (sequencerType === 'none' || (!instruments && sequencerType === 'drums')) {
-    console.log('[LessonEngine] Theory-only lesson, hiding sequencer section');
+    log('[LessonEngine] Theory-only lesson, hiding sequencer section');
     const sequencerSection = document.getElementById('mpl-sequencer-section');
     if (sequencerSection) {
       sequencerSection.style.display = 'none';
@@ -548,7 +552,7 @@ function initSequencer(config) {
 
   if (sequencerType === 'piano-roll') {
     // Initialize piano roll sequencer for harmony lessons
-    console.log('[LessonEngine] Initializing piano roll sequencer');
+    log('[LessonEngine] Initializing piano roll sequencer');
     initPianoRollSequencer(config, 'mpl-sequencer-collection');
     return;
   }

@@ -6,6 +6,10 @@
 (function() {
   'use strict';
 
+  // Only log in development
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const log = isDev ? console.log.bind(console) : function() {};
+
   const STORAGE_KEY = 'mpl-theme';
   const OLD_STORAGE_KEY = 'theme';
   const DEFAULT_THEME = 'sunset';
@@ -18,7 +22,7 @@
     const currentTheme = localStorage.getItem(STORAGE_KEY);
     if (currentTheme === 'light') {
       localStorage.setItem(STORAGE_KEY, 'ocean');
-      console.log('[Theme Manager] Migrated deprecated light theme to ocean');
+      log('[Theme Manager] Migrated deprecated light theme to ocean');
       return;
     }
 
@@ -42,7 +46,7 @@
     const newTheme = themeMap[oldTheme] || DEFAULT_THEME;
     localStorage.setItem(STORAGE_KEY, newTheme);
 
-    console.log('[Theme Manager] Migrated theme from', oldTheme, 'to', newTheme);
+    log('[Theme Manager] Migrated theme from', oldTheme, 'to', newTheme);
     // Keep old key for backward compatibility (don't delete)
   }
 
@@ -89,7 +93,7 @@
       console.warn('[Theme Manager] Failed to dispatch themeChanged event:', e);
     }
 
-    console.log('[Theme Manager] Applied theme:', theme.name);
+    log('[Theme Manager] Applied theme:', theme.name);
     return theme;
   }
 
@@ -142,8 +146,5 @@
     init();
   }
 
-  // Log successful load (dev mode only)
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    console.log('[Theme Manager] Initialized');
-  }
+  log('[Theme Manager] Initialized');
 })();

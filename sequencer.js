@@ -16,6 +16,10 @@
 import { toast } from './toast-notifications.js';
 import { debug } from './debug.js';
 
+// Only log in development
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const log = isDev ? console.log.bind(console) : function() {};
+
 // Audio Context (Web Audio API)
 let audioContext = null;
 
@@ -46,7 +50,7 @@ async function loadSampleLibrary() {
     const response = await fetch('sample-library.json');
     if (response.ok) {
       sampleLibrary = await response.json();
-      console.log('✓ Sample library loaded:', Object.keys(sampleLibrary).length, 'instruments');
+      log('✓ Sample library loaded:', Object.keys(sampleLibrary).length, 'instruments');
 
       // Initialize selected samples (load from localStorage or use first sample)
       Object.keys(sampleLibrary).forEach(instrument => {
@@ -134,9 +138,9 @@ async function preloadSamples() {
       const buffer = await loadSample(samplePath);
       if (buffer) {
         loadedSamples[instrument] = buffer;
-        console.log(`✓ Loaded sample: ${instrument} (${samplePath})`);
+        log(`✓ Loaded sample: ${instrument} (${samplePath})`);
       } else {
-        console.log(`→ Using synthetic sound for: ${instrument}`);
+        log(`→ Using synthetic sound for: ${instrument}`);
       }
     });
     await Promise.all(loadPromises);
@@ -146,15 +150,15 @@ async function preloadSamples() {
       const buffer = await loadSampleWithFormats(basePath);
       if (buffer) {
         loadedSamples[instrument] = buffer;
-        console.log(`✓ Loaded sample: ${instrument}`);
+        log(`✓ Loaded sample: ${instrument}`);
       } else {
-        console.log(`→ Using synthetic sound for: ${instrument}`);
+        log(`→ Using synthetic sound for: ${instrument}`);
       }
     });
     await Promise.all(loadPromises);
   }
 
-  console.log(`Sample loading complete. Loaded ${Object.keys(loadedSamples).length} samples.`);
+  log(`Sample loading complete. Loaded ${Object.keys(loadedSamples).length} samples.`);
 }
 
 /**
@@ -170,7 +174,7 @@ async function changeSample(instrument, samplePath) {
   const buffer = await loadSample(samplePath);
   if (buffer) {
     loadedSamples[instrument] = buffer;
-    console.log(`✓ Changed sample for ${instrument}: ${samplePath}`);
+    log(`✓ Changed sample for ${instrument}: ${samplePath}`);
     return true;
   } else {
     console.warn(`Failed to load sample: ${samplePath}`);
@@ -568,7 +572,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         const buffer = await loadSample(inst.samplePath);
         if (buffer) {
           loadedSamples[inst.id] = buffer;
-          console.log(`✓ Loaded custom sample for ${inst.id}: ${inst.samplePath}`);
+          log(`✓ Loaded custom sample for ${inst.id}: ${inst.samplePath}`);
           return true;
         }
         return false;
@@ -2015,7 +2019,7 @@ export { playSound, drumSounds, changeSample, sampleLibrary, selectedSamples, se
 (async () => {
   try {
     await preloadSamples();
-    console.log('✅ Sample library preloaded at module level');
+    log('✅ Sample library preloaded at module level');
 
     // Resolve the promise for pages waiting for the library
     if (sampleLibraryLoadedResolve) {

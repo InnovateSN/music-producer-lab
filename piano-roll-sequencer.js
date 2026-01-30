@@ -13,6 +13,10 @@
  * - Chord inversion support
  */
 
+// Only log in development
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const log = isDev ? console.log.bind(console) : function() {};
+
 // ==========================================
 // AUDIO CONTEXT & SYNTHESIS
 // ==========================================
@@ -954,7 +958,7 @@ function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth
   // Global mouse up
   const onMouseUp = () => {
     if (isResizing) {
-      console.log('[PianoRoll] Note resized:', note);
+      log('[PianoRoll] Note resized:', note);
       isResizing = false;
       resizeMode = null;
     } else if (isDraggingPitch) {
@@ -966,7 +970,7 @@ function setupNoteInteractions(noteBar, leftHandle, rightHandle, note, cellWidth
         // Click without movement = delete
         deleteNote(note);
       } else {
-        console.log('[PianoRoll] Note pitch changed:', note);
+        log('[PianoRoll] Note pitch changed:', note);
       }
 
       isDraggingPitch = false;
@@ -1016,7 +1020,7 @@ function deleteNote(note) {
     playNote(note.pitch, 0.1, 0.3); // Short click sound
     renderNotes();
     updateChordDisplay();
-    console.log('[PianoRoll] Note deleted:', note);
+    log('[PianoRoll] Note deleted:', note);
   }
 }
 
@@ -1399,7 +1403,7 @@ function validateExercise() {
       if (lessonKey) {
         try {
           localStorage.setItem(lessonKey, 'completed');
-          console.log('[PianoRoll] Lesson marked as completed:', lessonKey);
+          log('[PianoRoll] Lesson marked as completed:', lessonKey);
         } catch (e) {
           console.warn('[PianoRoll] Could not save progress:', e);
         }
