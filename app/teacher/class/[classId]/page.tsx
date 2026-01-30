@@ -236,7 +236,7 @@ export default async function ClassDetailPage({
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">
-                            {student.lessons_completed || 0} / 175 completed
+                            {student.lessons_completed || 0} / 174 completed
                           </div>
                           <div className="text-sm text-gray-500">
                             {student.lessons_started || 0} started

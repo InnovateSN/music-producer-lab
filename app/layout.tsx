@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Music Producer Lab - Learn Music Production Online',
-  description: 'Interactive music production learning platform with 175 hands-on lessons',
+  description: 'Interactive music production learning platform with 174 hands-on lessons',
 };
 
 export default function RootLayout({

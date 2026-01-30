@@ -1,13 +1,16 @@
 import { NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 import { requireRole } from '@/lib/clerk';
 import { query } from '@/lib/db';
 
 /**
- * Generate a unique class code (e.g., "MUSIC-2024-A1B2")
+ * Generate a unique class code (e.g., "MUSIC-2024-A1B2C3D4")
+ * Uses cryptographically secure random generation
  */
 function generateClassCode(): string {
   const year = new Date().getFullYear();
-  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  // Use crypto for secure random generation (8 chars for better entropy)
+  const random = randomBytes(4).toString('hex').toUpperCase();
   return `MUSIC-${year}-${random}`;
 }
 
