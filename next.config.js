@@ -50,6 +50,27 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
           },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'geolocation=(), microphone=(), camera=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.com https://*.clerk.accounts.dev",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: blob: https://*.clerk.com https://*.clerk.accounts.dev",
+              "connect-src 'self' https://*.clerk.com https://*.clerk.accounts.dev https://*.neon.tech",
+              "frame-src 'self' https://*.clerk.com https://*.clerk.accounts.dev",
+              "frame-ancestors 'none'",
+            ].join('; '),
+          },
         ],
       },
     ];

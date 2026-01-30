@@ -56,14 +56,17 @@
 
 2. **Update Environment Variables on Vercel**
    - Go to Vercel project settings
-   - Add these env vars:
+   - Add these env vars (get actual values from your service dashboards):
      ```
-     DATABASE_URL=postgresql://neondb_owner:npg_gBk8LyJOL3iu@ep-plain-glitter-agslh0bn-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_bGFzdGluZy1zdW5iaXJkLTI2LmNsZXJrLmFjY291bnRzLmRldiQ
-     CLERK_SECRET_KEY=sk_test_LENXfEGs1sLsZCfykmhG5TmW6YpOGfcALwGOoqekIX
-     RESEND_API_KEY=re_8Mf62ANs_KLN9UCn9M7dgNvVwmpW768vG
+     DATABASE_URL=<your-neon-connection-string>
+     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-clerk-publishable-key>
+     CLERK_SECRET_KEY=<your-clerk-secret-key>
+     RESEND_API_KEY=<your-resend-api-key>
      NEXT_PUBLIC_APP_URL=https://music-producer-lab.vercel.app
      ```
+
+   > **SECURITY NOTE:** Never commit actual credentials to version control.
+   > Store secrets securely in Vercel Environment Variables or a secrets manager.
 
 3. **Configure Clerk Dashboard**
    - Go to https://dashboard.clerk.com

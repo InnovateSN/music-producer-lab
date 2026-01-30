@@ -855,10 +855,18 @@ export function updateProgressWidget() {
 
 /**
  * Get lesson origin from URL (if opened from lesson page)
+ * Validates the format to prevent XSS attacks
  */
 export function getLessonOrigin() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('from'); // e.g. "lesson-drums-3"
+  const from = params.get('from');
+
+  // Validate lessonId format to prevent XSS (e.g., "lesson-drums-3")
+  // Only allow alphanumeric characters, hyphens, and underscores
+  if (from && /^[a-zA-Z0-9_-]+$/.test(from)) {
+    return from;
+  }
+  return null;
 }
 
 /**
@@ -878,8 +886,14 @@ export function generatePlaygroundLink(state, lessonId) {
 
 /**
  * Create lesson origin banner (shown when opened from lesson)
+ * Uses safe DOM manipulation to prevent XSS
  */
 export function createLessonOriginBanner(lessonId) {
+  // Validate lessonId format again for defense in depth
+  if (!lessonId || !/^[a-zA-Z0-9_-]+$/.test(lessonId)) {
+    return null;
+  }
+
   // Parse lesson number from ID (e.g., "lesson-drums-3" -> 3)
   const lessonMatch = lessonId.match(/lesson-drums-(\d+)/);
   const lessonNumber = lessonMatch ? parseInt(lessonMatch[1]) : null;
@@ -898,37 +912,56 @@ export function createLessonOriginBanner(lessonId) {
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
   `;
 
+  // Use safe string values (lessonNumber is parsed integer, lessonId is validated)
   const lessonTitle = lessonNumber ? `Lesson ${lessonNumber}` : 'Drum Lesson';
-  const lessonUrl = lessonId ? `${lessonId}.html` : 'labs.html#drums';
+  const lessonUrl = `${lessonId}.html`;
 
-  banner.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);">
-      <div style="display: flex; align-items: center; gap: var(--space-md);">
-        <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border-radius: var(--radius-md);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #10b981;">
-            <path d="M9 18l6-6-6-6"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2px;">
-            Opened from
-          </div>
-          <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">
-            ${lessonTitle}
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; gap: var(--space-sm);">
-        <a href="${lessonUrl}" class="btn btn-sm btn-outline" style="padding: var(--space-xs) var(--space-md); font-size: 0.85rem; text-decoration: none;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
-          Back to Lesson
-        </a>
-        <button id="dismiss-lesson-banner" style="background: none; border: none; color: var(--text-dim); cursor: pointer; padding: 4px 8px;" title="Dismiss">×</button>
-      </div>
-    </div>
-  `;
+  // Build DOM safely using createElement and textContent instead of innerHTML
+  const container = document.createElement('div');
+  container.style.cssText = 'display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);';
+
+  const leftSection = document.createElement('div');
+  leftSection.style.cssText = 'display: flex; align-items: center; gap: var(--space-md);';
+
+  const iconWrapper = document.createElement('div');
+  iconWrapper.style.cssText = 'width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border-radius: var(--radius-md);';
+  iconWrapper.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #10b981;"><path d="M9 18l6-6-6-6"/></svg>';
+
+  const textWrapper = document.createElement('div');
+  const subtitleEl = document.createElement('div');
+  subtitleEl.style.cssText = 'font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2px;';
+  subtitleEl.textContent = 'Opened from';
+  const titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-size: 1rem; font-weight: 700; color: var(--text-primary);';
+  titleEl.textContent = lessonTitle;
+  textWrapper.appendChild(subtitleEl);
+  textWrapper.appendChild(titleEl);
+
+  leftSection.appendChild(iconWrapper);
+  leftSection.appendChild(textWrapper);
+
+  const rightSection = document.createElement('div');
+  rightSection.style.cssText = 'display: flex; gap: var(--space-sm);';
+
+  const backLink = document.createElement('a');
+  backLink.href = lessonUrl;
+  backLink.className = 'btn btn-sm btn-outline';
+  backLink.style.cssText = 'padding: var(--space-xs) var(--space-md); font-size: 0.85rem; text-decoration: none;';
+  backLink.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
+  backLink.appendChild(document.createTextNode('Back to Lesson'));
+
+  const dismissBtn = document.createElement('button');
+  dismissBtn.id = 'dismiss-lesson-banner';
+  dismissBtn.style.cssText = 'background: none; border: none; color: var(--text-dim); cursor: pointer; padding: 4px 8px;';
+  dismissBtn.title = 'Dismiss';
+  dismissBtn.textContent = '×';
+
+  rightSection.appendChild(backLink);
+  rightSection.appendChild(dismissBtn);
+
+  container.appendChild(leftSection);
+  container.appendChild(rightSection);
+  banner.appendChild(container);
 
   document.body.appendChild(banner);
 

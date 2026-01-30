@@ -54,8 +54,8 @@ export async function GET() {
       [user.id]
     );
 
-    // Calculate completion percentage (out of 175 lessons)
-    const totalLessons = 175;
+    // Calculate completion percentage (out of 174 lessons)
+    const totalLessons = 174;
     const completedCount = parseInt(progressStats[0]?.lessons_completed || '0');
     const overallProgress = Math.round((completedCount / totalLessons) * 100);
 

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/clerk';
+import { validateOrigin } from '@/lib/security';
 import db from '@/lib/db';
 
 /**
@@ -32,6 +33,10 @@ export async function GET() {
  */
 export async function POST(request: Request) {
   try {
+    // CSRF protection: validate request origin
+    const originError = validateOrigin(request);
+    if (originError) return originError;
+
     const user = await getCurrentUser();
 
     if (!user) {

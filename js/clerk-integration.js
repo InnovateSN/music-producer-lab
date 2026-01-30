@@ -1,12 +1,30 @@
 /**
  * CLERK AUTHENTICATION INTEGRATION
  * Handles user authentication, sync with database, and UI updates
+ *
+ * CONFIGURATION: Set the Clerk publishable key via:
+ * 1. Meta tag: <meta name="clerk-publishable-key" content="pk_...">
+ * 2. Or global variable before this script: window.CLERK_PUBLISHABLE_KEY = 'pk_...'
  */
 
 (function() {
   'use strict';
 
-  const CLERK_PUBLISHABLE_KEY = 'pk_test_bGFzdGluZy1zdW5iaXJkLTI2LmNsZXJrLmFjY291bnRzLmRldiQ';
+  // Get publishable key from meta tag or global variable (do not hardcode in production!)
+  const CLERK_PUBLISHABLE_KEY = (function() {
+    // Try meta tag first
+    const metaTag = document.querySelector('meta[name="clerk-publishable-key"]');
+    if (metaTag && metaTag.content) {
+      return metaTag.content;
+    }
+    // Fall back to global variable
+    if (window.CLERK_PUBLISHABLE_KEY) {
+      return window.CLERK_PUBLISHABLE_KEY;
+    }
+    // Development fallback (should be replaced in production build)
+    console.warn('Clerk publishable key not configured. Set via meta tag or window.CLERK_PUBLISHABLE_KEY');
+    return null;
+  })();
 
   // Global state
   window.MplAuth = {

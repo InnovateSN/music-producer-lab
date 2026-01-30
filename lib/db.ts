@@ -53,9 +53,12 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
     const result = await sql(templateArray, ...values);
     return result as T[];
   } catch (error) {
-    console.error('Database query error:', error);
-    console.error('Query:', queryText);
-    console.error('Params:', params);
+    // Log error without exposing sensitive data
+    console.error('Database query error:', error instanceof Error ? error.message : 'Unknown error');
+    // Only log truncated query in development, never log params (may contain PII)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Query (truncated):', queryText.substring(0, 100) + (queryText.length > 100 ? '...' : ''));
+    }
     throw error;
   }
 }

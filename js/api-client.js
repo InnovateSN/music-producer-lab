@@ -174,7 +174,6 @@ window.MplApi = {
       const localProgress = JSON.parse(localStorage.getItem('lessonProgress') || '{}');
 
       if (Object.keys(localProgress).length === 0) {
-        console.log('No local progress to migrate');
         return { migrated: 0 };
       }
 
@@ -185,18 +184,12 @@ window.MplApi = {
           await this.progress.save(lessonKey, data);
           migrated++;
         } catch (error) {
-          console.error(`Failed to migrate ${lessonKey}:`, error);
+          // Silently skip failed migrations
         }
       }
 
-      console.log(`Migrated ${migrated} lessons to cloud`);
-
-      // Optional: Clear local storage after successful migration
-      // localStorage.removeItem('lessonProgress');
-
       return { migrated };
     } catch (error) {
-      console.error('Migration error:', error);
       throw error;
     }
   },
@@ -215,8 +208,7 @@ window.MplApi = {
     try {
       await this.progress.save(lessonKey, data);
     } catch (error) {
-      // User might not be logged in, that's okay
-      console.log('Cloud save skipped (not authenticated)');
+      // User might not be logged in, that's okay - silent fail
     }
   },
 
@@ -235,26 +227,15 @@ window.MplApi = {
 
 /**
  * Auto-sync on page load if user is authenticated
+ * Note: Debug logs removed for production
  */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', async () => {
-    const isAuth = await MplApi.isAuthenticated();
-    if (isAuth) {
-      console.log('✅ User authenticated, cloud sync enabled');
-
-      // Optional: Auto-migrate local storage
-      // await MplApi.migrateLocalStorage();
-    } else {
-      console.log('ℹ️ User not authenticated, using local storage only');
-    }
+    await MplApi.isAuthenticated();
   });
 } else {
-  // DOM already loaded
   (async () => {
-    const isAuth = await MplApi.isAuthenticated();
-    if (isAuth) {
-      console.log('✅ User authenticated, cloud sync enabled');
-    }
+    await MplApi.isAuthenticated();
   })();
 }
 
