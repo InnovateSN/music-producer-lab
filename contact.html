@@ -312,7 +312,7 @@
             <p>Fill out the form below and we'll get back to you as soon as possible.</p>
           </div>
 
-          <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/mwpkdkrj" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="name">
@@ -416,24 +416,38 @@
       localStorage.setItem('theme', next);
     });
     
-    // Form handling (simple demo - in production use Formspree or similar)
+    // Form handling - submits to Formspree
     const form = document.getElementById('contactForm');
     const success = document.getElementById('formSuccess');
-    
-    form.addEventListener('submit', (e) => {
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      // In production, this would submit to Formspree
-      // For demo, just show success message
-      form.style.display = 'none';
-      success.classList.add('show');
-      
-      // Reset after 5 seconds
-      setTimeout(() => {
-        form.reset();
-        form.style.display = '';
-        success.classList.remove('show');
-      }, 5000);
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          success.classList.add('show');
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        alert('Sorry, there was an error sending your message. Please email us directly at innovatesolutionsnow@gmail.com');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
     });
   </script>
 </body>

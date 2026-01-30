@@ -1,6 +1,7 @@
 import { requireRole } from '@/lib/clerk';
 import { query } from '@/lib/db';
 import { redirect } from 'next/navigation';
+import { SignOutButton } from '@/components/SignOutButton';
 
 export default async function TeacherDashboard() {
   try {
@@ -60,12 +61,7 @@ export default async function TeacherDashboard() {
                   Welcome back, {user.first_name || user.email}
                 </p>
               </div>
-              <a
-                href="/api/auth/signout"
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Sign Out
-              </a>
+              <SignOutButton className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" />
             </div>
           </div>
         </header>
