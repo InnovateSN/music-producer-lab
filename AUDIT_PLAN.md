@@ -51,9 +51,9 @@ All critical and high-priority security issues have been fixed:
 
 **Evidence:**
 ```
-DATABASE_URL=postgresql://neondb_owner:npg_gBk8LyJOL3iu@ep-plain-glitter-...
-CLERK_SECRET_KEY=sk_test_LENXfEGs1sLsZCfykmhG5TmW6YpOGfcALwGOoqekIX
-RESEND_API_KEY=re_8Mf62ANs_KLN9UCn9M7dgNvVwmpW768vG
+DATABASE_URL=<credentials were exposed - now rotated>
+CLERK_SECRET_KEY=<credentials were exposed - now rotated>
+RESEND_API_KEY=<credentials were exposed - now rotated>
 ```
 
 **Business Impact:**
@@ -281,10 +281,10 @@ export function isPremiumUser() {
 
 **Evidence:**
 ```javascript
-const CLERK_PUBLISHABLE_KEY = 'pk_test_bGFzdGluZy1zdW5iaXJkLTI2LmNsZXJrLmFjY291bnRzLmRldiQ';
+const CLERK_PUBLISHABLE_KEY = 'pk_test_...'; // was hardcoded, now configurable
 ```
 
-**Note:** Publishable keys are safe to expose (they're public), but using environment variables is better practice.
+**Note:** Publishable keys are technically public, but should be configurable via environment for production.
 
 **ETA:** 2-4 hours
 

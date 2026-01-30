@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { requireRole } from '@/lib/clerk';
+import { validateOrigin } from '@/lib/security';
 import { query } from '@/lib/db';
 
 /**
@@ -20,6 +21,10 @@ function generateClassCode(): string {
  */
 export async function POST(request: Request) {
   try {
+    // CSRF protection
+    const originError = validateOrigin(request);
+    if (originError) return originError;
+
     const user = await requireRole(['teacher', 'school_admin', 'super_admin']);
 
     const body = await request.json();

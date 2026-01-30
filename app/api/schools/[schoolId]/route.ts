@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { requireRole, getCurrentUser } from '@/lib/clerk';
+import { validateOrigin } from '@/lib/security';
 import db, { query } from '@/lib/db';
 
 /**
@@ -52,6 +53,10 @@ export async function PATCH(
   { params }: { params: Promise<{ schoolId: string }> }
 ) {
   try {
+    // CSRF protection
+    const originError = validateOrigin(request);
+    if (originError) return originError;
+
     await requireRole('super_admin');
 
     const { schoolId } = await params;

@@ -1,12 +1,16 @@
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/clerk';
+import { validateOrigin } from '@/lib/security';
 
 /**
  * POST /api/auth/sync
  * Sync Clerk user with database
  * Called after sign-up or login to ensure user exists in our database
  */
-export async function POST() {
+export async function POST(request: Request) {
+  // CSRF protection
+  const originError = validateOrigin(request);
+  if (originError) return originError;
   try {
     // getCurrentUser() automatically creates the user in DB if they don't exist
     const user = await getCurrentUser();
