@@ -313,6 +313,9 @@
           </div>
 
           <form id="contactForm" action="https://formspree.io/f/mwpkdkrj" method="POST">
+            <!-- Honeypot field for bot protection - hidden from humans -->
+            <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="name">

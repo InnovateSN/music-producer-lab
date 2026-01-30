@@ -10,8 +10,12 @@ import {
   updateChordDisplay
 } from './piano-roll-sequencer.js';
 
+// Only log in development
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const log = isDev ? console.log.bind(console) : function() {};
+
 export function initHarmonyPlayground() {
-  console.log('[HarmonyPlayground] Initializing...');
+  log('[HarmonyPlayground] Initializing...');
 
   // Configuration for harmony playground (sandbox mode)
   const playgroundConfig = {
@@ -52,7 +56,7 @@ export function initHarmonyPlayground() {
   // Connect control panel event listeners
   connectControlPanel();
 
-  console.log('[HarmonyPlayground] ✓ Initialized');
+  log('[HarmonyPlayground] ✓ Initialized');
 }
 
 /**
@@ -106,7 +110,7 @@ function insertChordPreset(chordName) {
   renderNotes();
   updateChordDisplay();
 
-  console.log(`[HarmonyPlayground] Inserted ${chordName} chord at step ${insertStep}`);
+  log(`[HarmonyPlayground] Inserted ${chordName} chord at step ${insertStep}`);
 }
 
 /**
@@ -160,7 +164,7 @@ function connectControlPanel() {
   presetButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       const chordName = e.target.dataset.chord;
-      console.log(`[HarmonyPlayground] Chord preset clicked: ${chordName}`);
+      log(`[HarmonyPlayground] Chord preset clicked: ${chordName}`);
 
       // Insert chord preset into piano roll
       insertChordPreset(chordName);

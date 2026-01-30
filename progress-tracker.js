@@ -6,6 +6,10 @@
 (function() {
   'use strict';
 
+  // Only log in development
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const log = isDev ? console.log.bind(console) : function() {};
+
   const STORAGE_KEY = 'mpl-progress';
   const VERSION = '1.0.0';
 
@@ -97,7 +101,7 @@
 
         // Check if MplApi is available
         if (!window.MplApi || !window.MplApi.progress) {
-          console.log('MplApi not available, skipping cloud sync');
+          log('MplApi not available, skipping cloud sync');
           return;
         }
 
@@ -117,7 +121,7 @@
           }
         }
 
-        console.log('✅ Progress synced to cloud');
+        log('✅ Progress synced to cloud');
       } catch (error) {
         // Fail silently - local storage is still working
         console.error('Cloud sync failed (non-critical):', error);

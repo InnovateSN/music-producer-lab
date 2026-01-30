@@ -8,7 +8,10 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="Explore all interactive music production labs. Learn drums, arrangement, sound design, mixing, vocals, and mastering through hands-on practice.">
   <meta name="theme-color" content="#030508">
-  
+
+  <!-- Clerk Configuration - Replace with pk_live_ key for production -->
+  <meta name="clerk-publishable-key" content="pk_live_Y2xlcmsubXVzaWMtcHJvZHVjZXItbGFiLnZlcmNlbC5hcHA">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
   <link rel="manifest" href="manifest.json">
@@ -440,11 +443,10 @@
   <script src="navbar.js"></script>
   <script src="progress-tracker.js"></script>
 
-  <!-- Clerk Authentication -->
+  <!-- Clerk Authentication - Key configured via meta tag in head -->
   <script
     async
     crossorigin="anonymous"
-    data-clerk-publishable-key="pk_test_bGFzdGluZy1zdW5iaXJkLTI2LmNsZXJrLmFjY291bnRzLmRldiQ"
     src="https://lasting-sunbird-26.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
     type="text/javascript"
   ></script>
