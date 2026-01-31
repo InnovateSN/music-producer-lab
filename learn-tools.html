@@ -9,9 +9,6 @@
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Clerk Configuration - Replace with pk_live_ key for production -->
-    <meta name="clerk-publishable-key" content="pk_live_Y2xlcmsubXVzaWMtcHJvZHVjZXItbGFiLnZlcmNlbC5hcHA">
   </head>
   <body>
     <div id="navbar-placeholder"></div>
@@ -1304,15 +1301,7 @@
       }, 1100);
     </script>
 
-    <!-- Clerk Authentication - Key configured via meta tag in head -->
-    <script
-      async
-      crossorigin="anonymous"
-      src="https://lasting-sunbird-26.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
-      type="text/javascript"
-    ></script>
-
     <script src="/js/api-client.js"></script>
-    <script src="/js/clerk-integration.js"></script>
+    <script src="/js/auth-integration.js"></script>
   </body>
 </html>
