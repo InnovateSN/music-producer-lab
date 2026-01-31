@@ -194,39 +194,11 @@
       messageEl.style.display = 'none';
 
       try {
-        // Use NextAuth's signIn
-        const response = await fetch('/api/auth/callback/credentials', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({
-            email: email,
-            password: password,
-            csrfToken: '', // Will be handled by NextAuth
-            callbackUrl: window.location.origin,
-            json: 'true'
-          })
-        });
-
-        // NextAuth credentials flow - try direct signin
-        const signInResponse = await fetch('/api/auth/signin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-
-        // For NextAuth, we need to use their CSRF flow
-        // Redirect to NextAuth signin
-        const params = new URLSearchParams({
-          callbackUrl: '/',
-          email: email
-        });
-
-        // Submit to NextAuth
+        // Get CSRF token from NextAuth
         const csrfRes = await fetch('/api/auth/csrf');
         const { csrfToken } = await csrfRes.json();
 
+        // Submit credentials to NextAuth
         const authRes = await fetch('/api/auth/callback/credentials', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -234,21 +206,27 @@
             csrfToken,
             email,
             password,
-            callbackUrl: '/'
+            callbackUrl: '/',
+            json: 'true'
           }),
-          redirect: 'follow'
+          credentials: 'include'
         });
 
-        if (authRes.ok || authRes.redirected) {
+        const result = await authRes.json().catch(() => null);
+
+        if (result && result.url) {
           showMessage('Success! Redirecting...', 'success');
-          setTimeout(() => {
-            window.location.href = authRes.url || '/';
-          }, 500);
+          window.location.href = result.url;
+        } else if (result && result.error) {
+          showMessage(result.error || 'Invalid email or password', 'error');
+        } else if (authRes.ok) {
+          showMessage('Success! Redirecting...', 'success');
+          window.location.href = '/';
         } else {
-          const errorData = await authRes.json().catch(() => ({}));
-          showMessage(errorData.error || 'Invalid email or password', 'error');
+          showMessage('Invalid email or password', 'error');
         }
       } catch (error) {
+        console.error('Sign in error:', error);
         showMessage('An error occurred. Please try again.', 'error');
       } finally {
         submitBtn.disabled = false;
