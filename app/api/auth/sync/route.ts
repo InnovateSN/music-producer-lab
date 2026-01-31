@@ -4,8 +4,8 @@ import { validateOrigin } from '@/lib/security';
 
 /**
  * POST /api/auth/sync
- * Sync Clerk user with database
- * Called after sign-up or login to ensure user exists in our database
+ * Get current user from session
+ * Called after sign-in to get user details from database
  */
 export async function POST(request: Request) {
   // CSRF protection

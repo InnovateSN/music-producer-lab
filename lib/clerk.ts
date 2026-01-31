@@ -1,42 +1,23 @@
-import { auth, currentUser } from '@clerk/nextjs/server';
-import db from './db';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './auth';
+import db, { query } from './db';
 
 /**
- * Get the current authenticated user from Clerk and sync with database
- * Creates user in database if doesn't exist
+ * Get the current authenticated user from NextAuth session and database
  */
 export async function getCurrentUser() {
-  const { userId } = await auth();
+  const session = await getServerSession(authOptions);
 
-  if (!userId) {
+  if (!session?.user?.id) {
     return null;
   }
 
-  // Get Clerk user details
-  const clerkUser = await currentUser();
+  // Get user from database
+  const dbUser = await db.getUserById(session.user.id);
 
-  if (!clerkUser) {
-    return null;
-  }
-
-  // Check if user exists in our database
-  let dbUser = await db.getUserByClerkId(userId);
-
-  // If user doesn't exist, create them
-  if (!dbUser) {
-    dbUser = await db.createUser({
-      clerk_id: userId,
-      email: clerkUser.emailAddresses[0]?.emailAddress || '',
-      first_name: clerkUser.firstName || undefined,
-      last_name: clerkUser.lastName || undefined,
-      avatar_url: clerkUser.imageUrl,
-      role: 'student', // Default role, can be changed later
-    });
-  } else {
+  if (dbUser) {
     // Update last login
-    await db.updateUser(dbUser.id, {
-      last_login: new Date(),
-    });
+    await query('UPDATE users SET last_login = NOW() WHERE id = $1', [dbUser.id]);
   }
 
   return dbUser;

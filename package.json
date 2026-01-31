@@ -8,10 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:setup": "node database/execute-schema.js"
+    "db:setup": "node database/execute-schema.js",
+    "db:migrate": "node database/execute-migration.js"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.36.7",
     "@neondatabase/serverless": "^1.0.2",
     "bcryptjs": "^3.0.3",
     "next": "^16.1.1",

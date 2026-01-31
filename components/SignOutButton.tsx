@@ -1,16 +1,14 @@
 'use client';
 
-import { useClerk } from '@clerk/nextjs';
+import { signOut } from 'next-auth/react';
 
 interface SignOutButtonProps {
   className?: string;
 }
 
 export function SignOutButton({ className }: SignOutButtonProps) {
-  const { signOut } = useClerk();
-
   const handleSignOut = async () => {
-    await signOut({ redirectUrl: '/' });
+    await signOut({ callbackUrl: '/' });
   };
 
   return (
