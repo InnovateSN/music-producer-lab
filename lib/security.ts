@@ -11,7 +11,8 @@ import { NextResponse } from 'next/server';
 export function validateOrigin(request: Request): NextResponse | null {
   const origin = request.headers.get('origin');
   const referer = request.headers.get('referer');
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL;
+  const vercelUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null;
 
   // In development, allow localhost
   const isLocalhost = origin?.includes('localhost') || origin?.includes('127.0.0.1');
@@ -21,9 +22,21 @@ export function validateOrigin(request: Request): NextResponse | null {
     return null; // Allow in development
   }
 
+  // Helper to check if origin/referer is valid
+  const isValidOrigin = (url: string | null): boolean => {
+    if (!url) return false;
+    // Check against configured app URL
+    if (appUrl && url.startsWith(appUrl)) return true;
+    // Check against Vercel URL
+    if (vercelUrl && url.startsWith(vercelUrl)) return true;
+    // Allow known production domain
+    if (url.startsWith('https://music-producer-lab.vercel.app')) return true;
+    return false;
+  };
+
   // Check origin header first (preferred)
   if (origin) {
-    if (appUrl && origin.startsWith(appUrl)) {
+    if (isValidOrigin(origin)) {
       return null; // Valid origin
     }
     // Reject if origin doesn't match
@@ -34,10 +47,8 @@ export function validateOrigin(request: Request): NextResponse | null {
   }
 
   // Fall back to referer check if no origin (same-origin requests may omit origin)
-  if (referer) {
-    if (appUrl && referer.startsWith(appUrl)) {
-      return null; // Valid referer
-    }
+  if (referer && isValidOrigin(referer)) {
+    return null; // Valid referer
   }
 
   // If neither origin nor referer, and we're making a state-changing request,
