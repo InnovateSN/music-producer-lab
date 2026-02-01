@@ -2134,6 +2134,31 @@ input[type="reset"] {
   50% { transform: scaleY(0.5); }
 }
 
+.preloader-progress {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: var(--space-md);
+}
+
+.preloader-progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  animation: preloader-progress 2s ease-out forwards;
+}
+
+@keyframes preloader-progress {
+  0% { width: 0; }
+  20% { width: 20%; }
+  50% { width: 60%; }
+  80% { width: 85%; }
+  100% { width: 100%; }
+}
+
 /* --------------------------------------------------------------------------
    ENHANCED PAGE TRANSITIONS
    -------------------------------------------------------------------------- */
