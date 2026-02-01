@@ -1,7 +1,17 @@
-import { neon } from '@neondatabase/serverless';
+import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
-// Neon serverless driver
-const sql = neon(process.env.DATABASE_URL!);
+// Lazy-initialize Neon connection (don't fail at build time)
+let sql: NeonQueryFunction<false, false> | null = null;
+
+function getDb() {
+  if (!sql) {
+    if (!process.env.DATABASE_URL) {
+      throw new Error('DATABASE_URL environment variable is not set');
+    }
+    sql = neon(process.env.DATABASE_URL);
+  }
+  return sql;
+}
 
 // Helper function to execute queries with Neon's HTTP API
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
@@ -12,7 +22,7 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
     if (!params || params.length === 0) {
       // No parameters - create a template literal from the string
       const templateArray = Object.assign([queryText], { raw: [queryText] }) as TemplateStringsArray;
-      const result = await sql(templateArray);
+      const result = await getDb()(templateArray);
       return result as T[];
     }
 
@@ -50,7 +60,7 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
     const templateArray = Object.assign([...parts], { raw: [...parts] }) as TemplateStringsArray;
 
     // Execute with Neon's template literal syntax
-    const result = await sql(templateArray, ...values);
+    const result = await getDb()(templateArray, ...values);
     return result as T[];
   } catch (error) {
     // Log error without exposing sensitive data
