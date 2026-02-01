@@ -237,13 +237,26 @@
       messageEl.style.display = 'none';
 
       try {
+        console.log('Sending signup request...');
         const response = await fetch('/api/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password, firstName, lastName })
         });
 
+        console.log('Response status:', response.status);
+
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          console.error('Non-JSON response:', text.substring(0, 500));
+          showMessage(`Server error (${response.status}): Not a JSON response`, 'error');
+          return;
+        }
+
         const data = await response.json();
+        console.log('Response data:', data);
 
         if (response.ok) {
           showMessage('Account created! Redirecting to sign in...', 'success');
@@ -251,10 +264,11 @@
             window.location.href = '/signin.html';
           }, 1500);
         } else {
-          showMessage(data.error || 'Failed to create account', 'error');
+          showMessage(data.error || `Failed to create account (${response.status})`, 'error');
         }
       } catch (error) {
-        showMessage('An error occurred. Please try again.', 'error');
+        console.error('Signup error:', error);
+        showMessage(`Error: ${error.message || 'Network error'}`, 'error');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Create Account';
