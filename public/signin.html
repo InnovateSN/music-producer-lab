@@ -163,7 +163,7 @@
         <p>Don't have an account? <a href="/signup.html">Sign up</a></p>
       </div>
 
-      <a href="/" class="back-link">&larr; Back to Home</a>
+      <a href="/index.html" class="back-link">&larr; Back to Home</a>
     </div>
   </main>
 
@@ -198,7 +198,7 @@
         const csrfRes = await fetch('/api/auth/csrf');
         const { csrfToken } = await csrfRes.json();
 
-        // Submit credentials to NextAuth
+        // Submit credentials to NextAuth using signIn endpoint
         const authRes = await fetch('/api/auth/callback/credentials', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -206,22 +206,40 @@
             csrfToken,
             email,
             password,
-            callbackUrl: '/',
+            callbackUrl: '/index.html',
             json: 'true'
           }),
-          credentials: 'include'
+          credentials: 'include',
+          redirect: 'manual'
         });
 
-        const result = await authRes.json().catch(() => null);
+        // Check for redirect (successful auth)
+        if (authRes.type === 'opaqueredirect' || authRes.status === 302 || authRes.status === 200) {
+          // Try to parse JSON response
+          const result = await authRes.json().catch(() => null);
 
-        if (result && result.url) {
-          showMessage('Success! Redirecting...', 'success');
-          window.location.href = result.url;
-        } else if (result && result.error) {
-          showMessage(result.error || 'Invalid email or password', 'error');
-        } else if (authRes.ok) {
-          showMessage('Success! Redirecting...', 'success');
-          window.location.href = '/';
+          if (result?.url) {
+            // Check if URL contains error
+            if (result.url.includes('error=')) {
+              const errorMatch = result.url.match(/error=([^&]+)/);
+              const errorMsg = errorMatch ? decodeURIComponent(errorMatch[1]) : 'Invalid credentials';
+              showMessage(errorMsg, 'error');
+            } else {
+              showMessage('Success! Redirecting...', 'success');
+              window.location.href = result.url.includes('/index.html') ? result.url : '/index.html';
+            }
+          } else {
+            // No URL in response, check session
+            const sessionRes = await fetch('/api/auth/session');
+            const session = await sessionRes.json();
+
+            if (session?.user) {
+              showMessage('Success! Redirecting...', 'success');
+              window.location.href = '/index.html';
+            } else {
+              showMessage('Invalid email or password', 'error');
+            }
+          }
         } else {
           showMessage('Invalid email or password', 'error');
         }
