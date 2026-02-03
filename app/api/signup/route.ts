@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createUser, getUserByEmail } from '@/lib/auth';
 import { validateOrigin } from '@/lib/security';
+import { sendWelcomeEmail } from '@/lib/email';
 
 export async function POST(request: Request) {
   console.log('Signup API called');
@@ -48,6 +49,11 @@ export async function POST(request: Request) {
     // Create user
     const user = await createUser(email, password, firstName, lastName);
     console.log('User created:', user.id);
+
+    // Send welcome email (don't fail signup if email fails)
+    sendWelcomeEmail(email, firstName).catch((err) => {
+      console.error('Failed to send welcome email:', err);
+    });
 
     return NextResponse.json({
       success: true,
