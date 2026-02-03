@@ -194,54 +194,22 @@
       messageEl.style.display = 'none';
 
       try {
-        // Get CSRF token from NextAuth
-        const csrfRes = await fetch('/api/auth/csrf');
-        const { csrfToken } = await csrfRes.json();
-
-        // Submit credentials to NextAuth using signIn endpoint
-        const authRes = await fetch('/api/auth/callback/credentials', {
+        const response = await fetch('/api/auth/signin-custom', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            csrfToken,
-            email,
-            password,
-            callbackUrl: '/index.html',
-            json: 'true'
-          }),
-          credentials: 'include',
-          redirect: 'manual'
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+          credentials: 'include'
         });
 
-        // Check for redirect (successful auth)
-        if (authRes.type === 'opaqueredirect' || authRes.status === 302 || authRes.status === 200) {
-          // Try to parse JSON response
-          const result = await authRes.json().catch(() => null);
+        const data = await response.json();
 
-          if (result?.url) {
-            // Check if URL contains error
-            if (result.url.includes('error=')) {
-              const errorMatch = result.url.match(/error=([^&]+)/);
-              const errorMsg = errorMatch ? decodeURIComponent(errorMatch[1]) : 'Invalid credentials';
-              showMessage(errorMsg, 'error');
-            } else {
-              showMessage('Success! Redirecting...', 'success');
-              window.location.href = result.url.includes('/index.html') ? result.url : '/index.html';
-            }
-          } else {
-            // No URL in response, check session
-            const sessionRes = await fetch('/api/auth/session');
-            const session = await sessionRes.json();
-
-            if (session?.user) {
-              showMessage('Success! Redirecting...', 'success');
-              window.location.href = '/index.html';
-            } else {
-              showMessage('Invalid email or password', 'error');
-            }
-          }
+        if (response.ok && data.success) {
+          showMessage('Success! Redirecting...', 'success');
+          setTimeout(() => {
+            window.location.href = '/index.html';
+          }, 500);
         } else {
-          showMessage('Invalid email or password', 'error');
+          showMessage(data.error || 'Invalid email or password', 'error');
         }
       } catch (error) {
         console.error('Sign in error:', error);
