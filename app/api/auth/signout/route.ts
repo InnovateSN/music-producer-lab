@@ -1,28 +1,28 @@
-import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
-import { authOptions } from '@/lib/auth';
-import { validateOrigin } from '@/lib/security';
+import { cookies } from 'next/headers';
 
 /**
  * POST /api/auth/signout
- * Signs out the user and returns redirect URL
- * Protected with CSRF validation
- * Note: NextAuth also handles signout at /api/auth/signout via [...nextauth]
+ * Signs out the user by clearing the session cookie
  */
-export async function POST(request: Request) {
-  // CSRF protection
-  const originError = validateOrigin(request);
-  if (originError) return originError;
+export async function POST() {
+  try {
+    const cookieStore = await cookies();
 
-  const session = await getServerSession(authOptions);
+    // Clear the custom session cookie
+    cookieStore.set('mpl-session', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 0, // Expire immediately
+      path: '/',
+    });
 
-  if (!session) {
-    // Already signed out
-    return NextResponse.json({ redirectUrl: '/' });
+    return NextResponse.json({ success: true, redirectUrl: '/' });
+  } catch (error) {
+    console.error('[signout] Error:', error);
+    return NextResponse.json({ success: true, redirectUrl: '/' });
   }
-
-  // Return redirect URL - actual signout handled by NextAuth
-  return NextResponse.json({ redirectUrl: '/' });
 }
 
 // Block GET requests to prevent CSRF attacks
