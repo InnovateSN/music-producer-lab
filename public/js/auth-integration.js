@@ -138,15 +138,10 @@
 
   window.MplAuth.signOut = async function() {
     try {
-      // Get CSRF token
-      const csrfRes = await fetch('/api/auth/csrf');
-      const { csrfToken } = await csrfRes.json();
-
-      // Call NextAuth signout
+      // Call signout endpoint to clear session cookie
       await fetch('/api/auth/signout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ csrfToken })
+        credentials: 'include'
       });
 
       localStorage.removeItem('userRole');
