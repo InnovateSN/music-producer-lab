@@ -194,6 +194,7 @@
       messageEl.style.display = 'none';
 
       try {
+        console.log('[signin] Sending request...');
         const response = await fetch('/api/auth/signin-custom', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -201,7 +202,9 @@
           credentials: 'include'
         });
 
+        console.log('[signin] Response status:', response.status);
         const data = await response.json();
+        console.log('[signin] Response data:', JSON.stringify(data));
 
         if (response.ok && data.success) {
           showMessage('Success! Redirecting...', 'success');
@@ -209,11 +212,15 @@
             window.location.href = '/index.html';
           }, 500);
         } else {
-          showMessage(data.error || 'Invalid email or password', 'error');
+          // Show detailed error with code if available
+          const errorMsg = data.code
+            ? `${data.error} (${data.code})`
+            : (data.error || 'Invalid email or password');
+          showMessage(errorMsg, 'error');
         }
       } catch (error) {
-        console.error('Sign in error:', error);
-        showMessage('An error occurred. Please try again.', 'error');
+        console.error('[signin] Network error:', error);
+        showMessage('Network error. Please check your connection.', 'error');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Sign In';
