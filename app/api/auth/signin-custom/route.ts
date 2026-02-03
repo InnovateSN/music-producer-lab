@@ -90,33 +90,56 @@ export async function POST(request: Request) {
 
     // Update last login
     console.log('[signin-custom] Updating last login');
-    await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+    try {
+      await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+    } catch (updateError) {
+      console.error('[signin-custom] Failed to update last login:', updateError);
+      // Non-critical, continue anyway
+    }
 
     // Create a simple session token
     console.log('[signin-custom] Creating JWT');
-    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || 'fallback-secret');
-
-    const token = await new SignJWT({
-      id: user.id,
-      email: user.email,
-      name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.email,
-      role: user.role,
-    })
-      .setProtectedHeader({ alg: 'HS256' })
-      .setIssuedAt()
-      .setExpirationTime('30d')
-      .sign(secret);
+    let token: string;
+    try {
+      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || 'fallback-secret');
+      token = await new SignJWT({
+        id: user.id,
+        email: user.email,
+        name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.email,
+        role: user.role,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('30d')
+        .sign(secret);
+      console.log('[signin-custom] JWT created successfully');
+    } catch (jwtError) {
+      console.error('[signin-custom] JWT creation failed:', jwtError);
+      return NextResponse.json(
+        { error: 'Failed to create session', code: 'JWT_ERROR', details: jwtError instanceof Error ? jwtError.message : 'Unknown' },
+        { status: 500 }
+      );
+    }
 
     // Set session cookie
     console.log('[signin-custom] Setting cookie');
-    const cookieStore = await cookies();
-    cookieStore.set('mpl-session', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 30 * 24 * 60 * 60, // 30 days
-      path: '/',
-    });
+    try {
+      const cookieStore = await cookies();
+      cookieStore.set('mpl-session', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+        path: '/',
+      });
+      console.log('[signin-custom] Cookie set successfully');
+    } catch (cookieError) {
+      console.error('[signin-custom] Cookie setting failed:', cookieError);
+      return NextResponse.json(
+        { error: 'Failed to set session cookie', code: 'COOKIE_ERROR', details: cookieError instanceof Error ? cookieError.message : 'Unknown' },
+        { status: 500 }
+      );
+    }
 
     console.log('[signin-custom] Success!');
     return NextResponse.json({
