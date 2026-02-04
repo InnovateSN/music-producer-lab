@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { email, password, firstName, lastName } = body;
+    const { email, password, firstName, lastName, passwordHint } = body;
     console.log('Signup attempt for:', email);
 
     // Validation
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     console.log('User does not exist, creating...');
 
     // Create user
-    const user = await createUser(email, password, firstName, lastName);
+    const user = await createUser(email, password, firstName, lastName, 'student', passwordHint);
     console.log('User created:', user.id);
 
     // Send welcome email (don't fail signup if email fails)

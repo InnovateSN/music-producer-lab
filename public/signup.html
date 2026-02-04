@@ -185,6 +185,12 @@
           <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
         </div>
 
+        <div class="form-group">
+          <label for="passwordHint">Password Hint (optional)</label>
+          <input type="text" id="passwordHint" name="passwordHint" placeholder="A hint to help you remember" maxlength="255">
+          <p class="password-requirements">This hint will be shown if you forget your password</p>
+        </div>
+
         <button type="submit" class="btn-submit" id="submitBtn">Create Account</button>
       </form>
 
@@ -220,6 +226,7 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
+      const passwordHint = document.getElementById('passwordHint').value;
 
       // Validation
       if (password !== confirmPassword) {
@@ -241,7 +248,7 @@
         const response = await fetch('/api/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, firstName, lastName })
+          body: JSON.stringify({ email, password, firstName, lastName, passwordHint })
         });
 
         console.log('Response status:', response.status);

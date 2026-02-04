@@ -140,15 +140,16 @@ export async function createUser(
   password: string,
   firstName?: string,
   lastName?: string,
-  role: string = 'student'
+  role: string = 'student',
+  passwordHint?: string
 ) {
   const passwordHash = await hashPassword(password);
 
   const users = await query<{ id: string; email: string }>(
-    `INSERT INTO users (email, password_hash, first_name, last_name, role, clerk_id)
-     VALUES ($1, $2, $3, $4, $5, $6)
+    `INSERT INTO users (email, password_hash, first_name, last_name, role, clerk_id, password_hint)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)
      RETURNING id, email`,
-    [email.toLowerCase(), passwordHash, firstName, lastName, role, `local_${Date.now()}`]
+    [email.toLowerCase(), passwordHash, firstName, lastName, role, `local_${Date.now()}`, passwordHint || null]
   );
 
   return users[0];
