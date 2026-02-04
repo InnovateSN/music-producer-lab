@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { validateOrigin } from '@/lib/security';
 
 export async function POST(request: Request) {
+  // CSRF protection
+  const originError = validateOrigin(request);
+  if (originError) {
+    return originError;
+  }
+
   try {
     const { email } = await request.json();
 
@@ -22,30 +29,21 @@ export async function POST(request: Request) {
 
     const user = users[0];
 
-    // Always return a response to prevent email enumeration
-    if (!user) {
+    // Always return the same response structure to prevent account enumeration
+    // If user doesn't exist or has no hint, return the same "no hint" response
+    if (!user || !user.password_hint) {
       return NextResponse.json({
-        found: false,
-        message: 'No account found with this email address'
-      });
-    }
-
-    if (!user.password_hint) {
-      return NextResponse.json({
-        found: true,
         hasHint: false,
-        message: 'No password hint was set for this account'
+        message: 'If an account exists with this email, your password hint would appear here.'
       });
     }
 
     return NextResponse.json({
-      found: true,
       hasHint: true,
       hint: user.password_hint
     });
 
-  } catch (error) {
-    console.error('[get-hint] Error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'An error occurred' },
       { status: 500 }

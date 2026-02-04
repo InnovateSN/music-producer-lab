@@ -3,27 +3,25 @@ import { query } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { SignJWT } from 'jose';
+import { validateOrigin } from '@/lib/security';
 
 export async function POST(request: Request) {
-  // Add debug logging
-  console.log('[signin-custom] Request received');
+  // CSRF protection
+  const originError = validateOrigin(request);
+  if (originError) return originError;
 
   try {
     const body = await request.json();
     const { email, password } = body;
 
-    console.log('[signin-custom] Email:', email ? email.substring(0, 3) + '***' : 'missing');
-
     if (!email || !password) {
-      console.log('[signin-custom] Missing email or password');
       return NextResponse.json(
-        { error: 'Email and password are required', code: 'MISSING_CREDENTIALS' },
+        { error: 'Email and password are required' },
         { status: 400 }
       );
     }
 
     // Find user by email
-    console.log('[signin-custom] Querying database for user');
     const users = await query<{
       id: string;
       email: string;
@@ -37,71 +35,47 @@ export async function POST(request: Request) {
       [email]
     );
 
-    console.log('[signin-custom] Found', users.length, 'user(s)');
     const user = users[0];
 
-    if (!user) {
-      console.log('[signin-custom] User not found');
-      return NextResponse.json(
-        { error: 'Invalid email or password', code: 'USER_NOT_FOUND' },
-        { status: 401 }
-      );
-    }
+    // Generic error message to prevent enumeration
+    const invalidCredentialsError = { error: 'Invalid email or password' };
 
-    console.log('[signin-custom] User found, is_active:', user.is_active, ', has_password:', !!user.password_hash);
-
-    if (!user.is_active) {
-      console.log('[signin-custom] Account deactivated');
-      return NextResponse.json(
-        { error: 'Account is deactivated', code: 'ACCOUNT_DEACTIVATED' },
-        { status: 401 }
-      );
-    }
-
-    if (!user.password_hash) {
-      console.log('[signin-custom] No password hash');
-      return NextResponse.json(
-        { error: 'Please set up a password for your account', code: 'NO_PASSWORD' },
-        { status: 401 }
-      );
+    if (!user || !user.is_active || !user.password_hash) {
+      return NextResponse.json(invalidCredentialsError, { status: 401 });
     }
 
     // Verify password
-    console.log('[signin-custom] Comparing password');
     let isValid = false;
     try {
       isValid = await bcrypt.compare(password, user.password_hash);
-      console.log('[signin-custom] Password valid:', isValid);
-    } catch (bcryptError) {
-      console.error('[signin-custom] bcrypt error:', bcryptError);
+    } catch {
+      return NextResponse.json(invalidCredentialsError, { status: 401 });
+    }
+
+    if (!isValid) {
+      return NextResponse.json(invalidCredentialsError, { status: 401 });
+    }
+
+    // Update last login (non-critical)
+    try {
+      await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+    } catch {
+      // Non-critical, continue anyway
+    }
+
+    // Require NEXTAUTH_SECRET - no fallback
+    if (!process.env.NEXTAUTH_SECRET) {
+      console.error('NEXTAUTH_SECRET is not configured');
       return NextResponse.json(
-        { error: 'Password verification failed', code: 'BCRYPT_ERROR' },
+        { error: 'Server configuration error' },
         { status: 500 }
       );
     }
 
-    if (!isValid) {
-      console.log('[signin-custom] Invalid password');
-      return NextResponse.json(
-        { error: 'Invalid email or password', code: 'INVALID_PASSWORD' },
-        { status: 401 }
-      );
-    }
-
-    // Update last login
-    console.log('[signin-custom] Updating last login');
-    try {
-      await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
-    } catch (updateError) {
-      console.error('[signin-custom] Failed to update last login:', updateError);
-      // Non-critical, continue anyway
-    }
-
-    // Create a simple session token
-    console.log('[signin-custom] Creating JWT');
+    // Create session token
     let token: string;
     try {
-      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || 'fallback-secret');
+      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
       token = await new SignJWT({
         id: user.id,
         email: user.email,
@@ -112,36 +86,30 @@ export async function POST(request: Request) {
         .setIssuedAt()
         .setExpirationTime('30d')
         .sign(secret);
-      console.log('[signin-custom] JWT created successfully');
-    } catch (jwtError) {
-      console.error('[signin-custom] JWT creation failed:', jwtError);
+    } catch {
       return NextResponse.json(
-        { error: 'Failed to create session', code: 'JWT_ERROR', details: jwtError instanceof Error ? jwtError.message : 'Unknown' },
+        { error: 'Failed to create session' },
         { status: 500 }
       );
     }
 
     // Set session cookie
-    console.log('[signin-custom] Setting cookie');
     try {
       const cookieStore = await cookies();
       cookieStore.set('mpl-session', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
-        maxAge: 30 * 24 * 60 * 60, // 30 days
+        maxAge: 30 * 24 * 60 * 60,
         path: '/',
       });
-      console.log('[signin-custom] Cookie set successfully');
-    } catch (cookieError) {
-      console.error('[signin-custom] Cookie setting failed:', cookieError);
+    } catch {
       return NextResponse.json(
-        { error: 'Failed to set session cookie', code: 'COOKIE_ERROR', details: cookieError instanceof Error ? cookieError.message : 'Unknown' },
+        { error: 'Failed to set session' },
         { status: 500 }
       );
     }
 
-    console.log('[signin-custom] Success!');
     return NextResponse.json({
       success: true,
       user: {
@@ -151,10 +119,9 @@ export async function POST(request: Request) {
         role: user.role,
       },
     });
-  } catch (error) {
-    console.error('[signin-custom] Unexpected error:', error);
+  } catch {
     return NextResponse.json(
-      { error: 'An error occurred during sign in', code: 'SERVER_ERROR', details: error instanceof Error ? error.message : 'Unknown' },
+      { error: 'An error occurred during sign in' },
       { status: 500 }
     );
   }
