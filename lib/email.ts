@@ -2,7 +2,8 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Music Producer Lab <noreply@musicproducerlab.com>';
+// Use Resend's default sender for free tier, or custom domain if configured
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Music Producer Lab <onboarding@resend.dev>';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || 'https://music-producer-lab.vercel.app';
 
 export interface EmailResult {
