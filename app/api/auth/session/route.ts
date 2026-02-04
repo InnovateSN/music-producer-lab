@@ -7,12 +7,11 @@ export async function GET() {
     const cookieStore = await cookies();
     const token = cookieStore.get('mpl-session')?.value;
 
-    if (!token) {
-      // Return empty object (no user) for compatibility with auth-integration.js
+    if (!token || !process.env.NEXTAUTH_SECRET) {
       return NextResponse.json({});
     }
 
-    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || 'fallback-secret');
+    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 
     try {
       const { payload } = await jwtVerify(token, secret);
@@ -34,13 +33,11 @@ export async function GET() {
           role: payload.role || 'student',
         },
       });
-    } catch (verifyError) {
+    } catch {
       // Token is invalid or expired
-      console.error('[session] Token verification failed:', verifyError);
       return NextResponse.json({});
     }
-  } catch (error) {
-    console.error('[session] Error:', error);
+  } catch {
     return NextResponse.json({});
   }
 }
