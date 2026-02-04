@@ -5,8 +5,8 @@
   <title>Lesson 13 · Vocals | Music Producer Lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Free Lesson 13 from Music Producer Lab: advanced vocal effects and creative processing techniques." />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="lesson-styles.css" />
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
     :root {
       --lesson-accent: linear-gradient(135deg, #a29bfe, #6c5ce7);
@@ -64,7 +64,17 @@
     </section>
   </main>
 
-  <div id="footer-placeholder"></div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
 
   <script type="module">
     import { lessonConfig } from './configs/lesson-vocals-13.config.js';
@@ -74,7 +84,8 @@
       initLessonFromConfig(lessonConfig);
     });
   </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
   <script src="navbar.js" defer></script>
-  <script src="footer.js" defer></script>
 </body>
 </html>
