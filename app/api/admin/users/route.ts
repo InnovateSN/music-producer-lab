@@ -4,16 +4,16 @@ import { jwtVerify } from 'jose';
 import { query } from '@/lib/db';
 
 // Verify admin access
-async function verifyAdmin(): Promise<{ authorized: boolean; userId?: string; role?: string }> {
+async function verifyAdmin(): Promise<{ authorized: boolean; userId?: string; role?: string; error?: string }> {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('mpl-session')?.value;
 
-    if (!token) {
+    if (!token || !process.env.NEXTAUTH_SECRET) {
       return { authorized: false };
     }
 
-    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || 'fallback-secret');
+    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
     const { payload } = await jwtVerify(token, secret);
 
     // Check if user is admin or super_admin
