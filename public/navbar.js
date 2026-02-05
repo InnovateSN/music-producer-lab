@@ -69,10 +69,10 @@
 
             <!-- Auth Buttons (shown when not signed in) -->
             <div id="auth-buttons" style="display: flex; align-items: center; gap: 0.75rem;">
-              <button onclick="window.MplAuth.signIn()" class="btn btn-secondary btn-sm" style="border: 1px solid var(--border-medium);">
+              <button onclick="window.MplAuth ? window.MplAuth.signIn() : window.location.href='/signin.html'" class="btn btn-secondary btn-sm" style="border: 1px solid var(--border-medium);">
                 Sign In
               </button>
-              <button onclick="window.MplAuth.signUp()" class="btn btn-primary btn-sm">
+              <button onclick="window.MplAuth ? window.MplAuth.signUp() : window.location.href='/signup.html'" class="btn btn-primary btn-sm">
                 Get Started Free
               </button>
             </div>
@@ -82,7 +82,7 @@
               <a id="dashboard-link" href="/teacher" style="display: none; margin-right: 0.5rem;" class="btn btn-secondary btn-sm">
                 Dashboard
               </a>
-              <button onclick="window.MplAuth.toggleUserMenu()" style="display: flex; align-items: center; gap: 0.5rem; background: none; border: 1px solid var(--border-medium); padding: 0.4rem 0.75rem; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
+              <button onclick="window.MplAuth && window.MplAuth.toggleUserMenu()" style="display: flex; align-items: center; gap: 0.5rem; background: none; border: 1px solid var(--border-medium); padding: 0.4rem 0.75rem; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
                 <img id="user-avatar" src="/mpl-favicon.svg" alt="User" style="width: 24px; height: 24px; border-radius: 50%;">
                 <span id="user-name" style="font-size: 0.9rem; font-weight: 500;">User</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -98,11 +98,11 @@
                 <a href="/progress.html" style="display: block; padding: 0.75rem; color: var(--text-primary); text-decoration: none; border-radius: var(--radius-sm); transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
                   <img src="images/stats.png" alt="Progress" style="width: 1em; height: 1em; vertical-align: middle;"> My Progress
                 </a>
-                <button onclick="window.MplAuth.openUserProfile()" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--text-primary); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
+                <button onclick="window.MplAuth && window.MplAuth.openUserProfile()" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--text-primary); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
                   <img src="images/gear.png" alt="Settings" style="width: 1em; height: 1em; vertical-align: middle;"> Settings
                 </button>
                 <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid var(--border-subtle);">
-                <button onclick="window.MplAuth.signOut()" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--accent-pink); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
+                <button onclick="window.MplAuth ? window.MplAuth.signOut() : window.location.href='/signin.html'" style="display: block; width: 100%; text-align: left; padding: 0.75rem; color: var(--accent-pink); background: none; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-fast);" onmouseover="this.style.background='var(--bg-elevated)'" onmouseout="this.style.background='none'">
                   <img src="images/arrowright.png" alt="Sign Out" style="width: 1em; height: 1em; vertical-align: middle;"> Sign Out
                 </button>
               </div>
