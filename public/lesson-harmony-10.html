@@ -216,6 +216,19 @@
         </section>
     </main>
 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+
     <script type="module">
       import { lessonConfig } from './configs/lesson-harmony-10.config.js';
       import { initLessonFromConfig } from './lesson-engine.js';
