@@ -1,6 +1,8 @@
 /**
  * Music Producer Lab - Lesson Configuration
- * Lesson: Mixing 1 - Gain Staging & Levels
+ * Lesson: Mixing 1 - Introduction to Mixing
+ *
+ * Research sources: AES Pro Audio Reference, Ableton Live Manual, Audio Engineering literature
  */
 
 import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
@@ -9,117 +11,133 @@ export const lessonConfig = {
   lessonKey: "mpl-mixing-1-progress",
   lessonNumber: 1,
   lessonCategory: "Mixing",
-  
+
   nextLessonUrl: "lesson-mixing-2.html",
   prevLessonUrl: "lesson-sound-design-15.html",
   overviewUrl: "labs.html",
-  
+
   hero: {
     eyebrow: buildHeroEyebrow({ lessonNumber: 1, categoryLabel: "Mixing" }),
-    title: "Gain Staging & Levels:",
-    titleHighlight: "Master Proper Signal Structure",
-    subtitle: "Set healthy headroom and balance before diving into processing. Learn proper gain structure for professional mixes. Master professional mixing techniques used in commercial productions."
+    title: "Introduction to Mixing:",
+    titleHighlight: "Understanding the Mixing Workflow",
+    subtitle: "Define mixing in practical terms, map DAW signal flow, and build a session template ready for professional mixing work."
   },
-  
+
   exercise: {
-    title: "Master Gain Staging & Levels",
-    description: "Set healthy headroom and balance before diving into processing. Learn proper gain structure for professional mixes. This lesson covers essential mixing concepts that separate amateur from professional productions.",
-    tip: "Always mix with reference tracks. A/B your mix against professional releases to calibrate your ears.",
+    title: "Build a First Mix Session Template",
+    description: "Create a structured template (tracks → buses → master) and confirm that routing and metering behave as expected.",
+    tip: "A common starting point is to build the static balance with faders and panning first, then reach for EQ and compression to solve specific problems you can name (masking, harshness, instability, lack of impact).",
     steps: [
-      '<strong>Understand the concept</strong> — Study the theory and signal flow.',
-      '<strong>Hear the difference</strong> — Compare processed vs unprocessed audio.',
-      '<strong>Set appropriate parameters</strong> — Learn the optimal settings for this technique.',
-      '<strong>Apply in context</strong> — Use the technique in a full mix scenario.',
-      '<strong>Trust your ears</strong> — Let your ears guide your decisions, not just meters.',
-      'Complete when you understand the practical application.'
+      '<strong>Create a new project</strong> — Set a standard production format (48 kHz / 24-bit or 44.1 kHz / 24-bit). Save as "Mixing-1_Template".',
+      '<strong>Import and organize stems</strong> — Label tracks clearly (Kick, Snare, OH, Bass, Music, Lead Vox). Colour-code by family.',
+      '<strong>Create four group buses</strong> — Drums Bus, Bass Bus, Music Bus, Vocals Bus. Route each track to the correct bus (not directly to master).',
+      '<strong>Verify routing</strong> — Solo each bus and confirm you only hear the correct track family.',
+      '<strong>Create effect returns</strong> — Add Reverb Return and Delay Return (100% wet, faders low). Add sends from Lead Vox and Snare.',
+      '<strong>Set up metering</strong> — Insert a loudness/true-peak meter on the master bus. Play the loudest section and observe.',
+      '<strong>Add safety limiter</strong> — Insert limiter on master with ceiling at -1.0 dB to -0.3 dB. Aim for minimal gain reduction.',
+      '<strong>Build static balance</strong> — Start with bus faders (Drums, Bass, Music, Vocals), then fine-tune individual tracks.',
+      '<strong>Test export</strong> — Bounce 20-30 seconds, re-import, confirm clean playback with no unexpected distortion.'
     ]
   },
-  
+
   theory: {
     sections: [
       {
-        title: 'Understanding Gain Staging & Levels',
-        content: `Gain Staging & Levels is a fundamental mixing technique that shapes the final sonic character of your productions.
+        title: 'What is Mixing?',
+        content: `Mixing is a decision process, not a single "make it loud" step. It's the stage where many individual elements (recorded audio, virtual instruments, samples, sound design layers) are shaped into a coherent stereo programme.
 
-**Core Principles:**
-- How this technique affects the frequency spectrum
-- When to apply it in the mixing workflow
-- Common parameters and their interactions
-- How to avoid common mistakes
-- Professional standards and best practices
+**Practically, mixing means making choices about:**
+- **Level relationships** — What feels foreground vs background
+- **Tone** — How bright, dark, tight, or warm each source is
+- **Dynamics** — How stable or punchy the envelope feels over time
+- **Space** — Depth and width in the stereo field
 
-**Signal Flow:**
-Understanding where this technique sits in your signal chain is crucial. Different placement yields different results.
+A useful way to think about mixing: you are building a stable "picture" that translates across systems, while keeping the musical intent intact.
 
-**Frequency Considerations:**
-Every mixing decision affects the frequency balance. Learn how Gain Staging & Levels interacts with the spectrum.
+**Workflow, not plugin chains:**
+Avoid thinking of mixing as a single "plugin chain." Instead, treat it as a workflow: session organisation → static balance → problem solving → enhancement → movement (automation) → final checks.
 
-**Dynamic Considerations:**
-Understand how this technique affects the dynamic range and transient response of your audio.
-
-Professional mixers use Gain Staging & Levels to:
-- Create separation between mix elements
-- Control problematic frequencies or dynamics
-- Add character and color to sounds
-- Achieve translation across playback systems
-- Match professional mixing standards`
+Early decisions often have the largest impact. A clear static balance and sensible routing can reduce the need for heavy processing later.`
       },
       {
-        title: 'Professional Mixing Workflow',
-        content: `Apply Gain Staging & Levels effectively in your professional workflow:
+        title: 'DAW Signal Flow',
+        content: `A modern mix session is built from tracks feeding groups/buses and then the master output.
 
-**Pre-Processing:**
-- Set appropriate gain staging
-- Remove DC offset and unwanted noise
-- Ensure proper phase relationships
+**Practical signal-flow map:**
+1. **Clip/Input gain** (pre-fader) — Set healthy levels before processing
+2. **Inserts** — EQ, compression, saturation, etc.
+3. **Fader + Pan** — Level and stereo position
+4. **Sends to Returns** — Reverb, delay (parallel effects)
+5. **Group Buses** — Drums, Bass, Music, Vocals submixes
+6. **Master Bus** — Final output, metering, safety limiting
 
-**Processing:**
-1. Start with corrective moves (fix problems)
-2. Then add creative moves (enhance character)
-3. Use subtle settings (less is often more)
-4. A/B frequently (compare processed vs unprocessed)
-5. Check in mono (ensure compatibility)
+This structure helps you solve problems at the right level: fixing a resonant snare ring on the snare track is different from controlling overall drum punch on a Drum Bus.
 
-**Post-Processing:**
-- Verify the change improved the mix
-- Check for unwanted artifacts or side effects
-- Ensure the element still fits in context
+**Sends/Returns are crucial for space effects:**
+- Keep effects consistent across many tracks
+- Automate them in a central place
+- Blend dry vs wet in context
+- Create distinct effect "layers" for specific moments
 
-**Common Mistakes:**
-- Over-processing before establishing the core sound
-- Using presets without understanding parameters
-- Not considering the frequency spectrum balance
-- Mixing in solo instead of in context
-- Ignoring how changes affect other mix elements
+**Important DAW reality:** Modern DAWs run 32-bit floating-point engines with enormous internal headroom. Tracks can go "into the red" without clipping internally, but signals over 0 dB become problematic when leaving the DAW (physical outputs or file export).`
+      },
+      {
+        title: 'The Four Core Mixing Tools',
+        content: `**EQ — Frequency Shaping**
+EQ shapes frequency balance. Use it for:
+- **Corrective moves** — Reducing low-end rumble, harsh resonances, masking
+- **Tonal moves** — Adding presence or weight
 
-**Professional Standards:**
-Study reference tracks in your genre. Understand how professional mixers use Gain Staging & Levels to achieve commercial-quality results.
+"Surgical" EQ is narrow and problem-focused. "Musical" EQ is broader and intention-focused.
 
-**Tools & Techniques:**
-- Use spectrum analyzers to visualize changes
-- Reference professional mixes constantly
-- Take breaks to reset your ears
-- Mix at moderate volumes
-- Check your mix on multiple systems`
+**Compression — Dynamics Control**
+Compression shapes dynamics and envelope (attack, sustain, release). Beyond reducing peaks:
+- Stabilise a vocal
+- Add density to a bass
+- Change the groove by rebalancing transients vs sustain
+
+**Important:** Because compression reacts to level, the order of EQ and compression changes results. An EQ boost before compression triggers more gain reduction; EQ after compression changes tone without altering detector behaviour.
+
+**Reverb — Depth and Environment**
+Reverb creates depth and a sense of environment. Small, controlled amounts support cohesion; more obvious settings work as arrangement moments (throws, transitions, special effects).
+
+**Delay — Rhythmic Space**
+Delay creates rhythmic space and perceived width without always pushing sources "back" like reverb can. Use for widening, rhythmic interest, and spatial effects.`
+      },
+      {
+        title: 'Key Technical Concepts',
+        content: `**0 dBFS (Digital Full Scale)**
+The maximum peak level before digital clipping in a converter. When meters hit red and stay there, you risk audible distortion on export.
+
+**Crest Factor**
+Music typically has peaks substantially higher than its RMS level (often 12-20 dB difference). This is why headroom matters — punchy mixes need room for transients.
+
+**Pan Law**
+Most DAWs apply centre-pan attenuation (typically -3 dB) to maintain consistent perceived loudness while panning. This is why a centred sound doesn't suddenly jump in level.
+
+**Bus vs Buss**
+AES recommends "bus" (plural "buses") for audio routing. A bus is an electrical/connection concept for combining multiple signals.
+
+**Where This Leads**
+This lesson establishes workflow and template foundations. Lesson 2 (Gain Staging Fundamentals) turns this into repeatable practice: setting sensible levels at each stage so plugins, buses, and the master output behave predictably.`
       }
     ]
   },
-  
+
   learningObjectives: [
-    "Master the fundamental concepts of Gain Staging & Levels",
-    "Understand when and how to apply this technique",
-    "Develop critical listening skills for mixing",
-    "Apply professional mixing workflows",
-    "Create mixes that translate across playback systems"
+    "Define mixing in practical terms (balance, tone, dynamics, space) and distinguish it from arrangement and mastering",
+    "Map a modern DAW mixing signal flow (tracks, inserts, sends/returns, buses, master) and explain why routing choices matter",
+    "Recognise the core mixing tools (EQ, compression, reverb, delay) and what problem each typically addresses",
+    "Build a basic session template with grouped buses and time-based effect returns"
   ],
-  
+
   messages: applyMessagePreset("default", {
-    initial: "Complete this mixing lesson to advance your skills.",
-    success: "Excellent! You've mastered Gain Staging & Levels. Your mixes are improving!",
-    error: "Review the mixing concepts and try again.",
-    alreadyCompleted: "You've completed this mixing technique. Keep practicing!"
+    initial: "Learn the fundamentals of mixing workflow and build your first professional session template.",
+    success: "Excellent! You understand mixing workflow and have a solid template. Ready for Gain Staging!",
+    error: "Review the signal flow concepts and try the template exercise again.",
+    alreadyCompleted: "You've mastered the mixing introduction. Keep refining your template!"
   }),
-  
+
   mode: {
     type: "educational",
     sandbox: true,
