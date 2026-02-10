@@ -380,7 +380,7 @@ export function createPostExportMessage() {
 
   message.innerHTML = `
     <div style="text-align: center;">
-      <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: var(--space-sm);">🎉 Loop exported!</div>
+      <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: var(--space-sm);">Loop exported successfully!</div>
       <p style="margin: 0 0 var(--space-md); font-size: 0.95rem; opacity: 0.95;">Want to level up? Take the matching lesson →</p>
       <div style="display: flex; gap: var(--space-md); justify-content: center;">
         <a href="labs.html#drums" style="padding: var(--space-sm) var(--space-lg); background: var(--bg-dark); color: var(--accent-cyan); font-weight: 600; border-radius: var(--radius-md); text-decoration: none; font-size: 0.9rem;">Go to Drums Module</a>

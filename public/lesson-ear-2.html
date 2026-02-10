@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title id="mpl-page-title">Lesson 2 · Ear Training | Music Producer Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" id="mpl-meta-description" content="Ear Training Lesson 2" />
+    <meta name="description" id="mpl-meta-description" content="Learn to recognize harmonic intervals - two notes played simultaneously. Essential for chord voicings and harmonic analysis." />
     <meta name="theme-color" content="#030508">
     <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
     <link rel="manifest" href="manifest.json">
@@ -12,7 +12,10 @@
   </head>
   <body>
     <div id="navbar-placeholder"></div>
+
     <main class="main-content container">
+
+      <!-- HERO SECTION -->
       <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
         <div class="hero-copy" style="flex: 1; max-width: none;">
           <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
@@ -24,12 +27,209 @@
         </div>
       </section>
 
+      <!-- EDUCATIONAL CONTENT -->
+      <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+          <!-- INTRODUCTION -->
+          <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+          <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Harmonic Intervals: The Building Blocks of Chords</h2>
+
+          <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+            <a href="glossary.html#harmonic-interval" style="color: var(--accent-cyan); text-decoration: underline;">Harmonic intervals</a> are two notes played at the same time, creating a blended sound.
+            Unlike <a href="glossary.html#melodic-interval" style="color: var(--accent-cyan); text-decoration: underline;">melodic intervals</a> where you hear notes in sequence, harmonic intervals have a "color" or "texture" -
+            they can be <a href="glossary.html#consonance" style="color: var(--accent-cyan); text-decoration: underline;">consonant</a> (pleasant, stable) or <a href="glossary.html#dissonance" style="color: var(--accent-cyan); text-decoration: underline;">dissonant</a> (tense, unstable).
+            Understanding this is essential for chord voicing, mixing, and harmony writing.
+          </p>
+
+          <!-- KEY CONCEPTS GRID -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+
+            <!-- Perfect Consonances -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/piano.png" alt="Consonant" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#consonance" style="color: var(--accent-cyan); text-decoration: none;">Perfect Consonances</a></h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Most Stable Sounds</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong><a href="glossary.html#unison" style="color: var(--accent-cyan); text-decoration: underline;">Unison</a>:</strong> Same pitch - reinforced sound.<br>
+                <strong><a href="glossary.html#perfect-fifth" style="color: var(--accent-cyan); text-decoration: underline;">Perfect 5th</a>:</strong> Open, hollow, power chord sound.<br>
+                <strong><a href="glossary.html#octave" style="color: var(--accent-cyan); text-decoration: underline;">Octave</a>:</strong> Same note, different register.
+              </p>
+            </div>
+
+            <!-- Imperfect Consonances -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/notamusicale.png" alt="Imperfect" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem;">Imperfect Consonances</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Pleasant but with Color</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong><a href="glossary.html#major-third" style="color: var(--accent-purple); text-decoration: underline;">Major 3rd</a>:</strong> Bright, happy - major chord basis.<br>
+                <strong><a href="glossary.html#minor-third" style="color: var(--accent-purple); text-decoration: underline;">Minor 3rd</a>:</strong> Dark, sad - minor chord basis.<br>
+                <strong>6ths:</strong> Sweet, open, stable harmonies.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Key insight:</strong> The 3rd defines whether a chord sounds major (happy) or minor (sad).
+              </p>
+            </div>
+
+            <!-- Dissonances -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/alert.png" alt="Dissonant" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#dissonance" style="color: var(--accent-orange); text-decoration: none;">Dissonances</a></h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Tense, Want Resolution</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong><a href="glossary.html#minor-second" style="color: var(--accent-orange); text-decoration: underline;">Minor 2nd</a>:</strong> Very harsh, beating, crunchy.<br>
+                <strong>Major 2nd:</strong> Cluster sound, mild tension.<br>
+                <strong><a href="glossary.html#tritone" style="color: var(--accent-orange); text-decoration: underline;">Tritone</a>:</strong> Ambiguous, "devil's interval".<br>
+                <strong>7ths:</strong> Jazzy tension, want to resolve.
+              </p>
+            </div>
+
+            <!-- Mixing Application -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/speaker.png" alt="Mixing" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem;">Production Application</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Why Producers Need This</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong>Mixing:</strong> Identify intervals causing frequency masking.<br>
+                <strong>Sound Design:</strong> Layer oscillators at consonant intervals.<br>
+                <strong>Voicing:</strong> Choose intervals that blend well.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- CONSONANCE SPECTRUM -->
+          <div style="padding: var(--space-xl); background: rgba(0, 212, 255, 0.05); border: 2px solid var(--border-glow); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--accent-cyan); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/idea.png" alt="Spectrum" style="width: 28px; height: 28px;">
+              Consonance Spectrum: From Stable to Tense
+            </h3>
+
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; justify-content: center; margin-bottom: var(--space-lg);">
+              <div style="text-align: center; padding: var(--space-md); background: rgba(0, 255, 157, 0.2); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: var(--accent-green);">Unison</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">0 semitones</div>
+              </div>
+              <span style="color: var(--text-muted);">→</span>
+              <div style="text-align: center; padding: var(--space-md); background: rgba(0, 255, 157, 0.15); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: var(--accent-green);">Octave</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">12 semitones</div>
+              </div>
+              <span style="color: var(--text-muted);">→</span>
+              <div style="text-align: center; padding: var(--space-md); background: rgba(0, 212, 255, 0.2); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: var(--accent-cyan);">P5</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">7 semitones</div>
+              </div>
+              <span style="color: var(--text-muted);">→</span>
+              <div style="text-align: center; padding: var(--space-md); background: rgba(136, 0, 255, 0.2); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: var(--accent-purple);">M3/m3</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">3-4 semitones</div>
+              </div>
+              <span style="color: var(--text-muted);">→</span>
+              <div style="text-align: center; padding: var(--space-md); background: rgba(255, 107, 53, 0.2); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: var(--accent-orange);">M2</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">2 semitones</div>
+              </div>
+              <span style="color: var(--text-muted);">→</span>
+              <div style="text-align: center; padding: var(--space-md); background: rgba(255, 50, 50, 0.2); border-radius: var(--radius-md); min-width: 80px;">
+                <div style="font-weight: 700; color: #ff5252;">m2/Tritone</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">1 or 6 semitones</div>
+              </div>
+            </div>
+
+            <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem;">
+              <strong>Most Consonant</strong> (left) ← → <strong>Most Dissonant</strong> (right)
+            </p>
+          </div>
+
+          <!-- COMMON MISTAKES -->
+          <div style="margin-bottom: var(--space-2xl);">
+            <h3 style="color: var(--accent-orange); margin-bottom: var(--space-lg); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/alert.png" alt="Warning" style="width: 24px; height: 24px;">
+              Common Mistakes to Avoid
+            </h3>
+
+            <div style="display: grid; gap: var(--space-md);">
+              <div style="padding: var(--space-md); background: rgba(255, 107, 53, 0.1); border-left: 3px solid var(--accent-orange); border-radius: var(--radius-sm);">
+                <p style="margin: 0; color: var(--text-secondary);">
+                  <strong style="color: var(--accent-orange);">1. Confusing harmonic with melodic intervals</strong><br>
+                  These are different skills. Harmonic intervals blend into a single sound; melodic intervals are sequential.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-md); background: rgba(255, 107, 53, 0.1); border-left: 3px solid var(--accent-orange); border-radius: var(--radius-sm);">
+                <p style="margin: 0; color: var(--text-secondary);">
+                  <strong style="color: var(--accent-orange);">2. Ignoring register</strong><br>
+                  A <a href="glossary.html#minor-second" style="color: var(--accent-orange);">minor 2nd</a> in the bass sounds muddy; in the treble it's merely tense. Context matters.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-md); background: rgba(255, 107, 53, 0.1); border-left: 3px solid var(--accent-orange); border-radius: var(--radius-sm);">
+                <p style="margin: 0; color: var(--text-secondary);">
+                  <strong style="color: var(--accent-orange);">3. Not paying attention to "beating"</strong><br>
+                  Dissonant intervals create audible beating (wobbling). Learn to hear this roughness as a cue.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-md); background: rgba(255, 107, 53, 0.1); border-left: 3px solid var(--accent-orange); border-radius: var(--radius-sm);">
+                <p style="margin: 0; color: var(--text-secondary);">
+                  <strong style="color: var(--accent-orange);">4. Forgetting inversions</strong><br>
+                  A <a href="glossary.html#perfect-fifth" style="color: var(--accent-orange);">Perfect 5th</a> up and a <a href="glossary.html#perfect-fourth" style="color: var(--accent-orange);">Perfect 4th</a> down are inversions - same notes, different order.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHY THIS MATTERS -->
+          <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(136, 0, 255, 0.1)); border-radius: var(--radius-lg); margin-bottom: var(--space-xl);">
+            <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Why This Matters</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg);">
+              <div>
+                <p style="font-weight: 600; color: var(--accent-cyan); margin-bottom: var(--space-xs);">Chord Voicing</p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Choose intervals that blend well in your chord arrangements.</p>
+              </div>
+              <div>
+                <p style="font-weight: 600; color: var(--accent-purple); margin-bottom: var(--space-xs);">Frequency Masking</p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Identify intervals causing muddiness in your mix.</p>
+              </div>
+              <div>
+                <p style="font-weight: 600; color: var(--accent-green); margin-bottom: var(--space-xs);">Sound Design</p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Layer oscillators at consonant intervals for rich sounds.</p>
+              </div>
+              <div>
+                <p style="font-weight: 600; color: var(--accent-orange); margin-bottom: var(--space-xs);">Tension & Release</p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Use dissonance intentionally to create drama.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT'S NEXT -->
+          <div style="padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-md);">
+            <h4 style="margin: 0 0 var(--space-sm) 0; color: var(--text-primary);">What's Next</h4>
+            <p style="margin: 0; color: var(--text-secondary);">
+              In the next lesson, you'll learn <strong>Chord Quality Recognition</strong> - distinguishing between major, minor, diminished, and augmented chords by their characteristic sound.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
       <section class="theory-content" id="mpl-theory-section" style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);"></section>
       <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);"></section>
       <section class="learning-objectives-section" id="mpl-learning-objectives-section" style="margin-top: var(--space-2xl);"></section>
+
       <section style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
         <div style="display: flex; gap: var(--space-md); justify-content: space-between; flex-wrap: wrap;">
-          <a href="lesson-ear-1.html" class="btn btn-secondary">&larr; Previous</a>
+          <a href="lesson-ear-1.html" class="btn btn-secondary">&larr; Previous Lesson</a>
           <a href="lesson-ear-3.html" class="btn btn-primary">Next Lesson &rarr;</a>
         </div>
       </section>
@@ -37,7 +237,7 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <p class="copyright">&copy; <span id="mpl-year">2025</span> Music Producer Lab</p>
         <nav class="footer-nav">
           <a href="labs.html">Labs</a>
           <a href="index.html">Home</a>
@@ -51,8 +251,8 @@
       initLessonFromConfig(lessonConfig);
       document.getElementById("mpl-year").textContent = new Date().getFullYear();
     </script>
-  <script src="theme-registry.js"></script>
-  <script src="theme-manager.js"></script>
+    <script src="theme-registry.js"></script>
+    <script src="theme-manager.js"></script>
     <script src="navbar.js"></script>
   </body>
 </html>
