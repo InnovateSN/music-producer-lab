@@ -1539,7 +1539,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
 
       if (allCorrect && tempoCorrect && swingCorrect) {
         if (statusEl) {
-          statusEl.textContent = messages.success || '🎉 Correct! Great job! You can now proceed to the next lesson.';
+          statusEl.textContent = messages.success || 'Correct! Great job! You can now proceed to the next lesson.';
           statusEl.style.color = 'var(--accent-green, #00ff9d)';
         }
         if (nextBtn) {
