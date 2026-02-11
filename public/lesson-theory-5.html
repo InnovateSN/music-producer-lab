@@ -27,40 +27,290 @@
       <!-- EDUCATIONAL CONTENT -->
       <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
         <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+          <!-- INTRODUCTION -->
           <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
           <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Rhythm Notation: Time & Duration</h2>
 
           <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
-            <strong>Rhythm</strong> is how music moves through time. While pitch tells us which notes to play, rhythm tells us <strong>when and for how long</strong>. Rhythm notation uses <strong>note values</strong> (whole, half, quarter, eighth, sixteenth) to represent duration, and <strong>time signatures</strong> to organize beats into measures. Understanding rhythm notation is essential for reading music, programming MIDI, and communicating with other musicians.
+            <strong>Rhythm</strong> is how music moves through time. While pitch tells us <em>which</em> notes to play, rhythm tells us <strong>when and for how long</strong>. Rhythm notation uses <strong>note values</strong> (whole, half, quarter, eighth, sixteenth) to represent duration, and <strong>time signatures</strong> to organize <a href="glossary.html#beat" style="color: var(--accent-cyan); text-decoration: underline;">beats</a> into <a href="glossary.html#bar" style="color: var(--accent-cyan); text-decoration: underline;">measures</a>. In your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>, every <a href="glossary.html#midi" style="color: var(--accent-cyan); text-decoration: underline;">MIDI</a> note has a length — and that length corresponds directly to these rhythmic values. Understanding rhythm notation is what separates mechanical-sounding beats from groovy, human-feeling music.
           </p>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Note Values</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Whole note</strong> = 4 beats. <strong>Half note</strong> = 2 beats. <strong>Quarter</strong> = 1 beat. <strong>Eighth</strong> = 1/2 beat. <strong>Sixteenth</strong> = 1/4 beat. Each level divides the previous by 2.</p>
+          <!-- KEY CONCEPTS GRID -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/notamusicale.png" alt="Note Values" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-cyan);">Note Values</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Duration Hierarchy</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong>Whole note</strong> = 4 beats. <strong>Half note</strong> = 2 beats. <strong><a href="glossary.html#quarter-note" style="color: var(--accent-cyan); text-decoration: underline;">Quarter note</a></strong> = 1 beat. <strong><a href="glossary.html#eighth-note" style="color: var(--accent-cyan); text-decoration: underline;">Eighth note</a></strong> = 1/2 beat. <strong><a href="glossary.html#sixteenth-note" style="color: var(--accent-cyan); text-decoration: underline;">Sixteenth</a></strong> = 1/4 beat. Each level divides the previous by 2.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> MIDI note lengths in your DAW are these exact values. A quarter-note-long MIDI note = 1 beat = 4 steps in a 16-step sequencer.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Time Signatures</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>4/4:</strong> 4 quarter notes per measure (most common). <strong>3/4:</strong> waltz time. <strong>6/8:</strong> compound duple. Top number = beats per measure. Bottom = which note gets one beat.</p>
+
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/orologio.png" alt="Time Signatures" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-purple);">Time Signatures</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Organizing Beats</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                <strong>4/4:</strong> 4 quarter notes per measure (most common — used in nearly all pop, rock, EDM, hip-hop). <strong>3/4:</strong> waltz time (3 beats). <strong>6/8:</strong> compound duple (two groups of 3). Top number = beats per measure. Bottom = beat unit.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Your DAW's grid defaults to 4/4. Understanding time signatures lets you create waltzes, shuffles, and complex time feels.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Dots & Ties</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Dot</strong> adds half the note's value (dotted half = 3 beats). <strong>Tie</strong> connects two notes of same pitch (held as one). Both extend duration beyond standard values.</p>
+
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/idea.png" alt="Dots & Ties" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-orange);">Dots & Ties</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Extending Duration</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                A <strong>dot</strong> adds half the note's value (dotted half = 3 beats, dotted quarter = 1.5 beats). A <strong>tie</strong> connects two notes of the same pitch so they are held as one continuous sound. Both extend notes beyond standard values.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Dotted rhythms create swing and shuffle feels. Ties let notes sustain across barlines. Both are essential for expressive <a href="glossary.html#midi" style="color: var(--accent-orange); text-decoration: underline;">MIDI</a> programming.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Rests</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Every note value has a corresponding <strong>rest</strong> (silence). Whole rest, half rest, quarter rest, etc. Rests are as important as notes—silence shapes rhythm as much as sound.</p>
+
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/speaker.png" alt="Rests" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-green);">Rests & Silence</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">As Important as Notes</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                Every note value has a corresponding <strong>rest</strong> (measured silence). Whole rest, half rest, quarter rest, eighth rest, sixteenth rest. Rests create space, groove, and breathability. The best grooves use rests as deliberately as notes.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> "Music is the space between the notes" (Claude Debussy). Rests create groove and prevent your mix from sounding cluttered.
+              </p>
             </div>
           </div>
 
-          <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Key Takeaways</h3>
-            <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-              <li>Note values divide by 2: whole → half → quarter → eighth → sixteenth</li>
-              <li>Time signature: top = beats per measure, bottom = beat unit</li>
-              <li>Dots extend by 50%, ties connect notes of same pitch</li>
-            </ul>
+          <!-- VISUAL EXAMPLE: Note Value Duration Chart -->
+          <div style="padding: var(--space-xl); background: rgba(0, 212, 255, 0.05); border: 2px solid var(--border-glow); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--accent-cyan); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/idea.png" alt="Chart" style="width: 28px; height: 28px;">
+              Note Value Duration Chart (in 4/4 time)
+            </h3>
+
+            <!-- Visual Duration Bars -->
+            <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <span style="width: 100px; text-align: right; color: var(--text-muted); font-size: 0.85rem;">Whole</span>
+                <div style="flex: 1; height: 28px; background: var(--accent-cyan); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                  <span style="color: var(--bg-dark); font-weight: 700; font-size: 0.8rem;">4 beats (full measure)</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <span style="width: 100px; text-align: right; color: var(--text-muted); font-size: 0.85rem;">Half</span>
+                <div style="width: calc(50% - 2px); height: 28px; background: var(--accent-purple); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                  <span style="color: white; font-weight: 700; font-size: 0.8rem;">2 beats</span>
+                </div>
+                <div style="width: calc(50% - 2px); height: 28px; background: var(--accent-purple); border-radius: 4px; opacity: 0.5;"></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <span style="width: 100px; text-align: right; color: var(--text-muted); font-size: 0.85rem;">Quarter</span>
+                <div style="display: flex; gap: 3px; flex: 1;">
+                  <div style="flex: 1; height: 28px; background: var(--accent-orange); border-radius: 4px; display: flex; align-items: center; justify-content: center;"><span style="color: var(--bg-dark); font-weight: 700; font-size: 0.75rem;">1</span></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-orange); border-radius: 4px; opacity: 0.7;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-orange); border-radius: 4px; opacity: 0.5;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-orange); border-radius: 4px; opacity: 0.3;"></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <span style="width: 100px; text-align: right; color: var(--text-muted); font-size: 0.85rem;">Eighth</span>
+                <div style="display: flex; gap: 2px; flex: 1;">
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; display: flex; align-items: center; justify-content: center;"><span style="color: var(--bg-dark); font-weight: 700; font-size: 0.7rem;">1/2</span></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.8;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.6;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.5;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.4;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.35;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.3;"></div>
+                  <div style="flex: 1; height: 28px; background: var(--accent-green); border-radius: 3px; opacity: 0.25;"></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <span style="width: 100px; text-align: right; color: var(--text-muted); font-size: 0.85rem;">Sixteenth</span>
+                <div style="display: flex; gap: 1px; flex: 1;">
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.8); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.7); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.6); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.5); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.45); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.4); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.35); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.3); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.28); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.25); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.22); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.2); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.18); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.15); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.12); border-radius: 2px;"></div>
+                  <div style="flex: 1; height: 28px; background: rgba(255, 90, 61, 0.1); border-radius: 2px;"></div>
+                </div>
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: var(--space-lg);">
+              Each row shows how the measure is divided. 16 sixteenth notes = 1 measure in 4/4. This is why step sequencers use 16 steps!
+            </p>
+
+            <!-- DAW Connection -->
+            <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-md);">
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">How This Maps to Your DAW</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+                <div style="padding: var(--space-sm); background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                  <p style="color: var(--accent-cyan); font-weight: 700; margin: 0 0 4px 0; font-size: 0.9rem;">16-step sequencer</p>
+                  <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem;">Each step = 1 sixteenth note. 4 steps = 1 beat. 16 steps = 1 bar.</p>
+                </div>
+                <div style="padding: var(--space-sm); background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                  <p style="color: var(--accent-cyan); font-weight: 700; margin: 0 0 4px 0; font-size: 0.9rem;">Piano roll grid</p>
+                  <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem;">Snap to 1/4 = quarter notes. Snap to 1/8 = eighth notes. Snap to 1/16 = sixteenth notes.</p>
+                </div>
+                <div style="padding: var(--space-sm); background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                  <p style="color: var(--accent-cyan); font-weight: 700; margin: 0 0 4px 0; font-size: 0.9rem;">At 120 <a href="glossary.html#bpm" style="color: var(--accent-cyan); text-decoration: underline;">BPM</a></p>
+                  <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem;">1 beat = 0.5 seconds. 1 bar = 2 seconds. 1 sixteenth = 0.125 seconds.</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- COMMON TIME SIGNATURES -->
+          <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--text-primary);">Common Time Signatures in Production</h3>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border-subtle);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-primary);">Time Sig</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary);">Feel</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary);">Genre Use</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary);">Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan); font-weight: 700; font-size: 1.2rem;">4/4</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Steady, driving, marching</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">Pop, rock, EDM, hip-hop, R&B</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">Nearly all popular music</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-purple); font-weight: 700; font-size: 1.2rem;">3/4</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Waltz, lilting, swaying</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">Classical waltz, ballads, folk</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">"My Favorite Things"</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange); font-weight: 700; font-size: 1.2rem;">6/8</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Swinging, compound, flowing</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">Blues, Irish folk, slow jams</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">"We Are the Champions"</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-green); font-weight: 700; font-size: 1.2rem;">2/4</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">March, polka, quick</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">March music, some Latin</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-muted);">Military marches</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- COMMON MISTAKES -->
+          <div style="padding: var(--space-xl); background: rgba(255, 102, 102, 0.05); border: 2px solid rgba(255, 102, 102, 0.3); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--accent-orange); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/questionmark.png" alt="Mistakes" style="width: 28px; height: 28px;">
+              Common Rhythm Mistakes
+            </h3>
+
+            <div style="display: grid; gap: var(--space-lg);">
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Confusing Note Value with <a href="glossary.html#tempo" style="color: var(--accent-orange); text-decoration: underline;">Tempo</a>
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  A quarter note is NOT always a specific duration in seconds — it depends on the <a href="glossary.html#bpm" style="color: var(--accent-orange); text-decoration: underline;">BPM</a>. At 60 BPM, a quarter note = 1 second. At 120 BPM, a quarter note = 0.5 seconds. Note values are <em>relative</em>, not absolute.
+                </p>
+                <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                  Fix: Think of note values as ratios, not fixed durations. A half note is always twice as long as a quarter note, regardless of tempo.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Ignoring Rests and Leaving No Space
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  Beginners often fill every beat with notes, creating dense, exhausting music. The best grooves use <strong>silence as deliberately as sound</strong>. Funk, hip-hop, and EDM all rely heavily on strategic rests.
+                </p>
+                <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                  Fix: After programming a pattern, try removing 20-30% of the notes. Notice how the groove often improves with more space.
+                </p>
+              </div>
+
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Not Understanding Dotted Rhythms
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  Dotted rhythms (dotted quarter + eighth, or dotted eighth + sixteenth) create a long-short "swinging" feel that's essential for shuffle, swing, and many R&B/hip-hop grooves. Skipping them makes your rhythms too rigid.
+                </p>
+                <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                  Fix: Practice the dotted-quarter + eighth pattern (3 sixteenths + 1 sixteenth). This "long-short" feel is everywhere in music.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHY THIS MATTERS -->
+          <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-lg);">
+            <h3 style="margin-bottom: var(--space-md); color: var(--text-primary); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/fulmine.png" alt="Important" style="width: 28px; height: 28px;">
+              Why Rhythm Is the Foundation of Production
+            </h3>
+            <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-md);">
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Program Better MIDI:</strong> Understanding note values means you can quantize intelligently, choose the right grid resolution, and create rhythms that breathe and groove.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Create Groove & Feel:</strong> The difference between a stiff beat and a groovy one is all rhythm — <a href="glossary.html#swing" style="color: var(--accent-purple); text-decoration: underline;">swing</a>, syncopation, ghost notes, and strategic rests.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Communicate with Musicians:</strong> "Play eighth notes on the hi-hat" is precise and instant. Without rhythmic vocabulary, you can't direct session musicians effectively.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Master the Step Sequencer:</strong> Our 16-step sequencer = one bar of sixteenth notes. Understanding this connection lets you program any rhythm pattern you can imagine.</span>
+              </li>
+            </ul>
+
+            <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-md);">
+              <p style="color: var(--accent-purple); font-weight: 600; margin-bottom: var(--space-sm);">What's Next?</p>
+              <p style="color: var(--text-secondary); line-height: 1.7;">
+                In <strong>Lesson 6: Key Signatures & Circle of Fifths</strong>, you'll discover the organizational map of all 12 keys. The Circle of Fifths reveals hidden relationships between keys and tells you exactly which sharps or flats belong in each key.
+              </p>
+            </div>
+          </div>
+
         </div>
       </section>
 

@@ -27,40 +27,308 @@
       <!-- EDUCATIONAL CONTENT -->
       <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
         <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+          <!-- INTRODUCTION -->
           <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
           <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Chord Construction: Building Harmony from Intervals</h2>
 
           <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
-            <strong>Chords</strong> are three or more notes played simultaneously, built by stacking intervals. The most basic chord is a <strong>triad</strong>: root, 3rd, and 5th. Add a 7th for seventh chords, then 9ths, 11ths, and 13ths for extensions. Understanding chord construction lets you build any chord from scratch, name chords you encounter, and create rich, sophisticated harmonies. This is the foundation of arranging and composition.
+            Every chord in music is built from a simple recipe: <strong>stacked intervals of thirds</strong>. A <strong>triad</strong> uses three notes (root, 3rd, 5th), and a <strong>seventh chord</strong> adds one more note on top. The type of third you stack -- major (4 semitones) or minor (3 semitones) -- determines whether a chord sounds happy, sad, tense, or unstable. When you work in a <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a> with <a href="glossary.html#midi" style="color: var(--accent-cyan); text-decoration: underline;">MIDI</a>, understanding chord construction means you can build any chord from scratch on a piano roll, name any chord you see, and make deliberate harmonic choices instead of guessing. This lesson covers triads, seventh chords, inversions, and voicing -- the complete toolkit for constructing harmony.
           </p>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Triads</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Major:</strong> root + major 3rd + perfect 5th. <strong>Minor:</strong> root + minor 3rd + perfect 5th. <strong>Diminished:</strong> root + minor 3rd + diminished 5th. <strong>Augmented:</strong> root + major 3rd + augmented 5th.</p>
+          <!-- KEY CONCEPTS GRID -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+
+            <!-- Concept 1: Triads -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/notamusicale.png" alt="Triads" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-cyan);">Triad Construction</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Root + 3rd + 5th</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                A triad is three notes built by stacking two thirds above a root note. The quality of those thirds determines the chord type: <strong>Major</strong> = major 3rd + minor 3rd. <strong>Minor</strong> = minor 3rd + major 3rd. <strong>Diminished</strong> = minor 3rd + minor 3rd. <strong>Augmented</strong> = major 3rd + major 3rd.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Triads are the building blocks of all harmony. Every pop, rock, and electronic track is built on triads.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Seventh Chords</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Add a 7th to triads: <strong>Maj7</strong> (major 7th), <strong>7</strong> (dominant = minor 7th), <strong>m7</strong> (minor triad + minor 7th), <strong>m7♭5</strong> (half-diminished), <strong>°7</strong> (fully diminished). Sevenths add color and tension.</p>
+
+            <!-- Concept 2: Seventh Chords -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/speaker.png" alt="Seventh Chords" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-purple);">Seventh Chords</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Triads + One More Third</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                Stack another third on top of a triad and you get a seventh chord. <strong>Major 7th (Maj7)</strong> = major triad + major 7th. <strong>Dominant 7th (7)</strong> = major triad + minor 7th. <strong>Minor 7th (m7)</strong> = minor triad + minor 7th. <strong>Half-diminished (m7b5)</strong> = diminished triad + minor 7th. <strong>Diminished 7th (dim7)</strong> = diminished triad + diminished 7th.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Seventh chords add color and sophistication. They are essential in jazz, R&B, neo-soul, lo-fi, and any genre that goes beyond basic pop harmony.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Extensions</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>9th</strong> = 2nd an octave up. <strong>11th</strong> = 4th an octave up. <strong>13th</strong> = 6th an octave up. Extensions add richness and complexity. Jazz and neo-soul rely heavily on extended chords.</p>
+
+            <!-- Concept 3: Inversions -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/idea.png" alt="Inversions" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-orange);">Chord Inversions</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Same Notes, Different Order</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                An inversion changes which note is on the bottom. <strong>Root position:</strong> root is the lowest note (C-E-G). <strong>1st inversion:</strong> 3rd is the lowest (E-G-C). <strong>2nd inversion:</strong> 5th is the lowest (G-C-E). The chord name stays the same, but the sound and feel change.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Inversions create smooth voice leading between chords. Instead of jumping around the keyboard, chords connect smoothly -- essential for professional-sounding progressions.
+              </p>
             </div>
-            <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
-              <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Alterations</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>♭9, #9, #11, ♭13</strong>—altered notes add tension and color. <strong>C7#9</strong> is the "Hendrix chord." Alterations are common in jazz and create distinctive sounds.</p>
+
+            <!-- Concept 4: Voicing -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <img src="images/tastiera.png" alt="Voicing" style="width: 32px; height: 32px;">
+                <h3 style="margin: 0; font-size: 1.3rem; color: var(--accent-green);">Voicing &amp; Spacing</h3>
+              </div>
+              <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">How You Spread the Notes</p>
+              <p style="line-height: 1.7; color: var(--text-secondary);">
+                Voicing is about how you arrange chord tones across the register. <strong>Close voicing:</strong> all notes within one octave (tight, compact). <strong>Open voicing:</strong> notes spread across two or more octaves (wide, spacious). You can also double notes, omit the 5th, or rearrange the order of upper notes.
+              </p>
+              <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                <strong>Why it matters:</strong> Two producers can play the same chord but get completely different textures by changing the voicing. In a <a href="glossary.html#midi" style="color: var(--accent-green); text-decoration: underline;">MIDI</a> piano roll, voicing determines whether a chord sounds muddy or clear.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- VISUAL EXAMPLE: Chord Formula Reference Table -->
+          <div style="padding: var(--space-xl); background: rgba(0, 212, 255, 0.05); border: 2px solid var(--border-glow); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--accent-cyan); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/idea.png" alt="Reference" style="width: 28px; height: 28px;">
+              Chord Formula Reference Table
+            </h3>
+
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-lg);">
+              Every chord can be described by its <strong>interval formula</strong> from the root. The numbers represent scale degrees (1 = root, 3 = third, 5 = fifth, 7 = seventh). A flat (b) lowers a note by one semitone; a sharp (#) raises it by one.
+            </p>
+
+            <!-- Triad Formulas -->
+            <div style="margin-bottom: var(--space-xl);">
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Triads (3 Notes)</h4>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-subtle);">
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Chord Type</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Formula</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Example (C)</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Sound Character</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Major</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - 3 - 5</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - E - G</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-dim);">Bright, happy, stable</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Minor</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - b3 - 5</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - Eb - G</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-dim);">Dark, sad, introspective</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Diminished</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - b3 - b5</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - Eb - Gb</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-dim);">Tense, unstable, wants to resolve</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-green); font-weight: 600;">Augmented</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - 3 - #5</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - E - G#</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-dim);">Mysterious, floating, dreamy</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Seventh Chord Formulas -->
+            <div style="margin-bottom: var(--space-lg);">
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Seventh Chords (4 Notes)</h4>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-subtle);">
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Chord Type</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Symbol</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Formula</th>
+                      <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-muted); font-weight: 600;">Example (C)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Major 7th</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Cmaj7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - 3 - 5 - 7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - E - G - B</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Dominant 7th</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - 3 - 5 - b7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - E - G - Bb</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Minor 7th</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Cm7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - b3 - 5 - b7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - Eb - G - Bb</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-green); font-weight: 600;">Half-Diminished</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Cm7b5</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary); font-family: monospace;">1 - b3 - b5 - b7</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">C - Eb - Gb - Bb</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Inversion Diagram -->
+            <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-md);">
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Inversion Positions (C Major Example)</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md);">
+                <div style="text-align: center; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                  <p style="color: var(--accent-cyan); font-weight: 700; margin-bottom: var(--space-sm);">Root Position</p>
+                  <p style="color: var(--text-secondary); font-family: monospace; font-size: 1.1rem; margin: 0;">C - E - G</p>
+                  <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: var(--space-sm);">Root on bottom</p>
+                </div>
+                <div style="text-align: center; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                  <p style="color: var(--accent-purple); font-weight: 700; margin-bottom: var(--space-sm);">1st Inversion</p>
+                  <p style="color: var(--text-secondary); font-family: monospace; font-size: 1.1rem; margin: 0;">E - G - C</p>
+                  <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: var(--space-sm);">3rd on bottom</p>
+                </div>
+                <div style="text-align: center; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                  <p style="color: var(--accent-orange); font-weight: 700; margin-bottom: var(--space-sm);">2nd Inversion</p>
+                  <p style="color: var(--text-secondary); font-family: monospace; font-size: 1.1rem; margin: 0;">G - C - E</p>
+                  <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: var(--space-sm);">5th on bottom</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Key Takeaways</h3>
-            <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-              <li>Triads = root + 3rd + 5th (major, minor, diminished, augmented)</li>
-              <li>Seventh chords = triad + 7th (adds tension/color)</li>
-              <li>Extensions (9, 11, 13) continue stacking thirds above the 7th</li>
-            </ul>
+          <!-- COMMON MISTAKES -->
+          <div style="padding: var(--space-xl); background: rgba(255, 102, 102, 0.05); border: 2px solid rgba(255, 102, 102, 0.3); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+            <h3 style="margin-bottom: var(--space-lg); color: var(--accent-orange); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/questionmark.png" alt="Common Mistakes" style="width: 28px; height: 28px;">
+              Common Mistakes in Chord Construction
+            </h3>
+
+            <div style="display: grid; gap: var(--space-lg);">
+              <!-- Mistake 1 -->
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Stacking the Wrong Interval Size
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  A major third is 4 semitones and a minor third is 3 semitones. Mixing these up gives you the wrong chord quality entirely -- for example, stacking two major thirds gives you an augmented chord, not a major one.
+                </p>
+                <p style="color: var(--accent-green); font-weight: 600; font-size: 0.9rem;">
+                  <img src="images/mplscudo_check.png" alt="Fix" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 4px;">
+                  Fix: Count semitones on a keyboard. Major = 4, minor = 3. For a major triad: 4 semitones + 3 semitones. For a minor triad: 3 + 4.
+                </p>
+              </div>
+
+              <!-- Mistake 2 -->
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Confusing Major and Minor Chord Symbols
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  "Cm" means C minor, but "C" alone means C major. "Cmaj7" means a major triad with a major 7th, while "C7" (no "maj") means a major triad with a <em>minor</em> 7th (dominant). These subtle naming differences cause frequent confusion.
+                </p>
+                <p style="color: var(--accent-green); font-weight: 600; font-size: 0.9rem;">
+                  <img src="images/mplscudo_check.png" alt="Fix" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 4px;">
+                  Fix: Remember the rule -- a plain letter (C, D, G) always means major. Lowercase "m" after the letter means minor. "maj7" = major 7th interval, plain "7" = dominant (minor 7th interval).
+                </p>
+              </div>
+
+              <!-- Mistake 3 -->
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Ignoring Inversions and Voice Leading
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  Playing every chord in root position creates large jumps between chords. In a <a href="glossary.html#midi" style="color: var(--accent-orange); text-decoration: underline;">MIDI</a> piano roll, this looks like notes jumping up and down instead of moving smoothly. The result sounds choppy and disconnected.
+                </p>
+                <p style="color: var(--accent-green); font-weight: 600; font-size: 0.9rem;">
+                  <img src="images/mplscudo_check.png" alt="Fix" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 4px;">
+                  Fix: When moving between chords, find the inversion that keeps common tones in place and moves other notes by the smallest distance possible. This is called <strong>voice leading</strong>.
+                </p>
+              </div>
+
+              <!-- Mistake 4 -->
+              <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                  <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                  Voicing Chords Too Low on the Keyboard
+                </h4>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                  Stacking thirds in the low register (below C3) creates a muddy, indistinct sound. The <a href="glossary.html#frequency-bands" style="color: var(--accent-orange); text-decoration: underline;">frequency bands</a> overlap and the individual notes lose clarity, especially with seventh chords.
+                </p>
+                <p style="color: var(--accent-green); font-weight: 600; font-size: 0.9rem;">
+                  <img src="images/mplscudo_check.png" alt="Fix" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 4px;">
+                  Fix: Keep chord voicings in the C3-C5 range for clarity. Use open voicings or place only the root in the bass register with the rest of the chord higher up.
+                </p>
+              </div>
+            </div>
           </div>
+
+          <!-- WHY THIS MATTERS -->
+          <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-lg);">
+            <h3 style="margin-bottom: var(--space-md); color: var(--text-primary); display: flex; align-items: center; gap: var(--space-sm);">
+              <img src="images/fulmine.png" alt="Important" style="width: 28px; height: 28px;">
+              Why Chord Construction Changes Everything
+            </h3>
+            <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-md);">
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Build Any Chord from Scratch:</strong> Instead of memorizing shapes, you can construct any chord on any root note using interval formulas. Major, minor, diminished, augmented, seventh -- all from one system.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Name Any Chord You See:</strong> When you encounter notes stacked in a <a href="glossary.html#midi" style="color: var(--accent-purple); text-decoration: underline;">MIDI</a> piano roll, you can identify the chord type by analyzing the intervals between the notes.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Control Emotional Impact:</strong> Major chords sound bright; minor chords sound dark; diminished chords create tension; augmented chords sound dreamlike. Choosing chord quality deliberately lets you shape the emotion of your music.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Smooth Chord Progressions:</strong> Understanding inversions and voice leading means your chords flow naturally into each other instead of jumping around -- the difference between amateur and professional harmony.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Foundation for Advanced Harmony:</strong> Extensions (9ths, 11ths, 13ths), altered chords, and jazz voicings all build on the triad and seventh chord system covered in this lesson.</span>
+              </li>
+            </ul>
+
+            <!-- What's Next -->
+            <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-md);">
+              <p style="color: var(--accent-purple); font-weight: 600; margin-bottom: var(--space-sm);">What's Next?</p>
+              <p style="color: var(--text-secondary); line-height: 1.7;">
+                Now that you can construct chords, the next step is understanding <strong>how chords function within a key</strong>. In <strong>Lesson 8: Functional Harmony &amp; Roman Numerals</strong>, you will learn why certain chord progressions "work," what tonic, subdominant, and dominant functions mean, and how to use Roman numeral analysis to understand and create progressions in any key.
+              </p>
+            </div>
+          </div>
+
         </div>
       </section>
 
