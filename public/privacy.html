@@ -60,18 +60,7 @@
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <img src="mpl-logo-full.svg" alt="Music Producer Lab" height="32">
-      </a>
-      <div class="nav-links">
-        <a href="labs.html">Labs</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
   <section class="legal-hero">
     <div class="container">
@@ -90,9 +79,9 @@
     <p>When you create an account or use our services, we may collect:</p>
     <ul>
       <li>Name and email address</li>
-      <li>Account credentials (managed securely via Clerk)</li>
+      <li>Account credentials (managed securely via our authentication system)</li>
       <li>Profile information you choose to provide</li>
-      <li>Payment information (processed securely via Stripe)</li>
+      <li>Payment information (when payment features are available)</li>
     </ul>
 
     <h3>2.2 Usage Information</h3>
@@ -120,7 +109,7 @@
     <h2>4. Data Sharing and Disclosure</h2>
     <p>We do not sell your personal information. We may share data with:</p>
     <ul>
-      <li><strong>Service Providers:</strong> Third-party services that help us operate (Clerk for authentication, Stripe for payments, Neon for database hosting, Vercel for hosting)</li>
+      <li><strong>Service Providers:</strong> Third-party services that help us operate (NextAuth for authentication, Neon for database hosting, Vercel for hosting, Resend for email)</li>
       <li><strong>Educational Institutions:</strong> If you join a class through a school, your progress may be shared with your teacher</li>
       <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
     </ul>
@@ -129,7 +118,7 @@
     <p>We implement industry-standard security measures including:</p>
     <ul>
       <li>Encryption of data in transit (HTTPS/TLS)</li>
-      <li>Secure authentication via Clerk</li>
+      <li>Secure authentication with bcrypt password hashing</li>
       <li>Regular security audits</li>
       <li>Access controls and monitoring</li>
     </ul>
@@ -191,6 +180,8 @@
     </div>
   </footer>
 
-  <script src="navbar.js"></script>
+  <script src="/theme-registry.js"></script>
+  <script src="/theme-manager.js"></script>
+  <script src="/navbar.js"></script>
 </body>
 </html>
