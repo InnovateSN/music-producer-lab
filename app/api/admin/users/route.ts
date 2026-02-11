@@ -18,7 +18,7 @@ async function verifyAdmin(): Promise<{ authorized: boolean; userId?: string; ro
 
     // Check if user is admin or super_admin
     const role = payload.role as string;
-    if (role !== 'admin' && role !== 'super_admin') {
+    if (role !== 'school_admin' && role !== 'super_admin') {
       return { authorized: false };
     }
 

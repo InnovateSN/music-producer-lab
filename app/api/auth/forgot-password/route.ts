@@ -1,9 +1,14 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { sendPasswordResetEmail } from '@/lib/email';
+import { validateOrigin } from '@/lib/security';
 import crypto from 'crypto';
 
 export async function POST(request: Request) {
+  // CSRF protection
+  const originError = validateOrigin(request);
+  if (originError) return originError;
+
   try {
     const { email } = await request.json();
 
