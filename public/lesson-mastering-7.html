@@ -74,30 +74,130 @@
               </div>
             </div>
 
+            <!-- PLATFORM NORMALIZATION COMPARISON -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Platform Normalization Comparison</h3>
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); margin-bottom: var(--space-2xl); overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border-subtle);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary);">Platform</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-primary);">Target LUFS</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-primary);">True Peak</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-primary);">Codec</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-primary);">Turn Up?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Spotify</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Ogg Vorbis / AAC</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Yes (Normal mode)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Apple Music</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-16 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">AAC / ALAC</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Yes (Sound Check)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">YouTube</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">AAC (Opus)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">No (down only)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-magenta); font-weight: 600;">Tidal</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">FLAC / MQA</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Yes</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Amazon Music</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-2 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">AAC / FLAC</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Yes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- TRUE PEAK HEADROOM GUIDE -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">True Peak Headroom: Why -1 dBTP?</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-orange);">0 dBTP</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">No headroom</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-sm);">Codec conversion will create <a href="glossary.html#clipping" style="color: var(--accent-orange);">inter-sample peaks</a> above 0 dB, causing distortion on playback.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.08); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-cyan);">-1 dBTP</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">Industry standard</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-sm);">Safe headroom for most codecs. Recommended by Spotify, Apple, and most distributors. Always start here.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.08); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-purple);">-2 dBTP</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">Extra safe</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-sm);">Required by Amazon Music. Also recommended for heavily limited masters or low-bitrate target formats.</p>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Mastering Too Loud:</strong>
-                <span style="color: var(--text-secondary);"> A -8 LUFS master will be turned down 6 dB on Spotify. That crushed dynamic range is still crushed, but now also quieter. Dynamic masters sound better after normalization.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-orange);">Mastering Too Loud:</strong>
+                  <span style="color: var(--text-secondary);"> A -8 <a href="glossary.html#lufs" style="color: var(--accent-orange);">LUFS</a> master will be turned down 6 dB on Spotify. That crushed dynamic range is still crushed, but now also quieter. Dynamic masters sound better after normalization.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Ignoring Codec Conversion:</strong>
-                <span style="color: var(--text-secondary);"> Platforms convert your master to lossy formats. Leave true peak headroom (-1 dBTP) because encoding can create new peaks. Test your master through encode/decode cycles.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-purple);">Ignoring Codec Conversion:</strong>
+                  <span style="color: var(--text-secondary);"> Platforms convert your master to lossy formats. Leave <a href="glossary.html#true-peak" style="color: var(--accent-purple);">true peak</a> headroom (-1 dBTP) because encoding can create new peaks. Test your master through encode/decode cycles.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">One Master for All Platforms:</strong>
-                <span style="color: var(--text-secondary);"> Consider different masters for different contexts—a slightly louder master for Spotify/YouTube, a more dynamic one for Apple Music/Tidal. The extra work pays off in optimized playback.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-cyan);">One Master for All Platforms:</strong>
+                  <span style="color: var(--text-secondary);"> Consider different masters for different contexts—a slightly louder master for Spotify/YouTube, a more dynamic one for Apple Music/Tidal. The extra work pays off in optimized playback.</span>
+                </div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Optimal Playback:</strong> Masters that match platform targets sound their best after normalization.</li>
-                <li><strong>Competitive Sound:</strong> Your track plays back-to-back with commercial releases—it should sound comparable.</li>
-                <li><strong>Preserved Intent:</strong> Understanding normalization helps you master to sound exactly as intended on each platform.</li>
-                <li><strong>Future-Proofing:</strong> As platforms evolve and standards change, understanding the principles helps you adapt.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Optimal Playback:</strong> Masters that match platform targets sound their best after normalization.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Competitive Sound:</strong> Your track plays back-to-back with commercial releases—it should sound comparable.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Preserved Intent:</strong> Understanding normalization helps you master to sound exactly as intended on each platform.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Future-Proofing:</strong> As platforms evolve and standards change, understanding the principles helps you adapt.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-xl); padding: var(--space-lg); border-left: 3px solid var(--accent-cyan); background: rgba(0, 212, 255, 0.03); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+              <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: var(--space-xs);">What's Next</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">In <a href="lesson-mastering-8.html" style="color: var(--accent-cyan);">Lesson 8: Stem Mastering</a>, you'll learn how working with grouped stems gives you greater control than a stereo file—fix problems impossible to solve on a single mix.</p>
             </div>
           </div>
         </section>

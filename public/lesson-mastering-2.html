@@ -77,11 +77,91 @@
               </div>
             </div>
 
+            <!-- STREAMING LOUDNESS TARGETS -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/fulmine.png" alt="targets" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Streaming Platform Loudness Targets
+            </h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-2xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--accent-cyan);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Platform</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Target LUFS</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">True Peak</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">Loud Tracks</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Codec</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Spotify</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Turned down</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Ogg Vorbis</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Apple Music</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-16 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Sound Check</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">AAC / ALAC</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>YouTube</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Turned down</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">AAC</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Tidal</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-14 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-1 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Turned down</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">FLAC / MQA</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>CD</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-9 to -6 LUFS</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">-0.3 dBTP</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-muted);">No normalization</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">PCM 16-bit</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- LUFS TYPES QUICK REFERENCE -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/idea.png" alt="tip" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              LUFS Measurement Types
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-cyan); text-align: center;">
+                <strong style="color: var(--accent-cyan); font-size: 1.1rem;">Integrated</strong>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: var(--space-xs) 0 0;">Entire track average<br><em>The number platforms use</em></p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-purple); text-align: center;">
+                <strong style="color: var(--accent-purple); font-size: 1.1rem;">Short-Term</strong>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: var(--space-xs) 0 0;">3-second window<br><em>Shows section loudness</em></p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-orange); text-align: center;">
+                <strong style="color: var(--accent-orange); font-size: 1.1rem;">Momentary</strong>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: var(--space-xs) 0 0;">400ms window<br><em>Near real-time response</em></p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 200, 140, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-green); text-align: center;">
+                <strong style="color: var(--accent-green); font-size: 1.1rem;">True Peak</strong>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: var(--space-xs) 0 0;">Max reconstructed level<br><em>Keep below -1 dBTP</em></p>
+              </div>
+            </div>
+
             <!-- COMMON MISTAKES -->
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
               <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Mixing with Your Eyes:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-orange);">Mixing with Your Eyes:</strong>
                 <span style="color: var(--text-secondary);"> Meters inform decisions, but don't let them override your ears. A track can look "wrong" on a meter but sound perfect. Use meters to confirm what you hear, not replace listening.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">

@@ -74,30 +74,105 @@
               </div>
             </div>
 
+            <!-- COMPRESSION SETTINGS REFERENCE -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/fulmine.png" alt="reference" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Mastering Compression Quick Reference
+            </h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--accent-orange);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-orange);">Technique</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Ratio</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Attack</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Release</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">GR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Glue</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">1.5:1 - 2:1</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">30-100 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Auto / 100-300 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">1-2 dB</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Punch</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">2:1 - 3:1</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">50-100 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">200-400 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">2-3 dB</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Parallel</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">10:1+</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">1-5 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">50-100 ms</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">10+ dB (blended)</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary);"><strong>Multiband</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">2:1 - 4:1</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Band-specific</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Band-specific</td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">1-3 dB/band</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- GAIN REDUCTION ZONES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/idea.png" alt="tip" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              <a href="glossary.html#gain-reduction" style="color: var(--text-primary); text-decoration: none;">Gain Reduction</a> Zones
+            </h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 120px; padding: var(--space-sm); background: rgba(0, 200, 140, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: var(--accent-green);">0-2 dB</strong></div>
+                <span style="color: var(--text-secondary);">Sweet spot — subtle glue, natural dynamics preserved</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 120px; padding: var(--space-sm); background: rgba(255, 200, 0, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: #e6b800;">2-4 dB</strong></div>
+                <span style="color: var(--text-secondary);">Caution zone — noticeable compression, use only when needed</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 120px; padding: var(--space-sm); background: rgba(255, 90, 61, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: var(--accent-orange);">4+ dB</strong></div>
+                <span style="color: var(--text-secondary);">Danger zone — dynamics crushed, transients flattened, listener fatigue</span>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
               <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Over-Compression:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-orange);">Over-Compression:</strong>
                 <span style="color: var(--text-secondary);"> More than 3-4 dB gain reduction in mastering usually means you're crushing dynamics. The limiter should handle loudness—let the compressor just glue.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Fast Attack Killing Transients:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-purple);">Fast Attack Killing Transients:</strong>
                 <span style="color: var(--text-secondary);"> Fast attack times (under 10 ms) clamp down on transients, making drums sound flat and lifeless. Mastering compression should let transients through.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Multiband Without Purpose:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-cyan);">Multiband Without Purpose:</strong>
                 <span style="color: var(--text-secondary);"> Don't use multiband compression just because you have it. Each band introduces phase relationships. Only use it when you have a specific problem to solve.</span>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Cohesion:</strong> Glue compression makes the mix feel like one unified piece, not separate elements.</li>
-                <li><strong>Consistent Energy:</strong> Gentle dynamics control keeps energy even throughout the song.</li>
-                <li><strong>Headroom Management:</strong> Compression tames peaks, giving your limiter an easier job for cleaner loudness.</li>
-                <li><strong>Problem Solving:</strong> Multiband lets you fix frequency-specific dynamic issues the mixer missed.</li>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); list-style: none;">
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Cohesion:</strong> Glue compression makes the mix feel like one unified piece, not separate elements.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Consistent Energy:</strong> Gentle dynamics control keeps energy even throughout the song.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Headroom Management:</strong> Compression tames peaks, giving your limiter an easier job for cleaner loudness.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Problem Solving:</strong> Multiband lets you fix frequency-specific dynamic issues the mixer missed.</span></li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-cyan);">
+              <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: var(--space-sm);">What's Next</h3>
+              <p style="color: var(--text-secondary); margin: 0;">In <a href="lesson-mastering-5.html" style="color: var(--accent-cyan); text-decoration: underline;"><strong>Lesson 5: Stereo Enhancement</strong></a>, you'll learn to use mid-side processing and stereo imaging to create width while maintaining mono compatibility.</p>
             </div>
           </div>
         </section>

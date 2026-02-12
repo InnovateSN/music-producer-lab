@@ -74,30 +74,104 @@
               </div>
             </div>
 
+            <!-- LOUDNESS VS DYNAMIC RANGE -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/fulmine.png" alt="reference" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Loudness vs <a href="glossary.html#dynamic-range" style="color: var(--text-primary); text-decoration: none;">Dynamic Range</a> Trade-Off
+            </h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--accent-cyan);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">LUFS</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);">DR</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Character</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Best For</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-green);"><strong>-16 to -14</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">DR10-14</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Dynamic, natural</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Acoustic, jazz, Apple Music</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-cyan);"><strong>-14 to -11</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">DR8-10</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Balanced, professional</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Pop, rock, streaming</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: #e6b800;"><strong>-11 to -8</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">DR6-8</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Dense, impactful</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">EDM, hip-hop, club/DJ</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);"><strong>-8 to -5</strong></td>
+                    <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">DR4-6</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Crushed, fatiguing</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Avoid — turned down on streaming</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- OVER-LIMITING SIGNS -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/idea.png" alt="warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Signs You're Over-Limiting
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-orange);">
+                <strong style="color: var(--accent-orange);">Audible Distortion</strong>
+                <p style="color: var(--text-secondary); margin: var(--space-xs) 0 0; font-size: 0.9rem;">Crunchy, fizzy artifacts on transients and vocal sibilance.</p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-orange);">
+                <strong style="color: var(--accent-orange);">Pumping &amp; Breathing</strong>
+                <p style="color: var(--text-secondary); margin: var(--space-xs) 0 0; font-size: 0.9rem;">Audible volume swelling after loud hits.</p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-orange);">
+                <strong style="color: var(--accent-orange);">Lost Transients</strong>
+                <p style="color: var(--text-secondary); margin: var(--space-xs) 0 0; font-size: 0.9rem;">Drums sound flat. Snare doesn't snap, kicks don't punch.</p>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--accent-orange);">
+                <strong style="color: var(--accent-orange);">Listener Fatigue</strong>
+                <p style="color: var(--text-secondary); margin: var(--space-xs) 0 0; font-size: 0.9rem;">Ear tiredness after 30-60 seconds of listening.</p>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
               <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Loudness War Mentality:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-orange);">Loudness War Mentality:</strong>
                 <span style="color: var(--text-secondary);"> Crushing to -6 LUFS is counterproductive. Streaming normalization means louder isn't better—it's just more distorted. Dynamic masters win after normalization.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Ignoring Inter-Sample Peaks:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-purple);">Ignoring Inter-Sample Peaks:</strong>
                 <span style="color: var(--text-secondary);"> Standard peak meters miss ISPs. Always use true peak limiting and metering. ISPs cause audible distortion after codec conversion, even if your meters look clean.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Limiting Too Hard:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-cyan);">Limiting Too Hard:</strong>
                 <span style="color: var(--text-secondary);"> If you see constant 6+ dB gain reduction, you're destroying transients and creating distortion. Back off and let compression upstream do more work.</span>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Competitive Loudness:</strong> Your master needs to sound comparable to commercial releases at similar perceived volume.</li>
-                <li><strong>Platform Compliance:</strong> Meeting streaming loudness targets ensures your master sounds as intended after normalization.</li>
-                <li><strong>Preserved Dynamics:</strong> Good limiting achieves loudness while keeping punch and energy intact.</li>
-                <li><strong>Distortion Control:</strong> Proper technique minimizes audible artifacts from limiting.</li>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); list-style: none;">
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Competitive Loudness:</strong> Your master needs to sound comparable to commercial releases at similar perceived volume.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Platform Compliance:</strong> Meeting streaming loudness targets ensures your master sounds as intended after normalization.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Preserved Dynamics:</strong> Good limiting achieves loudness while keeping punch and energy intact.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Distortion Control:</strong> Proper technique minimizes audible artifacts from limiting.</span></li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-cyan);">
+              <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: var(--space-sm);">What's Next</h3>
+              <p style="color: var(--text-secondary); margin: 0;">In <a href="lesson-mastering-7.html" style="color: var(--accent-cyan); text-decoration: underline;"><strong>Lesson 7: Mastering for Streaming</strong></a>, you'll learn how Spotify, Apple Music, and YouTube handle your masters and how to optimize for each platform.</p>
             </div>
           </div>
         </section>

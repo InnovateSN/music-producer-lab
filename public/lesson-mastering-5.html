@@ -74,30 +74,84 @@
               </div>
             </div>
 
+            <!-- FREQUENCY-WIDTH SAFETY ZONES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/fulmine.png" alt="zones" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Frequency-Width Safety Zones
+            </h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 140px; padding: var(--space-sm); background: rgba(255, 90, 61, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: var(--accent-orange);">Sub (0-100 Hz)</strong></div>
+                <div style="flex: 1; padding: var(--space-sm); background: rgba(255, 90, 61, 0.05); border-radius: var(--radius-sm);"><span style="color: var(--text-secondary);"><strong>MONO ONLY</strong> — Stereo bass causes <a href="glossary.html#phase-cancellation" style="color: var(--accent-cyan);">phase cancellation</a> on mono systems.</span></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 140px; padding: var(--space-sm); background: rgba(255, 200, 0, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: #e6b800;">Low-Mids (100-500)</strong></div>
+                <div style="flex: 1; padding: var(--space-sm); background: rgba(255, 200, 0, 0.05); border-radius: var(--radius-sm);"><span style="color: var(--text-secondary);"><strong>CAREFUL</strong> — Some natural width is fine, but excessive widening causes muddiness.</span></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 140px; padding: var(--space-sm); background: rgba(0, 200, 140, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: var(--accent-green);">Mids (500-5k)</strong></div>
+                <div style="flex: 1; padding: var(--space-sm); background: rgba(0, 200, 140, 0.05); border-radius: var(--radius-sm);"><span style="color: var(--text-secondary);"><strong>SAFE TO WIDEN</strong> — Guitars, synths, harmonies. +2-4 dB Side boost effective here.</span></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div style="width: 140px; padding: var(--space-sm); background: rgba(0, 212, 255, 0.2); border-radius: var(--radius-sm); text-align: center; flex-shrink: 0;"><strong style="color: var(--accent-cyan);">Highs (5k+)</strong></div>
+                <div style="flex: 1; padding: var(--space-sm); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-sm);"><span style="color: var(--text-secondary);"><strong>BEST FOR WIDTH</strong> — Cymbals, air, shimmer. Maximum impact, minimal mono issues.</span></div>
+              </div>
+            </div>
+
+            <!-- CORRELATION METER -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+              <img src="images/idea.png" alt="tip" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: var(--space-sm);">
+              Reading the Correlation Meter
+            </h3>
+            <div style="display: grid; gap: var(--space-sm); margin-bottom: var(--space-2xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); background: rgba(0, 200, 140, 0.08); border-radius: var(--radius-sm);">
+                <strong style="color: var(--accent-green); width: 80px; text-align: center;">+1.0</strong>
+                <span style="color: var(--text-secondary);">Perfectly mono — identical L and R</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); background: rgba(0, 212, 255, 0.08); border-radius: var(--radius-sm);">
+                <strong style="color: var(--accent-cyan); width: 80px; text-align: center;">+0.5 to +1</strong>
+                <span style="color: var(--text-secondary);">Normal stereo — good mono compatibility</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); background: rgba(255, 200, 0, 0.08); border-radius: var(--radius-sm);">
+                <strong style="color: #e6b800; width: 80px; text-align: center;">0 to +0.5</strong>
+                <span style="color: var(--text-secondary);">Wide stereo — watch carefully, test in mono</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); background: rgba(255, 90, 61, 0.08); border-radius: var(--radius-sm);">
+                <strong style="color: var(--accent-orange); width: 80px; text-align: center;">Below 0</strong>
+                <span style="color: var(--text-secondary);">Phase issues — elements cancel in mono</span>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
               <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Widening the Low End:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-orange);">Widening the Low End:</strong>
                 <span style="color: var(--text-secondary);"> Stereo bass causes phase cancellation and loses punch on mono systems. Always keep everything below 100-150 Hz in mono.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Not Checking Mono:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-purple);">Not Checking Mono:</strong>
                 <span style="color: var(--text-secondary);"> What sounds wide in stereo might completely collapse in mono. Always A/B your stereo processing against a mono check. If it doesn't hold up, back off the width.</span>
               </div>
               <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Over-Widening:</strong>
+                <img src="images/X_gray.png" alt="X" style="width: 1.1rem; height: 1.1rem; vertical-align: middle; margin-right: 0.4rem;"><strong style="color: var(--accent-cyan);">Over-Widening:</strong>
                 <span style="color: var(--text-secondary);"> Excessive width sounds impressive on first listen but fatigues the ears and loses impact. If the center feels hollow or weak, you've gone too far.</span>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Commercial Sound:</strong> Wide, immersive masters are a hallmark of professional releases.</li>
-                <li><strong>Translation:</strong> Proper mono compatibility ensures your master sounds good everywhere.</li>
-                <li><strong>Low-End Power:</strong> Mono bass hits harder and translates to all systems.</li>
-                <li><strong>Listening Experience:</strong> Good width creates space and separation, making the mix more enjoyable.</li>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); list-style: none;">
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Commercial Sound:</strong> Wide, immersive masters are a hallmark of professional releases.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Translation:</strong> Proper mono compatibility ensures your master sounds good everywhere.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Low-End Power:</strong> Mono bass hits harder and translates to all systems.</span></li>
+                <li style="display: flex; gap: var(--space-sm); align-items: flex-start;"><img src="images/mplscudo_check.png" alt="check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.3rem; flex-shrink: 0;"><span><strong>Listening Experience:</strong> Good width creates space and separation, making the mix more enjoyable.</span></li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-cyan);">
+              <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: var(--space-sm);">What's Next</h3>
+              <p style="color: var(--text-secondary); margin: 0;">In <a href="lesson-mastering-6.html" style="color: var(--accent-cyan); text-decoration: underline;"><strong>Lesson 6: Limiting &amp; Loudness</strong></a>, you'll master the art of the final limiter — achieving competitive volume while preserving dynamics and avoiding distortion.</p>
             </div>
           </div>
         </section>
