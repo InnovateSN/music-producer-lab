@@ -74,30 +74,107 @@
               </div>
             </div>
 
+            <!-- MULTI-SAMPLE MAPPING REFERENCE -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Multi-Sample Mapping Reference</h3>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--accent-cyan);">
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Aspect</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-orange);">Basic</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-purple);">Standard</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--accent-green);">Professional</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Key Zones</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Every octave</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Every M3rd</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">Every m2nd</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Velocity Layers</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">1-2</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">3-4</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">5-8+</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Round-Robins</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">None</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">3-4</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">6-8+</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Articulations</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">1 (sustain)</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">2-3</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">5+ (staccato, legato, etc.)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Total Samples</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">~20</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">~200</td>
+                      <td style="padding: var(--space-sm) var(--space-md); text-align: center; color: var(--text-secondary);">2,000+</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Too Few Samples:</strong>
-                <span style="color: var(--text-secondary);"> Large pitch shifts sound unnatural. Sample at least every minor 3rd to keep transposition under 3 semitones. More samples = more realism.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-orange);">Too Few Samples:</strong>
+                <span style="color: var(--text-secondary);"> Large pitch shifts sound unnatural. Sample at least every minor 3rd to keep transposition under 3 semitones. More samples = more realism.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">No Round-Robins:</strong>
-                <span style="color: var(--text-secondary);"> Repeated notes with the same sample create the "machine gun" effect. Record at least 3 variations per note/velocity to cycle through.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-purple);">No Round-Robins:</strong>
+                <span style="color: var(--text-secondary);"> Repeated notes with the same sample create the "machine gun" effect. Record at least 3 variations per note/velocity to cycle through.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Inconsistent Recording:</strong>
-                <span style="color: var(--text-secondary);"> Variations in mic position, room noise, or performance between samples create an uneven instrument. Record all samples in one session with consistent setup.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-cyan);">Inconsistent Recording:</strong>
+                <span style="color: var(--text-secondary);"> Variations in mic position, room noise, or performance between samples create an uneven instrument. Record all samples in one session with consistent setup.</span></div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(179, 102, 255, 0.05); border-left: 3px solid var(--accent-magenta); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-magenta);">Poor Naming Convention:</strong>
+                <span style="color: var(--text-secondary);"> Without systematic naming (e.g., "Piano_C3_v3_rr2.wav"), mapping becomes a nightmare. Establish a naming convention before recording and stick to it.</span></div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Custom Instruments:</strong> Turn any sound into a playable, expressive instrument.</li>
-                <li><strong>Professional Libraries:</strong> This is exactly how commercial Kontakt libraries are built.</li>
-                <li><strong>Unique Sounds:</strong> Sample sources no one else has—your voice, found objects, rare instruments.</li>
-                <li><strong>Commercial Opportunity:</strong> Well-made sample instruments sell on platforms like Kontakt Hub and Plugin Boutique.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Custom Instruments:</strong> Turn any sound into a playable, expressive <a href="glossary.html#sampler" style="color: var(--accent-cyan);">sampler</a> instrument.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Professional Libraries:</strong> This is exactly how commercial Kontakt libraries are built.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Unique Sounds:</strong> Sample sources no one else has -- your voice, found objects, rare instruments.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Commercial Opportunity:</strong> Well-made sample instruments sell on platforms like Kontakt Hub and Plugin Boutique.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+              <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm); color: var(--text-primary);">What's Next?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">
+                In <a href="lesson-sound-design-11.html" style="color: var(--accent-cyan); text-decoration: underline;">Lesson 11: Modular Synthesis Concepts</a>, you'll explore the world of modular synthesis -- patching oscillators, filters, and modulators from scratch for unlimited sonic possibilities.
+              </p>
             </div>
           </div>
         </section>

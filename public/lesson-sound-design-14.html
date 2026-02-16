@@ -74,30 +74,96 @@
               </div>
             </div>
 
+            <!-- SYNTHESIS COMBINATION MATRIX -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Synthesis Combination Matrix</h3>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--accent-cyan);">
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan);">Combination</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-orange);">Best For</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-purple);">How to Layer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Sub + FM</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Complex basses, metallic leads</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sub for body, FM for harmonics</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Wavetable + Granular</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Evolving pads, textures</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">WT for tonal core, granular for atmosphere</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">Sample + Synth</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Hybrid instruments, cinematic</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sample for attack, synth for sustain</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 600;">FM + Additive</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Bells, precise timbres</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">FM for inharmonics, additive for control</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Complexity for Complexity's Sake:</strong>
-                <span style="color: var(--text-secondary);"> More synthesis methods doesn't mean better sound. Start with one method, add others only when they solve a problem or add something missing.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-orange);">Complexity for Complexity's Sake:</strong>
+                <span style="color: var(--text-secondary);"> More synthesis methods doesn't mean better sound. Start with one method, add others only when they solve a problem or add something missing.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Frequency Stacking:</strong>
-                <span style="color: var(--text-secondary);"> Multiple engines fighting for the same frequencies creates mud. Give each synthesis method its own frequency space using filters and EQ.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-purple);">Frequency Stacking:</strong>
+                <span style="color: var(--text-secondary);"> Multiple engines fighting for the same frequencies creates mud. Give each synthesis method its own <a href="glossary.html#frequency" style="color: var(--accent-cyan);">frequency</a> space using filters and <a href="glossary.html#eq" style="color: var(--accent-cyan);">EQ</a>.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Skipping Fundamentals:</strong>
-                <span style="color: var(--text-secondary);"> Master each synthesis method individually before combining. Hybrid synthesis builds on deep understanding of component techniques.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-cyan);">Skipping Fundamentals:</strong>
+                <span style="color: var(--text-secondary);"> Master each synthesis method individually before combining. Hybrid synthesis builds on deep understanding of component techniques.</span></div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md); background: rgba(179, 102, 255, 0.05); border-left: 3px solid var(--accent-magenta); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-magenta);">Ignoring Phase Relationships:</strong>
+                <span style="color: var(--text-secondary);"> Layered oscillators can cancel each other out. Check phase alignment between engines, especially in the low end where phase issues are most destructive.</span></div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Unlimited Palette:</strong> No single method can create every sound. Combining methods removes all limitations.</li>
-                <li><strong>Problem Solving:</strong> When one approach isn't working, another method might have the answer.</li>
-                <li><strong>Signature Sounds:</strong> Unique combinations create sounds no one else has—your sonic identity.</li>
-                <li><strong>Modern Standard:</strong> Professional sound designers fluently combine methods. It's expected at high levels.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Unlimited Palette:</strong> No single method can create every sound. Combining methods removes all limitations.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Problem Solving:</strong> When one approach isn't working, another method might have the answer.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Signature Sounds:</strong> Unique combinations create sounds no one else has -- your sonic identity.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-sm) 0; color: var(--text-secondary); line-height: 1.8;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <span><strong>Modern Standard:</strong> Professional sound designers fluently combine methods. It's expected at high levels.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+              <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm); color: var(--text-primary);">What's Next?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">
+                In <a href="lesson-sound-design-15.html" style="color: var(--accent-cyan); text-decoration: underline;">Lesson 15: Build a Complete Sound Library</a>, you'll put everything together in a capstone project -- designing, processing, and organizing a professional sound library from scratch.
+              </p>
             </div>
           </div>
         </section>

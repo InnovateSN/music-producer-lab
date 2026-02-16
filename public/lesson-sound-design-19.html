@@ -57,13 +57,96 @@
           </div>
         </div>
 
-        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+        <!-- SPECTRAL PROCESSING COMPARISON -->
+        <div style="padding: 1.5rem; background: var(--bg-secondary, #111); border-radius: 12px; border: 1px solid var(--border-subtle, #333); margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Spectral Effects Quick Reference</h3>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--accent-cyan, #00d4ff);">
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-cyan, #00d4ff);">Effect</th>
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-orange, #ff5a3d);">What It Does</th>
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-purple, #5f4dff);">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Spectral Freeze</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Sustains a single spectral frame indefinitely</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Drone textures, ambiences</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Spectral Blur</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Smears transients across time</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Ethereal pads from sharp sounds</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Spectral Shift</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Moves all frequencies up or down</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Alien/robotic timbres</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Cross-Synthesis</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Morphs between two sound sources</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Hybrid timbres, vocal textures</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Vocoding</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Imposes spectral envelope of one sound on another</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Talking synths, vocal effects</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Common Mistakes to Avoid</h3>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange, #ff5a3d); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-orange, #ff5a3d);">Wrong FFT Size:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Too small = poor frequency resolution. Too large = poor time resolution. Start with 2048-4096 samples and adjust based on whether you need frequency precision or transient accuracy.</span></div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple, #5f4dff); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-purple, #5f4dff);">Overusing Spectral Effects:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Spectral processing is powerful but can quickly become gimmicky. Use it to enhance, not to show off. Subtle spectral work often beats dramatic transformations.</span></div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan, #00d4ff); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-cyan, #00d4ff);">Ignoring Artifacts:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Spectral processing introduces unique artifacts (phasing, smearing). Listen critically and use overlap settings and window functions to minimize unwanted side effects.</span></div>
+          </div>
+        </div>
+
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2); margin-bottom: 1.5rem;">
           <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Unique Transformations:</strong> Spectral processing creates sounds impossible with time-domain tools.</li>
-            <li><strong>Scientific Foundation:</strong> Understanding FFT deepens your grasp of digital audio fundamentals.</li>
-            <li><strong>Hybrid Sounds:</strong> Cross-synthesis and morphing create entirely new timbres from existing sources.</li>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Unique Transformations:</strong> Spectral processing creates sounds impossible with time-domain tools.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Scientific Foundation:</strong> Understanding <a href="glossary.html#fft" style="color: var(--accent-cyan, #00d4ff);">FFT</a> deepens your grasp of digital audio fundamentals.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Hybrid Sounds:</strong> Cross-synthesis and morphing create entirely new timbres from existing sources.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Film & Game Audio:</strong> Spectral tools are essential for creating otherworldly sounds in visual media.</span>
+            </li>
           </ul>
+        </div>
+
+        <!-- WHAT'S NEXT -->
+        <div style="padding: 1rem 1.5rem; background: var(--bg-secondary, #111); border-radius: 12px; border: 1px solid var(--border-subtle, #333);">
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary, #fff);">What's Next?</h3>
+          <p style="color: var(--text-secondary, #aaa); line-height: 1.7; margin: 0;">
+            In <a href="lesson-sound-design-20.html" style="color: var(--accent-cyan, #00d4ff); text-decoration: underline;">Lesson 20: Sound Design for Visual Media</a>, you'll apply all your sound design skills to create cinematic impacts, tension elements, and atmospheric beds for film, trailers, and games.
+          </p>
         </div>
       </div>
     </section>

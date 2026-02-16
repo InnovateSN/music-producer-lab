@@ -57,13 +57,99 @@
           </div>
         </div>
 
-        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+        <!-- CINEMATIC SOUND DESIGN LAYERS -->
+        <div style="padding: 1.5rem; background: var(--bg-secondary, #111); border-radius: 12px; border: 1px solid var(--border-subtle, #333); margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Cinematic Impact Layering Guide</h3>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--accent-cyan, #00d4ff);">
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-cyan, #00d4ff);">Layer</th>
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-orange, #ff5a3d);">Frequency Range</th>
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-purple, #5f4dff);">Purpose</th>
+                  <th style="padding: 0.5rem 0.75rem; text-align: left; color: var(--accent-green, #00ff87);">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Sub Hit</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">20-80 Hz</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Physical weight, chest punch</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Sine wave + pitch envelope</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Body</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">80-500 Hz</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Fullness, presence</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Layered drum hits, noise</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Transient</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">1-8 kHz</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Cut-through, impact</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Metal hits, clicks, snaps</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-primary, #fff); font-weight: 600;">Tail</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Full spectrum</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Space, decay, drama</td>
+                  <td style="padding: 0.5rem 0.75rem; color: var(--text-secondary, #aaa);">Reverb, convolution, reverse</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Common Mistakes to Avoid</h3>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange, #ff5a3d); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-orange, #ff5a3d);">Sounds Before Story:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Every sound must serve the narrative. Don't design impressive sounds that distract from the story. Sound design supports visuals, not the other way around.</span></div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple, #5f4dff); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-purple, #5f4dff);">Poor Sync:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Impacts that land even 1-2 frames off feel wrong. Work to timecode, zoom in on edits, and use frame-accurate placement. Precision is non-negotiable in visual media.</span></div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan, #00d4ff); border-radius: 0 8px 8px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.4rem; height: 1.4rem; margin-top: 2px; flex-shrink: 0;">
+            <div><strong style="color: var(--accent-cyan, #00d4ff);">Overcrowded Soundscape:</strong>
+            <span style="color: var(--text-secondary, #aaa);"> Silence is a tool. Don't fill every moment with sound. Strategic silence before an impact makes it hit harder. Less is often more in cinematic sound design.</span></div>
+          </div>
+        </div>
+
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2); margin-bottom: 1.5rem;">
           <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Growing Industry:</strong> Film, streaming, and games need constant sound design—huge demand for skilled designers.</li>
-            <li><strong>Emotional Power:</strong> Sound design shapes how audiences experience visual stories—invisible but essential.</li>
-            <li><strong>Applied Skills:</strong> This combines everything: synthesis, sampling, processing, and creative thinking.</li>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Growing Industry:</strong> Film, streaming, and games need constant sound design -- huge demand for skilled designers.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Emotional Power:</strong> Sound design shapes how audiences experience visual stories -- invisible but essential.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Applied Skills:</strong> This combines everything: <a href="glossary.html#synthesis" style="color: var(--accent-cyan, #00d4ff);">synthesis</a>, <a href="glossary.html#sampling" style="color: var(--accent-cyan, #00d4ff);">sampling</a>, processing, and creative thinking.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0; color: var(--text-secondary, #aaa); line-height: 1.8;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <span><strong>Career Path:</strong> Sound design for visual media is a well-paying, creative career with growing opportunities.</span>
+            </li>
           </ul>
+        </div>
+
+        <!-- CONGRATULATIONS -->
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 255, 135, 0.1), rgba(0, 212, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 255, 135, 0.2);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <img src="images/fulmine.png" alt="Complete" style="width: 2rem; height: 2rem;">
+            <h3 style="font-size: 1.25rem; margin: 0; color: var(--accent-green, #00ff87);">Sound Design Module Complete!</h3>
+          </div>
+          <p style="color: var(--text-secondary, #aaa); line-height: 1.7; margin: 0;">
+            You've completed all 20 Sound Design lessons -- from basic waveforms to cinematic sound design. You now have the skills to create any sound you can imagine using synthesis, sampling, and processing techniques. Continue your journey with the <a href="labs.html" style="color: var(--accent-cyan, #00d4ff); text-decoration: underline;">full course catalog</a> or explore <a href="lesson-mixing-1.html" style="color: var(--accent-cyan, #00d4ff); text-decoration: underline;">Mixing</a> to learn how to make your sounds shine in a mix.
+          </p>
         </div>
       </div>
     </section>
