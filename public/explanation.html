@@ -204,53 +204,104 @@
             </svg>
           </div>
           
-          <span class="coming-soon-badge">Coming Soon</span>
-          
-          <h2 class="coming-soon-title">Full Explanation Page</h2>
+          <h2 class="coming-soon-title">How It Works</h2>
           
           <p class="coming-soon-description">
-            We're working on a comprehensive guide that explains our learning methodology, 
-            the science behind our interactive approach, and how to get the most out of each lab.
+            Our platform adapts to your learning style. Switch instantly between two powerful views designed for different moments in your creative process.
           </p>
           
           <div class="coming-soon-features">
             <div class="coming-soon-feature">
-              <div class="coming-soon-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                </svg>
+              <div class="coming-soon-feature-icon" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); display: flex; align-items: center; justify-content: center;">
+                <img src="images/mixer.png" alt="Studio" style="width: 24px; height: 24px; object-fit: contain;">
               </div>
               <div>
-                <h3>Hands-On Learning</h3>
-                <p>Learn by actually producing, not watching</p>
+                <h3 style="color: #00d4ff;">Studio Mode</h3>
+                <p>Full-screen immersive experience. The sequencer is always visible on the right, perfect for focused production and "doing".</p>
               </div>
             </div>
             
             <div class="coming-soon-feature">
-              <div class="coming-soon-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 20V10M6 20V4M18 20v-6"/>
-                </svg>
+              <div class="coming-soon-feature-icon" style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); display: flex; align-items: center; justify-content: center;">
+                <img src="images/notamusicale.png" alt="Reading" style="width: 24px; height: 24px; object-fit: contain;">
               </div>
               <div>
-                <h3>Progressive Levels</h3>
-                <p>Start simple, build complexity gradually</p>
+                <h3 style="color: #a855f7;">Reading Mode</h3>
+                <p>Classic scroll layout. Theory and video take center stage at the top, with tools below. Ideal for studying concepts first.</p>
               </div>
             </div>
             
             <div class="coming-soon-feature">
-              <div class="coming-soon-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
+              <div class="coming-soon-feature-icon" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
                 </svg>
               </div>
               <div>
-                <h3>Instant Feedback</h3>
-                <p>Know immediately if you're on track</p>
+                <h3>Switch Instantly</h3>
+                <p>Toggle anytime. Try the simulation below:</p>
               </div>
             </div>
           </div>
+
+          <!-- INTERACTIVE DEMO WIDGET -->
+          <div class="interactive-demo" style="margin: var(--space-2xl) auto; max-width: 500px; background: #000; border: 1px solid #333; border-radius: 12px; padding: 20px; text-align: center; overflow: hidden; position: relative;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+              <span style="font-size: 0.7rem; color: #666; font-weight: 700; letter-spacing: 1px;">MINI PREVIEW</span>
+              <button id="demo-toggle-btn" style="background: #222; border: 1px solid #444; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s;">
+                SWITCH VIEW ⟳
+              </button>
+            </div>
+            
+            <!-- The Container that changes layout -->
+            <div id="demo-container" style="display: flex; flex-direction: column; gap: 10px; height: 200px; transition: all 0.3s ease;">
+              <!-- Theory Block -->
+              <div class="demo-block demo-text" style="background: #1a1d26; border-radius: 6px; padding: 10px; flex: 1; display: flex; align-items: center; justify-content: center; border: 1px dashed #555;">
+                <span style="font-size: 0.8rem; color: #888;">📜 Theory & Video</span>
+              </div>
+              <!-- Tool Block -->
+              <div class="demo-block demo-tool" style="background: #111; border: 1px solid #00d4ff; border-radius: 6px; padding: 10px; flex: 1; display: flex; align-items: center; justify-content: center; position: relative;">
+                <span style="font-size: 0.8rem; color: #00d4ff;">🎹 Sequencer</span>
+                <!-- Faux Sequencer Grid -->
+                <div style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); display: flex; gap: 2px;">
+                  <div style="width: 4px; height: 4px; background: #00d4ff;"></div>
+                  <div style="width: 4px; height: 4px; background: #333;"></div>
+                  <div style="width: 4px; height: 4px; background: #333;"></div>
+                  <div style="width: 4px; height: 4px; background: #333;"></div>
+                </div>
+              </div>
+            </div>
+            
+            <p id="demo-status" style="margin-top: 15px; font-size: 0.8rem; color: #a855f7;">Currently: Reading Mode (Scroll)</p>
+          </div>
+
+          <script>
+            // Simple inline script for the demo widget
+            const demoBtn = document.getElementById('demo-toggle-btn');
+            const demoContainer = document.getElementById('demo-container');
+            const demoStatus = document.getElementById('demo-status');
+            let isStudio = false;
+
+            demoBtn.addEventListener('click', () => {
+              isStudio = !isStudio;
+              if (isStudio) {
+                // Switch to Studio Mode (Side by Side)
+                demoContainer.style.flexDirection = 'row';
+                demoBtn.style.color = '#00d4ff';
+                demoBtn.style.borderColor = '#00d4ff';
+                demoStatus.textContent = "Currently: Studio Mode (Full Screen)";
+                demoStatus.style.color = "#00d4ff";
+              } else {
+                // Switch to Reading Mode (Stacked)
+                demoContainer.style.flexDirection = 'column';
+                demoBtn.style.color = '#fff';
+                demoBtn.style.borderColor = '#444';
+                demoStatus.textContent = "Currently: Reading Mode (Scroll)";
+                demoStatus.style.color = "#a855f7";
+              }
+            });
+          </script>
           
           <div class="coming-soon-cta">
             <a href="labs.html" class="btn btn-primary">
