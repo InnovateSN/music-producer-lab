@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- THEORY SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow">Theory</div>
+          <h2 class="section-title">Bass EQ & Frequency Management</h2>
+
+          <div class="exercise-box">
+            <h3>What You're Actually Making</h3>
+            <p>You're learning to <strong>shape bass frequencies with EQ</strong> (equalization) — removing problematic ranges while enhancing desirable ones. Even a perfectly synthesized bass needs EQ to sit in the mix. EQ removes <strong>mud</strong> (200-400 Hz buildup), adds <strong>clarity</strong> (1-3 kHz definition), and manages the <strong>sub-to-mid relationship</strong> so bass doesn't clash with kick drums, vocals, or other elements.</p>
+
+            <p>Professional mixers like <strong>Chris Lord-Alge</strong> (Green Day), <strong>Andrew Scheps</strong> (Red Hot Chili Peppers), and <strong>Jaycen Joshua</strong> (Beyoncé) use surgical EQ to carve space for every element. Bass EQ is critical — it's the foundation of the mix. Get it wrong, and the entire track sounds muddy or weak.</p>
+
+            <p>This lesson teaches professional EQ strategies, frequency ranges, and how to make bass work with kick drums.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Bass Frequency Ranges</h3>
+            <p>Bass occupies multiple frequency ranges, each contributing different sonic characteristics:</p>
+
+            <pre>
+SUBSONIC (Below 30 Hz):
+- Inaudible, speaker-damaging rumble
+- Action: HIGH-PASS FILTER at 30-40 Hz (remove completely)
+- Reason: Wastes headroom, no musical content
+
+SUB-BASS (30-80 Hz):
+- Felt in chest/body, not heard
+- Character: Weight, power, physical impact
+- Genre: Heavy in hip-hop, EDM, reggae, dubstep
+- EQ: Boost carefully (+1 to +3 dB), keep MONO
+
+LOW (80-200 Hz):
+- Fundamental frequencies of bass notes
+- Character: Warmth, body, fullness
+- Genre: Present in all genres
+- EQ: Balance with sub, avoid buildup
+
+LOW-MID (200-400 Hz):
+- "MUD ZONE" — problematic buildup
+- Character: Boxiness, muddiness, lack of clarity
+- Genre: Cut in most genres
+- EQ: Cut -2 to -6 dB (surgical, narrow Q)
+
+MID (400-1000 Hz):
+- Note definition and attack
+- Character: Presence, midrange punch
+- Genre: Varies by style
+- EQ: Boost for definition, cut for space
+
+UPPER-MID (1-3 kHz):
+- Clarity, articulation, "hearing" the bass
+- Character: String noise, pick attack, presence
+- Genre: Boost for clarity in busy mixes
+- EQ: Gentle boost +2 to +4 dB (wide Q)
+
+HIGH (3-8 kHz):
+- Harmonic content, brightness
+- Character: Treble, sparkle, air
+- Genre: Minimal in bass (leave for guitars/vocals)
+- EQ: Roll off above 5 kHz (low-pass)
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>The "Mud Zone": 200-400 Hz</h3>
+            <p>The 200-400 Hz range is where <strong>mud</strong> accumulates — bass, kick, guitars, and keys all fight here:</p>
+
+            <p><strong>What is Mud?</strong></p>
+            <ul>
+              <li><strong>Symptom:</strong> Mix sounds boxy, unclear, muffled</li>
+              <li><strong>Cause:</strong> Too much energy in 200-400 Hz across multiple instruments</li>
+              <li><strong>Result:</strong> Loss of clarity, separation, and punch</li>
+            </ul>
+
+            <p><strong>Removing Mud from Bass:</strong></p>
+            <pre>
+EQ Type: Parametric (bell/peak)
+Frequency: 250-350 Hz (sweep to find worst spot)
+Gain: -3 to -6 dB (cut)
+Q: 2-4 (narrow, surgical)
+
+Method:
+1. Boost +10 dB at 250 Hz
+2. Sweep 200-400 Hz to find worst-sounding spot
+3. Cut that frequency by -3 to -6 dB
+4. A/B compare: mix should sound clearer, less boxy
+</pre>
+
+            <p><strong>Genre Considerations:</strong></p>
+            <ul>
+              <li><strong>Hip-Hop/EDM:</strong> Less mud cutting (want thick bass)</li>
+              <li><strong>Rock/Metal:</strong> Heavy mud cutting (make space for guitars)</li>
+              <li><strong>Jazz/R&B:</strong> Moderate cutting (balance warmth vs clarity)</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Clarity Boost: 1-3 kHz</h3>
+            <p>While sub-bass provides weight, <strong>1-3 kHz adds clarity</strong> — the ability to hear the bass on small speakers:</p>
+
+            <p><strong>Why Boost Upper Mids?</strong></p>
+            <ul>
+              <li><strong>Small speaker translation:</strong> Phones/laptops can't reproduce sub-bass</li>
+              <li><strong>Note articulation:</strong> Hear what the bass is playing, not just feel it</li>
+              <li><strong>Mix presence:</strong> Bass doesn't disappear in busy arrangements</li>
+            </ul>
+
+            <p><strong>Clarity Boost EQ:</strong></p>
+            <pre>
+EQ Type: Parametric (bell/peak) or High-Shelf
+Frequency: 1.5-2.5 kHz (sweet spot)
+Gain: +2 to +4 dB (gentle boost)
+Q: 1-2 (wide, musical)
+
+Method:
+1. Solo bass and listen on laptop/phone speakers
+2. If bass is barely audible, boost 1.5-2.5 kHz
+3. Add +2 dB, listen in full mix
+4. Adjust to taste: too much sounds harsh
+</pre>
+
+            <p><strong>Alternative: Saturation/Distortion:</strong></p>
+            <p>Instead of EQ, add harmonics with saturation:</p>
+            <pre>
+Plugin: Tape saturation, tube distortion, or harmonics generator
+Amount: Subtle (10-30% mix)
+Result: Adds upper harmonics naturally without harsh EQ boost
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Bass + Kick: The Sub-Bass Relationship</h3>
+            <p>Bass and kick drum compete for <strong>sub-bass space (40-80 Hz)</strong>. Only one element should dominate this range:</p>
+
+            <p><strong>Rule: One Element Owns the Sub</strong></p>
+            <pre>
+Option 1: Bass owns sub, kick owns low-mids
+Bass: Full 40-80 Hz (no cut)
+Kick: High-pass at 60-80 Hz (remove sub)
+
+Option 2: Kick owns sub, bass owns low-mids
+Bass: High-pass at 60 Hz (remove sub)
+Kick: Full 40-80 Hz (no cut)
+
+Option 3: Both share sub (advanced)
+Bass: Peak at 50 Hz
+Kick: Peak at 65 Hz
+Result: Separated by 15 Hz, minimal conflict
+</pre>
+
+            <p><strong>Sidechain Compression (Dynamic EQ Alternative):</strong></p>
+            <pre>
+Method: Duck bass when kick hits
+Attack: 1-5ms (fast)
+Release: 50-150ms (quick recovery)
+Ratio: 4:1 to 8:1
+Threshold: -6 to -12 dB reduction
+
+Result: Kick punches through without permanent EQ cuts
+Modern technique in EDM, pop, hip-hop
+</pre>
+
+            <p><strong>Genre-Specific Approaches:</strong></p>
+            <ul>
+              <li><strong>Hip-Hop:</strong> Bass owns sub (50-60 Hz), kick at 80-100 Hz</li>
+              <li><strong>EDM:</strong> Kick owns sub (50 Hz), heavy sidechain on bass</li>
+              <li><strong>Rock:</strong> Both share sub, focus on 100-400 Hz separation</li>
+              <li><strong>Jazz:</strong> Bass owns sub, kick is felt more than heard</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>EQ in Context: Mix-Based Decisions</h3>
+            <p>Never EQ bass in solo — always make decisions in the context of the full mix:</p>
+
+            <p><strong>The Solo Trap:</strong></p>
+            <pre>
+WRONG:
+1. Solo bass
+2. Make it sound "perfect" alone
+3. Un-solo → bass doesn't fit mix
+
+RIGHT:
+1. Play full mix
+2. EQ bass to complement other elements
+3. Check solo occasionally for reference
+</pre>
+
+            <p><strong>Carving Space with Other Instruments:</strong></p>
+            <ul>
+              <li><strong>Bass vs Kick:</strong> Bass: cut 80 Hz, Kick: cut 200 Hz (separation)</li>
+              <li><strong>Bass vs Guitar:</strong> Bass: cut 500 Hz, Guitar: cut 200 Hz (clarity)</li>
+              <li><strong>Bass vs Vocals:</strong> Bass: cut 2-3 kHz, Vocal: boost 2-3 kHz (presence)</li>
+              <li><strong>Bass vs Keys:</strong> Bass: boost sub, Keys: high-pass at 100 Hz (space)</li>
+            </ul>
+
+            <p><strong>Reference Mixing:</strong></p>
+            <pre>
+Method:
+1. Load a professional reference track in your genre
+2. A/B your bass with reference bass
+3. Note differences in frequency balance
+4. Adjust EQ to match professional standard
+
+Tools: Metric AB, Reference, or simple track switcher
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Common Mistakes</h3>
+            <ul>
+              <li><strong>No High-Pass Filter:</strong> Not cutting subsonic content (<30 Hz) wastes headroom and can cause phase issues. Always high-pass at 30-40 Hz.</li>
+              <li><strong>Over-Boosting Sub-Bass:</strong> Adding +10 dB at 50 Hz creates muddy, boomy bass. Gentle boosts (+1 to +3 dB) are more effective.</li>
+              <li><strong>EQ in Solo:</strong> Bass that sounds perfect soloed often doesn't fit the mix. Always EQ in context with kick, vocals, and other elements.</li>
+              <li><strong>Ignoring Mud Zone:</strong> Not cutting 200-400 Hz results in boxy, unclear mixes. Even a small -3 dB cut makes a huge difference.</li>
+              <li><strong>Narrow Q on Sub:</strong> Using narrow Q (high Q value) on sub-bass creates unnatural resonances. Keep Q wide (0.5-1.5) for musical results.</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Why This Matters</h3>
+            <p><strong>EQ is the difference between amateur and professional mixes.</strong> A great bass sound with bad EQ will sit poorly in the mix. A mediocre bass sound with great EQ will punch through and feel powerful. Learning bass EQ gives you:</p>
+
+            <ul>
+              <li><strong>Mix clarity:</strong> Remove mud and create space for all elements</li>
+              <li><strong>Translation:</strong> Bass that works on clubs, cars, phones, and laptops</li>
+              <li><strong>Professional sound:</strong> Competitive loudness without distortion</li>
+              <li><strong>Problem-solving:</strong> Fix muddy, weak, or boomy bass instantly</li>
+              <li><strong>Genre mastery:</strong> Know how to EQ bass for hip-hop, EDM, rock, jazz</li>
+            </ul>
+
+            <p>Every legendary mixer has signature EQ moves: <strong>Chris Lord-Alge's aggressive mid cuts</strong>, <strong>Andrew Scheps' saturation + gentle EQ</strong>, <strong>Jaycen Joshua's surgical precision</strong>. They don't rely on "magic plugins" — they understand frequencies and make intentional decisions.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>What's Next</h3>
+            <p>Now that you've mastered bass EQ and frequency management, you're ready for <strong>Lesson 19: Bass Expression & Automation</strong>. While EQ shapes tone, automation brings bass to life with movement. You'll learn <strong>pitch glides</strong>, <strong>filter sweeps</strong>, <strong>volume automation</strong>, and <strong>expressive techniques</strong> that make programmed bass feel human and dynamic.</p>
+
+            <p>This is where static bass becomes animated, emotional, and exciting.</p>
+          </div>
+        </section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-bass-18.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

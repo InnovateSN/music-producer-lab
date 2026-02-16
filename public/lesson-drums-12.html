@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all" style="display:none;">
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Clear</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <!-- PRESET CONTROLS (hidden by default) -->
+            <div id="mpl-preset-controls" style="display:none;gap:0.5rem;margin-left:0.5rem;">
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-save">Save</button>
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-load">Load</button>
+            </div>
+
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEMPO/SWING CONTROLS (for sandbox mode) -->
+          <div id="mpl-advanced-controls" style="display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-tempo-slider" style="font-size:0.85rem;color:var(--text-muted);">Tempo:</label>
+              <input type="range" id="mpl-tempo-slider" min="60" max="180" value="120" style="width:100px;">
+              <span id="mpl-tempo-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:50px;">120 BPM</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-swing-slider" style="font-size:0.85rem;color:var(--text-muted);">Swing:</label>
+              <input type="range" id="mpl-swing-slider" min="0" max="100" value="0" style="width:100px;">
+              <span id="mpl-swing-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:40px;">0%</span>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Complete the exercise to unlock the next lesson.</span>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" id="mpl-footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab</div>
+          <div><a class="footer-link" id="mpl-footer-overview-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
+      
+      <!-- LESSON ENGINE SCRIPT -->
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+      <!--
+        HOW TO USE THIS TEMPLATE:
+        
+        1. Create a config file (e.g., configs/lesson-drums-5.config.js)
+        2. Copy this template to your lesson file (e.g., lesson-drums-5-new.html)
+        3. Update the script import at the bottom to point to your config
+        
+        Example:
+
+<script type="module">
+          import { lessonConfig } from './configs/lesson-drums-5.config.js';
+          import { initLessonFromConfig } from './lesson-engine.js';
+          initLessonFromConfig(lessonConfig);
+        </script>
+      -->
+
+      
+      <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-12.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+
+    <!-- ======================================== -->
+    <!-- EDUCATIONAL CONTENT: Rock & Live Drums -->
+    <!-- ======================================== -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card);">
+
+        <!-- INTRODUCTION -->
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-lg); background: linear-gradient(135deg, #ff6b6b, #feca57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Rock Drums: Power & Realism</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          <strong>Rock drumming</strong> is the foundation of live performance energy—powerful <a href="glossary.html#backbeat" class="glossary-link">backbeat</a> on <strong>beats 2 and 4</strong>, driving <strong>8th note hi-hats</strong>, and <strong>crash cymbals</strong> that mark section changes. From <strong>Bonham's thunderous groove</strong> in "When The Levee Breaks" to <strong>Grohl's relentless energy</strong> in Nirvana, rock drums demand <strong>dynamics</strong>, <strong>realism</strong>, and <strong>POWER</strong>.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+          Programming rock drums that sound <em>human</em> requires understanding how real drummers play: <strong>velocity variation</strong>, <strong>cymbal work</strong>, and <strong>tom fills</strong> that flow naturally around the kit. At <strong>120 BPM</strong>, you'll learn to create a driving groove with crash accents that signal the downbeat—a technique used in every rock chorus you've ever heard.
+        </p>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(254, 202, 87, 0.1)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #ff6b6b; margin-bottom: var(--space-xl);">
+          <p style="font-style: italic; color: var(--text-primary); margin: 0; line-height: 1.7;">
+            <strong>Historical Context:</strong> Rock drumming evolved from jazz in the 1950s when drummers like <strong>Earl Palmer</strong> and <strong>Hal Blaine</strong> adapted swing patterns for <a href="glossary.html#backbeat" class="glossary-link">backbeat</a> emphasis. By the 1970s, drummers like <strong>John Bonham</strong> (Led Zeppelin) and <strong>Keith Moon</strong> (The Who) pushed rock drums to new levels of power and complexity, using the entire kit as a melodic instrument.
+          </p>
+        </div>
+
+        <!-- KEY CONCEPTS -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Key Concepts in Rock Drumming</h3>
+
+        <!-- Concept 1: The Backbeat -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #ff6b6b;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #ff6b6b;">
+            1. The Backbeat: Snare on 2 and 4
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            The <a href="glossary.html#backbeat" class="glossary-link">backbeat</a>—a powerful <strong>snare hit on beats 2 and 4</strong>—is the heartbeat of rock music. Unlike funk (which may accent beat 1) or jazz (which uses ride cymbals), rock drummers <em>slam</em> the snare on the backbeat to create <strong>forward momentum</strong>. This is what makes you want to clap along at a rock concert.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Why it matters:</strong> The backbeat creates <strong>tension and release</strong>. The snare on beat 2 creates anticipation, and the snare on beat 4 resolves it, propelling the groove into the next downbeat. Real drummers hit the backbeat <em>hard</em>—use <strong>high velocity</strong> (80-100%) for snare hits to capture this intensity.
+          </p>
+        </div>
+
+        <!-- Concept 2: Crash Cymbals as Section Markers -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #feca57;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #feca57;">
+            2. Crash Cymbals as Section Markers
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Crash cymbals</strong> are the drummer's way of saying <em>"pay attention—something new is happening!"</em> When you hear a crash cymbal on <strong>beat 1</strong> (the downbeat), it signals the start of a <strong>chorus</strong>, <strong>bridge</strong>, or new section. This is one of the most universal conventions in rock music.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            In this lesson, you'll place a crash on <strong>step 1</strong> (the downbeat). Real drummers often hit the crash <em>and</em> the kick simultaneously to create a <strong>massive impact</strong>. This technique is called a <strong>"crash-kick accent"</strong> and is heard in nearly every rock chorus from AC/DC to Foo Fighters.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Production Tip:</strong> Crashes should <em>ring out</em> for 1-2 bars. If programming drums, avoid placing another crash too soon after the first one—give the cymbal time to <strong>breathe and decay</strong> naturally.
+          </p>
+        </div>
+
+        <!-- Concept 3: Syncopated Rock Kicks -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #e17055;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #e17055;">
+            3. Syncopated Rock Kicks (Steps 1, 9, 11)
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Unlike four-on-the-floor house kicks or boom bap hip-hop kicks, rock kicks are often <strong>syncopated</strong>—they don't hit on every quarter note. In this lesson, the kick hits on <strong>steps 1, 9, and 11</strong> (beats 1, 3-and, and 3-and-a-half), creating a <strong>driving, propulsive feel</strong>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            This pattern avoids the monotony of straight quarter-note kicks while maintaining forward momentum. The <strong>syncopation on the "and" of beat 3</strong> (step 11) gives the groove a subtle <em>push</em> before the snare on beat 4, making the backbeat hit even harder.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Famous Example:</strong> Listen to the kick pattern in <em>"Everlong"</em> by Foo Fighters or <em>"Smells Like Teen Spirit"</em> by Nirvana. The kicks are <em>not</em> on every beat—they're carefully placed to support the guitar riff and vocal phrasing.
+          </p>
+        </div>
+
+        <!-- Concept 4: Tom Fills and the Full Kit -->
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #a29bfe;">
+            4. Tom Fills and the Full Kit
+          </h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Rock drummers use <strong>toms</strong>—high, mid, and floor toms—to create <strong>fills</strong> that transition between sections. A typical tom fill descends from <strong>high tom → mid tom → floor tom</strong>, leading into a crash on beat 1 of the next bar. This is how drummers <em>build anticipation</em> before a big chorus or breakdown.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            While this lesson focuses on the basic groove, advanced rock programming involves adding <strong>tom rolls</strong> at the end of every 4-8 bars. Think of the iconic fill in Phil Collins' <em>"In The Air Tonight"</em>—toms cascading down the kit with <strong>massive dynamics</strong> and <strong>gated reverb</strong>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Programming Realism:</strong> When adding tom fills, vary the <strong>velocity</strong> of each tom hit. Real drummers don't hit every tom with the same force—the first hit is often the loudest, with subsequent hits slightly softer as the fill descends the kit.
+          </p>
+        </div>
+
+        <!-- VISUAL BREAKDOWN -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Rock Pattern Breakdown (120 BPM)</h3>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); font-family: var(--font-mono); border: 1px solid rgba(255, 107, 107, 0.3);">
+          <div style="margin-bottom: var(--space-lg);">
+            <div style="font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">Kick Pattern (Syncopated Drive):</div>
+            <div style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">1</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">9</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #e17055, #d63031); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">11</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Steps 1, 9, 11 create syncopated momentum
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-lg);">
+            <div style="font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">Snare Pattern (Powerful Backbeat):</div>
+            <div style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 8px; border-radius: 4px; text-align: center; color: #333; font-weight: 700;">5</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 8px; border-radius: 4px; text-align: center; color: #333; font-weight: 700;">13</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Beats 2 and 4 (steps 5 and 13) = rock backbeat
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-lg);">
+            <div style="font-weight: 600; color: #00cec9; margin-bottom: var(--space-sm);">Hi-Hat Pattern (Driving 8th Notes):</div>
+            <div style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">1</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">3</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">5</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">7</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">9</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">11</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">13</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: linear-gradient(135deg, #00cec9, #0984e3); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">15</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Every 8th note keeps the energy moving
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <div style="font-weight: 600; color: #f39c12; margin-bottom: var(--space-sm);">Crash Cymbal (Section Marker):</div>
+            <div style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-bottom: var(--space-xs);">
+              <div style="background: linear-gradient(135deg, #fdcb6e, #f39c12); padding: 8px; border-radius: 4px; text-align: center; color: white; font-weight: 700;">1</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+              <div style="background: rgba(128,128,128,0.2); padding: 8px; border-radius: 4px; text-align: center; color: #666;">·</div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">
+              Crash on the downbeat signals "new section here!"
+            </div>
+          </div>
+
+          <div style="background: rgba(255, 107, 107, 0.15); padding: var(--space-md); border-radius: var(--radius-sm); border: 1px solid rgba(255, 107, 107, 0.3);">
+            <strong style="color: #ff6b6b;">Complete Rock Pattern:</strong> The power comes from the <strong>combination</strong>—kick provides the foundation, snare drives the backbeat, hi-hats maintain the pulse, and crash marks the section. Together, they create a <strong>massive, stadium-ready groove</strong>.
+          </div>
+        </div>
+
+        <!-- COMMON MISTAKES -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Common Mistakes in Rock Drum Programming</h3>
+
+        <div style="display: grid; gap: var(--space-lg); margin-bottom: var(--space-xl);">
+
+          <!-- Mistake 1 -->
+          <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #ff6b6b;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">
+              ❌ Mistake #1: Forgetting the Crash Cymbal
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              Many beginners program kick, snare, and hi-hat but <em>forget the crash cymbal</em> on the downbeat. Without a crash, the section change feels <strong>weak and undefined</strong>. Listen to any rock chorus—the crash on beat 1 is what gives it <strong>impact and excitement</strong>.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> Add a crash cymbal on <strong>step 1</strong> (the downbeat) to mark the start of your loop. Make sure the crash has <strong>high velocity</strong> (90-100%) to match the power of a real drummer hitting it with full force.
+            </p>
+          </div>
+
+          <!-- Mistake 2 -->
+          <div style="background: linear-gradient(135deg, rgba(254, 202, 87, 0.1), rgba(254, 202, 87, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #feca57;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">
+              ❌ Mistake #2: Weak Backbeat (Low Snare Velocity)
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              Rock snares should be <strong>LOUD</strong>. Using low velocity (40-50%) makes your drums sound timid and lifeless. Real rock drummers hit the snare with <strong>maximum force</strong> on beats 2 and 4—that's what creates the genre's signature <strong>power and aggression</strong>.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> Set snare velocity to <strong>80-100%</strong> on the backbeat (steps 5 and 13). If your sequencer allows it, make the snare on beat 4 (step 13) slightly <em>louder</em> than beat 2 to create a subtle push into the next bar.
+            </p>
+          </div>
+
+          <!-- Mistake 3 -->
+          <div style="background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(162, 155, 254, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #a29bfe;">
+            <h4 style="font-size: 1.1rem; font-weight: 600; color: #a29bfe; margin-bottom: var(--space-sm);">
+              ❌ Mistake #3: Robotic Tom Fills (Same Velocity)
+            </h4>
+            <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+              When programming tom fills, beginners often use the <em>same velocity</em> for every tom hit. This sounds <strong>mechanical and unnatural</strong>. Real drummers vary their stick velocity as they move around the kit, especially when playing fast descending fills.
+            </p>
+            <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+              <strong>Fix:</strong> When adding tom fills, start with <strong>high velocity (85-95%)</strong> on the first tom and gradually <strong>decrease velocity (70-80%)</strong> as you descend to the floor tom. This mimics the natural "falling" motion of a real drummer's hands moving down the kit.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- WHY THIS MATTERS -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Why Rock Drums Matter</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(254, 202, 87, 0.1)); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border: 1px solid rgba(255, 107, 107, 0.3);">
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-lg);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🎸</span>
+              <div>
+                <strong style="color: var(--text-primary);">Universal Foundation:</strong>
+                <span style="color: var(--text-secondary);"> Rock drumming is the <strong>most widely understood drum style</strong> in Western music. Whether you're producing pop, indie, punk, or hard rock, understanding the power of the backbeat and crash accents will make your drums feel <strong>professional and impactful</strong>.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🥁</span>
+              <div>
+                <strong style="color: var(--text-primary);">Realism and Dynamics:</strong>
+                <span style="color: var(--text-secondary);"> Learning to program <strong>realistic rock drums</strong> forces you to think about <strong>velocity, dynamics, and human feel</strong>. These skills transfer to <em>every other genre</em>—from trap to techno, dynamics are what separate amateur beats from professional productions.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">💥</span>
+              <div>
+                <strong style="color: var(--text-primary);">Section Markers and Song Structure:</strong>
+                <span style="color: var(--text-secondary);"> The crash-on-the-downbeat technique teaches you how drums <strong>signal structure</strong> in a song. This concept applies to all genres—whether it's a crash in rock, a <a href="glossary.html#riser" class="glossary-link">riser</a> in EDM, or a <a href="glossary.html#fill" class="glossary-link">fill</a> in jazz, drummers guide the listener through the arrangement.</span>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem; flex-shrink: 0;">🔊</span>
+              <div>
+                <strong style="color: var(--text-primary);">Power and Energy:</strong>
+                <span style="color: var(--text-secondary);"> Rock drums are about <strong>maximum energy with minimal elements</strong>. Four pieces—kick, snare, hi-hat, crash—create the <strong>biggest, most powerful groove</strong> in popular music. If you can make these four elements sound massive, you can produce <em>any</em> genre with confidence.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WHAT'S NEXT -->
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">What's Next?</h3>
+
+        <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          Now that you've mastered the rock groove with crash accents, you're ready to explore more advanced topics in the next lesson. You'll learn about <strong>drum mixing and production</strong>—how to make your programmed drums sound <strong>huge, punchy, and professional</strong> using EQ, compression, and reverb.
+        </p>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #0984e3;">
+          <p style="margin: 0; line-height: 1.7; color: var(--text-secondary);">
+            <strong style="color: var(--text-primary);">Up Next:</strong> In <strong>Lesson 13</strong>, you'll dive into <strong>drum mixing fundamentals</strong>—learning how producers like Chris Lord-Alge and Andy Wallace create <em>stadium-sized drum sounds</em> using parallel compression, gated reverb, and aggressive EQ. Get ready to make your drums <strong>SLAM</strong>!
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- END EDUCATIONAL CONTENT -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

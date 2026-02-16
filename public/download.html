@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Free Downloads | Music Producer Lab</title>
+
+  <meta name="description" content="Free sample packs, presets, and guides coming soon to Music Producer Lab.">
+  <meta name="theme-color" content="#030508">
+
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .coming-soon-hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--gradient-hero);
+      position: relative;
+      padding: var(--space-3xl) var(--space-lg);
+    }
+
+    .coming-soon-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(0, 255, 157, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.1) 0%, transparent 40%);
+    }
+
+    .coming-soon-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .coming-soon-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--space-xl);
+      background: var(--gradient-glow);
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: var(--glow-cyan);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+      }
+    }
+
+    .coming-soon-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+      text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+    }
+
+    .coming-soon-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .coming-soon-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+      text-align: left;
+    }
+
+    .feature-item {
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+    }
+
+    .feature-item:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: var(--radius-md);
+      color: var(--accent-cyan);
+    }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .coming-soon-title {
+        font-size: 2rem;
+      }
+
+      .coming-soon-icon {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Coming Soon Hero -->
+  <section class="coming-soon-hero">
+    <div class="coming-soon-content">
+      <div class="coming-soon-icon">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <path d="M7 10l5 5 5-5"/>
+          <path d="M12 15V3"/>
+        </svg>
+      </div>
+
+      <h1 class="coming-soon-title">Downloads Coming Soon</h1>
+      <p class="coming-soon-subtitle">
+        We're preparing free sample packs, presets, and project files to help you master music production.
+        Check back soon!
+      </p>
+
+      <a href="index.html" class="btn btn-primary btn-lg" style="margin-top: var(--space-lg);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+
+      <div class="coming-soon-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/drum.png" alt="Drums" style="width: 24px; height: 24px;">
+          </div>
+          <div class="feature-title">Drum Samples</div>
+          <div class="feature-desc">Professional drum kits and one-shots</div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/notamusicale.png" alt="Presets" style="width: 24px; height: 24px;">
+          </div>
+          <div class="feature-title">Synth Presets</div>
+          <div class="feature-desc">Ready-to-use sound presets</div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="images/gear.png" alt="Projects" style="width: 24px; height: 24px;">
+          </div>
+          <div class="feature-title">Project Files</div>
+          <div class="feature-desc">Study full productions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("mpl-year").textContent = new Date().getFullYear();
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

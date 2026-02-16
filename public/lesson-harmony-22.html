@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 22 · Harmony & Melody · Tritone Substitution | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 22 from Music Producer Lab: master tritone substitution for jazz reharmonization and chromatic bass movement." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+      <div class="hero-copy" style="flex: 1; max-width: none;">
+        <div class="hero-copy-eyebrow">Harmony & Melody · Lesson 22</div>
+        <h1 class="hero-title"><span>Tritone Substitution:</span><span id="mpl-hero-title-highlight">Jazz Reharmonization</span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
+      </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Expert harmony</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 22</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Expert</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20–25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
+
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Piano Roll</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Progression</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play" class="btn btn-primary" style="min-width:100px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+        <button id="mpl-seq-stop" class="btn btn-secondary" style="min-width:100px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click on the piano roll to place notes.</span></div>
+    </section>
+
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon"><img src="images/mplstellinaesagono.png" alt="Success" style="width: 3em; height: 3em;"></div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+
+  <section class="theory-section" style="margin-top: var(--space-2xl);">
+    <div class="section-eyebrow">Theory</div>
+    <h2 class="section-title">Tritone Substitution: Jazz Reharmonization</h2>
+
+    <div class="exercise-box">
+      <h3>What You're Actually Making</h3>
+      <p>You are learning <strong>tritone substitution</strong> — a sophisticated reharmonization technique where you replace any dominant 7th chord with another dominant 7th chord located a <strong>tritone</strong> (6 half-steps) away. This creates smoother chromatic bass motion and a jazzier, more sophisticated sound.</p>
+      <p>The magic of tritone substitution is that the two chords share the <strong>same 3rd and 7th</strong> (just inverted), so they function almost identically while providing completely different bass movement.</p>
+      <p><strong>Classic Example in C Major:</strong></p>
+      <pre>
+Traditional:  Dm7 → G7  → Cmaj7
+              ii    V     I
+
+Tritone Sub:  Dm7 → Db7 → Cmaj7
+              ii    bII7  I
+      </pre>
+      <p>Instead of the bass moving G → C (up a 4th), the bass moves <strong>Db → C</strong> (down a half-step). This chromatic descent is smoother, jazzier, and more elegant.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>The Formula: How Tritone Substitution Works</h3>
+      <p>To create a tritone substitution:</p>
+      <ol>
+        <li><strong>Identify the dominant 7th chord</strong> you want to replace (e.g., G7)</li>
+        <li><strong>Count up or down 6 half-steps</strong> (a tritone) from its root</li>
+        <li><strong>Build a dominant 7th chord</strong> on that new root</li>
+        <li><strong>Use it in place of the original dominant</strong></li>
+      </ol>
+
+      <p><strong>Example: Substituting G7 in C Major</strong></p>
+      <pre>
+Original chord: G7 (G-B-D-F)
+Tritone away from G: Db (6 half-steps: G → G# → A → Bb → B → C → Db)
+Substitute chord: Db7 (Db-F-Ab-Cb/B)
+
+G7  → Cmaj7  becomes  Db7 → Cmaj7
+      </pre>
+
+      <p><strong>The Shared Tones Secret:</strong></p>
+      <pre>
+G7 chord:  G  - B  - D  - F
+           │    │         │
+           │    └─────────┼─── These are the same notes!
+           │              │
+Db7 chord: Db - F  - Ab - Cb (B enharmonic)
+
+The 3rd of G7 (B) = the 7th of Db7 (Cb/B)
+The 7th of G7 (F) = the 3rd of Db7 (F)
+      </pre>
+
+      <p>Because the <strong>3rd and 7th</strong> are the most important tones in a dominant 7th chord (they create the tritone tension that resolves to the tonic), swapping them doesn't change the fundamental harmonic function. Only the root and 5th are different.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Chromatic Bass Motion: The Signature Sound</h3>
+      <p>The primary reason to use tritone substitution is to create <strong>chromatic bass lines</strong>. Instead of bass leaping by fourths or fifths, you get smooth half-step motion.</p>
+
+      <p><strong>Compare These Progressions:</strong></p>
+
+      <p><strong>Without Tritone Substitution (Traditional ii-V-I):</strong></p>
+      <pre>
+Dm7 → G7  → Cmaj7
+D  →  G  →  C       (bass: D → G is up a 4th, G → C is up a 4th)
+      </pre>
+
+      <p><strong>With Tritone Substitution:</strong></p>
+      <pre>
+Dm7 → Db7 → Cmaj7
+D  →  Db →  C       (bass: D → Db → C is chromatic descent!)
+      </pre>
+
+      <p>The bass line becomes a <strong>smooth chromatic walkdown</strong>: D → Db → C. This is the quintessential jazz sound — elegant, sophisticated, and effortlessly smooth.</p>
+
+      <p><strong>Extended Circle of Fifths with Tritone Subs:</strong></p>
+      <pre>
+Traditional:  Em7 → A7  → Dm7 → G7  → Cmaj7
+              iii   V/ii  ii    V     I
+
+Tritone Sub:  Em7 → Eb7 → Dm7 → Db7 → Cmaj7
+              iii   bII7  ii    bII7  I
+
+Bass line: E → Eb → D → Db → C (continuous chromatic descent!)
+      </pre>
+
+      <p>This creates one of the smoothest bass lines possible in Western harmony.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Voice Leading in Tritone Substitution</h3>
+      <p>The voice leading in tritone substitution is remarkably smooth because of the shared 3rd and 7th.</p>
+
+      <p><strong>Example: Db7 → Cmaj7</strong></p>
+      <pre>
+Db7 chord:     Db - F  - Ab - B
+               ↓   ↓    ↓    ↓
+Cmaj7 chord:   C  - E  - G  - B
+
+Voice leading:
+- Db (root) → C (root) [down half-step]
+- F (3rd) → E (3rd) [down half-step]
+- Ab (5th) → G (5th) [down half-step]
+- B (7th) stays on B (7th of Cmaj7)
+      </pre>
+
+      <p>Almost every voice moves by <strong>half-step or stays put</strong> — this is extremely smooth and easy to voice. Compare this to G7 → Cmaj7, where some voices jump by larger intervals.</p>
+
+      <p><strong>Why It Resolves:</strong> Even though Db7 is a tritone away from G7, the F and B (the shared 3rd/7th) still create tritone tension that wants to resolve inward to E and C (the root and 3rd of Cmaj7). The ear hears this as a dominant resolution, just with a different bass note.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Substituting Secondary Dominants</h3>
+      <p>You can use tritone substitution on <strong>any dominant 7th chord</strong>, including all the secondary dominants you learned in Lesson 21!</p>
+
+      <p><strong>V/ii Tritone Sub:</strong></p>
+      <pre>
+Traditional:  A7  → Dm7   (V/ii → ii)
+Tritone Sub:  Eb7 → Dm7   (bII7 → ii)
+
+Bass: Eb → D (chromatic descent)
+      </pre>
+
+      <p><strong>V/IV Tritone Sub:</strong></p>
+      <pre>
+Traditional:  C7  → Fmaj7  (V/IV → IV in C major)
+Tritone Sub:  Gb7 → Fmaj7  (bII7 → IV)
+
+Bass: Gb → F (chromatic descent)
+      </pre>
+
+      <p><strong>V/V Tritone Sub (Double Tritone Sub):</strong></p>
+      <pre>
+Traditional:  D7  → G7  → Cmaj7
+              V/V   V     I
+
+Tritone Sub:  Ab7 → Db7 → Cmaj7
+              (V/V sub) (V sub) I
+
+Bass: Ab → Db → C (chromatic descent in major 3rds, then half-step)
+      </pre>
+
+      <p>This technique allows you to create chromatic bass motion in <strong>any</strong> progression that uses dominant 7th chords.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Genre Applications</h3>
+
+      <p><strong>Jazz Standards:</strong></p>
+      <ul>
+        <li>Tritone substitution is <strong>fundamental</strong> to bebop and modern jazz</li>
+        <li>Used extensively in ii-V-I progressions to create chromatic bass lines</li>
+        <li>Examples: "Satin Doll," "Autumn Leaves" (reharmonized versions), "Giant Steps"</li>
+        <li>Often combined with extended chords (9ths, 11ths, 13ths) for maximum sophistication</li>
+      </ul>
+
+      <p><strong>Brazilian/Bossa Nova:</strong></p>
+      <ul>
+        <li>Bossa nova relies heavily on chromatic bass motion</li>
+        <li>Tritone subs create the smooth, lyrical bass lines characteristic of the genre</li>
+        <li>Example: "The Girl from Ipanema" uses tritone subs in the bridge</li>
+      </ul>
+
+      <p><strong>R&B and Neo-Soul:</strong></p>
+      <ul>
+        <li>Modern R&B (D'Angelo, Erykah Badu, Robert Glasper) uses tritone subs for jazzy harmony</li>
+        <li>Creates smooth chord changes that feel more sophisticated than basic pop progressions</li>
+        <li>Often used in pre-choruses and bridges for harmonic lift</li>
+      </ul>
+
+      <p><strong>Film Scoring:</strong></p>
+      <ul>
+        <li>Film composers use tritone subs to create tension or unexpected harmonic shifts</li>
+        <li>The chromatic bass descent can underscore mystery, elegance, or sophistication</li>
+        <li>Example: John Williams occasionally uses tritone subs in romantic themes</li>
+      </ul>
+
+      <p><strong>Pop (Advanced):</strong></p>
+      <ul>
+        <li>Steely Dan, The Beatles (later albums), and Radiohead use tritone subs</li>
+        <li>Creates harmonic interest in choruses or bridges</li>
+        <li>Example: Steely Dan's "Aja" features multiple tritone substitutions</li>
+      </ul>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Common Mistakes to Avoid</h3>
+      <ul>
+        <li><strong>Using non-dominant 7th chords</strong>: Tritone substitution only works with <strong>dominant 7th chords</strong> (major triad + minor 7th). You cannot tritone sub a major 7th, minor 7th, or half-diminished 7th chord.</li>
+        <li><strong>Forgetting the 7th</strong>: The substitute chord <em>must</em> be a dominant 7th, not just a major triad. Db major triad doesn't substitute for G7 — you need Db7.</li>
+        <li><strong>Poor voice leading</strong>: Even though tritone subs have smooth voice leading potential, you must actually <em>use</em> smooth voice leading. Don't jump all the voices around — let them move by half-steps or common tones.</li>
+        <li><strong>Overusing it</strong>: Tritone substitution creates a specific jazzy, chromatic sound. If you tritone sub <em>every</em> dominant chord, the progression loses its harmonic clarity. Use it strategically.</li>
+        <li><strong>Not considering the melody</strong>: The substitute chord might clash with the melody. Check that the melody notes are chord tones or appropriate extensions (9th, 11th, 13th) of the Db7, not avoid notes.</li>
+      </ul>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Advanced Technique: Tritone Substitution with Extensions</h3>
+      <p>Jazz musicians rarely play a plain Db7. They add <strong>extensions and alterations</strong> to make the chord even richer:</p>
+
+      <p><strong>Common Extensions for Tritone Subs:</strong></p>
+      <pre>
+Db7 → Db7(b9)    - adds tension (Dbb/C, the b9)
+Db7 → Db7(#11)   - adds color (G natural, the #11)
+Db7 → Db7(b9,#11) - both tensions together (very jazzy)
+Db7 → Db13       - adds 13th (Bb) for lush sound
+      </pre>
+
+      <p>These extensions don't change the fundamental substitution — Db7(b9) still functions as a tritone sub for G7. They just add more color and complexity.</p>
+
+      <p><strong>Pro Tip:</strong> When voicing a tritone sub, prioritize the 3rd and 7th (F and B in Db7) since those are the shared tones that make the substitution work. Extensions are secondary.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Why This Matters</h3>
+      <p>Tritone substitution is one of the most powerful reharmonization tools in modern music because it:</p>
+      <ul>
+        <li><strong>Creates chromatic bass motion</strong> — the signature sound of jazz and sophisticated harmony</li>
+        <li><strong>Maintains harmonic function</strong> — the substitute chord resolves just like the original</li>
+        <li><strong>Adds harmonic interest</strong> — transforms predictable progressions into sophisticated ones</li>
+        <li><strong>Enables modulation</strong> — tritone subs can pivot to distant keys more smoothly</li>
+        <li><strong>Works across genres</strong> — jazz, bossa nova, R&B, pop, film scoring all use this technique</li>
+      </ul>
+      <p>Whether you're reharmonizing a jazz standard, producing neo-soul, or scoring a film, tritone substitution gives you elegant, chromatic chord movement that sounds professional and polished. Combined with secondary dominants (Lesson 21), you now have the tools to reharmonize almost any progression.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>What's Next</h3>
+      <p>Now that you understand tritone substitution, you're ready for <strong>Lesson 23: Chromatic Reharmonization</strong>. You'll learn additional chromatic techniques including chromatic passing chords, chromatic mediants, and augmented sixth chords — all building on the chromatic bass motion you've mastered here.</p>
+      <p>These techniques will give you even more tools for creating smooth, surprising, and emotionally impactful chord progressions.</p>
+    </div>
+
+  </section>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-harmony-22.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

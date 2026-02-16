@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Understanding the Foundation of Music Production</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              Before diving into beat-making, you need to understand the fundamental building blocks that every producer uses.
+              These concepts form the language of music production and are essential whether you're making hip-hop, EDM, rock, or any other genre.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+
+              <!-- DAWs -->
+              <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/gear.png" alt="DAW" style="width: 32px; height: 32px;">
+                  <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: none;">DAWs</a></h3>
+                </div>
+                <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Digital Audio Workstation</p>
+                <p style="line-height: 1.7; color: var(--text-secondary);">
+                  Your production software (Ableton, FL Studio, Logic, etc.). Think of it as your digital studio where you record, arrange, and mix music.
+                </p>
+                <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                  <strong>Why it matters:</strong> Every producer needs a <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>, but the skills you learn here work in any DAW.
+                </p>
+              </div>
+
+              <!-- Tempo/BPM -->
+              <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Tempo" style="width: 32px; height: 32px;">
+                  <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#tempo" style="color: var(--accent-purple); text-decoration: none;">Tempo</a> (<a href="glossary.html#bpm" style="color: var(--accent-purple); text-decoration: none;">BPM</a>)</h3>
+                </div>
+                <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Beats Per Minute</p>
+                <p style="line-height: 1.7; color: var(--text-secondary);">
+                  The speed of your song. Hip-hop is typically 80-100 <a href="glossary.html#bpm" style="color: var(--accent-purple); text-decoration: underline;">BPM</a>, house music 120-130 BPM, drum & bass 160-180 BPM.
+                </p>
+                <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                  <strong>Why it matters:</strong> <a href="glossary.html#tempo" style="color: var(--accent-purple); text-decoration: underline;">Tempo</a> defines the energy and genre of your track. Too fast or slow can ruin the vibe.
+                </p>
+              </div>
+
+              <!-- Bars -->
+              <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/bars_beats_icon_cropped.png" alt="Bars & Beats" style="width: 32px; height: 32px;">
+                  <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#bar" style="color: var(--accent-orange); text-decoration: none;">Bars</a> & <a href="glossary.html#beat" style="color: var(--accent-orange); text-decoration: none;">Beats</a></h3>
+                </div>
+                <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Musical Time Divisions</p>
+                <p style="line-height: 1.7; color: var(--text-secondary);">
+                  A <strong><a href="glossary.html#bar" style="color: var(--accent-orange); text-decoration: underline;">bar</a></strong> (or measure) contains 4 <a href="glossary.html#beat" style="color: var(--accent-orange); text-decoration: underline;">beats</a>. A <strong>beat</strong> is one pulse. Songs are organized in bars (intro: 8 bars, verse: 16 bars).
+                </p>
+                <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                  <strong>Why it matters:</strong> Structure your arrangements and communicate with other musicians.
+                </p>
+              </div>
+
+              <!-- Loops -->
+              <div style="padding: var(--space-lg); background: var(--bg-secondary); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/loop.png" alt="Loops" style="width: 32px; height: 32px;">
+                  <h3 style="margin: 0; font-size: 1.3rem;"><a href="glossary.html#loop" style="color: var(--accent-green); text-decoration: none;">Loops</a></h3>
+                </div>
+                <p style="margin-bottom: var(--space-sm); color: var(--text-muted); font-weight: 600;">Repeating Patterns</p>
+                <p style="line-height: 1.7; color: var(--text-secondary);">
+                  A pattern that repeats continuously. Most beats are built on 1, 2, or 4-bar <a href="glossary.html#loop" style="color: var(--accent-green); text-decoration: underline;">loops</a>. The foundation of modern production.
+                </p>
+                <p style="margin-top: var(--space-md); font-size: 0.9rem; color: var(--text-dim);">
+                  <strong>Why it matters:</strong> 99% of electronic music is based on <a href="glossary.html#loop" style="color: var(--accent-green); text-decoration: underline;">loops</a>. Master this, master production.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL EXAMPLE -->
+            <div style="padding: var(--space-xl); background: rgba(0, 212, 255, 0.05); border: 2px solid var(--border-glow); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="margin-bottom: var(--space-lg); color: var(--accent-cyan); display: flex; align-items: center; gap: var(--space-sm);">
+                <img src="images/idea.png" alt="Example" style="width: 28px; height: 28px;">
+                Practical Example: A Simple <a href="glossary.html#4-4-time" style="color: var(--accent-cyan); text-decoration: underline;">4/4 Beat</a>
+              </h3>
+
+              <div style="display: grid; gap: var(--space-lg);">
+                <div>
+                  <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">1 <a href="glossary.html#bar" style="color: var(--accent-cyan); text-decoration: underline;">Bar</a> = 4 <a href="glossary.html#beat" style="color: var(--accent-cyan); text-decoration: underline;">Beats</a></h4>
+                  <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                    <div style="flex: 1; padding: var(--space-md); background: var(--accent-cyan); color: var(--bg-dark); font-weight: 700; text-align: center; border-radius: var(--radius-sm);">Beat 1<br><span style="font-size: 0.8rem;"><a href="glossary.html#kick-drum" style="color: var(--bg-dark); text-decoration: underline;">KICK</a></span></div>
+                    <div style="flex: 1; padding: var(--space-md); background: var(--bg-tertiary); color: var(--text-secondary); font-weight: 700; text-align: center; border-radius: var(--radius-sm);">Beat 2<br><span style="font-size: 0.8rem;">-</span></div>
+                    <div style="flex: 1; padding: var(--space-md); background: var(--accent-purple); color: var(--bg-dark); font-weight: 700; text-align: center; border-radius: var(--radius-sm);">Beat 3<br><span style="font-size: 0.8rem;"><a href="glossary.html#snare-drum" style="color: var(--bg-dark); text-decoration: underline;">SNARE</a></span></div>
+                    <div style="flex: 1; padding: var(--space-md); background: var(--bg-tertiary); color: var(--text-secondary); font-weight: 700; text-align: center; border-radius: var(--radius-sm);">Beat 4<br><span style="font-size: 0.8rem;">-</span></div>
+                  </div>
+                  <p style="color: var(--text-muted); font-size: 0.95rem;">
+                    This simple pattern (<a href="glossary.html#kick-drum" style="color: var(--accent-cyan); text-decoration: underline;">kick</a> on 1, <a href="glossary.html#snare-drum" style="color: var(--accent-cyan); text-decoration: underline;">snare</a> on 3) forms the backbone of countless songs across genres.
+                  </p>
+                </div>
+
+                <div style="padding: var(--space-lg); background: var(--bg-card); border-radius: var(--radius-md);">
+                  <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Common Song Structure</h4>
+                  <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                      <span style="font-family: var(--font-mono); color: var(--accent-cyan); min-width: 80px;">8 <a href="glossary.html#bar" style="color: var(--accent-cyan); text-decoration: underline;">bars</a></span>
+                      <span style="color: var(--text-secondary);">→ Intro</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                      <span style="font-family: var(--font-mono); color: var(--accent-purple); min-width: 80px;">16 <a href="glossary.html#bar" style="color: var(--accent-purple); text-decoration: underline;">bars</a></span>
+                      <span style="color: var(--text-secondary);">→ Verse</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                      <span style="font-family: var(--font-mono); color: var(--accent-orange); min-width: 80px;">8 <a href="glossary.html#bar" style="color: var(--accent-orange); text-decoration: underline;">bars</a></span>
+                      <span style="color: var(--text-secondary);">→ Pre-Chorus</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                      <span style="font-family: var(--font-mono); color: var(--accent-green); min-width: 80px;">16 <a href="glossary.html#bar" style="color: var(--accent-green); text-decoration: underline;">bars</a></span>
+                      <span style="color: var(--text-secondary);">→ Chorus</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 16-STEP GRID DIAGRAM -->
+            <div style="padding: var(--space-xl); background: rgba(179, 102, 255, 0.05); border: 2px solid var(--accent-purple); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="margin-bottom: var(--space-lg); color: var(--accent-purple); display: flex; align-items: center; gap: var(--space-sm);">
+                <img src="images/gear.png" alt="Grid" style="width: 28px; height: 28px;">
+                Understanding the 16-Step <a href="glossary.html#grid" style="color: var(--accent-purple); text-decoration: underline;">Grid</a>
+              </h3>
+
+              <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">
+                The <strong><a href="glossary.html#sequencer" style="color: var(--accent-purple); text-decoration: underline;">sequencer</a></strong> you'll use below has a <strong>16-step grid</strong>. Each step represents one <a href="glossary.html#sixteenth-note" style="color: var(--accent-purple); text-decoration: underline;">sixteenth note</a>. Here's how it breaks down:
+              </p>
+
+              <!-- Visual Grid Diagram -->
+              <div style="background: var(--bg-card); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-md); font-size: 1rem;">One Bar = 16 Steps</h4>
+
+                <!-- 16 Step Grid Visualization -->
+                <div style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-bottom: var(--space-md);">
+                  <!-- Beat 1 (Steps 1-4) -->
+                  <div style="background: var(--accent-cyan); color: var(--bg-dark); padding: var(--space-xs); text-align: center; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">1</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">2</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">3</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">4</div>
+
+                  <!-- Beat 2 (Steps 5-8) -->
+                  <div style="background: var(--accent-orange); color: var(--bg-dark); padding: var(--space-xs); text-align: center; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">5</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">6</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">7</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">8</div>
+
+                  <!-- Beat 3 (Steps 9-12) -->
+                  <div style="background: var(--accent-purple); color: var(--bg-dark); padding: var(--space-xs); text-align: center; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">9</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">10</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">11</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">12</div>
+
+                  <!-- Beat 4 (Steps 13-16) -->
+                  <div style="background: var(--accent-green); color: var(--bg-dark); padding: var(--space-xs); text-align: center; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">13</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">14</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">15</div>
+                  <div style="background: var(--bg-tertiary); color: var(--text-muted); padding: var(--space-xs); text-align: center; font-size: 0.75rem; border-radius: 4px;">16</div>
+                </div>
+
+                <!-- Beat Labels -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xs); margin-bottom: var(--space-lg);">
+                  <div style="text-align: center; color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">Beat 1</div>
+                  <div style="text-align: center; color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">Beat 2</div>
+                  <div style="text-align: center; color: var(--accent-purple); font-weight: 600; font-size: 0.9rem;">Beat 3</div>
+                  <div style="text-align: center; color: var(--accent-green); font-weight: 600; font-size: 0.9rem;">Beat 4</div>
+                </div>
+
+                <!-- Explanation Grid -->
+                <div style="display: grid; gap: var(--space-md);">
+                  <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                    <div style="min-width: 24px; height: 24px; background: var(--accent-cyan); border-radius: 4px;"></div>
+                    <div>
+                      <strong style="color: var(--text-primary);">Downbeats (Steps 1, 5, 9, 13):</strong>
+                      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">The main beats. These are <a href="glossary.html#quarter-note" style="color: var(--accent-cyan); text-decoration: underline;">quarter notes</a>. Kick drums usually play here.</p>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                    <div style="min-width: 24px; height: 24px; background: var(--bg-tertiary); border-radius: 4px;"></div>
+                    <div>
+                      <strong style="color: var(--text-primary);">All Other Steps (2, 3, 4, 6, 7...):</strong>
+                      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Subdivisions between the beats. Use these for hi-hats, snare variations, and adding rhythmic detail.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Key Points -->
+              <div style="padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-md);">Why 16 Steps?</h4>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-sm);">
+                  <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                    <span style="color: var(--accent-purple); font-weight: 700;">✓</span>
+                    <span style="color: var(--text-secondary); line-height: 1.6;"><strong>Maximum precision:</strong> 16 steps gives you enough detail to create complex rhythms without being overwhelming</span>
+                  </li>
+                  <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                    <span style="color: var(--accent-purple); font-weight: 700;">✓</span>
+                    <span style="color: var(--text-secondary); line-height: 1.6;"><strong>Industry standard:</strong> Classic drum machines like the TR-808 and TR-909 use 16 steps</span>
+                  </li>
+                  <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                    <span style="color: var(--accent-purple); font-weight: 700;">✓</span>
+                    <span style="color: var(--text-secondary); line-height: 1.6;"><strong>Perfect for one bar:</strong> 16 sixteenth notes = exactly one bar in 4/4 time</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="padding: var(--space-xl); background: rgba(255, 102, 102, 0.05); border: 2px solid rgba(255, 102, 102, 0.3); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="margin-bottom: var(--space-lg); color: var(--accent-orange); display: flex; align-items: center; gap: var(--space-sm);">
+                <img src="images/questionmark.png" alt="Common Mistakes" style="width: 28px; height: 28px;">
+                Common Beginner Mistakes (And How to Avoid Them)
+              </h3>
+
+              <p style="color: var(--text-secondary); margin-bottom: var(--space-xl); line-height: 1.7;">
+                Everyone makes these mistakes when starting out. Knowing them now will save you hours of frustration:
+              </p>
+
+              <div style="display: grid; gap: var(--space-lg);">
+                <!-- Mistake 1 -->
+                <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                  <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                    <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                    Confusing Bars with Beats
+                  </h4>
+                  <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                    Many beginners say "8 beats" when they mean "8 bars". Remember: a <a href="glossary.html#bar" style="color: var(--accent-orange); text-decoration: underline;">bar</a> contains 4 <a href="glossary.html#beat" style="color: var(--accent-orange); text-decoration: underline;">beats</a> in 4/4 time.
+                  </p>
+                  <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                    ✓ Correct: "My intro is 8 bars long" or "My intro has 32 beats"
+                  </p>
+                </div>
+
+                <!-- Mistake 2 -->
+                <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                  <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                    <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                    Not Checking if the Loop is Seamless
+                  </h4>
+                  <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                    Your pattern might sound good, but does it <a href="glossary.html#loop" style="color: var(--accent-orange); text-decoration: underline;">loop</a> smoothly? Listen carefully when it repeats—there shouldn't be a "stumble" or awkward pause.
+                  </p>
+                  <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                    ✓ Fix: Press Play and listen for 4-5 loops. If it feels weird, adjust your last few steps.
+                  </p>
+                </div>
+
+                <!-- Mistake 3 -->
+                <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                  <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                    <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                    Setting the Wrong Tempo
+                  </h4>
+                  <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                    Your pattern might be perfect, but if the <a href="glossary.html#tempo" style="color: var(--accent-orange); text-decoration: underline;">tempo</a> is wrong, it won't feel right. Too fast = rushed and frantic. Too slow = dragging and boring.
+                  </p>
+                  <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                    ✓ Fix: Start at 120 BPM (medium speed). Adjust up or down based on the energy you want.
+                  </p>
+                </div>
+
+                <!-- Mistake 4 -->
+                <div style="padding: var(--space-lg); background: var(--bg-card); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md);">
+                  <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm); display: flex; align-items: center; gap: var(--space-xs);">
+                    <img src="images/X_gray.png" alt="Error" style="width: 1.2rem; height: 1.2rem; vertical-align: middle;">
+                    Overthinking Your First Patterns
+                  </h4>
+                  <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-sm);">
+                    Beginners often try to create complex rhythms immediately. Start simple! A kick on beats 1 and 3 is perfectly fine—even professional tracks use simple patterns.
+                  </p>
+                  <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.9rem;">
+                    ✓ Fix: Master simple patterns first. Complexity comes later when you understand the basics.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-lg);">
+              <h3 style="margin-bottom: var(--space-md); color: var(--text-primary); display: flex; align-items: center; gap: var(--space-sm);">
+                <img src="images/fulmine.png" alt="Important" style="width: 28px; height: 28px;">
+                Why These Concepts Matter
+              </h3>
+              <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-md);">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                  <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Universal Language:</strong> These terms work in every DAW, every genre, with every producer worldwide</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                  <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Foundation for Everything:</strong> You can't build arrangements, mixdowns, or collaborate without understanding time and structure</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;">
+                  <span style="line-height: 1.7; color: var(--text-secondary);"><strong>Saves Time:</strong> Knowing these concepts means less confusion and faster workflow from day one</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+          
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all" style="display:none;">
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Clear</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <!-- PRESET CONTROLS (hidden by default) -->
+            <div id="mpl-preset-controls" style="display:none;gap:0.5rem;margin-left:0.5rem;">
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-save">Save</button>
+              <button type="button" class="btn btn-outline btn-sm" id="mpl-preset-load">Load</button>
+            </div>
+
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEMPO/SWING CONTROLS (for sandbox mode) -->
+          <div id="mpl-advanced-controls" style="display:none;margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap;align-items:center;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-tempo-slider" style="font-size:0.85rem;color:var(--text-muted);">Tempo:</label>
+              <input type="range" id="mpl-tempo-slider" min="60" max="180" value="120" style="width:100px;">
+              <span id="mpl-tempo-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:50px;">120 BPM</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label for="mpl-swing-slider" style="font-size:0.85rem;color:var(--text-muted);">Swing:</label>
+              <input type="range" id="mpl-swing-slider" min="0" max="100" value="0" style="width:100px;">
+              <span id="mpl-swing-value" style="font-family:var(--font-mono);font-size:0.85rem;min-width:40px;">0%</span>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Complete the exercise to unlock the next lesson.</span>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" id="mpl-footer">
+          <div>&copy; <span id="mpl-year"></span> Music Producer Lab</div>
+          <div><a class="footer-link" id="mpl-footer-overview-link" href="labs.html">Back to overview</a></div>
+        </footer>
+      </div>
+      
+      <!-- LESSON ENGINE SCRIPT -->
+      <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+      <!--
+        HOW TO USE THIS TEMPLATE:
+        
+        1. Create a config file (e.g., configs/lesson-drums-5.config.js)
+        2. Copy this template to your lesson file (e.g., lesson-drums-5-new.html)
+        3. Update the script import at the bottom to point to your config
+        
+        Example:
+
+<script type="module">
+          import { lessonConfig } from './configs/lesson-drums-5.config.js';
+          import { initLessonFromConfig } from './lesson-engine.js';
+          initLessonFromConfig(lessonConfig);
+        </script>
+      -->
+
+      
+      <script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-0.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

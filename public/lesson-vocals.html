@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vocal Processing Lab · Basics | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Learn the essential vocal processing chain. EQ, compression, de-essing, and how to make vocals sit in electronic music." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+      /* Vocal Chain Styles */
+      .vocal-chain {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        margin: var(--space-xl) 0;
+      }
+      
+      .chain-flow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-xl);
+      }
+      
+      .chain-block {
+        padding: var(--space-md) var(--space-lg);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        border: 2px solid var(--border-subtle);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-width: 120px;
+      }
+      
+      .chain-block:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+      
+      .chain-block.active {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.1);
+      }
+      
+      .chain-block-icon {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .chain-block-name {
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      
+      .chain-block-number {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        margin-top: var(--space-xs);
+      }
+      
+      .chain-arrow {
+        color: var(--accent-cyan);
+        font-size: 1.5rem;
+      }
+      
+      /* Plugin Panel */
+      .plugin-panel {
+        background: var(--bg-dark);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        min-height: 300px;
+      }
+      
+      .plugin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      
+      .plugin-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .plugin-bypass {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .bypass-toggle {
+        width: 44px;
+        height: 24px;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        cursor: pointer;
+        position: relative;
+        transition: background 0.2s;
+      }
+      
+      .bypass-toggle.active {
+        background: var(--accent-cyan);
+      }
+      
+      .bypass-toggle::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.2s;
+      }
+      
+      .bypass-toggle.active::after {
+        transform: translateX(20px);
+      }
+      
+      .plugin-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-lg);
+      }
+      
+      .control-knob {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .knob {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #2a3040 0%, #1a1f2a 100%);
+        border: 3px solid var(--border-light);
+        position: relative;
+        cursor: pointer;
+      }
+      
+      .knob-indicator {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        width: 3px;
+        height: 15px;
+        background: var(--accent-cyan);
+        transform-origin: bottom center;
+        transform: translateX(-50%) rotate(0deg);
+        border-radius: 2px;
+      }
+      
+      .knob-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      
+      .knob-value {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--accent-cyan);
+      }
+      
+      /* Spectrum Display */
+      .spectrum-display {
+        height: 100px;
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .spectrum-canvas {
+        width: 100%;
+        height: 100%;
+      }
+      
+      /* Processing Tips */
+      .processing-tips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+      }
+      
+      .tip-card {
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        border-left: 3px solid var(--accent-cyan);
+      }
+      
+      .tip-card-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: var(--space-xs);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .tip-card-text {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+      
+      /* Parameter Display */
+      .param-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      
+      .param-box {
+        padding: var(--space-sm);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+        text-align: center;
+      }
+      
+      .param-label {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
+      }
+      
+      .param-value {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+      }
+      
+      /* Preset Buttons */
+      .preset-row {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        margin-top: var(--space-lg);
+      }
+      
+      .preset-btn {
+        padding: var(--space-sm) var(--space-md);
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+      }
+      
+      .preset-btn:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <section class="hero" aria-label="Vocal Processing Lab">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Vocal Processing Lab · Lesson 1</div>
+            <h1 class="hero-title">
+              Vocal Processing:
+              <span>The essential chain</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Learn the standard vocal processing chain used in professional productions. From <strong>cleanup</strong> to <strong>compression</strong> to <strong>presence</strong>—make your vocals sit perfectly in the mix.
+            </p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Free lesson</div>
+              <div class="hero-visual-pill">Vocal basics</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Signal chain</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Focus</span>
+                    <strong>Clarity</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Time</span>
+                    <strong>15–20 min</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Cleanup EQ</div>
+                  <div class="hero-visual-pill-tag">Compression</div>
+                  <div class="hero-visual-pill-tag">De-essing</div>
+                </div>
+                <div class="hero-visual-footer">
+                  <span>Works with any vocal</span>
+                  <span>Singing · Rap · Spoken word</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="sections-grid" aria-label="The vocal chain">
+          <article class="section">
+            <div class="section-eyebrow">Overview</div>
+            <h2 class="section-title">The standard vocal chain.</h2>
+            <p class="section-body">
+              Most professional vocal chains follow a similar order. Each step prepares the vocal for the next, building toward a polished, present sound.
+            </p>
+            <div class="processing-tips">
+              <div class="tip-card">
+                <div class="tip-card-title">1️⃣ Cleanup EQ</div>
+                <div class="tip-card-text">Remove rumble, muddiness, and problem frequencies before any other processing.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-card-title">2️⃣ Compression</div>
+                <div class="tip-card-text">Even out dynamics, add consistency and punch to the performance.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-card-title">3️⃣ De-esser</div>
+                <div class="tip-card-text">Tame harsh "S" and "T" sounds that get exaggerated by compression.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-card-title">4️⃣ Tone EQ</div>
+                <div class="tip-card-text">Add presence, air, and character with gentle boosts.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-card-title">5️⃣ Reverb/Delay</div>
+                <div class="tip-card-text">Add space and dimension via send/return (not insert!).</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key Concept</div>
+            <h2 class="section-title">Order matters!</h2>
+            <p class="section-body">
+              The order of your vocal chain affects the final result. Always clean up first, then control dynamics, then enhance.
+            </p>
+            <ul class="section-list">
+              <li><strong>Cleanup before compression:</strong> Compressors amplify problems—remove them first</li>
+              <li><strong>De-ess after compression:</strong> Compression can make sibilance worse</li>
+              <li><strong>Effects on sends:</strong> Keep dry vocal intact, blend in wet signal</li>
+              <li><strong>Less is more:</strong> Subtle moves add up to big results</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- Interactive Exercise Section -->
+        <section class="exercise-instructions" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title">Explore the Vocal Processing Chain</h2>
+            <p class="section-body">
+              Click on each step in the signal chain below to learn about its settings and purpose.
+              Adjust the parameters to see recommended starting points for different vocal styles.
+            </p>
+            
+            <div class="exercise-steps">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist">
+                <li><strong>Click each plugin block</strong> to see its controls and learn what each parameter does.</li>
+                <li><strong>Notice the signal flow</strong> — processing happens in order from left to right.</li>
+                <li><strong>Try the presets</strong> to see typical settings for different vocal styles.</li>
+                <li><strong>Toggle bypass</strong> to understand what each plugin contributes to the chain.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-tip">
+              <strong>Tip:</strong> In a real session, always A/B compare (bypass) your processing. If it doesn't sound better, remove it!
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Vocal Chain -->
+        <section class="vocal-chain">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Signal Chain</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">Click a plugin to explore</h2>
+          
+          <div class="chain-flow">
+            <div class="chain-block active" data-plugin="eq-cleanup">
+              <div class="chain-block-icon">🎚️</div>
+              <div class="chain-block-name">Cleanup EQ</div>
+              <div class="chain-block-number">Step 1</div>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-block" data-plugin="compressor">
+              <div class="chain-block-icon"><img src="images/speakerwave.png" alt="🔊" style="width: 1.5em;"></div>
+              <div class="chain-block-name">Compressor</div>
+              <div class="chain-block-number">Step 2</div>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-block" data-plugin="deesser">
+              <div class="chain-block-icon">✨</div>
+              <div class="chain-block-name">De-esser</div>
+              <div class="chain-block-number">Step 3</div>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-block" data-plugin="eq-tone">
+              <div class="chain-block-icon">🎛️</div>
+              <div class="chain-block-name">Tone EQ</div>
+              <div class="chain-block-number">Step 4</div>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-block" data-plugin="reverb">
+              <div class="chain-block-icon">🌊</div>
+              <div class="chain-block-name">Reverb</div>
+              <div class="chain-block-number">Step 5</div>
+            </div>
+          </div>
+          
+          <div class="plugin-panel" id="plugin-panel">
+            <!-- Plugin content will be generated by JS -->
+          </div>
+        </section>
+
+        <section class="sections-grid" aria-label="Detailed steps" style="margin-top: var(--space-2xl);">
+          <article class="section">
+            <div class="section-eyebrow">Deep Dive</div>
+            <h2 class="section-title">Compression settings explained.</h2>
+            <p class="section-body">
+              Compression is the most important tool for controlling vocal dynamics. Here's what each parameter does:
+            </p>
+            <ul class="section-list">
+              <li><strong>Threshold:</strong> The level at which compression starts. Lower = more compression.</li>
+              <li><strong>Ratio:</strong> How much to reduce signal above threshold. 4:1 is a good starting point.</li>
+              <li><strong>Attack:</strong> How fast compression kicks in. Fast = catch peaks, slow = more natural.</li>
+              <li><strong>Release:</strong> How fast compression lets go. Auto release often works well.</li>
+              <li><strong>Makeup Gain:</strong> Bring the compressed signal back up to compensate for reduction.</li>
+            </ul>
+          </article>
+
+          <article class="section">
+            <div class="section-eyebrow">Key takeaways</div>
+            <h2 class="section-title">What you've learned.</h2>
+            <ul class="section-list">
+              <li>The standard vocal chain: cleanup EQ → compression → de-esser → tone EQ → effects</li>
+              <li>Always clean up before you add—remove problem frequencies first</li>
+              <li>Compression should control dynamics without killing expression</li>
+              <li>De-essing comes after compression (compression can make sibilance worse)</li>
+              <li>Reverb and delay go on sends, not inserts</li>
+            </ul>
+            <div style="margin-top: var(--space-xl);">
+              <a href="labs.html#vocals" class="btn btn-primary">
+                Back to Vocal Labs
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer" style="margin-top: var(--space-3xl);">
+          <div class="container">
+            <div class="footer-bottom">
+              <p class="footer-copyright">
+                &copy; <span id="mpl-year"></span> Music Producer Lab. All rights reserved.
+              </p>
+              <div class="footer-legal">
+                <a href="labs.html#vocals">Back to Vocal Labs</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+      
+      // Plugin Configurations
+      const plugins = {
+        'eq-cleanup': {
+          name: 'Cleanup EQ (Subtractive)',
+          icon: '🎚️',
+          description: 'Remove unwanted frequencies before any other processing. This makes compression and other effects work better.',
+          params: [
+            { name: 'High-Pass', value: '80 Hz', desc: 'Removes rumble and low-end mud' },
+            { name: 'Cut @ 200-400Hz', value: '-3 dB', desc: 'Reduces muddy box sound' },
+            { name: 'Cut @ 400-600Hz', value: '-2 dB', desc: 'Removes nasal quality' },
+            { name: 'Notch (if needed)', value: 'Problem freq', desc: 'Surgical cut for resonances' }
+          ],
+          tips: [
+            'High-pass at 80-100Hz for most vocals',
+            'Sweep to find problem frequencies, then cut',
+            'Use narrow Q for cuts, wide Q for general cleanup'
+          ]
+        },
+        'compressor': {
+          name: 'Compressor',
+          icon: '<img src="images/speakerwave.png" alt="🔊" style="width: 1.5em;">',
+          description: 'Control dynamics to make the vocal more consistent. The goal is even volume without squashing the life out of the performance.',
+          params: [
+            { name: 'Ratio', value: '3:1 - 4:1', desc: 'Amount of compression' },
+            { name: 'Attack', value: '10-30 ms', desc: 'How fast it responds' },
+            { name: 'Release', value: 'Auto / 100ms', desc: 'How fast it lets go' },
+            { name: 'Gain Reduction', value: '3-6 dB', desc: 'Target reduction amount' }
+          ],
+          tips: [
+            'Faster attack catches peaks but can sound squashed',
+            'Slower attack lets transients through for more natural sound',
+            'Auto release adapts to the vocal—great starting point',
+            'If gain reduction exceeds 10 dB, something is wrong'
+          ]
+        },
+        'deesser': {
+          name: 'De-esser',
+          icon: '✨',
+          description: 'Tame harsh sibilance ("S", "T", "SH" sounds) that gets exaggerated by compression. It\'s a frequency-specific compressor.',
+          params: [
+            { name: 'Frequency', value: '4-8 kHz', desc: 'Where sibilance lives' },
+            { name: 'Threshold', value: 'Adjust to taste', desc: 'When de-essing kicks in' },
+            { name: 'Range/Reduction', value: '3-6 dB', desc: 'How much to reduce' },
+            { name: 'Mode', value: 'Wide/Split', desc: 'Affects full signal or just band' }
+          ],
+          tips: [
+            'Solo the sidechain to hear what\'s being caught',
+            'Female vocals: higher frequency (6-8 kHz)',
+            'Male vocals: lower frequency (4-6 kHz)',
+            'Too much de-essing = lispy, unnatural sound'
+          ]
+        },
+        'eq-tone': {
+          name: 'Tone EQ (Additive)',
+          icon: '🎛️',
+          description: 'Now that the vocal is clean and controlled, add character. These are gentle boosts to enhance the natural qualities of the voice.',
+          params: [
+            { name: 'Body', value: '100-200 Hz +1dB', desc: 'Adds warmth (use sparingly)' },
+            { name: 'Presence', value: '2-4 kHz +2dB', desc: 'Clarity and intelligibility' },
+            { name: 'Air', value: '10-12 kHz +2dB', desc: 'Sparkle and openness' },
+            { name: 'Type', value: 'Shelf boosts', desc: 'Wide, musical curves' }
+          ],
+          tips: [
+            'Less is more: 1-3 dB of boost is usually enough',
+            'Excessive boosting sounds unnatural',
+            'Compare with bypass frequently',
+            'Cut first in cleanup EQ, boost here for tone'
+          ]
+        },
+        'reverb': {
+          name: 'Reverb (Send)',
+          icon: '🌊',
+          description: 'Add space and dimension to the vocal. Use on a send/return to keep the dry vocal intact while blending in wet signal.',
+          params: [
+            { name: 'Type', value: 'Plate / Room', desc: 'Plate is classic for vocals' },
+            { name: 'Decay', value: '0.8-1.5s', desc: 'Length of reverb tail' },
+            { name: 'Pre-delay', value: '20-50 ms', desc: 'Keeps vocal upfront' },
+            { name: 'Mix (on send)', value: '100% wet', desc: 'Blend with fader' }
+          ],
+          tips: [
+            'Short reverb (0.8-1.5s) adds glue without pushing vocal back',
+            'Plate reverb is the classic vocal choice',
+            'EQ the reverb return: cut lows and harsh highs',
+            'Pre-delay creates separation between dry and wet'
+          ]
+        }
+      };
+      
+      let activePlugin = 'eq-cleanup';
+      
+      function renderPlugin(pluginId) {
+        const plugin = plugins[pluginId];
+        const panel = document.getElementById('plugin-panel');
+        
+        panel.innerHTML = `
+          <div class="plugin-header">
+            <div class="plugin-title">
+              <span>${plugin.icon}</span>
+              <span>${plugin.name}</span>
+            </div>
+            <div class="plugin-bypass">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Active</span>
+              <div class="bypass-toggle active" id="bypass-toggle"></div>
+            </div>
+          </div>
+          
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); font-size: 0.9rem;">
+            ${plugin.description}
+          </p>
+          
+          <div style="margin-bottom: var(--space-lg);">
+            <h4 style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-md);">
+              Recommended Settings
+            </h4>
+            <div class="param-grid">
+              ${plugin.params.map(p => `
+                <div class="param-box">
+                  <div class="param-label">${p.name}</div>
+                  <div class="param-value">${p.value}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div>
+            <h4 style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-md);">
+              Pro Tips
+            </h4>
+            <ul class="section-list" style="margin: 0;">
+              ${plugin.tips.map(t => `<li style="font-size: 0.85rem;">${t}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        
+        // Bypass toggle
+        document.getElementById('bypass-toggle').addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      }
+      
+      // Chain block click handlers
+      document.querySelectorAll('.chain-block').forEach(block => {
+        block.addEventListener('click', () => {
+          document.querySelectorAll('.chain-block').forEach(b => b.classList.remove('active'));
+          block.classList.add('active');
+          activePlugin = block.dataset.plugin;
+          renderPlugin(activePlugin);
+        });
+      });
+      
+      // Initial render
+      renderPlugin(activePlugin);
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

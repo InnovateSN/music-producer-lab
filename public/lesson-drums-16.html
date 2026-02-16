@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 16 · Drums & Rhythm | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 16 from Music Producer Lab: advanced drums & rhythm production techniques." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+      <div class="hero-copy" style="flex: 1; max-width: none;">
+        <div class="hero-copy-eyebrow">Drums & Rhythm · Lesson 16</div>
+        <h1 class="hero-title"><span id="mpl-hero-title">Loading...</span><span id="mpl-hero-title-highlight"></span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
+      </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Advanced drums</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 16</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Advanced</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20-25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
+
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Drum Sequencer</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Pattern</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play-all" class="btn btn-primary" style="min-width:100px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+        <button id="mpl-seq-stop-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+        <button id="mpl-seq-check" class="btn btn-primary" style="min-width:140px;"><img src="images/mplscudo_check.png" alt="✓" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Check Pattern</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click steps to activate them.</span></div>
+    </section>
+
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon"><img src="images/check_green.png" alt="Completed" style="width: 3rem;"></div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- EDUCATIONAL CONTENT: Fills & Transitions -->
+    <!-- ============================================= -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card);">
+
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-lg); background: linear-gradient(135deg, #ff6b6b, #ee5a6f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Fills & Transitions: The Art of Movement</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          <strong>Drum fills</strong> are the <em>punctuation marks</em> of music—they signal transitions between verses, choruses, and breakdowns. A well-placed fill creates <strong>excitement and anticipation</strong> without derailing the groove. A poorly placed fill disrupts the flow and confuses the listener.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+          The most iconic fills—John Bonham's entrance in <em>"When The Levee Breaks,"</em> Phil Collins' drop in <em>"In The Air Tonight,"</em> or Travis Barker's rapid-fire rolls—all share one quality: they <strong>lead INTO the downbeat</strong> of the next section, not land ON it. This lesson teaches you that fundamental principle and more.
+        </p>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(238, 90, 111, 0.1)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #ff6b6b; margin-bottom: var(--space-xl);">
+          <p style="font-style: italic; color: var(--text-primary); margin: 0;">
+            <strong>Golden Rule:</strong> Fills should <strong>end on beat 4</strong> (or the last 16th note before beat 1). The crash/downbeat of the next section hits on <strong>beat 1</strong>, creating a satisfying resolution.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Key Concepts</h3>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #ff6b6b;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #ff6b6b;">1. Tom Roll Fills</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            The classic <strong>tom roll fill</strong> descends from <strong>high tom → mid tom → floor tom</strong>, building energy with a <a href="glossary.html#crescendo" class="glossary-link">crescendo</a> (increasing velocity). The fill typically occupies the <strong>last 1-2 beats</strong> of a bar, leading perfectly into a crash on beat 1 of the next bar.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Velocity strategy:</strong> Start at v90 (high tom), increase to v100 (mid tom), v110 (mid tom again), v120 (floor tom). This crescendo creates <em>dramatic momentum</em> that releases on the downbeat.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #f9ca24;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #f9ca24;">2. Fill Placement & Timing</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            In a <strong>16-step sequencer</strong>, fills typically occur on <strong>steps 13-16</strong> (beats 3.5-4). This gives the listener <em>just enough</em> warning that something is changing without disrupting the groove prematurely.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Common patterns:</strong><br>
+            • <strong>1-bar fill:</strong> Steps 13-16 (last beat)<br>
+            • <strong>2-bar fill:</strong> Last 2 beats of bar 2<br>
+            • <strong>4-bar fill:</strong> Last beat of bar 4
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #6c5ce7;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #6c5ce7;">3. Crash Cymbal Accents</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            After a fill, the <strong>crash cymbal</strong> marks the <em>arrival</em> at the new section. In rock, pop, and metal, the crash hits simultaneously with the <strong>downbeat kick</strong> on beat 1, creating maximum impact. In the sequencer, imagine this crash happening on step 1 of the <em>next bar</em>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Tip:</strong> Don't program the crash in the same loop as the fill—conceptually, the fill <em>leads to</em> the crash. The crash belongs to the new section, not the old one.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #00cec9;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #00cec9;">4. Simplicity vs. Complexity</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Beginners think <em>"more notes = better fill."</em> Professionals know that <strong>simple fills often work better</strong> than complex ones. A single snare roll or a 3-note tom descent can be more effective than a 32nd-note flurry that sounds chaotic.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Rule of thumb:</strong> If the fill is <em>harder to program</em> than the main groove, it's probably too complex. Fills should enhance, not overshadow.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Common Mistakes</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #ff6b6b;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">❌ Fill Lands ON Beat 1</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Programming the fill to <em>finish</em> on beat 1 means the crash/downbeat has nowhere to go. The fill should <strong>end just before beat 1</strong>, creating space for the downbeat impact.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> End fills on <strong>step 16</strong> (beat 4), so beat 1 of the next bar is open for the crash and kick.
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(254, 202, 87, 0.1), rgba(254, 202, 87, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #feca57;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">❌ Fills Every 4 Bars</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Predictable fills become <em>annoying</em>. If every 4-bar phrase ends with a tom roll, listeners will tune out. Fills should be <strong>saved for structural changes</strong>—verse to chorus, chorus to bridge, etc.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Use fills <strong>sparingly</strong>—only when the song structure demands it. Elsewhere, let the groove breathe.
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(162, 155, 254, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #a29bfe; margin-bottom: var(--space-sm);">❌ No Velocity Variation</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Programming every tom at <strong>velocity 100</strong> makes the fill sound robotic. Real drummers <em>build energy</em> through a crescendo—getting louder as they descend the kit.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Start at v90 and increase by +10-15 per hit, ending at v120. This crescendo creates natural <em>forward momentum</em>.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Why This Matters</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(238, 90, 111, 0.1)); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border: 1px solid rgba(255, 107, 107, 0.3);">
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-lg);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🎸</span>
+              <div>
+                <strong>Song Structure:</strong> Fills are the <strong>signposts</strong> that guide listeners through your song's architecture. Without them, transitions feel abrupt and disorienting.
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">💥</span>
+              <div>
+                <strong>Excitement & Drama:</strong> A well-executed fill creates <em>anticipation</em>—the listener knows something big is coming, and when it hits, the payoff is satisfying.
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🥁</span>
+              <div>
+                <strong>Professional Polish:</strong> Amateur productions often have <em>no fills</em> or <em>too many</em>. Professional productions use fills strategically—exactly where needed, no more, no less.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">What's Next?</h3>
+
+        <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          Now that you understand fills and transitions, you're ready to explore <strong>drum layering and parallel processing</strong>—techniques for stacking multiple drum sounds to create massive, professional tones.
+        </p>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #0984e3;">
+          <p style="margin: 0;">
+            <strong>Up Next:</strong> <strong>Lesson 17</strong> covers <strong>Drum Layering & Parallel Processing</strong>—stacking kicks (sub + punch), snares (body + crack + clap), and processing layers independently for modern, massive drum sounds.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- END EDUCATIONAL CONTENT -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-drums-16.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

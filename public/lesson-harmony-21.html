@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 21 · Harmony & Melody · Secondary Dominants | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 21 from Music Producer Lab: master secondary dominants (V/ii, V/iii, V/IV, V/V, V/vi) for advanced tonicization." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+      <div class="hero-copy" style="flex: 1; max-width: none;">
+        <div class="hero-copy-eyebrow">Harmony & Melody · Lesson 21</div>
+        <h1 class="hero-title"><span>Secondary Dominants:</span><span id="mpl-hero-title-highlight">Tonicization Techniques</span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
+      </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Expert harmony</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 21</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Expert</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20–25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
+
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Piano Roll</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Progression</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play" class="btn btn-primary" style="min-width:100px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+        <button id="mpl-seq-stop" class="btn btn-secondary" style="min-width:100px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click on the piano roll to place notes.</span></div>
+    </section>
+
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon"><img src="images/mplstellinaesagono.png" alt="Success" style="width: 3em; height: 3em;"></div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+
+  <section class="theory-section" style="margin-top: var(--space-2xl);">
+    <div class="section-eyebrow">Theory</div>
+    <h2 class="section-title">Secondary Dominants: Tonicization Techniques</h2>
+
+    <div class="exercise-box">
+      <h3>What You're Actually Making</h3>
+      <p>You are learning <strong>secondary dominants</strong> — dominant 7th chords that temporarily tonicize (treat as a tonic) diatonic chords other than the actual tonic. This technique creates tension, momentum, and harmonic interest by borrowing the V→I resolution feeling and applying it to other chords in the key.</p>
+      <p>In <strong>C major</strong>, instead of just using the diatonic V7 (G7 → C), you can use:</p>
+      <ul>
+        <li><strong>V/ii</strong> (A7 → Dm): Makes Dm feel like a temporary tonic</li>
+        <li><strong>V/iii</strong> (B7 → Em): Tonicizes Em</li>
+        <li><strong>V/IV</strong> (C7 → F): The tonic chord becomes dominant!</li>
+        <li><strong>V/V</strong> (D7 → G7): Sets up an extended approach to the real dominant</li>
+        <li><strong>V/vi</strong> (E7 → Am): Creates jazzy, deceptive movement</li>
+      </ul>
+      <p>Each secondary dominant is a <strong>major triad with a minor 7th</strong>, built on the 5th scale degree of the chord you want to tonicize.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>The Formula: Building Secondary Dominants</h3>
+      <p>To create a secondary dominant for any diatonic chord:</p>
+      <ol>
+        <li><strong>Identify the target chord</strong> (the chord you want to tonicize)</li>
+        <li><strong>Find its 5th</strong> (count up a perfect 5th from the target's root)</li>
+        <li><strong>Build a major triad</strong> on that 5th</li>
+        <li><strong>Add a minor 7th</strong> to create a dominant 7th chord</li>
+      </ol>
+
+      <p><strong>Example: Creating V/ii in C Major</strong></p>
+      <pre>
+Target chord: ii = Dm (D-F-A)
+Its 5th: A (count D → E → F → G → A)
+Major triad on A: A major (A-C#-E)
+Add minor 7th: A7 (A-C#-E-G)
+Resolution: A7 → Dm
+      </pre>
+
+      <p><strong>Complete Secondary Dominants in C Major:</strong></p>
+      <pre>
+V/ii:  A7  (A-C#-E-G)  → Dm
+V/iii: B7  (B-D#-F#-A) → Em
+V/IV:  C7  (C-E-G-Bb)  → F
+V/V:   D7  (D-F#-A-C)  → G7
+V/vi:  E7  (E-G#-B-D)  → Am
+      </pre>
+
+      <p><strong>Key observation:</strong> Notice that secondary dominants introduce <strong>chromatic notes</strong> (notes outside the key). In C major, the diatonic notes are C-D-E-F-G-A-B. Secondary dominants add C#, D#, F#, G#, and Bb — these accidentals create harmonic tension that resolves when moving to the target chord.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Voice Leading in Secondary Dominants</h3>
+      <p>Secondary dominants are powerful because they create the same <strong>leading tone → tonic</strong> and <strong>7th → 3rd</strong> voice leading as a regular V7→I resolution.</p>
+
+      <p><strong>The Two Essential Voice Leading Rules:</strong></p>
+      <ol>
+        <li><strong>Raised leading tone resolves up by half-step</strong> to the root of the target chord</li>
+        <li><strong>The 7th resolves down by step</strong> to the 3rd of the target chord</li>
+      </ol>
+
+      <p><strong>Example: A7 → Dm Voice Leading</strong></p>
+      <pre>
+A7 chord tones:    A  - C# - E  - G
+                   ↓    ↓    ↓    ↓
+Dm chord tones:    A  - D  - F  - F
+
+Voice leading:
+- C# (3rd of A7, leading tone to D) → D (root of Dm) [up half-step]
+- G (7th of A7) → F (3rd of Dm) [down whole-step]
+- A and E can stay or move smoothly
+      </pre>
+
+      <p><strong>Why This Matters:</strong> This voice leading creates a strong, convincing resolution even though Dm isn't the actual tonic of the key. The ear temporarily "believes" Dm is home.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Common Secondary Dominant Progressions</h3>
+      <p>Here are the most frequently used secondary dominant progressions across multiple genres:</p>
+
+      <p><strong>1. V/IV → IV → V → I (Extended Plagal)</strong></p>
+      <pre>
+C major: C7 → F → G7 → C
+Usage: Beatles, classic rock, gospel
+Effect: Smooth, warm approach to IV, then traditional cadence
+      </pre>
+
+      <p><strong>2. V/V → V → I (Double Dominant)</strong></p>
+      <pre>
+C major: D7 → G7 → C
+Usage: Classical, jazz standards, musical theater
+Effect: Extended dominant approach, builds anticipation
+      </pre>
+
+      <p><strong>3. Circle of Fifths with Secondary Dominants</strong></p>
+      <pre>
+C major: (E7 → Am) → (A7 → Dm) → (D7 → G7) → C
+          V/vi  vi     V/ii  ii     V/V   V     I
+Usage: Jazz, bebop, sophisticated pop (Steely Dan)
+Effect: Strong, continuous forward motion
+      </pre>
+
+      <p><strong>4. V/vi → vi → IV → V → I (Deceptive to Minor)</strong></p>
+      <pre>
+C major: E7 → Am → F → G7 → C
+Usage: Ballads, melancholic pop, film scores
+Effect: Unexpected shift to minor, emotional depth
+      </pre>
+
+      <p><strong>5. V/iii → iii → vi → ii → V → I</strong></p>
+      <pre>
+C major: B7 → Em → Am → Dm → G7 → C
+Usage: Jazz, bossa nova, R&B
+Effect: Chromatic descent, sophisticated sound
+      </pre>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Genre-Specific Applications</h3>
+
+      <p><strong>Jazz Standards:</strong></p>
+      <ul>
+        <li>Secondary dominants are <strong>foundational</strong> to jazz harmony</li>
+        <li>Common in ii-V-I progressions: use V/ii to approach the ii chord</li>
+        <li>Example: "Autumn Leaves" uses V/ii, V/vi, V/V extensively</li>
+      </ul>
+
+      <p><strong>Blues & Rock:</strong></p>
+      <ul>
+        <li><strong>V/IV → IV</strong> is the classic "blues turnaround" in bar 9-10 of 12-bar blues</li>
+        <li>Example: In blues in E, use B7 → E7 (V/IV → IV) before returning to E</li>
+        <li>Creates movement without leaving the blues feel</li>
+      </ul>
+
+      <p><strong>Classical & Film Scoring:</strong></p>
+      <ul>
+        <li>Mozart and Beethoven frequently used <strong>V/V → V → I</strong> for cadences</li>
+        <li>Film composers use chains of secondary dominants for building tension</li>
+        <li>Example: Hans Zimmer uses V/vi → vi for emotional depth</li>
+      </ul>
+
+      <p><strong>Pop & R&B:</strong></p>
+      <ul>
+        <li>Modern pop often uses <strong>V/IV → IV</strong> to refresh repetitive progressions</li>
+        <li>Example: Instead of I-IV-V-I, use I-V/IV-IV-V-I for more interest</li>
+        <li>R&B uses V/ii and V/vi for smooth, jazzy chord movement</li>
+      </ul>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Advanced Technique: Deceptive Resolutions</h3>
+      <p>Secondary dominants don't <em>always</em> have to resolve to their expected target. You can use <strong>deceptive resolutions</strong> for surprise and complexity:</p>
+
+      <p><strong>Example 1: V/ii → bVI (instead of ii)</strong></p>
+      <pre>
+C major: A7 → Ab (instead of A7 → Dm)
+Effect: Unexpected, cinematic, mysterious
+      </pre>
+
+      <p><strong>Example 2: V/V → vi (instead of V)</strong></p>
+      <pre>
+C major: D7 → Am (instead of D7 → G7)
+Effect: Deceptive cadence with chromatic approach
+      </pre>
+
+      <p><strong>Pro Tip:</strong> Deceptive resolutions work best when you've already <strong>established the expected pattern</strong>. Use them after the listener has heard a few traditional resolutions.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Common Mistakes to Avoid</h3>
+      <ul>
+        <li><strong>Forgetting the accidentals</strong>: Secondary dominants <em>must</em> be major triads with minor 7ths. If you use A minor instead of A7, it's not a secondary dominant — it's just the diatonic vi chord. The chromatic notes (C# in A7) are essential.</li>
+        <li><strong>Overusing secondary dominants</strong>: Too many secondary dominants in a row can make the key feel ambiguous. Use them strategically for specific harmonic goals, not every single chord change.</li>
+        <li><strong>Ignoring voice leading</strong>: The chromatic notes in secondary dominants (like C# in A7) <strong>must resolve properly</strong>. C# should move to D, not jump elsewhere. Poor voice leading destroys the effectiveness of the tonicization.</li>
+        <li><strong>Using V/vii°</strong>: You cannot create a secondary dominant for the vii° chord because building a dominant 7th on its 5th would create a diminished 7th chord, not a dominant 7th. This doesn't function the same way.</li>
+      </ul>
+    </div>
+
+    <div class="exercise-box">
+      <h3>Why This Matters</h3>
+      <p>Secondary dominants are one of the most practical and widely used techniques in modern harmony because they:</p>
+      <ul>
+        <li><strong>Add harmonic interest</strong> without completely leaving the key</li>
+        <li><strong>Create forward momentum</strong> — each secondary dominant pulls strongly to its target chord</li>
+        <li><strong>Refresh familiar progressions</strong> — turn I-IV-V-I into I-V/IV-IV-V-I for instant sophistication</li>
+        <li><strong>Enable smooth modulation</strong> — secondary dominants can be used to pivot to new keys</li>
+        <li><strong>Bridge genres</strong> — they work in jazz, classical, blues, pop, rock, and electronic music</li>
+      </ul>
+      <p>Understanding secondary dominants unlocks thousands of classic songs and gives you a reliable tool for adding harmonic depth to your own music. Whether you're writing jazz, scoring a film, or producing pop, this is an essential technique.</p>
+    </div>
+
+    <div class="exercise-box">
+      <h3>What's Next</h3>
+      <p>Now that you understand secondary dominants and tonicization, you're ready for <strong>Lesson 22: Tritone Substitution</strong>. You'll learn how to replace any dominant 7th chord (including secondary dominants) with a substitute chord a tritone away, creating smoother bass motion and jazzier harmonic movement.</p>
+      <p>Tritone substitution builds directly on secondary dominants — you'll be able to substitute V/ii, V/V, and other secondary dominants to create even more sophisticated progressions.</p>
+    </div>
+
+  </section>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-harmony-21.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

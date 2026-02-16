@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" role="img" aria-labelledby="mplLegacyTitle mplLegacyDesc">
+  <title id="mplLegacyTitle">Music Producer Lab logo</title>
+  <desc id="mplLegacyDesc">Updated logo asset for Music Producer Lab, replacing the legacy BeatVault wordmark.</desc>
+  <defs>
+    <linearGradient id="mplLegacyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0EC6D5" />
+      <stop offset="50%" stop-color="#6D7BFF" />
+      <stop offset="100%" stop-color="#B184FF" />
+    </linearGradient>
+    <linearGradient id="mplLegacyAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0EC6D5" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0EC6D5" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="192" height="52" rx="14" fill="#0B1024" />
+  <rect x="4" y="4" width="192" height="52" rx="14" fill="url(#mplLegacyAccent)" />
+  <rect x="6" y="6" width="188" height="48" rx="12" fill="#0F162F" stroke="url(#mplLegacyGradient)" stroke-width="2" />
+  <g fill="#E9EDF7" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif">
+    <text x="20" y="38" font-size="24" font-weight="700" letter-spacing="1">MPL</text>
+    <text x="84" y="38" font-size="14" font-weight="500" letter-spacing="0.3">Music Producer Lab</text>
+  </g>
+</svg>

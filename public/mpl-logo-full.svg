@@ -1,0 +1,57 @@
+<svg width="420" height="120" viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Music Producer Lab neon logo</title>
+  <desc id="desc">Geometric neon shield paired with Music Producer Lab wordmark.</desc>
+  <defs>
+    <linearGradient id="mplGradient" x1="18" y1="12" x2="140" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63FFF4" />
+      <stop offset="0.48" stop-color="#5CC4FF" />
+      <stop offset="1" stop-color="#C58DFF" />
+    </linearGradient>
+    <linearGradient id="mplGradientAlt" x1="0" y1="0" x2="220" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63FFF4" stop-opacity="0.9" />
+      <stop offset="0.5" stop-color="#C58DFF" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#FFD86B" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <g filter="url(#glow)">
+    <path
+      d="M28 32.5C28 28.3579 31.3579 25 35.5 25H116.5C120.642 25 124 28.3579 124 32.5V87.5C124 91.6421 120.642 95 116.5 95H35.5C31.3579 95 28 91.6421 28 87.5V32.5Z"
+      fill="rgba(12,18,44,0.95)"
+      stroke="url(#mplGradient)"
+      stroke-width="2.2"
+    />
+    <path
+      d="M53 46L68 70.5L80 52.5L95 77"
+      stroke="url(#mplGradientAlt)"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M50 76H92"
+      stroke="#63FFF4"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-dasharray="6 6"
+      opacity="0.8"
+    />
+  </g>
+  <g fill="url(#mplGradient)" filter="url(#textGlow)">
+    <text x="150" y="62" font-family="Orbitron, 'Inter', sans-serif" font-size="28" font-weight="700" letter-spacing="2.6">
+      MUSIC PRODUCER LAB
+    </text>
+    <text x="150" y="88" font-family="JetBrains Mono, 'Inter', sans-serif" font-size="13" font-weight="600" letter-spacing="1.6" fill="#E8F2FF">
+      INTERACTIVE NEON MUSIC TRAINING
+    </text>
+  </g>
+  <defs>
+    <filter id="glow" x="18" y="17" width="118" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="rgba(99,255,244,0.4)" />
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="rgba(197,141,255,0.35)" />
+    </filter>
+    <filter id="textGlow" x="140" y="40" width="260" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="rgba(99,255,244,0.5)" />
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="rgba(197,141,255,0.4)" />
+    </filter>
+  </defs>
+</svg>

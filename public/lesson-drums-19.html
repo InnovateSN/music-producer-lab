@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson 19 | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+          </div>
+
+          <!-- Hero visual section -->
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MIXING THEORY SECTION -->
+        <section class="theory-section" id="mpl-mixing-theory-section" style="margin-top: var(--space-2xl);">
+          <!-- Theory content will be populated by JS -->
+        </section>
+
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Clear</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <div style="margin-left:auto;display:flex;gap:0.75rem;">
+              <div id="mpl-seq-prev-lesson-wrap">
+                <button class="btn btn-secondary" id="mpl-prev-lesson">
+                  <span>&larr; Previous Lesson</span>
+                </button>
+              </div>
+              <div id="mpl-seq-next-lesson-wrap">
+                <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                  <span>Next Lesson &rarr;</span>
+                </button>
+              </div>
+            </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Complete the exercise to unlock the next lesson.</span>
+          </div>
+        </section>
+
+        <!-- MIXER SECTION -->
+        <section class="mixer-section" id="mpl-mixer-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Mixer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);">Volume & Panning</h2>
+
+          <div id="mpl-mixer-container" style="background: var(--bg-secondary, #0a0e1a); border: 1px solid var(--border-color, #1a1f2e); border-radius: 12px; padding: var(--space-lg);">
+            <!-- Mixer channels will be created by JS -->
+          </div>
+        </section>
+
+    <!-- =============================================== -->
+    <!-- EDUCATIONAL CONTENT: Drum Mixing Basics -->
+    <!-- =============================================== -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card);">
+
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-lg); background: linear-gradient(135deg, #6c5ce7, #a29bfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Drum Mixing: Balance & Panning</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          <strong>Drum mixing</strong> starts with two fundamental tools: <strong>volume</strong> and <strong>panning</strong>. Before reaching for EQ, compression, or reverb, you must get your <em>relative levels right</em> and place sounds in the <strong>stereo field</strong>. A well-balanced mix with good panning will sound clear and powerful—even without processing.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+          Professional mixers spend <strong>80% of their time on balance</strong> and <strong>20% on processing</strong>. If your kick is too quiet or your hi-hats are panned to the same spot as your snare, no amount of fancy plugins will fix it. This lesson teaches the <em>foundation</em> of mixing—the skills that separate amateur beats from professional productions.
+        </p>
+
+        <div style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #6c5ce7; margin-bottom: var(--space-xl);">
+          <p style="font-style: italic; color: var(--text-primary); margin: 0;">
+            <strong>Golden Rule:</strong> If it sounds good with just <strong>volume and panning</strong>, it will sound <em>amazing</em> with EQ and compression. If it sounds bad before processing, no amount of plugins will save it.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Key Concepts</h3>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #6c5ce7;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #6c5ce7;">1. Volume: Relative Balance</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Volume</strong> (also called gain or level) controls how loud each element is. But mixing isn't about making everything loud—it's about <strong>relative balance</strong>. The loudest elements should be your <em>most important</em> elements.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Typical drum balance:</strong><br>
+            • <strong>Kick & Snare:</strong> Loudest (0 dB to -3 dB)<br>
+            • <strong>Hi-hats:</strong> Medium (-6 dB to -9 dB)<br>
+            • <strong>Percussion/Toms:</strong> Quieter (-9 dB to -12 dB)
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #a29bfe;">2. Panning: Creating Stereo Width</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Panning</strong> controls where a sound sits in the <strong>stereo field</strong>—from left speaker (-1.0) to right speaker (+1.0). Center (0) means equal in both speakers. When all drums are centered, they fight for space. Panning separates them, creating a <em>wider, more engaging mix</em>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Classic drum panning:</strong><br>
+            • <strong>Kick, snare, bass:</strong> Center (0) for power and focus<br>
+            • <strong>Hi-hats:</strong> Slight pan (±0.2 to ±0.4) for subtle width<br>
+            • <strong>Toms:</strong> Spread across stereo field (left to right like a drum kit)<br>
+            • <strong>Crashes/rides:</strong> Wide panning (±0.5 to ±0.8) for drama
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #00cec9;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #00cec9;">3. The "Leave Headroom" Principle</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Beginners make everything <strong>loud</strong>, causing clipping and distortion. Professionals leave <strong>headroom</strong>—space between the peak levels and 0 dB. Aim for your <em>loudest drum hit</em> to peak at <strong>-6 dB to -3 dB</strong>, not 0 dB.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Why:</strong> Headroom prevents clipping and gives you room for mastering. It also makes the mix feel <em>relaxed and open</em> rather than crushed and fatiguing.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #fdcb6e;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #fdcb6e;">4. Checking in Mono</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            A mix that sounds good in <strong>mono</strong> (one speaker) will sound <em>amazing</em> in stereo. If your mix is muddy in mono, panning won't fix it—you need to adjust <strong>volume balance</strong>. Many clubs, phones, and Bluetooth speakers play in mono, so this check is essential.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>How to check:</strong> Sum your mix to mono and listen. If drums sound clear and balanced, your mix is solid. If they're muddy or certain elements disappear, adjust volumes.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Common Mistakes</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #ff6b6b;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">❌ Making Everything Loud</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            When every drum is at <strong>0 dB</strong>, nothing stands out. The mix becomes a <em>wall of noise</em> with no clarity or depth. Mixing is about <strong>hierarchy</strong>—some elements should be louder than others.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Start with <strong>kick at -3 dB</strong>. Bring in snare at similar level. Set hi-hats <strong>6-9 dB quieter</strong>. Percussion even quieter. This creates depth and separation.
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(254, 202, 87, 0.1), rgba(254, 202, 87, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #feca57;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">❌ Everything Panned Center</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            When all drums are centered, they <em>fight for the same space</em>, creating a narrow, mono-sounding mix. Panning creates <strong>width and separation</strong>—making the mix feel larger and more engaging.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Keep kick/snare/bass centered for power. Pan hi-hats, toms, and cymbals to create stereo width. Even <strong>small pans</strong> (±0.2) make a big difference.
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(162, 155, 254, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #a29bfe; margin-bottom: var(--space-sm);">❌ Ignoring the Mix in Context</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Mixing drums in <strong>solo</strong> (isolated from the rest of the track) often leads to <em>bad decisions</em>. Drums sound perfect alone but disappear when bass and vocals are added.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Mix drums <strong>in context</strong> with bass, melody, and vocals. Check frequently how they sit in the <em>full mix</em>, not just in isolation.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Why This Matters</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1)); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border: 1px solid rgba(108, 92, 231, 0.3);">
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-lg);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🎚️</span>
+              <div>
+                <strong>Foundation of Mixing:</strong> <strong>Balance and panning</strong> are the first 80% of a great mix. Master these before touching EQ or compression.
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🎧</span>
+              <div>
+                <strong>Professional Sound:</strong> Amateur mixes are muddy and narrow. Professional mixes are <strong>clear, wide, and balanced</strong>—all from proper volume and panning.
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">💎</span>
+              <div>
+                <strong>Universal Skill:</strong> Volume and panning apply to <em>every genre</em>. Master these fundamentals, and you can mix anything.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">What's Next?</h3>
+
+        <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          With mixing fundamentals mastered, you're ready to explore <strong>live drum recording simulation</strong>—techniques for making programmed drums feel like real human performances.
+        </p>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #0984e3;">
+          <p style="margin: 0;">
+            <strong>Up Next:</strong> <strong>Lesson 20</strong> covers <strong>Live Drum Recording Simulation</strong>—adding room ambience, overhead mic bleed, natural dynamics, and human feel to programmed drums.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- END EDUCATIONAL CONTENT -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- MODULAR LESSON ENGINE -->
+
+<script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-drums-19.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

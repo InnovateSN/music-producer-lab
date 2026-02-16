@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Stem Mastering: Greater Control with Grouped Stems</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Stem mastering</strong> is a hybrid approach between mixing and traditional mastering. Instead of working with a single stereo file, you receive <strong>grouped stems</strong>—typically drums, bass, instruments, and vocals—giving you more control to fix issues and enhance the final master. This approach is particularly useful when the mix has problems that can't be fixed on a stereo file, or when the client wants more flexibility without a full remix.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Stems" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">What Are Stems?</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Stems are <strong>grouped submixes</strong>: all drums bounced together, all instruments together, vocals separate. Typical stem groups: <strong>Drums, Bass, Music/Instruments, Vocals, FX</strong>. They should sum to the original mix when played together at unity gain.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Advantages" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Advantages of Stem Mastering</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Fix issues impossible on stereo: <strong>turn down a harsh vocal</strong>, <strong>add punch to drums</strong>, <strong>tighten loose bass</strong>. Stems give you surgical control without re-mixing. You can apply different processing to different elements while maintaining the mixer's vision.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Workflow" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Stem Mastering Workflow</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;"><strong>1)</strong> Import stems and verify they sum correctly. <strong>2)</strong> Balance stems as needed. <strong>3)</strong> Apply processing to individual stems sparingly. <strong>4)</strong> Route all stems to a master bus. <strong>5)</strong> Apply normal mastering chain to the summed output.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Specs" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Stem Delivery Specs</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Request stems at <strong>same sample rate/bit depth</strong> as the session. <strong>No master bus processing</strong> on stems. All stems <strong>same length</strong>, starting from the same point. <strong>Clearly labeled</strong>. Include a reference mix showing the intended balance.</p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Re-Mixing Instead of Mastering:</strong>
+                <span style="color: var(--text-secondary);"> Stem mastering gives you control, but your job is still mastering—subtle enhancements. Don't completely re-balance the mix or undo the mixer's decisions without client approval.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Processing Stems Too Heavily:</strong>
+                <span style="color: var(--text-secondary);"> Heavy processing on stems undermines the original mix. Use gentle adjustments—a dB or two of level, subtle EQ. The mix was already made; you're polishing, not rebuilding.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Stems Not Summing to Original:</strong>
+                <span style="color: var(--text-secondary);"> If stems don't match the reference mix when summed at unity, something is wrong. Ask the client to re-export. This is critical—you need an accurate starting point.</span>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Problem Solving:</strong> Fix issues that are impossible to address on a stereo file.</li>
+                <li><strong>Client Satisfaction:</strong> Deliver better results when the mix has issues, without requiring a costly remix.</li>
+                <li><strong>Flexibility:</strong> Offer stem mastering as a premium service with more control.</li>
+                <li><strong>Better Results:</strong> Sometimes stems allow you to achieve a polish that stereo mastering can't reach.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-mastering-8.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

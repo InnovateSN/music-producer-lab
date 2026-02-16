@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 15 · Vocals | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 15 from Music Producer Lab: advanced vocal mixing with compression chains, EQ, spatial placement, and automation." />
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --lesson-accent: linear-gradient(135deg, #a29bfe, #6c5ce7);
+      --lesson-category-color: #6c5ce7;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main class="main-content container">
+    <section id="hero-section" class="hero-section">
+      <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
+      <h1 class="hero-title" id="hero-title">Loading...</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Loading...</p>
+      <div class="hero-actions">
+        <button id="mark-complete-btn" class="btn btn-primary">Mark as Complete</button>
+        <a href="labs.html" class="btn btn-secondary">Back to Overview</a>
+      </div>
+    </section>
+
+    <section id="exercise-section" class="exercise-section">
+      <h2 class="section-title">Exercise</h2>
+      <div class="exercise-card">
+        <h3 id="exercise-title" class="exercise-title">Loading...</h3>
+        <p id="exercise-description" class="exercise-description">Loading...</p>
+        <div class="exercise-tip" id="exercise-tip">
+          <strong><img src="images/idea.png" alt="Tip" style="width: 1.2em; vertical-align: middle;"> Tip:</strong> <span id="exercise-tip-text">Loading...</span>
+        </div>
+        <div id="exercise-steps" class="exercise-steps">
+          <h4>Steps:</h4>
+          <ol id="exercise-steps-list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="sequencer-section" class="sequencer-section">
+      <h2 class="section-title">Sequencer</h2>
+      <div id="sequencer-container"></div>
+    </section>
+
+    <section id="theory-section" class="theory-section">
+      <h2 class="section-title">Theory</h2>
+      <div id="theory-content"></div>
+    </section>
+
+    <section id="objectives-section" class="objectives-section">
+      <h2 class="section-title">Learning Objectives</h2>
+      <ul id="objectives-list" class="objectives-list"></ul>
+    </section>
+
+    <section class="lesson-nav">
+      <a href="lesson-vocals-14.html" id="prev-lesson-btn" class="btn btn-secondary">← Previous Lesson</a>
+      <a href="labs.html" id="next-lesson-btn" class="btn btn-primary">Complete Module →</a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-vocals-15.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initLessonFromConfig(lessonConfig);
+    });
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js" defer></script>
+</body>
+</html>

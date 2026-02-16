@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Test - Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="padding: 40px; background: #030508;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="color: #00f0ff; margin-bottom: 20px;"><img src="images/notamusicale.png" alt="🎵" style="width: 1.5em; vertical-align: middle;"> Sample Playback Test</h1>
+    <p style="color: #b8c4e0; margin-bottom: 40px;">
+      Test the new sample loading system. Click steps to activate them, then press Play.
+    </p>
+
+    <!-- Sequencer Container -->
+    <div id="mpl-sequencer-collection"></div>
+
+    <!-- Controls -->
+    <div style="margin-top: 20px; display: flex; gap: 12px;">
+      <button id="mpl-seq-play-all" class="btn btn-primary"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+      <button id="mpl-seq-stop-all" class="btn btn-secondary"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+      <button id="mpl-seq-clear-all" class="btn btn-secondary"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+    </div>
+
+    <!-- Status -->
+    <div id="test-status" style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(0,240,255,0.2);">
+      <h3 style="color: #00f0ff; margin: 0 0 10px 0;">Test Status</h3>
+      <div id="status-content" style="color: #b8c4e0; font-family: monospace; font-size: 0.9rem; line-height: 1.8;">
+        Initializing...
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initDrumSequencer } from './sequencer.js';
+
+    const testInstruments = [
+      {
+        id: 'kick',
+        label: 'Kick',
+        color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)',
+        instructions: ''
+      },
+      {
+        id: 'snare',
+        label: 'Snare',
+        color: 'linear-gradient(135deg, #00f0ff, #5773ff)',
+        instructions: ''
+      },
+      {
+        id: 'hihat',
+        label: 'Hi-Hat',
+        color: 'linear-gradient(135deg, #8a2be2, #da70d6)',
+        instructions: ''
+      },
+      {
+        id: 'clap',
+        label: 'Clap',
+        color: 'linear-gradient(135deg, #ff6b9d, #ffa07a)',
+        instructions: ''
+      }
+    ];
+
+    // Initialize sequencer
+    setTimeout(() => {
+      initDrumSequencer(
+        testInstruments,
+        'test-samples',
+        null,
+        {
+          tempo: 120,
+          stepCount: 16,
+          swing: 0,
+          sandbox: true,
+          autoSaveState: false,
+          enablePresets: false,
+          enableExport: false,
+          enableVelocity: true
+        }
+      );
+
+      // Update status after initialization
+      setTimeout(() => {
+        const statusContent = document.getElementById('status-content');
+        statusContent.innerHTML = `
+          ✓ Sequencer initialized<br>
+          ✓ Check console for sample loading status<br>
+          ✓ Try clicking steps and pressing Play<br>
+          ✓ Use dropdowns to change samples<br>
+          <br>
+          <strong style="color: #00ff9d;">Expected behavior:</strong><br>
+          - You should see sample dropdowns below each instrument label<br>
+          - Clicking Play should trigger the loaded samples (not synthetic sounds)<br>
+          - Changing a sample should reload it instantly<br>
+        `;
+      }, 1000);
+    }, 100);
+  </script>
+</body>
+</html>

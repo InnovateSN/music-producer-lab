@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Learn Our Tools · Sequencer Guide | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Complete guide to using the Music Producer Lab sequencer: step programming, velocity controls, tempo, swing, and more." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION -->
+        <section class="hero" aria-label="Learn Our Tools hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">Tutorial</div>
+            <h1 class="hero-title">
+              <span>Learn Our</span>
+              <span class="gradient-text"> Tools.</span>
+            </h1>
+            <p class="hero-subtitle">Master the Music Producer Lab sequencers with this complete guide. Learn the drum sequencer for beats (velocity, tempo, swing, humanization) and the piano roll for chords, melodies, and bass lines.</p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-header">
+              <div class="hero-visual-title">Interactive Sequencer</div>
+              <div class="hero-visual-pill">7 Core Tools</div>
+            </div>
+            <div class="hero-visual-grid">
+              <div class="hero-visual-main">
+                <div class="hero-visual-main-title">Learn by doing</div>
+                <div class="hero-visual-waves">
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                  <div class="hero-visual-wave"></div>
+                </div>
+                <div class="hero-visual-metrics">
+                  <div class="hero-visual-metric">
+                    <span>Duration</span>
+                    <strong>5-10 min</strong>
+                  </div>
+                  <div class="hero-visual-metric">
+                    <span>Level</span>
+                    <strong>All Levels</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual-side-card">
+                <div class="hero-visual-side-label">You'll Learn</div>
+                <div class="hero-visual-pill-list">
+                  <div class="hero-visual-pill-tag">Step Programming</div>
+                  <div class="hero-visual-pill-tag">Piano Roll</div>
+                  <div class="hero-visual-pill-tag">Velocity Control</div>
+                  <div class="hero-visual-pill-tag">Tempo & Swing</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- TOOL SECTIONS -->
+        <section style="margin-top: var(--space-3xl);">
+
+          <!-- 1. STEP GRID -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #1</div>
+            <h2 class="section-title">Step Grid <span class="gradient-text">Programming</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is the Step Grid?</h3>
+              <div class="exercise-description">
+                <p>The step grid is the heart of our sequencer. Each row represents a drum sound (Kick, Snare, Hi-Hat, etc.), and each column represents a step in time (typically 16 steps = 1 bar).</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Click any button</strong> to activate that step - the sound will play when the sequencer reaches that step</li>
+                    <li><strong>Click again</strong> to deactivate the step</li>
+                    <li><strong>Active steps</strong> are highlighted with the instrument's color</li>
+                    <li><strong>Current playing step</strong> is indicated by a cyan outline as the sequencer plays</li>
+                  </ol>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Step Programming -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: Step Programming</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click the step buttons below to activate/deactivate them. Then press Play to hear your pattern!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-step-grid-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-step-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-step-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-step-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try creating a basic "four on the floor" pattern by clicking Kick on steps 1, 5, 9, and 13!
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Pro Tip:</strong> Start simple! Try placing kicks on steps 1, 5, 9, and 13 for a basic "4 on the floor" pattern.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. VELOCITY CONTROLS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #2</div>
+            <h2 class="section-title">Velocity <span class="gradient-text">Controls</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Velocity?</h3>
+              <div class="exercise-description">
+                <p><strong>Velocity</strong> controls how loud or soft each individual step plays. It's measured on a scale from <strong>0 (silent)</strong> to <strong>127 (maximum volume)</strong>, following the MIDI standard.</p>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Understanding the Interface:</h4>
+                  <ul class="exercise-steps">
+                    <li><strong>Numeric Labels</strong> (top): Shows the current velocity value (0-127) for each step</li>
+                    <li><strong>Visual Bars</strong> (middle): Color-coded bars that fill up based on velocity - taller = louder</li>
+                    <li><strong>Sliders</strong> (bottom): Horizontal sliders with grooved track - drag left (quieter) or right (louder)</li>
+                    <li><strong>Directional Indicator</strong>: A subtle arrow (◀) shows the direction - left decreases, right increases velocity</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">How to Use Velocity:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Drag the slider</strong> left (quieter) or right (louder) for each step</li>
+                    <li><strong>Watch the number</strong> change at the top to see the exact value</li>
+                    <li><strong>Watch the bar</strong> fill up or down to visualize the volume</li>
+                    <li><strong>Hover over the ⓘ icon</strong> next to "Velocity" for a quick reminder</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(95, 77, 255, 0.1); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Velocity Ranges:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;"><img src="images/speakeroff.png" alt="🔇" style="width: 1.2em; vertical-align: middle;"> <strong>0-30:</strong> Ghost notes (barely audible, subtle touches)</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/speaker.png" alt="🔉" style="width: 1.2em; vertical-align: middle;"> <strong>60-80:</strong> Medium dynamics (standard notes)</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/speakerwave.png" alt="🔊" style="width: 1.2em; vertical-align: middle;"> <strong>100-127:</strong> Accents (emphasized, powerful hits)</li>
+                  </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Velocity Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: Velocity Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click to activate steps, then drag up/down on each step to adjust its velocity (volume). Watch the blue bar fill as you drag!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-velocity-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-velocity-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-velocity-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-velocity-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Create a hi-hat pattern with varying dynamics - try alternating between loud (127) and soft (40-60) hits for a natural groove!
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/notamusicale.png" alt="🎵" style="width: 1.2em; vertical-align: middle;"> Musical Tip:</strong> Varying velocity creates more natural, human-sounding rhythms. Try setting snare backbeats to 110-120 and hi-hats between 60-90 for a groove that breathes!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TEMPO CONTROL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #3</div>
+            <h2 class="section-title">Tempo <span class="gradient-text">Control</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Tempo?</h3>
+              <div class="exercise-description">
+                <p><strong>Tempo</strong> controls how fast your pattern plays, measured in <strong>BPM (Beats Per Minute)</strong>. Higher BPM = faster music, lower BPM = slower music. Setting the correct tempo is crucial - it defines the energy, danceability, and genre of your track.</p>
+
+                <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(255, 193, 7, 0.1); border-left: 4px solid var(--accent-amber, #ffcc00); border-radius: 6px;">
+                  <img src="images/mplalert.png" alt="Alert" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
+                  <strong style="color: var(--accent-amber, #ffcc00);">Important:</strong> Many exercises require you to set a specific BPM before checking your work. Look for tempo instructions in the exercise steps!
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li>Look for the <strong>"Tempo"</strong> slider below the sequencer (it's always visible)</li>
+                    <li>Drag the slider to adjust BPM (range: 60-180 BPM)</li>
+                    <li>The display shows your current tempo in BPM format (e.g., "120 BPM")</li>
+                    <li>Adjust while playing to hear how tempo changes the feel in real-time!</li>
+                    <li><strong>Set the required tempo</strong> before clicking "Check Exercise"</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(0, 240, 255, 0.05); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Tempo Ranges by Genre:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;"><img src="images/chitarra.png" alt="Guitar" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>60-80 BPM:</strong> Hip-Hop, Trip-Hop, Ballads</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/tastiera.png" alt="Keyboard" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>90-110 BPM:</strong> Reggae, Dub, Downtempo</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/cuffie.png" alt="Headphones" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>120-130 BPM:</strong> House, Techno, Pop</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/fulmine.png" alt="Lightning" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>140-180 BPM:</strong> Drum & Bass, Dubstep, Hardstyle</li>
+                  </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Tempo Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: Tempo Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click steps to create a pattern, then adjust the tempo slider to hear how speed changes the feel!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-tempo-sequencer"></div>
+
+                  <!-- Tempo Control -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: var(--space-md);">
+                      <label for="demo-tempo-slider" style="font-size:0.9rem;color:var(--text-muted);min-width:60px;">Tempo:</label>
+                      <input type="range" id="demo-tempo-slider" min="60" max="180" value="120" style="flex: 1;">
+                      <span id="demo-tempo-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:70px;color:var(--accent-cyan);">120 BPM</span>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-tempo-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-tempo-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-tempo-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try the same pattern at 80 BPM (slow hip-hop), 120 BPM (house), and 160 BPM (drum & bass)!
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/notamusicale.png" alt="🎼" style="width: 1.2em; vertical-align: middle;"> Pro Tip:</strong> Every lesson specifies a required tempo that's optimal for the pattern. Always set the tempo to the specified BPM in the exercise instructions - this ensures your pattern sounds correct and passes validation. You can experiment with different tempos, but make sure to set it back to the required BPM before checking your work!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. SWING CONTROL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #4</div>
+            <h2 class="section-title">Swing <span class="gradient-text">Control</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Swing?</h3>
+              <div class="exercise-description">
+                <p><strong>Swing</strong> adds a "shuffle" feel to your rhythm by slightly delaying every other step. It creates a more laid-back, groovy feel - think jazz, boom-bap, or old-school hip-hop.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Use:</h4>
+                  <ol class="exercise-steps">
+                    <li>Find the <strong>"Swing"</strong> slider in Advanced Controls</li>
+                    <li><strong>0% = No swing</strong> (straight, mechanical timing)</li>
+                    <li><strong>50% = Maximum swing</strong> (triplet feel, heavy shuffle)</li>
+                    <li>Start with <strong>10-20%</strong> for subtle groove, <strong>30-40%</strong> for pronounced shuffle</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-primary);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">When to Use Swing:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;"><img src="images/mplscudo_check.png" alt="✓" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Jazz, Blues, Swing music (obviously!)</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/mplscudo_check.png" alt="✓" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Boom-bap Hip-Hop (J Dilla, MF DOOM)</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/mplscudo_check.png" alt="✓" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Funk, Soul, R&B grooves</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/X.png" alt="✗" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Four-on-the-floor House/Techno (usually straight)</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/X.png" alt="✗" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Trap, Dubstep (precise timing preferred)</li>
+                  </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Swing Control -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: Swing Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Create a hi-hat pattern, then adjust swing to hear the difference between straight and shuffled timing!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-swing-sequencer"></div>
+
+                  <!-- Swing Control -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: var(--space-md);">
+                      <label for="demo-swing-slider" style="font-size:0.9rem;color:var(--text-muted);min-width:60px;">Swing:</label>
+                      <input type="range" id="demo-swing-slider" min="0" max="100" value="0" style="flex: 1;">
+                      <span id="demo-swing-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-primary);">0%</span>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-swing-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-swing-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-swing-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <div id="demo-swing-preset" style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                      <img src="images/rectangular.png" alt="" style="height: 80px; display: block;">
+                      <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 600; font-size: 0.9rem; white-space: nowrap; pointer-events: none; font-family: var(--font-display);">Load Demo Pattern</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Try 0% swing (straight), then 55% (boom-bap feel). Can you hear the "drunk" shuffle?
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/notamusicale.png" alt="🎶" style="width: 1.2em; vertical-align: middle;"> Listen Closely:</strong> The difference between 0% and 15% swing is subtle but powerful. Play your pattern with and without swing to train your ears!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. PATTERN HINTS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #5</div>
+            <h2 class="section-title">Pattern <span class="gradient-text">Hints</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What are Pattern Hints?</h3>
+              <div class="exercise-description">
+                <p><strong>Pattern Hints</strong> are visual guides that show you the target pattern you're trying to recreate in a lesson. They appear as small dots or markers on the grid.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">How to Read Pattern Hints:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Small dots/markers</strong> show where you need to activate steps</li>
+                    <li>They're color-coded to match each instrument (kick, snare, hi-hat)</li>
+                    <li>Some lessons show velocity hints with different dot sizes or opacity</li>
+                    <li>Use them as a guide, but try to understand the <em>why</em> behind the pattern</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255, 170, 0, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);"><img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Learning Strategy:</h4>
+                  <p style="margin: 0; line-height: 1.6;">Try building the pattern <strong>without</strong> looking at the hints first. Then check your work against the hints. This builds pattern recognition and helps you internalize rhythmic concepts!</p>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/mplarrowtarget.png" alt="Target" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Remember:</strong> Pattern hints are training wheels. The goal is to eventually understand the rhythm well enough to create similar patterns on your own!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HUMANIZATION -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #6</div>
+            <h2 class="section-title">Humanization <span class="gradient-text">Controls</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is Humanization?</h3>
+              <div class="exercise-description">
+                <p><strong>Humanization</strong> adds natural, human-like variations to programmed patterns. Real drummers don't play with robotic precision—they have subtle timing and velocity differences that create groove and feel.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Humanization Controls:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Enable Checkbox:</strong> Turn humanization on/off to compare robotic vs. human feel</li>
+                    <li><strong>Timing Slider (0-50ms):</strong> Adds random timing shifts to each hit (±milliseconds)</li>
+                    <li><strong>Velocity Slider (0-50%):</strong> Varies the volume/intensity of each hit randomly</li>
+                    <li><strong>Preset Buttons:</strong> Quick access to professionally-tuned humanization settings</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Available Presets:</h4>
+                  <div style="display: grid; gap: var(--space-sm); margin-top: var(--space-sm);">
+                    <div style="padding: var(--space-sm); background: rgba(0, 240, 255, 0.05); border-radius: 4px; border-left: 2px solid var(--accent-cyan);">
+                      <strong style="color: var(--accent-cyan);">Subtle</strong> — 8ms timing / 15% velocity<br>
+                      <span style="font-size: 0.9rem; color: var(--text-muted);">Barely noticeable—keeps pattern tight but alive</span>
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(138, 43, 226, 0.05); border-radius: 4px; border-left: 2px solid var(--accent-primary);">
+                      <strong style="color: var(--accent-primary);">MPC 60</strong> — 15ms timing / 25% velocity<br>
+                      <span style="font-size: 0.9rem; color: var(--text-muted);">Classic hip-hop swing and feel</span>
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(255, 107, 107, 0.05); border-radius: 4px; border-left: 2px solid #ff6b6b;">
+                      <strong style="color: #ff6b6b;">Loose</strong> — 30ms timing / 35% velocity<br>
+                      <span style="font-size: 0.9rem; color: var(--text-muted);">Relaxed, laid-back feel for soul/R&B</span>
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(255, 170, 0, 0.05); border-radius: 4px; border-left: 2px solid #ffaa00;">
+                      <strong style="color: #ffaa00;">Live</strong> — 20ms timing / 40% velocity<br>
+                      <span style="font-size: 0.9rem; color: var(--text-muted);">Simulates real drummer variation</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255, 170, 0, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);"><img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> When to Use Humanization:</h4>
+                  <ul style="margin: 0; padding-left: var(--space-md); line-height: 1.8;">
+                    <li><strong>Rock/Live Drums:</strong> Use "Live" preset for authentic drummer feel</li>
+                    <li><strong>Hip-Hop:</strong> MPC 60 preset adds that classic boom-bap character</li>
+                    <li><strong>Electronic Music:</strong> Keep it subtle or off for tight, precise grooves</li>
+                    <li><strong>Hi-hats:</strong> Benefit most from humanization—try 10-15ms timing</li>
+                  </ul>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Humanization -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(0, 240, 255, 0.05)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: <a href="glossary.html#humanization" style="color: var(--accent-primary); text-decoration: underline;">Humanization</a> Control</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Load a pattern, then toggle humanization ON/OFF to hear the difference. Adjust timing and velocity sliders to find your perfect groove!</p>
+
+                  <!-- Sequencer Container -->
+                  <div id="demo-humanization-sequencer"></div>
+
+                  <!-- Humanization Controls -->
+                  <div style="margin-top: var(--space-md); padding: var(--space-md); background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="margin-bottom: var(--space-md);">
+                      <label style="display: flex; align-items: center; gap: var(--space-sm); cursor: pointer;">
+                        <input type="checkbox" id="demo-humanization-enable" style="width: 18px; height: 18px; cursor: pointer;">
+                        <span style="font-size: 0.95rem; font-weight: 600; color: var(--accent-cyan);">Enable <a href="glossary.html#humanization" style="color: var(--accent-cyan); text-decoration: underline;">Humanization</a></span>
+                      </label>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-sm);">
+                      <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xs);">
+                        <label for="demo-humanization-timing" style="font-size:0.9rem;color:var(--text-muted);min-width:100px;">Timing (ms):</label>
+                        <input type="range" id="demo-humanization-timing" min="0" max="20" value="0" step="1" style="flex: 1;">
+                        <span id="demo-humanization-timing-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-cyan);">0ms</span>
+                      </div>
+                      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0 115px;">Randomizes note timing by ±milliseconds</p>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-md);">
+                      <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xs);">
+                        <label for="demo-humanization-velocity" style="font-size:0.9rem;color:var(--text-muted);min-width:100px;"><a href="glossary.html#velocity" style="color: var(--text-muted); text-decoration: underline;">Velocity</a> (%):</label>
+                        <input type="range" id="demo-humanization-velocity" min="0" max="30" value="0" step="1" style="flex: 1;">
+                        <span id="demo-humanization-velocity-value" style="font-family:var(--font-mono);font-size:1rem;font-weight:600;min-width:50px;color:var(--accent-primary);">0%</span>
+                      </div>
+                      <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0 115px;">Randomizes note volume/intensity</p>
+                    </div>
+
+                    <!-- Presets -->
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-md);">
+                      <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: var(--space-sm);">Quick Presets:</p>
+                      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+                        <button class="btn btn-outline" data-preset="subtle" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Subtle</button>
+                        <button class="btn btn-outline" data-preset="mpc60" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">MPC 60</button>
+                        <button class="btn btn-outline" data-preset="loose" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Loose</button>
+                        <button class="btn btn-outline" data-preset="live" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">Live Feel</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-humanization-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-humanization-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-humanization-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <div id="demo-humanization-preset" style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                      <img src="images/rectangular.png" alt="" style="height: 80px; display: block;">
+                      <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 600; font-size: 0.9rem; white-space: nowrap; pointer-events: none; font-family: var(--font-display);">Load Demo Pattern</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Load the pattern, play it with humanization OFF (robotic). Then enable it and try the "MPC 60" preset. Can you hear the groove come alive?
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/mplarrowtarget.png" alt="Target" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Pro Tip:</strong> Start with <a href="glossary.html#humanization" style="color: var(--accent-cyan); text-decoration: underline;">humanization</a> OFF to build your pattern perfectly on the grid. Then enable humanization to add life. Toggle it on/off to hear the difference—it's subtle but makes all the difference!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PIANO ROLL -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Core Feature #7</div>
+            <h2 class="section-title">Piano Roll <span class="gradient-text">Sequencer</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">What is the Piano Roll?</h3>
+              <div class="exercise-description">
+                <p>The <strong>Piano Roll</strong> is an advanced sequencer used in harmony and melody lessons. Unlike the drum sequencer's step grid, the piano roll lets you create <strong>polyphonic music</strong> - chords, melodies, and bass lines with precise pitch control.</p>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);">Understanding the Interface:</h4>
+                  <ul class="exercise-steps">
+                    <li><strong>Vertical Axis (Left):</strong> Piano keys showing note names (C4, D#4, E4, etc.) - higher notes at the top</li>
+                    <li><strong>Horizontal Axis (Top):</strong> Step numbers showing time positions (1, 2, 3...)</li>
+                    <li><strong>Grid Cells:</strong> Click any cell to place a note at that pitch and time</li>
+                    <li><strong>Beat Markers:</strong> Vertical cyan lines mark each beat (every 4 steps) for easy timing</li>
+                    <li><strong>Note Bars:</strong> Orange bars show active notes - width indicates duration</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-primary);">How to Use the Piano Roll:</h4>
+                  <ol class="exercise-steps">
+                    <li><strong>Click a grid cell</strong> to add a note at that pitch and step</li>
+                    <li><strong>Click an existing note</strong> to delete it</li>
+                    <li><strong>Click piano keys</strong> (left column) to preview that note's sound</li>
+                    <li><strong>Drag note handles</strong> (left/right edges) to change duration or start position</li>
+                    <li><strong>Drag note vertically</strong> to change its pitch</li>
+                    <li><strong>Scroll horizontally</strong> to see long patterns (64+ steps) - look for the cyan hint banner</li>
+                  </ol>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(95, 77, 255, 0.1); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Visual Features:</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: var(--space-xs) 0;"><img src="images/tastiera.png" alt="Keyboard" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>White keys:</strong> Natural notes (C, D, E, F, G, A, B) - lighter background</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/tastiera.png" alt="Keyboard" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>Black keys:</strong> Sharp notes (C#, D#, F#, G#, A#) - darker background</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/mplstellinaesagono.png" alt="Star" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>Scale highlighting:</strong> Notes in the current scale have subtle cyan tint</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/stats.png" alt="Stats" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>Beat columns:</strong> Thick cyan borders mark each beat for precise timing</li>
+                    <li style="padding: var(--space-xs) 0;"><img src="images/loop.png" alt="Loop" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> <strong>Scroll indicator:</strong> Cyan banner appears when pattern needs horizontal scrolling</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(0, 240, 255, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);"><img src="images/notamusicale.png" alt="🎼" style="width: 1.2em; vertical-align: middle;"> Chord Detection:</h4>
+                  <p style="margin: 0; line-height: 1.6;">The piano roll automatically detects and displays chords as you build them! When you place multiple notes at the same time position, the <strong>Current Chord</strong> display shows the chord name (e.g., "C Major", "F minor", "G Dominant 7"). This helps you learn music theory while creating.</p>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255, 170, 0, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);"><img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Piano Roll Tips:</h4>
+                  <ul style="margin: 0; padding-left: var(--space-md); line-height: 1.8;">
+                    <li><strong>Building Chords:</strong> Click 3 notes vertically aligned (same step) to create triads</li>
+                    <li><strong>Creating Melodies:</strong> Place single notes across different steps horizontally</li>
+                    <li><strong>Precise Timing:</strong> Use the beat markers (cyan lines) to align notes with beats</li>
+                    <li><strong>Listen First:</strong> Click piano keys to hear notes before placing them</li>
+                    <li><strong>Long Patterns:</strong> If you see "← Scroll horizontally to see all steps →", drag the grid left/right</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(138, 43, 226, 0.08); border-radius: 6px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-sm);">Common Piano Roll Use Cases:</h4>
+                  <div style="display: grid; gap: var(--space-sm); margin-top: var(--space-sm);">
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: var(--accent-cyan);">Harmony Lessons:</strong> Build chord progressions (I–IV–V, ii–V–I)
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: var(--accent-primary);">Bass Lines:</strong> Program walking bass, synth bass, sub bass
+                    </div>
+                    <div style="padding: var(--space-sm); background: rgba(0, 0, 0, 0.2); border-radius: 4px;">
+                      <strong style="color: #ffaa00;">Melody Creation:</strong> Compose lead melodies, hooks, motifs
+                    </div>
+                  </div>
+                </div>
+
+                <!-- INTERACTIVE DEMO: Piano Roll -->
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--accent-cyan);"><img src="images/VIDEOGAME.png" alt="Controller" style="width: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Try It Now: Piano Roll Sequencer</h4>
+                  <p style="color: var(--text-muted); margin-bottom: var(--space-md);">Click on the grid to place notes. Try building a C major chord (C-E-G) on step 1, then create a simple melody!</p>
+
+                  <!-- Piano Roll Container -->
+                  <div id="demo-piano-roll-sequencer"></div>
+
+                  <!-- Controls -->
+                  <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center;">
+                    <img id="demo-piano-play" src="images/PLAY.png" alt="Play" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-piano-stop" src="images/STOP.png" alt="Stop" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <img id="demo-piano-clear" src="images/CLEAR.png" alt="Clear" style="cursor: pointer; height: 60px; width: 60px; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                    <div id="demo-piano-preset" style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.2s, filter 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)'">
+                      <img src="images/rectangular.png" alt="" style="height: 80px; display: block;">
+                      <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 600; font-size: 0.9rem; white-space: nowrap; pointer-events: none; font-family: var(--font-display);">Load C Major Chord</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong style="color: var(--accent-primary);">Challenge:</strong> Build a C major chord (C4-E4-G4) on step 1, then create a melody by placing single notes on different steps!
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/tastiera.png" alt="Keyboard" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Pro Tip:</strong> The piano roll is used in <strong>Harmony & Melody</strong> and <strong>Bass & Low End</strong> lessons. Start with simple triads (3 notes), then progress to complex chord voicings and melodies. The chord detector is your friend - watch it as you build to learn music theory!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PLAYBACK CONTROLS -->
+          <div class="tool-section" style="margin-bottom: var(--space-3xl);">
+            <div class="section-eyebrow">Essential Controls</div>
+            <h2 class="section-title">Playback <span class="gradient-text">Controls</span></h2>
+
+            <div class="exercise-box">
+              <h3 class="exercise-title">Control Your Sequencer</h3>
+              <div class="exercise-description">
+                <div style="display: grid; gap: var(--space-md);">
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);"><img src="images/PLAY.png" alt="" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px;"> Play Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Starts the sequencer loop. It will continuously play your pattern until you stop it.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);"><img src="images/STOP.png" alt="" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px;"> Stop Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Stops playback and resets to the beginning (step 1).</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);"><img src="images/CLEAR.png" alt="" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px;"> Clear Button:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Removes all active steps, giving you a clean slate. Use this to start over.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-primary);"><img src="images/mplscudo_check.png" alt="✓" style="width: 1em; height: 1em; vertical-align: middle; margin-right: 0.3em;"> Check Pattern:<</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">(Lesson mode only) Validates your pattern against the target. You'll see success or error feedback.</p>
+                  </div>
+                  <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: 6px;">
+                    <strong style="color: var(--accent-primary);">→ Next Lesson:</strong>
+                    <p style="margin: var(--space-xs) 0 0 0;">Unlocks after successfully completing the lesson. Takes you to the next challenge!</p>
+                  </div>
+                </div>
+
+                <div class="exercise-tip" style="margin-top: var(--space-lg);">
+                  <strong><img src="images/fulmine.png" alt="Lightning" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Shortcut Tip:</strong> You can adjust tempo, swing, and velocity <em>while</em> the sequencer is playing to hear changes in real-time. Experiment freely!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QUICK REFERENCE -->
+          <div class="tool-section" style="margin-bottom: var(--space-2xl);">
+            <div class="section-eyebrow">Quick Reference</div>
+            <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+
+            <div class="exercise-box">
+              <div style="display: grid; gap: var(--space-lg);">
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);"><img src="images/questionmark.png" alt="Question" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> "I can't hear any sound when I click steps"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Make sure to press the <strong>Play <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; vertical-align: middle;"></strong> button! Steps only make sound when the sequencer is playing. You can also check your device volume.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);"><img src="images/questionmark.png" alt="Question" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> "My velocity sliders aren't showing up"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Velocity controls only appear in advanced lessons (Lesson 7+). Earlier lessons focus on basic step programming first.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);"><img src="images/questionmark.png" alt="Question" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> "The 'Check Pattern' button says I'm wrong, but my pattern looks correct"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">In velocity-enabled lessons, both <strong>step placement</strong> and <strong>velocity values</strong> must match! Check your velocity sliders carefully.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);"><img src="images/questionmark.png" alt="Question" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> "How do I save my progress?"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Progress auto-saves in most lessons! Your pattern is stored locally in your browser. Completing a lesson unlocks the next one.</p>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--accent-cyan);"><img src="images/questionmark.png" alt="Question" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> "Can I create my own patterns in sandbox mode?"</h4>
+                  <p style="margin: 0; color: var(--text-muted);">Yes! Some lessons have a sandbox mode where you can experiment freely without validation. Look for lessons marked "Sandbox" or "Free Play".</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- CTA SECTION -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div style="
+            padding: var(--space-3xl) var(--space-xl);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1));
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+          ">
+            <!-- Background decoration -->
+            <div style="
+              position: absolute;
+              top: -50%;
+              right: -10%;
+              width: 100%;
+              max-width: 300px;
+              height: 300px;
+              background: radial-gradient(circle, rgba(138, 43, 226, 0.15), transparent);
+              border-radius: 50%;
+              pointer-events: none;
+            "></div>
+            <div style="
+              position: absolute;
+              bottom: -50%;
+              left: -10%;
+              width: 100%;
+              max-width: 400px;
+              height: 400px;
+              background: radial-gradient(circle, rgba(0, 240, 255, 0.15), transparent);
+              border-radius: 50%;
+              pointer-events: none;
+            "></div>
+
+            <!-- Content -->
+            <div style="position: relative; z-index: 1;">
+              <div style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-cyan); margin-bottom: var(--space-md);">
+                Ready to Create?
+              </div>
+              <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: var(--space-md); line-height: 1.2;">
+                Now That You Know <span class="gradient-text">The Tools</span>
+              </h2>
+              <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto var(--space-xl); line-height: 1.6;">
+                You've mastered the interface. Time to put your skills into action with <strong style="color: var(--text-primary);">175 hands-on lessons</strong> covering drums, harmony, bass, mixing, and more.
+              </p>
+
+              <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                <a href="labs.html" class="btn btn-primary" style="
+                  font-size: 1rem;
+                  padding: 0.875rem 2rem;
+                  border-radius: 50px;
+                  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.3);
+                  transition: all 0.3s ease;
+                  white-space: nowrap;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  <img src="images/start.png" alt="" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px;"> Start Learning Now
+                </a>
+                <a href="index.html" class="btn btn-primary" style="
+                  font-size: 1rem;
+                  padding: 0.875rem 2rem;
+                  border-radius: 50px;
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  transition: all 0.3s ease;
+                  white-space: nowrap;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  <img src="images/arrowright.png" alt="" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px; transform: rotate(180deg);"> Back to Home
+                </a>
+              </div>
+
+              <!-- Stats -->
+              <div style="margin-top: var(--space-2xl); display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                  <div style="font-size: 2rem; font-weight: 700; color: var(--accent-cyan);">175</div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Lessons</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2rem; font-weight: 700; color: var(--accent-primary);">10</div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Categories</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2rem; font-weight: 700; color: var(--accent-green, #00ff88);">100%</div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Free</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container container">
+        <p>&copy; 2025 Music Producer Lab. Interactive music production education.</p>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="glossary.html">Glossary</a>
+          <a href="learn-tools.html">Learn Our Tools</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+    <script src="hamburger-menu.js"></script>
+
+    <!-- Interactive Demo Scripts -->
+    <script type="module">
+      import { initDrumSequencer } from './sequencer.js';
+      import { initPianoRoll } from './piano-roll-sequencer.js';
+
+      // Demo 1: Step Grid Programming (Basic - No Velocity)
+      const stepGridInstruments = [
+        {
+          id: 'kick',
+          label: 'Kick',
+          color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)',
+          instructions: ''
+        },
+        {
+          id: 'snare',
+          label: 'Snare',
+          color: 'linear-gradient(135deg, #00f0ff, #5773ff)',
+          instructions: ''
+        },
+        {
+          id: 'hihat',
+          label: 'Hi-Hat',
+          color: 'linear-gradient(135deg, #8a2be2, #da70d6)',
+          instructions: ''
+        }
+      ];
+
+      // Demo 2: Velocity Control
+      const velocityInstruments = [
+        {
+          id: 'kick',
+          label: 'Kick',
+          color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)',
+          instructions: ''
+        },
+        {
+          id: 'hihat',
+          label: 'Hi-Hat',
+          color: 'linear-gradient(135deg, #8a2be2, #da70d6)',
+          instructions: ''
+        }
+      ];
+
+      // Initialize Step Grid Demo
+      setTimeout(() => {
+        const stepContainer = document.getElementById('demo-step-grid-sequencer');
+        if (stepContainer) {
+          // Create internal control buttons BEFORE sequencer init, in a sibling element
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-step"></button>
+            <button id="mpl-seq-stop-all-step"></button>
+            <button id="mpl-seq-clear-all-step"></button>
+          `;
+          // Insert before the container so it won't be cleared
+          stepContainer.parentNode.insertBefore(controlsDiv, stepContainer);
+
+          initDrumSequencer(
+            stepGridInstruments,
+            'demo-step-grid', // localStorage key
+            null, // no next lesson
+            {
+              tempo: 120,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false // Disabled for basic demo
+            },
+            'demo-step-grid-sequencer' // Unique container ID
+          );
+
+          // Store references to internal controls
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-step');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-step');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-step');
+
+          // Wire up custom controls
+          const playBtn = document.getElementById('demo-step-play');
+          const stopBtn = document.getElementById('demo-step-stop');
+          const clearBtn = document.getElementById('demo-step-clear');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+        }
+      }, 100);
+
+      // Initialize Velocity Demo
+      setTimeout(() => {
+        const velocityContainer = document.getElementById('demo-velocity-sequencer');
+        if (velocityContainer) {
+          // Create internal control buttons BEFORE sequencer init, in a sibling element
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-velocity"></button>
+            <button id="mpl-seq-stop-all-velocity"></button>
+            <button id="mpl-seq-clear-all-velocity"></button>
+          `;
+          // Insert before the container so it won't be cleared
+          velocityContainer.parentNode.insertBefore(controlsDiv, velocityContainer);
+
+          initDrumSequencer(
+            velocityInstruments,
+            'demo-velocity', // localStorage key
+            null, // no next lesson
+            {
+              tempo: 100,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: true // Enabled for velocity demo
+            },
+            'demo-velocity-sequencer' // Unique container ID
+          );
+
+          // Store references to internal controls
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-velocity');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-velocity');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-velocity');
+
+          // Wire up custom controls
+          const playBtn = document.getElementById('demo-velocity-play');
+          const stopBtn = document.getElementById('demo-velocity-stop');
+          const clearBtn = document.getElementById('demo-velocity-clear');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+        }
+      }, 300);
+
+      // Initialize Tempo Demo
+      setTimeout(() => {
+        const tempoContainer = document.getElementById('demo-tempo-sequencer');
+        if (tempoContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-tempo"></button>
+            <button id="mpl-seq-stop-all-tempo"></button>
+            <button id="mpl-seq-clear-all-tempo"></button>
+          `;
+          tempoContainer.parentNode.insertBefore(controlsDiv, tempoContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #ff5a3d, #ffb28a)', instructions: '' },
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' }
+            ],
+            'demo-tempo',
+            null,
+            {
+              tempo: 120,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false
+            },
+            'demo-tempo-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-tempo-play');
+          const stopBtn = document.getElementById('demo-tempo-stop');
+          const clearBtn = document.getElementById('demo-tempo-clear');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-tempo');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-tempo');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-tempo');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+
+          // Wire up tempo slider
+          const tempoSlider = document.getElementById('demo-tempo-slider');
+          const tempoValue = document.getElementById('demo-tempo-value');
+          if (tempoSlider && tempoValue) {
+            tempoSlider.addEventListener('input', () => {
+              const tempo = parseInt(tempoSlider.value);
+              tempoValue.textContent = `${tempo} BPM`;
+              window.dispatchEvent(new CustomEvent('mpl-tempo-change', { detail: { tempo } }));
+            });
+          }
+        }
+      }, 500);
+
+      // Initialize Swing Demo
+      setTimeout(() => {
+        const swingContainer = document.getElementById('demo-swing-sequencer');
+        if (swingContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-swing"></button>
+            <button id="mpl-seq-stop-all-swing"></button>
+            <button id="mpl-seq-clear-all-swing"></button>
+          `;
+          swingContainer.parentNode.insertBefore(controlsDiv, swingContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' },
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #e17055, #d63031)', instructions: '' }
+            ],
+            'demo-swing',
+            null,
+            {
+              tempo: 90,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false
+            },
+            'demo-swing-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-swing-play');
+          const stopBtn = document.getElementById('demo-swing-stop');
+          const clearBtn = document.getElementById('demo-swing-clear');
+          const presetBtn = document.getElementById('demo-swing-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-swing');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-swing');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-swing');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+
+          // Load demo pattern button
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Load a boom-bap style pattern: hi-hats on 8th notes
+              window.dispatchEvent(new CustomEvent('mpl-load-pattern', {
+                detail: {
+                  pattern: {
+                    hihat: [0, 2, 4, 6, 8, 10, 12, 14], // 8th notes
+                    kick: [0, 7, 8, 10] // Boom bap pattern
+                  }
+                }
+              }));
+            });
+          }
+
+          // Wire up swing slider
+          const swingSlider = document.getElementById('demo-swing-slider');
+          const swingValue = document.getElementById('demo-swing-value');
+          if (swingSlider && swingValue) {
+            swingSlider.addEventListener('input', () => {
+              const swing = parseInt(swingSlider.value);
+              swingValue.textContent = `${swing}%`;
+              window.dispatchEvent(new CustomEvent('mpl-swing-change', { detail: { swing } }));
+            });
+          }
+        }
+      }, 700);
+
+      // Initialize Humanization Demo
+      setTimeout(() => {
+        const humanizationContainer = document.getElementById('demo-humanization-sequencer');
+        if (humanizationContainer) {
+          // Create internal control buttons
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all-humanization"></button>
+            <button id="mpl-seq-stop-all-humanization"></button>
+            <button id="mpl-seq-clear-all-humanization"></button>
+          `;
+          humanizationContainer.parentNode.insertBefore(controlsDiv, humanizationContainer);
+
+          initDrumSequencer(
+            [
+              { id: 'kick', label: 'Kick', color: 'linear-gradient(135deg, #e17055, #d63031)', instructions: '' },
+              { id: 'snare', label: 'Snare', color: 'linear-gradient(135deg, #ffeaa7, #fdcb6e)', instructions: '' },
+              { id: 'hihat', label: 'Hi-Hat', color: 'linear-gradient(135deg, #00d2d3, #01a3a4)', instructions: '' }
+            ],
+            'demo-humanization',
+            null,
+            {
+              tempo: 90,
+              stepCount: 16,
+              swing: 0,
+              sandbox: true,
+              autoSaveState: false,
+              enablePresets: false,
+              enableExport: false,
+              enableVelocity: false,
+              enableHumanization: true
+            },
+            'demo-humanization-sequencer'
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-humanization-play');
+          const stopBtn = document.getElementById('demo-humanization-stop');
+          const clearBtn = document.getElementById('demo-humanization-clear');
+          const presetBtn = document.getElementById('demo-humanization-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all-humanization');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all-humanization');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all-humanization');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+
+          // Load demo pattern button
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Load a hip-hop style pattern
+              window.dispatchEvent(new CustomEvent('mpl-load-pattern', {
+                detail: {
+                  pattern: {
+                    kick: [0, 6, 8, 12],
+                    snare: [4, 12],
+                    hihat: [0, 2, 4, 6, 8, 10, 12, 14] // 8th notes
+                  }
+                }
+              }));
+            });
+          }
+
+          // Wire up humanization controls
+          const enableCheckbox = document.getElementById('demo-humanization-enable');
+          const timingSlider = document.getElementById('demo-humanization-timing');
+          const timingValue = document.getElementById('demo-humanization-timing-value');
+          const velocitySlider = document.getElementById('demo-humanization-velocity');
+          const velocityValue = document.getElementById('demo-humanization-velocity-value');
+
+          if (enableCheckbox) {
+            enableCheckbox.addEventListener('change', () => {
+              window.dispatchEvent(new CustomEvent('mpl-humanization-enable', {
+                detail: { enabled: enableCheckbox.checked }
+              }));
+            });
+          }
+
+          if (timingSlider && timingValue) {
+            timingSlider.addEventListener('input', () => {
+              const timing = parseInt(timingSlider.value);
+              timingValue.textContent = `${timing}ms`;
+              window.dispatchEvent(new CustomEvent('mpl-humanization-timing', {
+                detail: { timing }
+              }));
+            });
+          }
+
+          if (velocitySlider && velocityValue) {
+            velocitySlider.addEventListener('input', () => {
+              const velocity = parseInt(velocitySlider.value);
+              velocityValue.textContent = `${velocity}%`;
+              window.dispatchEvent(new CustomEvent('mpl-humanization-velocity', {
+                detail: { velocity }
+              }));
+            });
+          }
+
+          // Preset buttons
+          const presetButtons = document.querySelectorAll('[data-preset]');
+          presetButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const preset = btn.getAttribute('data-preset');
+              let timing = 0, velocity = 0;
+
+              switch(preset) {
+                case 'subtle':
+                  timing = 5; velocity = 10;
+                  break;
+                case 'mpc60':
+                  timing = 10; velocity = 15;
+                  break;
+                case 'loose':
+                  timing = 18; velocity = 20;
+                  break;
+                case 'live':
+                  timing = 12; velocity = 25;
+                  break;
+              }
+
+              if (timingSlider && velocitySlider && enableCheckbox) {
+                timingSlider.value = timing;
+                timingValue.textContent = `${timing}ms`;
+                velocitySlider.value = velocity;
+                velocityValue.textContent = `${velocity}%`;
+                enableCheckbox.checked = true;
+
+                window.dispatchEvent(new CustomEvent('mpl-humanization-enable', { detail: { enabled: true } }));
+                window.dispatchEvent(new CustomEvent('mpl-humanization-timing', { detail: { timing } }));
+                window.dispatchEvent(new CustomEvent('mpl-humanization-velocity', { detail: { velocity } }));
+              }
+            });
+          });
+        }
+      }, 900);
+
+      // Initialize Piano Roll Demo
+      setTimeout(() => {
+        const pianoRollContainer = document.getElementById('demo-piano-roll-sequencer');
+        if (pianoRollContainer) {
+          // Create internal control buttons (piano roll expects these IDs)
+          const controlsDiv = document.createElement('div');
+          controlsDiv.style.display = 'none';
+          controlsDiv.innerHTML = `
+            <button id="mpl-seq-play-all"></button>
+            <button id="mpl-seq-stop-all"></button>
+            <button id="mpl-seq-clear-all"></button>
+          `;
+          pianoRollContainer.parentNode.insertBefore(controlsDiv, pianoRollContainer);
+
+          // Initialize piano roll with C major scale context
+          initPianoRoll(
+            {
+              sequencer: {
+                tempo: 120,
+                stepCount: 16,
+                pitchRange: { low: 48, high: 72 }, // C3 to C5 (2 octaves)
+                key: 'C',
+                scale: 'Major',
+                swing: 0,
+                bars: 1
+              },
+              pianoRoll: {
+                bassMode: false,
+                waveform: 'triangle'
+              },
+              validation: null,
+              nextLessonUrl: null,
+              lessonKey: 'demo-piano-roll'
+            },
+            'demo-piano-roll-sequencer' // container ID
+          );
+
+          // Wire up controls
+          const playBtn = document.getElementById('demo-piano-play');
+          const stopBtn = document.getElementById('demo-piano-stop');
+          const clearBtn = document.getElementById('demo-piano-clear');
+          const presetBtn = document.getElementById('demo-piano-preset');
+          const internalPlayBtn = document.getElementById('mpl-seq-play-all');
+          const internalStopBtn = document.getElementById('mpl-seq-stop-all');
+          const internalClearBtn = document.getElementById('mpl-seq-clear-all');
+
+          if (playBtn && internalPlayBtn) {
+            playBtn.addEventListener('click', () => internalPlayBtn.click());
+          }
+          if (stopBtn && internalStopBtn) {
+            stopBtn.addEventListener('click', () => internalStopBtn.click());
+          }
+          if (clearBtn && internalClearBtn) {
+            clearBtn.addEventListener('click', () => internalClearBtn.click());
+          }
+
+          // Load C major chord preset
+          if (presetBtn) {
+            presetBtn.addEventListener('click', () => {
+              // Clear first, then load C major triad (C4-E4-G4) on step 0
+              if (internalClearBtn) internalClearBtn.click();
+
+              setTimeout(() => {
+                // Find and click cells for C major chord
+                const notes = [
+                  { pitch: 60, step: 0 }, // C4
+                  { pitch: 64, step: 0 }, // E4
+                  { pitch: 67, step: 0 }  // G4
+                ];
+
+                notes.forEach(note => {
+                  const cell = document.querySelector(
+                    `.piano-roll-cell[data-pitch="${note.pitch}"][data-step="${note.step}"]`
+                  );
+                  if (cell) {
+                    cell.click();
+                  }
+                });
+              }, 100);
+            });
+          }
+        }
+      }, 1100);
+    </script>
+
+    <script src="/js/api-client.js"></script>
+    <script src="/js/auth-integration.js"></script>
+  </body>
+</html>

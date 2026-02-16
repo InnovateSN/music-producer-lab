@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Masterclass: Complete Mix Project from Start to Finish</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              This masterclass brings together <strong>everything you've learned</strong> in the mixing series into a complete, professional workflow. We'll walk through an entire mix from raw tracks to a polished, balanced production—covering <a href="glossary.html#gain-staging" style="color: var(--accent-cyan); text-decoration: underline;">gain staging</a>, <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a>, <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">compression</a>, spatial effects, bus processing, and final polish. Think of this as your <strong>mixing checklist</strong>—a step-by-step process you can apply to any project. By following this structured approach, you'll avoid common pitfalls and deliver consistent, professional results every time you sit down to mix in your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a>.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Session Prep -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="Session Prep" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Phase 1: Session Prep</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Before touching a fader:</strong> Organize tracks by type (drums, bass, synths, vocals). Color-code and name everything clearly. Import 2-3 reference tracks and level-match them. Set up bus routing (drum bus, vocal bus, instrument bus, FX returns). Check for phase issues on multi-mic recordings. Remove silence and clean up noise. Good prep makes mixing faster and less frustrating.
+                </p>
+              </div>
+
+              <!-- Concept 2: Static Mix -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Static Mix" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Phase 2: Static Mix (No Plugins)</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Get the mix 70% there with <strong>just faders and pans</strong>—no plugins yet. This forces you to make arrangement and level decisions. Start with the most important element (usually vocals or drums). Build the mix around it. If something doesn't fit with levels alone, consider arrangement changes (muting, editing) before reaching for processing. A good static mix means less work later.
+                </p>
+              </div>
+
+              <!-- Concept 3: Processing Passes -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Processing" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">Phase 3: Processing Passes</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Work in focused passes: <strong>Corrective EQ</strong> first (high-pass filters, problem frequencies), then <strong>compression</strong> (tame dynamics), then <strong>tonal EQ</strong> (enhance character), then <strong>spatial effects</strong> (reverb/delay). Process groups before individuals when possible (drum bus before individual drums). Keep checking against your reference. Less is more—if it sounds good, stop processing.
+                </p>
+              </div>
+
+              <!-- Concept 4: Final Polish -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Polish" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Phase 4: Final Polish & Export</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  <strong>Automation</strong>: Ride vocals, automate filter sweeps, add fader moves for dynamics. <strong>Check translation</strong>: Listen on headphones, phone speaker, car. <strong>Take a break</strong>, then listen fresh. Make final level adjustments. Export at <strong>24-bit, same sample rate</strong> as your session, with 3-6 dB headroom for mastering. Deliver stems if requested.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: COMPLETE WORKFLOW -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Complete Mixing Workflow Checklist</h3>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg);">
+                <!-- Phase 1 -->
+                <div style="padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-md); border-left: 4px solid var(--accent-orange);">
+                  <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Phase 1: Prep</h4>
+                  <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: var(--space-md); margin: 0;">
+                    <li>Organize & color tracks</li>
+                    <li>Set up bus routing</li>
+                    <li>Import reference tracks</li>
+                    <li>Check gain staging (-18 dBFS avg)</li>
+                    <li>Remove noise & silence</li>
+                  </ul>
+                </div>
+                <!-- Phase 2 -->
+                <div style="padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-md); border-left: 4px solid var(--accent-purple);">
+                  <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Phase 2: Static Mix</h4>
+                  <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: var(--space-md); margin: 0;">
+                    <li>Set rough levels (faders only)</li>
+                    <li>Pan for basic stereo image</li>
+                    <li>Identify arrangement issues</li>
+                    <li>A/B against reference</li>
+                    <li>Get to 70% with no plugins</li>
+                  </ul>
+                </div>
+                <!-- Phase 3 -->
+                <div style="padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-md); border-left: 4px solid var(--accent-cyan);">
+                  <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Phase 3: Processing</h4>
+                  <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: var(--space-md); margin: 0;">
+                    <li>HPF on non-bass elements</li>
+                    <li>Corrective EQ (cut problems)</li>
+                    <li>Compression (dynamics control)</li>
+                    <li>Tonal EQ (enhance character)</li>
+                    <li>Spatial FX (reverb, delay)</li>
+                  </ul>
+                </div>
+                <!-- Phase 4 -->
+                <div style="padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-md); border-left: 4px solid var(--accent-magenta);">
+                  <h4 style="color: var(--accent-magenta); margin-bottom: var(--space-sm);">Phase 4: Polish</h4>
+                  <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: var(--space-md); margin: 0;">
+                    <li>Automation (vocals, FX)</li>
+                    <li>Bus processing (glue comp)</li>
+                    <li>Translation check (multiple systems)</li>
+                    <li>Fresh ears listen (take a break)</li>
+                    <li>Export with headroom</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Starting with Plugins:</strong>
+                <span style="color: var(--text-secondary);"> Jumping straight to EQ and compression before establishing a static mix means you're processing problems that might be solved with simple level changes. Always get a solid balance first—plugins refine, they don't fix fundamental issues.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Mixing Linearly (Track 1 → Track 2 → ...):</strong>
+                <span style="color: var(--text-secondary);"> Perfectioning one track before moving on leads to tunnel vision. By the time you've mixed 20 tracks individually, the first 10 no longer fit. Work in passes across all tracks (all EQ, then all compression) to maintain perspective.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Not Taking Breaks:</strong>
+                <span style="color: var(--text-secondary);"> After 2-3 hours, ear fatigue destroys your judgment. You stop hearing harshness, your bass perception shifts, and decisions get worse. Take 15-minute breaks every hour. Sleep on the mix and revisit with fresh ears before declaring it done.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Consistency:</strong> A repeatable workflow ensures you deliver quality results every time, not just when you "get lucky."</li>
+                <li><strong>Efficiency:</strong> Working in structured phases prevents rabbit holes—you make decisions at the right time, not constantly reworking.</li>
+                <li><strong>Professional Results:</strong> This is how top mix engineers work. The process is refined over decades of professional practice.</li>
+                <li><strong>Growth:</strong> Following a clear workflow makes it easier to identify your weak spots and improve systematically over time.</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-mixing-15.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

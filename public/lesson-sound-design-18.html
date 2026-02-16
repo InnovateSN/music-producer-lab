@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 18 · Sound Design | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 18 from Music Producer Lab: advanced sound design and synthesis techniques." />
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --lesson-accent: linear-gradient(135deg, #a29bfe, #6c5ce7);
+      --lesson-category-color: #6c5ce7;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main class="main-content container">
+    <section id="hero-section" class="hero-section">
+      <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
+      <h1 class="hero-title" id="hero-title">Loading...</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Loading...</p>
+      <div class="hero-actions">
+        <button id="mark-complete-btn" class="btn btn-primary">Mark as Complete</button>
+        <a href="labs.html" class="btn btn-secondary">Back to Overview</a>
+      </div>
+    </section>
+
+    <!-- EDUCATIONAL CONTENT -->
+    <section class="educational-content" style="margin: 2rem 0;">
+      <div style="padding: 2rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 12px;">
+        <div style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--accent-cyan, #00d4ff); margin-bottom: 0.5rem;">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Physical Modeling & Analog Emulation</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary, #aaa); margin-bottom: 1.5rem;">
+          <strong>Physical modeling</strong> uses mathematical models to simulate how real instruments produce sound—strings vibrating, air columns resonating, mallets striking. Unlike sampling, physical models respond dynamically to input: play harder, get brighter tone; change parameters, get different materials. <strong>Analog emulation</strong> applies similar principles to recreate vintage synthesizer circuits. Both approaches create expressive, realistic sounds that respond like real instruments.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #ff5a3d; margin: 0 0 0.5rem 0;">Waveguide Synthesis</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>Waveguides</strong> model vibrating strings and tubes mathematically. Excitation (pluck, bow, breath) travels through the model, creating realistic acoustic behavior. Used in Pianoteq, AAS instruments, and Ableton Tension.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: 8px; border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #5f4dff; margin: 0 0 0.5rem 0;">Resonator Models</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>Modal synthesis</strong> models resonant bodies—bells, bars, plates. Each mode (frequency) has its own decay. Adjust modal frequencies and decays to morph between materials: wood, metal, glass, membrane.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #00d4ff; margin: 0 0 0.5rem 0;">Analog Circuit Modeling</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>Component-level modeling</strong> recreates analog circuits: transistors, capacitors, transformers. This captures nonlinear behavior, subtle distortion, and "analog warmth" that simple digital doesn't match.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: 8px; border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #b366ff; margin: 0 0 0.5rem 0;">Expressive Control</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;">Physical models respond to <strong>velocity, aftertouch, MPE</strong>. Map expression to model parameters: bow pressure, breath intensity, strike position. This creates performances that feel alive.</p>
+          </div>
+        </div>
+
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
+          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
+            <li><strong>Realistic Expression:</strong> Physical models respond naturally—more expressive than static samples.</li>
+            <li><strong>Impossible Instruments:</strong> Create instruments that can't exist physically—10-foot guitars, glass pianos.</li>
+            <li><strong>Vintage Authenticity:</strong> Analog emulations capture the character of classic gear affordably.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercise-section" class="exercise-section">
+      <h2 class="section-title">Exercise</h2>
+      <div class="exercise-card">
+        <h3 id="exercise-title" class="exercise-title">Loading...</h3>
+        <p id="exercise-description" class="exercise-description">Loading...</p>
+        <div class="exercise-tip" id="exercise-tip">
+          <strong><img src="images/idea.png" alt="Tip" style="width: 1.2em; vertical-align: middle;"> Tip:</strong> <span id="exercise-tip-text">Loading...</span>
+        </div>
+        <div id="exercise-steps" class="exercise-steps">
+          <h4>Steps:</h4>
+          <ol id="exercise-steps-list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="sequencer-section" class="sequencer-section">
+      <h2 class="section-title">Sequencer</h2>
+      <div id="sequencer-container"></div>
+    </section>
+
+    <section id="theory-section" class="theory-section">
+      <h2 class="section-title">Theory</h2>
+      <div id="theory-content"></div>
+    </section>
+
+    <section id="objectives-section" class="objectives-section">
+      <h2 class="section-title">Learning Objectives</h2>
+      <ul id="objectives-list" class="objectives-list"></ul>
+    </section>
+
+    <section class="lesson-nav">
+      <a href="lesson-sound-design-17.html" id="prev-lesson-btn" class="btn btn-secondary">← Previous Lesson</a>
+      <a href="lesson-sound-design-19.html" id="next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-sound-design-18.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initLessonFromConfig(lessonConfig);
+    });
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js" defer></script>
+</body>
+</html>

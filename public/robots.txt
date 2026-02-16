@@ -1,0 +1,18 @@
+# Music Producer Lab - robots.txt
+# https://music-producer-lab.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://music-producer-lab.vercel.app/sitemap.xml
+
+# Disallow admin/API routes
+Disallow: /api/
+Disallow: /teacher/
+Disallow: /_next/
+
+# Disallow test files
+Disallow: /tests/
+Disallow: /*test*
+Disallow: /*sandbox*

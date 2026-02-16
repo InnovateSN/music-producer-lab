@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- THEORY SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow">Theory</div>
+          <h2 class="section-title">Reggae & Dub Bass: Heavy Low End</h2>
+
+          <div class="exercise-box">
+            <h3>What You're Actually Making</h3>
+            <p>You're programming <strong>reggae bass</strong> — the deep, heavy low-end foundation that defines reggae, dub, and influenced electronic bass music from dubstep to UK garage. Reggae bass is fundamentally different from rock, funk, and R&B: it emphasizes <strong>beats 1 and 3</strong> (opposite of rock's 2 & 4), uses massive sub-bass weight, and creates hypnotic, meditative grooves.</p>
+
+            <p>Reggae bass legends like <strong>Robbie Shakespeare</strong> (Sly & Robbie), <strong>Aston "Family Man" Barrett</strong> (Bob Marley & The Wailers), and <strong>Lloyd Parks</strong> created the template: deep, round, minimal bass with space for dub effects. <strong>Dub bass</strong>, pioneered by producers like <strong>King Tubby</strong> and <strong>Lee "Scratch" Perry</strong>, takes this further — adding delay, reverb, and filter sweeps to create atmospheric soundscapes.</p>
+
+            <p>This lesson teaches the rhythmic DNA of reggae and the sonic foundation of modern bass music culture.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>The One Drop: Reggae's Signature Rhythm</h3>
+            <p>Reggae rhythm is built on the <strong>"one drop"</strong> — a drum pattern that creates the signature laid-back groove:</p>
+
+            <pre>
+Standard Rock/Pop (backbeat):
+Kick:  |1---3---|1---3---| (1 & 3)
+Snare: |--2---4-|--2---4-| (2 & 4)
+
+Reggae "One Drop":
+Kick:  |----3---|----3---| (ONLY on 3)
+Snare: |--2---4-|--2---4-| (2 & 4, same as rock)
+
+The kick DROPS on beat 3, creating that hypnotic pulse
+</pre>
+
+            <p><strong>Why This Works:</strong></p>
+            <ul>
+              <li><strong>Beat 3 emphasis:</strong> Creates laid-back, behind-the-beat feel</li>
+              <li><strong>Open beat 1:</strong> Gives space, makes the groove breathe</li>
+              <li><strong>Hypnotic:</strong> Repetitive, meditative, trance-inducing</li>
+              <li><strong>Bass + kick lock:</strong> Bass plays with kick on beat 3</li>
+            </ul>
+
+            <p><strong>Bass in One Drop:</strong></p>
+            <pre>
+Bar 1:
+Beat 1: (root note or rest)
+Beat 2: (approach or rest)
+Beat 3: ROOT NOTE (locks with kick) — HEAVY
+Beat 4: (fifth or rest)
+
+The bass LOCKS with the kick on beat 3
+Creates massive low-end impact
+</pre>
+
+            <p><strong>Variation: "Rockers" Style:</strong></p>
+            <pre>
+Kick: |1-2-3-4-|1-2-3-4-| (Four-on-the-floor)
+Bass: Still emphasizes 1 & 3, but with steady kick
+
+More driving, influenced reggae-rock and dub techno
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Reggae Bass Tone: Deep, Round, Minimal</h3>
+            <p>Reggae bass has a distinctive sonic character — deep fundamental with minimal mid-range:</p>
+
+            <p><strong>Frequency Characteristics:</strong></p>
+            <pre>
+Sub-Bass (40-80 Hz):
+- HEAVY presence, felt in the chest
+- Pure, round sine wave character
+- No excessive harmonics
+
+Low-Mids (80-200 Hz):
+- Warm body, not aggressive
+- Rolled off compared to funk or rock
+- No "clank" or "grind"
+
+Mids (200-1000 Hz):
+- Minimal, almost absent
+- Creates space for rhythm guitar/keys
+- "Dub" sound = less mids
+
+Highs (1k+ Hz):
+- No treble, no brightness
+- Focus is 100% on low end
+</pre>
+
+            <p><strong>Classic Reggae Bass Sound:</strong></p>
+            <ul>
+              <li><strong>Fender Precision Bass:</strong> Flatwound strings, tone knob rolled off</li>
+              <li><strong>Played with fingers:</strong> Soft attack, no pick brightness</li>
+              <li><strong>DI + slight compression:</strong> Natural, unprocessed tone</li>
+              <li><strong>Low tuning:</strong> Sometimes tuned down (D-G-C-F) for extra weight</li>
+            </ul>
+
+            <p><strong>Programming Reggae Bass (MIDI):</strong></p>
+            <ul>
+              <li><strong>Waveform:</strong> Sine or triangle (not sawtooth/square)</li>
+              <li><strong>Filter:</strong> Low-pass at 200-400 Hz (remove highs)</li>
+              <li><strong>Envelope:</strong> Slow attack (20-40ms), long sustain</li>
+              <li><strong>No brightness:</strong> Pure low-end focus</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Dub Bass: Space, Delay, and Atmosphere</h3>
+            <p><strong>Dub</strong> is the instrumental, effects-heavy remix style born in Jamaica in the 1960s-70s. Dub bass uses space and effects to create psychedelic soundscapes:</p>
+
+            <p><strong>Key Dub Techniques:</strong></p>
+
+            <p><strong>1. Space and Silence:</strong></p>
+            <pre>
+Verse: Full bass line
+Chorus: DROP OUT bass (just drums)
+Bridge: Bass with heavy delay/reverb
+Drop: Bass SLAMS back in with impact
+
+Silence is used as a compositional tool
+</pre>
+
+            <p><strong>2. Tape Delay (Echo):</strong></p>
+            <pre>
+Original note: E (beat 1)
+Delay 1: E (beat 2, -6 dB)
+Delay 2: E (beat 3, -12 dB)
+Delay 3: E (beat 4, -18 dB)
+
+Classic: 1/4 note delay, 30-50% feedback
+Creates rhythmic echo pattern
+</pre>
+
+            <p><strong>3. Filter Sweeps:</strong></p>
+            <pre>
+Low-pass filter opens/closes over time
+Automated: Closed (dark) → Open (bright) → Closed
+
+Creates movement, breathing effect
+Classic dub production technique
+</pre>
+
+            <p><strong>4. Reverb (Spring/Plate):</strong></p>
+            <ul>
+              <li><strong>Short decay (0.8-1.5s):</strong> Adds depth without mud</li>
+              <li><strong>Pre-delay (20-40ms):</strong> Separates reverb from dry signal</li>
+              <li><strong>High-pass reverb:</strong> Keep sub clean, reverb on mids/highs</li>
+            </ul>
+
+            <p><strong>5. Distortion/Saturation (Subtle):</strong></p>
+            <ul>
+              <li><strong>Tape saturation:</strong> Warm, rounded harmonics</li>
+              <li><strong>Tube overdrive:</strong> Adds grit without harshness</li>
+              <li><strong>Used sparingly:</strong> Reggae bass is about purity, not aggression</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Classic Reggae Bass Patterns</h3>
+
+            <p><strong>1. Walking Bass (Roots Reggae):</strong></p>
+            <pre>
+C → D → E♭ → E (ascending chromatic walk)
+E → D → C → B (descending walk)
+
+Simple, stepwise motion
+Fills space between chord changes
+</pre>
+
+            <p><strong>2. Bubble Pattern (Digital Reggae/Dancehall):</strong></p>
+            <pre>
+Root on 1, octave jump on 2, root on 3, fifth on 4
+E - E' - E - B
+
+Bouncy, energetic, modern dancehall sound
+Popularized in 1980s digital reggae
+</pre>
+
+            <p><strong>3. One-Note Meditation:</strong></p>
+            <pre>
+Just the root, on beat 3, every bar
+E______3_______E______3_______
+
+Hypnotic, minimal, allows dub effects to shine
+Classic King Tubby/Scientist production
+</pre>
+
+            <p><strong>4. Steppers (Four-on-the-Floor):</strong></p>
+            <pre>
+Root on every beat: E - E - E - E
+
+Driving, modern roots reggae
+Influenced by disco and electronic music
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Reggae & Dub's Influence on Electronic Music</h3>
+            <p>Reggae bass is the <strong>DNA of modern electronic bass music</strong>. Here's the lineage:</p>
+
+            <p><strong>1. Sound System Culture → Jungle/Drum & Bass:</strong></p>
+            <ul>
+              <li><strong>Jamaican sound systems:</strong> Massive sub-bass rigs</li>
+              <li><strong>UK jungle (1990s):</strong> Reggae bass + breakbeats</li>
+              <li><strong>Reese bass:</strong> Detuned sawtooth = reggae sub weight + aggression</li>
+            </ul>
+
+            <p><strong>2. Dub → UK Garage:</strong></p>
+            <ul>
+              <li><strong>Dub delays and space:</strong> Carried into garage production</li>
+              <li><strong>2-step rhythm:</strong> Reggae one drop influence</li>
+              <li><strong>Sub-bass focus:</strong> 40-80 Hz emphasis from reggae</li>
+            </ul>
+
+            <p><strong>3. Dub → Dubstep:</strong></p>
+            <ul>
+              <li><strong>Name says it all:</strong> "Dub" + "step"</li>
+              <li><strong>Half-time rhythm:</strong> Reggae/dub tempo feel (70 BPM sound at 140 BPM)</li>
+              <li><strong>Wobble bass:</strong> Dub filter sweeps + synthesis</li>
+              <li><strong>Space and silence:</strong> Dub compositional techniques</li>
+            </ul>
+
+            <p><strong>4. Dub Techno:</strong></p>
+            <ul>
+              <li><strong>Basic Channel (Germany):</strong> Techno + dub aesthetics</li>
+              <li><strong>Heavy reverb/delay:</strong> Classic dub effects on 4/4 techno</li>
+              <li><strong>Minimal, hypnotic:</strong> Reggae's meditative quality</li>
+            </ul>
+
+            <p><strong>Modern Producers Using Reggae/Dub:</strong></p>
+            <ul>
+              <li><strong>Skream, Benga:</strong> Early dubstep pioneers</li>
+              <li><strong>Burial:</strong> Dub atmosphere + UK garage</li>
+              <li><strong>Bonobo, Floating Points:</strong> Dub delays in downtempo</li>
+              <li><strong>Bicep, Peggy Gou:</strong> Dub techno influences</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Common Mistakes</h3>
+            <ul>
+              <li><strong>Emphasizing Beats 2 & 4:</strong> That's rock/pop. Reggae emphasizes beats 1 & 3. If your bass sounds like rock, you're on the wrong beats.</li>
+              <li><strong>Too Much Mid-Range:</strong> Reggae bass is 90% sub-bass (40-120 Hz). If it sounds "clanky" or "grindy," roll off mids above 200 Hz.</li>
+              <li><strong>Rushing the Beat:</strong> Reggae is LAID BACK. Play slightly behind the beat, never on top or ahead. Rushing kills the groove.</li>
+              <li><strong>Over-Processing Dub Effects:</strong> Dub delays should be musical and rhythmic, not chaotic. Use 1/4 or 1/8 note delays locked to tempo.</li>
+              <li><strong>Playing Too Many Notes:</strong> Reggae is minimal and meditative. If you're playing more than 4-6 notes per bar, you're overplaying.</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Why This Matters</h3>
+            <p><strong>Reggae and dub bass created modern bass music culture.</strong> From dubstep to UK garage, drum & bass to dub techno, reggae's sub-bass emphasis and dub's spatial effects are everywhere. Learning reggae bass gives you:</p>
+
+            <ul>
+              <li><strong>Sub-bass mastery:</strong> How to create weight and impact at 40-80 Hz</li>
+              <li><strong>Rhythmic inversion:</strong> Understanding beats 1 & 3 vs 2 & 4</li>
+              <li><strong>Dub production:</strong> Delay, reverb, space as compositional tools</li>
+              <li><strong>Sound system culture:</strong> Bass designed for physical impact</li>
+              <li><strong>Genre lineage:</strong> Understanding jungle, dubstep, garage, dub techno origins</li>
+            </ul>
+
+            <p>Producers like <strong>Skream</strong>, <strong>Burial</strong>, <strong>Mala</strong> (Digital Mystikz), and <strong>Loefah</strong> built dubstep on reggae/dub foundations. Even house and techno producers use dub delays and sub-bass techniques. Understanding reggae makes you fluent in the language of bass.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>What's Next</h3>
+            <p>Now that you've mastered reggae and dub bass with its heavy low-end weight and spatial effects, you're ready for <strong>Lesson 16: UK Garage & Grime Bass</strong>. While reggae is laid-back and hypnotic, UK garage is <strong>skippy and energetic</strong> with 2-step rhythms, and grime is <strong>dark and aggressive</strong> with sub-bass focus.</p>
+
+            <p>You'll learn the classic 2-step shuffle rhythm, reese bass sound design, and the darker, minimal aesthetics of grime. This is where reggae's sub-bass DNA evolved into UK street music.</p>
+          </div>
+        </section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-bass-15.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

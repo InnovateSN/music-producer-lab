@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Interactive Labs | Music Producer Lab</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore all interactive music production labs. Learn drums, arrangement, sound design, mixing, vocals, and mastering through hands-on practice.">
+  <meta name="theme-color" content="#030508">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .labs-hero {
+      padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .labs-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(179, 102, 255, 0.08) 0%, transparent 40%);
+    }
+    
+    .labs-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .lab-section {
+      padding: var(--space-3xl) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .lab-section:last-child {
+      border-bottom: none;
+    }
+    
+    .lab-section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+    
+    @media (max-width: 768px) {
+      .lab-section-header {
+        flex-direction: column;
+        gap: var(--space-lg);
+      }
+    }
+    
+    .lab-section-icon {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border-radius: var(--radius-xl);
+      box-shadow: none;
+    }
+    
+    .lab-section-info {
+      flex: 1;
+    }
+    
+    .lab-section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .lab-section-description {
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+    
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .lesson-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .lesson-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg), var(--glow-cyan);
+    }
+    
+    .lesson-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    
+    .lesson-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      padding: var(--space-xs) var(--space-sm);
+      background: rgba(0, 240, 255, 0.1);
+      border-radius: var(--radius-sm);
+    }
+    
+    .lesson-badge {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+    }
+    
+    .lesson-badge-free {
+      background: rgba(0, 255, 157, 0.15);
+      color: var(--accent-green);
+    }
+    
+    .lesson-badge-new {
+      background: rgba(255, 102, 178, 0.15);
+      color: var(--accent-pink);
+    }
+    
+    .lesson-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+    
+    .lesson-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-lg);
+      flex: 1;
+    }
+    
+    .lesson-meta {
+      display: flex;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    
+    .lesson-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .lesson-meta-item svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+    
+    .lesson-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: transparent;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    
+    .lesson-cta:hover {
+      background: var(--gradient-primary);
+      border-color: transparent;
+      color: var(--bg-dark);
+    }
+    
+    .lesson-cta svg {
+      transition: transform var(--transition-fast);
+    }
+    
+    .lesson-cta:hover svg {
+      transform: translateX(4px);
+    }
+    
+    /* Coming soon state */
+    .lesson-card.coming-soon {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .lesson-card.coming-soon::after {
+      content: "Coming Soon";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: var(--space-sm) var(--space-lg);
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    
+    /* Quick nav */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+    }
+    
+    .quick-nav-link {
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    
+    .quick-nav-link:hover {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: var(--bg-dark);
+    }
+
+    /* Playground Highlight Card */
+    .playground-highlight {
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-xl);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(179, 102, 255, 0.05) 100%);
+      border: 2px solid var(--accent-cyan);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glow-cyan);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .playground-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .playground-highlight-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: rgba(0, 240, 255, 0.2);
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-full);
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-md);
+    }
+
+    .playground-highlight-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+      color: var(--text-primary);
+    }
+
+    .playground-highlight-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      max-width: 700px;
+    }
+
+    .playground-highlight-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .playground-highlight-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .playground-highlight-feature svg {
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .playground-highlight-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-xl);
+      background: var(--accent-cyan);
+      color: var(--bg-dark);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all var(--transition-base);
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+    }
+
+    .playground-highlight-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(0, 240, 255, 0.5);
+    }
+
+    .playground-highlight-cta svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .playground-highlight-cta:hover svg {
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation (loaded by navbar.js) -->
+  <div id="navbar-placeholder"></div>
+  
+  <!-- Hero -->
+  <section class="labs-hero">
+    <div class="container">
+      <div class="labs-hero-content">
+        <span class="badge badge-primary mb-md">All Labs</span>
+        <h1 class="mb-md">Interactive Production Labs</h1>
+        <p style="max-width: 600px; font-size: 1.1rem;">
+          Choose a module and start learning. Each lab is designed to teach you
+          a specific skill through hands-on practice. No fluff, just production.
+        </p>
+
+        <div class="quick-nav" id="labs-quick-nav"></div>
+      </div>
+    </div>
+  </section>
+  
+  <main>
+    <div id="labs-sections-root"></div>
+  </main>
+
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="mpl-logo-icon.svg" alt="" width="32" height="32">
+            <span>Music Producer Lab</span>
+          </div>
+          <p class="footer-tagline">
+            Learn music production by actually producing.
+          </p>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Labs</h4>
+                    <ul class="footer-links" id="labs-footer-links"></ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <!-- Downloads page hidden until content is ready
+            <li><a href="download.html" class="footer-link">Downloads</a></li>
+            -->
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="year"></span> Music Producer Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Shared Navbar Component -->
+  <!-- Shared Navbar Component -->
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+  <script src="progress-tracker.js"></script>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/auth-integration.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 100;
+            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: position, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+
+  <script type="module">
+    import { curriculum } from './curriculum.js';
+
+    const quickNav = document.getElementById('labs-quick-nav');
+    const sectionsRoot = document.getElementById('labs-sections-root');
+    const footerLinks = document.getElementById('labs-footer-links');
+
+    const metaIcons = {
+      time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+      level: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M6 20V4M18 20v-6"/></svg>'
+    };
+
+    function getCategoryIcon(slug) {
+      switch (slug) {
+        case 'drums':
+          return '<img src="images/drumpads.png" alt="Drums" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'harmony':
+          return '<img src="images/notamusicale.png" alt="Harmony" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'music-theory':
+          return '<img src="images/tastiera.png" alt="Music Theory" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'ear-training':
+          return '<img src="images/cuffie.png" alt="Ear Training" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'bass':
+          return '<img src="images/chitarra.png" alt="Bass & Low End" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'arrangement':
+          return '<img src="images/arrangement.png" alt="Arrangement & Songwriting" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'sound-design':
+          return '<img src="images/sound%20design.png" alt="Sound Design" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'mixing':
+          return '<img src="images/mixer.png" alt="Mixing" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'vocals':
+          return '<img src="images/vocals.png" alt="Vocals" style="width: 48px; height: 48px; object-fit: contain;">';
+        case 'mastering':
+          return '<img src="images/mastering.png" alt="Mastering" style="width: 48px; height: 48px; object-fit: contain;">';
+        default:
+          return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+      }
+    }
+
+    function renderQuickNav(categories) {
+      if (!quickNav) return;
+      quickNav.innerHTML = '';
+      categories.forEach(category => {
+        const link = document.createElement('a');
+        link.className = 'quick-nav-link';
+        link.href = `#${category.slug}`;
+        link.textContent = category.title;
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            const offset = 100;
+            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: position, behavior: 'smooth' });
+          }
+        });
+        quickNav.appendChild(link);
+      });
+    }
+
+    function renderFooterLinks(categories) {
+      if (!footerLinks) return;
+      footerLinks.innerHTML = '';
+      categories.forEach(category => {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${category.slug}`;
+        link.className = 'footer-link';
+        link.textContent = category.title;
+        li.appendChild(link);
+        footerLinks.appendChild(li);
+      });
+    }
+
+    function createMetaItem(iconKey, text) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lesson-meta-item';
+      wrapper.innerHTML = `${metaIcons[iconKey]}<span>${text}</span>`;
+      return wrapper;
+    }
+
+    function createLessonCard(lesson, index) {
+      const isComingSoon = lesson.status === 'coming-soon';
+      const article = document.createElement('article');
+      article.className = `lesson-card${isComingSoon ? ' coming-soon' : ''}`;
+
+      const header = document.createElement('div');
+      header.className = 'lesson-card-header';
+      const number = document.createElement('span');
+      number.className = 'lesson-number';
+      number.textContent = String(index + 1).padStart(2, '0');
+      header.appendChild(number);
+
+      if (lesson.badge) {
+        const badge = document.createElement('span');
+        badge.className = `lesson-badge ${lesson.badge === 'Free' ? 'lesson-badge-free' : 'lesson-badge-new'}`;
+        badge.textContent = lesson.badge;
+        header.appendChild(badge);
+      }
+      article.appendChild(header);
+
+      const title = document.createElement('h3');
+      title.className = 'lesson-title';
+      title.textContent = lesson.title;
+      article.appendChild(title);
+
+      if (lesson.description) {
+        const desc = document.createElement('p');
+        desc.className = 'lesson-description';
+        desc.textContent = lesson.description;
+        article.appendChild(desc);
+      }
+
+      const meta = document.createElement('div');
+      meta.className = 'lesson-meta';
+      if (lesson.duration) meta.appendChild(createMetaItem('time', lesson.duration));
+      if (lesson.level) meta.appendChild(createMetaItem('level', lesson.level));
+      article.appendChild(meta);
+
+      const cta = document.createElement(isComingSoon ? 'span' : 'a');
+      cta.className = 'lesson-cta';
+      cta.textContent = isComingSoon ? 'Coming Soon' : 'Start Lab';
+      if (!isComingSoon && lesson.pagePath) {
+        cta.href = lesson.pagePath;
+        cta.innerHTML += '<img src="images/arrowright.png" alt="→" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-left: 8px;">';
+      }
+      article.appendChild(cta);
+
+      return article;
+    }
+
+    function renderSections(categories) {
+      if (!sectionsRoot) return;
+      sectionsRoot.innerHTML = '';
+      categories.forEach(category => {
+        const section = document.createElement('section');
+        section.className = 'lab-section';
+        section.id = category.slug;
+
+        const container = document.createElement('div');
+        container.className = 'container';
+
+        const header = document.createElement('div');
+        header.className = 'lab-section-header';
+
+        const iconWrap = document.createElement('div');
+        iconWrap.className = 'lab-section-icon';
+        iconWrap.innerHTML = getCategoryIcon(category.slug);
+        header.appendChild(iconWrap);
+
+        const info = document.createElement('div');
+        info.className = 'lab-section-info';
+        const title = document.createElement('h2');
+        title.className = 'lab-section-title';
+        title.textContent = category.title;
+        const desc = document.createElement('p');
+        desc.className = 'lab-section-description';
+        desc.textContent = category.description || '';
+        info.appendChild(title);
+        info.appendChild(desc);
+        header.appendChild(info);
+
+        container.appendChild(header);
+
+        // Add Drum Playground highlight card for drums module
+        if (category.slug === 'drums') {
+          const playgroundHighlight = document.createElement('div');
+          playgroundHighlight.className = 'playground-highlight';
+          playgroundHighlight.innerHTML = `
+            <span class="playground-highlight-badge">Practice Tool</span>
+            <h3 class="playground-highlight-title">Drum Playground</h3>
+            <p class="playground-highlight-description">
+              Turn each lesson into reps. Build patterns fast, hear what changes, export the loop to your DAW.
+            </p>
+            <div class="playground-highlight-features">
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13M9 13l12-2"/>
+                </svg>
+                <span>16-step sequencer</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v6m0 4v10M4 10l4 4 4-4M20 6l-4 4-4-4"/>
+                </svg>
+                <span>Mixer + velocity control</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <span>Export WAV</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                <span>Swing + humanization</span>
+              </div>
+            </div>
+            <a href="drum-playground.html" class="playground-highlight-cta">
+              <span>Open Drum Playground</span>
+              <img src="images/arrowright.png" alt="→" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 8px;">
+            </a>
+          `;
+          container.appendChild(playgroundHighlight);
+        }
+
+        // Add Harmony Playground highlight card for harmony module
+        if (category.slug === 'harmony') {
+          const playgroundHighlight = document.createElement('div');
+          playgroundHighlight.className = 'playground-highlight';
+          playgroundHighlight.innerHTML = `
+            <span class="playground-highlight-badge">Practice Tool</span>
+            <h3 class="playground-highlight-title"><img src="images/tastiera.png" alt="Keyboard" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Harmony Playground</h3>
+            <p class="playground-highlight-description">
+              Free piano roll for building chord progressions and melodies. Practice voice leading, export your creations.
+            </p>
+            <div class="playground-highlight-features">
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/>
+                </svg>
+                <span>Multi-octave piano roll</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13M9 13l12-2"/>
+                </svg>
+                <span>Chord detection</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <span>Export WAV</span>
+              </div>
+              <div class="playground-highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v6m0 4v10M4 10l4 4 4-4M20 6l-4 4-4-4"/>
+                </svg>
+                <span>Multiple instruments</span>
+              </div>
+            </div>
+            <a href="harmony-playground.html" class="playground-highlight-cta">
+              <span>Open Harmony Playground</span>
+              <img src="images/arrowright.png" alt="→" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 8px;">
+            </a>
+          `;
+          container.appendChild(playgroundHighlight);
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'lessons-grid';
+        (category.lessons || []).forEach((lesson, index) => {
+          grid.appendChild(createLessonCard(lesson, index));
+        });
+        container.appendChild(grid);
+
+        section.appendChild(container);
+        sectionsRoot.appendChild(section);
+      });
+    }
+
+    renderQuickNav(curriculum);
+    renderSections(curriculum);
+    renderFooterLinks(curriculum);
+  </script>
+
+</body>
+</html>

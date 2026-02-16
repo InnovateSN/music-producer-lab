@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- THEORY SECTION -->
+        <section class="theory-section" style="margin-top: var(--space-2xl);">
+          <div class="section-eyebrow">Theory</div>
+          <h2 class="section-title">Bass Expression & Automation</h2>
+
+          <div class="exercise-box">
+            <h3>What You're Actually Making</h3>
+            <p>You're learning to <strong>bring bass to life with automation</strong> — adding movement, expression, and emotion to static MIDI patterns. Automation controls parameters over time: pitch glides, filter sweeps, volume changes, panning, and effects. This transforms robotic programmed bass into dynamic, human-feeling performances.</p>
+
+            <p>From the sliding funk bass on Bootsy Collins tracks to the filter-swept dub bass on King Tubby productions, from the pitch-gliding 808s in trap to the automated distortion builds in dubstep — automation is what makes bass exciting, not just functional. It's the difference between a bass line and a bass <strong>performance</strong>.</p>
+
+            <p>This lesson teaches professional automation techniques that add motion, build tension, and create memorable bass moments.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Pitch Automation: Glides & Bends</h3>
+            <p><strong>Pitch automation</strong> creates slides, bends, and glides that emulate live bass performance:</p>
+
+            <p><strong>1. Portamento (Legato Slide):</strong></p>
+            <pre>
+Function: Smooth pitch slide from one note to next
+Setting: Portamento time (50-200ms for funk, 100-400ms for dub)
+Usage: Funk bass slides, dub bass glides
+Example: E → G (slides smoothly, no gap)
+
+DAW Implementation:
+- Enable portamento/glide on synth
+- Adjust glide time to taste
+- Works best on overlapping notes
+</pre>
+            <p>Famous examples: Parliament funk bass, reggae bass slides</p>
+
+            <p><strong>2. Pitch Bend (Manual Control):</strong></p>
+            <pre>
+Function: Manual pitch bending up/down
+Range: ±2 semitones (standard), ±12 semitones (wide)
+Usage: Expressive bends, 808 slides, dubstep drops
+Example: E → bend up 2 semitones → F♯
+
+MIDI Implementation:
+- Draw pitch bend automation in DAW
+- Exponential curve for natural feel
+- Use for isolated bends, not all notes
+</pre>
+            <p>Famous examples: 808 trap slides, dubstep bass drops</p>
+
+            <p><strong>3. Vibrato (Pitch Modulation):</strong></p>
+            <pre>
+Function: Oscillating pitch (±10-30 cents)
+Rate: 5-7 Hz (slow, singing)
+Depth: 10-30 cents (subtle wobble)
+Usage: Sustaining notes, emotional expression
+
+Implementation:
+- LFO modulating pitch
+- Fade-in vibrato (delayed vibrato)
+- Manual automation for control
+</pre>
+            <p>Adds human quality to sustained bass notes</p>
+
+            <p><strong>4. Scoop/Dive (Attack Pitch):</strong></p>
+            <pre>
+Function: Start below note, quickly slide up
+Amount: -5 to -12 semitones
+Time: 20-80ms (fast scoop)
+Usage: Funk slap bass, rock bass attack
+
+Result: Adds percussive "thunk" before note
+Classic live bass articulation
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Filter Automation: Movement & Energy</h3>
+            <p><strong>Filter cutoff automation</strong> is the most powerful tool for creating movement and tension:</p>
+
+            <p><strong>1. Filter Sweep (Opening):</strong></p>
+            <pre>
+Start: Low-pass filter closed (200 Hz) — dark, muffled
+End: Low-pass filter open (2000 Hz) — bright, full
+Duration: 8-16 bars (gradual build)
+Usage: Build-ups before drops, intro → verse transitions
+
+Automation Curve: Exponential (slow start, fast end)
+Result: Energy build, anticipation, release
+</pre>
+            <p>Classic in: Dubstep drops, house build-ups, progressive trance</p>
+
+            <p><strong>2. Wobble (Rhythmic Filter):</strong></p>
+            <pre>
+Method: LFO modulating filter cutoff
+Rate: 1/8 or 1/16 note (tempo-synced)
+Depth: 50-100% (wide sweep)
+Waveform: Sine, square, or saw
+
+Result: "Wub-wub-wub" dubstep wobble
+Automation: Change LFO rate over time (slow → fast)
+</pre>
+            <p>Made famous by: Skrillex, Excision, Flux Pavilion</p>
+
+            <p><strong>3. Filter Closes (Breakdown/Drop):</strong></p>
+            <pre>
+Function: Close filter suddenly for contrast
+Start: Filter open (full freq range)
+End: Filter closed (sub only, 80 Hz)
+Duration: Instant or 1-2 bars
+Usage: Drops, breakdowns, transitions
+
+Result: Creates space, emphasizes drop impact
+Often paired with: Volume drop, reverb throw
+</pre>
+
+            <p><strong>4. Resonance Automation:</strong></p>
+            <pre>
+Parameter: Filter resonance (0% → 60%)
+Effect: Emphasizes cutoff frequency
+Usage: Adds "wah" character, vowel-like movement
+
+Warning: High resonance (>70%) can sound harsh
+Sweet spot: 20-50% for musical results
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Volume Automation: Dynamics & Space</h3>
+            <p><strong>Volume automation</strong> creates dynamics, build-ups, and rhythmic gating:</p>
+
+            <p><strong>1. Build-Up (Crescendo):</strong></p>
+            <pre>
+Start: -12 dB (quiet)
+End: 0 dB (full volume)
+Duration: 8-16 bars
+Curve: Exponential (slow → fast)
+
+Usage: Intro build-up, pre-drop tension
+Often paired with: Filter sweep, reverb increase
+</pre>
+
+            <p><strong>2. Drop (Sudden Silence → Impact):</strong></p>
+            <pre>
+Bar 15: Full volume (0 dB)
+Bar 16: Silence (-∞ dB) for 1 beat
+Bar 16, beat 2: SLAM back to 0 dB
+
+Result: Creates contrast, emphasizes drop impact
+Usage: EDM drops, hip-hop beat switches
+</pre>
+
+            <p><strong>3. Rhythmic Gating (Stutter):</strong></p>
+            <pre>
+Pattern: 16th-note on-off-on-off
+Implementation: Volume automation or gate plugin
+Tempo-synced: 1/16 note (rhythmic stutter)
+
+Result: Glitchy, electronic, rhythmic texture
+Famous in: Glitch-hop, IDM, experimental bass music
+</pre>
+
+            <p><strong>4. Sidechain (Ducking):</strong></p>
+            <pre>
+Method: Volume ducks when kick hits
+Attack: 1-5ms
+Release: 50-200ms (fast recovery)
+Depth: -4 to -12 dB
+
+Result: Kick punches through, creates pumping groove
+Usage: EDM, house, hip-hop, pop
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Effects Automation: Atmosphere & Drama</h3>
+            <p>Automating effects sends creates dynamic atmosphere and spatial movement:</p>
+
+            <p><strong>1. Reverb Throw:</strong></p>
+            <pre>
+Normal: Reverb send at 5% (subtle)
+Throw: Reverb send jumps to 100% for 1-2 beats
+Result: Bass "throws" into huge space, then snaps back
+
+Usage: End of phrases, before drops, transitions
+Pairs with: Volume drop, filter close
+</pre>
+
+            <p><strong>2. Delay Feedback Build:</strong></p>
+            <pre>
+Start: Delay feedback 20% (normal)
+Build: Feedback increases to 90% over 4 bars
+Result: Delay repeats build into chaos
+End: Cut to 0% on the drop (silence → impact)
+
+Classic in: Dub, dubstep, techno
+</pre>
+
+            <p><strong>3. Distortion Automation:</strong></p>
+            <pre>
+Intro/Verse: Clean bass (distortion 0%)
+Build-Up: Distortion increases (0% → 70%)
+Drop: Full distortion (70-100%) — aggressive, raw
+
+Result: Clean → aggressive transition
+Creates energy and intensity
+</pre>
+
+            <p><strong>4. Pan Automation (Stereo Movement):</strong></p>
+            <pre>
+Method: Pan bass left-right over time
+Range: Hard left (-100) to hard right (+100)
+Rate: Slow (8 bars), medium (4 bars), or fast (1 bar)
+
+Warning: Keep sub-bass MONO (center)
+Only pan mid/top frequencies (>100 Hz)
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Expressive Techniques: Human Touch</h3>
+            <p>These techniques add human imperfection and emotion to programmed bass:</p>
+
+            <p><strong>1. Velocity Variation:</strong></p>
+            <pre>
+Instead of: All notes at velocity 100
+Humanize: Notes range 80-110 (varied intensity)
+
+Method:
+- Emphasize downbeats (110-127)
+- Ghost notes (50-70)
+- Off-beats (80-95)
+
+Result: Natural dynamics, not robotic
+</pre>
+
+            <p><strong>2. Timing Humanization:</strong></p>
+            <pre>
+Instead of: Perfectly quantized to grid
+Humanize: Notes ±5-15ms off grid
+
+Method:
+- Slightly ahead for aggressive feel
+- Slightly behind for laid-back groove
+- Random variation for imperfection
+
+DAW Feature: "Humanize" or "Groove" function
+</pre>
+
+            <p><strong>3. Note Length Variation:</strong></p>
+            <pre>
+Instead of: All notes same length
+Vary: Short staccato + long sustained notes
+
+Example:
+Note 1: Short (staccato, 50ms)
+Note 2: Long (sustained, 800ms)
+Note 3: Medium (legato, 300ms)
+
+Result: Phrasing, musicality, breathing space
+</pre>
+
+            <p><strong>4. Hammer-Ons / Pull-Offs:</strong></p>
+            <pre>
+Technique: Second note without re-triggering attack
+Implementation:
+- Note 1: Full attack (E, velocity 100)
+- Note 2: Soft attack (G, velocity 60, legato)
+
+Result: Smooth connection, live bass feel
+Famous in: Funk, jazz, R&B bass
+</pre>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Common Mistakes</h3>
+            <ul>
+              <li><strong>Over-Automating:</strong> Too much movement sounds chaotic. Choose 1-2 automation targets per section, not everything at once.</li>
+              <li><strong>Abrupt Changes:</strong> Instant jumps in filter/volume sound unnatural. Use gradual curves (exponential/logarithmic) for smooth transitions.</li>
+              <li><strong>Forgetting to Humanize:</strong> Perfectly quantized, same-velocity notes sound robotic. Add velocity and timing variation for natural feel.</li>
+              <li><strong>Automating Sub-Bass Pitch:</strong> Pitch glides on sub frequencies sound muddy and lose impact. Only glide mid/top layers, keep sub stable.</li>
+              <li><strong>No Contrast:</strong> Constant filter sweeps or wobbles become tiring. Use automation for specific moments, not entire tracks.</li>
+            </ul>
+          </div>
+
+          <div class="exercise-box">
+            <h3>Why This Matters</h3>
+            <p><strong>Automation turns bass lines into bass performances.</strong> Static, unchanging bass sounds boring. Automation creates movement, builds tension, releases energy, and keeps listeners engaged. Learning bass automation gives you:</p>
+
+            <ul>
+              <li><strong>Dynamic production:</strong> Bass that evolves and surprises throughout the track</li>
+              <li><strong>Emotional expression:</strong> Pitch glides, vibrato, and dynamics convey feeling</li>
+              <li><strong>Professional polish:</strong> Small automation details make mixes sound expensive</li>
+              <li><strong>Genre mastery:</strong> Know how to automate for dub, dubstep, funk, trap, house</li>
+              <li><strong>Creative freedom:</strong> Transform simple patterns into complex, evolving textures</li>
+            </ul>
+
+            <p>Every producer's signature sound involves automation: <strong>Skrillex's filter automation</strong>, <strong>Flying Lotus's glitchy stutters</strong>, <strong>Flume's pitch-bent bass</strong>, <strong>Burial's reverb throws</strong>. These aren't presets — they're intentional automation decisions that create memorable moments.</p>
+          </div>
+
+          <div class="exercise-box">
+            <h3>What's Next</h3>
+            <p>Now that you've mastered bass expression and automation, you're ready for the final lesson: <strong>Lesson 20: Masterclass - Complete Bass Production</strong>. This is where everything comes together — you'll apply <strong>all 19 lessons</strong> to create a professional, multi-genre bass showcase demonstrating synthesis, EQ, automation, and genre fluency.</p>
+
+            <p>This is your final exam. Time to show what you've learned and complete the Bass & Low End category at <strong>100%</strong>.</p>
+          </div>
+        </section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-bass-19.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

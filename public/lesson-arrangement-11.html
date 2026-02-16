@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson 11 | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+          </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-header">
+            <div class="hero-visual-title">Lesson 11</div>
+            <div class="hero-visual-pill">Arrangement</div>
+          </div>
+          <div class="hero-visual-grid">
+            <div class="hero-visual-main">
+              <div class="hero-visual-main-title">Modulation</div>
+              <div class="hero-visual-waves">
+                <div class="hero-visual-wave"></div>
+                <div class="hero-visual-wave"></div>
+                <div class="hero-visual-wave"></div>
+                <div class="hero-visual-wave"></div>
+                <div class="hero-visual-wave"></div>
+              </div>
+              <div class="hero-visual-metrics">
+                <div class="hero-visual-metric">
+                  <span>Technique</span>
+                  <strong>Key Change</strong>
+                </div>
+                <div class="hero-visual-metric">
+                  <span>Time</span>
+                  <strong>15–18 min</strong>
+                </div>
+              </div>
+            </div>
+            <div class="hero-visual-side-card">
+              <div class="hero-visual-side-label">Goal</div>
+              <div class="hero-visual-pill-list">
+                <div class="hero-visual-pill-tag">Learn modulation techniques</div>
+                <div class="hero-visual-pill-tag">Create dramatic lifts</div>
+              </div>
+              <div class="hero-visual-footer">
+                <span>Harmonic elevation</span>
+                <span>All genres · All DAWs</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Modulation: The Art of Key Changes</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Modulation</strong> is the art of changing keys within a song—one of the most powerful tools for creating emotional lift and keeping arrangements fresh. A well-placed key change can make a final chorus feel <strong>triumphant</strong>, a bridge feel <strong>mysterious</strong>, or a breakdown feel <strong>otherworldly</strong>. From subtle pivot chord modulations to dramatic direct shifts, mastering key changes separates amateur arrangements from professional ones.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Direct Modulation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Just do it.</strong> The most dramatic approach—jump to the new key without preparation. Works best after a pause or breakdown. The classic "final chorus up a half-step" is direct modulation. Bold, obvious, effective.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Pivot Chord Modulation</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Smooth and sophisticated.</strong> Find a chord that exists in both keys—it becomes your "pivot." Use it to seamlessly transition. The listener barely notices the change happened, but the emotional shift is felt.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Common Modulations</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Half-step up:</strong> Instant energy boost. <strong>Whole-step up:</strong> Strong lift, less jarring. <strong>Up a fourth:</strong> Classic key change, natural feeling. <strong>Relative major/minor:</strong> Changes mood without changing notes.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Preparation Techniques</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Build anticipation before the modulation: <strong>drum fill</strong> into the new key, <strong>riser</strong> or sweep, <strong>brief silence</strong>, or a <strong>dominant chord</strong> of the new key. Preparation makes the arrival more satisfying.</p>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">When to Modulate</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
+                <li><strong>Final chorus:</strong> The classic lift—modulate up for the last chorus</li>
+                <li><strong>Bridge section:</strong> Create contrast by modulating to a distant key</li>
+                <li><strong>After breakdown:</strong> Return with a key change for freshness</li>
+                <li><strong>Verse to chorus:</strong> Subtle modulation can make choruses pop</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div class="pattern-note" id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER SECTION -->
+        <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+          <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Sequencer</div>
+          <h2 class="section-title" style="margin-bottom: var(--space-lg);"><span id="mpl-step-count-label">16</span>-Step Grid</h2>
+
+          <div class="sequencer" id="mpl-sequencer-collection">
+            <!-- Sequencer will be created by JS -->
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-outline" id="mpl-seq-play-all">
+              <img src="images/PLAY.png" alt="Play" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Play</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-stop-all">
+              <img src="images/STOP.png" alt="Stop" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Stop</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="mpl-seq-clear-all">
+              <img src="images/CLEAR.png" alt="Clear" style="width: 16px; height: 16px; margin-right: 4px; filter: brightness(1.2);">
+              <span>Clear</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="mpl-seq-check-all">
+              <span>Check Exercise</span>
+            </button>
+
+            <div id="mpl-seq-next-lesson-wrap" style="margin-left:auto;">
+              <button class="btn btn-primary" id="mpl-next-lesson" disabled title="Complete exercise to unlock">
+                <span>Next Lesson &rarr;</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;">
+            <span>Complete the exercise to unlock the next lesson.</span>
+          </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- MODULAR LESSON ENGINE -->
+
+<script type="module">
+      // Import lesson config and engine
+      import { lessonConfig } from './configs/lesson-arrangement-11.config.js';
+      import { initLessonFromConfig } from './lesson-engine.js';
+
+      // Initialize lesson from config
+      initLessonFromConfig(lessonConfig);
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>
+    <linearGradient id="favGrad" x1="6" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63FFF4" />
+      <stop offset="0.48" stop-color="#5CC4FF" />
+      <stop offset="1" stop-color="#C58DFF" />
+    </linearGradient>
+    <linearGradient id="favPulse" x1="12" y1="14" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD86B" />
+      <stop offset="1" stop-color="#63FFF4" />
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#0B1126" stroke="url(#favGrad)" stroke-width="3" />
+  <path d="M16 42L24 26L32 40L40 22L48 40" stroke="url(#favPulse)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

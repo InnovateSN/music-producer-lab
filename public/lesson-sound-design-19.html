@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 19 · Sound Design | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 19 from Music Producer Lab: advanced sound design and synthesis techniques." />
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --lesson-accent: linear-gradient(135deg, #a29bfe, #6c5ce7);
+      --lesson-category-color: #6c5ce7;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main class="main-content container">
+    <section id="hero-section" class="hero-section">
+      <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
+      <h1 class="hero-title" id="hero-title">Loading...</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Loading...</p>
+      <div class="hero-actions">
+        <button id="mark-complete-btn" class="btn btn-primary">Mark as Complete</button>
+        <a href="labs.html" class="btn btn-secondary">Back to Overview</a>
+      </div>
+    </section>
+
+    <!-- EDUCATIONAL CONTENT -->
+    <section class="educational-content" style="margin: 2rem 0;">
+      <div style="padding: 2rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 12px;">
+        <div style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--accent-cyan, #00d4ff); margin-bottom: 0.5rem;">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-primary, #fff);">Spectral Processing & Resynthesis</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary, #aaa); margin-bottom: 1.5rem;">
+          <strong>Spectral processing</strong> analyzes sound in the frequency domain using <strong>FFT (Fast Fourier Transform)</strong>, allowing manipulation impossible in the time domain. Freeze specific frequencies, blur transients, cross-synthesize between sounds, or completely reshape harmonic content. <strong>Resynthesis</strong> reconstructs sound from spectral analysis, enabling extreme transformations while maintaining recognizable characteristics. This is advanced sound design territory—where physics meets creativity.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #ff5a3d; margin: 0 0 0.5rem 0;">FFT Analysis</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>FFT</strong> converts audio into frequency bins over time—a spectrogram. Each bin can be manipulated independently: boost, cut, shift, blur. <strong>FFT size</strong> controls time/frequency resolution tradeoff.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: 8px; border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #5f4dff; margin: 0 0 0.5rem 0;">Spectral Effects</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>Spectral freeze:</strong> sustain specific frequencies. <strong>Spectral blur:</strong> smear transients. <strong>Spectral shift:</strong> move frequencies up/down. <strong>Spectral gate:</strong> remove quiet frequencies. Each creates unique textures.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #00d4ff; margin: 0 0 0.5rem 0;">Vocoding & Cross-Synthesis</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>Vocoders</strong> impose one sound's spectral envelope onto another—classic "talking synth" effect. <strong>Cross-synthesis</strong> morphs between two sounds spectrally. Both combine characteristics of multiple sources.</p>
+          </div>
+          <div style="padding: 1rem; background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: 8px; border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.1rem; color: #b366ff; margin: 0 0 0.5rem 0;">Tools & Plugins</h3>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0;"><strong>iZotope Iris</strong>, <strong>Zynaptiq Morph</strong>, <strong>Michael Norris plugins</strong> (free), <strong>GRM Tools</strong>. Spectral tools are specialized but powerful for unique textures impossible any other way.</p>
+          </div>
+        </div>
+
+        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
+          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
+            <li><strong>Unique Transformations:</strong> Spectral processing creates sounds impossible with time-domain tools.</li>
+            <li><strong>Scientific Foundation:</strong> Understanding FFT deepens your grasp of digital audio fundamentals.</li>
+            <li><strong>Hybrid Sounds:</strong> Cross-synthesis and morphing create entirely new timbres from existing sources.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercise-section" class="exercise-section">
+      <h2 class="section-title">Exercise</h2>
+      <div class="exercise-card">
+        <h3 id="exercise-title" class="exercise-title">Loading...</h3>
+        <p id="exercise-description" class="exercise-description">Loading...</p>
+        <div class="exercise-tip" id="exercise-tip">
+          <strong><img src="images/idea.png" alt="Tip" style="width: 1.2em; vertical-align: middle;"> Tip:</strong> <span id="exercise-tip-text">Loading...</span>
+        </div>
+        <div id="exercise-steps" class="exercise-steps">
+          <h4>Steps:</h4>
+          <ol id="exercise-steps-list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="sequencer-section" class="sequencer-section">
+      <h2 class="section-title">Sequencer</h2>
+      <div id="sequencer-container"></div>
+    </section>
+
+    <section id="theory-section" class="theory-section">
+      <h2 class="section-title">Theory</h2>
+      <div id="theory-content"></div>
+    </section>
+
+    <section id="objectives-section" class="objectives-section">
+      <h2 class="section-title">Learning Objectives</h2>
+      <ul id="objectives-list" class="objectives-list"></ul>
+    </section>
+
+    <section class="lesson-nav">
+      <a href="lesson-sound-design-18.html" id="prev-lesson-btn" class="btn btn-secondary">← Previous Lesson</a>
+      <a href="lesson-sound-design-20.html" id="next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-sound-design-19.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initLessonFromConfig(lessonConfig);
+    });
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 17 · Drums & Rhythm | Music Producer Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free Lesson 17 from Music Producer Lab: advanced drums & rhythm production techniques." />
+  <meta name="theme-color" content="#030508">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="main-content container">
+    <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+      <div class="hero-copy" style="flex: 1; max-width: none;">
+        <div class="hero-copy-eyebrow">Drums & Rhythm · Lesson 17</div>
+        <h1 class="hero-title"><span id="mpl-hero-title">Loading...</span><span id="mpl-hero-title-highlight"></span></h1>
+        <p class="hero-subtitle" id="mpl-hero-subtitle">Loading lesson content...</p>
+      </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><div class="hero-visual-title">Free lesson</div><div class="hero-visual-pill">Advanced drums</div></div>
+        <div class="hero-visual-grid">
+          <div class="hero-visual-main">
+            <div class="hero-visual-main-title"><span>Lesson 17</span></div>
+            <div class="hero-visual-waves"><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div><div class="hero-visual-wave"></div></div>
+            <div class="hero-visual-metrics"><div class="hero-visual-metric"><span>Level</span><strong>Advanced</strong></div><div class="hero-visual-metric"><span>Time</span><strong>20-25 min</strong></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+      <div class="exercise-box">
+        <div class="section-eyebrow">Exercise</div>
+        <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+        <p class="section-body" id="mpl-exercise-description"></p>
+        <div class="exercise-steps" id="mpl-exercise-steps-wrap"><h3>What to do:</h3><ol class="exercise-checklist" id="mpl-exercise-steps"></ol></div>
+        <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;"><strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span></div>
+      </div>
+    </section>
+
+    <section class="sequencer-section" id="mpl-sequencer-section" style="margin-top: var(--space-xl);">
+      <div class="section-eyebrow" style="margin-bottom: var(--space-sm);">Interactive Drum Sequencer</div>
+      <h2 class="section-title" style="margin-bottom: var(--space-lg);">Build Your Pattern</h2>
+      <div class="sequencer" id="mpl-sequencer-collection"></div>
+      <div class="sequencer-controls" style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <button id="mpl-seq-play-all" class="btn btn-primary" style="min-width:100px;"><img src="images/PLAY.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Play</button>
+        <button id="mpl-seq-stop-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/STOP.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Stop</button>
+        <button id="mpl-seq-clear-all" class="btn btn-secondary" style="min-width:100px;"><img src="images/CLEAR.png" alt="Clear" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"> Clear</button>
+        <button id="mpl-seq-check" class="btn btn-primary" style="min-width:140px;"><img src="images/mplscudo_check.png" alt="✓" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Check Pattern</button>
+      </div>
+      <div class="sequencer-status" id="mpl-seq-status" aria-live="polite" style="margin-top:1rem;"><span>Click steps to activate them.</span></div>
+    </section>
+
+    <section class="completion-section" id="mpl-completion-section" style="display:none; margin-top: var(--space-2xl);">
+      <div class="completion-card">
+        <div class="completion-icon"><img src="images/mplstellinaesagono.png" alt="Success" style="width: 3em; height: 3em;"></div>
+        <h2 class="completion-title">Lesson Complete!</h2>
+        <p class="completion-message" id="mpl-completion-message"></p>
+        <div class="completion-actions">
+          <a href="#" id="mpl-next-lesson-btn" class="btn btn-primary">Next Lesson →</a>
+          <a href="labs.html" class="btn btn-secondary">All Lessons</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================ -->
+    <!-- EDUCATIONAL CONTENT: Drum Layering & Processing -->
+    <!-- ================================================ -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card);">
+
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--space-lg); background: linear-gradient(135deg, #2d3436, #636e72); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Drum Layering: Building Massive Sounds</h2>
+
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          Professional drum sounds are rarely <em>single samples</em>—they're <strong>layered stacks</strong> of multiple sounds processed independently. A modern kick might combine a <strong>sub-808 (20-60Hz)</strong>, an <strong>acoustic kick body (80-250Hz)</strong>, and a <strong>beater click (2-8kHz)</strong>. Each layer fills a different frequency range, creating a <em>full-spectrum</em> sound that cuts through any mix.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+          This technique isn't new—engineers have layered drums since the 1980s. But modern DAWs make it easier than ever to stack, EQ, and compress layers independently. This is how producers like Mike Dean, Metro Boomin, and Skrillex create <strong>stadium-sized drums</strong> that feel massive on club systems and earbuds alike.
+        </p>
+
+        <div style="background: linear-gradient(135deg, rgba(45, 52, 54, 0.1), rgba(99, 110, 114, 0.1)); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #636e72; margin-bottom: var(--space-xl);">
+          <p style="font-style: italic; color: var(--text-primary); margin: 0;">
+            <strong>Core Principle:</strong> Each layer occupies a different <strong>frequency range</strong>. Sub = 20-80Hz, Body = 80-400Hz, Punch/Click = 2-8kHz. When combined, they create a sound that's <em>full, balanced, and powerful</em> across the entire spectrum.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Key Concepts</h3>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #2d3436;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #2d3436;">1. Kick Layering: Sub + Body + Punch</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Sub layer (808 kick):</strong> Pure low-end (20-80Hz). High velocity (127) for maximum bass impact.<br>
+            <strong>Body layer (acoustic kick):</strong> Warmth and punch (80-400Hz). Medium velocity (100-110).<br>
+            <strong>Punch layer (click/beater):</strong> High-frequency attack (2-8kHz). Lower velocity (80-90) to add clarity without harshness.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Programming tip:</strong> Trigger all three layers on the <em>same steps</em>. They play <strong>simultaneously</strong>, blending into one massive kick sound.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #636e72;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #636e72;">2. Snare Layering: Body + Crack + Clap</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Body layer:</strong> The fundamental snare sound—warmth and resonance (200-600Hz).<br>
+            <strong>Crack layer:</strong> Sharp transient attack (1-4kHz) that cuts through the mix.<br>
+            <strong>Clap layer:</strong> Adds width and stereo spread (panned slightly), creates "room" feel.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Genre applications:</strong> Hip-hop uses body + crack. Pop adds claps for width. Rock keeps it simple with just body. EDM uses all three for maximum impact.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #e17055;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #e17055;">3. Parallel Processing</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            <strong>Parallel processing</strong> means duplicating a drum track, applying <em>heavy processing</em> (compression, distortion, saturation) to the copy, then blending it with the dry original. This preserves the punch of the original while adding density and power from the processed version.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            <strong>Classic technique:</strong> Send snare to parallel compression (10:1 ratio, heavy attack), blend at 30-40%. The result: <em>massive snap</em> without losing the natural transient.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #00cec9;">
+          <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-sm); color: #00cec9;">4. Frequency Spectrum Separation</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            The key to layering is <strong>frequency separation</strong>—each layer should occupy a different part of the spectrum. Use EQ to carve out space:<br>
+            • <strong>Sub kick:</strong> High-pass at 30Hz (remove rumble), low-pass at 80Hz (pure sub)<br>
+            • <strong>Body kick:</strong> High-pass at 80Hz, low-pass at 2kHz (mids only)<br>
+            • <strong>Punch kick:</strong> High-pass at 2kHz (highs only)
+          </p>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin: 0;">
+            This separation prevents <strong>frequency masking</strong>—when layers fight for the same space, creating mud.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Common Mistakes</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #ff6b6b;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #ff6b6b; margin-bottom: var(--space-sm);">❌ Layering Sounds in the Same Frequency Range</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Stacking two kicks that both have strong <strong>100Hz content</strong> creates phase cancellation and mud. Layers should be <em>complementary</em>, not identical.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Use EQ to separate layers. One kick handles sub (20-80Hz), another handles mids (80-400Hz), a third handles click (2-8kHz).
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(254, 202, 87, 0.1), rgba(254, 202, 87, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border-left: 4px solid #feca57;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #feca57; margin-bottom: var(--space-sm);">❌ Too Many Layers</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            Beginners stack <strong>5-6 kicks</strong> thinking "more = better." This creates a <em>messy, undefined sound</em>. Professional kicks usually have <strong>2-3 layers maximum</strong>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> Keep it simple. <strong>Sub + body</strong> is often enough. Add punch layer only if needed for extra attack.
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(162, 155, 254, 0.05)); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border-left: 4px solid #a29bfe;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; color: #a29bfe; margin-bottom: var(--space-sm);">❌ Not Time-Aligning Layers</h4>
+          <p style="line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+            If layers are <strong>even 5ms out of sync</strong>, the combined sound loses punch. The transients don't align, creating a <em>smeared, weak attack</em>.
+          </p>
+          <p style="line-height: 1.7; color: var(--text-primary); margin: 0;">
+            <strong>Fix:</strong> In a DAW, zoom into the waveform and <strong>nudge samples</strong> until all transients align perfectly. In a step sequencer, trigger all layers on the exact same step.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Why This Matters</h3>
+
+        <div style="background: linear-gradient(135deg, rgba(45, 52, 54, 0.1), rgba(99, 110, 114, 0.1)); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-xl); border: 1px solid rgba(99, 110, 114, 0.3);">
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-lg);">
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🔊</span>
+              <div>
+                <strong>Full-Spectrum Power:</strong> Layering fills <em>every frequency range</em>, creating drums that sound huge on club systems (sub), car stereos (mids), and earbuds (highs).
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">🎚️</span>
+              <div>
+                <strong>Mix Control:</strong> Separate layers = separate processing. You can compress the sub heavily while leaving the click untouched, giving you <strong>surgical control</strong> over the final sound.
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <span style="font-size: 1.5rem;">💎</span>
+              <div>
+                <strong>Industry Standard:</strong> Every major pop, hip-hop, and EDM production uses layered drums. Mastering this technique is <em>essential</em> for professional-sounding beats.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--space-2xl); margin-bottom: var(--space-md);">What's Next?</h3>
+
+        <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          With drum layering mastered, you're ready to explore <strong>swing & shuffle variations</strong>—the rhythmic techniques that transform straight beats into groovy, triplet-based patterns.
+        </p>
+
+        <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid #0984e3;">
+          <p style="margin: 0;">
+            <strong>Up Next:</strong> <strong>Lesson 18</strong> covers <strong>Swing & Shuffle Variations</strong>—mastering triplet shuffles, half-time shuffle, and swing percentages for blues, jazz, and shuffle rock grooves.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- END EDUCATIONAL CONTENT -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+      <nav class="footer-nav">
+        <a href="labs.html">Labs</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+
+
+  <script type="module">
+    import { lessonConfig } from './configs/lesson-drums-17.config.js';
+    import { initLessonFromConfig } from './lesson-engine.js';
+    initLessonFromConfig(lessonConfig);
+  </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

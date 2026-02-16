@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Drum Playground - Free Online Drum Machine | Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Free online drum machine with 16-step sequencer, mixer, velocity control, swing, humanization, and WAV export. Build grooves, practice drum programming, export your loops." />
+    <meta name="keywords" content="drum playground, free drum machine, online drum sequencer, 16 step sequencer, drum programming, beat maker, wav export, swing control, velocity control, drum practice tool">
+    <meta name="theme-color" content="#030508">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Drum Playground - Free Online Drum Machine">
+    <meta property="og:description" content="16-step sequencer with mixer, swing, humanization, and WAV export. Free forever.">
+    <meta property="og:type" content="website">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://music-producer-lab.vercel.app/drum-playground.html">
+
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .playground-header {
+        text-align: center;
+        margin-bottom: var(--space-2xl);
+        padding: var(--space-2xl) 0;
+        background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+        border-radius: 16px;
+      }
+
+      .playground-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: var(--space-sm);
+        text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+      }
+
+      .playground-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .control-panel {
+        display: flex;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+        padding: var(--space-lg);
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+
+      .control-group label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .tempo-display {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      .sample-picker-container {
+        margin-top: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-tertiary, #050810);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .sample-picker-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-sm);
+        padding: var(--space-sm);
+        background: var(--bg-secondary);
+        border-radius: 6px;
+      }
+
+      .sample-picker-label {
+        min-width: 80px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+      }
+
+      .sample-picker-select {
+        flex: 1;
+        padding: var(--space-sm);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+
+      .sample-picker-select:hover {
+        border-color: var(--accent-primary);
+      }
+
+      .sample-picker-select:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      .export-section {
+        margin-top: var(--space-2xl);
+        padding: var(--space-xl);
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .export-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: var(--space-sm);
+        color: var(--text-primary);
+      }
+
+      .export-description {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-lg);
+      }
+
+      .btn-export {
+        padding: var(--space-md) var(--space-xl);
+        font-size: 1.125rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .btn-export:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+      }
+
+      .btn-export:active {
+        transform: translateY(0);
+      }
+
+      .btn-export:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .export-status {
+        margin-top: var(--space-md);
+        padding: var(--space-md);
+        background: var(--bg-secondary);
+        border-radius: 6px;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
+
+      /* Sequencer additional styles */
+      #playground-sequencer {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: var(--space-lg);
+      }
+
+      .sequencer-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-sm);
+      }
+
+      .sequencer-label {
+        min-width: 80px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-align: left;
+      }
+
+      .sequencer-grid {
+        display: flex;
+        gap: 4px;
+        flex: 1;
+      }
+
+      .sequencer-step {
+        flex: 1;
+        min-width: 30px;
+        height: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      /* Highlight beat steps (downbeats) */
+      .sequencer-step.beat-step {
+        border: 2px solid rgba(0, 212, 255, 0.4);
+        background: rgba(0, 212, 255, 0.1);
+        box-shadow: inset 0 0 8px rgba(0, 212, 255, 0.2);
+      }
+
+      .sequencer-step:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #00d4ff;
+      }
+
+      .sequencer-step.beat-step:hover {
+        background: rgba(0, 212, 255, 0.2);
+        border-color: #00d4ff;
+      }
+
+      .sequencer-step.active {
+        border-color: transparent;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .sequencer-step.beat-step.active {
+        box-shadow: 0 0 16px rgba(0, 212, 255, 0.6);
+      }
+
+      .sequencer-step.playing {
+        box-shadow: 0 0 20px #00d4ff;
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        .playground-title {
+          font-size: 2rem;
+        }
+
+        .control-panel {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+      <!-- PLAYGROUND HEADER -->
+      <div class="playground-header">
+        <h1 class="playground-title"><img src="images/drum.png" alt="Drum" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Drum Playground</h1>
+        <p class="playground-subtitle">
+          Create custom drum loops, choose your samples, and export your beats as WAV files
+        </p>
+      </div>
+
+      <!-- WELCOME GUIDE -->
+      <section style="margin-bottom: var(--space-2xl); padding: var(--space-xl); background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: var(--space-md); color: var(--text-primary);">
+          <img src="images/love.png" alt="Welcome" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Welcome to the Drum Playground!
+        </h2>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-md);">
+          This is your creative space to build professional drum loops from scratch. Whether you're a beginner learning rhythm patterns or a producer crafting your next beat, you have all the tools you need right here.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); margin-top: var(--space-lg);">
+          <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/gear.png" alt="Controls" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
+            <strong style="color: var(--text-primary);">Choose Your Sounds</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
+              Pick from multiple samples for each instrument
+            </p>
+          </div>
+          <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/drum.png" alt="Drum" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
+            <strong style="color: var(--text-primary);">Build Your Pattern</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
+              Click on the grid to create 16-step drum loops
+            </p>
+          </div>
+          <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/gear.png" alt="Mixer" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
+            <strong style="color: var(--text-primary);">Mix & Shape</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
+              Adjust volume, pan, swing, and humanization
+            </p>
+          </div>
+          <div style="padding: var(--space-md); background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);"><img src="images/mpldownload.png" alt="Download" style="width: 1.5em; height: 1.5em; vertical-align: middle;"></div>
+            <strong style="color: var(--text-primary);">Export as WAV</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-xs);">
+              Download your loop ready for any DAW
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SAMPLE PICKER SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/gear.png" alt="Controls" style="width: 1.5em; height: 1.5em; vertical-align: middle;"> Sample Selection</h2>
+        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            <strong style="color: #00d4ff;">How it works:</strong> Each instrument has multiple sample options. Use the dropdown menus below to choose the sound that fits your style. Try different combinations to create your unique drum kit!
+          </p>
+        </div>
+        <div class="sample-picker-container" id="sample-picker-container">
+          <!-- Sample pickers will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- SEQUENCER SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/drum.png" alt="Drum" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> 16-Step Sequencer</h2>
+        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
+            <strong style="color: #00d4ff;">How to use:</strong>
+          </p>
+          <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li><strong>Click any cell</strong> to activate/deactivate a drum hit</li>
+            <li><strong>Drag up/down on active cells</strong> to adjust velocity (loudness) - you'll see a colored bar showing the level</li>
+            <li><strong>Numbers 1-16</strong> at the top show the step position</li>
+            <li><strong>Cyan highlighted columns</strong> (1, 5, 9, 13) are the downbeats - perfect for placing kick drums</li>
+            <li><strong>Press Play</strong> to hear your pattern loop</li>
+            <li><strong>Beat markers</strong> below the numbers help you stay on the groove</li>
+          </ul>
+        </div>
+        <div class="sequencer" id="playground-sequencer">
+          <!-- Sequencer will be created by JS -->
+        </div>
+      </section>
+
+      <!-- CONTROL PANEL -->
+      <div class="control-panel">
+        <!-- Continue Last Session Button -->
+        <button type="button" id="continue-session-btn" class="btn btn-primary" style="display: none; margin-right: var(--space-sm);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+          <span>Continue Last Session</span>
+        </button>
+
+        <!-- Preset Dropdown -->
+        <div class="control-group">
+          <label>Presets</label>
+          <select id="preset-select" style="padding: var(--space-sm); background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; width: 100%; max-width: 200px;">
+            <option value="">-- Load Preset --</option>
+          </select>
+        </div>
+
+        <!-- Random Preset Button -->
+        <div class="control-group">
+          <button type="button" id="random-preset-btn" class="btn btn-secondary" style="padding: var(--space-sm) var(--space-md); font-size: 0.85rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+              <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
+            </svg>
+            Random Preset
+          </button>
+        </div>
+
+        <div style="flex: 1; min-width: 20px;"></div>
+
+        <div class="control-group">
+          <label>Tempo</label>
+          <div class="tempo-display" id="playground-tempo-display">120 BPM</div>
+        </div>
+
+        <div class="control-group">
+          <label>Tempo Control</label>
+          <input type="range" id="playground-tempo-slider" min="60" max="200" value="120" style="width: 100%; max-width: 200px;">
+        </div>
+
+        <div class="control-group">
+          <label>Swing</label>
+          <div class="tempo-display" id="playground-swing-display" style="font-size: 1.2rem;">0%</div>
+        </div>
+
+        <div class="control-group">
+          <label>Swing Control</label>
+          <input type="range" id="playground-swing-slider" min="0" max="100" value="0" style="width: 100%; max-width: 200px;">
+        </div>
+
+        <div class="control-group">
+          <label>Playback</label>
+          <div style="display: flex; gap: var(--space-sm);">
+            <button type="button" class="btn btn-outline" id="playground-play">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Play</span>
+            </button>
+
+            <button type="button" class="btn btn-outline" id="playground-stop">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+              </svg>
+              <span>Stop</span>
+            </button>
+
+            <button type="button" class="btn btn-outline" id="playground-clear">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
+                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+              </svg>
+              <span>Clear All</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="share-pattern-btn" style="background: linear-gradient(135deg, #00d4ff 0%, #b366ff 100%);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+          <span>Share Link</span>
+        </button>
+      </div>
+
+      <!-- HUMANIZATION SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/clock_anticlockwise.png" alt="Humanization" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Humanization</h2>
+        <div style="background: rgba(138, 43, 226, 0.05); border-left: 3px solid #8a2be2; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
+            <strong style="color: #8a2be2;">Make it sound human:</strong>
+          </p>
+          <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li><strong>Timing Randomization</strong> - Slightly shifts when each hit plays (0-50ms) for a less robotic feel</li>
+            <li><strong>Velocity Randomization</strong> - Varies the volume of each hit (0-50%) like a real drummer</li>
+            <li><strong>Presets</strong> - Try "Subtle" for tight grooves, "MPC 60" for classic boom-bap, or "Loose/Live" for a human feel</li>
+          </ul>
+        </div>
+        <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 240, 255, 0.1)); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 12px; padding: var(--space-lg);">
+
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="humanize-enable" style="width: 18px; height: 18px; cursor: pointer;">
+              <span style="font-size: 0.9rem; color: var(--text-secondary);">Enable Humanization</span>
+            </label>
+          </div>
+
+          <div id="humanize-controls" style="opacity: 0.5; pointer-events: none; transition: opacity 0.3s ease;">
+            <!-- Timing Randomization -->
+            <div style="margin-bottom: 16px;">
+              <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">
+                  Timing Randomization
+                </span>
+                <span id="timing-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #00f0ff;">
+                  0ms
+                </span>
+              </label>
+              <input type="range" id="timing-slider" min="0" max="50" step="1" value="0"
+                style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #666; margin-top: 4px;">
+                <span>0ms</span>
+                <span>25ms</span>
+                <span>50ms</span>
+              </div>
+            </div>
+
+            <!-- Velocity Randomization -->
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">
+                  Velocity Randomization
+                </span>
+                <span id="velocity-rand-value" style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #00f0ff;">
+                  0%
+                </span>
+              </label>
+              <input type="range" id="velocity-rand-slider" min="0" max="50" step="1" value="0"
+                style="width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2)); outline: none; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #666; margin-top: 4px;">
+                <span>0%</span>
+                <span>25%</span>
+                <span>50%</span>
+              </div>
+            </div>
+
+            <!-- Presets -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
+              <div style="font-size: 0.85rem; font-weight: 600; color: #888; margin-bottom: 10px;">
+                Humanization Presets:
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px;">
+                <button type="button" class="humanize-preset-btn" data-timing="8" data-velocity="15"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Subtle</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">8ms / 15%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="15" data-velocity="25"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">MPC 60</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">15ms / 25%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="30" data-velocity="35"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Loose</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">30ms / 35%</div>
+                </button>
+                <button type="button" class="humanize-preset-btn" data-timing="20" data-velocity="40"
+                  style="padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="margin-bottom: 2px;">Live</div>
+                  <div style="font-size: 0.7rem; font-weight: 400; color: #666;">20ms / 40%</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MIXER SECTION -->
+      <section style="margin-bottom: var(--space-2xl);">
+        <h2 class="section-title" style="margin-bottom: var(--space-md);"><img src="images/gear.png" alt="Mixer" style="width: 1.5em; height: 1.5em; vertical-align: middle;"> Mixer</h2>
+        <div style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; padding: var(--space-md); border-radius: 6px; margin-bottom: var(--space-lg);">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
+            <strong style="color: #00d4ff;">Mixing controls:</strong>
+          </p>
+          <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li><strong>Volume faders</strong> - Drag up/down to adjust each instrument's loudness (default 50%)</li>
+            <li><strong>Pan knobs</strong> - Move sounds left (L) or right (R) in the stereo field</li>
+            <li><strong>VU meters</strong> - The colored bars show the volume in real-time when playing</li>
+            <li><strong>Master channel</strong> (gold) shows your overall mix level</li>
+          </ul>
+        </div>
+        <div id="playground-mixer" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: var(--space-lg);">
+          <!-- Mixer channels will be created by JS -->
+        </div>
+      </section>
+
+      <!-- EXPORT SECTION -->
+      <section class="export-section">
+        <h2 class="export-title"><img src="images/mpldownload.png" alt="Download" style="width: 1.5em; height: 1.5em; vertical-align: middle;"> Export Your Loop</h2>
+        <p class="export-description" style="margin-bottom: var(--space-md);">
+          Download your drum loop as a high-quality WAV file
+        </p>
+
+        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: var(--space-md); margin-bottom: var(--space-lg); text-align: left;">
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-sm);">
+            <strong style="color: #10b981;"><img src="images/mpldownload.png" alt="Download" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> How to export:</strong>
+          </p>
+          <ol style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li>Create your drum pattern in the sequencer above</li>
+            <li>Adjust your mix with the volume and pan controls</li>
+            <li>Click the <strong>"Export as WAV"</strong> button below</li>
+            <li>Your browser will download a high-quality WAV file (44.1kHz, 16-bit stereo)</li>
+            <li>Import the WAV into any DAW (Ableton, FL Studio, Logic, etc.) and keep creating!</li>
+          </ol>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: var(--space-md); margin-bottom: 0;">
+            <img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> <strong>Pro tip:</strong> The exported file includes all your mixer settings, swing, and humanization. Export multiple variations and layer them in your DAW!
+          </p>
+        </div>
+
+        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+          <button type="button" class="btn-export" id="export-wav-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:8px;vertical-align:middle;">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Export WAV
+          </button>
+
+          <button type="button" class="btn-export" id="export-midi-btn" style="background: linear-gradient(135deg, #b366ff 0%, #8b5cf6 100%);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:8px;vertical-align:middle;">
+              <path d="M9 18V5l12-2v13M9 13l12-2"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+            Export MIDI
+          </button>
+        </div>
+
+        <div class="export-status" id="export-status" style="display: none; margin-top: var(--space-md);">
+          <!-- Export status messages -->
+        </div>
+      </section>
+
+      <!-- QUICK TIPS SECTION -->
+      <section style="margin-top: var(--space-2xl); padding: var(--space-xl); background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1)); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: var(--space-lg); color: var(--text-primary);">
+          <img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Quick Tips & Tricks
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg);">
+          <div>
+            <h3 style="color: #f59e0b; font-size: 1rem; margin-bottom: var(--space-sm);"><img src="images/mplarrowtarget.png" alt="Target" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> For Beginners</h3>
+            <ul style="color: var(--text-secondary); line-height: 1.8; font-size: 0.875rem; margin: 0; padding-left: 20px;">
+              <li>Start simple: Kick on 1 and 9, snare on 5 and 13</li>
+              <li>Add hi-hats on every other step for energy</li>
+              <li>Use "Clear All" to start fresh anytime</li>
+              <li>Experiment! There's no wrong pattern</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: #f59e0b; font-size: 1rem; margin-bottom: var(--space-sm);">🔥 Advanced Techniques</h3>
+            <ul style="color: var(--text-secondary); line-height: 1.8; font-size: 0.875rem; margin: 0; padding-left: 20px;">
+              <li>Add 15-20% swing for a shuffled, groovy feel</li>
+              <li>Pan hi-hats left and right for width</li>
+              <li>Lower kick volume to -3dB for headroom</li>
+              <li>Use "MPC 60" preset for classic hip-hop</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: #f59e0b; font-size: 1rem; margin-bottom: var(--space-sm);"><img src="images/fulmine.png" alt="Lightning" style="width: 1.2em; height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Workflow Tips</h3>
+            <ul style="color: var(--text-secondary); line-height: 1.8; font-size: 0.875rem; margin: 0; padding-left: 20px;">
+              <li>Click Play often to hear how it sounds</li>
+              <li>Export multiple variations for your tracks</li>
+              <li>Save patterns by exporting them as WAV</li>
+              <li>Combine exported loops in your DAW for variety</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(0, 0, 0, 0.3); border-radius: 8px; text-align: center;">
+          <p style="color: var(--text-secondary); margin: 0; line-height: 1.6;">
+            <strong style="color: #f59e0b;">Need inspiration?</strong> Try recreating famous drum patterns from your favorite songs, then put your own spin on them!
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script type="module">
+      import { playSound, setMixerVolume, setMixerPan, getMixerState, changeSample, sampleLibrary, selectedSamples, setMeterUpdateCallback, waitForSampleLibrary, initMixer } from './sequencer.js';
+      import { presetPatterns, saveCurrentState, loadSavedState, clearSavedState, shouldShowActivationNudge, markActivated, incrementExportCount, getExportCount, createActivationNudge, createPostExportMessage, generateShareLink, loadPatternFromURL, createShareModal, trackExport, trackPresetUsed, trackSkillUsed, createProgressWidget, updateProgressWidget, getLessonOrigin, createLessonOriginBanner } from './playground-enhancements.js';
+
+      // ==========================================
+      // DRUM PLAYGROUND INITIALIZATION
+      // ==========================================
+
+      const instruments = [
+        { id: 'kick', label: 'Kick', row: 0 },
+        { id: 'snare', label: 'Snare', row: 1 },
+        { id: 'hihat', label: 'Hi-Hat', row: 2 },
+        { id: 'clap', label: 'Clap', row: 3 },
+        { id: 'tom', label: 'Tom', row: 4 },
+        { id: 'rim', label: 'Rim', row: 5 },
+        { id: 'crash', label: 'Crash', row: 6 }
+      ];
+
+      const stepCount = 16;
+      let isPlaying = false;
+      let currentStep = -1;
+      let playbackInterval = null;
+      let tempo = 120;
+      let swing = 0;
+
+      // Humanization state
+      let humanizationEnabled = false;
+      let timingRandomization = 0;
+      let velocityRandomization = 0;
+
+      // Pattern data
+      const pattern = {};
+      const velocityState = {}; // Track velocity for each step (0-127)
+      instruments.forEach(inst => {
+        pattern[inst.id] = Array(stepCount).fill(false);
+        velocityState[inst.id] = Array(stepCount).fill(100); // Default velocity 100
+      });
+
+      // ==========================================
+      // SAMPLE PICKER UI
+      // ==========================================
+
+      function initSamplePickers() {
+        const container = document.getElementById('sample-picker-container');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        instruments.forEach(inst => {
+          const samples = sampleLibrary[inst.id] || [];
+          if (samples.length === 0) return;
+
+          const row = document.createElement('div');
+          row.className = 'sample-picker-row';
+
+          const label = document.createElement('div');
+          label.className = 'sample-picker-label';
+          label.textContent = inst.label;
+
+          const select = document.createElement('select');
+          select.className = 'sample-picker-select';
+          select.id = `sample-select-${inst.id}`;
+
+          samples.forEach(sample => {
+            const option = document.createElement('option');
+            option.value = sample.path;
+            option.textContent = sample.name;
+
+            // Check if this is the currently selected sample
+            if (selectedSamples[inst.id] === sample.path) {
+              option.selected = true;
+            }
+
+            select.appendChild(option);
+          });
+
+          // Add change event listener
+          select.addEventListener('change', (e) => {
+            changeSample(inst.id, e.target.value);
+            console.log(`Changed ${inst.id} sample to:`, e.target.value);
+            triggerAutoSave(); // Auto-save on sample change
+          });
+
+          row.appendChild(label);
+          row.appendChild(select);
+          container.appendChild(row);
+        });
+      }
+
+      // ==========================================
+      // SEQUENCER UI
+      // ==========================================
+
+      function initSequencer() {
+        const container = document.getElementById('playground-sequencer');
+        if (!container) {
+          console.error('✗ Sequencer container not found!');
+          return;
+        }
+
+        container.innerHTML = '';
+
+        // Color palette for different instruments
+        const instrumentColors = {
+          'kick': '#ff5a3d',
+          'snare': '#5f4dff',
+          'hihat': '#00d4ff',
+          'hat': '#00d4ff',
+          'clap': '#f59e0b',
+          'tom': '#a855f7',
+          'rim': '#10b981',
+          'crash': '#ec4899'
+        };
+
+        console.log(`🎹 Creating sequencer for ${instruments.length} instruments, ${stepCount} steps each`);
+
+        // Add step numbers header
+        const headerRow = document.createElement('div');
+        headerRow.style.cssText = 'display: flex; align-items: center; gap: var(--space-md); margin-bottom: 8px;';
+
+        const headerLabel = document.createElement('div');
+        headerLabel.style.cssText = 'min-width: 80px;';
+        headerRow.appendChild(headerLabel);
+
+        const stepNumbersContainer = document.createElement('div');
+        stepNumbersContainer.style.cssText = 'display: flex; gap: 4px; flex: 1;';
+
+        for (let i = 0; i < stepCount; i++) {
+          const stepNum = document.createElement('div');
+          stepNum.style.cssText = `
+            flex: 1;
+            min-width: 30px;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: ${i % 4 === 0 ? '700' : '400'};
+            color: ${i % 4 === 0 ? '#00d4ff' : '#666'};
+            font-family: var(--font-mono, monospace);
+          `;
+          stepNum.textContent = i + 1;
+          stepNumbersContainer.appendChild(stepNum);
+        }
+
+        headerRow.appendChild(stepNumbersContainer);
+        container.appendChild(headerRow);
+
+        // Add beat markers (1, 2, 3, 4)
+        const beatRow = document.createElement('div');
+        beatRow.style.cssText = 'display: flex; align-items: center; gap: var(--space-md); margin-bottom: 12px;';
+
+        const beatLabel = document.createElement('div');
+        beatLabel.style.cssText = 'min-width: 80px; font-size: 0.75rem; color: #888;';
+        beatLabel.textContent = 'Beat';
+        beatRow.appendChild(beatLabel);
+
+        const beatMarkersContainer = document.createElement('div');
+        beatMarkersContainer.style.cssText = 'display: flex; gap: 4px; flex: 1;';
+
+        for (let beat = 1; beat <= 4; beat++) {
+          const beatGroup = document.createElement('div');
+          beatGroup.style.cssText = 'flex: 1; display: flex; gap: 4px;';
+
+          for (let sub = 0; sub < 4; sub++) {
+            const marker = document.createElement('div');
+            marker.style.cssText = `
+              flex: 1;
+              min-width: 30px;
+              height: 4px;
+              background: ${sub === 0 ? '#00d4ff' : 'rgba(255,255,255,0.1)'};
+              border-radius: 2px;
+            `;
+            beatGroup.appendChild(marker);
+          }
+
+          beatMarkersContainer.appendChild(beatGroup);
+        }
+
+        beatRow.appendChild(beatMarkersContainer);
+        container.appendChild(beatRow);
+
+        instruments.forEach(inst => {
+          const color = instrumentColors[inst.id] || '#00d4ff';
+
+          const row = document.createElement('div');
+          row.className = 'sequencer-row';
+          row.dataset.instrument = inst.id;
+
+          const label = document.createElement('div');
+          label.className = 'sequencer-label';
+          label.textContent = inst.label;
+          label.style.color = color;
+          row.appendChild(label);
+
+          const grid = document.createElement('div');
+          grid.className = 'sequencer-grid';
+
+          for (let i = 0; i < stepCount; i++) {
+            const cell = document.createElement('button');
+            cell.className = 'sequencer-step';
+            cell.dataset.step = i;
+            cell.dataset.instrument = inst.id;
+            cell.setAttribute('aria-label', `${inst.label} step ${i + 1}`);
+
+            // Highlight beat steps (downbeats: 0, 4, 8, 12)
+            if (i % 4 === 0) {
+              cell.classList.add('beat-step');
+            }
+
+            // Add velocity visualization elements
+            const velocityFill = document.createElement('div');
+            velocityFill.className = 'velocity-fill';
+            velocityFill.style.cssText = `
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: ${color};
+              opacity: 0;
+              transition: opacity 0.2s;
+              pointer-events: none;
+              border-radius: 4px;
+            `;
+
+            const velocityHandle = document.createElement('div');
+            velocityHandle.className = 'velocity-handle';
+            velocityHandle.style.cssText = `
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: 2px;
+              background: white;
+              opacity: 0;
+              box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+              pointer-events: none;
+            `;
+
+            const velocityTooltip = document.createElement('div');
+            velocityTooltip.className = 'velocity-tooltip';
+            velocityTooltip.style.cssText = `
+              position: absolute;
+              top: -25px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(0, 0, 0, 0.9);
+              color: white;
+              padding: 2px 6px;
+              border-radius: 3px;
+              font-size: 0.7rem;
+              font-weight: 600;
+              opacity: 0;
+              pointer-events: none;
+              white-space: nowrap;
+              z-index: 10;
+            `;
+
+            cell.style.position = 'relative';
+            cell.style.overflow = 'hidden';
+            cell.appendChild(velocityFill);
+            cell.appendChild(velocityHandle);
+            cell.appendChild(velocityTooltip);
+
+            // Interaction logic
+            let isDragging = false;
+            let hasMovedEnough = false;
+            let startY = 0;
+
+            const updateVelocityDisplay = () => {
+              if (pattern[inst.id][i]) {
+                const velocity = velocityState[inst.id][i];
+                const heightPercent = (velocity / 127) * 100;
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityFill.style.opacity = '0.3';
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityHandle.style.opacity = '0.6';
+              } else {
+                velocityFill.style.opacity = '0';
+                velocityHandle.style.opacity = '0';
+              }
+            };
+
+            cell.addEventListener('mousedown', (e) => {
+              e.preventDefault();
+              isDragging = true;
+              hasMovedEnough = false;
+              startY = e.clientY;
+            });
+
+            cell.addEventListener('mousemove', (e) => {
+              if (!isDragging) return;
+
+              const deltaY = startY - e.clientY;
+              if (Math.abs(deltaY) > 3) {
+                hasMovedEnough = true;
+              }
+
+              if (hasMovedEnough && pattern[inst.id][i]) {
+                const rect = cell.getBoundingClientRect();
+                const relativeY = e.clientY - rect.top;
+                const heightPercent = Math.max(0, Math.min(100, ((rect.height - relativeY) / rect.height) * 100));
+                const velocity = Math.round((heightPercent / 100) * 127);
+
+                velocityState[inst.id][i] = Math.max(1, velocity);
+
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityTooltip.textContent = velocityState[inst.id][i];
+                velocityTooltip.style.opacity = '1';
+              }
+            });
+
+            const handleMouseUp = () => {
+              if (isDragging) {
+                if (!hasMovedEnough) {
+                  // Click - toggle step
+                  pattern[inst.id][i] = !pattern[inst.id][i];
+                  cell.classList.toggle('active', pattern[inst.id][i]);
+
+                  // Update background color
+                  if (pattern[inst.id][i]) {
+                    cell.style.background = color;
+                    playSound(inst.id, velocityState[inst.id][i]);
+                  } else {
+                    cell.style.background = '';
+                  }
+
+                  updateVelocityDisplay();
+                  triggerAutoSave(); // Auto-save on pattern change
+                } else {
+                  // Drag - velocity changed
+                  triggerAutoSave(); // Auto-save on velocity change
+                  trackSkillUsed('velocity'); // Track velocity skill
+                }
+
+                isDragging = false;
+                hasMovedEnough = false;
+                velocityTooltip.style.opacity = '0';
+              }
+            };
+
+            cell.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('mouseup', handleMouseUp);
+
+            cell.addEventListener('mouseleave', () => {
+              if (!isDragging) {
+                velocityTooltip.style.opacity = '0';
+              }
+            });
+
+            updateVelocityDisplay();
+            grid.appendChild(cell);
+          }
+
+          row.appendChild(grid);
+          container.appendChild(row);
+        });
+
+        console.log(`<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Sequencer created: ${container.querySelectorAll('.sequencer-step').length} total cells`);
+      }
+
+      // ==========================================
+      // MIXER UI
+      // ==========================================
+
+      function initMixerUI() {
+        const container = document.getElementById('playground-mixer');
+        if (!container) return;
+
+        const channelsContainer = document.createElement('div');
+        channelsContainer.className = 'mixer-channels';
+
+        // Color palette
+        const instrumentColors = {
+          'kick': '#ff5a3d',
+          'snare': '#5f4dff',
+          'hihat': '#00d4ff',
+          'clap': '#f59e0b',
+          'tom': '#a855f7',
+          'rim': '#10b981',
+          'crash': '#ec4899'
+        };
+
+        // Meter animation state
+        const meterLevels = {};
+        const meterPeaks = {};
+        const meterDecayIntervals = {};
+
+        // Register meter callback
+        setMeterUpdateCallback((instrument, level) => {
+          meterLevels[instrument] = level * 100;
+
+          if (!meterPeaks[instrument] || level * 100 > meterPeaks[instrument]) {
+            meterPeaks[instrument] = level * 100;
+          }
+
+          const meterFill = document.getElementById(`meter-${instrument}`);
+          const meterPeak = document.getElementById(`peak-${instrument}`);
+
+          if (meterFill) {
+            meterFill.style.height = `${level * 100}%`;
+          }
+          if (meterPeak && meterPeaks[instrument]) {
+            meterPeak.style.bottom = `${meterPeaks[instrument]}%`;
+          }
+
+          if (meterDecayIntervals[instrument]) {
+            clearInterval(meterDecayIntervals[instrument]);
+          }
+
+          meterDecayIntervals[instrument] = setInterval(() => {
+            if (meterLevels[instrument] > 0) {
+              meterLevels[instrument] = Math.max(0, meterLevels[instrument] - 5);
+              if (meterFill) {
+                meterFill.style.height = `${meterLevels[instrument]}%`;
+              }
+            }
+
+            if (meterPeaks[instrument] > 0) {
+              meterPeaks[instrument] = Math.max(0, meterPeaks[instrument] - 1.5);
+              if (meterPeak) {
+                meterPeak.style.bottom = `${meterPeaks[instrument]}%`;
+              }
+            }
+
+            if (meterLevels[instrument] <= 0 && meterPeaks[instrument] <= 0) {
+              clearInterval(meterDecayIntervals[instrument]);
+              meterDecayIntervals[instrument] = null;
+            }
+          }, 50);
+
+          // UPDATE MASTER METER
+          const masterLevel = Math.min(100, level * 100);
+
+          if (!meterLevels['master']) meterLevels['master'] = 0;
+          if (!meterPeaks['master']) meterPeaks['master'] = 0;
+
+          meterLevels['master'] = Math.min(100, meterLevels['master'] + masterLevel * 0.3);
+
+          if (meterLevels['master'] > meterPeaks['master']) {
+            meterPeaks['master'] = meterLevels['master'];
+          }
+
+          const masterMeterFill = document.getElementById('meter-master');
+          const masterMeterPeak = document.getElementById('peak-master');
+
+          if (masterMeterFill) {
+            masterMeterFill.style.height = `${meterLevels['master']}%`;
+          }
+          if (masterMeterPeak) {
+            masterMeterPeak.style.bottom = `${meterPeaks['master']}%`;
+          }
+
+          if (meterDecayIntervals['master']) {
+            clearInterval(meterDecayIntervals['master']);
+          }
+
+          meterDecayIntervals['master'] = setInterval(() => {
+            if (meterLevels['master'] > 0) {
+              meterLevels['master'] = Math.max(0, meterLevels['master'] - 5);
+              if (masterMeterFill) {
+                masterMeterFill.style.height = `${meterLevels['master']}%`;
+              }
+            }
+
+            if (meterPeaks['master'] > 0) {
+              meterPeaks['master'] = Math.max(0, meterPeaks['master'] - 1.5);
+              if (masterMeterPeak) {
+                masterMeterPeak.style.bottom = `${meterPeaks['master']}%`;
+              }
+            }
+
+            if (meterLevels['master'] <= 0 && meterPeaks['master'] <= 0) {
+              clearInterval(meterDecayIntervals['master']);
+              meterDecayIntervals['master'] = null;
+            }
+          }, 50);
+        });
+
+        instruments.forEach(inst => {
+          const mixerState = getMixerState(inst.id);
+          const color = instrumentColors[inst.id] || '#00d4ff';
+
+          const channel = document.createElement('div');
+          channel.className = 'channel-strip';
+
+          channel.innerHTML = `
+            <div class="channel-name" style="background: linear-gradient(180deg, ${color}40 0%, ${color}10 100%); border-bottom: 2px solid ${color};">
+              ${inst.label}
+            </div>
+
+            <div class="channel-meter">
+              <div class="meter-fill" id="meter-${inst.id}" style="height: 0%"></div>
+              <div class="meter-peak" id="peak-${inst.id}" style="bottom: 0%"></div>
+            </div>
+
+            <div class="channel-fader-container">
+              <input type="range" class="vertical-slider" id="mixer-vol-${inst.id}"
+                     min="0" max="100" value="${(mixerState.volume * 100).toFixed(0)}"
+                     orient="vertical" style="height: 140px;">
+              <span class="fader-value" id="mixer-vol-value-${inst.id}">
+                ${volumeToDb(mixerState.volume)}
+              </span>
+            </div>
+
+            <div class="channel-pan">
+              <span class="pan-label">PAN</span>
+              <input type="range" id="mixer-pan-${inst.id}"
+                     min="-100" max="100" value="${(mixerState.pan * 100).toFixed(0)}"
+                     style="width: 70px;">
+              <span class="pan-label" id="mixer-pan-value-${inst.id}">
+                ${panToText(mixerState.pan)}
+              </span>
+            </div>
+
+            <div class="channel-controls">
+              <button class="channel-btn mute" id="mixer-mute-${inst.id}" title="Mute">M</button>
+              <button class="channel-btn solo" id="mixer-solo-${inst.id}" title="Solo">S</button>
+            </div>
+          `;
+
+          const volSlider = channel.querySelector(`#mixer-vol-${inst.id}`);
+          const volValue = channel.querySelector(`#mixer-vol-value-${inst.id}`);
+          const panSlider = channel.querySelector(`#mixer-pan-${inst.id}`);
+          const panValue = channel.querySelector(`#mixer-pan-value-${inst.id}`);
+
+          volSlider.addEventListener('input', (e) => {
+            const volume = parseFloat(e.target.value) / 100;
+            setMixerVolume(inst.id, volume);
+            volValue.textContent = volumeToDb(volume);
+            triggerAutoSave(); // Auto-save on mixer volume change
+            trackSkillUsed('mixer'); // Track mixer skill
+          });
+
+          panSlider.addEventListener('input', (e) => {
+            const pan = parseFloat(e.target.value) / 100;
+            setMixerPan(inst.id, pan);
+            panValue.textContent = panToText(pan);
+            triggerAutoSave(); // Auto-save on mixer pan change
+            trackSkillUsed('mixer'); // Track mixer skill
+          });
+
+          channelsContainer.appendChild(channel);
+        });
+
+        // Add MASTER channel
+        const masterChannel = document.createElement('div');
+        masterChannel.className = 'channel-strip master-channel';
+        masterChannel.style.cssText = 'min-width: 130px; max-width: 130px; border: 2px solid #fbbf24;';
+
+        const masterColor = '#fbbf24';
+        masterChannel.innerHTML = `
+          <div class="channel-name" style="background: linear-gradient(180deg, ${masterColor}60 0%, ${masterColor}20 100%); border-bottom: 3px solid ${masterColor}; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em;">
+            MASTER
+          </div>
+
+          <div class="channel-meter" style="height: 200px;">
+            <div class="meter-fill" id="meter-master" style="height: 0%"></div>
+            <div class="meter-peak" id="peak-master" style="bottom: 0%"></div>
+          </div>
+
+          <div class="channel-fader-container">
+            <div class="fader-value" style="font-size: 1rem; font-weight: 700; color: ${masterColor}; text-shadow: 0 0 8px ${masterColor};">
+              0.0 dB
+            </div>
+          </div>
+
+          <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+            <div style="font-size: 0.65rem; color: #64748b; text-align: center;">
+              Mix Output
+            </div>
+          </div>
+        `;
+
+        channelsContainer.appendChild(masterChannel);
+        container.appendChild(channelsContainer);
+      }
+
+      function volumeToDb(volume) {
+        if (volume === 0) return '-∞ dB';
+        const db = 20 * Math.log10(volume);
+        return db.toFixed(1) + ' dB';
+      }
+
+      function panToText(pan) {
+        if (pan === 0) return 'C';
+        if (pan < 0) return 'L' + Math.abs(Math.round(pan * 100));
+        return 'R' + Math.round(pan * 100);
+      }
+
+      // ==========================================
+      // PLAYBACK CONTROL
+      // ==========================================
+
+      function play() {
+        if (isPlaying) return;
+
+        isPlaying = true;
+        currentStep = -1;
+
+        const playStep = () => {
+          // Recalculate base step time to pick up tempo changes dynamically
+          const baseStepTime = (60 / tempo) * 1000 / (stepCount / 4); // Step duration in ms
+
+          // Calculate swing delay
+          let stepDelay = baseStepTime;
+          if (swing > 0) {
+            if (currentStep % 2 === 0) {
+              stepDelay = baseStepTime * (1 + (swing / 100) * 0.5);
+            } else {
+              stepDelay = baseStepTime * (1 - (swing / 100) * 0.5);
+            }
+          }
+
+          // Clear previous step highlight
+          document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
+            cell.classList.remove('playing');
+          });
+
+          // Advance step
+          currentStep = (currentStep + 1) % stepCount;
+
+          // Highlight current step
+          document.querySelectorAll(`.sequencer-step[data-step="${currentStep}"]`).forEach(cell => {
+            cell.classList.add('playing');
+          });
+
+          // Play sounds for active steps with humanization
+          instruments.forEach(inst => {
+            if (pattern[inst.id][currentStep]) {
+              let velocity = velocityState[inst.id][currentStep]; // Use step velocity
+              let timingOffset = 0;
+
+              // Apply humanization if enabled
+              if (humanizationEnabled) {
+                // Velocity humanization
+                const velocityVariation = (Math.random() - 0.5) * 2 * (velocityRandomization / 100) * velocity;
+                velocity = Math.max(1, Math.min(127, Math.round(velocity + velocityVariation)));
+
+                // Timing humanization
+                timingOffset = (Math.random() - 0.5) * 2 * timingRandomization;
+              }
+
+              playSound(inst.id, velocity, timingOffset);
+            }
+          });
+
+          if (isPlaying) {
+            playbackInterval = setTimeout(playStep, stepDelay);
+          }
+        };
+
+        playStep();
+      }
+
+      function stop() {
+        if (!isPlaying) return;
+
+        isPlaying = false;
+        clearInterval(playbackInterval);
+        currentStep = -1;
+
+        // Clear all playing highlights
+        document.querySelectorAll('.sequencer-step.playing').forEach(cell => {
+          cell.classList.remove('playing');
+        });
+      }
+
+      function clearPattern() {
+        instruments.forEach(inst => {
+          pattern[inst.id].fill(false);
+          velocityState[inst.id].fill(100); // Reset velocity to default
+        });
+
+        document.querySelectorAll('.sequencer-step.active').forEach(cell => {
+          cell.classList.remove('active');
+          cell.style.background = '';
+
+          // Reset velocity display
+          const velocityFill = cell.querySelector('.velocity-fill');
+          const velocityHandle = cell.querySelector('.velocity-handle');
+          if (velocityFill) velocityFill.style.opacity = '0';
+          if (velocityHandle) velocityHandle.style.opacity = '0';
+        });
+      }
+
+      // ==========================================
+      // PRESET MANAGEMENT
+      // ==========================================
+
+      function updateSequencerUI() {
+        // Color palette matching the one in initSequencer
+        const instrumentColors = {
+          'kick': '#ff5a3d',
+          'snare': '#5f4dff',
+          'hihat': '#00d4ff',
+          'hat': '#00d4ff',
+          'clap': '#f59e0b',
+          'tom': '#a855f7',
+          'rim': '#10b981',
+          'crash': '#ec4899'
+        };
+
+        instruments.forEach(inst => {
+          const color = instrumentColors[inst.id] || '#00d4ff';
+
+          for (let i = 0; i < stepCount; i++) {
+            const cell = document.querySelector(`.sequencer-step[data-step="${i}"][data-instrument="${inst.id}"]`);
+            if (!cell) continue;
+
+            const isActive = pattern[inst.id][i];
+            cell.classList.toggle('active', isActive);
+
+            if (isActive) {
+              cell.style.background = color;
+            } else {
+              cell.style.background = '';
+            }
+
+            // Update velocity display
+            const velocityFill = cell.querySelector('.velocity-fill');
+            const velocityHandle = cell.querySelector('.velocity-handle');
+            if (velocityFill && velocityHandle) {
+              if (isActive) {
+                const velocity = velocityState[inst.id][i];
+                const heightPercent = (velocity / 127) * 100;
+                velocityFill.style.height = `${heightPercent}%`;
+                velocityFill.style.opacity = '0.3';
+                velocityHandle.style.bottom = `${heightPercent}%`;
+                velocityHandle.style.opacity = '0.6';
+              } else {
+                velocityFill.style.opacity = '0';
+                velocityHandle.style.opacity = '0';
+              }
+            }
+          }
+        });
+      }
+
+      function applyPreset(preset) {
+        // Map preset instrument names to our instrument IDs
+        const instrumentMap = {
+          'kick': 'kick',
+          'snare': 'snare',
+          'hihat': 'hihat',
+          'hat': 'hihat',
+          'openhat': 'hihat',
+          'clap': 'clap',
+          'tom': 'tom',
+          'rim': 'rim',
+          'crash': 'crash'
+        };
+
+        // Apply pattern and velocity
+        Object.keys(preset.pattern).forEach(presetInst => {
+          const ourInst = instrumentMap[presetInst];
+          if (ourInst && pattern[ourInst]) {
+            pattern[ourInst] = [...preset.pattern[presetInst]];
+            if (preset.velocity[presetInst]) {
+              velocityState[ourInst] = [...preset.velocity[presetInst]];
+            }
+          }
+        });
+
+        // Apply tempo
+        tempo = preset.bpm;
+        const tempoSlider = document.getElementById('playground-tempo-slider');
+        const tempoDisplay = document.getElementById('playground-tempo-display');
+        if (tempoSlider) tempoSlider.value = preset.bpm;
+        if (tempoDisplay) tempoDisplay.textContent = `${preset.bpm} BPM`;
+
+        // Apply swing
+        swing = preset.swing;
+        const swingSlider = document.getElementById('playground-swing-slider');
+        const swingDisplay = document.getElementById('playground-swing-display');
+        if (swingSlider) swingSlider.value = preset.swing;
+        if (swingDisplay) swingDisplay.textContent = `${preset.swing}%`;
+
+        // Redraw UI
+        updateSequencerUI();
+
+        // Trigger auto-save
+        triggerAutoSave();
+
+        console.log(`[Playground] Loaded preset: ${preset.name}`);
+      }
+
+      function showLearningPrompt(prompt) {
+        let promptEl = document.getElementById('learning-prompt');
+        if (!promptEl) {
+          promptEl = document.createElement('div');
+          promptEl.id = 'learning-prompt';
+          promptEl.style.cssText = `
+            margin: var(--space-md) 0;
+            padding: var(--space-md);
+            background: rgba(179, 102, 255, 0.1);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+          `;
+          const controlPanel = document.querySelector('.control-panel');
+          controlPanel?.insertAdjacentElement('afterend', promptEl);
+        }
+        promptEl.innerHTML = `<strong><img src="images/idea.png" alt="💡" style="width: 1.2em; vertical-align: middle;"> Try this:</strong> ${prompt}`;
+      }
+
+      function triggerAutoSave() {
+        saveCurrentState({
+          pattern,
+          velocity: velocityState,
+          tempo,
+          swing,
+          selectedSamples,
+          mixerState: getMixerState(),
+          humanization: {
+            enabled: humanizationEnabled,
+            timing: timingRandomization,
+            velocity: velocityRandomization
+          }
+        });
+      }
+
+      // ==========================================
+      // WAV EXPORT FUNCTIONALITY
+      // ==========================================
+
+      async function exportToWav() {
+        const exportBtn = document.getElementById('export-wav-btn');
+        const exportStatus = document.getElementById('export-status');
+
+        try {
+          exportBtn.disabled = true;
+          exportStatus.style.display = 'block';
+          exportStatus.textContent = '<img src="images/notamusicale.png" alt="Music" style="width: 1em; height: 1em; vertical-align: middle;"> Rendering your loop...';
+
+          // Import necessary functions
+          const { renderPatternToWav } = await import('./wav-export.js');
+
+          // Render the pattern
+          const wavBlob = await renderPatternToWav(pattern, instruments, tempo, stepCount);
+
+          // Create download link
+          const url = URL.createObjectURL(wavBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `drum-loop-${tempo}bpm-${Date.now()}.wav`;
+          a.click();
+
+          URL.revokeObjectURL(url);
+
+          exportStatus.textContent = '<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Loop exported successfully!';
+          setTimeout(() => {
+            exportStatus.style.display = 'none';
+          }, 3000);
+
+          // Show post-export message and track export count
+          const exportCount = incrementExportCount();
+          trackExport(); // Track in stats
+          updateProgressWidget(); // Update progress widget
+
+          if (exportCount === 1) {
+            // First export - show special message
+            const message = createPostExportMessage();
+            document.body.appendChild(message);
+
+            document.getElementById('dismiss-export-message')?.addEventListener('click', () => {
+              message.remove();
+            });
+
+            // Auto-remove after 10 seconds
+            setTimeout(() => {
+              if (message.parentNode) message.remove();
+            }, 10000);
+
+            markActivated(); // User is now activated
+          } else {
+            console.log(`[Playground] Export #${exportCount} completed`);
+          }
+
+        } catch (error) {
+          console.error('Export error:', error);
+          exportStatus.textContent = '✗ Export failed: ' + error.message;
+        } finally {
+          exportBtn.disabled = false;
+        }
+      }
+
+      // ==========================================
+      // MIDI EXPORT FUNCTIONALITY
+      // ==========================================
+
+      async function exportToMIDI() {
+        const exportBtn = document.getElementById('export-midi-btn');
+        const exportStatus = document.getElementById('export-status');
+
+        try {
+          exportBtn.disabled = true;
+          exportStatus.style.display = 'block';
+          exportStatus.textContent = '🎹 Rendering MIDI file...';
+
+          // Import MIDI export module
+          const { renderPatternToMIDI } = await import('./midi-export.js');
+
+          // Render the pattern to MIDI
+          const midiBlob = await renderPatternToMIDI(
+            pattern,
+            instruments,
+            tempo,
+            stepCount,
+            velocityState,
+            swing
+          );
+
+          // Create download link
+          const url = URL.createObjectURL(midiBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `drum-loop-${tempo}bpm-${Date.now()}.mid`;
+          a.click();
+
+          URL.revokeObjectURL(url);
+
+          exportStatus.textContent = '<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> MIDI file exported successfully!';
+          setTimeout(() => {
+            exportStatus.style.display = 'none';
+          }, 3000);
+
+          // Track export
+          trackExport();
+          updateProgressWidget();
+
+          console.log('[Playground] MIDI export completed');
+
+        } catch (error) {
+          console.error('MIDI export error:', error);
+          exportStatus.textContent = '✗ MIDI export failed: ' + error.message;
+        } finally {
+          exportBtn.disabled = false;
+        }
+      }
+
+      // ==========================================
+      // EVENT LISTENERS
+      // ==========================================
+
+      document.getElementById('playground-play').addEventListener('click', play);
+      document.getElementById('playground-stop').addEventListener('click', stop);
+      document.getElementById('playground-clear').addEventListener('click', clearPattern);
+      document.getElementById('export-wav-btn').addEventListener('click', exportToWav);
+      document.getElementById('export-midi-btn').addEventListener('click', exportToMIDI);
+
+      // Share pattern button
+      document.getElementById('share-pattern-btn').addEventListener('click', () => {
+        const shareLink = generateShareLink({
+          pattern,
+          velocity: velocityState,
+          tempo,
+          swing
+        });
+
+        if (shareLink) {
+          createShareModal(shareLink);
+        }
+      });
+
+      // Tempo control
+      const tempoSlider = document.getElementById('playground-tempo-slider');
+      const tempoDisplay = document.getElementById('playground-tempo-display');
+
+      tempoSlider.addEventListener('input', (e) => {
+        tempo = parseInt(e.target.value);
+        tempoDisplay.textContent = `${tempo} BPM`;
+        triggerAutoSave(); // Auto-save on tempo change
+        // Note: No need to restart playback - the next scheduled step
+        // will automatically use the new tempo value for timing calculation
+      });
+
+      // Swing control
+      const swingSlider = document.getElementById('playground-swing-slider');
+      const swingDisplay = document.getElementById('playground-swing-display');
+
+      swingSlider.addEventListener('input', (e) => {
+        swing = parseInt(e.target.value);
+        swingDisplay.textContent = `${swing}%`;
+        triggerAutoSave(); // Auto-save on swing change
+        if (swing > 0) {
+          trackSkillUsed('swing'); // Track skill usage
+        }
+        // Note: No need to restart playback - the next scheduled step
+        // will automatically use the new swing value for timing calculation
+      });
+
+      // ==========================================
+      // PRESET CONTROLS
+      // ==========================================
+
+      // Populate preset dropdown
+      const presetSelect = document.getElementById('preset-select');
+      if (presetSelect) {
+        presetPatterns.forEach(preset => {
+          const option = document.createElement('option');
+          option.value = preset.id;
+          option.textContent = `${preset.name} - ${preset.category}`;
+          presetSelect.appendChild(option);
+        });
+
+        // Load preset handler
+        presetSelect.addEventListener('change', (e) => {
+          const presetId = e.target.value;
+          if (!presetId) return;
+
+          const preset = presetPatterns.find(p => p.id === presetId);
+          if (!preset) return;
+
+          applyPreset(preset);
+          showLearningPrompt(preset.learningPrompt);
+          trackPresetUsed(preset.id); // Track preset usage
+          updateProgressWidget();
+        });
+      }
+
+      // Random preset button
+      const randomPresetBtn = document.getElementById('random-preset-btn');
+      if (randomPresetBtn) {
+        randomPresetBtn.addEventListener('click', () => {
+          const randomPreset = presetPatterns[Math.floor(Math.random() * presetPatterns.length)];
+          if (presetSelect) presetSelect.value = randomPreset.id;
+          applyPreset(randomPreset);
+          showLearningPrompt(randomPreset.learningPrompt);
+          trackPresetUsed(randomPreset.id); // Track preset usage
+          updateProgressWidget();
+        });
+      }
+
+      // Continue Last Session button
+      const continueBtn = document.getElementById('continue-session-btn');
+      const savedState = loadSavedState();
+      if (savedState && continueBtn) {
+        continueBtn.style.display = 'inline-flex';
+        continueBtn.addEventListener('click', () => {
+          // Restore saved state
+          Object.keys(savedState.pattern).forEach(inst => {
+            if (pattern[inst]) {
+              pattern[inst] = [...savedState.pattern[inst]];
+            }
+            if (savedState.velocity && savedState.velocity[inst] && velocityState[inst]) {
+              velocityState[inst] = [...savedState.velocity[inst]];
+            }
+          });
+
+          tempo = savedState.tempo || 120;
+          swing = savedState.swing || 0;
+
+          // Update UI
+          tempoSlider.value = tempo;
+          tempoDisplay.textContent = `${tempo} BPM`;
+          swingSlider.value = swing;
+          swingDisplay.textContent = `${swing}%`;
+
+          // Restore humanization if saved
+          if (savedState.humanization) {
+            humanizationEnabled = savedState.humanization.enabled || false;
+            timingRandomization = savedState.humanization.timing || 0;
+            velocityRandomization = savedState.humanization.velocity || 0;
+
+            const humanizeEnableCheckbox = document.getElementById('humanize-enable');
+            const timingSlider = document.getElementById('timing-slider');
+            const timingValue = document.getElementById('timing-value');
+            const velocityRandSlider = document.getElementById('velocity-rand-slider');
+            const velocityRandValue = document.getElementById('velocity-rand-value');
+            const humanizeControlsDiv = document.getElementById('humanize-controls');
+
+            if (humanizeEnableCheckbox) humanizeEnableCheckbox.checked = humanizationEnabled;
+            if (timingSlider) timingSlider.value = timingRandomization;
+            if (timingValue) timingValue.textContent = `${timingRandomization}ms`;
+            if (velocityRandSlider) velocityRandSlider.value = velocityRandomization;
+            if (velocityRandValue) velocityRandValue.textContent = `${velocityRandomization}%`;
+            if (humanizeControlsDiv) {
+              humanizeControlsDiv.style.opacity = humanizationEnabled ? '1' : '0.5';
+              humanizeControlsDiv.style.pointerEvents = humanizationEnabled ? 'auto' : 'none';
+            }
+          }
+
+          updateSequencerUI();
+
+          // Hide button after use
+          continueBtn.style.display = 'none';
+
+          console.log('[Playground] Restored last session');
+        });
+      }
+
+      // Humanization controls
+      const humanizeEnableCheckbox = document.getElementById('humanize-enable');
+      const humanizeControlsDiv = document.getElementById('humanize-controls');
+      const timingSlider = document.getElementById('timing-slider');
+      const timingValue = document.getElementById('timing-value');
+      const velocityRandSlider = document.getElementById('velocity-rand-slider');
+      const velocityRandValue = document.getElementById('velocity-rand-value');
+      const presetButtons = document.querySelectorAll('.humanize-preset-btn');
+
+      // Enable/disable humanization
+      if (humanizeEnableCheckbox) {
+        humanizeEnableCheckbox.addEventListener('change', (e) => {
+          humanizationEnabled = e.target.checked;
+
+          if (humanizeControlsDiv) {
+            if (humanizationEnabled) {
+              humanizeControlsDiv.style.opacity = '1';
+              humanizeControlsDiv.style.pointerEvents = 'auto';
+              trackSkillUsed('humanization'); // Track humanization skill
+            } else {
+              humanizeControlsDiv.style.opacity = '0.5';
+              humanizeControlsDiv.style.pointerEvents = 'none';
+            }
+          }
+          triggerAutoSave(); // Auto-save on humanization toggle
+        });
+      }
+
+      // Timing randomization slider
+      if (timingSlider && timingValue) {
+        timingSlider.addEventListener('input', (e) => {
+          timingRandomization = parseFloat(e.target.value);
+          timingValue.textContent = `${timingRandomization}ms`;
+          triggerAutoSave(); // Auto-save on timing change
+          if (timingRandomization > 0) {
+            trackSkillUsed('humanization'); // Track humanization skill
+          }
+        });
+      }
+
+      // Velocity randomization slider
+      if (velocityRandSlider && velocityRandValue) {
+        velocityRandSlider.addEventListener('input', (e) => {
+          velocityRandomization = parseFloat(e.target.value);
+          velocityRandValue.textContent = `${velocityRandomization}%`;
+          triggerAutoSave(); // Auto-save on velocity randomization change
+          if (velocityRandomization > 0) {
+            trackSkillUsed('humanization'); // Track humanization skill
+          }
+        });
+      }
+
+      // Preset buttons
+      presetButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const timing = parseFloat(btn.dataset.timing);
+          const velocity = parseFloat(btn.dataset.velocity);
+
+          timingRandomization = timing;
+          velocityRandomization = velocity;
+
+          if (timingSlider) timingSlider.value = timing;
+          if (timingValue) timingValue.textContent = `${timing}ms`;
+          if (velocityRandSlider) velocityRandSlider.value = velocity;
+          if (velocityRandValue) velocityRandValue.textContent = `${velocity}%`;
+
+          // Enable humanization if not already enabled
+          if (!humanizationEnabled && humanizeEnableCheckbox) {
+            humanizeEnableCheckbox.checked = true;
+            humanizationEnabled = true;
+            if (humanizeControlsDiv) {
+              humanizeControlsDiv.style.opacity = '1';
+              humanizeControlsDiv.style.pointerEvents = 'auto';
+            }
+          }
+
+          // Visual feedback
+          btn.style.background = 'rgba(0, 255, 157, 0.2)';
+          btn.style.borderColor = 'rgba(0, 255, 157, 0.5)';
+          setTimeout(() => {
+            btn.style.background = 'rgba(0, 240, 255, 0.1)';
+            btn.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+          }, 300);
+        });
+      });
+
+      // ==========================================
+      // INITIALIZATION
+      // ==========================================
+
+      // Wait for sample library to load, then initialize everything
+      async function initialize() {
+        try {
+          console.log('<img src="images/orologio.png" alt="Loading" style="width: 1em; height: 1em; vertical-align: middle;"> Waiting for sample library...');
+          await waitForSampleLibrary();
+          console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Sample library loaded!');
+
+          // Initialize mixer state for all instruments (from sequencer.js)
+          initMixer(instruments);
+
+          // Set all channels to 50% volume by default
+          instruments.forEach(inst => {
+            setMixerVolume(inst.id, 0.5);
+          });
+
+          // Initialize UI components
+          initSamplePickers();
+          initSequencer();
+          initMixerUI();
+
+          // Load pattern from URL if present (shareable link)
+          const urlPattern = loadPatternFromURL();
+          if (urlPattern) {
+            console.log('[Playground] Loading pattern from URL');
+
+            // Apply pattern data
+            Object.keys(urlPattern.pattern).forEach(inst => {
+              if (pattern[inst]) {
+                pattern[inst] = [...urlPattern.pattern[inst]];
+              }
+              if (urlPattern.velocity && urlPattern.velocity[inst] && velocityState[inst]) {
+                velocityState[inst] = [...urlPattern.velocity[inst]];
+              }
+            });
+
+            // Apply tempo and swing
+            tempo = urlPattern.tempo || 120;
+            swing = urlPattern.swing || 0;
+
+            // Update UI
+            const tempoSliderEl = document.getElementById('playground-tempo-slider');
+            const tempoDisplayEl = document.getElementById('playground-tempo-display');
+            const swingSliderEl = document.getElementById('playground-swing-slider');
+            const swingDisplayEl = document.getElementById('playground-swing-display');
+
+            if (tempoSliderEl) tempoSliderEl.value = tempo;
+            if (tempoDisplayEl) tempoDisplayEl.textContent = `${tempo} BPM`;
+            if (swingSliderEl) swingSliderEl.value = swing;
+            if (swingDisplayEl) swingDisplayEl.textContent = `${swing}%`;
+
+            // Redraw sequencer
+            updateSequencerUI();
+
+            // Show toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+              position: fixed;
+              top: 80px;
+              left: 50%;
+              transform: translateX(-50%);
+              padding: var(--space-md) var(--space-xl);
+              background: linear-gradient(135deg, rgba(0, 212, 255, 0.95), rgba(179, 102, 255, 0.95));
+              color: white;
+              border-radius: var(--radius-md);
+              box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+              font-weight: 600;
+              z-index: 10000;
+              animation: slideDown 0.3s ease-out;
+            `;
+            toast.innerHTML = `🔗 Pattern loaded from shared link`;
+            document.body.appendChild(toast);
+
+            // Add animation
+            if (!document.getElementById('toast-animation')) {
+              const style = document.createElement('style');
+              style.id = 'toast-animation';
+              style.textContent = `
+                @keyframes slideDown {
+                  from {
+                    transform: translateX(-50%) translateY(-20px);
+                    opacity: 0;
+                  }
+                  to {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                  }
+                }
+              `;
+              document.head.appendChild(style);
+            }
+
+            setTimeout(() => toast.remove(), 3000);
+          }
+
+          // Create progress tracker widget
+          createProgressWidget();
+
+          // Show lesson origin banner if opened from lesson page
+          const lessonOrigin = getLessonOrigin();
+          if (lessonOrigin) {
+            createLessonOriginBanner(lessonOrigin);
+          }
+
+          // Show activation nudge for first-time users
+          if (shouldShowActivationNudge()) {
+            const nudge = createActivationNudge();
+            const controlPanel = document.querySelector('.control-panel');
+            controlPanel?.insertAdjacentElement('beforebegin', nudge);
+
+            // Dismiss handler
+            document.getElementById('dismiss-nudge')?.addEventListener('click', () => {
+              nudge.remove();
+              markActivated();
+            });
+
+            // Auto-dismiss after first preset load or pattern change
+            const autoDismiss = () => {
+              if (nudge.parentNode) {
+                nudge.remove();
+                markActivated();
+              }
+            };
+            const presetSelectElement = document.getElementById('preset-select');
+            if (presetSelectElement) {
+              presetSelectElement.addEventListener('change', autoDismiss, { once: true });
+            }
+          }
+
+          console.log('<img src="images/mplscudo_check.png" alt="Success" style="width: 1em; height: 1em; vertical-align: middle;"> Drum Playground initialized!');
+        } catch (error) {
+          console.error('✗ Initialization failed:', error);
+
+          // Show error message to user
+          const container = document.querySelector('.main-content');
+          if (container) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+              background: rgba(239, 68, 68, 0.1);
+              border: 1px solid rgba(239, 68, 68, 0.3);
+              border-radius: 8px;
+              padding: 16px;
+              margin: 20px 0;
+              color: #ef4444;
+            `;
+            errorDiv.innerHTML = `
+              <strong>⚠️ Loading Error</strong><br>
+              Failed to load drum samples. Please refresh the page to try again.
+            `;
+            container.insertBefore(errorDiv, container.firstChild);
+          }
+        }
+      }
+
+      // Start initialization
+      initialize();
+
+      // Set year in footer
+      document.getElementById("mpl-year").textContent = new Date().getFullYear();
+    </script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

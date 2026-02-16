@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="mpl-page-title">Lesson · Music Producer Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" id="mpl-meta-description" content="Interactive music production lesson from Music Producer Lab." />
+    <meta name="theme-color" content="#030508">
+    <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-content container">
+
+        <!-- HERO SECTION (populated by JS) -->
+        <section class="hero" id="mpl-hero" aria-label="Lesson hero" style="display: flex; align-items: center; gap: var(--space-3xl);">
+          <div class="hero-copy" style="flex: 1; max-width: none;">
+            <div class="hero-copy-eyebrow" id="mpl-hero-eyebrow">Loading...</div>
+            <h1 class="hero-title" id="mpl-hero-title">
+              <span id="mpl-hero-title-main">Lesson</span>
+              <span id="mpl-hero-title-highlight"></span>
+            </h1>
+            <p class="hero-subtitle" id="mpl-hero-subtitle"></p>
+            <div id="mpl-hero-nav-btns" style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="hero-visual" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <img src="images/mpl_hero_rightside.png" alt="Music Production" style="width: 100%; max-width: 500px; height: auto; object-fit: contain; filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));">
+          </div>
+          </div>
+        </section>
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+          <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+
+            <!-- INTRODUCTION -->
+            <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Reference Tracks & Critical Listening: Train Your Ears Like the Pros</h2>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+              <strong>Reference tracks</strong> are commercially released songs that represent the sonic standard you're aiming for. Using references is the single most important technique for improving your mixes—professional engineers do it constantly. By <strong>A/B comparing</strong> your mix against polished releases, you calibrate your ears, identify what's missing, and avoid the tunnel vision that comes from working on the same project too long. This lesson covers how to choose, prepare, and use reference tracks effectively, plus how to develop <strong>critical listening skills</strong> that let you hear what separates amateur mixes from professional ones.
+            </p>
+
+            <!-- KEY CONCEPTS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+
+              <!-- Concept 1: Choosing References -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/planet.png" alt="References" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">Choosing Reference Tracks</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Select 2-3 professionally mixed and mastered tracks in the <strong>same genre</strong> as your project. Choose songs with similar instrumentation and arrangement. Use <strong>lossless files</strong> (WAV, FLAC) when possible—streaming compression hides details. Import them directly into your <a href="glossary.html#daw" style="color: var(--accent-cyan); text-decoration: underline;">DAW</a> session for instant A/B comparison. Label them clearly: "REF_SongName_Artist".
+                </p>
+              </div>
+
+              <!-- Concept 2: Level Matching -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/orologio.png" alt="Level Match" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0;">Level Matching is Critical</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Mastered tracks are <strong>much louder</strong> than your unmastered mix—and louder always sounds "better" initially. You <strong>must</strong> level-match references to your mix using a gain plugin or utility. Match perceived loudness (LUFS), not peak levels. Without level matching, you'll think your mix sounds weak when it might be fine—or add unnecessary processing trying to compete.
+                </p>
+              </div>
+
+              <!-- Concept 3: What to Listen For -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/clock_anticlockwise.png" alt="Listening" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0;">What to Listen For</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Focus on specific elements: <strong>Low end balance</strong> (how much sub, how tight?), <strong>vocal presence</strong> (how loud, how much reverb?), <strong>high frequency brightness</strong> (harsh or smooth?), <strong>stereo width</strong> (wide or focused?), <strong>dynamic range</strong> (compressed or breathing?). Ask: "What's different between my mix and this reference?" Then address those specific issues.
+                </p>
+              </div>
+
+              <!-- Concept 4: Critical Listening Skills -->
+              <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                  <img src="images/mixer.png" alt="Critical Listening" style="width: 2rem; height: 2rem;">
+                  <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0;">Developing Critical Listening</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                  Critical listening is a <strong>trainable skill</strong>. Practice isolating elements: focus only on the kick for 30 seconds, then only the vocal. Use spectrum analyzers and <a href="glossary.html#eq" style="color: var(--accent-cyan); text-decoration: underline;">EQ</a> to identify frequencies. Take breaks—ear fatigue destroys objectivity. Listen at <strong>low volumes</strong> to hear balance issues. Check on multiple systems (headphones, monitors, car, phone speaker).
+                </p>
+              </div>
+
+            </div>
+
+            <!-- VISUAL: A/B COMPARISON WORKFLOW -->
+            <div style="padding: var(--space-xl); background: var(--bg-secondary); border-radius: var(--radius-lg); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">A/B Comparison Workflow</h3>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-md); font-family: monospace; color: var(--text-secondary);">
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <div style="padding: 8px 16px; background: var(--accent-cyan); color: var(--bg-primary); border-radius: 20px; font-weight: bold;">1</div>
+                  <span>Import reference track into DAW session (separate track, routed to master)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <div style="padding: 8px 16px; background: var(--accent-orange); color: var(--bg-primary); border-radius: 20px; font-weight: bold;">2</div>
+                  <span>Add <strong>gain plugin</strong> to reference track—reduce by ~6-10 dB to match your mix loudness</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <div style="padding: 8px 16px; background: var(--accent-purple); color: var(--bg-primary); border-radius: 20px; font-weight: bold;">3</div>
+                  <span>Use <strong>mute/solo</strong> to quickly switch between your mix and reference (keyboard shortcut)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <div style="padding: 8px 16px; background: var(--accent-magenta); color: var(--bg-primary); border-radius: 20px; font-weight: bold;">4</div>
+                  <span>Listen to the <strong>same section</strong> in both (verse, chorus, drop) for accurate comparison</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <div style="padding: 8px 16px; background: var(--text-muted); color: var(--bg-primary); border-radius: 20px; font-weight: bold;">5</div>
+                  <span>Ask: "What's different?" then make <strong>one adjustment</strong>. Repeat the comparison.</span>
+                </div>
+              </div>
+
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-lg); font-style: italic;">
+                Pro tip: Use dedicated plugins like "Reference" by Mastering The Mix, ADPTR Metric AB, or iZotope Tonal Balance Control for streamlined A/B workflows.
+              </p>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
+            <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-orange);">Not Level-Matching:</strong>
+                <span style="color: var(--text-secondary);"> The #1 mistake. A mastered reference at -8 LUFS will always sound "better" than your -14 LUFS mix simply because it's louder. This psychological bias (louder = better) makes your mix seem weak when it might be fine. Always match levels before comparing.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-purple);">Choosing Inappropriate References:</strong>
+                <span style="color: var(--text-secondary);"> Don't compare your acoustic folk song to a heavily produced pop track. Choose references in the same genre with similar instrumentation. If your reference has live drums and yours has programmed samples, the comparison will mislead you.</span>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <strong style="color: var(--accent-cyan);">Copying Instead of Understanding:</strong>
+                <span style="color: var(--text-secondary);"> References show you the target, but blindly copying EQ curves won't work—every song is different. Use references to identify what's lacking in your mix (e.g., "my low end is muddy"), then solve that problem with your own settings. Learn principles, not presets.</span>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
+              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li><strong>Objectivity:</strong> After hours on a mix, you lose perspective. References reset your ears and show you reality vs. your assumptions.</li>
+                <li><strong>Commercial Viability:</strong> If your mix doesn't compare well to commercial releases, it won't compete. References set the quality bar.</li>
+                <li><strong>Faster Learning:</strong> Comparing to professional mixes teaches you what "good" sounds like—accelerating your skill development.</li>
+                <li><strong>Client Confidence:</strong> When your mix stands up next to the reference, you know you've delivered professional quality.</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- EXERCISE INSTRUCTIONS (populated by JS) -->
+        <section class="exercise-instructions" id="mpl-exercise-section" style="margin-top: var(--space-2xl);">
+          <div class="exercise-box">
+            <div class="section-eyebrow">Exercise</div>
+            <h2 class="section-title" id="mpl-exercise-title">Loading exercise...</h2>
+            <p class="section-body" id="mpl-exercise-description"></p>
+            
+            <div class="exercise-steps" id="mpl-exercise-steps-wrap">
+              <h3>What to do:</h3>
+              <ol class="exercise-checklist" id="mpl-exercise-steps"></ol>
+            </div>
+
+            <div class="exercise-tip" id="mpl-exercise-tip" style="display:none;">
+              <strong>Tip:</strong> <span id="mpl-exercise-tip-text"></span>
+            </div>
+
+            <!-- PATTERN HINT (populated by JS) -->
+            <div class="pattern-hint" id="mpl-pattern-hint" style="display:none;">
+              <div class="pattern-hint-label">Target Pattern:</div>
+              <div id="mpl-pattern-hint-grid"></div>
+              <div id="mpl-pattern-hint-note"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEQUENCER CONTAINER (populated by JS) -->
+        <section id="mpl-sequencer-container" style="margin-top: var(--space-2xl);"></section>
+
+        <!-- COMPLETION MESSAGE (populated by JS) -->
+        <div id="mpl-completion-message" class="completion-message" style="display:none;"></div>
+
+
+      <!-- SCRIPT IMPORTS -->
+      <script type="module">
+        import { lessonConfig } from './configs/lesson-mixing-14.config.js';
+        import { initLessonFromConfig } from './lesson-engine.js';
+        
+        // Initialize lesson with config
+        if (window.LESSON_CONFIG) {
+          initLessonFromConfig(window.LESSON_CONFIG);
+        } else {
+          initLessonFromConfig(lessonConfig);
+        }
+      </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p class="copyright">© <span id="mpl-year">2025</span> Music Producer Lab</p>
+        <nav class="footer-nav">
+          <a href="labs.html">Labs</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>document.getElementById("mpl-year").textContent = new Date().getFullYear();</script>
+  <script src="theme-registry.js"></script>
+  <script src="theme-manager.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

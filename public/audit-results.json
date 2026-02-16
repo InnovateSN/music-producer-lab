@@ -1,0 +1,2646 @@
+{
+  "results": [
+    {
+      "lessonId": "lesson-arrangement-1",
+      "fileName": "lesson-arrangement-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 13,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-10",
+      "fileName": "lesson-arrangement-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-11",
+      "fileName": "lesson-arrangement-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-12",
+      "fileName": "lesson-arrangement-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-13",
+      "fileName": "lesson-arrangement-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-14",
+      "fileName": "lesson-arrangement-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-15",
+      "fileName": "lesson-arrangement-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-16",
+      "fileName": "lesson-arrangement-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-17",
+      "fileName": "lesson-arrangement-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-18",
+      "fileName": "lesson-arrangement-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-19",
+      "fileName": "lesson-arrangement-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 6,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-2",
+      "fileName": "lesson-arrangement-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 13,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-20",
+      "fileName": "lesson-arrangement-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 9,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-3",
+      "fileName": "lesson-arrangement-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 10,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-4",
+      "fileName": "lesson-arrangement-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No exercise steps"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 8,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-5",
+      "fileName": "lesson-arrangement-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-6",
+      "fileName": "lesson-arrangement-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-7",
+      "fileName": "lesson-arrangement-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-8",
+      "fileName": "lesson-arrangement-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-arrangement-9",
+      "fileName": "lesson-arrangement-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-bass-1",
+      "fileName": "lesson-bass-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (72 words, need 200+)",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 72,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-10",
+      "fileName": "lesson-bass-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-11",
+      "fileName": "lesson-bass-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (121 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 121,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-12",
+      "fileName": "lesson-bass-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-13",
+      "fileName": "lesson-bass-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (125 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 125,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-14",
+      "fileName": "lesson-bass-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (134 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 134,
+      "learningObjectivesCount": 6,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-15",
+      "fileName": "lesson-bass-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (63 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 63,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-16",
+      "fileName": "lesson-bass-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (61 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 61,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-17",
+      "fileName": "lesson-bass-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (61 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 61,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-18",
+      "fileName": "lesson-bass-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (61 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 61,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-19",
+      "fileName": "lesson-bass-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (60 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 60,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-2",
+      "fileName": "lesson-bass-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-20",
+      "fileName": "lesson-bass-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (60 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 60,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-3",
+      "fileName": "lesson-bass-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-4",
+      "fileName": "lesson-bass-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-5",
+      "fileName": "lesson-bass-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-6",
+      "fileName": "lesson-bass-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-7",
+      "fileName": "lesson-bass-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-8",
+      "fileName": "lesson-bass-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-bass-9",
+      "fileName": "lesson-bass-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-0",
+      "fileName": "lesson-drums-0.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (54 words, need 200+)",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 54,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-1",
+      "fileName": "lesson-drums-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-10",
+      "fileName": "lesson-drums-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-11",
+      "fileName": "lesson-drums-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-12",
+      "fileName": "lesson-drums-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-13",
+      "fileName": "lesson-drums-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-14",
+      "fileName": "lesson-drums-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 10,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-15",
+      "fileName": "lesson-drums-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (124 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 124,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-16",
+      "fileName": "lesson-drums-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (39 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 39,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-17",
+      "fileName": "lesson-drums-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (30 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 30,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-18",
+      "fileName": "lesson-drums-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (38 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 38,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-19",
+      "fileName": "lesson-drums-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-2",
+      "fileName": "lesson-drums-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-20",
+      "fileName": "lesson-drums-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (38 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 38,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-21",
+      "fileName": "lesson-drums-21.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (37 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 37,
+      "learningObjectivesCount": 6,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-22",
+      "fileName": "lesson-drums-22.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (50 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 50,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-drums-3",
+      "fileName": "lesson-drums-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-4",
+      "fileName": "lesson-drums-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-5",
+      "fileName": "lesson-drums-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-6",
+      "fileName": "lesson-drums-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-7",
+      "fileName": "lesson-drums-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-8",
+      "fileName": "lesson-drums-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-drums-9",
+      "fileName": "lesson-drums-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 4,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-ear-1",
+      "fileName": "lesson-ear-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-10",
+      "fileName": "lesson-ear-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 297,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-2",
+      "fileName": "lesson-ear-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-3",
+      "fileName": "lesson-ear-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-4",
+      "fileName": "lesson-ear-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 8,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-5",
+      "fileName": "lesson-ear-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No theory content",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-6",
+      "fileName": "lesson-ear-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 250,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-7",
+      "fileName": "lesson-ear-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 219,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-8",
+      "fileName": "lesson-ear-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 203,
+      "learningObjectivesCount": 13,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-ear-9",
+      "fileName": "lesson-ear-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 275,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-1",
+      "fileName": "lesson-harmony-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-10",
+      "fileName": "lesson-harmony-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-11",
+      "fileName": "lesson-harmony-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-12",
+      "fileName": "lesson-harmony-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-13",
+      "fileName": "lesson-harmony-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-14",
+      "fileName": "lesson-harmony-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-15",
+      "fileName": "lesson-harmony-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-16",
+      "fileName": "lesson-harmony-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-17",
+      "fileName": "lesson-harmony-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-18",
+      "fileName": "lesson-harmony-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-19",
+      "fileName": "lesson-harmony-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-2",
+      "fileName": "lesson-harmony-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-20",
+      "fileName": "lesson-harmony-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-21",
+      "fileName": "lesson-harmony-21.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 306,
+      "learningObjectivesCount": 9,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-22",
+      "fileName": "lesson-harmony-22.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 303,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-23",
+      "fileName": "lesson-harmony-23.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 351,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-24",
+      "fileName": "lesson-harmony-24.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 338,
+      "learningObjectivesCount": 12,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-25",
+      "fileName": "lesson-harmony-25.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 285,
+      "learningObjectivesCount": 8,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-26",
+      "fileName": "lesson-harmony-26.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (181 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 181,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-27",
+      "fileName": "lesson-harmony-27.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 425,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-28",
+      "fileName": "lesson-harmony-28.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 360,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-harmony-3",
+      "fileName": "lesson-harmony-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-4",
+      "fileName": "lesson-harmony-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-5",
+      "fileName": "lesson-harmony-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-6",
+      "fileName": "lesson-harmony-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-7",
+      "fileName": "lesson-harmony-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-8",
+      "fileName": "lesson-harmony-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-harmony-9",
+      "fileName": "lesson-harmony-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No theory content",
+        "No learningObjectives array"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 0,
+      "learningObjectivesCount": 0,
+      "hasExercise": true,
+      "hasValidation": true,
+      "hasTheory": false
+    },
+    {
+      "lessonId": "lesson-mastering-1",
+      "fileName": "lesson-mastering-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (174 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 174,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-10",
+      "fileName": "lesson-mastering-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (178 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 178,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-2",
+      "fileName": "lesson-mastering-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (176 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 176,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-3",
+      "fileName": "lesson-mastering-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (174 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 174,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-4",
+      "fileName": "lesson-mastering-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (178 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 178,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-5",
+      "fileName": "lesson-mastering-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (178 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 178,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-6",
+      "fileName": "lesson-mastering-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (178 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 178,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-7",
+      "fileName": "lesson-mastering-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (178 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 178,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-8",
+      "fileName": "lesson-mastering-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (174 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 174,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mastering-9",
+      "fileName": "lesson-mastering-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (174 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 174,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-1",
+      "fileName": "lesson-mixing-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (146 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 146,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-10",
+      "fileName": "lesson-mixing-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-11",
+      "fileName": "lesson-mixing-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (149 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 149,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-12",
+      "fileName": "lesson-mixing-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (146 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 146,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-13",
+      "fileName": "lesson-mixing-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-14",
+      "fileName": "lesson-mixing-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (149 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 149,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-15",
+      "fileName": "lesson-mixing-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (146 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 146,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-16",
+      "fileName": "lesson-mixing-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 204,
+      "learningObjectivesCount": 10,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-17",
+      "fileName": "lesson-mixing-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 9,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-18",
+      "fileName": "lesson-mixing-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 278,
+      "learningObjectivesCount": 14,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-19",
+      "fileName": "lesson-mixing-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 276,
+      "learningObjectivesCount": 16,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-2",
+      "fileName": "lesson-mixing-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-20",
+      "fileName": "lesson-mixing-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 256,
+      "learningObjectivesCount": 14,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-3",
+      "fileName": "lesson-mixing-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-4",
+      "fileName": "lesson-mixing-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (143 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 143,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-5",
+      "fileName": "lesson-mixing-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (146 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 146,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-6",
+      "fileName": "lesson-mixing-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (146 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 146,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-7",
+      "fileName": "lesson-mixing-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (143 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 143,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-8",
+      "fileName": "lesson-mixing-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (143 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 143,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-mixing-9",
+      "fileName": "lesson-mixing-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (140 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 140,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-1",
+      "fileName": "lesson-sound-design-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-10",
+      "fileName": "lesson-sound-design-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (94 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 94,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-11",
+      "fileName": "lesson-sound-design-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (98 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 98,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-12",
+      "fileName": "lesson-sound-design-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (98 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 98,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-13",
+      "fileName": "lesson-sound-design-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-14",
+      "fileName": "lesson-sound-design-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-15",
+      "fileName": "lesson-sound-design-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (98 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 98,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-16",
+      "fileName": "lesson-sound-design-16.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (106 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 106,
+      "learningObjectivesCount": 16,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-17",
+      "fileName": "lesson-sound-design-17.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (122 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 122,
+      "learningObjectivesCount": 9,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-18",
+      "fileName": "lesson-sound-design-18.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (153 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 153,
+      "learningObjectivesCount": 12,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-19",
+      "fileName": "lesson-sound-design-19.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (127 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 127,
+      "learningObjectivesCount": 13,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-2",
+      "fileName": "lesson-sound-design-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-20",
+      "fileName": "lesson-sound-design-20.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (196 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 196,
+      "learningObjectivesCount": 15,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-3",
+      "fileName": "lesson-sound-design-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-4",
+      "fileName": "lesson-sound-design-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (94 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 94,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-5",
+      "fileName": "lesson-sound-design-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (94 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 94,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-6",
+      "fileName": "lesson-sound-design-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-7",
+      "fileName": "lesson-sound-design-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-8",
+      "fileName": "lesson-sound-design-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (94 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 94,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-sound-design-9",
+      "fileName": "lesson-sound-design-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (96 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 96,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-1",
+      "fileName": "lesson-theory-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (139 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 139,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-2",
+      "fileName": "lesson-theory-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (121 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 121,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-3",
+      "fileName": "lesson-theory-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (162 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 162,
+      "learningObjectivesCount": 6,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-4",
+      "fileName": "lesson-theory-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (164 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 164,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-5",
+      "fileName": "lesson-theory-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 200,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-6",
+      "fileName": "lesson-theory-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 219,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-7",
+      "fileName": "lesson-theory-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 219,
+      "learningObjectivesCount": 10,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-theory-8",
+      "fileName": "lesson-theory-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 205,
+      "learningObjectivesCount": 7,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-1",
+      "fileName": "lesson-vocals-1.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-10",
+      "fileName": "lesson-vocals-10.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-11",
+      "fileName": "lesson-vocals-11.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-12",
+      "fileName": "lesson-vocals-12.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (154 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 154,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-13",
+      "fileName": "lesson-vocals-13.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (198 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 198,
+      "learningObjectivesCount": 12,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-14",
+      "fileName": "lesson-vocals-14.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 202,
+      "learningObjectivesCount": 15,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-15",
+      "fileName": "lesson-vocals-15.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "No mode configuration",
+        "Theory content too short (189 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "unknown",
+      "theoryWordCount": 189,
+      "learningObjectivesCount": 15,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-2",
+      "fileName": "lesson-vocals-2.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-3",
+      "fileName": "lesson-vocals-3.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-4",
+      "fileName": "lesson-vocals-4.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (154 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 154,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-5",
+      "fileName": "lesson-vocals-5.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-6",
+      "fileName": "lesson-vocals-6.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (154 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 154,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-7",
+      "fileName": "lesson-vocals-7.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (154 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 154,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-8",
+      "fileName": "lesson-vocals-8.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (154 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 154,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    },
+    {
+      "lessonId": "lesson-vocals-9",
+      "fileName": "lesson-vocals-9.config.js",
+      "status": "INCOMPLETE",
+      "issues": [
+        "Theory content too short (152 words, need 200+)",
+        "No validation object (interactive lesson)"
+      ],
+      "mode": "interactive",
+      "theoryWordCount": 152,
+      "learningObjectivesCount": 5,
+      "hasExercise": true,
+      "hasValidation": false,
+      "hasTheory": true
+    }
+  ],
+  "summary": {
+    "total": 174,
+    "complete": 0,
+    "incomplete": 174,
+    "errors": 0
+  }
+}

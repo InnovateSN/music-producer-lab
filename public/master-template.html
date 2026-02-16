@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Music Producer Lab · Master Template</title>
+  <meta name="description" content="Canonical template for Music Producer Lab pages. Copy this to align new experiences with the site aesthetic and UX.">
+  <link rel="icon" type="image/svg+xml" href="mpl-favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    MASTER TEMPLATE
+    ----------------
+    This page captures the core aesthetic, layout rhythms, and UI patterns used across
+    Music Producer Lab. Copy and adapt sections as needed for landing pages, lessons,
+    tools, and utility screens. Keep class names intact to inherit the global design
+    system defined in styles.css.
+
+    Principles:
+    - Dark, neon-infused atmosphere with high contrast cards and soft glows
+    - Generous spacing and clear hierarchy using badges, eyebrows, and section titles
+    - Strong calls to action near interactive tools and lesson navigation
+    - Mobile-first: stacked layouts that progressively enhance on larger screens
+  -->
+
+  <!-- NAVIGATION (reuse as-is on all pages) -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="mpl-logo-icon.svg" alt="" width="36" height="36">
+        <span>MPL</span>
+      </a>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="index.html" class="navbar-link">Home</a></li>
+        <li><a href="learn-tools.html" class="navbar-link">Tools</a></li>
+        <li><a href="labs.html" class="navbar-link">Labs</a></li>
+        <!-- Downloads page hidden until content is ready
+        <li><a href="download.html" class="navbar-link">Downloads</a></li>
+        -->
+        <li><a href="about.html" class="navbar-link">About</a></li>
+        <li><a href="contact.html" class="navbar-link">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-toggle-label" id="themeLabel">Dark</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+        </div>
+        <a href="labs.html" class="btn btn-primary btn-sm">Start Learning</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO: headline + social proof + CTA -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-bg-grid"></div>
+    </div>
+    <div class="container hero-content" style="position: relative; z-index: 1;">
+      <div class="hero-eyebrow">Interactive Music Production</div>
+      <h1 class="hero-title">Consistent, <span class="text-gradient">cyber-audio</span> storytelling.</h1>
+      <p class="hero-subtitle">Use this hero to anchor any page: short eyebrow, bold headline, one-line payoff, and two decisive CTAs.</p>
+      <div class="hero-cta">
+        <a href="#module" class="btn btn-primary btn-lg">Primary Action</a>
+        <a href="labs.html" class="btn btn-secondary btn-lg">Browse Labs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-value">44</div><div class="hero-stat-label">Lessons</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">20</div><div class="hero-stat-label">Interactive Labs</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">Any DAW</div><div class="hero-stat-label">Compatible</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE PILLARS: three-up cards -->
+  <section class="section" id="pillars">
+    <div class="container text-center mb-2xl">
+      <span class="badge badge-primary mb-md">What every page should show</span>
+      <h2 class="mb-md">Promise, proof, and a path to act.</h2>
+      <p style="max-width: 720px; margin: 0 auto;">Pick the three pillars that reinforce the hero. Keep copy tight and connect each card to a destination.</p>
+    </div>
+    <div class="container features-grid">
+      <div class="feature-card card-glow">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 9h10M7 15h6"/></svg>
+        </div>
+        <div class="feature-content">
+          <h3 class="feature-title">Clarity</h3>
+          <p class="feature-description">One idea per section. Lead with verbs and outcomes.</p>
+          <a href="#" class="feature-link">Link out</a>
+        </div>
+      </div>
+      <div class="feature-card card-glow">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="feature-content">
+          <h3 class="feature-title">Momentum</h3>
+          <p class="feature-description">Stack quick wins and show progress with labels or counts.</p>
+          <a href="#" class="feature-link">Link out</a>
+        </div>
+      </div>
+      <div class="feature-card card-glow">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-7M12 21V3M20 21v-11"/><path d="M1 14h6M9 10h6M17 13h6"/></svg>
+        </div>
+        <div class="feature-content">
+          <h3 class="feature-title">Depth</h3>
+          <p class="feature-description">Use badges, microcopy, and labels to explain why it matters.</p>
+          <a href="#" class="feature-link">Link out</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL / LESSON LAYOUT: two-column interactive pattern -->
+  <section class="section" id="module" style="background: var(--bg-secondary);">
+    <div class="container grid grid-2 gap-xl" style="align-items: flex-start;">
+      <div class="card" style="background: var(--bg-card); border: 1px solid var(--border-light);">
+        <div class="section-eyebrow">Lesson or Tool</div>
+        <h2 class="section-title">Title for the current experience</h2>
+        <p class="section-body">Use this column for instructions, quick steps, and contextual tips. Keep lists short and front-load verbs.</p>
+        <ol class="exercise-checklist" style="margin-top: var(--space-md);">
+          <li>State the goal</li>
+          <li>Give 2–4 steps</li>
+          <li>Close with a tip or target</li>
+        </ol>
+        <div class="exercise-tip" style="margin-top: var(--space-lg);">
+          <strong>Tip:</strong> Reinforce the sound or outcome you want the learner to hear.
+        </div>
+      </div>
+
+      <div class="card card-glow" style="background: var(--bg-card); border: 1px solid var(--border-glow);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+          <span class="badge badge-success">Interactive</span>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Hook JS here</span>
+        </div>
+        <!-- Mount sequencers, audio tools, or data visualizations inside this shell. -->
+        <div id="template-tool-target" style="min-height: 220px; border: 1px dashed var(--border-medium); border-radius: var(--radius-md); display: grid; place-items: center; color: var(--text-muted);">
+          Drop-in area for Web Audio controls or dynamic UI.
+        </div>
+        <div class="sequencer-controls" style="margin-top: var(--space-lg); display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+          <button class="btn btn-outline">Play</button>
+          <button class="btn btn-outline">Stop</button>
+          <button class="btn btn-primary">Check Work</button>
+          <a href="labs.html" class="btn btn-ghost" style="margin-left: auto;">Next Step →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA: keep consistent styling across pages -->
+  <section class="section" style="background: var(--gradient-glow);">
+    <div class="container text-center">
+      <h2 class="mb-md">Close with momentum.</h2>
+      <p style="max-width: 520px; margin: 0 auto var(--space-xl);">Pair a primary CTA with a secondary path (resources, downloads, or another lab) so learners always know what to do next.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); justify-content: center;">
+        <a href="labs.html" class="btn btn-primary btn-lg">Open Labs</a>
+        <a href="labs.html" class="btn btn-secondary btn-lg">See All Content</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (reuse as-is) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="mpl-logo-icon.svg" alt="" width="32" height="32">
+            <span>Music Producer Lab</span>
+          </div>
+          <p class="footer-tagline">Learn music production by actually producing. Interactive labs for any DAW.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Labs</h4>
+          <ul class="footer-links">
+            <li><a href="labs.html#drums" class="footer-link">Drums & Rhythm</a></li>
+            <li><a href="labs.html#arrangement" class="footer-link">Arrangement</a></li>
+            <li><a href="labs.html#sound-design" class="footer-link">Sound Design</a></li>
+            <li><a href="labs.html#mixing" class="footer-link">Mixing</a></li>
+            <li><a href="labs.html#mastering" class="footer-link">Mastering</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <!-- Downloads links hidden until content is ready
+            <li><a href="download.html" class="footer-link">Free Downloads</a></li>
+            -->
+            <li><a href="labs.html" class="footer-link">All Content</a></li>
+            <!-- Downloads links hidden until content is ready
+            <li><a href="download.html" class="footer-link">Sample Packs</a></li>
+            <li><a href="download.html" class="footer-link">Presets</a></li>
+            <li><a href="download.html" class="footer-link">Guides</a></li>
+            -->
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">Blog</a></li>
+            <li><a href="contact.html" class="footer-link">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span id="year"></span> Music Producer Lab. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal behavior for nav + theme -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    const defaultTheme = savedTheme ? savedTheme : (prefersDark.matches ? 'dark' : 'light');
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (themeLabel) themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+    }
+    setTheme(defaultTheme);
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
