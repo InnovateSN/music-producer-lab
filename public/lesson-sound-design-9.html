@@ -74,19 +74,69 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: FX Categories Grid -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">FX Categories Reference</h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-2xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border-subtle);">
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">FX Type</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Duration</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Automation Target</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Common Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Risers</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">4 - 16 bars</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);"><a href="glossary.html#filter" style="color: var(--accent-cyan);">Filter</a> cutoff, pitch, volume (ascending)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">White noise, reverse cymbal, synth sweep</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Impacts</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">0.5 - 4 bars (with tail)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Volume <a href="glossary.html#envelope" style="color: var(--accent-cyan);">envelope</a>, reverb send, distortion</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sub boom + noise burst + transient layer</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Sweeps</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">1 - 4 bars</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Filter cutoff, <a href="glossary.html#panning" style="color: var(--accent-cyan);">panning</a>, phaser rate</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Pink/white noise through bandpass filter</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-magenta); font-weight: 600;">Transitions</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">0.5 - 2 bars</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Volume crossfade, filter, reverb wet/dry</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Reversed elements, stutter edits, pitch drops</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Overusing FX:</strong>
-                <span style="color: var(--text-secondary);"> Every transition doesn't need a massive riser. Save the big FX for key moments—overuse diminishes impact and clutters the mix.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-orange);">Overusing FX:</strong>
+                  <span style="color: var(--text-secondary);"> Every transition does not need a massive <a href="glossary.html#riser" style="color: var(--accent-cyan);">riser</a>. Save the big FX for key moments -- overuse diminishes impact and clutters the mix.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Poor Timing:</strong>
-                <span style="color: var(--text-secondary);"> Risers must peak exactly at the drop. Impacts must land on the beat. Even 50ms off sounds wrong. Zoom in and align precisely.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-purple);">Poor Timing:</strong>
+                  <span style="color: var(--text-secondary);"> Risers must peak exactly at the <a href="glossary.html#drop" style="color: var(--accent-cyan);">drop</a>. Impacts must land on the beat. Even 50ms off sounds wrong. Zoom in and align precisely.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Frequency Masking:</strong>
-                <span style="color: var(--text-secondary);"> FX can eat up headroom and mask other elements. Use EQ to carve space, and automate FX volume to duck during important parts.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-cyan);">Frequency Masking:</strong>
+                  <span style="color: var(--text-secondary);"> FX can eat up <a href="glossary.html#headroom" style="color: var(--accent-cyan);">headroom</a> and mask other elements. Use <a href="glossary.html#eq" style="color: var(--accent-cyan);">EQ</a> to carve space, and automate FX volume to duck during important parts.</span>
+                </div>
               </div>
             </div>
 

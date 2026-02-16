@@ -74,30 +74,95 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: Game Audio Implementation Comparison -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Game Audio Implementation Comparison</h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-2xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="background: var(--bg-secondary);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Approach</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Interactivity</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Complexity</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Linear Audio</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Low -- plays fixed files on trigger, no real-time adaptation</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Simple to implement; good for cutscenes and menu UI</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Menu click SFX, pre-rendered cinematic audio, victory jingles</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Adaptive Audio</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">High -- responds to game states via parameters (health, danger, speed)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Medium; requires <a href="glossary.html#middleware" style="color: var(--accent-cyan);">middleware</a> (Wwise/FMOD) and game engine hooks</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Dynamic music that intensifies during combat, environmental reverb changes</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Procedural Audio</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Very high -- sounds generated algorithmically at runtime in real time</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">High; requires DSP programming, but uses minimal memory</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Physics-driven collision sounds, wind simulation, engine noise synthesis</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Thinking Linearly:</strong>
-                <span style="color: var(--text-secondary);"> Game audio isn't a timeline—it's a system. Design for every possible player action, not just what you imagine they'll do.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-orange);">Thinking Linearly:</strong>
+                <span style="color: var(--text-secondary);"> Game audio isn't a timeline--it's a system. Design for every possible player action, not just what you imagine they'll do.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Insufficient Variation:</strong>
-                <span style="color: var(--text-secondary);"> Players might hear the same sound 1000 times. Without variation, it becomes annoying. Always plan for repetition—randomize everything.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-purple);">Insufficient Variation:</strong>
+                <span style="color: var(--text-secondary);"> Players might hear the same sound 1000 times. Without variation, it becomes annoying. Always plan for repetition--randomize everything.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Ignoring Context:</strong>
-                <span style="color: var(--text-secondary);"> The same gun sounds different in a cave vs. outdoors. Build systems that adapt to environment, not static sounds that ignore surroundings.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-cyan);">Ignoring Context:</strong>
+                <span style="color: var(--text-secondary);"> The same gun sounds different in a cave vs. outdoors. Build systems that adapt to environment, not static sounds that ignore surroundings.</span></div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(179, 102, 255, 0.05); border-left: 3px solid var(--accent-magenta); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-magenta);">Over-Designing Single Sounds:</strong>
+                <span style="color: var(--text-secondary);"> A beautifully crafted 5-second SFX is useless if the game needs a 0.1-second trigger. Design for the system's requirements, not your demo reel.</span></div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Massive Industry:</strong> Video games are bigger than film and music combined. Constant demand for audio talent.</li>
-                <li><strong>Player Experience:</strong> Audio feedback makes games feel responsive and satisfying. It's essential, not decorative.</li>
-                <li><strong>Unique Challenges:</strong> Interactivity and non-linearity require different thinking than linear media.</li>
-                <li><strong>Creative Technology:</strong> Game audio combines creative sound design with technical implementation skills.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Massive Industry:</strong> Video games are bigger than film and music combined. Constant demand for audio talent.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Player Experience:</strong> Audio feedback makes games feel responsive and satisfying. It's essential, not decorative.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Unique Challenges:</strong> Interactivity and non-linearity require different thinking than linear media.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Creative Technology:</strong> Game audio combines creative <a href="glossary.html#sound-design" style="color: var(--accent-cyan);">sound design</a> with technical implementation skills.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+              <div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">Up Next</div>
+                <div style="font-size: 1.15rem; color: var(--text-primary); font-weight: 600;">Lesson 13: Cinematic Sound Design</div>
+                <div style="font-size: 0.95rem; color: var(--text-secondary); margin-top: var(--space-xs);">Create epic impacts, tension drones, and massive risers for film and trailers.</div>
+              </div>
+              <a href="lesson-sound-design-13.html" style="padding: var(--space-sm) var(--space-lg); background: var(--accent-cyan); color: #000; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; white-space: nowrap;">Start Lesson 13</a>
             </div>
           </div>
         </section>

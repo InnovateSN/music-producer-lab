@@ -62,9 +62,93 @@
               </div>
             </div>
 
-            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <!-- VISUAL REFERENCE: Microphone Comparison Table -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: var(--space-md);">Microphone Comparison</h3>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-subtle);">
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan); font-weight: 600;">Type</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan); font-weight: 600;">Pattern</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan); font-weight: 600;">Proximity</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan); font-weight: 600;">Best For</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--accent-cyan); font-weight: 600;">Price Range</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Dynamic</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Cardioid</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Strong bass boost</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Loud vocalists, untreated rooms, live</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">$50 - $400</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Condenser</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Cardioid / Multi</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Moderate</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Studio vocals, detail, breathy styles</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">$100 - $3,000+</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-magenta); font-weight: 600;">Ribbon</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Figure-8</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Very strong</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Warm tone, jazz, vintage character</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">$200 - $2,000+</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: var(--space-md);">Common Mistakes</h3>
+              <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                  <div><strong style="color: var(--text-primary);">Recording in an untreated room.</strong> <span style="color: var(--text-secondary);">Room reflections get baked into the recording and cannot be removed later. Even basic treatment (blankets, foam panels) makes a huge difference to vocal clarity.</span></div>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                  <div><strong style="color: var(--text-primary);">Setting <a href="glossary.html#gain-staging" style="color: var(--accent-cyan); text-decoration: underline;">gain</a> too hot.</strong> <span style="color: var(--text-secondary);">Peaking above -6 dBFS leaves no headroom for loud moments. Digital clipping is harsh and unfixable -- always leave room for dynamics.</span></div>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                  <div><strong style="color: var(--text-primary);">Using a <a href="glossary.html#condenser" style="color: var(--accent-cyan); text-decoration: underline;">condenser</a> in a noisy environment.</strong> <span style="color: var(--text-secondary);">Condensers pick up everything -- AC hum, traffic, room reflections. In untreated spaces, a dynamic mic is the safer choice.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2); margin-bottom: var(--space-xl);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <p style="color: var(--text-secondary); line-height: 1.8; margin: 0;">Professional vocals start with professional recording. No amount of plugins can fix a poorly captured vocal—room reverb, distortion, and noise are baked in. But a clean, well-recorded take gives you infinite mixing options. Spend time getting the recording right, and mixing becomes easier.</p>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;">Professional vocals start with professional recording -- no plugin can fix a poorly captured take</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;">Room <a href="glossary.html#reverb" style="color: var(--accent-cyan); text-decoration: underline;">reverb</a>, distortion, and noise are permanently baked into recordings</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;">A clean, well-recorded take gives you infinite mixing options downstream</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: 0;">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;">Time spent on setup saves hours of frustration in editing and <a href="glossary.html#mixing" style="color: var(--accent-cyan); text-decoration: underline;">mixing</a></span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+              <h3 style="font-size: 1.1rem; color: var(--text-primary); margin: 0 0 var(--space-xs) 0;">What's Next</h3>
+              <p style="color: var(--text-secondary); margin: 0; line-height: 1.6;">Ready to record? In the next lesson, <a href="lesson-vocals-2.html" style="color: var(--accent-cyan); text-decoration: underline;"><strong>Vocal Recording Techniques</strong></a>, you'll learn how to direct a vocalist, manage multiple takes, and set up the perfect headphone mix.</p>
             </div>
           </div>
         </section>

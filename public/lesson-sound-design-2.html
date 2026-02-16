@@ -40,7 +40,7 @@
             <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">LFOs & Modulation: Breathing Life Into Your Sounds</h2>
 
             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
-              Static sounds are boring. <strong>LFOs (Low Frequency Oscillators)</strong> add movement and life by continuously modulating parameters over time. Unlike audio oscillators, LFOs operate below hearing range (typically 0.1–20 Hz), creating rhythmic or evolving changes in your sound. Modulate <strong>pitch</strong> for vibrato, <strong>filter cutoff</strong> for wah effects, <strong>amplitude</strong> for tremolo, or <strong>pan</strong> for spatial movement. Modulation is what separates lifeless patches from expressive, musical sounds.
+              Static sounds are boring. <strong><a href="glossary.html#lfo" style="color: var(--accent-cyan);">LFOs (Low Frequency Oscillators)</a></strong> add movement and life by continuously modulating parameters over time. Unlike audio <a href="glossary.html#oscillator" style="color: var(--accent-cyan);">oscillators</a>, LFOs operate below hearing range (typically 0.1--20 Hz), creating rhythmic or evolving changes in your sound. Modulate <strong>pitch</strong> for <a href="glossary.html#vibrato" style="color: var(--accent-cyan);">vibrato</a>, <strong><a href="glossary.html#cutoff" style="color: var(--accent-cyan);">filter cutoff</a></strong> for wah effects, <strong><a href="glossary.html#amplitude" style="color: var(--accent-cyan);">amplitude</a></strong> for <a href="glossary.html#tremolo" style="color: var(--accent-cyan);">tremolo</a>, or <strong>pan</strong> for spatial movement. <a href="glossary.html#modulation" style="color: var(--accent-cyan);">Modulation</a> is what separates lifeless patches from expressive, musical sounds.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
@@ -74,30 +74,87 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: LFO Shape Reference -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-lg);">
+                <img src="images/idea.png" alt="Reference" style="width: 1.5rem; height: 1.5rem;">
+                <h3 style="font-size: 1.5rem; color: var(--text-primary); margin: 0;">LFO Shape Reference</h3>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md);">
+                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); text-align: center;">
+                  <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent-orange); margin-bottom: var(--space-xs);">Sine</div>
+                  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Smooth, natural modulation. Classic <a href="glossary.html#vibrato" style="color: var(--accent-cyan);">vibrato</a> and gentle filter sweeps. The most musical LFO shape.</div>
+                </div>
+                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); text-align: center;">
+                  <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent-purple); margin-bottom: var(--space-xs);">Square</div>
+                  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Abrupt on/off switching. Creates trills, gated effects, and trance-style rhythmic pulsing.</div>
+                </div>
+                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); text-align: center;">
+                  <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: var(--space-xs);">Triangle</div>
+                  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Linear up-and-down sweeps. Gentle, predictable motion for filter wobbles and pitch bends.</div>
+                </div>
+                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); text-align: center;">
+                  <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent-magenta); margin-bottom: var(--space-xs);">Sample &amp; Hold</div>
+                  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Random stepped values. Classic sci-fi bleeps, robotic sequences, and glitchy textures.</div>
+                </div>
+              </div>
+              <p style="margin-top: var(--space-sm); color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
+                <img src="images/fulmine.png" alt="Important" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 0.3rem;">
+                Most synths also offer <strong>Sawtooth</strong> LFO shapes (rising ramp for crescendo effects, falling ramp for decrescendo). Experiment with each shape on different <a href="glossary.html#modulation" style="color: var(--accent-cyan);">modulation</a> destinations.
+              </p>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Too Much Modulation Depth:</strong>
-                <span style="color: var(--text-secondary);"> Subtle modulation often sounds more professional than extreme wobbling. Start with small amounts and increase until it's just noticeable.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-orange);">Too Much Modulation Depth:</strong>
+                  <span style="color: var(--text-secondary);"> Subtle modulation often sounds more professional than extreme wobbling. Start with small amounts and increase until it's just noticeable.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Ignoring Tempo Sync:</strong>
-                <span style="color: var(--text-secondary);"> Free-running LFOs can drift out of time with your track. For rhythmic effects like sidechain-style pumping or gated pads, always sync to tempo.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-purple);">Ignoring Tempo Sync:</strong>
+                  <span style="color: var(--text-secondary);"> Free-running LFOs can drift out of time with your track. For rhythmic effects like <a href="glossary.html#sidechain" style="color: var(--accent-cyan);">sidechain</a>-style pumping or gated pads, always sync to tempo.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Only Using One LFO:</strong>
-                <span style="color: var(--text-secondary);"> Layer multiple LFOs at different rates for complex, evolving textures. A slow LFO + fast LFO creates organic movement that sounds less mechanical.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-cyan);">Only Using One LFO:</strong>
+                  <span style="color: var(--text-secondary);"> Layer multiple LFOs at different rates for complex, evolving textures. A slow LFO + fast LFO creates organic movement that sounds less mechanical.</span>
+                </div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Expressive Sounds:</strong> Modulation makes synths sound alive rather than static and robotic.</li>
-                <li><strong>Genre-Defining Effects:</strong> Dubstep wobbles, trance gates, synthwave vibrato—all LFO-driven.</li>
-                <li><strong>Mix Integration:</strong> Moving sounds sit better in a mix and hold listener attention.</li>
-                <li><strong>Creative Possibilities:</strong> The mod matrix opens infinite sound design opportunities.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Expressive Sounds:</strong> <a href="glossary.html#modulation" style="color: var(--accent-cyan);">Modulation</a> makes synths sound alive rather than static and robotic.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Genre-Defining Effects:</strong> Dubstep wobbles, trance gates, synthwave vibrato -- all LFO-driven.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Mix Integration:</strong> Moving sounds sit better in a mix and hold listener attention.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Creative Possibilities:</strong> The <a href="glossary.html#mod-matrix" style="color: var(--accent-cyan);">mod matrix</a> opens infinite sound design opportunities.</span>
+                </li>
               </ul>
+
+              <!-- What's Next -->
+              <div style="margin-top: var(--space-xl); padding: var(--space-lg); border-left: 3px solid var(--accent-cyan); background: rgba(0, 212, 255, 0.03); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+                <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: var(--space-xs);">What's Next</h3>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">In <a href="lesson-sound-design-3.html" style="color: var(--accent-cyan);">Lesson 3: FM Synthesis</a>, you'll discover how <a href="glossary.html#fm-synthesis" style="color: var(--accent-cyan);">frequency modulation</a> between operators creates complex, metallic, and bell-like timbres impossible with subtractive methods.</p>
+              </div>
             </div>
           </div>
         </section>

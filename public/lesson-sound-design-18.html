@@ -57,13 +57,81 @@
           </div>
         </div>
 
+        <!-- Visual Reference: Physical Modeling Comparison -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Physical Modeling Techniques Compared</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: rgba(255, 90, 61, 0.06); border: 1px solid rgba(255, 90, 61, 0.2); border-radius: 8px;">
+            <h4 style="color: #ff5a3d; margin: 0 0 0.4rem 0; font-size: 1rem;">Karplus-Strong</h4>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Sound Type:</strong> Plucked strings, harps</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Example:</strong> Guitar, koto, harp</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0; font-size: 0.9rem;"><strong>Strength:</strong> Simple, CPU-light, realistic <a href="glossary.html#transient" style="color: #ff5a3d;">transient</a> behavior</p>
+          </div>
+          <div style="padding: 1rem; background: rgba(95, 77, 255, 0.06); border: 1px solid rgba(95, 77, 255, 0.2); border-radius: 8px;">
+            <h4 style="color: #5f4dff; margin: 0 0 0.4rem 0; font-size: 1rem;">Waveguide</h4>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Sound Type:</strong> Strings, wind, brass</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Example:</strong> Piano (Pianoteq), violin, flute</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0; font-size: 0.9rem;"><strong>Strength:</strong> Expressive, responds to <a href="glossary.html#velocity" style="color: #5f4dff;">velocity</a> and articulation dynamically</p>
+          </div>
+          <div style="padding: 1rem; background: rgba(0, 212, 255, 0.06); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 8px;">
+            <h4 style="color: #00d4ff; margin: 0 0 0.4rem 0; font-size: 1rem;">Modal Synthesis</h4>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Sound Type:</strong> Bells, bars, plates</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0 0 0.4rem 0; font-size: 0.9rem;"><strong>Example:</strong> Marimba, gong, tubular bells</p>
+            <p style="color: var(--text-secondary, #aaa); line-height: 1.6; margin: 0; font-size: 0.9rem;"><strong>Strength:</strong> Material morphing -- smoothly shift between wood, metal, glass</p>
+          </div>
+        </div>
+
+        <!-- Common Mistakes -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Common Mistakes to Avoid</h3>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(255, 90, 61, 0.05); border-left: 3px solid #ff5a3d; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #ff5a3d;">Wrong Model for the Source:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Using a waveguide string model to emulate a drum will sound wrong. Match the <a href="glossary.html#synthesis" style="color: #ff5a3d;">synthesis</a> model to the physical behavior of the instrument you are emulating -- strings for strings, modal for percussive bodies.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(95, 77, 255, 0.05); border-left: 3px solid #5f4dff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #5f4dff;">Ignoring Resonance Control:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Physical models can produce harsh <a href="glossary.html#resonance" style="color: #5f4dff;">resonance</a> spikes and runaway feedback. Always have damping parameters accessible and start with conservative values before increasing excitation intensity.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #00d4ff;">Expecting Exact Replication:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Physical models approximate, not clone. Do not chase sample-perfect accuracy -- instead, embrace the model's unique character and use the parameters creatively to design sounds that go beyond the original <a href="glossary.html#timbre" style="color: #00d4ff;">timbre</a>.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why This Matters -->
         <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
           <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Realistic Expression:</strong> Physical models respond naturally—more expressive than static samples.</li>
-            <li><strong>Impossible Instruments:</strong> Create instruments that can't exist physically—10-foot guitars, glass pianos.</li>
-            <li><strong>Vintage Authenticity:</strong> Analog emulations capture the character of classic gear affordably.</li>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Realistic Expression:</strong> Physical models respond naturally -- more expressive than static samples.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Impossible Instruments:</strong> Create instruments that cannot exist physically -- 10-foot guitars, glass pianos.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Vintage Authenticity:</strong> Analog emulations capture the character of classic gear affordably.</span>
+            </li>
           </ul>
+        </div>
+
+        <!-- What's Next -->
+        <div style="margin-top: 1.5rem; padding: 1rem 1.5rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-secondary, #aaa);">Next Lesson</span>
+            <p style="margin: 0.25rem 0 0; font-size: 1.05rem; color: var(--text-primary, #fff); font-weight: 600;">Spectral Processing &amp; Resynthesis</p>
+          </div>
+          <a href="lesson-sound-design-19.html" style="padding: 0.5rem 1.5rem; background: #00d4ff; color: #000; border-radius: 8px; text-decoration: none; font-weight: 600; white-space: nowrap;">Continue to Lesson 19</a>
         </div>
       </div>
     </section>

@@ -57,13 +57,99 @@
           </div>
         </div>
 
+        <!-- Visual Reference: Modular Signal Types -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Modular Signal Types at a Glance</h3>
+        <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid rgba(0, 212, 255, 0.3);">
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Signal Type</th>
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Voltage Range</th>
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Speed</th>
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Example Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #ff5a3d; font-weight: 600;"><a href="glossary.html#cv" style="color: #ff5a3d;">CV (Control Voltage)</a></td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">-5V to +5V (continuous)</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Slow to audio rate</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Pitch control, <a href="glossary.html#filter" style="color: #ff5a3d;">filter</a> cutoff, amplitude</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #5f4dff; font-weight: 600;">Gate</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">0V or +5V (on/off)</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Note-length pulses</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);"><a href="glossary.html#envelope" style="color: #5f4dff;">Envelope</a> trigger, note on/off</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #00d4ff; font-weight: 600;">Trigger</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Short +5V spike</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Instantaneous pulse</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Clock sync, drum triggers, reset</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.6rem 0.75rem; color: #b366ff; font-weight: 600;">Audio</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">-5V to +5V (AC coupled)</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">20 Hz -- 20 kHz</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);"><a href="glossary.html#oscillator" style="color: #b366ff;">Oscillator</a> output, feedback, audio-rate <a href="glossary.html#modulation" style="color: #b366ff;">modulation</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Common Mistakes -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Common Mistakes to Avoid</h3>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(255, 90, 61, 0.05); border-left: 3px solid #ff5a3d; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #ff5a3d;">Overcomplicated Patches:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Adding more modules does not mean better sound. Start with a simple <a href="glossary.html#signal-flow" style="color: #ff5a3d;">signal flow</a> -- one oscillator, one filter, one modulation source -- and build only when you understand each connection.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(95, 77, 255, 0.05); border-left: 3px solid #5f4dff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #5f4dff;">Ignoring Gain Staging:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Modular signals can get extremely hot. Without proper <a href="glossary.html#gain-staging" style="color: #5f4dff;">gain staging</a> between modules, you get clipping, distortion, and unpredictable behavior. Use attenuators and VCAs to keep levels controlled.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #00d4ff;">No Plan Before Patching:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Random patching rarely produces musical results. Sketch your <a href="glossary.html#signal-flow" style="color: #00d4ff;">signal flow</a> before touching cables -- know what sound you want, what modules you need, and how they connect.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why This Matters -->
         <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
           <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Ultimate Flexibility:</strong> No preset limitations—if you can imagine a signal path, you can patch it.</li>
-            <li><strong>Deep Understanding:</strong> Modular teaches synthesis fundamentals better than any fixed synth.</li>
-            <li><strong>Unique Sounds:</strong> Generative patches create sounds that never repeat exactly—truly alive.</li>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Ultimate Flexibility:</strong> No preset limitations -- if you can imagine a signal path, you can patch it.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Deep Understanding:</strong> Modular teaches <a href="glossary.html#synthesis" style="color: #00d4ff;">synthesis</a> fundamentals better than any fixed synth.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Unique Sounds:</strong> Generative patches create sounds that never repeat exactly -- truly alive.</span>
+            </li>
           </ul>
+        </div>
+
+        <!-- What's Next -->
+        <div style="margin-top: 1.5rem; padding: 1rem 1.5rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-secondary, #aaa);">Next Lesson</span>
+            <p style="margin: 0.25rem 0 0; font-size: 1.05rem; color: var(--text-primary, #fff); font-weight: 600;">Granular Synthesis &amp; Texture Design: Atmospheric Soundscapes</p>
+          </div>
+          <a href="lesson-sound-design-17.html" style="padding: 0.5rem 1.5rem; background: #00d4ff; color: #000; border-radius: 8px; text-decoration: none; font-weight: 600; white-space: nowrap;">Continue to Lesson 17</a>
         </div>
       </div>
     </section>

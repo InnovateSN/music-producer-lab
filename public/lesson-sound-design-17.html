@@ -57,13 +57,94 @@
           </div>
         </div>
 
+        <!-- Visual Reference: Granular Texture Parameter Matrix -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Granular Texture Parameter Matrix</h3>
+        <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid rgba(0, 212, 255, 0.3);">
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Parameter</th>
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Short Grain (1--20 ms)</th>
+                <th style="text-align: left; padding: 0.6rem 0.75rem; color: var(--accent-cyan, #00d4ff);">Long Grain (50--500 ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #ff5a3d; font-weight: 600;">Grain Size</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Buzzy, <a href="glossary.html#formant" style="color: #ff5a3d;">formant</a>-like tones; pitched artifacts</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Smooth, recognizable source material; pad-like</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #5f4dff; font-weight: 600;">Density</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Dense cloud; continuous texture; noise-like</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Sparse, rhythmic; individual grains audible</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle, #333);">
+                <td style="padding: 0.6rem 0.75rem; color: #00d4ff; font-weight: 600;">Pitch Spread</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Shimmering, metallic; extreme detuning</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Lush chorus-like spread; gentle pitch variation</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.6rem 0.75rem; color: #b366ff; font-weight: 600;">Position</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Rapid scanning; glitchy, fragmented</td>
+                <td style="padding: 0.6rem 0.75rem; color: var(--text-secondary, #aaa);">Slow drift through source; evolving narrative</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Common Mistakes -->
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Common Mistakes to Avoid</h3>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(255, 90, 61, 0.05); border-left: 3px solid #ff5a3d; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #ff5a3d;">Grain Size Too Uniform:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Using a fixed grain size produces static, lifeless textures. Randomize or automate grain size to create organic movement. Even small variation makes a huge difference to how natural the result sounds.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(95, 77, 255, 0.05); border-left: 3px solid #5f4dff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #5f4dff;">Ignoring Source Material Quality:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> <a href="glossary.html#granular-synthesis" style="color: #5f4dff;">Granular synthesis</a> magnifies everything in the source -- including noise, clicks, and low-quality recordings. Start with clean, harmonically rich material for the best results.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff; border-radius: 0 6px 6px 0;">
+            <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+            <div>
+              <strong style="color: #00d4ff;">Over-Processing the Output:</strong>
+              <span style="color: var(--text-secondary, #aaa);"> Piling <a href="glossary.html#reverb" style="color: #00d4ff;">reverb</a>, delay, and saturation on top of an already complex granular texture creates mud. Apply effects with restraint -- the grain cloud itself provides most of the complexity you need.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why This Matters -->
         <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
           <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Cinematic Essential:</strong> Film, TV, and game scores rely heavily on textural soundscapes.</li>
-            <li><strong>Unique Identity:</strong> Granular textures from your own sources create a signature sound.</li>
-            <li><strong>Emotional Impact:</strong> Atmospheric textures set mood and enhance emotional storytelling.</li>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Cinematic Essential:</strong> Film, TV, and game scores rely heavily on textural soundscapes.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Unique Identity:</strong> Granular textures from your own sources create a signature sound.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+              <span style="color: var(--text-secondary, #aaa); line-height: 1.8;"><strong>Emotional Impact:</strong> Atmospheric textures set mood and enhance emotional storytelling.</span>
+            </li>
           </ul>
+        </div>
+
+        <!-- What's Next -->
+        <div style="margin-top: 1.5rem; padding: 1rem 1.5rem; background: var(--bg-card, #1a1a2e); border: 1px solid var(--border-subtle, #333); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-secondary, #aaa);">Next Lesson</span>
+            <p style="margin: 0.25rem 0 0; font-size: 1.05rem; color: var(--text-primary, #fff); font-weight: 600;">Physical Modeling &amp; Analog Emulation</p>
+          </div>
+          <a href="lesson-sound-design-18.html" style="padding: 0.5rem 1.5rem; background: #00d4ff; color: #000; border-radius: 8px; text-decoration: none; font-weight: 600; white-space: nowrap;">Continue to Lesson 18</a>
         </div>
       </div>
     </section>

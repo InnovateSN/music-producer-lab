@@ -74,30 +74,98 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: Layering Frequency Ranges -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Layering Frequency Ranges Reference</h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-2xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border-subtle);">
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Range</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Role</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Typical Source</th>
+                    <th style="text-align: left; padding: var(--space-sm) var(--space-md); color: var(--text-primary); font-weight: 700;">Caution</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Sub (20-80 Hz)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Foundation weight, physical impact</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sine wave, 808 sub, filtered bass</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Mono only; <a href="glossary.html#phase" style="color: var(--accent-cyan);">phase</a> issues destroy low end</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Low (80-300 Hz)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Body, warmth, fullness</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Analog synth, guitar, <a href="glossary.html#sampler" style="color: var(--accent-cyan);">sampled</a> tone</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Muddiness if too wide; <a href="glossary.html#high-pass-filter" style="color: var(--accent-cyan);">high-pass</a> other layers here</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Mid (300 Hz - 2 kHz)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Presence, character, identity</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);"><a href="glossary.html#wavetable" style="color: var(--accent-cyan);">Wavetable</a> synth, vocal, growl texture</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Most crowded range; carve with <a href="glossary.html#eq" style="color: var(--accent-cyan);">EQ</a> carefully</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-magenta); font-weight: 600;">High (2 kHz+)</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Air, sparkle, attack definition</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Noise layer, click, <a href="glossary.html#reverb" style="color: var(--accent-cyan);">reverb</a> shimmer</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Harshness if over-boosted; use <a href="glossary.html#low-pass-filter" style="color: var(--accent-cyan);">low-pass</a> on other layers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Frequency Stacking:</strong>
-                <span style="color: var(--text-secondary);"> If layers compete for the same frequencies, they cancel each other out. Use EQ to give each layer its own space—cut where others live.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-orange);">Frequency Stacking:</strong>
+                  <span style="color: var(--text-secondary);"> If layers compete for the same frequencies, they cancel each other out. Use <a href="glossary.html#eq" style="color: var(--accent-cyan);">EQ</a> to give each layer its own space -- cut where others live.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Phase Cancellation:</strong>
-                <span style="color: var(--text-secondary);"> Similar layers slightly out of time create thin, hollow sounds. Zoom in and align transients. Check mono—phase issues become obvious.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-purple);">Phase Cancellation:</strong>
+                  <span style="color: var(--text-secondary);"> Similar layers slightly out of time create thin, hollow sounds. Zoom in and align <a href="glossary.html#transient" style="color: var(--accent-cyan);">transients</a>. Check <a href="glossary.html#mono" style="color: var(--accent-cyan);">mono</a> -- phase issues become obvious.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Too Many Layers:</strong>
-                <span style="color: var(--text-secondary);"> Every layer you add reduces clarity. If you're using more than 4-5 layers, question whether each one is truly necessary. Simplify.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-cyan);">Too Many Layers:</strong>
+                  <span style="color: var(--text-secondary);"> Every layer you add reduces clarity. If you are using more than 4-5 layers, question whether each one is truly necessary. Simplify.</span>
+                </div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Full-Spectrum Sounds:</strong> Single sources rarely fill the frequency spectrum. Layering creates completeness.</li>
-                <li><strong>Professional Quality:</strong> Every commercial track uses layering—drums, synths, vocals, everything.</li>
-                <li><strong>Creative Control:</strong> Design sounds that combine the best characteristics of multiple sources.</li>
-                <li><strong>Problem Solving:</strong> Need more attack? More body? More air? Layer the solution.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Full-Spectrum Sounds:</strong> Single sources rarely fill the <a href="glossary.html#frequency-spectrum" style="color: var(--accent-cyan);">frequency spectrum</a>. Layering creates completeness.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Professional Quality:</strong> Every commercial track uses layering -- drums, synths, vocals, everything.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Creative Control:</strong> Design sounds that combine the best characteristics of multiple sources.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Problem Solving:</strong> Need more attack? More body? More air? Layer the solution.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-xl); padding: var(--space-lg); border-left: 3px solid var(--accent-cyan); background: rgba(0, 212, 255, 0.03); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+              <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: var(--space-xs);">What's Next</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">In <a href="lesson-sound-design-7.html" style="color: var(--accent-cyan);">Lesson 7: Sample Pack Creation</a>, you will learn how to organize, process, and distribute professional sound libraries -- turning your layered sounds into reusable assets for yourself or for sale.</p>
             </div>
           </div>
         </section>

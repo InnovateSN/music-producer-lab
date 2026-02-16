@@ -74,30 +74,101 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: Foley Categories Table -->
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Foley Categories Reference</h3>
+            <div style="overflow-x: auto; margin-bottom: var(--space-2xl);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <thead>
+                  <tr style="background: var(--bg-secondary);">
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Category</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Recording Tip</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Processing</th>
+                    <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); border-bottom: 2px solid var(--border-subtle); font-weight: 700;">Common Use</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">Footsteps</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Record on isolated surface pits; vary shoe types and pace for each character</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);"><a href="glossary.html#eq" style="color: var(--accent-cyan);">EQ</a> to match scene acoustics; add room verb to taste</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Film, TV, animation, games -- grounding characters in the scene</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">Cloth</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Use close mic; exaggerate movements slightly to capture subtle rustles</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">High-pass around 200 Hz; light <a href="glossary.html#compression" style="color: var(--accent-cyan);">compression</a> to even out dynamics</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Character movement, costume presence, subtle realism layers</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-subtle);">
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">Props</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Experiment with unexpected objects; record multiple variations per action</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Layer hits for weight; transient shaping for impact; <a href="glossary.html#reverb" style="color: var(--accent-cyan);">reverb</a> matching</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Object interactions, fight scenes, cooking, tool use, everyday actions</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-green); font-weight: 600;">Backgrounds</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Record long takes (2+ min); capture room tone and ambient beds separately</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Loop seamlessly; gentle noise reduction; layer multiple ambiences</td>
+                    <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Scene atmosphere, location establishment, continuity between edits</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Recording with Room Reverb:</strong>
-                <span style="color: var(--text-secondary);"> Foley needs to be dry so you can add the scene's reverb later. Record close and dead—reverb is easy to add, impossible to remove.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-orange);">Recording with Room Reverb:</strong>
+                <span style="color: var(--text-secondary);"> Foley needs to be dry so you can add the scene's <a href="glossary.html#reverb" style="color: var(--accent-cyan);">reverb</a> later. Record close and dead--reverb is easy to add, impossible to remove.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Literal Sound Choices:</strong>
-                <span style="color: var(--text-secondary);"> The real sound isn't always the best choice. Real punches sound weak; coconuts hitting together don't sound like horses. Sometimes you need a better version of reality.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-purple);">Literal Sound Choices:</strong>
+                <span style="color: var(--text-secondary);"> The real sound isn't always the best choice. Real punches sound weak; coconuts hitting together don't sound like horses. Sometimes you need a better version of reality.</span></div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Ignoring Perspective:</strong>
-                <span style="color: var(--text-secondary);"> Close-up shots need intimate, detailed sounds. Wide shots need distant, roomy sounds. Match your foley to the camera perspective.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-cyan);">Ignoring Perspective:</strong>
+                <span style="color: var(--text-secondary);"> Close-up shots need intimate, detailed sounds. Wide shots need distant, roomy sounds. Match your foley to the camera perspective.</span></div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(179, 102, 255, 0.05); border-left: 3px solid var(--accent-magenta); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div><strong style="color: var(--accent-magenta);">Only One Take Per Sound:</strong>
+                <span style="color: var(--text-secondary);"> Always record multiple variations. A single footstep sample repeated sounds robotic. You need 5-10 variations minimum for believable foley.</span></div>
               </div>
             </div>
 
             <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
               <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Why This Matters</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
-                <li><strong>Immersion:</strong> Good foley makes audiences forget they're watching fiction—sounds make the world feel real.</li>
-                <li><strong>Career Path:</strong> Foley artists and SFX designers are essential to every film, TV show, and game production.</li>
-                <li><strong>Problem Solving:</strong> Location audio often has issues. Foley gives complete control over every sound.</li>
-                <li><strong>Creative Expression:</strong> Sound design shapes emotional response more than visuals—a horror film's scares live in the sound.</li>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Immersion:</strong> Good foley makes audiences forget they're watching fiction--sounds make the world feel real.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Career Path:</strong> Foley artists and SFX designers are essential to every film, TV show, and game production.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Problem Solving:</strong> Location audio often has issues. Foley gives complete control over every sound.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                  <img src="images/mplscudo_check.png" alt="Check" style="width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0;">
+                  <span style="color: var(--text-secondary); line-height: 1.8;"><strong>Creative Expression:</strong> <a href="glossary.html#sound-design" style="color: var(--accent-cyan);">Sound design</a> shapes emotional response more than visuals--a horror film's scares live in the sound.</span>
+                </li>
               </ul>
+            </div>
+
+            <!-- WHAT'S NEXT -->
+            <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+              <div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-xs);">Up Next</div>
+                <div style="font-size: 1.15rem; color: var(--text-primary); font-weight: 600;">Lesson 12: Audio for Video Games</div>
+                <div style="font-size: 0.95rem; color: var(--text-secondary); margin-top: var(--space-xs);">Learn how interactive and adaptive audio systems power modern game experiences.</div>
+              </div>
+              <a href="lesson-sound-design-12.html" style="padding: var(--space-sm) var(--space-lg); background: var(--accent-cyan); color: #000; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; white-space: nowrap;">Start Lesson 12</a>
             </div>
           </div>
         </section>

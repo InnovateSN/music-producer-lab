@@ -40,7 +40,7 @@
             <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">FM Synthesis: Complex Timbres Through Modulation</h2>
 
             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
-              <strong>FM (Frequency Modulation) synthesis</strong> creates complex timbres by modulating one oscillator's frequency with another. Unlike subtractive synthesis, FM generates harmonics rather than filtering them away. The result: bright, metallic, bell-like, and crystalline sounds impossible with traditional methods. Made famous by the <strong>Yamaha DX7</strong> in the 1980s, FM is responsible for iconic sounds from electric pianos to bass to sci-fi textures. Understanding FM unlocks a unique sonic palette.
+              <strong><a href="glossary.html#fm-synthesis" style="color: var(--accent-cyan);">FM (Frequency Modulation) synthesis</a></strong> creates complex timbres by modulating one <a href="glossary.html#oscillator" style="color: var(--accent-cyan);">oscillator's</a> frequency with another. Unlike <a href="glossary.html#subtractive-synthesis" style="color: var(--accent-cyan);">subtractive synthesis</a>, FM generates <a href="glossary.html#harmonics" style="color: var(--accent-cyan);">harmonics</a> rather than filtering them away. The result: bright, metallic, bell-like, and crystalline sounds impossible with traditional methods. Made famous by the <strong>Yamaha DX7</strong> in the 1980s, FM is responsible for iconic sounds from electric pianos to bass to sci-fi textures. Understanding FM unlocks a unique sonic palette.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
@@ -74,19 +74,84 @@
               </div>
             </div>
 
+            <!-- VISUAL REFERENCE: FM Operator Relationship Diagram -->
+            <div style="margin-bottom: var(--space-2xl);">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-lg);">
+                <img src="images/idea.png" alt="Reference" style="width: 1.5rem; height: 1.5rem;">
+                <h3 style="font-size: 1.5rem; color: var(--text-primary); margin: 0;">Carrier + Modulator Ratio Reference</h3>
+              </div>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-subtle);">
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); font-weight: 600;">Carrier:Modulator Ratio</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); font-weight: 600;">Harmonic Type</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); font-weight: 600;">Resulting Timbre</th>
+                      <th style="padding: var(--space-sm) var(--space-md); text-align: left; color: var(--text-primary); font-weight: 600;">Sound Character</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-orange); font-weight: 600;">1:1</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">All harmonics</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sawtooth-like</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Bright, buzzy -- great for basses and leads</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-purple); font-weight: 600;">1:2</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Octave harmonics</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Hollow, clarinet-like</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Woody, warm -- classic DX7 e-piano territory</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-cyan); font-weight: 600;">1:3 or higher</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Sparse upper harmonics</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Bell-like, metallic</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Crystalline, chimey -- bells and mallets</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-subtle);">
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-green); font-weight: 600;">1:1.41 (non-integer)</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Inharmonic partials</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Metallic, noisy</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Gong, cymbal, industrial textures</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--accent-magenta); font-weight: 600;">Feedback (self-mod)</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Noise spectrum</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Saw to noise</td>
+                      <td style="padding: var(--space-sm) var(--space-md); color: var(--text-secondary);">Wind, breath, distorted textures</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin-top: var(--space-sm); color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
+                <img src="images/fulmine.png" alt="Important" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 0.3rem;">
+                Integer ratios produce <strong>harmonic</strong> (musical) tones. Non-integer ratios produce <strong>inharmonic</strong> (metallic/percussive) tones. This is the fundamental rule of <a href="glossary.html#fm-synthesis" style="color: var(--accent-cyan);">FM synthesis</a>.
+              </p>
+            </div>
+
             <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Common Mistakes to Avoid</h3>
             <div style="display: grid; gap: var(--space-md); margin-bottom: var(--space-2xl);">
-              <div style="padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-orange);">Random Ratio Tweaking:</strong>
-                <span style="color: var(--text-secondary);"> FM is mathematical—small ratio changes have huge effects. Learn what specific ratios do (1:1 = fundamental emphasis, 1:2 = octave harmonics) rather than random tweaking.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(255, 90, 61, 0.05); border-left: 3px solid var(--accent-orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-orange);">Random Ratio Tweaking:</strong>
+                  <span style="color: var(--text-secondary);"> FM is mathematical -- small ratio changes have huge effects. Learn what specific ratios do (1:1 = fundamental emphasis, 1:2 = octave harmonics) rather than random tweaking.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-purple);">Static Modulation Index:</strong>
-                <span style="color: var(--text-secondary);"> The magic of FM is in movement. Use envelopes on the modulation amount so sounds evolve from bright attack to mellow sustain—just like real instruments.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(95, 77, 255, 0.05); border-left: 3px solid var(--accent-purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-purple);">Static Modulation Index:</strong>
+                  <span style="color: var(--text-secondary);"> The magic of FM is in movement. Use <a href="glossary.html#envelope" style="color: var(--accent-cyan);">envelopes</a> on the modulation amount so sounds evolve from bright attack to mellow sustain -- just like real instruments.</span>
+                </div>
               </div>
-              <div style="padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                <strong style="color: var(--accent-cyan);">Overcomplicating Algorithms:</strong>
-                <span style="color: var(--text-secondary);"> Start with simple 2-operator FM. One carrier + one modulator can create amazing sounds. Add complexity only when you understand the basics.</span>
+              <div style="display: flex; align-items: flex-start; gap: var(--space-sm); padding: var(--space-md); background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--accent-cyan); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                <img src="images/X_gray.png" alt="Mistake" style="width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0;">
+                <div>
+                  <strong style="color: var(--accent-cyan);">Overcomplicating Algorithms:</strong>
+                  <span style="color: var(--text-secondary);"> Start with simple 2-operator FM. One carrier + one modulator can create amazing sounds. Add complexity only when you understand the basics.</span>
+                </div>
               </div>
             </div>
 
