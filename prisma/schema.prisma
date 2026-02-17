@@ -1,0 +1,123 @@
+// This is your Prisma schema file
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                        String    @id @default(cuid())
+  email                     String    @unique
+  password_hash             String?
+  password_hint             String?
+  first_name                String?
+  last_name                 String?
+  role                      String    @default("student")
+  is_active                 Boolean   @default(true)
+  clerk_id                  String?   @unique
+  last_login                DateTime?
+  created_at                DateTime  @default(now())
+  updated_at                DateTime  @updatedAt
+  gdpr_consent              Boolean   @default(false)
+  gdpr_consent_date         DateTime?
+  data_processing_agreement Boolean   @default(false)
+
+  lessonProgress    LessonProgress[]
+  savedPatterns     SavedPattern[]
+  certificates      Certificate[]
+  teacherClasses    Class[]         @relation("TeacherClasses")
+  studentClasses    ClassStudent[]
+  school            School?         @relation(fields: [schoolId], references: [id])
+  schoolId          String?
+
+  @@map("users")
+}
+
+model School {
+  id                     String    @id @default(cuid())
+  name                   String
+  contact_email          String
+  license_tier           String?
+  license_expires        DateTime?
+  max_students           Int?
+  max_teachers           Int?
+  created_at             DateTime  @default(now())
+  updated_at             DateTime  @updatedAt
+
+  users                  User[]
+  classes                Class[]
+
+  @@map("schools")
+}
+
+model LessonProgress {
+  id                String    @id @default(cuid())
+  user_id           String
+  lesson_id         String
+  module_name       String?
+  status            String    @default("not_started")
+  progress_percent  Int       @default(0)
+  completed_at      DateTime?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, lesson_id])
+  @@map("lesson_progress")
+}
+
+model Class {
+  id                String    @id @default(cuid())
+  name              String
+  teacher_id        String
+  school_id         String?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  teacher           User              @relation("TeacherClasses", fields: [teacher_id], references: [id], onDelete: Cascade)
+  school            School?           @relation(fields: [school_id], references: [id])
+  students          ClassStudent[]
+
+  @@map("classes")
+}
+
+model ClassStudent {
+  class_id          String
+  student_id        String
+  joined_at         DateTime  @default(now())
+
+  class             Class     @relation(fields: [class_id], references: [id], onDelete: Cascade)
+  student           User      @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@id([class_id, student_id])
+  @@map("class_students")
+}
+
+model SavedPattern {
+  id                String    @id @default(cuid())
+  user_id           String
+  pattern_name      String
+  pattern_data      String    @db.Text
+  created_at        DateTime  @default(now())
+
+  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("saved_patterns")
+}
+
+model Certificate {
+  id                String    @id @default(cuid())
+  user_id           String
+  certificate_type  String
+  issued_date       DateTime  @default(now())
+  certificate_url   String?
+
+  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("certificates")
+}
