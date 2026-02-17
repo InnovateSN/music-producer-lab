@@ -28,6 +28,77 @@
       </div>
     </section>
 
+    <!-- EDUCATIONAL CONTENT -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+        <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mixing for Streaming: Loudness Normalization Changes Everything</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          Streaming platforms like Spotify, Apple Music, and YouTube use <strong>loudness normalization</strong>—they automatically adjust playback volume so all songs play at a consistent loudness. This fundamentally changes the "loudness war": over-limiting your master to be loud now <em>hurts</em> your sound, because the platform turns it down anyway while you've already destroyed your <a href="glossary.html#dynamic-range" style="color: var(--accent-cyan); text-decoration: underline;">dynamic range</a>. Understanding <strong>LUFS targets</strong> and how to optimize for each platform is essential for modern music production and release.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">LUFS Explained</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>LUFS</strong> (Loudness Units Full Scale) is the industry standard for measuring perceived loudness integrated over time. Unlike peak dBFS, LUFS reflects how loud music actually sounds to human ears. Streaming platforms measure your track's integrated LUFS and apply gain to bring it to their target—no matter what you do at the limiter.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Platform Targets</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Spotify:</strong> -14 LUFS integrated. <strong>Apple Music:</strong> -16 LUFS (Soundcheck). <strong>YouTube:</strong> -13 to -15 LUFS. <strong>Tidal:</strong> -14 LUFS. <strong>SoundCloud:</strong> -14 LUFS. Louder than the target = turned down. Quieter = turned up. Target -14 LUFS for maximum compatibility across platforms.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Dynamic Range Strategy</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Since platforms normalize loudness, <strong>dynamic range becomes your competitive advantage</strong>. A mix with -14 LUFS integrated and plenty of dynamic range sounds richer and more professional than one squashed to -8 LUFS that gets turned down. Target -14 LUFS with minimal limiting—use limiting only to control true peaks, not to maximize loudness.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Codec Considerations</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Streaming uses <a href="glossary.html#compression" style="color: var(--accent-cyan); text-decoration: underline;">lossy compression</a>: Spotify 320kbps OGG, Apple Music 256kbps AAC, YouTube 128kbps AAC. True peaks close to 0 dBFS can clip after codec encoding (inter-sample peaks). <strong>Limit true peaks to -1 dBTP</strong> (some engineers use -0.5 dBTP) to prevent distortion after encoding.</p>
+          </div>
+        </div>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Over-Limiting to "Win" the Loudness War</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Pushing your master to -8 or -6 LUFS integrated does not make it louder on streaming platforms—it makes it quieter (turned down to -14) while destroying transients, dynamics, and punch. The loudness war is over: <strong>if you over-limit, you lose dynamics for no gain.</strong> Trust the LUFS meter, not your feeling that louder = better.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Not Checking True Peak Levels</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Standard peak meters miss inter-sample peaks—moments between samples that can clip after digital-to-analog conversion or codec encoding. A mix peaking at -0.1 dBFS might have true peaks at +0.3 dBTP, causing distortion on streaming platforms. Use a <strong>true peak limiter</strong> and target -1 dBTP maximum on your final master. iZotope Ozone, FabFilter Pro-L 2, and most limiters have true peak mode.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Submitting at Wrong Sample Rate or Bit Depth</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Streaming platforms accept specific formats. Submitting a 22kHz or 32-bit float file when the platform expects 44.1kHz/16-bit WAV can cause encoding artifacts. The safest universal delivery format is <strong>WAV, 44.1kHz or 48kHz, 24-bit</strong>. Let the distributor handle conversion to the platform's native format. Never submit MP3 or lossy formats for upload.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Compete professionally</strong> — Knowing streaming loudness targets means your release sounds as powerful as major label releases, not louder but destroyed or quieter and weak. You're on a level playing field.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Preserve your dynamics</strong> — Understanding normalization lets you stop limiting aggressively and start preserving the punchy, dynamic mixes you worked hard to create. Dynamic range IS the prize.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Consistent experience</strong> — Properly targeted masters sound consistent when auto-played between tracks on playlists. Badly targeted tracks sound jarringly quiet or distorted—a bad first impression for new listeners.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional delivery</strong> — Labels, sync clients, and distributors specify LUFS targets and true peak limits in their specs. Knowing this makes you immediately more professional and deliverable-ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="exercise-section" class="exercise-section">
       <h2 class="section-title">Exercise</h2>
       <div class="exercise-card">

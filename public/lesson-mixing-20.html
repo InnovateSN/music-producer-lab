@@ -28,6 +28,77 @@
       </div>
     </section>
 
+    <!-- EDUCATIONAL CONTENT -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+        <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Advanced Automation: Turn a Static Mix Into a Living Performance</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          A mix without <a href="glossary.html#automation" style="color: var(--accent-cyan); text-decoration: underline;">automation</a> is a photograph. A mix with automation is a film. <strong>Automation</strong> moves faders, sends, plugin parameters, and pan positions over time—building tension before a drop, riding vocal levels through a noisy chorus, opening a filter on a synth pad as the bridge unfolds. Beyond mechanical level correction, advanced automation is a compositional tool: it shapes emotion, guides listener attention, and defines whether a mix merely plays back or genuinely <em>performs</em>. Every professional mix relies on it.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Volume Rides</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Volume rides</strong> are micro-adjustments (±1-3 dB) that keep elements consistently present throughout the mix. Vocal rides are mandatory: draw fader moves every 2-4 bars so the lead vocal cuts through equally in loud choruses and quiet verses. Use <strong>clip gain</strong> for large corrections before the fader, then fader automation for musical shaping. Ride drums, bass, and synth fills too—anything that varies dynamically in performance.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Effect Automation</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Automate <strong>reverb send levels</strong>: increase send from 0 to 20% in the last bar of a phrase for a natural, swelling tail. Automate <strong>delay feedback</strong> on a vocal: turn up feedback for a psychedelic repeat on the last word before the chorus. Automate <strong>filter cutoff</strong> on a synth pad from 200 Hz to 8 kHz over 8 bars. Automate <strong>plugin bypass</strong>—a distortion that activates only during the bridge creates instant contrast.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Build & Release Tension</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Tension-building automation: <strong>low-pass filter sweeping up</strong> over 4-8 bars before a drop removes highs and creates anticipation. <strong>Sidechain compression intensity increasing</strong> (pumping harder) before the drop. <strong>Reverb pre-delay shortening</strong> as sections get more intimate. Release automation: <strong>master bus high-shelf boost</strong> (+2 dB) at the drop landing hits harder. All of these create the emotional arc that makes music feel like an experience, not just sound.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Pan & Width Automation</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Pan automation</strong> moves elements across the stereo field for energy and movement. Auto-pan plugins create rhythmic stereo sweeps synced to the tempo. <strong>Width automation</strong> (via stereo imager): narrow the mix to near-mono during verses, open to full stereo at the chorus—the width expansion physically hits the listener. Subtlety matters: small pan movements every 8-16 bars feel organic; constant wild panning feels chaotic and distracts from the music.</p>
+          </div>
+        </div>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Automation Curves That Sound Mechanical</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Straight-line automation moves (linear ramps) sound robotic. Real engineers use <strong>curved automation</strong>: slow at first, accelerating toward the destination. Most DAWs let you right-click automation points to set curve type. A filter sweep that starts slow and accelerates sounds like it's breathing; a perfectly linear sweep sounds like a machine. Use exponential curves for builds, logarithmic curves for natural decays. Match automation curves to the feel of the music—don't just draw rectangles.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Automating Before the Mix Is Balanced</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Automation should be the <strong>last stage of mixing</strong>, after levels, EQ, compression, and effects are set. Drawing automation on a rough, unbalanced mix wastes time—when you fix the underlying balance issue, all automation becomes wrong and must be redrawn. Build your static mix first (no automation), then listen through the song end-to-end to identify where automation is needed. Only then start writing automation, section by section.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Over-Automating — Moving Everything All the Time</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">When every parameter is constantly moving, nothing stands out—listener fatigue sets in and the mix sounds exhausting. <strong>Strategic restraint is professional.</strong> Automate what needs to change; leave everything else static. A single filter sweep at the right moment is more powerful than ten simultaneous automation moves that dilute each other. Ask: "Does this automation make the listener feel something, or am I just moving things because I can?" If it's the latter, delete it.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Emotion and arc</strong> — Automation is how you make a listener feel the verse is intimate, the chorus is euphoric, and the bridge is surprising. Without automation, every section of the song feels the same—no journey, no payoff.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Vocal intelligibility</strong> — Vocal rides are used on every professional mix without exception. Vocals vary in level performance-to-performance; automation keeps them consistently present without compressing all the life out of the performance.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>The drop effect</strong> — EDM, pop, and hip-hop all rely on the emotional impact of drops and builds. The power of a drop is constructed entirely through automation—filter sweeps, reverb tails, sidechain pumping, width expansion. No automation, no drop.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional completeness</strong> — A mix without automation is an unfinished mix. Submitting a track to a label, sync library, or mastering engineer without automation is like delivering a rough draft. Automation is the polish that distinguishes a finished professional mix from a work-in-progress.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="exercise-section" class="exercise-section">
       <h2 class="section-title">Exercise</h2>
       <div class="exercise-card">
