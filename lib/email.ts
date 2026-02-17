@@ -1,6 +1,18 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resendClient: Resend | null = null;
+
+function getResendClient(): Resend | null {
+  if (!process.env.RESEND_API_KEY) {
+    return null;
+  }
+
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+
+  return resendClient;
+}
 
 // Use Resend's default sender for free tier, or custom domain if configured
 const FROM_EMAIL = process.env.FROM_EMAIL || 'Music Producer Lab <onboarding@resend.dev>';
@@ -18,7 +30,8 @@ export async function sendWelcomeEmail(
   email: string,
   firstName?: string
 ): Promise<EmailResult> {
-  if (!process.env.RESEND_API_KEY) {
+  const resend = getResendClient();
+  if (!resend) {
     console.warn('[email] RESEND_API_KEY not set, skipping welcome email');
     return { success: true }; // Don't fail signup if email not configured
   }
@@ -86,7 +99,8 @@ export async function sendPasswordResetEmail(
   resetToken: string,
   firstName?: string
 ): Promise<EmailResult> {
-  if (!process.env.RESEND_API_KEY) {
+  const resend = getResendClient();
+  if (!resend) {
     console.error('[email] RESEND_API_KEY not set, cannot send password reset email');
     return { success: false, error: 'Email service not configured' };
   }
