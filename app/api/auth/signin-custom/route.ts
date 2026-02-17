@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { prisma } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { SignJWT } from 'jose';
 import { validateOrigin } from '@/lib/security';
+import { SigninSchema } from '@/lib/validations';
 
 export async function POST(request: Request) {
   // CSRF protection
@@ -12,30 +13,30 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const validation = SigninSchema.safeParse(body);
 
-    if (!email || !password) {
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: validation.error.flatten() },
         { status: 400 }
       );
     }
 
-    // Find user by email
-    const users = await query<{
-      id: string;
-      email: string;
-      password_hash: string;
-      first_name: string;
-      last_name: string;
-      role: string;
-      is_active: boolean;
-    }>(
-      'SELECT id, email, password_hash, first_name, last_name, role, is_active FROM users WHERE LOWER(email) = LOWER($1)',
-      [email]
-    );
+    const { email, password } = validation.data;
 
-    const user = users[0];
+    // Find user by email
+    const user = await prisma.user.findFirst({
+      where: { email: { equals: email, mode: 'insensitive' } },
+      select: {
+        id: true,
+        email: true,
+        password_hash: true,
+        first_name: true,
+        last_name: true,
+        role: true,
+        is_active: true,
+      },
+    });
 
     // Generic error message to prevent enumeration
     const invalidCredentialsError = { error: 'Invalid email or password' };
@@ -58,7 +59,7 @@ export async function POST(request: Request) {
 
     // Update last login (non-critical)
     try {
-      await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+      await prisma.user.update({ where: { id: user.id }, data: { last_login: new Date() } });
     } catch {
       // Non-critical, continue anyway
     }

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createUser, getUserByEmail } from '@/lib/auth';
 import { validateOrigin } from '@/lib/security';
 import { sendWelcomeEmail } from '@/lib/email';
+import { SignupSchema } from '@/lib/validations';
 
 export async function POST(request: Request) {
   // CSRF protection
@@ -12,22 +13,16 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { email, password, firstName, lastName, passwordHint } = body;
+    const validation = SignupSchema.safeParse(body);
 
-    // Validation
-    if (!email || !password) {
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: validation.error.flatten() },
         { status: 400 }
       );
     }
 
-    if (password.length < 8) {
-      return NextResponse.json(
-        { error: 'Password must be at least 8 characters' },
-        { status: 400 }
-      );
-    }
+    const { email, password, firstName, lastName, passwordHint } = validation.data;
 
     // Check if user already exists
     const existingUser = await getUserByEmail(email);

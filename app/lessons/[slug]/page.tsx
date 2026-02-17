@@ -37,9 +37,8 @@ export default function LessonPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   // --- AUTH / PAYMENT STATE (Simulated for now) ---
-  const [isPremiumUser, setIsPremiumUser] = useState(false); // Default: Not paid
-  const [showPaywall, setShowPaywall] = useState(false);
-
+  const [isPremiumUser] = useState(false); // Default: Not paid
+  
   const initializedRef = useRef(false);
 
   // Toggle function
@@ -71,11 +70,9 @@ export default function LessonPage() {
     // --- PAYWALL CHECK ---
     // If lesson is PAID and user is NOT premium -> BLOCK
     if (lessonData.access === 'paid' && !isPremiumUser) {
-       setShowPaywall(true);
        setLoading(false);
        return; // Stop loading content
     }
-    setShowPaywall(false);
 
     try {
       // --- THE MAGIC PARSER ---
@@ -140,16 +137,16 @@ export default function LessonPage() {
       try {
         // Load engine and styles dynamically
         // Using webpackIgnore to ensure we load from public folder
-        const module = await import(/* webpackIgnore: true */ '/lesson-engine.js');
+        const lessonEngineModule = await import(/* webpackIgnore: true */ '/lesson-engine.js');
         
-        if (module && module.initLessonFromConfig) {
+        if (lessonEngineModule && lessonEngineModule.initLessonFromConfig) {
           console.log("Initializing Lesson Engine for:", slug);
           
           // Clear previous instances if any (naive cleanup)
           const sequencerContainer = document.getElementById('mpl-sequencer-collection');
           if (sequencerContainer) sequencerContainer.innerHTML = '';
           
-          module.initLessonFromConfig(config);
+          lessonEngineModule.initLessonFromConfig(config);
           initializedRef.current = true;
           
           // Load themes
