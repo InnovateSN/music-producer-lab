@@ -251,7 +251,25 @@ export default function LessonPage() {
           </div>
         </div>
         
-        <div style={{display: 'flex', gap: '1rem', alignItems: 'center'}}>
+        <div style={{display: 'flex', gap: '0.7rem', alignItems: 'center'}}>
+           <button
+             onClick={() => setIsMenuOpen(true)}
+             style={{
+               background: 'transparent',
+               border: '1px solid #333',
+               borderRadius: '4px',
+               color: '#bbb',
+               padding: '5px 10px',
+               cursor: 'pointer',
+               fontSize: '0.78rem',
+               fontWeight: 600,
+               letterSpacing: '0.04em'
+             }}
+             aria-label="Open lessons menu"
+           >
+             LESSONS
+           </button>
+
            <button 
              onClick={toggleLayout}
              style={{
@@ -279,6 +297,26 @@ export default function LessonPage() {
                </>
              )}
            </button>
+
+           {!isStudioMode && (
+             <button
+               onClick={() => setIsStudioMode(true)}
+               style={{
+                 background: '#00d4ff',
+                 color: '#000',
+                 border: 'none',
+                 borderRadius: '4px',
+                 padding: '6px 10px',
+                 cursor: 'pointer',
+                 fontSize: '0.78rem',
+                 fontWeight: 700,
+                 letterSpacing: '0.04em'
+               }}
+               aria-label="Enter studio mode"
+             >
+               ENTER STUDIO
+             </button>
+           )}
            <a href="/labs.html" style={{color: '#888', textDecoration: 'none', fontSize: '0.9rem'}}>Exit</a>
         </div>
       </header>
