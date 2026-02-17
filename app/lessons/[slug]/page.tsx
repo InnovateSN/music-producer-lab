@@ -25,17 +25,6 @@ const CONFIG_HELPERS = `
   }
 `;
 
-// --- METADATA GENERATION ---
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const lesson = lessonsDb.find((l: any) => l.slug === params.slug);
-  if (!lesson) return { title: 'Lesson Not Found | Music Producer Lab' };
-  
-  return {
-    title: `${lesson.title} | MPL Studio`,
-    description: lesson.subtitle || `Interactive music production lesson: ${lesson.title}`,
-  };
-}
-
 export default function LessonPage() {
   const params = useParams();
   const router = useRouter();
@@ -609,70 +598,6 @@ export default function LessonPage() {
                  color: '#fff', 
                  border: '2px solid #00d4ff',
                  padding: '0 1.5rem',
-                 height: '44px',
-                 borderRadius: '6px',
-                 fontWeight: 600,
-                 cursor: 'pointer',
-                 fontSize: '0.9rem'
-            }}>
-              CHECK EXERCISE
-            </button>
-
-            {/* Navigation (Right Aligned) */}
-            <div style={{marginLeft: 'auto', display: 'flex', gap: '1rem'}}>
-               <div id="mpl-seq-prev-lesson-wrap">
-                  {config.prevLessonUrl ? (
-                    <button id="mpl-prev-lesson" 
-                      onClick={() => router.push(config.prevLessonUrl)}
-                      style={{background: 'transparent', border: 'none', color: '#666', cursor: 'pointer', fontSize: '0.9rem'}}>
-                       &larr; Prev
-                    </button>
-                  ) : null}
-               </div>
-               <div id="mpl-seq-next-lesson-wrap">
-                  {config.nextLessonUrl ? (
-                    <button id="mpl-next-lesson" 
-                      onClick={() => router.push(config.nextLessonUrl)}
-                      style={{
-                        background: '#28a745', 
-                        color: '#fff', 
-                        border: 'none', 
-                        padding: '0 1.5rem', 
-                        height: '44px', 
-                        borderRadius: '6px', 
-                        fontWeight: 700,
-                        opacity: 0.5,
-                        cursor: 'not-allowed'
-                      }}>
-                       NEXT LESSON &rarr;
-                    </button>
-                  ) : null}
-               </div>
-            </div>
-
-          </div>
-
-        </main>
-      </div>
-
-      {/* Hidden elements needed by engine but not shown in this UI */}
-      <div style={{display: 'none'}}>
-         <div id="navbar-placeholder"></div>
-         <div id="mpl-exercise-tip"></div>
-         <div id="mpl-exercise-tip-text"></div>
-         <div id="mpl-seq-clear-all"></div>
-         <div id="mpl-hero-nav-btns"></div>
-         <div id="mpl-footer"></div>
-         <div id="mpl-footer-overview-link"></div>
-         <div id="mpl-preset-controls"></div>
-         <div id="mpl-preset-save"></div>
-         <div id="mpl-preset-load"></div>
-      </div>
-
-    </div>
-  );
-}
- padding: '0 1.5rem',
                  height: '44px',
                  borderRadius: '6px',
                  fontWeight: 600,
