@@ -32,8 +32,9 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
       );
     }
 
-    // Prisma forwards parameterized values separately from SQL text.
-    const result = await prisma.$queryRawUnsafe(queryText, ...params);
+    // Use Neon's native parameterized query support directly.
+    // This avoids fragile manual string parsing and preserves SQL parameterization.
+    const result = await getDb().query(queryText, params);
     return result as T[];
   } catch (error) {
     // Log error without exposing sensitive data
