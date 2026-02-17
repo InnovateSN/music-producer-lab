@@ -181,7 +181,7 @@ export default function CreateClassPage() {
             <ul className="text-sm text-blue-800 space-y-1">
               <li>✓ A unique class code will be generated automatically</li>
               <li>✓ Share the code with your students to let them join</li>
-              <li>✓ You'll see real-time progress as students complete lessons</li>
+              <li>✓ You&apos;ll see real-time progress as students complete lessons</li>
               <li>✓ Export reports anytime for school records</li>
             </ul>
           </div>

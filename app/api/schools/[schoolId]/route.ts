@@ -112,10 +112,3 @@ export async function PATCH(
   }
 }
 
-/**
- * GET /api/schools/[schoolId]/students
- * Get all students in a school
- */
-export async function getStudents(schoolId: string) {
-  return db.getSchoolStudents(schoolId);
-}

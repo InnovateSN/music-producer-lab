@@ -1,7 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { query } from './db';
+import { prisma } from './db';
 
 // Extend the default session types
 declare module 'next-auth' {
@@ -49,20 +49,18 @@ export const authOptions: NextAuthOptions = {
         }
 
         // Find user by email
-        const users = await query<{
-          id: string;
-          email: string;
-          password_hash: string;
-          first_name: string;
-          last_name: string;
-          role: string;
-          is_active: boolean;
-        }>(
-          'SELECT id, email, password_hash, first_name, last_name, role, is_active FROM users WHERE email = $1',
-          [credentials.email.toLowerCase()]
-        );
-
-        const user = users[0];
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email.toLowerCase() },
+          select: {
+            id: true,
+            email: true,
+            password_hash: true,
+            first_name: true,
+            last_name: true,
+            role: true,
+            is_active: true,
+          },
+        });
 
         if (!user) {
           throw new Error('No account found with this email');
@@ -84,15 +82,15 @@ export const authOptions: NextAuthOptions = {
         }
 
         // Update last login
-        await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+        await prisma.user.update({ where: { id: user.id }, data: { last_login: new Date() } });
 
         return {
           id: user.id,
           email: user.email,
           name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.email,
           role: user.role,
-          firstName: user.first_name,
-          lastName: user.last_name,
+          firstName: user.first_name ?? undefined,
+          lastName: user.last_name ?? undefined,
         };
       },
     }),
@@ -145,28 +143,30 @@ export async function createUser(
 ) {
   const passwordHash = await hashPassword(password);
 
-  const users = await query<{ id: string; email: string }>(
-    `INSERT INTO users (email, password_hash, first_name, last_name, role, clerk_id, password_hint)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING id, email`,
-    [email.toLowerCase(), passwordHash, firstName, lastName, role, `local_${Date.now()}`, passwordHint || null]
-  );
-
-  return users[0];
+  return prisma.user.create({
+    data: {
+      email: email.toLowerCase(),
+      password_hash: passwordHash,
+      first_name: firstName,
+      last_name: lastName,
+      role,
+      clerk_id: `local_${Date.now()}`,
+      password_hint: passwordHint || null,
+    },
+    select: { id: true, email: true },
+  });
 }
 
 // Helper to get user by email
 export async function getUserByEmail(email: string) {
-  const users = await query<{
-    id: string;
-    email: string;
-    first_name: string;
-    last_name: string;
-    role: string;
-  }>(
-    'SELECT id, email, first_name, last_name, role FROM users WHERE email = $1',
-    [email.toLowerCase()]
-  );
-
-  return users[0] || null;
+  return prisma.user.findUnique({
+    where: { email: email.toLowerCase() },
+    select: {
+      id: true,
+      email: true,
+      first_name: true,
+      last_name: true,
+      role: true,
+    },
+  });
 }

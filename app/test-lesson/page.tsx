@@ -95,11 +95,14 @@ export default function TestLessonPage() {
 
     const loadEngine = async () => {
       try {
-        const module = await import(/* webpackIgnore: true */ '/lesson-engine.js');
-        if (module && module.initLessonFromConfig) {
-          module.initLessonFromConfig(lessonConfig);
+        // @ts-expect-error runtime script served from public
+        const lessonEngineModule = await import(/* webpackIgnore: true */ '/lesson-engine.js');
+        if (lessonEngineModule && lessonEngineModule.initLessonFromConfig) {
+          (lessonEngineModule as any).initLessonFromConfig(lessonConfig);
           // Load styles
+          // @ts-expect-error runtime script served from public
           await import(/* webpackIgnore: true */ '/theme-registry.js');
+          // @ts-expect-error runtime script served from public
           await import(/* webpackIgnore: true */ '/theme-manager.js');
         }
       } catch (err) {

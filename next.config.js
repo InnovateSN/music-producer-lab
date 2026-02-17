@@ -1,3 +1,5 @@
+const JavaScriptObfuscator = require('webpack-obfuscator');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -6,25 +8,32 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-
-  // Environment variables
   env: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
-
-  // Experimental features
   experimental: {
     serverActions: {
       bodySizeLimit: '2mb',
     },
   },
+  webpack: (config, { isServer, dev }) => {
+    if (!isServer && !dev) {
+      config.plugins.push(
+        new JavaScriptObfuscator(
+          {
+            rotateStringArray: true,
+            stringArray: true,
+            stringArrayThreshold: 0.75,
+            transformObjectKeys: true,
+            unicodeEscapeSequence: false,
+          },
+          []
+        )
+      );
+    }
 
-  // Security headers
+    return config;
+  },
   async headers() {
     return [
       {
