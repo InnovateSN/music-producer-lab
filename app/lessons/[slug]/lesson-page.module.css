@@ -1,0 +1,245 @@
+.appShell {
+  height: 100vh;
+  width: 100vw;
+  background: #0a0b0d;
+  color: #e7edf7;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  height: 56px;
+  border-bottom: 1px solid #232734;
+  background: #11141b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.brandArea {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.brandArea strong { color: #fff; }
+.brandArea span { color: #8e98ac; font-size: 13px; }
+
+.headerActions { display: flex; gap: 8px; align-items: center; }
+.headerActions button,
+.headerActions a {
+  background: #1a1d26;
+  border: 1px solid #2a3244;
+  color: #d5dff2;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.contentArea { flex: 1; min-height: 0; }
+.contentStudio { display: grid; grid-template-columns: minmax(340px, 38%) 1fr; }
+.contentReading { display: block; overflow-y: auto; }
+
+.leftPanel {
+  background: #0f1115;
+  border-right: 1px solid #222838;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 20px;
+}
+
+.contentReading .leftPanel {
+  max-width: 980px;
+  margin: 0 auto;
+  border-right: none;
+}
+
+.rightPanel {
+  background: #141923;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+}
+
+.contentReading .rightPanel {
+  height: 70vh;
+  min-height: 560px;
+  max-width: 980px;
+  margin: 16px auto;
+  border: 1px solid #222838;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.workspaceTop {
+  padding: 14px 20px;
+  border-bottom: 1px solid #262d3f;
+  background: #1a1d26;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workspaceTop small { color: #8ea0be; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.workspaceMain {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.workspaceMain h2 { color: #9fb1cf; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.transportBar {
+  position: sticky;
+  bottom: 0;
+  height: 82px;
+  border-top: 1px solid #00d4ff;
+  background: #0e1015;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 5;
+}
+
+.transportControls { display: flex; gap: 8px; align-items: center; }
+.playBtn {
+  background: #00d4ff;
+  color: #001018;
+  border: none;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+.stopBtn,
+.checkBtn,
+.lessonNav button {
+  background: #1a1d26;
+  border: 1px solid #33405c;
+  color: #f0f5ff;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.lessonNav { display: flex; gap: 8px; }
+
+.mediaCard,
+.audioCard,
+.lessonText section {
+  background: #1a1d26;
+  border: 1px solid #242d40;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.videoPlayer,
+.videoPlaceholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  background: #0a0b0d;
+}
+.videoPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: #8ea0be;
+}
+.videoPlaceholder img { width: 24px; height: 24px; opacity: 0.7; }
+.audioPlayer { width: 100%; }
+
+.lessonText h1 { font-size: 28px; margin: 8px 0; color: #fff; }
+.lessonText p { color: #bdc9dd; }
+
+.advancedControls {
+  margin-top: 16px;
+  background: #1a1d26;
+  border: 1px solid #2a3347;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 16px;
+}
+.advancedControls > div { display: flex; gap: 8px; align-items: center; }
+
+.menuOverlay { position: fixed; inset: 0; z-index: 20; display: flex; }
+.menuBackdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.74); border: none; }
+.menuPanel {
+  width: 320px;
+  height: 100%;
+  background: #11141d;
+  border-right: 1px solid #2a3448;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.menuHeader { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #2a3448; }
+.menuHeader button { background: transparent; border: none; color: #94a5c4; font-size: 24px; cursor: pointer; }
+.menuContent { overflow-y: auto; padding: 12px 16px 24px; }
+.menuContent h4 { color: #00d4ff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+.menuContent ul { list-style: none; padding: 0; margin: 0; }
+.menuContent li button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #c4d0e5;
+  padding: 6px 0;
+  cursor: pointer;
+}
+.activeLesson { color: #00d4ff !important; font-weight: 700; }
+
+.paywallOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 11, 16, 0.86);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+.paywallCard {
+  width: min(90%, 420px);
+  background: #141923;
+  border: 1px solid #2f3d5a;
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.paywallCard h3 { color: #00d4ff; margin: 0 0 6px; }
+.paywallCard p { color: #c0cee4; }
+.paywallCard button {
+  background: #00d4ff;
+  color: #001018;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hiddenEngineNodes { display: none; }
+.screenState,
+.errorState {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #0a0b0d;
+  color: #00d4ff;
+}
+.errorState { color: #ff6a59; text-align: center; }
+.errorState button { margin-top: 12px; }
+
+@media (max-width: 960px) {
+  .contentStudio { grid-template-columns: 1fr; }
+  .rightPanel { min-height: 60vh; }
+}

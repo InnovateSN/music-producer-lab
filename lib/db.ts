@@ -16,51 +16,25 @@ function getDb() {
 // Helper function to execute queries with Neon's HTTP API
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
-    // Neon expects template literal format, but we use PostgreSQL-style $1, $2, etc.
-    // Convert to template literal format
-
-    if (!params || params.length === 0) {
-      // No parameters - create a template literal from the string
-      const templateArray = Object.assign([queryText], { raw: [queryText] }) as TemplateStringsArray;
-      const result = await getDb()(templateArray);
-      return result as T[];
+    if (!Array.isArray(params)) {
+      throw new Error('Database query params must be an array');
     }
 
-    // For parameterized queries, convert $1, $2, etc. to template literal positions
-    const parts: string[] = [];
-    const values: any[] = [];
+    const placeholderMatches = queryText.match(/\$(\d+)/g) || [];
+    const highestPlaceholder = placeholderMatches.reduce((max, placeholder) => {
+      const index = Number.parseInt(placeholder.slice(1), 10);
+      return Number.isNaN(index) ? max : Math.max(max, index);
+    }, 0);
 
-    let currentPart = '';
-
-    for (let i = 0; i < queryText.length; i++) {
-      if (queryText[i] === '$' && i + 1 < queryText.length) {
-        // Check if next character(s) form a number
-        let numStr = '';
-        let j = i + 1;
-        while (j < queryText.length && /\d/.test(queryText[j])) {
-          numStr += queryText[j];
-          j++;
-        }
-
-        if (numStr) {
-          // Found a parameter placeholder like $1, $2, etc.
-          const paramNum = parseInt(numStr);
-          parts.push(currentPart);
-          values.push(params[paramNum - 1]);
-          currentPart = '';
-          i = j - 1; // Skip the number
-          continue;
-        }
-      }
-      currentPart += queryText[i];
+    if (highestPlaceholder > params.length) {
+      throw new Error(
+        `Database query expected ${highestPlaceholder} parameter(s) but received ${params.length}`
+      );
     }
-    parts.push(currentPart); // Add the final part
 
-    // Create a proper template literal array
-    const templateArray = Object.assign([...parts], { raw: [...parts] }) as TemplateStringsArray;
-
-    // Execute with Neon's template literal syntax
-    const result = await getDb()(templateArray, ...values);
+    // Use Neon's native parameterized query support directly.
+    // This avoids fragile manual string parsing and preserves SQL parameterization.
+    const result = await getDb().query(queryText, params);
     return result as T[];
   } catch (error) {
     // Log error without exposing sensitive data
