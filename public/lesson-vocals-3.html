@@ -62,14 +62,47 @@
               </div>
             </div>
 
-            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Editing Best Practices</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-                <li><strong>Work in order:</strong> Comp first, then clean breaths, then timing</li>
-                <li><strong>Use crossfades:</strong> 5-20ms fades hide edit points</li>
-                <li><strong>Check in context:</strong> Solo editing sounds different in the mix</li>
-                <li><strong>Keep originals:</strong> Never destructively edit—keep raw takes safe</li>
-              </ul>
+            <!-- COMMON MISTAKES -->
+            <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Removing All Breaths</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Breathless vocals sound robotic and lifeless. Breaths add humanity and authenticity to a performance. The professional approach is to <strong>reduce loud breaths by 6-10 dB</strong> rather than deleting them entirely. Short natural inhales between phrases are often left at full volume. Always check in context—breaths that sound loud in isolation are usually inaudible inside a dense mix.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Audible Click Points from Bad Crossfades</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Every cut creates a potential click if the waveform doesn't transition smoothly. Poor crossfades are immediately audible on speakers or headphones. The professional standard is <strong>5-20ms crossfades at every edit point</strong>, placed in natural silences or during consonants where artifacts are masked. Zoom into the waveform at each edit and verify visually before moving on.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Over-Correcting Timing and Destroying Groove</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Human performance naturally sits slightly behind or ahead of the grid in musically meaningful ways—that tension and push is what makes it feel human. Quantizing every syllable precisely to the grid removes the groove. Fix obviously wrong timing; leave intentional expressiveness intact. Always check your timing corrections in the context of the full groove before deciding if something actually needs fixing.</p>
+              </div>
+            </div>
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Invisible editing is the highest craft</strong> — The goal is that no listener detects your work. When editing is done perfectly, the vocal sounds live and natural while being technically flawless. This invisible professionalism separates a polished release from an amateur one.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Comping creates impossible performances</strong> — No singer can be perfect on every syllable of every take. But through comping you can capture the best of every moment across multiple takes—a technically impossible feat in a single live recording.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Prepares the mix for success</strong> — A well-edited vocal sits cleanly in a mix without fighting for space. Inconsistent levels, clicks, and timing errors force you to compensate with compression and EQ that would be unnecessary on a clean edit. Good editing is invisible infrastructure.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Non-destructive workflow protects the asset</strong> — Keeping originals safe means you can always return to a decision. A DAW project with archived raw takes and a clearly labeled comp is a professional deliverable that you or another engineer can revisit years later.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

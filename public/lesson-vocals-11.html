@@ -62,14 +62,47 @@
               </div>
             </div>
 
-            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Automation Workflow</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-                <li><strong>Static mix first:</strong> Get the best static balance before automating</li>
-                <li><strong>Automate volume last:</strong> After all processing is set</li>
-                <li><strong>Use clip gain:</strong> Pre-fader automation for consistent input levels</li>
-                <li><strong>Write in passes:</strong> First pass = major moves, second = fine-tuning</li>
-              </ul>
+            <!-- COMMON MISTAKES -->
+            <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">No Vocal Rides Throughout the Song</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Vocal performances vary in level phrase to phrase—a singer naturally pushes harder on some words and backs off on others. Without <strong>volume rides</strong> (±1-3 dB adjustments every 2-4 bars), the vocal appears to disappear in loud sections and stick out in quiet ones. Vocal rides are mandatory in every professional mix. Start by drawing the ride on the clip gain before touching the fader, then fine-tune with fader automation.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Parallel Compression Without Phase Check</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Parallel vocal compression (blending a heavily compressed copy with the dry signal) can cause phase cancellation that makes the vocal thin and hollow in mono. After setting up any parallel chain, <strong>sum the mix to mono and check</strong> that the vocal doesn't thin out or disappear. If it does, flip the polarity on the parallel bus, or add a 1-2ms delay to the compressed signal to offset the phase relationship.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Automating Before the Static Mix Is Balanced</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Drawing automation on a rough, unbalanced mix is wasted effort—when you fix the underlying balance issue, all automation becomes wrong. <strong>Always complete the static mix first</strong>: get levels, EQ, compression, and effects set with no automation. Then listen through the entire song and identify where automation is needed. Write automation in order: major moves first, then fine-tune in a second pass. Automation is the finishing stage, not a substitute for mixing.</p>
+              </div>
+            </div>
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Vocal rides are non-negotiable in professional mixes</strong> — Every professional mix engineer rides the lead vocal throughout the song. It's not optional—it's the technique that keeps the listener connected to the lyric and melody regardless of what the arrangement is doing around it.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Parallel compression preserves dynamics and adds power simultaneously</strong> — The classic vocal parallel chain (dry vocal + heavily compressed version blended at low level) gives presence and punch without squashing the life out of the performance. It's the solution to the "compress more vs. sound natural" dilemma.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Automation makes the mix perform</strong> — A vocal mix with automation feels alive; without it, it feels static. The subtle movement of automated sends, filters, and rides is what separates a professional mix from a flat, static render—even when the differences are too small to consciously notice.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Advanced techniques elevate your work to professional standard</strong> — Combining parallel processing, precise volume rides, and strategic automation on a vocal track is the workflow used by professional mix engineers on every major release. Mastering this workflow at the vocal stage makes you immediately more hireable and your work more competitive.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
