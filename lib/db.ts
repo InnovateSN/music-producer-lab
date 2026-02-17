@@ -1,6 +1,28 @@
+import { PrismaClient } from '@prisma/client';
 import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
-// Lazy-initialize Neon connection (don't fail at build time)
+// === Prisma Client (new, preferred) ===
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+// Re-export Prisma types
+export type {
+  User as PrismaUser,
+  School as PrismaSchool,
+  LessonProgress as PrismaLessonProgress,
+  Class as PrismaClass,
+  SavedPattern as PrismaSavedPattern,
+  Certificate as PrismaCertificate,
+} from '@prisma/client';
+
+// === Legacy Neon driver (kept for backward compatibility with existing routes) ===
 let sql: NeonQueryFunction<false, false> | null = null;
 
 function getDb() {
@@ -13,7 +35,10 @@ function getDb() {
   return sql;
 }
 
-// Helper function to execute queries with Neon's HTTP API
+/**
+ * Legacy query function using Neon's HTTP API.
+ * New code should use the `prisma` export instead.
+ */
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
     if (!Array.isArray(params)) {
@@ -32,32 +57,29 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
       );
     }
 
-    // Use Neon's native parameterized query support directly.
-    // This avoids fragile manual string parsing and preserves SQL parameterization.
     const result = await getDb().query(queryText, params);
     return result as T[];
   } catch (error) {
-    // Log error without exposing sensitive data
-    console.error('Database query error:', error instanceof Error ? error.message : 'Unknown error');
-    // Only log truncated query in development, never log params (may contain PII)
+    console.error(
+      'Database query error:',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
     if (process.env.NODE_ENV === 'development') {
-      console.error('Query (truncated):', queryText.substring(0, 100) + (queryText.length > 100 ? '...' : ''));
+      console.error(
+        'Query (truncated):',
+        queryText.substring(0, 100) + (queryText.length > 100 ? '...' : '')
+      );
     }
     throw error;
   }
 }
 
-// Transaction helper
-export async function transaction<T>(
-  callback: (sql: typeof query) => Promise<T>
-): Promise<T> {
-  // Neon serverless doesn't support traditional transactions
-  // For now, we'll execute the callback directly
-  // In production, consider using connection pooling with transaction support
+// Transaction helper (legacy)
+export async function transaction<T>(callback: (sql: typeof query) => Promise<T>): Promise<T> {
   return callback(query);
 }
 
-// Database types
+// Legacy database types (kept for backward compatibility)
 export interface User {
   id: string;
   clerk_id: string;
@@ -130,7 +152,7 @@ export interface SavedPattern {
   user_id: string;
   pattern_type: 'drum_pattern' | 'melody' | 'chord_progression';
   pattern_name?: string;
-  pattern_data: any; // JSONB
+  pattern_data: any;
   lesson_key?: string;
   is_favorite: boolean;
   created_at: Date;
@@ -149,22 +171,16 @@ export interface Certificate {
   total_time_hours?: number;
 }
 
-// Query builders
+// Legacy query builders (kept for backward compatibility)
 export const db = {
   // Users
   async getUserByClerkId(clerkId: string): Promise<User | null> {
-    const users = await query<User>(
-      'SELECT * FROM users WHERE clerk_id = $1',
-      [clerkId]
-    );
+    const users = await query<User>('SELECT * FROM users WHERE clerk_id = $1', [clerkId]);
     return users[0] || null;
   },
 
   async getUserById(userId: string): Promise<User | null> {
-    const users = await query<User>(
-      'SELECT * FROM users WHERE id = $1',
-      [userId]
-    );
+    const users = await query<User>('SELECT * FROM users WHERE id = $1', [userId]);
     return users[0] || null;
   },
 
@@ -173,14 +189,21 @@ export const db = {
       `INSERT INTO users (clerk_id, email, first_name, last_name, role, school_id)
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
-      [data.clerk_id, data.email, data.first_name, data.last_name, data.role || 'student', data.school_id]
+      [
+        data.clerk_id,
+        data.email,
+        data.first_name,
+        data.last_name,
+        data.role || 'student',
+        data.school_id,
+      ]
     );
     return users[0];
   },
 
   async updateUser(userId: string, data: Partial<User>): Promise<User> {
-    const fields = Object.keys(data).filter(k => k !== 'id');
-    const values = fields.map(k => (data as any)[k]);
+    const fields = Object.keys(data).filter((k) => k !== 'id');
+    const values = fields.map((k) => (data as any)[k]);
     const setClause = fields.map((k, i) => `${k} = $${i + 2}`).join(', ');
 
     const users = await query<User>(
@@ -225,7 +248,7 @@ export const db = {
         data.completion_percentage || 0,
         data.time_spent_seconds || 0,
         data.module_name,
-        data.lesson_number
+        data.lesson_number,
       ]
     );
     return progress[0];
@@ -233,10 +256,7 @@ export const db = {
 
   // Schools
   async getSchoolById(schoolId: string): Promise<School | null> {
-    const schools = await query<School>(
-      'SELECT * FROM schools WHERE id = $1',
-      [schoolId]
-    );
+    const schools = await query<School>('SELECT * FROM schools WHERE id = $1', [schoolId]);
     return schools[0] || null;
   },
 
@@ -260,10 +280,7 @@ export const db = {
 
   // Classes
   async getClassById(classId: string): Promise<Class | null> {
-    const classes = await query<Class>(
-      'SELECT * FROM classes WHERE id = $1',
-      [classId]
-    );
+    const classes = await query<Class>('SELECT * FROM classes WHERE id = $1', [classId]);
     return classes[0] || null;
   },
 
@@ -297,7 +314,14 @@ export const db = {
       `INSERT INTO saved_patterns (user_id, pattern_type, pattern_name, pattern_data, lesson_key, is_favorite)
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
-      [data.user_id, data.pattern_type, data.pattern_name, JSON.stringify(data.pattern_data), data.lesson_key, data.is_favorite || false]
+      [
+        data.user_id,
+        data.pattern_type,
+        data.pattern_name,
+        JSON.stringify(data.pattern_data),
+        data.lesson_key,
+        data.is_favorite || false,
+      ]
     );
     return patterns[0];
   },
@@ -315,7 +339,14 @@ export const db = {
       `INSERT INTO certificates (user_id, certificate_type, module_name, certificate_code, completed_lessons, total_time_hours)
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
-      [data.user_id, data.certificate_type, data.module_name, data.certificate_code, data.completed_lessons, data.total_time_hours]
+      [
+        data.user_id,
+        data.certificate_type,
+        data.module_name,
+        data.certificate_code,
+        data.completed_lessons,
+        data.total_time_hours,
+      ]
     );
     return certs[0];
   },
