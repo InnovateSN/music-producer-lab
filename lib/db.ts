@@ -1,28 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
-// === Prisma Client (new, preferred) ===
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  });
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
-
-// Re-export Prisma types
-export type {
-  User as PrismaUser,
-  School as PrismaSchool,
-  LessonProgress as PrismaLessonProgress,
-  Class as PrismaClass,
-  SavedPattern as PrismaSavedPattern,
-  Certificate as PrismaCertificate,
-} from '@prisma/client';
-
-// === Legacy Neon driver (kept for backward compatibility with existing routes) ===
+// === Neon driver (sole database client) ===
 let sql: NeonQueryFunction<false, false> | null = null;
 
 function getDb() {
@@ -36,8 +14,7 @@ function getDb() {
 }
 
 /**
- * Legacy query function using Neon's HTTP API.
- * New code should use the `prisma` export instead.
+ * Execute a parameterized SQL query via Neon's HTTP API.
  */
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
@@ -74,12 +51,12 @@ export async function query<T = any>(queryText: string, params: any[] = []): Pro
   }
 }
 
-// Transaction helper (legacy)
+// Transaction helper
 export async function transaction<T>(callback: (sql: typeof query) => Promise<T>): Promise<T> {
   return callback(query);
 }
 
-// Legacy database types (kept for backward compatibility)
+// Database types
 export interface User {
   id: string;
   clerk_id: string;
@@ -171,7 +148,7 @@ export interface Certificate {
   total_time_hours?: number;
 }
 
-// Legacy query builders (kept for backward compatibility)
+// Query helpers
 export const db = {
   // Users
   async getUserByClerkId(clerkId: string): Promise<User | null> {

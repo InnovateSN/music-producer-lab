@@ -1,17 +1,4 @@
-export const prisma = {
-  user: {
-    findUnique: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-  },
-  lessonProgress: {
-    findUnique: jest.fn(),
-    findMany: jest.fn(),
-    upsert: jest.fn(),
-  },
-};
-
-// Legacy exports for backward compatibility
+// Mock for lib/db.ts — no Prisma client
 export const query = jest.fn();
 export const transaction = jest.fn();
 export const db = {

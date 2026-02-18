@@ -1,7 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { prisma, query } from './db';
+import { query } from './db';
 
 // Extend the default session types
 declare module 'next-auth' {
@@ -48,19 +48,20 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Email and password are required');
         }
 
-        // Find user by email using Prisma
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email.toLowerCase() },
-          select: {
-            id: true,
-            email: true,
-            password_hash: true,
-            first_name: true,
-            last_name: true,
-            role: true,
-            is_active: true,
-          },
-        });
+        // Find user by email
+        const rows = await query<{
+          id: string;
+          email: string;
+          password_hash: string | null;
+          first_name: string | null;
+          last_name: string | null;
+          role: string;
+          is_active: boolean;
+        }>(
+          'SELECT id, email, password_hash, first_name, last_name, role, is_active FROM users WHERE email = $1',
+          [credentials.email.toLowerCase()]
+        );
+        const user = rows[0] || null;
 
         if (!user) {
           throw new Error('No account found with this email');
@@ -83,10 +84,7 @@ export const authOptions: NextAuthOptions = {
 
         // Update last login
         try {
-          await prisma.user.update({
-            where: { id: user.id },
-            data: { last_login: new Date() },
-          });
+          await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
         } catch (e) {
           console.warn('Failed to update last_login:', e);
         }
@@ -147,7 +145,7 @@ export async function verifyPassword(
   return bcrypt.compare(password, hashedPassword);
 }
 
-// Helper to create a new user (uses Prisma)
+// Helper to create a new user
 export async function createUser(
   email: string,
   password: string,
@@ -157,38 +155,36 @@ export async function createUser(
 ) {
   const hashedPassword = await hashPassword(password);
 
-  const user = await prisma.user.create({
-    data: {
-      email: email.toLowerCase(),
-      password_hash: hashedPassword,
-      first_name: firstName || null,
-      last_name: lastName || null,
-      password_hint: passwordHint || null,
-      clerk_id: `local_${Date.now()}`,
-      role: 'student',
-      is_active: true,
-    },
-    select: {
-      id: true,
-      email: true,
-    },
-  });
+  const rows = await query<{ id: string; email: string }>(
+    `INSERT INTO users (clerk_id, email, password_hash, first_name, last_name, password_hint, role, is_active)
+     VALUES ($1, $2, $3, $4, $5, $6, 'student', true)
+     RETURNING id, email`,
+    [
+      `local_${Date.now()}`,
+      email.toLowerCase(),
+      hashedPassword,
+      firstName || null,
+      lastName || null,
+      passwordHint || null,
+    ]
+  );
 
-  return user;
+  return rows[0];
 }
 
-// Helper to get user by email (uses Prisma)
+// Helper to get user by email
 export async function getUserByEmail(email: string) {
-  return prisma.user.findUnique({
-    where: { email: email.toLowerCase() },
-    select: {
-      id: true,
-      email: true,
-      password_hash: true,
-      first_name: true,
-      last_name: true,
-      role: true,
-      is_active: true,
-    },
-  });
+  const rows = await query<{
+    id: string;
+    email: string;
+    password_hash: string | null;
+    first_name: string | null;
+    last_name: string | null;
+    role: string;
+    is_active: boolean;
+  }>(
+    'SELECT id, email, password_hash, first_name, last_name, role, is_active FROM users WHERE email = $1',
+    [email.toLowerCase()]
+  );
+  return rows[0] || null;
 }
