@@ -226,9 +226,27 @@ Play your arrangement and ask: "If I were at a club/concert, would this keep me 
     "Visualize energy flow across a song arrangement",
     "Create a complete arrangement with proper structure",
     "Understand the 5 elements of arrangement: Foundation, Pad, Rhythm, Lead, Fills"
-  ]
-};
+  ],
 
-if (typeof window !== 'undefined') {
-  window.LESSON_CONFIG = lessonConfig;
-}
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
+};

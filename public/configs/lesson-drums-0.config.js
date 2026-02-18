@@ -152,9 +152,27 @@ export const lessonConfig = {
         content: "When you press Play, focus on two things:<br><br>1. <strong>Does it feel even?</strong> Like a metronome you could dance to?<br>2. <strong>Does it loop smoothly?</strong> Does the end flow back to the start without stumbling?<br><br>These are the foundations of good rhythm programming."
       }
     ]
-  }
-};
+  },
 
-if (typeof window !== 'undefined') {
-  window.LESSON_CONFIG = lessonConfig;
-}
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
+};

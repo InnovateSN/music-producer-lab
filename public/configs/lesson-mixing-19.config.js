@@ -434,5 +434,27 @@ Automate bus levels for dynamic mixing:
     "Use bus EQ to shape overall tone: high-pass filtering, tone shaping, and carving frequency space",
     "Organize sessions with color coding, naming conventions, and hierarchical bus structures",
     "Export stems for mastering: proper specs (24-bit WAV), headroom (-6dB), and file organization"
-  ]
+  ],
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };
