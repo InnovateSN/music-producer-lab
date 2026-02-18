@@ -19,7 +19,7 @@ jest.mock('@/lib/auth');
 import { POST } from './route';
 
 const { getUserByEmail, verifyPassword } = require('@/lib/auth');
-const { prisma } = require('@/lib/db');
+const { query } = require('@/lib/db');
 
 describe('/api/auth/signin-custom', () => {
   const originalEnv = process.env;
@@ -127,7 +127,7 @@ describe('/api/auth/signin-custom', () => {
       last_name: 'User',
     });
     verifyPassword.mockResolvedValue(true);
-    prisma.user.update.mockResolvedValue({});
+    query.mockResolvedValue([]);
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',

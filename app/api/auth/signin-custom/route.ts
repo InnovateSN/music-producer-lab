@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { SignJWT } from 'jose';
 import { getUserByEmail, verifyPassword } from '@/lib/auth';
 import { SigninSchema } from '@/lib/validations';
-import { prisma } from '@/lib/db';
+import { query } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,10 +38,7 @@ export async function POST(req: NextRequest) {
 
     // Update last login (optional, don't fail on error)
     try {
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { last_login: new Date() },
-      });
+      await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
     } catch (e) {
       console.warn('Failed to update last_login:', e);
     }
