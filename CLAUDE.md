@@ -154,7 +154,7 @@ Schema uses UUID primary keys, Row Level Security concepts, and multi-tenant arc
 - **Pro:** Paid subscription — tutti i labs + export (pricing TBD)
 - **Schools:** Volume pricing — B2B, COPPA/GDPR compliant
 - **Payment:** Stripe integration (da implementare — non ancora presente nel codebase)
-- **Owner:** Bochi/Marcello — Ableton Certified Trainer, insegnante ICMP (London)
+- **Owner:** Project founder — Ableton Certified Trainer, insegnante ICMP (London)
 
 ## Current Priorities
 1. Completare contenuti educativi per ~150 lezioni che sono ancora template senza contenuto
