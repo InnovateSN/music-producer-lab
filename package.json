@@ -13,7 +13,8 @@
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "db:setup": "node database/execute-schema.js",
-    "db:migrate": "node database/execute-migration.js"
+    "db:migrate": "node database/execute-migration.js",
+    "content:align-sources": "node scripts/align-lesson-sources.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

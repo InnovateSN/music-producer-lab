@@ -36,5 +36,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Loudness Concepts", content: "**Peak vs RMS:** Peak = momentary spikes, RMS = average loudness. **Compression:** Reduces dynamic range, increases RMS. **Saturation:** Adds harmonics, increases perceived loudness. **Limiting:** Prevents peaks from exceeding 0dB. **LUFS:** Integrated Loudness Unit (streaming standard: -14 LUFS). **Punch:** Transient + body balance. Fast attack preserves punch, slow attack preserves body." }] },
   learningObjectives: ["Program drums optimized for competitive loudness", "Understand peak vs RMS loudness", "Use velocity consistency for maximum impact", "Apply compression/limiting concepts", "Balance loudness with punch and dynamics"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity")
+  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

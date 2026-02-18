@@ -35,5 +35,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Human Simulation Techniques", content: "**Velocity Variation:** Real drummers vary every hit (±10-20 velocity). **Timing:** Slight rushing/dragging (5-20ms humanization). **Swing:** 10-15% swing adds natural groove. **Overhead Bleed:** Subtle room ambience/reverb simulates live recording. **Performance Arcs:** Drummers get louder in choruses, softer in verses." }] },
   learningObjectives: ["Simulate live drummer performance dynamics", "Use humanization settings effectively", "Create natural velocity variations", "Apply swing for organic groove", "Understand mic bleed and room ambience"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement")
+  validation: applyMessagePreset("drumSequencer", "correct-placement"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

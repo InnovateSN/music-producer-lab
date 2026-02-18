@@ -420,5 +420,27 @@ Some DAWs support multiple automation lanes:
     "Create advanced automation chains: multi-parameter builds and breakdowns for maximum tension and release",
     "Use automation to fix mix issues: de-masking, dynamic sidechain, and frequency management over time",
     "Refine automation: smooth curves, thin automation points, A/B testing, and genre-specific techniques"
-  ]
+  ],
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

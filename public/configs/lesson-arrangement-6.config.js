@@ -343,7 +343,27 @@ Master the build-drop-breakdown cycle, and you've mastered the core of EDM produ
     "Design impactful drops with full arrangement",
     "Use breakdowns for contrast and rest",
     "Structure DJ-friendly tracks in 8/16/32 bar phrases"
-  ]
-};
+  ],
 
-if (typeof window !== 'undefined') window.LESSON_CONFIG = lessonConfig;
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
+};

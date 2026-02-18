@@ -52,6 +52,20 @@ Contains:
 
 ---
 
+
+### 📚 [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
+**Canonical content-source policy for lessons and informational content.**
+
+Contains:
+- Approved references (AES, Ableton, Wikipedia)
+- Lesson/source metadata standard (`sourceReferences`)
+- Editorial rules for technical accuracy and historical context
+- Verification checklist before merge
+
+**Use this for:** Authoring or reviewing educational content with consistent and auditable references.
+
+---
+
 ## Historical Documentation (Archive)
 
 The [`archive/`](./archive/) directory contains previous reports and analysis that provide historical context but may be outdated.
@@ -115,6 +129,9 @@ The [`archive/`](./archive/) directory contains previous reports and analysis th
 
 - **Create a new lesson**
   → Use [LESSON-SYSTEM-README.md](./LESSON-SYSTEM-README.md)
+
+- **Align lesson content to approved references**
+  → Read [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
 
 - **Understand the project history**
   → Browse [`archive/`](./archive/) directory

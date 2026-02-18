@@ -34,5 +34,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Swing vs Shuffle", content: "**Swing:** Delays 8th notes slightly (50-75% triplet feel). **Shuffle:** Full triplet-based rhythm (100% triplet). **Half-time shuffle:** Shuffle pattern at half tempo (Rosanna, Fool in the Rain). **Percentage:** 0% = straight, 50% = full triplet, 25% = subtle swing." }] },
   learningObjectives: ["Program triplet-based shuffle patterns", "Understand swing percentages", "Create half-time shuffle grooves", "Differentiate binary vs ternary feels", "Apply swing to different genres"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement")
+  validation: applyMessagePreset("drumSequencer", "correct-placement"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };
