@@ -8,10 +8,10 @@ Interactive music production education platform. Learn to produce music through 
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router) + Static HTML pages
+- **Framework:** Next.js 15 (App Router) + static HTML pages
 - **Frontend:** Vanilla JavaScript (ES6 modules), HTML5, CSS3
 - **Audio:** Web Audio API (synthesized drum sounds)
-- **Database:** Neon PostgreSQL (serverless)
+- **Database:** Neon PostgreSQL (serverless) + Prisma Client
 - **Authentication:** NextAuth.js with custom credentials provider
 - **Password Hashing:** bcryptjs (12 rounds)
 - **Email:** Resend (optional, for notifications)
@@ -43,6 +43,29 @@ Interactive music production education platform. Learn to produce music through 
 - **Authentication:** Migrated from Clerk to NextAuth.js with custom credentials
 - **Security Audit:** Fixed critical vulnerabilities (JWT secrets, debug endpoints, account enumeration)
 - **QA Audit:** Fixed missing assets, footers, and broken links across 207 pages
+
+---
+
+## MVP Scope (Official, current)
+
+This is the source of truth for what is in-scope right now:
+
+1. Keep the current **Next.js app** as the primary platform (no WordPress migration).
+2. Deliver a clear learner path: **Home -> Pricing -> Contact/Sign up**.
+3. Keep contact and support simple (existing form/email flow).
+4. Complete high-priority lesson content that is still template-only.
+5. Run `npm run build` before merge and verify Vercel Preview is green.
+
+Everything else (advanced chatbot automations, community add-ons, extra integrations) stays in phase-2 backlog until these items are consistently stable.
+
+## Next Step Execution Order
+
+- **Step 1:** Unify pricing/trial copy across all public pages.
+- **Step 2:** Make onboarding CTA path explicit on homepage and pricing page.
+- **Step 3:** Fill the top-priority lesson templates (content quality pass).
+- **Step 4:** Add a recurring pre-merge checklist to PR workflow.
+
+See also: `docs/workflow/NEXT_STEP_PLAN.md`.
 
 ---
 
