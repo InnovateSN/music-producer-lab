@@ -57,13 +57,47 @@
           </div>
         </div>
 
-        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Unique Transformations:</strong> Spectral processing creates sounds impossible with time-domain tools.</li>
-            <li><strong>Scientific Foundation:</strong> Understanding FFT deepens your grasp of digital audio fundamentals.</li>
-            <li><strong>Hybrid Sounds:</strong> Cross-synthesis and morphing create entirely new timbres from existing sources.</li>
-          </ul>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Choosing FFT Size Without Understanding the Trade-Off</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">FFT size is not a quality setting—it is a time/frequency resolution trade-off with no correct universal answer. A large FFT (4096-8192) gives excellent frequency resolution but smears transients in time—good for sustained tones like strings or pads, terrible for percussive material where timing clarity matters. A small FFT (256-1024) preserves time resolution but blurs frequency detail. <strong>Match FFT size to the material:</strong> small FFT for drums and transients, large FFT for sustained harmonic content, medium FFT for most general spectral processing. Default FFT settings are a starting point, not a solution.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Applying Spectral Effects at 100% Wet</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Spectral processing at full wet creates extreme transformations that often sound artificial, phasery, or disconnected from the original source. Even when dramatic transformation is the goal, a blend of processed and unprocessed signal typically produces a more cohesive, powerful result. <strong>Use the dry/wet control deliberately:</strong> 100% wet for spectral freeze or vocoding effects where full transformation is intentional, 30-60% wet for spectral blur and shift to add texture while maintaining clarity, and even lower (10-25%) for subtle spectral enhancement of an existing mix element.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Applying Creative Spectral Processing to Damaged Audio</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Creative spectral tools amplify and transform whatever is in the source signal—including noise, clicks, and artifacts. Applying spectral blur or cross-synthesis to audio with hum, clicks, or background noise transforms those problems along with the signal, making them far more prominent and harder to fix later. <strong>Use iZotope RX or similar spectral repair tools first</strong> to remove artifacts, clean noise, and repair the source before applying creative spectral processing. Clean in, creative out—never the reverse.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Transformations impossible in the time domain</strong> — Spectral freeze, blur, and cross-synthesis create results that simply cannot be achieved with conventional audio tools. Sustaining a single spectral snapshot of a snare drum forever, morphing a piano into a cello mid-note, or imposing a vocal's harmonic character on a pad—these are only possible in the frequency domain. This toolkit opens creative territory unavailable to producers who only work in the time domain.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>FFT knowledge improves all digital audio decisions</strong> — Understanding how FFT analysis works—bins, resolution, windowing, the time/frequency uncertainty principle—transforms your understanding of every digital audio tool you use. EQ, compressors, noise reduction, reverb, pitch correction: all operate in the frequency domain to varying degrees. This foundational knowledge makes you a more capable engineer across every area of production and mixing.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional repair and restoration capabilities</strong> — The same spectral tools used for creative processing are the professional standard for audio restoration: removing clicks, hum, wind noise, and room tone from recordings. Spectral repair skills are in constant demand for dialogue editing, archival restoration, and broadcast audio. Learning spectral processing gives you both creative and technical professional capabilities from the same knowledge base.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>The frontier of synthesis and sound design</strong> — Spectral resynthesis is at the cutting edge of synthesizer design. Harmor, Iris, and emerging AI-assisted spectral tools represent where synthesis is heading. Producers and designers who understand spectral concepts today are positioned to work fluently with the next generation of instruments that increasingly operate on spectral rather than oscillator-based foundations.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

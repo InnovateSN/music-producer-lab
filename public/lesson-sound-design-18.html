@@ -57,13 +57,47 @@
           </div>
         </div>
 
-        <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary, #fff);">Why This Matters</h3>
-          <ul style="color: var(--text-secondary, #aaa); line-height: 1.8; padding-left: 1.5rem; margin: 0;">
-            <li><strong>Realistic Expression:</strong> Physical models respond naturally—more expressive than static samples.</li>
-            <li><strong>Impossible Instruments:</strong> Create instruments that can't exist physically—10-foot guitars, glass pianos.</li>
-            <li><strong>Vintage Authenticity:</strong> Analog emulations capture the character of classic gear affordably.</li>
-          </ul>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Treating Physical Models Like Preset Synths</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Loading a preset and never exploring the physical parameters misses the entire point of physical modeling. Parameters like bow pressure, body resonance, mallet hardness, and material stiffness have no equivalent on traditional synthesizers—they model real acoustic behavior. <strong>Explore these parameters deeply</strong>: change string tension, adjust pickup position, modulate body size. The physics-based interaction between parameters creates sounds that are impossible to achieve otherwise, and that exploration is where physical modeling's creative power lives.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Ignoring Velocity and Aftertouch Mapping</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Physical models respond to performance data in ways that sample playback cannot replicate—velocity doesn't just change volume, it changes timbre, attack character, and resonance behavior, exactly like a real instrument. Not mapping velocity to physical parameters (bow speed, strike force, breath pressure) means your performance sounds mechanical and uniform. <strong>Map expression inputs to the model's physical parameters</strong>: velocity to excitation force, aftertouch to bow pressure or vibrato depth. The resulting performance feels alive in a way no sample library can match.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Switching Models Before Mastering One</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Physical modeling instruments are deep—Pianoteq alone has dozens of acoustic parameters per instrument. Jumping between physical model synths before understanding any of them means perpetually staying on the surface. <strong>Learn one physical model instrument completely</strong>: understand every parameter's acoustic meaning, how they interact, and what sounds are possible. This depth transfers directly to every other physical model you encounter—the physics are the same even if the interface differs.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Instruments that respond like real ones</strong> — Physical modeling creates instruments that feel and respond like acoustic originals: touch harder, get brighter tone; touch softer, get a more delicate attack. This level of expressiveness is unavailable in sample libraries and wavetable synthesis, making physical models uniquely suited to emotive, nuanced performance.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Sounds impossible in the physical world</strong> — Physical models can simulate instruments that cannot physically exist: a piano with glass strings, a guitar the size of a concert hall, a woodwind instrument with negative air column length. These impossible instruments create textures unavailable anywhere else and have become signature sounds in film scoring and experimental music.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Vintage authenticity without the cost</strong> — Component-level analog circuit modeling (Arturia, U-He) captures the nonlinear behavior, subtle harmonic distortion, and thermal drift of vintage synthesizers that cost thousands on the used market. A modeled Minimoog or Juno-60 at a fraction of the price delivers the warmth and character that defined multiple decades of music production.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Acoustic physics as a creative tool</strong> — Understanding physical modeling principles deepens your grasp of how all acoustic instruments work—why a cello sounds different bowed versus plucked, why a room's size affects resonance. This acoustic physics knowledge improves your approach to recording real instruments, designing synthesized sounds, and making mixing decisions across your entire production practice.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
