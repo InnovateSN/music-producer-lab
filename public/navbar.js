@@ -73,7 +73,7 @@
                 Sign In
               </button>
               <button onclick="window.MplAuth ? window.MplAuth.signUp() : window.location.href='/signup.html'" class="btn btn-primary btn-sm">
-                Get Started Free
+                Start Free Trial
               </button>
             </div>
 
