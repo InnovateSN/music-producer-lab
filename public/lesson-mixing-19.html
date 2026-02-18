@@ -28,6 +28,77 @@
       </div>
     </section>
 
+    <!-- EDUCATIONAL CONTENT -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+        <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Stem Mixing & Bus Processing: Group Control</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          <strong>Stem mixing</strong> groups related tracks onto dedicated bus channels—a drum bus, bass bus, synth bus, vocal bus—and processes them together before hitting the master. Instead of tweaking 12 individual drum tracks, you process the entire kit as one unit. <strong>Bus compression</strong> glues grouped elements together, giving them a cohesive identity. This is the architecture that separates bedroom mixes from professional ones: it's faster, more musical, and creates a consistent, polished sound. Stems also enable flexible delivery for <a href="glossary.html#stem" style="color: var(--accent-cyan); text-decoration: underline;">stem mastering</a> and sync licensing.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">Stem Architecture</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Standard stem groupings: <strong>Drum Bus</strong> (kick, snare, hats, toms, cymbals), <strong>Bass Bus</strong> (bass guitar, 808, sub layers), <strong>Synth/Keys Bus</strong> (pads, leads, chords), <strong>Vocal Bus</strong> (lead, harmonies, ad-libs), <strong>FX Bus</strong> (risers, impacts, transitions). Route all channel outputs to their stem bus, then stem buses to master.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Bus Compression (Glue)</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Glue compression</strong> on stems: 2:1 to 4:1 ratio, low threshold (-10 to -20 dB), 2-4ms attack (let transients through), 80-150ms auto release. Gain reduction: 2-4 dB maximum. This cements individual tracks into a unified group sound. SSL G-Bus, API 2500, and UAD's bus compressors are industry standards for this technique.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Bus EQ & Saturation</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Bus-level EQ shapes the group character: high-pass drum bus at 30 Hz (remove sub rumble), shelf-boost vocal bus at 10 kHz (+1-2 dB for presence). Subtle bus saturation (tape or analog) adds harmonic glue across the group—set saturation input to add just 0.5-1 dB of harmonics without obvious distortion. Processing groups rather than individual tracks gives consistent, coherent tonality.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Stem Delivery Formats</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Stem mastering:</strong> Deliver 4-8 stems instead of a single stereo mix—mastering engineer has more control. <strong>Sync licensing:</strong> TV/film supervisors often request stems to remix for picture. <strong>Live performance:</strong> Stems play back from Ableton or QLab, allowing live manipulation. Always export stems with shared start point (bar 1) and same sample rate/bit depth as the project.</p>
+          </div>
+        </div>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Over-Compressing the Bus After Individual Compression</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">If you've already compressed individual tracks heavily, adding aggressive bus compression stacks gain reduction and kills transients entirely. Bus compression should be <strong>light glue, not heavy limiting</strong>. 2-3 dB gain reduction maximum on most buses. If you need more control, reduce compression on individual tracks first, then apply it at bus level—don't double-compress aggressively at both stages simultaneously.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Mixing to the Stem Bus Output Instead of the Master</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Always monitor from the <strong>master output</strong>, not individual stem buses. Bus processing changes the tonality and dynamics of each stem—what sounds balanced at the stem level may be unbalanced when all stems sum at the master. Build your mix by listening to the full sum constantly, only soloing stems to diagnose specific problems. Your ears must hear the whole picture.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Bouncing Stems Destructively Without Saving the Session</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Always export stems from a <strong>saved, labeled, backed-up session</strong> before bouncing. Stems exported incorrectly (wrong level, clipping, missing tracks) cannot be easily regenerated if the session is lost or overwritten. Save the full mix session separately from any stem-export version. Label every stem clearly (e.g., "MyTrack_Drums_Stem_24bit.wav") — unlabeled stems are useless when delivered to a mastering engineer months later.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Cohesion and glue</strong> — Bus compression makes individual elements sound like they were recorded in the same room, on the same day. It's the secret weapon behind why professional mixes sound like one organic whole, not a collection of separate tracks.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Faster workflow</strong> — Adjusting one drum bus fader instead of 12 individual tracks saves hours. Bus structure lets you make large, intentional decisions quickly without micro-managing every element—essential for professionals working fast.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Professional deliverables</strong> — Sync licensing, TV/film placement, and stem mastering all require proper stem exports. Knowing how to export clean, labeled stems on demand makes you immediately more professional and opens income streams that single-file deliveries cannot.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Mastering headroom</strong> — Stem mastering gives engineers significantly more control than a stereo master. Providing proper stems to a mastering engineer means they can adjust drum vs. vocal balance without affecting the other—a luxury impossible with a flat stereo file.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="exercise-section" class="exercise-section">
       <h2 class="section-title">Exercise</h2>
       <div class="exercise-card">

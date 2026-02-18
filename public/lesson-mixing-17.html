@@ -28,6 +28,77 @@
       </div>
     </section>
 
+    <!-- EDUCATIONAL CONTENT -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+        <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Mid-Side Processing: Surgical Stereo Control</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          <strong>Mid-Side (M/S) processing</strong> splits a stereo signal into two independent components: the <strong>Mid</strong> (center information: kick, bass, lead vocal) and the <strong>Side</strong> (stereo information: guitars, pads, ambience). By processing each independently, you gain surgical control over the <a href="glossary.html#stereo-field" style="color: var(--accent-cyan); text-decoration: underline;">stereo field</a>—tightening the center without affecting width, widening the sides without muddying the center, and fixing mono compatibility issues that normal stereo processing can't touch. M/S is a mastering standard and an increasingly essential mixing technique.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">M/S Fundamentals</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;"><strong>Mid = Left + Right</strong> (sum — mono center information). <strong>Side = Left - Right</strong> (difference — stereo information). After processing, it decodes back to stereo. Mid and Side are mathematically independent, allowing separate processing of center vs. stereo content without affecting each other.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">M/S EQ Moves</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Classic M/S EQ: <strong>High-pass Mid at 30-40 Hz</strong> (remove sub rumble from center). <strong>High-pass Side at 200-300 Hz</strong> (tighten stereo low-end). <strong>Boost Side 10-12 kHz</strong> (+2 to +4dB for air and width). <strong>Cut Mid 200-400 Hz</strong> (-1 to -3dB if center is muddy). All of this without touching the other component.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">M/S Compression</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Center elements (kick, bass, vocal) need consistent dynamics: compress Mid harder (3:1 to 6:1, moderate attack). Stereo content (pads, guitars) benefits from lighter compression: compress Side at 2:1 to 4:1 with slower attack. This maintains transient clarity in the stereo field while controlling center dynamics.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Safe Stereo Widening</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Keep lows narrow/mono (0-20% width at 20-150 Hz), widen mids moderately (40-60% at 150 Hz-5 kHz), widen highs aggressively (70-100% at 5-20 kHz). Always test mono compatibility after widening: sum to mono and listen for elements that disappear or thin out — that's phase cancellation requiring correction.</p>
+          </div>
+        </div>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Not Checking Mono Compatibility</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Every stereo widening technique—Haas delay, M/S side boost, stereo synthesizers—can cause phase cancellation in mono. Many listeners use mono speakers (phones, smart speakers, earbuds with shared sub). <strong>Always check mono</strong> after any stereo processing. If elements disappear or thin out, reduce the widening or fix the phase before declaring the mix complete.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Over-Widening the Stereo Image</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">A super-wide mix sounds exciting in the sweet spot of a studio but collapses in mono and sounds hollow on small speakers. Professional mixes have controlled, strategic width—not maximum width everywhere. <strong>Narrow the low frequencies completely</strong> (sub and bass must be mono), keep mids moderate, and reserve maximum width for high-frequency elements like air and shimmer.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Applying M/S Without Soloing Mid and Side</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">M/S EQ and compression should be set with Mid and Side soloed separately before listening to the full stereo result. Listen to Mid solo: identify problems in center (muddiness, harshness, level issues). Listen to Side solo: identify problems in stereo field (imbalance, noise, harsh highs). Process each, then listen full to verify the combination achieves what you intended.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Surgical precision</strong> — Fix muddy center without narrowing the mix. Add air to the sides without brightening the vocal. M/S gives you two independent channels where standard stereo gives you one blend.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Mastering-grade technique</strong> — M/S is used on virtually every professional mastering chain. Learning it in the mix stage gives you mastering-level control without needing a separate mastering session for stereo adjustments.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Mix translation</strong> — Controlling center vs. sides independently ensures your mix translates from studio monitors to earbuds, club systems, and mono speakers without losing critical elements.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Fix problem mixes</strong> — Harsh vocal in the center? Too much low-end in the stereo field? M/S lets you fix these problems without EQ-ing everything else in the mix. It's the most surgical problem-solving tool available to mixers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="exercise-section" class="exercise-section">
       <h2 class="section-title">Exercise</h2>
       <div class="exercise-card">

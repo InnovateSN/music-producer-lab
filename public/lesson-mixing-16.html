@@ -28,6 +28,77 @@
       </div>
     </section>
 
+    <!-- EDUCATIONAL CONTENT -->
+    <section style="margin-top: var(--space-3xl); margin-bottom: var(--space-3xl);">
+      <div class="card" style="padding: var(--space-2xl); background: var(--bg-card); border: 1px solid var(--border-subtle);">
+        <div class="section-eyebrow" style="margin-bottom: var(--space-md);">What You'll Learn</div>
+        <h2 style="font-size: 2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Parallel Processing: Power Without Sacrifice</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          <a href="glossary.html#parallel-compression" style="color: var(--accent-cyan); text-decoration: underline;">Parallel processing</a> blends a heavily processed copy of a signal with the original. Instead of over-compressing or saturating a track and losing its punch, you send a copy to a separate bus, process it aggressively, and blend it back. Result: <strong>maximum power and character without sacrificing the dynamics and transients</strong> that make music feel alive. This technique—popularized as "New York compression" on drums—appears on virtually every professional mix across all genres.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(255, 90, 61, 0.1), rgba(255, 178, 138, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(255, 90, 61, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-orange); margin: 0 0 0.5rem 0;">New York Compression</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Send drums to a parallel bus with aggressive compression (8:1 to 20:1 ratio, low threshold, 10-20dB gain reduction). Blend at -6 to -12dB below the original. Clean signal keeps the punch; compressed signal adds sustain and power. Result: drums that hit hard and feel huge simultaneously.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(95, 77, 255, 0.1), rgba(138, 155, 255, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(95, 77, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-purple); margin: 0 0 0.5rem 0;">Parallel Saturation</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Send a copy to a saturation bus (tape, tube, analog, or distortion), high-pass filter the saturated return at 80-150 Hz to avoid low-end buildup, blend at 10-30%. Adds harmonic richness and warmth without destroying the clean signal's clarity and transient response.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(184, 255, 221, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-cyan); margin: 0 0 0.5rem 0;">Parallel Effects</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Any effect can go parallel: reverb (100% wet on send bus, control independently), delay (100% wet, filtered and compressed), distortion (blend for grit). Parallel reverb gives you independent control—EQ it, compress it, automate the send—impossible with insert reverb workflows.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: linear-gradient(135deg, rgba(179, 102, 255, 0.1), rgba(255, 102, 178, 0.1)); border-radius: var(--radius-md); border: 1px solid rgba(179, 102, 255, 0.2);">
+            <h3 style="font-size: 1.25rem; color: var(--accent-magenta); margin: 0 0 0.5rem 0;">Blending & Phase Check</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Start parallel bus at -∞, bring up slowly—sweet spot is 20-50% for compression, 10-30% for saturation. Always check mono compatibility: if elements thin out in mono, you have phase cancellation. Fix with polarity flip or 1-5ms delay on the parallel bus.</p>
+          </div>
+        </div>
+        <!-- COMMON MISTAKES -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+          </h3>
+          <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Blending Too Much Parallel Signal</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">The parallel signal should enhance, not dominate. The hallmark of great parallel processing is that removing it sounds worse, but adding it back sounds natural—listeners feel the extra power without noticing the technique. When the blend is correct, the processing is effectively invisible.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Ignoring Phase Issues</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Some analog-modeled plugins introduce phase shifts that cause cancellation in mono. Always check <a href="glossary.html#mono-compatibility" style="color: var(--accent-cyan); text-decoration: underline;">mono compatibility</a> with a utility plugin after setting up any parallel chain. Elements thinning out in mono = phase problem that needs fixing before increasing blend.</p>
+          </div>
+          <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Using the Same Settings on Everything</h4>
+            <p style="color: var(--text-secondary); line-height: 1.7;">Parallel compression on drums needs different settings than on vocals. Drums need fast attack/release; vocals need slower, more musical settings. Treat each parallel chain as its own creative decision based on what the element needs—there is no universal parallel preset that works across sources.</p>
+          </div>
+        </div>
+        <!-- WHY THIS MATTERS -->
+        <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+            <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Power without sacrifice</strong> — Parallel processing solves the fundamental dilemma: heavy compression kills dynamics, no compression sounds weak. Parallel gives you both simultaneously without compromise.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>The New York sound</strong> — Parallel compression on drums defines New York-style mixing. It's why professional drums feel massive while still hitting hard with every transient intact and audible.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Independent control</strong> — Parallel buses give you levers that insert plugins don't: automate blend level, EQ only the processed signal, compress the reverb return—all impossible with traditional insert workflows.</p>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+              <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Universal technique</strong> — Parallel processing appears in virtually every professional mix across hip-hop, EDM, rock, pop, and R&amp;B. Learning it now puts a pro-level tool in your mixing arsenal permanently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="exercise-section" class="exercise-section">
       <h2 class="section-title">Exercise</h2>
       <div class="exercise-card">

@@ -62,14 +62,47 @@
               </div>
             </div>
 
-            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Common Pitch Correction Tools</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-                <li><strong>Auto-Tune:</strong> Industry standard, real-time and graphical modes</li>
-                <li><strong>Melodyne:</strong> Most powerful manual editing, DNA for polyphonic</li>
-                <li><strong>Waves Tune:</strong> Affordable, good for transparent correction</li>
-                <li><strong>Stock plugins:</strong> Logic Flex Pitch, Ableton's tuning—free and capable</li>
-              </ul>
+            <!-- COMMON MISTAKES -->
+            <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Setting the Wrong Key or Scale</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Pitch correction pulls every note toward the nearest scale tone in the key you specify. If you set C major when the song is in C minor, every minor 3rd and 7th gets yanked up to the major equivalent—creating noticeably wrong notes that sound worse than no tuning at all. <strong>Always verify the song's key and mode</strong> before enabling pitch correction, and double-check the scale setting matches the actual harmony.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Tuning in Solo Instead of in Context</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">A pitch correction that sounds transparent in solo can sound obviously processed in the full mix, and vice versa. Some vibrato sounds natural alone but artificial after heavy correction in a dense arrangement. <strong>Always set retune speed and correction amount while listening to the full mix.</strong> The question isn't "does this sound natural in solo?" but "does this sit correctly in the song?"</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Using Auto Mode When Manual Is Needed</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Auto pitch correction is fast but can't distinguish intentional blue notes from accidents, and it processes vibrato globally. For important lead vocals, <strong>graphical/manual mode</strong> lets you fix specific notes individually, preserve vibrato deliberately, and make precise decisions per pitch event. The extra time investment on a lead vocal is always worth it for professional results.</p>
+              </div>
+            </div>
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Universal standard in modern production</strong> — Transparent pitch correction appears on virtually every commercial vocal regardless of genre. Understanding it means working at the same standard as professional studios, not fighting a tool you don't understand.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Artistic control, not compromise</strong> — Knowing how to dial in transparent correction versus hard tuning means using pitch tools as a creative choice rather than a crutch. Both have their place; knowing which serves the artist is the professional skill.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Harmony production workflow</strong> — The same pitch correction tools used on lead vocals are the foundation of harmony editing. In Melodyne you can manipulate individual pitches across a polyphonic recording—the fundamentals transfer directly from lead vocal work.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Career credibility</strong> — Clients expect their vocals to be tuned correctly. Delivering a well-tuned, transparent result builds the trust that creates long-term working relationships and repeat bookings—the foundation of a sustainable career.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

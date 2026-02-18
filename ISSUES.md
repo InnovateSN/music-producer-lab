@@ -1,7 +1,77 @@
 # Music Producer Lab - Issue Tracker
 
-**Last Updated**: February 10, 2026
-**QA Testing Session**: In Progress (Session 2)
+**Last Updated**: February 17, 2026
+**QA Testing Session**: In Progress (Session 3)
+
+---
+
+## Project Status (February 17, 2026)
+
+| Area | Completamento | Note |
+|------|--------------|-------|
+| Infrastruttura Next.js + Auth + DB | 100% | Stabile, deployato su Vercel |
+| Audio Engine (sequencer.js) | 95% | Problemi Safari e mobile aperti |
+| Teacher Dashboard | 90% | Analytics dashboard mancante |
+| Contenuto lezioni | 38% (66/174) | Issue #003 aperto |
+| Test (Jest + Playwright) | 0% | Configurati ma nessun test scritto |
+| Pagamenti (Stripe) | 0% | Non iniziato |
+| Mobile/Touch UX | 30% | Sequencer non ottimizzato |
+
+---
+
+## TODO List (Prioritizzata)
+
+### P0 — Bloccanti (da fare subito)
+
+- [ ] **TODO-01**: `npm install` — node_modules mancanti, blocca sviluppo locale
+- [ ] **TODO-02**: Rimuovere `prisma` e `@prisma/client` da `package.json` (legacy non usato, rompe build script con `prisma generate`)
+
+### P1 — Alta priorita (Contenuto lezioni)
+
+- [ ] **TODO-03**: Completare 8 lezioni Theory (0/8 complete) — template da 98-102 linee → target 250+ linee
+- [ ] **TODO-04**: Completare 19 lezioni Mixing (1/20 complete) — 91 linee di template per quasi tutti
+- [ ] **TODO-05**: Completare 15 lezioni Vocals (0/15 complete) — 91-138 linee di template
+- [ ] **TODO-06**: Completare ~17 lezioni Sound Design (parziale) — alcune a 91 linee
+- [ ] **TODO-07**: Completare ~15 lezioni Arrangement (parziale) — 164-221 linee, template-heavy
+- [ ] **TODO-08**: Completare ~7 lezioni Mastering (parziale) — misto completo/template
+- [ ] **#003**: 150+ lezioni sono bare template (in corso — vedi dettaglio sotto)
+
+### P2 — Alta priorita (Monetizzazione)
+
+- [ ] **TODO-09**: Implementare integrazione Stripe (checkout, webhooks, update tabella `invoices`)
+  - Variabili env: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+  - Route da creare: `/api/checkout/`, `/api/webhooks/stripe/`
+  - Ref architettura: `docs/BACKEND_FUTURE.md`
+- [ ] **TODO-10**: Content gating Free vs Pro (dipende da TODO-09)
+  - File coinvolti: `lesson-engine.js`, `curriculum.js`, config files
+  - Definire quali lezioni sono Free e quali Pro
+
+### P3 — Media priorita (Qualita tecnica)
+
+- [ ] **TODO-11**: Scrivere test Jest — auth flow, API routes, lesson config validation, sequencer unit tests
+- [ ] **TODO-12**: Scrivere test E2E Playwright — lesson playthrough, teacher dashboard, signup→login→lesson
+- [ ] **TODO-13**: Ottimizzare Web Audio per Safari 17+ — AudioContext resume policy, prefix webkit
+  - File critico: `/public/sequencer.js` (2037 linee, trattare con cura)
+- [ ] **TODO-14**: Ottimizzare Mobile/Touch UX — touch event handlers, tap target size, test iOS/Android
+  - File: `/public/sequencer.js`, `/public/styles.css`, lesson HTML
+
+### P4 — Bassa priorita (Miglioramenti)
+
+- [ ] **TODO-15**: Audit e cleanup glossary links — scan `href="glossary.html#"` senza anchor valido
+- [ ] **TODO-16**: Analytics Dashboard per Teacher/Admin — tabella `analytics_events` pronta, manca la UI
+  - File da creare: `/app/teacher/analytics/page.tsx`
+- [ ] **TODO-17**: Social sharing per pattern sequencer — share link generation
+
+### Metriche di successo
+
+- [ ] `npm run build` passa senza errori (attualmente bloccato da node_modules mancanti)
+- [ ] 174/174 lezioni con contenuto completo (QUALITY_CHECKLIST.md rispettata)
+- [ ] Stripe checkout funzionante in staging
+- [ ] Test coverage > 60% per API routes
+- [ ] Lighthouse score mobile > 80 su campione lezioni
+- [ ] Sequencer funzionante su Safari 17 + Chrome + Firefox
+
+---
 
 ---
 

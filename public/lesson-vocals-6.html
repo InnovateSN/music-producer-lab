@@ -62,14 +62,47 @@
               </div>
             </div>
 
-            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 102, 255, 0.1)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.2);">
-              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-md); color: var(--text-primary);">Effects Best Practices</h3>
-              <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-lg); margin: 0;">
-                <li><strong>EQ your reverb:</strong> High-pass reverb to avoid muddy low end</li>
-                <li><strong>Automate delay:</strong> Throw delay on specific words for emphasis</li>
-                <li><strong>Less is more:</strong> Dry vocals often sit better in dense mixes</li>
-                <li><strong>Check in mono:</strong> Stereo effects can disappear in mono</li>
-              </ul>
+            <!-- COMMON MISTAKES -->
+            <div style="margin-top: var(--space-2xl); margin-bottom: var(--space-2xl);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/mplalert.png" alt="Warning" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Common Mistakes
+              </h3>
+              <div style="padding: var(--space-lg); background: rgba(255, 90, 61, 0.05); border-left: 4px solid var(--accent-orange); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-orange); margin-bottom: var(--space-sm);">Too Much Reverb — Washing Out Intelligibility</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Drowning vocals in reverb is the most common vocal processing mistake. Heavy reverb pushes the vocal back in the mix, reduces lyric intelligibility, and muddies the low-mids. The professional approach is a <strong>short, EQ'd reverb send</strong> (high-passed above 200 Hz, bright-cut above 8 kHz) at low send levels. The dry vocal should dominate; reverb provides space, not volume.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(95, 77, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+                <h4 style="color: var(--accent-purple); margin-bottom: var(--space-sm);">Not EQ-ing the Reverb and Delay Returns</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">Un-EQ'd reverb returns add low-end buildup and harsh high-frequency content to an otherwise clean mix. Always <strong>high-pass your reverb return at 200-300 Hz</strong> to prevent muddy accumulation in the lows. Add a high shelf cut around 8-10 kHz to tame harshness. EQ'd effects blend naturally; un-EQ'd effects fight with every other element in the mix.</p>
+              </div>
+              <div style="padding: var(--space-lg); background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md);">
+                <h4 style="color: var(--accent-cyan); margin-bottom: var(--space-sm);">Using the Same Reverb on Everything</h4>
+                <p style="color: var(--text-secondary); line-height: 1.7;">One reverb on every vocal element creates a flat, undifferentiated soundstage with no depth. Professional mixes use <strong>multiple reverbs with different pre-delays and decay times</strong>: a short room (10-20ms pre-delay, 0.6s decay) for presence, a long hall (60-80ms pre-delay, 2-3s decay) for ambience and big moments. Different reverbs place elements at different perceived distances from the listener.</p>
+              </div>
+            </div>
+            <!-- WHY THIS MATTERS -->
+            <div style="padding: var(--space-xl); background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 102, 255, 0.08)); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.15);">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                <img src="images/idea.png" alt="Why" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;"> Why This Matters
+              </h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Effects define genre identity</strong> — The specific reverb and delay choices on a vocal immediately identify the genre and era. The plate reverb on a classic rock vocal, the short room on a modern pop vocal, the slap delay on a country vocal—all are signature sounds built from effects choices.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Reverb creates depth and dimension</strong> — Without reverb, a vocal sounds dry and two-dimensional. Properly designed reverb creates the illusion of a three-dimensional space and places the singer inside an environment—whether intimate or stadium-scale.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Delay creates rhythm and energy</strong> — A well-timed delay (synced to tempo) adds rhythmic movement to a vocal without the density of reverb. Automated delay throws on specific words create emphasis and excitement. It's one of the most musical vocal tools available.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-sm);">
+                  <img src="images/check_green.png" alt="Benefit" style="width: 1.2rem; height: 1.2rem; margin-top: 4px; flex-shrink: 0;">
+                  <p style="color: var(--text-secondary); line-height: 1.6;"><strong>Independent control via sends</strong> — Using send effects rather than insert effects gives you independent control: EQ, compress, and automate the reverb return separately from the dry vocal. This flexibility is impossible with insert-based effects and is the professional standard.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
