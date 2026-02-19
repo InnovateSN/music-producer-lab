@@ -78,46 +78,6 @@
       "issue": "Missing theory.sections block"
     },
     {
-      "file": "lesson-drums-2.config.js",
-      "issue": "Missing theory.sections block"
-    },
-    {
-      "file": "lesson-drums-2.config.js",
-      "issue": "Missing learningObjectives block"
-    },
-    {
-      "file": "lesson-drums-3.config.js",
-      "issue": "Missing theory.sections block"
-    },
-    {
-      "file": "lesson-drums-3.config.js",
-      "issue": "Missing learningObjectives block"
-    },
-    {
-      "file": "lesson-drums-4.config.js",
-      "issue": "Missing theory.sections block"
-    },
-    {
-      "file": "lesson-drums-4.config.js",
-      "issue": "Missing learningObjectives block"
-    },
-    {
-      "file": "lesson-drums-5.config.js",
-      "issue": "Missing theory.sections block"
-    },
-    {
-      "file": "lesson-drums-5.config.js",
-      "issue": "Missing learningObjectives block"
-    },
-    {
-      "file": "lesson-drums-6.config.js",
-      "issue": "Missing theory.sections block"
-    },
-    {
-      "file": "lesson-drums-6.config.js",
-      "issue": "Missing learningObjectives block"
-    },
-    {
       "file": "lesson-drums-7.config.js",
       "issue": "Missing theory.sections block"
     },

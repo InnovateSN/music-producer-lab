@@ -1,6 +1,6 @@
 # DIARIO
 
-**Data:** 2026-02-19 00:41:21 UTC
+**Data:** 2026-02-19 01:06:04 UTC
 **Branch corrente:** `work`
 
 ## Stato attuale
@@ -15,12 +15,18 @@
 - È presente invece materiale su **video demo con AI voiceover** (`sales/demo-video-script.md`) e uno script TTS (`scripts/generate_audio.py`).
 
 ## Priorità consigliate per la prossima AI
-1. **Ridurre warning crosscheck** partendo da:
+1. **Continuare riduzione warning crosscheck** partendo da:
    - lezioni con placeholder espliciti,
-   - lezioni senza `theory.sections`,
-   - lezioni senza `learningObjectives`.
+   - blocco Harmony (mancano `theory.sections` e `learningObjectives`),
+   - blocco Bass (mancano `learningObjectives`).
 2. Integrare `content:crosscheck:strict` in CI quando il numero warning scende a un livello gestibile.
 3. Se richiesto dal product owner: preparare uno **starter Remotion** (composizione base + sync voiceover AI).
+
+
+## Aggiornamenti eseguiti in questa sessione
+- Eseguito `node scripts/content-source-crosscheck.js` per rigenerare il report QA corrente.
+- Ridotti warning su modulo Drums aggiungendo `learningObjectives` e `theory.sections` alle lezioni 2-6.
+- Report aggiornato in `docs/qa/content-source-crosscheck-report.json` (warning totali da 72 a 62).
 
 ## Definizione operativa di "fatto" per il prossimo step
 - Warning crosscheck ridotti in modo misurabile.
