@@ -202,6 +202,21 @@ export const lessonConfig = {
     }
   ],
 
+
+  theory: {
+    sections: [
+      {
+        title: "Core Theory: Drums 7",
+        content: `
+This lesson focuses on practical workflow and musical intent.
+Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+
+When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================

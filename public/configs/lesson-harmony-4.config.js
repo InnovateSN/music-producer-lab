@@ -117,6 +117,28 @@ export const lessonConfig = {
     sequencerType: "piano-roll"
   },
 
+
+  learningObjectives: [
+    "Understand core concepts in harmony 4",
+    "Program the target pattern with timing accuracy",
+    "Apply this pattern in a full track context"
+  ],
+
+
+  theory: {
+    sections: [
+      {
+        title: "Core Theory: Harmony 4",
+        content: `
+This lesson focuses on practical workflow and musical intent.
+Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+
+When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================
