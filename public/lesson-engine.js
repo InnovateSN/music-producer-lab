@@ -469,8 +469,14 @@ function setupNavigation(config) {
   if (nextBtn) {
     if (nextLessonUrl) {
       nextBtn.onclick = () => window.location.href = nextLessonUrl;
-      nextBtn.disabled = false;
       nextBtn.style.display = 'inline-flex';
+
+      // Keep locked until current lesson is completed
+      const lessonKey = config?.lessonKey;
+      const isCompleted = lessonKey ? localStorage.getItem(lessonKey) === 'completed' : false;
+      nextBtn.disabled = !isCompleted;
+      nextBtn.style.opacity = isCompleted ? '1' : '0.6';
+      nextBtn.title = isCompleted ? '' : 'Complete exercise to unlock';
     } else {
       // Hide next button if no next lesson
       const wrapper = document.getElementById('mpl-seq-next-lesson-wrap');

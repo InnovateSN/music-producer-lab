@@ -1,4 +1,6 @@
 import { getServerSession } from 'next-auth';
+import { cookies } from 'next/headers';
+import { jwtVerify } from 'jose';
 import { authOptions } from './auth';
 import db, { query } from './db';
 
@@ -8,12 +10,30 @@ import db, { query } from './db';
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) {
+  let userId = session?.user?.id || null;
+
+  // Fallback for custom auth flow using mpl-session cookie
+  if (!userId) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('mpl-session')?.value;
+
+    if (token && process.env.NEXTAUTH_SECRET) {
+      try {
+        const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+        const { payload } = await jwtVerify(token, secret);
+        userId = typeof payload.id === 'string' ? payload.id : null;
+      } catch {
+        userId = null;
+      }
+    }
+  }
+
+  if (!userId) {
     return null;
   }
 
   // Get user from database
-  const dbUser = await db.getUserById(session.user.id);
+  const dbUser = await db.getUserById(userId);
 
   if (dbUser) {
     // Update last login

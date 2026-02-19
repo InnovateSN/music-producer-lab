@@ -217,6 +217,10 @@
       opacity: 0.6;
       pointer-events: none;
     }
+
+    .lesson-card.locked {
+      opacity: 0.75;
+    }
     
     .lesson-card.coming-soon::after {
       content: "Coming Soon";
@@ -544,10 +548,20 @@
       return wrapper;
     }
 
-    function createLessonCard(lesson, index) {
+    function isLessonCompleted(lessonKey) {
+      if (!lessonKey) return false;
+      try {
+        return localStorage.getItem(lessonKey) === 'completed';
+      } catch {
+        return false;
+      }
+    }
+
+    function createLessonCard(lesson, index, previousLesson) {
       const isComingSoon = lesson.status === 'coming-soon';
+      const isLocked = Boolean(previousLesson?.lessonKey) && !isLessonCompleted(previousLesson.lessonKey);
       const article = document.createElement('article');
-      article.className = `lesson-card${isComingSoon ? ' coming-soon' : ''}`;
+      article.className = `lesson-card${isComingSoon ? ' coming-soon' : ''}${isLocked ? ' locked' : ''}`;
 
       const header = document.createElement('div');
       header.className = 'lesson-card-header';
@@ -582,12 +596,16 @@
       if (lesson.level) meta.appendChild(createMetaItem('level', lesson.level));
       article.appendChild(meta);
 
-      const cta = document.createElement(isComingSoon ? 'span' : 'a');
+      const ctaTag = (isComingSoon || isLocked) ? 'span' : 'a';
+      const cta = document.createElement(ctaTag);
       cta.className = 'lesson-cta';
-      cta.textContent = isComingSoon ? 'Coming Soon' : 'Start Lab';
-      if (!isComingSoon && lesson.pagePath) {
+      cta.textContent = isComingSoon ? 'Coming Soon' : (isLocked ? 'Locked' : 'Start Lab');
+      if (!isComingSoon && !isLocked && lesson.pagePath) {
         cta.href = lesson.pagePath;
         cta.innerHTML += '<img src="images/arrowright.png" alt="→" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-left: 8px;">';
+      }
+      if (isLocked && previousLesson?.title) {
+        cta.title = `Complete previous lesson first: ${previousLesson.title}`;
       }
       article.appendChild(cta);
 
@@ -718,7 +736,8 @@
         const grid = document.createElement('div');
         grid.className = 'lessons-grid';
         (category.lessons || []).forEach((lesson, index) => {
-          grid.appendChild(createLessonCard(lesson, index));
+          const previousLesson = index > 0 ? category.lessons[index - 1] : null;
+          grid.appendChild(createLessonCard(lesson, index, previousLesson));
         });
         container.appendChild(grid);
 

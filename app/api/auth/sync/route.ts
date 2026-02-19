@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const originError = validateOrigin(request);
   if (originError) return originError;
   try {
-    // getCurrentUser() automatically creates the user in DB if they don't exist
+    // getCurrentUser() resolves the authenticated user from session/cookie and DB
     const user = await getCurrentUser();
 
     if (!user) {
