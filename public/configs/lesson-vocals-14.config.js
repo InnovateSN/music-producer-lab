@@ -189,5 +189,27 @@ Listen to all takes and select the best moments from each:
     "Understand vocal tuning philosophy: when to tune, retune speeds, preserving natural expression",
     "Apply timing correction and editing techniques: breath control, crossfades, de-essing",
     "Design multi-layer vocal stacks: lead, double, harmony, ad-libs, and vocal pads for dynamic arrangements"
-  ]
+  ],
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

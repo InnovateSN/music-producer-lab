@@ -54,14 +54,15 @@ Contains:
 
 
 ### 📚 [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
-**Policy for aligning lesson/informational content to AES, Ableton, and Wikipedia.**
+**Canonical content-source policy for lessons and informational content.**
 
 Contains:
-- Canonical source set and intended usage
-- Centralized implementation approach
-- Authoring and review checklist
+- Approved references (AES, Ableton, Wikipedia)
+- Lesson/source metadata standard (`sourceReferences`)
+- Editorial rules for technical accuracy and historical context
+- Verification checklist before merge
 
-**Use this for:** Consistent educational-source quality across lessons.
+**Use this for:** Authoring or reviewing educational content with consistent and auditable references.
 
 ---
 
@@ -129,7 +130,7 @@ The [`archive/`](./archive/) directory contains previous reports and analysis th
 - **Create a new lesson**
   → Use [LESSON-SYSTEM-README.md](./LESSON-SYSTEM-README.md)
 
-- **Align lesson content to canonical references**
+- **Align lesson content to approved references**
   → Read [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
 
 - **Understand the project history**
