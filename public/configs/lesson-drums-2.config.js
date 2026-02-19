@@ -78,6 +78,27 @@ export const lessonConfig = {
     enableExport: false
   },
 
+  learningObjectives: [
+    "Understand the role of the backbeat in modern grooves",
+    "Program snare hits on beats 2 and 4 in a 16-step sequencer",
+    "Recognize kick/snare interplay as groove foundation"
+  ],
+
+  theory: {
+    sections: [
+      {
+        title: "Backbeat Fundamentals",
+        content: `
+The backbeat places snare accents on beats 2 and 4, creating tension and release against the kick pulse.
+This pattern is central to pop, rock, hip-hop, and electronic production because it gives listeners a stable
+reference point for head nodding and dance movement.
+
+In a 16-step grid, beats 2 and 4 correspond to steps 5 and 13 (1-indexed), or 4 and 12 (0-indexed).
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================
