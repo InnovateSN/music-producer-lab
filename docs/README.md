@@ -52,6 +52,19 @@ Contains:
 
 ---
 
+
+### 📚 [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
+**Policy for aligning lesson/informational content to AES, Ableton, and Wikipedia.**
+
+Contains:
+- Canonical source set and intended usage
+- Centralized implementation approach
+- Authoring and review checklist
+
+**Use this for:** Consistent educational-source quality across lessons.
+
+---
+
 ## Historical Documentation (Archive)
 
 The [`archive/`](./archive/) directory contains previous reports and analysis that provide historical context but may be outdated.
@@ -115,6 +128,9 @@ The [`archive/`](./archive/) directory contains previous reports and analysis th
 
 - **Create a new lesson**
   → Use [LESSON-SYSTEM-README.md](./LESSON-SYSTEM-README.md)
+
+- **Align lesson content to canonical references**
+  → Read [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
 
 - **Understand the project history**
   → Browse [`archive/`](./archive/) directory
