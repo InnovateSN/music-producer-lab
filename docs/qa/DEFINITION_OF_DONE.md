@@ -1,7 +1,7 @@
 # Definition of Done
 
-**Version**: 1.0
-**Last Updated**: 2026-01-21
+**Version**: 1.1
+**Last Updated**: 2026-02-19
 
 ## Overview
 
@@ -117,6 +117,14 @@ This document defines what "done" means for Music Producer Lab. A feature or PR 
 - [ ] User-facing documentation updated (if needed)
 - [ ] Help text added for new features (if needed)
 - [ ] Changelog entry added (if user-facing change)
+
+#### Lesson Content Quality (if touching `public/configs/lesson-*.config.js`)
+
+- [ ] `reviewMetadata` updated with `lastReviewed` and `reviewVersion`
+- [ ] `sourceReferences` present and aligned to AES / Ableton / Wikipedia policy
+- [ ] `assessmentRubric` present with measurable KPIs (accuracy, timing, mix clarity, arrangement flow)
+- [ ] `npm run content:crosscheck` executed and warnings reviewed
+
 
 #### Technical Documentation
 
