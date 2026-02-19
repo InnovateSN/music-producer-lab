@@ -13,6 +13,7 @@
 import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
 import { initPianoRollSequencer } from './piano-roll-sequencer.js';
 import { curriculum as defaultCurriculum, getLessonNavigation } from './curriculum.js';
+import { mergeSourceReferences } from './configs/source-references.js';
 
 // Only log in development
 const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -42,7 +43,8 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
     ...config,
     overviewUrl: navigation.overviewUrl || config.overviewUrl || 'labs.html',
     prevLessonUrl: navigation.prevLessonUrl ?? config.prevLessonUrl ?? null,
-    nextLessonUrl: navigation.nextLessonUrl ?? config.nextLessonUrl ?? null
+    nextLessonUrl: navigation.nextLessonUrl ?? config.nextLessonUrl ?? null,
+    sourceReferences: mergeSourceReferences(config.sourceReferences)
   };
 
   // Store config globally for access by other functions
@@ -351,6 +353,28 @@ function populateTheory(config) {
       </div>
     `;
   });
+
+
+  if (config.sourceReferences?.length) {
+    const sourceLinks = config.sourceReferences
+      .map((ref) => {
+        const label = ref?.name || 'Reference source';
+        const url = ref?.url || '#';
+        const usage = ref?.usage ? ` — ${ref.usage}` : '';
+        return `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>${usage}</li>`;
+      })
+      .join('');
+
+    html += `
+      <div class="exercise-box" style="margin-bottom: var(--space-lg);">
+        <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--text-primary);">Content references</h3>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-sm);">
+          This lesson is cross-checked against the following reference baseline:
+        </p>
+        <ul style="padding-left: 1.2rem; line-height: 1.7;">${sourceLinks}</ul>
+      </div>
+    `;
+  }
 
   theorySection.innerHTML = html;
 }
