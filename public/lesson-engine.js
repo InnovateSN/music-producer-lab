@@ -14,6 +14,7 @@ import { initDrumSequencer, playSound, drumSounds } from './sequencer.js';
 import { initPianoRollSequencer } from './piano-roll-sequencer.js';
 import { curriculum as defaultCurriculum, getLessonNavigation } from './curriculum.js';
 import { mergeSourceReferences } from './configs/source-references.js';
+import { enforceCurrentLessonAccess, syncProgressFromApi } from './js/lesson-access-manager.js';
 
 // Only log in development
 const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -27,7 +28,7 @@ const log = isDev ? console.log.bind(console) : function() {};
  * Initialize a complete lesson from a configuration object
  * @param {Object} config - Lesson configuration object
  */
-export function initLessonFromConfig(config, curriculumData = defaultCurriculum) {
+export async function initLessonFromConfig(config, curriculumData = defaultCurriculum) {
   if (!config) {
     console.error('[LessonEngine] No config provided');
     return;
@@ -46,6 +47,12 @@ export function initLessonFromConfig(config, curriculumData = defaultCurriculum)
     nextLessonUrl: navigation.nextLessonUrl ?? config.nextLessonUrl ?? null,
     sourceReferences: mergeSourceReferences(config.sourceReferences)
   };
+
+  await syncProgressFromApi();
+  const canAccessLesson = enforceCurrentLessonAccess({ redirectUrl: '/labs.html?locked=1' });
+  if (!canAccessLesson) {
+    return;
+  }
 
   // Store config globally for access by other functions
   window._lessonConfig = mergedConfig;

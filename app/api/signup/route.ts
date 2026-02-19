@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createUser } from '@/lib/auth';
 import { SignupSchema } from '@/lib/validations';
+import { SignJWT } from 'jose';
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
     // Create user
     const user = await createUser(email, password, firstName, lastName, passwordHint);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       message: 'Account created successfully',
       user: {
@@ -29,6 +30,29 @@ export async function POST(req: NextRequest) {
         email: user.email,
       },
     });
+
+    if (process.env.NEXTAUTH_SECRET) {
+      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+      const token = await new SignJWT({
+        id: user.id,
+        email: user.email,
+        name: `${firstName || ''} ${lastName || ''}`.trim(),
+        role: 'student',
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setExpirationTime('30d')
+        .sign(secret);
+
+      response.cookies.set('mpl-session', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 30,
+        path: '/',
+      });
+    }
+
+    return response;
   } catch (error: any) {
     console.error('Signup error:', error);
 

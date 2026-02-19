@@ -18,6 +18,22 @@ export async function POST() {
       path: '/',
     });
 
+    // Clear NextAuth session cookies to avoid split-brain auth state
+    cookieStore.set('next-auth.session-token', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 0,
+      path: '/',
+    });
+    cookieStore.set('__Secure-next-auth.session-token', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 0,
+      path: '/',
+    });
+
     return NextResponse.json({ success: true, redirectUrl: '/' });
   } catch (error) {
     console.error('[signout] Error:', error);

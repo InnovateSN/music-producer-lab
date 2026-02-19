@@ -4,18 +4,36 @@
 import { POST } from './route';
 import { NextRequest } from 'next/server';
 
+jest.mock('jose', () => ({
+  SignJWT: jest.fn().mockImplementation(() => ({
+    setProtectedHeader: jest.fn().mockReturnThis(),
+    setExpirationTime: jest.fn().mockReturnThis(),
+    sign: jest.fn().mockResolvedValue('mock-signup-jwt-token'),
+  })),
+}));
+
 jest.mock('@/lib/db');
 jest.mock('@/lib/auth');
 
 const { createUser } = require('@/lib/auth');
 
 describe('/api/signup', () => {
+  const originalEnv = process.env;
+
   beforeEach(() => {
     jest.clearAllMocks();
+    process.env = {
+      ...originalEnv,
+      NEXTAUTH_SECRET: 'test-secret-key-at-least-32-characters-long',
+    };
     createUser.mockResolvedValue({
       id: 'test-user-id',
       email: 'test@example.com',
     });
+  });
+
+  afterAll(() => {
+    process.env = originalEnv;
   });
 
   it('should reject missing email', async () => {
@@ -74,6 +92,7 @@ describe('/api/signup', () => {
     const data = await response.json();
     expect(data.success).toBe(true);
     expect(data.user.email).toBe('test@example.com');
+    expect(response.headers.get('set-cookie')).toContain('mpl-session=');
   });
 
   it('should create user without optional firstName/lastName', async () => {

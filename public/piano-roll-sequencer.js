@@ -1404,6 +1404,11 @@ function validateExercise() {
         try {
           localStorage.setItem(lessonKey, 'completed');
           window.dispatchEvent(new CustomEvent('mpl-lesson-completed', { detail: { lessonKey } }));
+          if (window.MplAuth?.isSignedIn && window.MplApi?.progress?.complete) {
+            window.MplApi.progress.complete(lessonKey).catch((error) => {
+              console.warn('[PianoRoll] Failed to sync completion to API:', error);
+            });
+          }
           log('[PianoRoll] Lesson marked as completed:', lessonKey);
         } catch (e) {
           console.warn('[PianoRoll] Could not save progress:', e);
