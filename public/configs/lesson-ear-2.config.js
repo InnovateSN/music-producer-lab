@@ -5,6 +5,26 @@ export const lessonConfig = {
   lessonNumber: 2,
   lessonCategory: "Ear Training",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Consonance_and_dissonance",
+        "https://en.wikipedia.org/wiki/Ear_training",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   nextLessonUrl: "lesson-ear-3.html",
   prevLessonUrl: "lesson-ear-1.html",
   overviewUrl: "labs.html",

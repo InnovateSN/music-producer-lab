@@ -12,6 +12,27 @@ export const lessonConfig = {
   lessonNumber: 1,
   lessonCategory: "Mixing",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/DBFS",
+        "https://en.wikipedia.org/wiki/Audio_mixing_(recorded_music)",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+        "https://aes2.org/publications/standards/search/?q=AES17",
+      ]
+    }
+  },
+
   nextLessonUrl: "lesson-mixing-2.html",
   prevLessonUrl: "lesson-sound-design-15.html",
   overviewUrl: "labs.html",

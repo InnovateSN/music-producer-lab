@@ -13,6 +13,26 @@ export const lessonConfig = {
   lessonNumber: 2,
   lessonCategory: "Bass & Low End",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Equalization_(audio)",
+        "https://en.wikipedia.org/wiki/Dynamic_range_compression",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/hc/en-us/articles/209071249-Sidechaining-a-signal",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   // ====================
   // NAVIGATION
   // ====================

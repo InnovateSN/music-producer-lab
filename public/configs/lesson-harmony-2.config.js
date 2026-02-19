@@ -13,6 +13,25 @@ export const lessonConfig = {
   lessonNumber: 2,
   lessonCategory: "Chord Fundamentals",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Triad_(music)",
+        "https://en.wikipedia.org/wiki/Major_and_minor",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   // ====================
   // NAVIGATION
   // ====================
