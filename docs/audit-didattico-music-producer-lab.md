@@ -1,15 +1,18 @@
 # Audit didattico del repository `music-producer-lab`
 
 ## Stato implementazione (2026-02-19)
-- ✅ Inseriti `assessmentRubric` e `reviewMetadata` nei 9 lesson config del campione audit iniziale.
-- ✅ Completato il rollout **Fase 1** su tutte le categorie `Drums` (0-22) e `Bass` (1-20).
-- ✅ Completato il rollout **Fase 2** su `Harmony` (1-28), `Theory` (1-8), `Ear` (1-10).
-- ✅ Coverage attuale da crosscheck: `reviewMetadata` **91/174**, `assessmentRubric` **91/174**, `sourceReferences` **174/174**.
+- ✅ Inseriti `assessmentRubric` nei 9 lesson config del campione audit:
+  - `lesson-ear-6`, `lesson-ear-2`
+  - `lesson-theory-1`, `lesson-theory-6`
+  - `lesson-harmony-2`
+  - `lesson-bass-2`, `lesson-drums-0`
+  - `lesson-mixing-1`
+  - `lesson-arrangement-2`
 - ✅ Rafforzato lo script `scripts/content-source-crosscheck.js` per verificare anche:
   - `reviewMetadata`
   - `sourceReferences`
   - `assessmentRubric`
-- ⏭️ Prossimo step: estendere il rollout per categoria su `Arrangement`, `Mixing`, `Sound Design`, `Vocals`, `Mastering`.
+- ⏭️ Prossimo step: estendere `assessmentRubric` al resto delle 174 lezioni con rollout per categoria.
 
 ## Scopo
 Questa versione migliora l’audit precedente rendendolo più **verificabile** e **operativo**:

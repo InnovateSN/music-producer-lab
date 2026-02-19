@@ -1,9 +1,9 @@
 {
   "scanned": 174,
   "coverage": {
-    "reviewMetadata": 91,
+    "reviewMetadata": 9,
     "sourceReferences": 174,
-    "assessmentRubric": 91
+    "assessmentRubric": 9
   },
   "warnings": [
     {
@@ -159,6 +159,614 @@
       "issue": "Missing assessmentRubric block"
     },
     {
+      "file": "lesson-bass-1.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-1.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-10.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-10.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-11.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-11.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-12.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-12.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-13.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-13.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-14.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-14.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-15.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-15.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-16.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-16.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-17.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-17.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-18.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-18.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-19.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-19.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-20.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-20.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-3.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-3.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-4.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-4.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-5.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-5.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-6.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-6.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-7.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-7.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-8.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-8.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-bass-9.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-bass-9.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-1.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-1.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-10.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-10.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-11.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-11.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-12.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-12.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-13.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-13.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-14.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-14.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-15.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-15.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-16.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-16.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-17.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-17.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-18.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-18.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-19.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-19.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-2.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-2.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-20.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-20.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-21.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-21.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-22.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-22.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-3.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-3.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-4.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-4.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-5.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-5.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-6.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-6.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-7.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-7.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-8.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-8.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-drums-9.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-drums-9.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-1.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-1.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-10.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-10.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-3.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-3.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-4.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-4.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-5.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-5.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-7.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-7.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-8.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-8.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-ear-9.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-ear-9.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-1.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-1.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-10.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-10.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-11.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-11.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-12.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-12.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-13.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-13.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-14.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-14.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-15.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-15.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-16.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-16.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-17.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-17.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-18.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-18.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-19.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-19.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-20.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-20.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-21.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-21.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-22.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-22.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-23.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-23.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-24.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-24.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-25.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-25.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-26.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-26.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-27.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-27.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-28.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-28.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-3.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-3.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-4.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-4.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-5.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-5.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-6.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-6.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-7.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-7.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-8.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-8.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-harmony-9.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-harmony-9.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
       "file": "lesson-mastering-1.config.js",
       "issue": "Missing reviewMetadata block"
     },
@@ -548,6 +1156,54 @@
     },
     {
       "file": "lesson-sound-design-9.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-2.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-2.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-3.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-3.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-4.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-4.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-5.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-5.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-7.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-7.config.js",
+      "issue": "Missing assessmentRubric block"
+    },
+    {
+      "file": "lesson-theory-8.config.js",
+      "issue": "Missing reviewMetadata block"
+    },
+    {
+      "file": "lesson-theory-8.config.js",
       "issue": "Missing assessmentRubric block"
     },
     {
