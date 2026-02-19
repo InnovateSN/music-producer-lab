@@ -166,6 +166,21 @@ export const lessonConfig = {
     "Know tempo ranges for different electronic subgenres"
   ],
 
+
+  theory: {
+    sections: [
+      {
+        title: "Core Theory: Drums 8",
+        content: `
+This lesson focuses on practical workflow and musical intent.
+Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+
+When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================

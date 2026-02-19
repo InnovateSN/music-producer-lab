@@ -89,6 +89,13 @@ export const lessonConfig = {
     enableExport: false
   },
 
+
+  learningObjectives: [
+    "Understand core concepts in bass 2",
+    "Program the target pattern with timing accuracy",
+    "Apply this pattern in a full track context"
+  ],
+
   // ====================
   // REFERENCE SOURCES
   // ====================

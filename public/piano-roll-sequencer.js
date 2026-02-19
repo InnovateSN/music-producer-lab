@@ -1403,6 +1403,7 @@ function validateExercise() {
       if (lessonKey) {
         try {
           localStorage.setItem(lessonKey, 'completed');
+          window.dispatchEvent(new CustomEvent('mpl-lesson-completed', { detail: { lessonKey } }));
           log('[PianoRoll] Lesson marked as completed:', lessonKey);
         } catch (e) {
           console.warn('[PianoRoll] Could not save progress:', e);

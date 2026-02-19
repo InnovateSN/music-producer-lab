@@ -35,6 +35,7 @@ export default function LessonPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPremiumUser] = useState(false); // simulated flag for freemium logic
   const [hasAudioTrack, setHasAudioTrack] = useState(false);
+  const [isCurrentLessonCompleted, setIsCurrentLessonCompleted] = useState(false);
 
   const initializedRef = useRef(false);
 
@@ -126,6 +127,40 @@ export default function LessonPage() {
       initializedRef.current = false;
     };
   }, [config, slug]);
+
+
+  useEffect(() => {
+    const lessonKey = config?.lessonKey;
+    if (!lessonKey) {
+      setIsCurrentLessonCompleted(false);
+      return;
+    }
+
+    const syncCompletion = () => {
+      try {
+        setIsCurrentLessonCompleted(localStorage.getItem(lessonKey) === 'completed');
+      } catch {
+        setIsCurrentLessonCompleted(false);
+      }
+    };
+
+    syncCompletion();
+
+    const onCompleted = (event: Event) => {
+      const customEvent = event as CustomEvent<{ lessonKey?: string }>;
+      if (customEvent.detail?.lessonKey === lessonKey) {
+        setIsCurrentLessonCompleted(true);
+      }
+    };
+
+    window.addEventListener('mpl-lesson-completed', onCompleted as EventListener);
+    window.addEventListener('storage', syncCompletion);
+
+    return () => {
+      window.removeEventListener('mpl-lesson-completed', onCompleted as EventListener);
+      window.removeEventListener('storage', syncCompletion);
+    };
+  }, [config?.lessonKey]);
 
   useEffect(() => {
     if (!slug) return;
@@ -304,7 +339,7 @@ export default function LessonPage() {
                 <button id="mpl-prev-lesson" onClick={() => router.push(config.prevLessonUrl)}>← Prev</button>
               ) : null}
               {config.nextLessonUrl ? (
-                <button id="mpl-next-lesson" onClick={() => router.push(config.nextLessonUrl)}>Next →</button>
+                <button id="mpl-next-lesson" disabled={!isCurrentLessonCompleted} title={isCurrentLessonCompleted ? '' : 'Complete exercise to unlock'} onClick={() => router.push(config.nextLessonUrl)}>Next →</button>
               ) : null}
             </div>
           </div>

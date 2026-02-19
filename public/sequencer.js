@@ -1550,6 +1550,7 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         // Save progress
         try {
           localStorage.setItem(lessonKey, 'completed');
+          window.dispatchEvent(new CustomEvent('mpl-lesson-completed', { detail: { lessonKey } }));
         } catch (e) {}
       } else {
         if (statusEl) {

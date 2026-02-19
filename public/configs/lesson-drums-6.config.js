@@ -117,6 +117,28 @@ export const lessonConfig = {
     enableExport: false
   },
 
+
+  learningObjectives: [
+    "Program a basic syncopated kick pattern",
+    "Keep snare backbeat stable while moving kick accents off-grid beats",
+    "Hear the difference between straight and syncopated groove feel"
+  ],
+
+  theory: {
+    sections: [
+      {
+        title: "Intro to Syncopation",
+        content: `
+Syncopation shifts emphasis away from the strongest beats to create groove tension and motion.
+Instead of placing every kick on quarter-note downbeats, you place some hits between them.
+
+Keeping snare on beats 2 and 4 gives the listener a stable frame,
+while syncopated kicks add personality and rhythmic surprise.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================
