@@ -198,7 +198,7 @@ export const lessonConfig = {
       title: "Beyond the Basics",
       description: "You've mastered the fundamentals of polyrhythms—but this is just the beginning. <strong>Advanced rhythm lessons are coming</strong> that will explore nested polyrhythms, metric modulation, and algorithmic rhythm generation. In the meantime, <strong>search the internet</strong> for artists pushing polyrhythmic boundaries and experiment with your own complex ratios.",
       futureTopics: [
-        "Advanced polyrhythm lessons coming soon: nested ratios (3:4:5), metric modulation, and polymetric composition",
+        "Advanced polyrhythm topics ahead: nested ratios (3:4:5), metric modulation, and polymetric composition",
         "Combining polyrhythms with odd time signatures for extreme complexity",
         "Micro-timing and groove manipulation techniques",
         "Generative and algorithmic approaches to polyrhythmic patterns"
@@ -212,7 +212,7 @@ export const lessonConfig = {
   // ====================
   messages: applyMessagePreset("drums", {
     initial: "Create a 3:4 polyrhythm with hi-hats against kick!",
-    success: "🔄 Perfect polyrhythm! You can hear the 3 and 4 working together.",
+    success: "Perfect polyrhythm! You can hear the 3 and 4 working together.",
     error: "Check your hi-hat placement—they should divide the bar into thirds.",
     alreadyCompleted: "You've mastered 3:4! Try programming 5:4 or 7:4 next."
   }),
@@ -301,12 +301,108 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: "Core Theory: Drums 14",
+        title: "Polyrhythm Theory: How Ratios and Grids Work",
         content: `
-This lesson focuses on practical workflow and musical intent.
-Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+**What Is a Polyrhythm?**
 
-When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
+A polyrhythm is the simultaneous use of two or more rhythmic patterns that divide the same time span into different equal parts. The patterns sound different but share a common pulse—and they realign at mathematically predictable points.
+
+**The LCM Grid Principle**
+
+To fit two rhythms together you need a grid large enough for both to complete full cycles simultaneously. That grid size is the **Lowest Common Multiple (LCM)** of the two numbers.
+
+| Ratio | Grid Size (LCM) | How it feels |
+|-------|----------------|--------------|
+| 2:3   | 6 steps        | Triplet swing foundation |
+| 3:4   | 12 steps       | Common, musical, hypnotic |
+| 5:4   | 20 steps       | Exotic, African influence |
+| 7:4   | 28 steps       | Disorienting, progressive |
+| 11:8  | 88 steps       | Extremely complex |
+
+**Reading Ratios**
+
+In a 3:4 polyrhythm: the "3" means a pattern that divides the bar into 3 equal parts; the "4" means a pattern that divides the bar into 4 equal parts. On a 12-step grid: the "4-pattern" hits every 3 steps (steps 1, 4, 7, 10); the "3-pattern" hits every 4 steps (steps 1, 5, 9).
+
+Both patterns share step 1 as a common anchor, drift apart, then realign—creating the characteristic cyclical tension.
+
+**Polyrhythm vs. Polymeter vs. Cross-Rhythm**
+
+- **Polyrhythm:** Two rhythms, same bar length, different subdivisions (what this lesson covers).
+- **Polymeter:** Two rhythms with different bar lengths playing simultaneously (e.g., a 3-beat loop against a 4-beat loop).
+- **Cross-rhythm:** Accenting beats that contradict the main pulse within the same time signature.
+
+Understanding the difference prevents confusion when reading about rhythmic complexity in music theory texts.
+        `
+      },
+      {
+        title: "Internalizing Polyrhythms: Mnemonics and Practice Techniques",
+        content: `
+**Mnemonic System**
+
+Because polyrhythms involve simultaneous counting in two different subdivisions, language-based mnemonics are the fastest way to internalize each ratio:
+
+| Ratio | Mnemonic phrase | Say it to feel it |
+|-------|-----------------|-------------------|
+| 2:3   | "Hot dog"       | HOT (3 side) / hot DOG (2 side) |
+| 3:4   | "Nice cup of tea" | NICE cup OF tea (3 side) against beat (4 side) |
+| 5:4   | "I am eat-ing pop-corn" | All 5 syllables equal subdivisions |
+| 7:4   | "I need to call my law-yer" | All 7 syllables equal subdivisions |
+
+Practice saying the mnemonic while tapping the steady pulse. The phrase gives you the feel before you touch a drum pad.
+
+**Body Coordination Practice**
+
+1. Tap the "4" rhythm on your knee (steady quarter notes if in 4/4).
+2. Simultaneously tap the "3" rhythm on your other knee.
+3. Both hands should feel equally steady—resist the urge to let one follow the other.
+4. When comfortable, transfer each hand to a drum machine channel.
+
+**DAW Programming Approach**
+
+1. Set your grid to the LCM step count (12 for 3:4, 20 for 5:4).
+2. Place the "4-pattern" hits first (evenly across 12 steps = every 3 steps).
+3. Place the "3-pattern" hits second (evenly across 12 steps = every 4 steps).
+4. Play back and listen for the cyclical tension and resolution at step 1.
+5. Use velocity variation: louder on alignment points (step 1) to help listeners orient.
+
+**Velocity Dynamics**
+
+A polyrhythm programmed at uniform velocity sounds mechanical. Add dynamics to make it breathe:
+- Accent step 1 (both patterns aligned) at velocity 110-120.
+- Accent each pattern's own accents at 90-100.
+- Fill remaining hits at 70-80.
+This creates a sense of tension building toward the realignment point.
+        `
+      },
+      {
+        title: "Polyrhythms in Production: Genres and Applications",
+        content: `
+**West African Drumming: The Origin**
+
+Polyrhythms are not a modern invention. Ewe, Yoruba, and Mandinka drumming traditions have used interlocking polyrhythmic layers for centuries. The djembe, dunun bass drums, and bells each carry independent rhythmic cycles that align at structural downbeats. This is the rhythmic DNA of virtually all modern popular music.
+
+**Progressive Rock and Metal**
+
+Bands like Tool, Meshuggah, and King Crimson brought polyrhythms to rock audiences:
+- Tool's "Schism" layers 5/8 and 6/8 bars, creating a shifting pulse.
+- Meshuggah's riffs use polymetric looping against a steady 4/4 kick drum.
+- The listener feels rhythmic instability that resolves at phrase boundaries.
+
+**Electronic and IDM**
+
+Aphex Twin, Flying Lotus, and Autechre program polyrhythms that human drummers cannot perform. In a DAW, complex ratios (11:8, 13:8) are straightforward to program—the grid does the math. The result: textures that feel mechanical yet unpredictable, creating hypnotic electronic grooves.
+
+**Jazz and Fusion**
+
+Dave Brubeck popularized odd meters ("Take Five" in 5/4) for mainstream audiences. In jazz improvisation, polyrhythms appear as rhythmic displacement: a soloist implying 3-beat phrases against a 4-beat accompaniment—a tension device that resolves to the downbeat.
+
+**Hip-Hop and Lo-Fi**
+
+J Dilla's production is famous for subtle micro-timing variations and layered hi-hat patterns that create a polyrhythmic feel even in 4/4. The hi-hats imply a slightly different subdivision than the kick and snare, giving tracks their characteristic looseness and groove.
+
+**Practical Takeaway for Producers**
+
+You do not need to write full 3:4 polyrhythms in every track. Even a single hi-hat pattern that implies a different subdivision (16th-note triplets against straight 16ths) adds rhythmic sophistication. Start with 3:4 on percussion, keep the kick and snare in standard 4/4, and listen to how the tension makes listeners want to move.
         `
       }
     ]
