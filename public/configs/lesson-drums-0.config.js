@@ -154,6 +154,13 @@ export const lessonConfig = {
     ]
   },
 
+
+  learningObjectives: [
+    "Understand core concepts in drums 0",
+    "Program the target pattern with timing accuracy",
+    "Apply this pattern in a full track context"
+  ],
+
   // ====================
   // REFERENCE SOURCES
   // ====================

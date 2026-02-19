@@ -131,6 +131,13 @@ In later lessons, we'll learn sidechain compression to make them work perfectly 
     enableExport: false
   },
 
+
+  learningObjectives: [
+    "Understand core concepts in bass 1",
+    "Program the target pattern with timing accuracy",
+    "Apply this pattern in a full track context"
+  ],
+
   // ====================
   // REFERENCE SOURCES
   // ====================

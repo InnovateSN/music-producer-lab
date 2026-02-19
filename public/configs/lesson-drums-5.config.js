@@ -126,6 +126,28 @@ export const lessonConfig = {
     enableExport: false    // Allow exporting pattern as JSON/MIDI
   },
 
+
+  learningObjectives: [
+    "Design a one-bar drum fill in the last quarter of a loop",
+    "Create arrangement contrast by reducing hi-hats before a fill",
+    "Use kick/snare accents to signal loop turnaround"
+  ],
+
+  theory: {
+    sections: [
+      {
+        title: "Fill Design and Phrase Endings",
+        content: `
+Drum fills are short variations used to mark transitions between musical phrases.
+A classic beginner strategy is to keep beats 1-3 stable, then vary beat 4 to create anticipation.
+
+By pulling hi-hats back and emphasizing kick/snare activity at the end of the bar,
+listeners perceive a clear "turnaround" into the next loop repetition.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================

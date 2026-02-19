@@ -117,6 +117,27 @@ export const lessonConfig = {
     enableExport: false
   },
 
+
+  learningObjectives: [
+    "Use selective 16th-note hi-hat placement to increase energy",
+    "Maintain groove consistency while adding rhythmic variation",
+    "Identify how small subdivisions change perceived momentum"
+  ],
+
+  theory: {
+    sections: [
+      {
+        title: "From Eighth Notes to 16th-Note Detail",
+        content: `
+Adding a few 16th-note hi-hats increases rhythmic density without rewriting the core groove.
+This is a common production technique for transitions, verse/chorus contrast, and perceived intensity.
+
+The key is balance: preserve the main pulse while using extra notes as texture, not clutter.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================

@@ -168,6 +168,21 @@ export const lessonConfig = {
     influence: "Sampled from funk, soul, and jazz records; defined East Coast hip-hop sound"
   },
 
+
+  theory: {
+    sections: [
+      {
+        title: "Core Theory: Drums 9",
+        content: `
+This lesson focuses on practical workflow and musical intent.
+Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+
+When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================

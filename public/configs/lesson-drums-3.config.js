@@ -114,6 +114,26 @@ export const lessonConfig = {
     enableExport: false
   },
 
+  learningObjectives: [
+    "Program straight eighth-note hi-hats across a 4/4 bar",
+    "Differentiate kick, snare, and hi-hat rhythmic roles",
+    "Build a complete beginner drum groove with three voices"
+  ],
+
+  theory: {
+    sections: [
+      {
+        title: "Why Eighth-Note Hi-Hats Matter",
+        content: `
+Straight eighth-note hi-hats add continuity between kick and snare accents.
+Even when the pattern is simple, this constant subdivision helps listeners feel forward motion and timing stability.
+
+In a 16-step sequencer, eighth notes are every two steps (1, 3, 5, 7, 9, 11, 13, 15 in 1-indexed display).
+        `
+      }
+    ]
+  },
+
   // ====================
   // REFERENCE SOURCES
   // ====================
