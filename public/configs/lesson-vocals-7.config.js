@@ -38,69 +38,71 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Doubling & Layering',
-        content: `Vocal Doubling & Layering is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Vocal Doubling: Creating Thickness and Width',
+        content: `
+**What Is Vocal Doubling?**
+Doubling means recording the same line twice and layering both recordings. The slight natural differences in timing (1–20ms) and pitch (a few cents) between performances create a thickening effect—the brain perceives one wide, rich sound rather than two separate vocals.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Natural Double vs. ADT**
+- **Natural double:** Singer records the same line again. Best result: natural performance variation creates convincing thick sound. Requires strong pitch accuracy between takes.
+- **ADT (Automatic Double Tracking):** Plugin or effect copies the signal and adds slight pitch variation and delay (10–40ms). Faster but sounds less organic. H-Doubler (Waves), SoundShifter, or the "doubler" preset in many chorus plugins.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Stereo Placement**
+- **Center:** Keep the main lead vocal in mono, dead center. Anchors the mix.
+- **Hard pan doubles L/R:** Double 1 at -80%, Double 2 at +80% (or 100% each direction). Creates wide stereo field.
+- **Mid-width doubles:** Pan slightly wider than center (-40%, +40%). Less extreme—useful when the mix is already very wide.
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Pitch and Timing Relationship**
+- Doubles must be close enough in pitch to blend, but not so perfect they add no thickness.
+- Target: within ±10–20 cents of the original. Within ±5 cents and they cancel each other slightly. Beyond ±25 cents they sound like a noticeable second voice.
+- Timing: 1–30ms offset between layers. Less than 5ms = comb filtering (thin, hollow sound). More than 30ms = audible echo effect.
 
-Professional vocal producers understand that Vocal Doubling & Layering is both technical skill and artistic judgment.`
+**Tight vs. Loose Doubles**
+- **Tight doubles (pop, EDM):** Very similar timing and pitch. Almost mono. Adds density without spread.
+- **Loose doubles (indie, rock):** More performance variation. Wider, more human sound.
+
+**Triple-Tracking**
+Record a third take for an even wider, denser sound:
+- Take 1: Center (mono, main vocal)
+- Take 2: Left (-70%)
+- Take 3: Right (+70%)
+Thicker than standard doubling. Used in rock, heavy metal, and big pop choruses.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Doubling & Layering in your productions with professional approaches:
+        title: 'Stereo Widening and Spatial Processing for Vocals',
+        content: `
+**Mono-First Rule**
+Always check your doubled/widened vocals in mono before finalizing. Wide stereo sounds impressive in speakers but collapses in mono. Restaurants, clubs, phones, and many streaming environments sum to mono. If the vocal disappears or goes thin in mono, you have phase issues.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Haas Effect**
+Add a short delay (1–40ms) to only one side of a doubled vocal layer. This creates perceived width without pitch variation. The ear interprets short time differences as spatial positioning, not two separate sources.
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Mid-Side Processing**
+Separate the Mid (mono center) from the Side (stereo width) signal:
+- Boost the Side component's high frequencies to add air and width to doubles
+- Cut the Side component's low frequencies to keep the bass mono and focused
+- Process Mid and Side independently for surgical stereo control
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Widening Plugins**
+- **Ozone Imager:** Stereoize, expand or narrow specific frequency ranges
+- **Waves S1 Stereo Imager:** Classic width tool, mono-check button built in
+- **Logic's Direction Mixer:** Built-in, simple width control per track
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Common Width Mistakes**
+- Over-widening a single mono vocal track (creates phase issues, sounds fake in mono)
+- Widening low frequencies (causes muddy, unfocused bass problems)
+- Not mono-checking (sounds great in headphones, disappears in club sound system)
 
-Study vocal productions in your genre and understand what makes them work.`
+**Vocal Layer Mix Levels**
+Balance formula for lead + doubles:
+- Lead (center): 0 dB (reference level)
+- Doubles (L+R): -6 to -12 dB below lead
+- Harmonies: -8 to -16 dB below lead
+- Backing stacks: -12 to -20 dB below lead
+
+The lead must always be audibly dominant. Doubles support, they don't compete.
+        `
       }
     ]
   },

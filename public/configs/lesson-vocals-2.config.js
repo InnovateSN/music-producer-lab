@@ -38,69 +38,68 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Recording Techniques',
-        content: `Vocal Recording Techniques is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'The Proximity Effect and Microphone Distance',
+        content: `
+**What Is the Proximity Effect?**
+Directional microphones (cardioid, hypercardioid) exhibit increased bass response as the sound source moves closer. This is the proximity effect. At 6 inches: neutral response. At 1–2 inches: bass boost of 6–12 dB at low frequencies (below 200 Hz). This creates the warm, intimate sound of radio voices and ASMR—but can also create boomy, indistinct vocals.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Using the Proximity Effect Creatively**
+- **Pop vocals:** 6–10 inches, slightly off-axis. Neutral tone, balanced.
+- **Intimate/lo-fi:** 2–4 inches, cardioid. Exaggerated warmth and proximity.
+- **Bright, airy:** 12–18 inches. Bass naturally rolls off, highs more prominent.
+- **Dynamic range issues:** Singers who move in and out vary their proximity, causing tonal and level inconsistency. Use compression to tame.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Pop Filters and Plosives**
+Plosives (P, B, T) create low-frequency bursts that overload capsules and cause clipping. Solutions:
+1. **Pop filter:** Fabric or metal mesh screen 2–3 inches in front of mic
+2. **Off-axis positioning:** Aim mic at forehead/chin rather than directly at lips
+3. **Foam windscreen:** Reduces plosives and breath noise, slight HF loss
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Mic Height and Angle**
+- Aim capsule toward the top of the head or hairline (not mouth center) for less sibilance
+- Slight downward angle reduces proximity effect
+- Singer should look slightly up (opens throat, improves tone) rather than looking down at a low mic
 
-Professional vocal producers understand that Vocal Recording Techniques is both technical skill and artistic judgment.`
+**Headphone Monitoring**
+Singers need to hear themselves during recording. Closed-back headphones (not open-back) are essential to prevent bleed into the mic. Level: loud enough to feel confident, quiet enough to hear pitch naturally. Pitch correction from headphone volume is common—singers sing flat when monitoring too loud.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Recording Techniques in your productions with professional approaches:
+        title: 'Multiple Takes Strategy: Comping and Session Management',
+        content: `
+**Why Record Multiple Takes?**
+A professional vocal is rarely a single take. Even elite singers comp (compile from multiple takes). The goal: capture the best phrasing, pitch, timing, emotion, and pronunciation from multiple attempts, then edit the best moments together.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**The Three-Take Minimum Rule**
+Record at minimum 3 complete takes of each section before comping. More takes = more raw material. Once you have 6–8 takes, the law of diminishing returns sets in—focus instead on specific problem phrases.
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Punch-In Recording**
+Fix specific problem lines without re-recording the full take:
+1. Set pre-roll (4 bars before the problem section)
+2. Arm the track, prepare the singer
+3. Record just the problem phrase
+4. Compare with original and choose the better version
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Folder Tracks and Comp Lanes**
+Most DAWs offer comp lanes (Logic Pro), take lanes (Pro Tools), or comping tracks (Ableton/Reaper):
+- Each take sits on its own lane
+- Drag to select the best phrase per lane
+- DAW assembles the composite automatically
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Performance Notes**
+Use markers or a text document to note which takes have specific qualities:
+- "Take 3 — Bridge best, chorus pitch off"
+- "Take 5 — Emotionally best, verse timing late"
+- "Take 7 — Best pitch accuracy throughout"
+This avoids listening back blindly through every take.
 
-Study vocal productions in your genre and understand what makes them work.`
+**Warm-Up Strategy**
+Never use the first recording as the keeper. The singer needs warm-up takes to:
+- Settle into pitch and tone
+- Relax performance anxiety
+- Internalize the track tempo
+First take is reference material only. Best takes usually arrive at takes 3–6.
+        `
       }
     ]
   },

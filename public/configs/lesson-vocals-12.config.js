@@ -38,69 +38,93 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Masterclass: Complete Vocal Production',
-        content: `Masterclass: Complete Vocal Production is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'From Recording to Final Mix: The Complete Vocal Production Workflow',
+        content: `
+**The Full Vocal Production Lifecycle**
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+A professional vocal production follows a consistent sequence. Skipping stages or working out of order creates problems that are harder to fix later.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Stage 1: Pre-Production**
+- Define vocal style and reference tracks with the artist
+- Choose microphone and signal chain based on voice type
+- Set recording levels and monitor blend
+- Establish key and tempo
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Stage 2: Recording Session**
+- Record 3–8 complete takes per section
+- Punch-in on specific problem phrases
+- Capture vocal-only takes (no backing track) for sampling flexibility
+- Record ad-libs separately from composed melody
 
-Professional vocal producers understand that Masterclass: Complete Vocal Production is both technical skill and artistic judgment.`
+**Stage 3: Editing**
+- Comp from best takes (phrase level first, word level as needed)
+- Noise removal (iZotope RX or equivalent)
+- Breath editing (reduce, don't delete)
+- Timing correction (nudge clips to grid if needed)
+- Phase alignment on doubles
+
+**Stage 4: Pitch Correction**
+- Apply Melodyne or Auto-Tune correction pass
+- Check for over-correction artifacts (bypass and compare)
+- Maintain vibrato and expression
+
+**Stage 5: Processing**
+- Apply full signal chain (EQ → Comp → De-ess → Saturation → Reverb → Delay)
+- Set up parallel processing sends
+- Automate vocal level (volume ride)
+
+**Stage 6: Mixing**
+- Balance lead vocal against the full mix
+- EQ vocals in context (not soloed)
+- Adjust reverb/delay wet levels in context
+- Sidechain compress competing elements (guitars, synth pads) to duck slightly under vocals
+
+**Stage 7: Final QC**
+- Listen in mono (phone speaker or mono summed mix)
+- Check on headphones and speakers
+- Compare to reference track
+- A/B before and after all processing
+- Bounced stem test: solo the vocal stem, does it sound professional alone?
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Masterclass: Complete Vocal Production in your productions with professional approaches:
+        title: 'Vocal in the Mix: Sidechain, Ducking, and Frequency Space',
+        content: `
+**The Vocal Must Win**
+In popular music, the vocal is almost always the most important element. Every mix decision should support the vocal's intelligibility and emotional impact.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Creating Frequency Space for Vocals**
+The vocal lives primarily in the 200 Hz–8 kHz range. Elements that compete in this range need to be managed:
+- **Guitars:** Cut 1–3 kHz slightly on guitar bus (where vocals cut through). Use the "guitar hole" technique.
+- **Synth pads:** High-pass at 300–500 Hz to remove mid warmth that clashes with vocal body.
+- **Piano:** Cut 500–800 Hz on piano to reduce nasal quality that competes with vocal body.
+- **Lead synths:** Automate volume automation to duck during vocal phrases.
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Sidechain Ducking**
+Use a vocal sidechain signal to gently duck competing elements:
+1. Take a duplicate of the vocal bus (or use a sidechain send from the vocal)
+2. Route this as sidechain input to compressors on competing tracks (guitars, pads, piano)
+3. Ratio: 2:1, attack 20ms, release 200ms, threshold: triggers only when vocal is loud
+4. GR: 1–3 dB (subtle) — listener feels clarity without hearing pumping
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**De-Masking**
+Masking occurs when two sounds share the same frequencies at similar levels — one hides the other. Solutions:
+- **Temporal masking:** Start the competing element slightly later than the vocal phrase
+- **Frequency masking:** EQ a notch in competing elements at the vocal's most important frequency (typically 2–3 kHz)
+- **Dynamic masking:** Automate or sidechain the competing element to drop slightly during vocal
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Low-End Management**
+Vocals have fundamental pitch content in the 80–250 Hz range for most voices:
+- High-pass at 80–100 Hz (remove sub rumble, plosive energy)
+- Leave 100–200 Hz intact for warmth and body
+- Don't over-cut lows on male vocals — can make them sound thin
 
-Study vocal productions in your genre and understand what makes them work.`
+**Vocal Bus Final Processing**
+After all individual vocal tracks are balanced:
+- Vocal master bus: light bus compression (2:1, 40ms attack, slow release, 2–3 dB GR)
+- Surgical EQ correction for the combined stack
+- Limiter ceiling (-1 dBTP) before stem export
+        `
       }
     ]
   },

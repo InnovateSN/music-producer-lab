@@ -38,69 +38,85 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Genre-Specific Vocal Production',
-        content: `Genre-Specific Vocal Production is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Genre-Specific Vocal Production: Hip-Hop, Pop, R&B, Electronic',
+        content: `
+**Hip-Hop Vocal Production**
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+The goal in hip-hop is maximum intelligibility and presence. Vocals must compete with hard-hitting 808s and punchy drums.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+- **Recording:** Dynamic mic (SM7B) or condenser close-miked. Minimal room.
+- **Tuning:** Depends on sub-genre — melodic trap uses heavy tuning; conscious/boom-bap uses minimal.
+- **EQ:** High-pass at 80 Hz, cut 400 Hz (mud), boost 1.5–3 kHz (presence, articulation).
+- **Compression:** Fast attack (3–5ms), fast release (20–40ms). Hard compression for consistent punch. Ratio 6:1–8:1.
+- **Reverb:** Minimal — short room reverb (0.3s) or none for a dry, upfront sound.
+- **Width:** Lead vocal mono/center. Ad-libs can be panned slightly for space.
+- **Reference:** Kendrick Lamar (precision, dynamics), Travis Scott (atmospheric effects), Drake (warm presence).
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Pop Vocal Production**
 
-Professional vocal producers understand that Genre-Specific Vocal Production is both technical skill and artistic judgment.`
+Pop aims for polished perfection — pristine, present, and commercially ready.
+
+- **Recording:** LDC condenser in a treated room. Multiple takes for comping.
+- **Tuning:** Auto-Tune standard. Retune speed 20–50ms.
+- **EQ:** Cut 250 Hz (boxiness), boost 3 kHz (presence), boost 12 kHz (air).
+- **Compression:** Two stages: 1) Opto-style (2:1 slow) for natural leveling, 2) VCA-style (6:1 fast) for consistency.
+- **De-Esser:** Always. 7 kHz range.
+- **Reverb:** Short plate (0.8–1.2s). 15–20% wet with pre-delay.
+- **Reference:** The Weeknd, Ariana Grande, Taylor Swift.
+
+**R&B / Neo-Soul Vocal Production**
+
+R&B prioritizes warmth, smoothness, and harmonic richness.
+
+- **Recording:** LDC condenser, cardioid. Room slightly wetter than pop (a little natural space is fine).
+- **Tuning:** Melodyne for transparent correction. Preserve vibrato and ornamentation.
+- **EQ:** Preserve 200 Hz warmth (don't over-cut). Subtle presence boost (2.5 kHz).
+- **Compression:** Slower attack (15–25ms), moderate ratio (3:1–4:1). Opto-style for smooth character.
+- **Parallel compression:** 30–40% blend for body and sustain.
+- **Reverb:** Plate or hall, 20–30% wet. More reverb than pop — sense of space matters.
+- **Reference:** Frank Ocean, SZA, Daniel Caesar.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Genre-Specific Vocal Production in your productions with professional approaches:
+        title: 'Electronic Vocal Production: EDM, House, and Experimental',
+        content: `
+**EDM and House Vocal Production**
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+EDM vocals are often the hook that makes a track recognizable. They need to cut through loud, dense electronic arrangements.
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+- **Recording:** Clean condenser recording (dryness is important).
+- **Tuning:** Heavy Auto-Tune is stylistic and expected. Hard-tune (retune speed 0) for robotic feel.
+- **Processing Chain:** High-pass → EQ → Hard compression → Saturation → Master limiter.
+- **Saturation:** More aggressive than pop (2–5%). Adds harmonic density to compete with dense synths.
+- **Reverb:** Often more generous (20–35% wet) with a long pre-delay. Vocals float above the mix.
+- **Width:** Heavily doubled and widened. Lead + two wide doubles is standard.
+- **Effects chain:** Throw delays, filter sweeps, pitch automation for build-up sections.
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**DJ Drop / Vocal Sample Technique**
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+Short vocal phrases ("Let the music play," "Move your body") looped and transformed:
+1. Record short declarative phrases
+2. Time-stretch to grid alignment
+3. Apply heavy saturation and bit-crushing
+4. Filter sweep (automated low-pass opening) for build effect
+5. Pitch-shift for variation
 
-Study vocal productions in your genre and understand what makes them work.`
+**Experimental Vocal Texture**
+
+Breaking convention to create unique sonic signatures:
+- **Granular synthesis:** Stretch vocals into ambient pads using Ableton's Granulator II or Output Portal
+- **Spectral freezing:** Freeze a vowel's spectral snapshot into a sustained tone
+- **Convolution sampling:** Use the vocal recording as an impulse response — convolve other sounds through it
+- **Reverse vocals:** Natural in isolation, as effects on transitions, or time-aligned (record backwards while singing backwards)
+
+**Dry/Wet Contrast for Arrangement Impact**
+Use vocal effect automation to differentiate sections:
+- **Verse:** Dry, close vocal (mono, minimal effects)
+- **Chorus:** Wet, wide, doubled vocal (full effects chain)
+- **Breakdown:** Heavily processed, atmospheric, filtered
+- **Build-up:** Glitched, stutter-edited, pitch-ramped
+This wet/dry contrast is one of the most powerful arrangement tools in electronic music.
+        `
       }
     ]
   },

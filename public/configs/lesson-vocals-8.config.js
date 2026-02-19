@@ -38,69 +38,84 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Harmony & Backing Vocals',
-        content: `Harmony & Backing Vocals is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Vocal Stacking: Arrangement and Layering Technique',
+        content: `
+**What Are Vocal Stacks?**
+A vocal stack is multiple vocal layers singing the same or complementary parts to create a choir-like, dense texture. Used in gospel, R&B, pop, and modern EDM to fill space in the arrangement and create emotional impact in key sections.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Types of Vocal Layers**
+- **Lead:** Single main voice, center, most prominent
+- **Doubles:** Same line, slight pitch/timing variation (see Lesson 7)
+- **Harmonies:** Same rhythm as the lead but different pitch (3rd above, 5th below, etc.)
+- **Octave doubles:** Same line, one octave up or down
+- **Ad-libs:** Improvised responses, fills, and embellishments (more rhythmically free)
+- **Choir stack:** Many voices singing the same chord tones, layered thick
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Building a Harmony**
+Most vocal harmonies use intervals from the chord progression:
+- **+3rd:** Sings the note a diatonic 3rd above the lead. Bright, supportive, most common.
+- **+5th:** A 5th above. Powerful, used in gospel and country.
+- **-3rd:** A 3rd below the lead. Darker harmony.
+- **-5th:** A 5th below. Very rich, used in R&B (think Destiny's Child).
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Arranging the Stack**
+Think of vocal stacks like orchestration:
+- **Verse:** Lead only or lead + one subtle harmony (intimacy)
+- **Pre-chorus:** Add doubles. Energy begins building.
+- **Chorus:** Full stack — lead + doubles + harmonies + octave double. Maximum density.
+- **Post-chorus:** Reduce to lead + one layer. Or use only the choir on a hook hook.
+- **Breakdown/Bridge:** Often solo lead or minimal stack for contrast.
 
-Professional vocal producers understand that Harmony & Backing Vocals is both technical skill and artistic judgment.`
+**Diatonic Stacking**
+Map out the chord tones for each note of the melody to find natural harmonies:
+- In C major, if the melody hits E: harmonies could be G (3rd), C (5th below), B (7th)
+- If the chord is Am7 and the melody hits A: C (minor 3rd), E (5th), G (7th)
+Use the chord tones first; passing tones come next.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Harmony & Backing Vocals in your productions with professional approaches:
+        title: 'Mixing and Processing Vocal Stacks',
+        content: `
+**Bus Processing for Stacks**
+Route all backing vocal tracks to a single bus (stems bus approach):
+1. Individual tracks for fine-tuning per voice
+2. Stack bus for shared processing (group EQ, compression, reverb)
+3. Master vocal bus (lead + stack combined)
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**EQ for Stack Clarity**
+Stacks and backing vocals compete with the lead. EQ the stacks to make space:
+- High-pass filter backing vocals at 200–400 Hz (remove low-mid warmth that overlaps with lead)
+- Cut 3–5 kHz slightly (presence range, where leads need to cut through)
+- This makes stacks sound "behind" the lead without losing them
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Compression for Stack Glue**
+Apply glue compression on the vocal stack bus:
+- Ratio: 2:1–4:1
+- Attack: 30–80ms (let initial transients breathe through)
+- Release: 150–300ms (slow enough to maintain cohesion)
+- GR: 2–4 dB (light glue, not heavy squash)
+- Character: Use an SSL-style bus compressor for "glue" feel
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Reverb for Stacks**
+Backing stacks can use more reverb than the lead to push them "behind" in the 3D space:
+- Lead: Short plate, 15% wet, 20ms pre-delay
+- Stacks: Longer hall or plate, 25–35% wet, 35ms pre-delay
+- The longer pre-delay on stacks makes them feel spatially farther from the listener
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Automation: Ride the Stack**
+Even with perfect levels set, automation is needed:
+- Bring stacks slightly forward in the hook (loudest moment of chorus)
+- Pull stacks back during the lead's most expressive phrases (let emotion breathe)
+- Use volume automation rather than fader rides for reproducibility
 
-Study vocal productions in your genre and understand what makes them work.`
+**Pan Distribution**
+For a 4-voice harmony stack:
+- Voice 1 (soprano): +60%
+- Voice 2 (alto): +30%
+- Voice 3 (tenor): -30%
+- Voice 4 (baritone): -60%
+This creates a natural choir spread. The center remains open for the lead vocal.
+        `
       }
     ]
   },

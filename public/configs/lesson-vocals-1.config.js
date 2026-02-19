@@ -38,69 +38,57 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Recording Setup',
-        content: `Vocal Recording Setup is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Microphone Types: Condenser, Dynamic, and Ribbon',
+        content: `
+**Large-Diaphragm Condenser (LDC)**
+The industry standard for studio vocals. LDCs capture a wide frequency range with high sensitivity—they pick up detail, air (12–16 kHz shimmer), and subtle nuances in performance. Require 48V phantom power. Ideal for: pop, R&B, country, singer-songwriter, and any style where polish is the goal.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Small-Diaphragm Condenser (SDC)**
+Brighter, faster transient response, often more accurate. Less common for vocals but excellent for capturing acoustic guitar and overheads simultaneously when a singer-songwriter records live. Less proximity effect than LDC.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Dynamic Microphone**
+Robust, handles high SPL without distortion, naturally rejects room noise. Shure SM7B is the modern go-to for podcasts, rap, and rock vocals. Does NOT require phantom power. Ideal when: room is untreated, singer is loud, or you want a drier, more immediate sound.
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Ribbon Microphone**
+Figure-8 polar pattern, very smooth high-frequency response, natural-sounding on harsh voices. Fragile—never apply phantom power to passive ribbons. Used for: jazz, blues, vintage pop. Rejection from sides makes it great for room ambience control.
 
-Professional vocal producers understand that Vocal Recording Setup is both technical skill and artistic judgment.`
+**Polar Patterns**
+- **Cardioid** — Front pickup, rejects rear. Best for solo vocals in untreated rooms.
+- **Hypercardioid/Supercardioid** — Tighter front pickup, slight rear lobe. More bleed rejection at cost of positioning precision.
+- **Figure-8** — Front + rear, perfect side rejection. Used for Blumlein stereo and duet face-to-face recording.
+- **Omnidirectional** — Even pickup all around. No proximity effect. Used for room ambience or when you want natural space.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Recording Setup in your productions with professional approaches:
+        title: 'Room Treatment: From DIY to Professional',
+        content: `
+**Why Room Acoustics Matter**
+A microphone captures everything in the room—reflections, flutter echo, HVAC hum, and standing waves. These artifacts are baked into the recording and are nearly impossible to remove cleanly in post. Treatment is prevention.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**The Problem with Untreated Rooms**
+- **Parallel walls** create flutter echo (rapid slap between surfaces)
+- **Room modes** cause certain bass frequencies to build up or cancel
+- **Early reflections** reach the mic 10–50ms after the direct sound, creating comb filtering
+- **Reverberant tail** adds a boxy, amateur quality to the recording
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**DIY Treatment Options (Low Budget)**
+- **Wardrobe/closet:** Hang clothes densely around the singer. Fabric absorbs mid-high frequencies.
+- **Moving blankets:** Hang on stands behind the singer and behind the mic stand.
+- **Reflection filter:** Portable curved acoustic panel that mounts on the mic stand. Reduces rear reflections at the mic position.
+- **Corner bass traps:** Stacked bass trap panels in corners to reduce low-frequency buildup.
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Professional Treatment**
+- **Broadband absorbers** (4-inch rockwool): Cover 25–30% of wall surface area at primary reflection points.
+- **Diffusers:** Scatter reflections rather than absorb them. Used to add life without flutter echo.
+- **Cloud panel:** Ceiling-mounted absorber directly above the recording position.
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Quick Test**
+Clap sharply near the recording position and listen. A clean, dead "thock" = well treated. A ringy, metallic "tshhhh" = needs treatment. A long roomy decay = very untreated room.
 
-Study vocal productions in your genre and understand what makes them work.`
+**Signal Chain Order**
+Instrument → Microphone → Preamp (or interface preamp) → Analog-to-Digital Converter → DAW
+Keep cable runs short. Use balanced XLR cables. Ground the interface properly to avoid hum.
+        `
       }
     ]
   },

@@ -38,69 +38,60 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Effects & Processing',
-        content: `Vocal Effects & Processing is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Reverb Types and Their Application to Vocals',
+        content: `
+**Room Reverb**
+Simulates a small-to-medium acoustic space. Short decay (0.2–0.8s), early reflections prominent. Creates the sense that the singer is in a physical room without being obviously "wet." Used in: pop, hip-hop (subtle room glue), rock, and virtually any genre where natural placement is desired without a large space.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Plate Reverb**
+Originally a large sheet of metal vibrated by a transducer. Bright, smooth, no distinct room character. Excellent on vocals—clarity without harshness. Iconic on pop and soul recordings (Phil Spector's Wall of Sound). Decay: 0.8–2.5s. Still the most-used vocal reverb type in pop production.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Hall Reverb**
+Simulates large concert hall. Long decay (2–5s), distinct build-up phase. Used for: ballads, opera, cinematic vocals, gospel. Can overwhelm dense mixes—use sparingly or reserve for key dramatic moments (bridge, final chorus).
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Spring Reverb**
+Hardware springs create characteristic "boing" artifact. Distinctly retro, lo-fi character. Common in surf rock, rockabilly, dub reggae. Not transparent—it's a sonic flavor.
 
-Professional vocal producers understand that Vocal Effects & Processing is both technical skill and artistic judgment.`
+**Convolution Reverb**
+Uses impulse responses (recordings of real spaces). Captures the exact acoustic signature of a physical room: Abbey Road Studio 2, the Sistine Chapel, a stairwell. Most realistic option. Less CPU-friendly than algorithmic reverb.
+
+**Vocal Reverb Setup Best Practice**
+Always use reverb as a send effect (aux/bus), not as an insert:
+1. Create a reverb bus with reverb set to 100% wet
+2. High-pass filter the reverb return at 200–300 Hz (remove muddy low-end reverb)
+3. Compress the reverb return (4:1, medium settings) to control bloom
+4. Add pre-delay to the reverb (15–30ms) — separates vocal from reverb tail, prevents muddiness
+5. Automate the send level: more in quiet sections, less in dense chorus
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Effects & Processing in your productions with professional approaches:
+        title: 'Delay, Modulation, and Creative Vocal Effects',
+        content: `
+**Delay Types for Vocals**
+- **Slap Delay (50–150ms):** Single repeat that doubles the vocal subtly. Creates depth and dimension without obvious reverb wash. Standard in country, rock, and vintage soul.
+- **Quarter-Note Delay (tempo-synced):** Rhythmically reinforces the performance. Works in pop and electronic. Tempo = 60,000 ÷ BPM ms.
+- **Eighth-Note Delay:** Faster rhythmic reinforcement. Creates excitement in EDM, house, and upbeat pop.
+- **Ping-Pong Delay:** Alternates between left and right channels. Wide stereo effect for lead vocals or ad-libs.
+- **Filtered Delay:** High-pass filtered repeats sit behind the dry vocal in high-frequency content, never clutter.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Throw Delays (Automation)**
+A throw delay is a delay that applies only to specific words or phrases, often at ends of lines:
+1. Automate the delay send to be silent most of the time
+2. Briefly open the send on the last word of a phrase ("love", "tonight", "forever")
+3. The word echoes into the next section naturally
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Modulation Effects**
+- **Chorus:** Duplicates the signal with slight pitch/time variation. Creates perceived width and thickness. Use subtly on leads (slow rate 0.3–0.8 Hz, small depth).
+- **Flanger:** More intense version of chorus. Jet-plane effect at extreme settings. Creative use: add to backing vocal stacks.
+- **Vibrato:** Periodic pitch modulation. Can be used creatively (old cassette vibe) or subtly on long notes.
+- **Tremolo:** Volume modulation. Creates wavering, vintage effect. Use on specific phrases, not the whole vocal.
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
-
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
-
-Study vocal productions in your genre and understand what makes them work.`
+**Creative Processing: Signature Effects**
+- **Vocoder:** Synthesizer voiced by the singer's pitch. Daft Punk's "Get Lucky," Imogen Heap.
+- **Formant shifting:** Change vowel character without changing pitch. Make voice larger (bass) or smaller (chipmunk).
+- **Telephone/radio filter:** High-pass at 300 Hz, low-pass at 3.5 kHz. Bandpass + distortion. Used for verses in contrast with clean choruses.
+- **Pitch shifting harmonies:** Real-time pitch shift (+3, +7, +12 semitones) for instant harmony.
+        `
       }
     ]
   },

@@ -38,69 +38,80 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Advanced Vocal Mixing',
-        content: `Advanced Vocal Mixing is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Vocal Automation: Riding the Performance',
+        content: `
+**Why Automation Is Essential**
+Even with compression, a vocal will have moments that are too loud or too quiet for the mix. Automation is the final step in taming dynamics—and the difference between an amateur mix and a professional one is often the level of automation detail applied to the lead vocal.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Volume Automation (Vocal Ride)**
+The primary automation technique. Listen to the vocal in the context of the full mix and manually draw or record fader movements:
+- Boost: Quieter words, important consonants, line endings that trail off
+- Cut: Over-compressed pumping peaks, sudden loud syllables, sibilant bursts
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Automation Resolution**
+Different levels of detail serve different purposes:
+- **Section-level:** +2 dB in the chorus overall. Broad strokes for song structure.
+- **Phrase-level:** -1 dB on "because" (too loud in this line). Mid-detail.
+- **Word-level:** Trim specific words that sit above the average. Fine detail.
+- **Syllable-level:** Tame individual consonant blasts ("T," "K," "P" attacks). Surgical.
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Clip Gain vs. Volume Automation**
+Two approaches for detailed rides:
+- **Clip gain:** Adjust the audio clip's level before it hits any plugins. Affects what the compressor "sees" — use for corrective gain matching between comp sections.
+- **Volume automation (fader):** Happens after all plugin processing. Use for post-processing ride and musical expression.
 
-Professional vocal producers understand that Advanced Vocal Mixing is both technical skill and artistic judgment.`
+**Breath and Gap Automation**
+Automate the volume of breaths and inter-phrase silence:
+- Reduce breath volume by 6–12 dB (don't delete — sounds unnatural)
+- During silences between phrases, automate volume to -∞ or -20 dB to eliminate room noise bleeding through
+
+**MIDI vs. Written Automation**
+- Write mode (live fader moves): Natural feel, fast to record
+- Pencil/draw mode: Precise, repeatable, easier to correct
+Mix both: write broad strokes in real-time, refine with draw mode.
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Advanced Vocal Mixing in your productions with professional approaches:
+        title: 'Parallel Processing for Vocal Power and Character',
+        content: `
+**Parallel Compression on Vocals**
+Standard insert compression can make vocals consistent but lifeless. Parallel compression blends the compressed signal with the uncompressed original:
+- **Result:** Compressed body and sustain + uncompressed transient punch
+- **Ratio:** 8:1–20:1 on the parallel chain (heavy)
+- **GR:** 10–20 dB (aggressive — this is the saturated parallel signal)
+- **Makeup gain:** +12–18 dB
+- **Blend:** 20–40% of parallel into the dry signal
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**NY Compression on Vocals**
+Send the vocal bus to a dedicated compression bus:
+1. Create "Vocal Parallel" bus
+2. Apply UA 1176 (All-Buttons mode) or VCA-style limiter
+3. Heavy limiting (-20 dB GR)
+4. Route original vocal + parallel at 70:30 ratio
+5. The blend adds density and excitement on peaks without squashing the overall performance
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Parallel Saturation**
+Add harmonic richness without destroying dynamics:
+1. Create "Vocal Saturation" bus
+2. Apply tape or tube saturation (iZotope Vinyl, Waves J37, Softube Tube-Tech)
+3. High-pass filter the saturation bus at 200 Hz (avoid muddy lows)
+4. Blend 10–25% into the dry vocal
+5. Result: Warm, full harmonic richness behind the natural vocal
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Parallel Reverb (Advanced)**
+Beyond simple reverb sends, process the reverb return:
+- Compress the reverb return (4:1, 20ms attack, 150ms release) to control bloom
+- High-pass at 200 Hz, low-pass at 8 kHz to keep reverb focused in the midrange
+- Automate reverb send level (more in verse, less in dense chorus)
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
-
-Study vocal productions in your genre and understand what makes them work.`
+**Parallel Processing Bus Layout**
+Main vocal track → Insert processing (EQ, comp, de-ess)
+                  → Send 1: Reverb bus (plate)
+                  → Send 2: Delay bus (quarter-note)
+                  → Send 3: Parallel compression bus
+                  → Send 4: Parallel saturation bus
+All buses → Vocal master bus → Mix bus
+        `
       }
     ]
   },

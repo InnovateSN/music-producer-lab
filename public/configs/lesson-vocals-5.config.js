@@ -38,69 +38,69 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Chain Essentials',
-        content: `Vocal Chain Essentials is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Vocal Processing Chain: Signal Flow and Stage Purpose',
+        content: `
+**Why Chain Order Matters**
+Audio processing is sequential—each plugin processes the output of the previous one. Order changes the sound:
+- **EQ before compression:** EQ shapes the signal, compression tames the shaped result. Frequency-selective dynamics become more stable.
+- **Compression before EQ:** Compressor acts on unequalized signal. EQ then shapes the compressed dynamics. Can sound more natural on vocals.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Standard Vocal Chain (Recommended Starting Point)**
+1. **High-Pass Filter** (80–120 Hz) — Remove sub-low rumble, handling noise, plosive energy that escaped the pop filter. Clean the foundation.
+2. **De-Esser** (optional at this point) — If sibilance is very harsh, de-ess early to prevent compressors from over-reacting to high-frequency bursts.
+3. **Corrective EQ** — Remove problem frequencies: boxiness (200–400 Hz), nasal honk (500–800 Hz), harshness (4–6 kHz). Cut with narrow Q.
+4. **Compression** — Tame dynamics. Ratio 3:1–6:1. Attack 5–15ms (let transients breathe). Release 50–100ms. Aim for 4–8 dB gain reduction on average.
+5. **De-Esser** — Tame sibilance (S, Sh, T sounds). Typically 5–9 kHz range. Use dynamic EQ or dedicated de-esser. Threshold: just catches harsh sibilance, ignores normal speech.
+6. **Creative/Additive EQ** — Boost presence (2–4 kHz) for clarity in the mix. Boost air (10–16 kHz) for sparkle. Small cuts before boosting for transparency.
+7. **Saturation (optional)** — Subtle harmonic enhancement (0.5–3%). Adds analog warmth, helps vocals sit in dense mixes. Use tube or tape saturation types.
+8. **Reverb / Delay** — Time-based effects always last. Send-based (aux) for flexibility over dry/wet balance.
+9. **Limiter** — Optional ceiling to prevent occasional peaks from exceeding 0 dBFS before export.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
-
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
-
-Professional vocal producers understand that Vocal Chain Essentials is both technical skill and artistic judgment.`
+**Key Parameters to Learn Per Stage**
+- **Compression:** Threshold, Ratio, Attack, Release, Knee, Makeup Gain
+- **EQ:** Frequency, Gain, Q (bandwidth), Filter type
+- **De-Esser:** Frequency range, Threshold, Mode (broadband vs. frequency-selective)
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Chain Essentials in your productions with professional approaches:
+        title: 'Genre-Specific Vocal Processing Starting Points',
+        content: `
+**Pop Vocal Chain**
+Goal: Present, polished, sits on top of the mix, commercially competitive.
+- High-pass: 100 Hz, 12 dB/oct
+- EQ: -3 dB at 300 Hz (boxiness), +2 dB at 3 kHz (presence), +1.5 dB at 12 kHz (air)
+- Compression: 4:1 ratio, 8ms attack, 60ms release, -3 dB threshold, 8 dB GR
+- De-esser: 7 kHz, tight range, -4 dB reduction
+- Reverb: short plate (0.8s), 18% wet
+- Reference: Billie Eilish, Dua Lipa, Harry Styles productions
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Hip-Hop / Rap Chain**
+Goal: Dry, upfront, punchy, clear articulation, cuts through 808 bass.
+- High-pass: 80 Hz, 18 dB/oct
+- EQ: -2 dB at 400 Hz, +3 dB at 2–3 kHz (presence/cut), minimal high-end boost
+- Compression: 6:1 ratio, 3ms attack, 30ms release (fast, snappy)
+- De-esser: 6 kHz
+- Reverb: little to none (or very short room ~0.3s, 5% wet)
+- Reference: Drake, Kendrick Lamar, Travis Scott mixing templates
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**R&B / Soul Chain**
+Goal: Smooth, warm, intimate, harmonically rich.
+- High-pass: 90 Hz
+- EQ: +1.5 dB at 200 Hz (warmth), -2 dB at 4 kHz (remove harshness), +2 dB at 10 kHz (air)
+- Compression: 3:1, slow attack (20ms), medium release (80ms) — preserve breath and vibrato
+- Parallel compression: 8:1, -8 dB GR, blend 20–30%
+- Reverb: Medium hall or plate (1.5s), 20–25% wet, pre-delay 20ms
+- Reference: Frank Ocean, SZA, H.E.R.
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
-
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
-
-Study vocal productions in your genre and understand what makes them work.`
+**Rock / Alternative Chain**
+Goal: Raw energy, natural imperfection, sits in dense guitars.
+- High-pass: 120 Hz (cut more to clear guitar low-mids)
+- EQ: Cut 300–500 Hz (clears guitar/vocal clash), +2 dB at 1–2 kHz (presence)
+- Compression: 2:1–3:1, medium attack, medium release — light-handed
+- Saturation: More aggressive (3–10%) for grit
+- Delay: Slap delay (60–120ms, 1–3 repeats) instead of reverb for rock clarity
+- Reference: Arctic Monkeys, Florence + the Machine, Foo Fighters
+        `
       }
     ]
   },

@@ -38,69 +38,80 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Pitch Correction & Tuning',
-        content: `Pitch Correction & Tuning is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Pitch Correction Technology: Auto-Tune, Melodyne, and Manual Tuning',
+        content: `
+**Why Pitch Correction?**
+Even professional singers produce slightly out-of-tune notes due to:
+- Performance anxiety
+- Fatigue
+- Complex melodic leaps
+- Stylistic vibrato or bends that drift
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+Pitch correction makes the decision: fix to accurate pitch (corrective) OR exaggerate to musical effect (creative/robotic).
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Auto-Tune (Antares)**
+Real-time pitch correction—corrects pitch as the signal passes through, before it reaches the output:
+- **Retune Speed:** 0 = instant (robotic "T-Pain" effect). 50–100ms = natural-sounding correction.
+- **Key and Scale:** Set to song key to avoid correcting to wrong notes.
+- **Humanize:** Reduces correction on longer sustained notes to preserve natural vibrato.
+- **Flex-Tune:** Only corrects notes that are measurably wrong, leaves intentional bends alone.
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Melodyne (Celemony)**
+Non-destructive offline pitch editor—works on recordings after capture:
+- View every note as a "blob" in a piano roll-like interface
+- **DNA (Direct Note Access):** Edit individual notes in chords without affecting others
+- Move notes up/down by cents or semitones
+- Adjust pitch modulation (vibrato), formants independently of pitch
+- Non-destructive: original audio is always preserved
 
-Professional vocal producers understand that Pitch Correction & Tuning is both technical skill and artistic judgment.`
+**Auto-Tune vs. Melodyne**
+| Feature | Auto-Tune | Melodyne |
+|---------|-----------|----------|
+| Mode | Real-time or manual | Offline (audio transferred in) |
+| Speed | Faster workflow | More control |
+| Best for | Light correction or creative effect | Surgical, transparent correction |
+| Polyphonic | Limited | Full DNA technology |
+| Creative use | Robot vocals, heavy correction | Natural transparent tuning |
+
+**Natural Tuning Approach**
+Before reaching for plugins, try:
+1. **Re-record:** Sometimes the best "fix" is another take with fresh ears
+2. **Piano reference:** Have singer practice the melody against piano before tracking
+3. **Comping:** Combine multiple takes—the best pitch often comes from different takes
+4. **Melody simplification:** Arrange the melody to avoid problem intervals for the specific singer
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Pitch Correction & Tuning in your productions with professional approaches:
+        title: 'Workflow: When and How Much Pitch Correction to Use',
+        content: `
+**Corrective vs. Creative Pitch Correction**
+- **Corrective:** Fix actual pitch errors. Listener should not hear correction—it should be invisible. Target: sounds like a better take, not like a robot.
+- **Creative:** Deliberately audible correction as an effect. T-Pain, Kanye (808s & Heartbreak), Bon Iver (Woods), Cher (Believe). This is an artistic choice, not a mistake.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Setting Retune Speed for Different Styles**
+- **Very fast (0–10ms):** Robotic, EDM vocals, creative effect
+- **Fast (10–30ms):** Pop, country, R&B — barely noticeable on sustained notes
+- **Medium (30–80ms):** Most natural. Good for rock and jazz where slight human variation is desired
+- **Slow (100+ms):** Only catches large pitch errors; leaves vibrato and expression intact
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**Formant Correction**
+Shifting pitch without formant correction creates the "chipmunk" (pitch up) or "monster" (pitch down) artifact. Modern tools (Melodyne, Celemony, Auto-Tune Pro) handle formants automatically. When manually shifting in a non-vocal-aware tool, use formant correction at the same ratio as pitch shift.
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Transparency Checklist**
+After applying pitch correction:
+- [ ] Solo the vocal — does it sound natural or processed?
+- [ ] Listen to transitions between corrected and uncorrected notes (no jumps in tone?)
+- [ ] Check vibrato — is it preserved or flattened to a drone?
+- [ ] Listen to the final mix — correction sounds less obvious in context
+- [ ] Compare A/B (bypass) — is the correction actually improving or just changing?
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
-
-Study vocal productions in your genre and understand what makes them work.`
+**Genre Norms**
+- **Pop:** Heavy correction standard. Autotune almost always on.
+- **Country:** Moderate. Natural imperfection valued; heavy correction sounds out-of-genre.
+- **R&B/Hip-Hop:** Wide range—from transparent to deliberately robotic.
+- **Rock/Metal:** Minimal or none. Slight imperfection = authenticity.
+- **Jazz:** Rarely used. Pitch inflection is the artistry.
+        `
       }
     ]
   },

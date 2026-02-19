@@ -38,69 +38,68 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Vocal Editing Fundamentals',
-        content: `Vocal Editing Fundamentals is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'The Art of Comping: Building the Perfect Vocal',
+        content: `
+**What Is Comping?**
+Comping (short for compositing) is the process of assembling multiple vocal takes into one seamless final performance. You listen to each take, identify the best phrase, word, or note, then splice them together. The result should sound like one continuous, natural performance—but optimized for pitch, timing, and emotion.
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Phrase-Level vs. Word-Level Comping**
+- **Phrase comping:** Select the best complete musical phrase (e.g., "I need your love tonight") per take. Fastest, maintains natural phrasing and breathing.
+- **Word-level comping:** Select individual words from different takes. More control but risks unnatural transitions if not carefully crossfaded.
+- **Syllable comping:** Used sparingly for problem consonants or specific pitch issues. Always crossfade.
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Crossfades: The Key to Invisible Edits**
+Every comp edit needs a crossfade to avoid clicks, pops, and unnatural transitions:
+- **Duration:** 5–30ms for word edits, 50–200ms for phrase transitions
+- **Shape:** Equal-power (constant power) crossfade for most vocal edits
+- **Zero-crossing:** Ideally start/end crossfades at zero-crossing points in the waveform
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Common Comping Mistakes**
+- Cutting in the middle of a breath (sounds artificial)
+- Not matching room tone between takes (subtle difference in background noise)
+- Over-comping (changing so many words the performance loses emotional continuity)
+- Not listening to the comp in context of the full track (solo listening misleads)
 
-Professional vocal producers understand that Vocal Editing Fundamentals is both technical skill and artistic judgment.`
+**Workflow: A Proven System**
+1. Listen to all takes end-to-end without stopping
+2. Rate each take by section (A=great, B=usable, C=backup)
+3. Start with the best complete take as your base
+4. Replace only sections that are clearly inferior to alternatives
+5. Render/bounce the comp to a single audio file before further editing
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Vocal Editing Fundamentals in your productions with professional approaches:
+        title: 'Noise Reduction, Breath Editing, and Cleanup',
+        content: `
+**Breath Editing**
+Breaths are part of a natural performance—removing all of them sounds robotic. The standard approach:
+- **Keep:** Breaths before phrases that add to emotional delivery
+- **Reduce:** Very loud or distracting breaths (volume-automate down by 6–12 dB rather than deleting)
+- **Remove:** Only accidental breath blasts or mic handling noise
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Noise Reduction Tools**
+- **iZotope RX:** Industry standard. Spectral repair, dialogue isolation, de-hum, de-click
+- **Accusonus ERA:** Simpler de-noiser for quick cleanup
+- **Steinberg SpectraLayers:** Spectral editor built into Cubase
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+**iZotope RX Workflow:**
+1. Select 1–2 seconds of room tone (silence between phrases)
+2. "Learn" the noise profile (RX → Noise Reduction → Learn)
+3. Apply at 30–50% reduction (less is more—heavy reduction creates artifacts)
+4. Check: solo on a vocal phrase and listen for water-gurgling artifacts (artifact of over-correction)
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**De-Clicking**
+Mouse clicks, mouth clicks, saliva sounds: use RX De-click or manual spectral repair. Saliva clicks appear as sharp, short transients in the mid-high frequencies. In RX spectral view: they show as bright vertical lines you can paint out precisely.
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Room Tone Matching**
+When comping takes recorded on different days or with different room setups, the background noise "floor" may differ subtly. Fade between noise floors at edit points using short (20–50ms) fades on the noise, or use iZotope RX Ambience Match to normalize room tone across takes.
 
-Study vocal productions in your genre and understand what makes them work.`
+**Timing Cleanup**
+After comping, audio segments may sit slightly ahead or behind the beat:
+1. Enable snapping to grid (8th or 16th notes)
+2. Slide individual comp segments ±10–30ms to align with beat
+3. Use warp tools (Ableton), Flex Time (Logic), or Elastic Audio (Pro Tools) for fine-grained timing adjustment without cutting
+        `
       }
     ]
   },

@@ -38,69 +38,77 @@ export const lessonConfig = {
   theory: {
     sections: [
       {
-        title: 'Understanding Creative Vocal Production',
-        content: `Creative Vocal Production is crucial for achieving professional vocal productions that compete with commercial releases.
+        title: 'Vocal Chopping, Sampling, and Creative Vocal Design',
+        content: `
+**Vocal Chopping**
+Vocal chopping is the rhythmic slicing and rearranging of vocal recordings to create new rhythmic and melodic patterns. Common in:
+- **Electronic/EDM:** Slice a sung phrase into individual phonemes and trigger them rhythmically
+- **Hip-hop:** Chop a vocal sample from a classic record, pitch it, and build a new melody
+- **Future bass / bass music:** Choppy, stuttered synth-like vocal textures
 
-**Core Concepts:**
-- Vocal recording and production fundamentals
-- Technical requirements and equipment considerations
-- Signal flow and processing chain order
-- Common issues and how to solve them
-- Genre-specific approaches and standards
+**Chopping Workflow in a DAW**
+1. Record or import a vocal phrase
+2. Slice at transients (every syllable or phoneme)
+3. Assign slices to MIDI notes (Ableton Simpler/Sampler, Logic Ultrabeat, FL Studio Slicex)
+4. Play the slices in a new rhythmic/melodic order via MIDI
+5. Add pitch shifting per slice for melodic variation
 
-**Professional Workflow:**
-1. **Preparation** — Set up properly before recording
-2. **Capture** — Record high-quality source material
-3. **Edit** — Clean up and comp the best takes
-4. **Process** — Apply corrective and creative processing
-5. **Mix** — Blend vocals perfectly with the track
-6. **Finalize** — Ensure vocals translate across systems
+**Pitch-Shifting Vocal Samples**
+Pitching voice samples creates new melodic content from a single recording:
+- Small shifts (±2–6 semitones): Voice character preserved, sounds like a different singer
+- Large shifts (octave+): Character warps heavily, becomes a new texture (chipmunk/monster effect)
+- Use formant correction to maintain natural vowel quality when shifting more than ±4 semitones
 
-**Critical Factors:**
-- **Source quality** — Good recording = easier mixing
-- **Performance** — Technical skill matters more than processing
-- **Context** — Vocals must serve the song
-- **Reference** — Always compare to professional standards
+**Vocal Resampling**
+Record your own vocals and resample them:
+1. Sing sustained vowels ("aah," "ooh," "eeh") at various pitches
+2. Sample into a sampler instrument
+3. Map each recording across the keyboard
+4. You now have a custom vocal pad instrument
 
-Professional vocal producers understand that Creative Vocal Production is both technical skill and artistic judgment.`
+**Acapella Sampling and Clearance**
+Using commercial acapellas requires:
+- **Licensing:** Contact the rights holder (publisher + master rights)
+- **Acapella packs:** Royalty-free vocal samples (Splice, LANDR, Loopmasters)
+- **Own recordings:** No clearance issues, most creatively free
+        `
       },
       {
-        title: 'Professional Vocal Production Techniques',
-        content: `Apply Creative Vocal Production in your productions with professional approaches:
+        title: 'Vocoder, Talkbox, and Formant-Based Effects',
+        content: `
+**What Is a Vocoder?**
+A vocoder (voice encoder) analyzes the spectral envelope (formants) of a carrier signal (voice) and applies that shape to a modulator signal (synthesizer). The synthesizer's harmonic richness is "voiced" by the human mouth shape.
 
-**Recording Best Practices:**
-- Proper mic placement and distance
-- Optimal gain staging and headroom
-- Multiple takes for comping
-- Consistent recording environment
-- Reference monitoring and acoustics
+**Classic Vocoder Sound**
+- Carrier: Voice (sung into microphone or spoken)
+- Modulator: Pad synthesizer (chords held on a keyboard)
+- Result: Robotic, synthesized voice that follows the harmonic content of the synth
 
-**Processing Workflow:**
-1. **Clean up** — Remove unwanted sounds and noise
-2. **Tune** — Correct pitch issues (subtle or creative)
-3. **Time align** — Fix timing and rhythm issues
-4. **EQ** — Remove muddiness, add presence
-5. **Compress** — Control dynamics and consistency
-6. **De-ess** — Tame harsh sibilance
-7. **FX** — Add reverb, delay, modulation
+Famous examples: Daft Punk's "Around the World," Kraftwerk's "The Robots," Imogen Heap's "Hide and Seek" (vocoders built into Eventide harmonizers).
 
-**Common Vocal Issues:**
-- **Muddiness** — High-pass filter at 80-100 Hz
-- **Harshness** — De-ess or cut 6-8 kHz
-- **Lack of presence** — Boost 3-5 kHz subtly
-- **Inconsistent levels** — Compression and automation
-- **Poor timing** — Edit before processing
-- **Pitch issues** — Tune before heavy processing
+**Hardware vs. Software Vocoders**
+- **Hardware:** Roland VP-330, EMS Vocoder 2000 (vintage, expensive, distinctive)
+- **Software:** Ableton's Vocoder, iZotope VocalSynth, Roland's VC-1 plugin, Waves Morphoder
 
-**Genre Considerations:**
-Different genres require different vocal approaches:
-- **Pop** — Polished, present, tuned, compressed
-- **Hip-Hop** — Dry, upfront, minimal reverb
-- **R&B** — Smooth, warm, layered harmonies
-- **Rock** — Raw energy, less processing
-- **Electronic** — Creative effects, vocoders, pitch shifts
+**Talkbox**
+Different from vocoder: a talkbox sends the synth or guitar signal through a plastic tube into the performer's mouth. The mouth physically shapes the sound. Output is captured by a microphone placed at the lips.
 
-Study vocal productions in your genre and understand what makes them work.`
+Famous examples: Peter Frampton, Roger (Zapp & Roger), Bon Jovi's "Livin' on a Prayer" guitar.
+
+**Formant Shifting**
+Formants are the resonant frequency peaks that distinguish vowel sounds. Formant shifters change the vowel character without changing pitch:
+- Shift up: Voice sounds smaller, younger, "chipmunk"
+- Shift down: Voice sounds larger, more masculine, "giant"
+- Used creatively for character transformations, or subtly for tone shaping
+
+**VocalSynth 2 (iZotope)**
+All-in-one vocal synthesis plugin offering:
+- Polyvocoder (chord voicing from vocal input)
+- Compuvox (robotic vocoder)
+- Biovox (formant shaping)
+- Punch (exciter)
+Mix and match in any combination for custom vocal textures.
+        `
       }
     ]
   },
