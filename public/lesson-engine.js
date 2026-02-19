@@ -369,7 +369,7 @@ function populateTheory(config) {
       <div class="exercise-box" style="margin-bottom: var(--space-lg);">
         <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm); color: var(--text-primary);">Content references</h3>
         <p style="color: var(--text-muted); margin-bottom: var(--space-sm);">
-          This lesson is cross-checked against the following reference baseline:
+          This lesson aligns informational content with the following reference sources:
         </p>
         <ul style="padding-left: 1.2rem; line-height: 1.7;">${sourceLinks}</ul>
       </div>
