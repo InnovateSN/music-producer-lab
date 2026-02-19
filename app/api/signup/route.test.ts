@@ -25,6 +25,7 @@ describe('/api/signup', () => {
     process.env = {
       ...originalEnv,
       NEXTAUTH_SECRET: 'test-secret-key-at-least-32-characters-long',
+      NEXT_PUBLIC_APP_URL: 'http://localhost:3000',
     };
     createUser.mockResolvedValue({
       id: 'test-user-id',
@@ -39,7 +40,7 @@ describe('/api/signup', () => {
   it('should reject missing email', async () => {
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ password: '12345678' }),
     });
 
@@ -52,7 +53,7 @@ describe('/api/signup', () => {
   it('should reject weak password', async () => {
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: '123' }),
     });
 
@@ -65,7 +66,7 @@ describe('/api/signup', () => {
   it('should reject invalid email format', async () => {
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'not-an-email', password: '12345678' }),
     });
 
@@ -78,7 +79,7 @@ describe('/api/signup', () => {
   it('should create user with valid data', async () => {
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({
         email: 'test@example.com',
         password: 'securepassword123',
@@ -98,7 +99,7 @@ describe('/api/signup', () => {
   it('should create user without optional firstName/lastName', async () => {
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({
         email: 'test@example.com',
         password: 'securepassword123',
@@ -116,7 +117,7 @@ describe('/api/signup', () => {
 
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({
         email: 'existing@example.com',
         password: 'securepassword123',
@@ -134,7 +135,7 @@ describe('/api/signup', () => {
 
     const req = new NextRequest('http://localhost:3000/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({
         email: 'test@example.com',
         password: 'securepassword123',

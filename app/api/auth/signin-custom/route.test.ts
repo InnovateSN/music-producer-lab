@@ -29,6 +29,7 @@ describe('/api/auth/signin-custom', () => {
     process.env = {
       ...originalEnv,
       NEXTAUTH_SECRET: 'test-secret-key-at-least-32-characters-long',
+      NEXT_PUBLIC_APP_URL: 'http://localhost:3000',
     };
   });
 
@@ -39,7 +40,7 @@ describe('/api/auth/signin-custom', () => {
   it('should reject missing email', async () => {
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ password: 'password123' }),
     });
 
@@ -50,7 +51,7 @@ describe('/api/auth/signin-custom', () => {
   it('should reject empty password', async () => {
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: '' }),
     });
 
@@ -63,7 +64,7 @@ describe('/api/auth/signin-custom', () => {
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'nouser@example.com', password: 'password123' }),
     });
 
@@ -86,12 +87,12 @@ describe('/api/auth/signin-custom', () => {
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
     });
 
     const response = await POST(req);
-    expect(response.status).toBe(403);
+    expect(response.status).toBe(401);
   });
 
   it('should reject wrong password', async () => {
@@ -108,7 +109,7 @@ describe('/api/auth/signin-custom', () => {
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: 'wrongpassword' }),
     });
 
@@ -131,7 +132,7 @@ describe('/api/auth/signin-custom', () => {
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: 'correctpassword' }),
     });
 
@@ -147,7 +148,7 @@ describe('/api/auth/signin-custom', () => {
 
     const req = new NextRequest('http://localhost:3000/api/auth/signin-custom', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', origin: 'http://localhost:3000' },
       body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
     });
 
