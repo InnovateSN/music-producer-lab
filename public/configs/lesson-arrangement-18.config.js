@@ -836,7 +836,7 @@ Outro         | 0%        | 100%
 2. Write catchy vocal melody (hook)
 3. Add basic chord progression (piano or guitar)
 4. Record lead vocal
-5. Add basic pop drum pattern (or placeholder drums)
+5. Add basic pop drum pattern (temporary beat for reference)
 
 **At this stage:** Track sounds 100% pop (nothing trap yet)
 
