@@ -4,6 +4,26 @@ export const lessonConfig = {
   lessonKey: "mpl-drums-18-progress",
   lessonNumber: 18,
   lessonCategory: "Drums & Rhythm",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-1",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/Rhythm",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  }},
   depthLevel: 8,
   nextLessonUrl: "lesson-drums-19.html",
   prevLessonUrl: "lesson-drums-17.html",
@@ -35,6 +55,26 @@ export const lessonConfig = {
   theory: { sections: [{ title: "Swing vs Shuffle", content: "**Swing:** Delays 8th notes slightly (50-75% triplet feel). **Shuffle:** Full triplet-based rhythm (100% triplet). **Half-time shuffle:** Shuffle pattern at half tempo (Rosanna, Fool in the Rain). **Percentage:** 0% = straight, 50% = full triplet, 25% = subtle swing." }] },
   learningObjectives: ["Program triplet-based shuffle patterns", "Understand swing percentages", "Create half-time shuffle grooves", "Differentiate binary vs ternary feels", "Apply swing to different genres"],
   validation: applyMessagePreset("drumSequencer", "correct-placement"),
+
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
+  },
 
   // ====================
   // REFERENCE SOURCES

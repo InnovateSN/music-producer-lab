@@ -4,6 +4,26 @@ export const lessonConfig = {
   lessonKey: "mpl-drums-21-progress",
   lessonNumber: 21,
   lessonCategory: "Drums & Rhythm",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-1",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/Rhythm",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  }},
   depthLevel: 9,
   nextLessonUrl: "lesson-drums-22.html",
   prevLessonUrl: "lesson-drums-20.html",
@@ -35,6 +55,26 @@ export const lessonConfig = {
   theory: { sections: [{ title: "Advanced Polyrhythmic Concepts", content: "**5:4 Polyrhythm:** Most complex common polyrhythm. **7:4 Polyrhythm:** Needs 28-step grid (very advanced). **Metric Displacement:** Shifting patterns by offsets. **Cross-Rhythms:** Implied subdivisions that conflict with meter. **Phase Shifting:** Gradually delaying one pattern relative to another (Steve Reich)." }] },
   learningObjectives: ["Program 5:4 polyrhythms", "Understand LCM (lowest common multiple) for grid sizing", "Create metric displacement patterns", "Apply phase shifting techniques", "Use polyrhythms musically, not just mathematically"],
   validation: applyMessagePreset("drumSequencer", "correct-placement"),
+
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
+  },
 
   // ====================
   // REFERENCE SOURCES

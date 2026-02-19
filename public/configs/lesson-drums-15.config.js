@@ -12,6 +12,26 @@ export const lessonConfig = {
   lessonKey: "mpl-drums-15-progress",
   lessonNumber: 15,
   lessonCategory: "Drums & Rhythm",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-1",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/Rhythm",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  }},
   depthLevel: 7,
   
   nextLessonUrl: "lesson-drums-16.html",
@@ -128,6 +148,26 @@ export const lessonConfig = {
   messagePresets: {
     success: "Perfect! Your hi-hat technique is professional-level. Open hats add the accents that make grooves breathe!",
     incorrect: "Not quite. Check your hi-hat velocities and placement. Open hats should be louder than closed hats."
+  },
+
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
   },
 
   // ====================
