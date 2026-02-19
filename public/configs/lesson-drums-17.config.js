@@ -32,5 +32,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Layering Strategy", content: "**Kick Layering:** Sub (808) + Punch (acoustic) = full kick. **Snare Layering:** Body + Crack + Clap = massive snare. **Processing:** EQ each layer differently, compress separately, then mix together." }] },
   learningObjectives: ["Layer multiple drum sounds on same steps", "Understand frequency spectrum separation", "Apply parallel processing concepts", "Create professional drum tones", "Use layering for genre-specific sounds"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity")
+  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

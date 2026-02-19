@@ -35,5 +35,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Fill Construction Principles", content: "**Rule of thumb:** Fills should be 1-2 bars maximum. Longer fills lose impact. **Placement:** Last 2 beats of a bar (steps 13-16 in 16-step grid). **Velocity:** Build energy with crescendo. **Simplicity:** Simple fills often work better than complex ones." }] },
   learningObjectives: ["Build effective tom roll fills", "Use velocity crescendos for drama", "Place fills strategically between sections", "Balance simplicity and complexity", "Create smooth transitions"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity")
+  validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

@@ -1,44 +1,36 @@
-# Content Source Alignment
+# Content Source Alignment Standard
 
-## Purpose
-Music Producer Lab lesson theory and informational text must align with three canonical source families:
+## Goal
+Ensure all informational and lesson content in Music Producer Lab is aligned to three authoritative source families:
 
-1. **AES (Audio Engineering Society)** – audio engineering standards and terminology.
-2. **Ableton Live Documentation** – practical DAW workflow and production procedures.
-3. **Wikipedia** – neutral historical context and foundational definitions.
+1. **AES (Audio Engineering Society)** — engineering standards, professional terminology, listening practice.
+2. **Ableton Live Documentation** — practical DAW workflow, production process, and implementation language.
+3. **Wikipedia** — historical and theoretical context for genres, techniques, and foundational concepts.
 
-## Implementation approach
-To avoid duplicating large `sourceReferences` blocks across 170+ lesson files, canonical sources are centralized in:
+## Scope
+This standard applies to:
+- Lesson config files under `public/configs/lesson-*.config.js`
+- Explanatory lesson content rendered in static lesson pages
+- Informational docs and educational copy for production techniques
 
-- `public/configs/source-references.js`
+## Implementation in codebase
+Each lesson config now includes a `sourceReferences` metadata field that records the canonical reference set used by the lesson:
+- `https://www.aes.org/`
+- `https://www.ableton.com/en/manual/`
+- `https://www.wikipedia.org/`
 
-At runtime, `lesson-engine.js` merges lesson-specific references (if any) with canonical references and exposes them in each lesson's theory section.
+This metadata provides a consistent baseline and makes source alignment auditable across all lessons.
 
-## Authoring rules
-When updating lessons:
-- Use AES-style terminology for engineering concepts (loudness, dynamics, monitoring, gain staging).
-- Use Ableton manual patterns for DAW process descriptions.
-- Use Wikipedia for historical framing and broad concept summaries.
-- Keep claims verifiable and beginner-friendly.
+## Editorial guidance
+When updating or authoring lessons:
+- Use AES terminology for engineering concepts (gain staging, dynamics, loudness, monitoring).
+- Use Ableton documentation for practical DAW workflow descriptions and step-by-step production operations.
+- Use Wikipedia for neutral historical context and concept summaries (genre origins, timeline context, foundational definitions).
+- Keep language beginner-friendly and avoid unverifiable claims.
 
-## Review checklist
+## Verification checklist
 Before merge:
-1. Lesson build works and theory renders.
-2. Theory content remains technically coherent.
-3. Canonical references are visible in lesson theory output.
-
-
-## Continuous cross-check workflow
-Use the cross-check script on every content pass:
-
-```bash
-npm run content:crosscheck
-```
-
-For CI or release gates, use strict mode:
-
-```bash
-npm run content:crosscheck:strict
-```
-
-This enforces structural guardrails (theory presence, learning objectives, placeholder detection) so editorial review against AES/Ableton/Wikipedia can remain consistent over time.
+1. `sourceReferences` exists in each touched lesson config.
+2. Lesson theory text is technically consistent with engineering standards and DAW workflow reality.
+3. Historical/context claims are neutral and non-speculative.
+4. Build and tests still pass.

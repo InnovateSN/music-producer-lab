@@ -34,5 +34,27 @@ export const lessonConfig = {
   ],
   theory: { sections: [{ title: "Advanced Polyrhythmic Concepts", content: "**5:4 Polyrhythm:** Most complex common polyrhythm. **7:4 Polyrhythm:** Needs 28-step grid (very advanced). **Metric Displacement:** Shifting patterns by offsets. **Cross-Rhythms:** Implied subdivisions that conflict with meter. **Phase Shifting:** Gradually delaying one pattern relative to another (Steve Reich)." }] },
   learningObjectives: ["Program 5:4 polyrhythms", "Understand LCM (lowest common multiple) for grid sizing", "Create metric displacement patterns", "Apply phase shifting techniques", "Use polyrhythms musically, not just mathematically"],
-  validation: applyMessagePreset("drumSequencer", "correct-placement")
+  validation: applyMessagePreset("drumSequencer", "correct-placement"),
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

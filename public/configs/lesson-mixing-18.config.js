@@ -329,5 +329,27 @@ Measures the difference between loudest and quietest parts:
     "Mix for dynamics and impact: preserve transients, create contrast, avoid over-compression",
     "Master format and delivery: 24-bit WAV, -1 dBTP true peak, proper sample rates for streaming",
     "Apply final checklist: LUFS metering, mono compatibility, reference comparison, metadata embedding"
-  ]
+  ],
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };

@@ -143,5 +143,27 @@ Standard vocal FX chain order:
     "Learn effect order: compression → EQ → modulation → delay → reverb for clarity and impact",
     "Master parallel processing to maintain vocal intelligibility while adding creative effects",
     "Apply genre-specific vocal FX chains for pop, hip-hop, EDM, and lo-fi productions"
-  ]
+  ],
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
+  sourceReferences: [
+    {
+      name: 'AES (Audio Engineering Society)',
+      url: 'https://www.aes.org/',
+      usage: 'Audio engineering standards, terminology, and critical-listening best practices'
+    },
+    {
+      name: 'Ableton Live Documentation',
+      url: 'https://www.ableton.com/en/manual/',
+      usage: 'DAW workflows, production techniques, and practical implementation steps'
+    },
+    {
+      name: 'Wikipedia',
+      url: 'https://www.wikipedia.org/',
+      usage: 'Historical context, genre evolution, and foundational music theory references'
+    }
+  ],
+
 };
