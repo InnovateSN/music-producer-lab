@@ -7,7 +7,7 @@ This directory contains all project documentation organized by purpose and date.
 ## Current Documentation
 
 ### 📊 [PROJECT_STATUS_REPORT_27_DEC_2025.md](./PROJECT_STATUS_REPORT_27_DEC_2025.md)
-**The main comprehensive project status report.**
+**Historical full status snapshot (Dec 2025).**
 
 Contains:
 - Complete project health assessment
@@ -52,6 +52,17 @@ Contains:
 
 ---
 
+
+
+### 🎓 [audit-didattico-music-producer-lab.md](./audit-didattico-music-producer-lab.md)
+**Didactic audit baseline and remediation direction.**
+
+Contains:
+- Verified lesson sample and evidence-based checks
+- Source policy targets (AES/Ableton/Wikipedia)
+- Action plan for measurable learning outcomes (KPI rubrics)
+
+**Use this for:** Prioritizing instructional-quality improvements and lesson review cycles.
 
 ### 📚 [CONTENT_SOURCE_ALIGNMENT.md](./CONTENT_SOURCE_ALIGNMENT.md)
 **Canonical content-source policy for lessons and informational content.**
@@ -103,7 +114,9 @@ The [`archive/`](./archive/) directory contains previous reports and analysis th
 ├── README.md (this file)
 │
 ├── Current Documentation
-│   ├── PROJECT_STATUS_REPORT_27_DEC_2025.md    ← Main status report
+│   ├── PROJECT_STATUS_REPORT_27_DEC_2025.md    ← Historical full report
+│   ├── audit-didattico-music-producer-lab.md   ← Didactic quality baseline
+│   ├── CONTENT_SOURCE_ALIGNMENT.md              ← Source-traceability policy
 │   ├── MODULAR_MIGRATION_STRATEGY.md            ← Migration guide
 │   └── LESSON-SYSTEM-README.md                  ← Lesson creation guide
 │
@@ -121,8 +134,11 @@ The [`archive/`](./archive/) directory contains previous reports and analysis th
 
 **I want to...**
 
-- **Understand the project's current state**
+- **Understand the project's historical status baseline**
   → Read [PROJECT_STATUS_REPORT_27_DEC_2025.md](./PROJECT_STATUS_REPORT_27_DEC_2025.md)
+
+- **Continue didactic improvements from audit findings**
+  → Read [audit-didattico-music-producer-lab.md](./audit-didattico-music-producer-lab.md)
 
 - **Migrate to the modular system**
   → Follow [MODULAR_MIGRATION_STRATEGY.md](./MODULAR_MIGRATION_STRATEGY.md)
@@ -196,6 +212,6 @@ When making significant project changes:
 
 ---
 
-**Last Updated:** December 27, 2025
+**Last Updated:** February 19, 2026
 **Maintainer:** Project team
 **Questions?** See project README or check archived reports for context.

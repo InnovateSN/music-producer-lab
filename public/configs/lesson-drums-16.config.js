@@ -4,6 +4,26 @@ export const lessonConfig = {
   lessonKey: "mpl-drums-16-progress",
   lessonNumber: 16,
   lessonCategory: "Drums & Rhythm",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-1",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/Rhythm",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  }},
   depthLevel: 8,
   nextLessonUrl: "lesson-drums-17.html",
   prevLessonUrl: "lesson-drums-15.html",
@@ -36,6 +56,26 @@ export const lessonConfig = {
   theory: { sections: [{ title: "Fill Construction Principles", content: "**Rule of thumb:** Fills should be 1-2 bars maximum. Longer fills lose impact. **Placement:** Last 2 beats of a bar (steps 13-16 in 16-step grid). **Velocity:** Build energy with crescendo. **Simplicity:** Simple fills often work better than complex ones." }] },
   learningObjectives: ["Build effective tom roll fills", "Use velocity crescendos for drama", "Place fills strategically between sections", "Balance simplicity and complexity", "Create smooth transitions"],
   validation: applyMessagePreset("drumSequencer", "correct-placement-and-velocity"),
+
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
+  },
 
   // ====================
   // REFERENCE SOURCES

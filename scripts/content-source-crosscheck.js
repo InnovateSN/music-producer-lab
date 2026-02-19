@@ -35,6 +35,21 @@ for (const fileName of files) {
     warnings.push({ file: fileName, issue: 'Missing learningObjectives block' });
   }
 
+  const hasReviewMetadata = /reviewMetadata\s*:\s*\{/m.test(raw);
+  if (!hasReviewMetadata) {
+    warnings.push({ file: fileName, issue: 'Missing reviewMetadata block' });
+  }
+
+  const hasSourceReferences = /sourceReferences\s*:\s*\[/m.test(raw);
+  if (!hasSourceReferences) {
+    warnings.push({ file: fileName, issue: 'Missing sourceReferences block' });
+  }
+
+  const hasAssessmentRubric = /assessmentRubric\s*:\s*\{/m.test(raw);
+  if (!hasAssessmentRubric) {
+    warnings.push({ file: fileName, issue: 'Missing assessmentRubric block' });
+  }
+
   const placeholders = [
     /TODO/,
     /lorem ipsum/i,
@@ -63,8 +78,14 @@ for (const warning of warnings) {
   console.log(`- ${warning.file}: ${warning.issue}`);
 }
 
+const coverage = {
+  reviewMetadata: files.length - warnings.filter((warning) => warning.issue === 'Missing reviewMetadata block').length,
+  sourceReferences: files.length - warnings.filter((warning) => warning.issue === 'Missing sourceReferences block').length,
+  assessmentRubric: files.length - warnings.filter((warning) => warning.issue === 'Missing assessmentRubric block').length
+};
+
 const reportPath = path.join(root, 'docs', 'qa', 'content-source-crosscheck-report.json');
-fs.writeFileSync(reportPath, JSON.stringify({ scanned: files.length, warnings }, null, 2));
+fs.writeFileSync(reportPath, JSON.stringify({ scanned: files.length, coverage, warnings }, null, 2));
 console.log(`Saved warning report to ${path.relative(root, reportPath)}`);
 
 const strict = process.argv.includes("--strict");

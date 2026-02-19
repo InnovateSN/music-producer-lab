@@ -9,6 +9,26 @@ export const lessonConfig = {
   lessonKey: "mpl-lesson2-progress",
   lessonNumber: 2,
   lessonCategory: "Drum pattern",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-1",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/Rhythm",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  }},
   
   nextLessonUrl: "lesson-drums-3.html",
   prevLessonUrl: "lesson-drums-1.html",
@@ -97,6 +117,26 @@ In a 16-step grid, beats 2 and 4 correspond to steps 5 and 13 (1-indexed), or 4 
         `
       }
     ]
+  },
+
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
   },
 
   // ====================

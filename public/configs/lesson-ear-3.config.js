@@ -5,6 +5,26 @@ export const lessonConfig = {
   lessonNumber: 3,
   lessonCategory: "Ear Training",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4-rollout-phase-2",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Music_theory",
+        "https://en.wikipedia.org/wiki/Ear_training",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   nextLessonUrl: "lesson-ear-4.html",
   prevLessonUrl: "lesson-ear-2.html",
   overviewUrl: "labs.html",
@@ -146,6 +166,25 @@ export const lessonConfig = {
     "Apply chord quality recognition to song transcription",
     "Understand the emotional and functional differences between qualities"
   ],
+
+  assessmentRubric: {
+    accuracy: {
+      target: ">= 80%",
+      evidence: "Quiz answers and concept checks inside the lesson"
+    },
+    timing: {
+      target: "<= ±25 ms on guided rhythmic tasks",
+      evidence: "Metronome-aligned exercise submissions"
+    },
+    mixClarity: {
+      target: "No uncontrolled clipping and clear element separation",
+      evidence: "A/B playback checks with level-matched references"
+    },
+    arrangementFlow: {
+      target: "Transitions preserve groove and perceived energy",
+      evidence: "Section-to-section transition checklist"
+    }
+  },
 
   // ====================
   // REFERENCE SOURCES
