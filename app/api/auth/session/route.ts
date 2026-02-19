@@ -1,9 +1,25 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 export async function GET() {
   try {
+    const nextAuthSession = await getServerSession(authOptions);
+    if (nextAuthSession?.user) {
+      return NextResponse.json({
+        user: {
+          id: nextAuthSession.user.id,
+          email: nextAuthSession.user.email,
+          name: nextAuthSession.user.name,
+          firstName: nextAuthSession.user.firstName,
+          lastName: nextAuthSession.user.lastName,
+          role: nextAuthSession.user.role || 'student',
+        },
+      });
+    }
+
     const cookieStore = await cookies();
     const token = cookieStore.get('mpl-session')?.value;
 

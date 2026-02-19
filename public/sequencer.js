@@ -1551,6 +1551,11 @@ export function initDrumSequencer(instruments, lessonKey, nextLessonUrl, options
         try {
           localStorage.setItem(lessonKey, 'completed');
           window.dispatchEvent(new CustomEvent('mpl-lesson-completed', { detail: { lessonKey } }));
+          if (window.MplAuth?.isSignedIn && window.MplApi?.progress?.complete) {
+            window.MplApi.progress.complete(lessonKey).catch((error) => {
+              console.warn('[Sequencer] Failed to sync completion to API:', error);
+            });
+          }
         } catch (e) {}
       } else {
         if (statusEl) {

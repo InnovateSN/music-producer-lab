@@ -469,6 +469,7 @@
 
   <script type="module">
     import { curriculum } from './curriculum.js';
+    import { getLessonStateByKey, syncProgressFromApi } from './js/lesson-access-manager.js';
 
     const quickNav = document.getElementById('labs-quick-nav');
     const sectionsRoot = document.getElementById('labs-sections-root');
@@ -548,18 +549,11 @@
       return wrapper;
     }
 
-    function isLessonCompleted(lessonKey) {
-      if (!lessonKey) return false;
-      try {
-        return localStorage.getItem(lessonKey) === 'completed';
-      } catch {
-        return false;
-      }
-    }
-
-    function createLessonCard(lesson, index, previousLesson) {
+    function createLessonCard(lesson, index) {
       const isComingSoon = lesson.status === 'coming-soon';
-      const isLocked = Boolean(previousLesson?.lessonKey) && !isLessonCompleted(previousLesson.lessonKey);
+      const lessonState = getLessonStateByKey(lesson.lessonKey);
+      const isLocked = lessonState.locked;
+      const isCompleted = lessonState.completed;
       const article = document.createElement('article');
       article.className = `lesson-card${isComingSoon ? ' coming-soon' : ''}${isLocked ? ' locked' : ''}`;
 
@@ -575,6 +569,13 @@
         badge.className = `lesson-badge ${lesson.badge === 'Free' ? 'lesson-badge-free' : 'lesson-badge-new'}`;
         badge.textContent = lesson.badge;
         header.appendChild(badge);
+      }
+
+      if (isCompleted) {
+        const completedBadge = document.createElement('span');
+        completedBadge.className = 'lesson-badge lesson-badge-free';
+        completedBadge.textContent = 'Completed';
+        header.appendChild(completedBadge);
       }
       article.appendChild(header);
 
@@ -599,13 +600,13 @@
       const ctaTag = (isComingSoon || isLocked) ? 'span' : 'a';
       const cta = document.createElement(ctaTag);
       cta.className = 'lesson-cta';
-      cta.textContent = isComingSoon ? 'Coming Soon' : (isLocked ? 'Locked' : 'Start Lab');
+      cta.textContent = isComingSoon ? 'Coming Soon' : (isLocked ? 'Locked' : (isCompleted ? 'Continue Lab' : 'Start Lab'));
       if (!isComingSoon && !isLocked && lesson.pagePath) {
         cta.href = lesson.pagePath;
         cta.innerHTML += '<img src="images/arrowright.png" alt="→" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-left: 8px;">';
       }
-      if (isLocked && previousLesson?.title) {
-        cta.title = `Complete previous lesson first: ${previousLesson.title}`;
+      if (isLocked) {
+        cta.title = 'Complete the previous lesson first';
       }
       article.appendChild(cta);
 
@@ -736,8 +737,7 @@
         const grid = document.createElement('div');
         grid.className = 'lessons-grid';
         (category.lessons || []).forEach((lesson, index) => {
-          const previousLesson = index > 0 ? category.lessons[index - 1] : null;
-          grid.appendChild(createLessonCard(lesson, index, previousLesson));
+          grid.appendChild(createLessonCard(lesson, index));
         });
         container.appendChild(grid);
 
@@ -746,9 +746,12 @@
       });
     }
 
+    await syncProgressFromApi();
     renderQuickNav(curriculum);
     renderSections(curriculum);
     renderFooterLinks(curriculum);
+
+    window.addEventListener('storage', () => renderSections(curriculum));
   </script>
 
 </body>
