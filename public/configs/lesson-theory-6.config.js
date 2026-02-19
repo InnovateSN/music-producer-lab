@@ -5,6 +5,25 @@ export const lessonConfig = {
   lessonNumber: 6,
   lessonCategory: "Music Theory Fundamentals",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Circle_of_fifths",
+        "https://en.wikipedia.org/wiki/Key_signature",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   nextLessonUrl: "lesson-theory-7.html",
   prevLessonUrl: "lesson-theory-5.html",
   overviewUrl: "labs.html",

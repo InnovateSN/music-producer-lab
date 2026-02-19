@@ -16,6 +16,25 @@ export const lessonConfig = {
   lessonNumber: 0,
   lessonCategory: "Fundamentals",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Digital_audio_workstation",
+        "https://en.wikipedia.org/wiki/MIDI",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   // ====================
   // NAVIGATION
   // ====================

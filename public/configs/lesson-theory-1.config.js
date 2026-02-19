@@ -5,6 +5,25 @@ export const lessonConfig = {
   lessonNumber: 1,
   lessonCategory: "Music Theory Fundamentals",
 
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Semitone",
+        "https://en.wikipedia.org/wiki/Major_second",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
+
   nextLessonUrl: "lesson-theory-2.html",
   prevLessonUrl: "labs.html",
   overviewUrl: "labs.html",

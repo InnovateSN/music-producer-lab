@@ -15,6 +15,26 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-2-progress",
   lessonNumber: 2,
   lessonCategory: "Arrangement",
+
+
+  reviewMetadata: {
+    lastReviewed: "2026-02-19",
+    reviewVersion: "didactic-audit-v4",
+    reviewedAgainst: ["AES", "Wikipedia", "Ableton"],
+    sources: {
+      wikipedia: [
+        "https://en.wikipedia.org/wiki/Arrangement",
+        "https://en.wikipedia.org/wiki/Automation_(music)",
+      ],
+      ableton: [
+        "https://www.ableton.com/en/live-manual/",
+        "https://help.ableton.com/",
+      ],
+      aes: [
+        "https://aes2.org/publications/standards/",
+      ]
+    }
+  },
   
   // ====================
   // NAVIGATION
