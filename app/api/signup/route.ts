@@ -2,9 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createUser } from '@/lib/auth';
 import { SignupSchema } from '@/lib/validations';
 import { SignJWT } from 'jose';
+import { validateOrigin } from '@/lib/security';
 
 export async function POST(req: NextRequest) {
   try {
+    const originError = validateOrigin(req);
+    if (originError) return originError;
+
     const body = await req.json();
 
     // Validate input with Zod

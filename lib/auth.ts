@@ -64,22 +64,22 @@ export const authOptions: NextAuthOptions = {
         const user = rows[0] || null;
 
         if (!user) {
-          throw new Error('No account found with this email');
+          throw new Error('Invalid email or password');
         }
 
         if (!user.is_active) {
-          throw new Error('Account is deactivated');
+          throw new Error('Invalid email or password');
         }
 
         if (!user.password_hash) {
-          throw new Error('Please set up a password for your account');
+          throw new Error('Invalid email or password');
         }
 
         // Verify password
         const isValid = await bcrypt.compare(credentials.password, user.password_hash);
 
         if (!isValid) {
-          throw new Error('Invalid password');
+          throw new Error('Invalid email or password');
         }
 
         // Update last login

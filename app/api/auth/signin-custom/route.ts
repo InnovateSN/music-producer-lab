@@ -3,9 +3,13 @@ import { SignJWT } from 'jose';
 import { getUserByEmail, verifyPassword } from '@/lib/auth';
 import { SigninSchema } from '@/lib/validations';
 import { query } from '@/lib/db';
+import { validateOrigin } from '@/lib/security';
 
 export async function POST(req: NextRequest) {
   try {
+    const originError = validateOrigin(req);
+    if (originError) return originError;
+
     const body = await req.json();
 
     // Validate input
@@ -27,7 +31,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!user.is_active) {
-      return NextResponse.json({ error: 'Account is not active' }, { status: 403 });
+      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
     // Verify password
