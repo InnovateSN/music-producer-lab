@@ -1,5 +1,19 @@
 # Audit didattico del repository `music-producer-lab`
 
+## Stato implementazione (2026-02-19)
+- ✅ Inseriti `assessmentRubric` nei 9 lesson config del campione audit:
+  - `lesson-ear-6`, `lesson-ear-2`
+  - `lesson-theory-1`, `lesson-theory-6`
+  - `lesson-harmony-2`
+  - `lesson-bass-2`, `lesson-drums-0`
+  - `lesson-mixing-1`
+  - `lesson-arrangement-2`
+- ✅ Rafforzato lo script `scripts/content-source-crosscheck.js` per verificare anche:
+  - `reviewMetadata`
+  - `sourceReferences`
+  - `assessmentRubric`
+- ⏭️ Prossimo step: estendere `assessmentRubric` al resto delle 174 lezioni con rollout per categoria.
+
 ## Scopo
 Questa versione migliora l’audit precedente rendendolo più **verificabile** e **operativo**:
 - collega esplicitamente i contenuti delle lezioni a evidenze nel repository;

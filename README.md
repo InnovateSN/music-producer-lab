@@ -21,28 +21,38 @@ Interactive music production education platform. Learn to produce music through 
 
 ## Project Status (Updated: February 2026)
 
-### Educational Content: 174 Lessons
+### Educational Content Inventory: 174 Lessons
 
-| Category | Lessons | Status |
-|----------|---------|--------|
-| **Drums & Rhythm** | 23 (0-22) | Created |
-| **Harmony & Melody** | 28 (1-28) | Created |
-| **Bass & Low End** | 20 (1-20) | Created |
-| **Arrangement & Songwriting** | 20 (1-20) | Created |
-| **Mixing** | 20 (1-20) | Created |
-| **Mastering** | 10 (1-10) | Created |
-| **Sound Design** | 20 (1-20) | Created |
-| **Ear Training** | 10 (1-10) | Created |
-| **Music Theory** | 8 (1-8) | Created |
-| **Vocals & Production** | 15 (1-15) | Created |
+| Category | Lessons | Delivery Status |
+|----------|---------|------------------|
+| **Drums & Rhythm** | 23 (0-22) | Published |
+| **Harmony & Melody** | 28 (1-28) | Published |
+| **Bass & Low End** | 20 (1-20) | Published |
+| **Arrangement & Songwriting** | 20 (1-20) | Published |
+| **Mixing** | 20 (1-20) | Published |
+| **Mastering** | 10 (1-10) | Published |
+| **Sound Design** | 20 (1-20) | Published |
+| **Ear Training** | 10 (1-10) | Published |
+| **Music Theory** | 8 (1-8) | Published |
+| **Vocals & Production** | 15 (1-15) | Published |
 
-**Total: 174 lesson pages** | **Content: Needs completion**
+**Total: 174 lesson pages**
+
+### Current Improvement Focus
+
+The current focus is no longer page-count completion, but **didactic quality hardening**:
+
+- Source traceability against AES, Ableton and Wikipedia.
+- Explicit review metadata in lesson configs.
+- Measurable learning outcomes through assessment rubrics.
+- Repeatable quality checks before merge (`npm run content:crosscheck`).
 
 ### Recent Updates (February 2026)
 
-- **Authentication:** Migrated from Clerk to NextAuth.js with custom credentials
-- **Security Audit:** Fixed critical vulnerabilities (JWT secrets, debug endpoints, account enumeration)
-- **QA Audit:** Fixed missing assets, footers, and broken links across 207 pages
+- **Authentication:** Migrated from Clerk to NextAuth.js with custom credentials.
+- **Security Audit:** Fixed critical vulnerabilities (JWT secrets, debug endpoints, account enumeration).
+- **QA Audit:** Fixed missing assets, footers, and broken links across static pages.
+- **Didactic Audit (in progress):** Introduced lesson-level review metadata and source references across the audited priority set.
 
 ---
 
@@ -183,6 +193,20 @@ The platform uses a custom NextAuth.js setup with credentials provider:
 - JWT tokens with required secret (no fallback)
 - No sensitive data in logs
 - Account enumeration prevention
+
+---
+
+## Content Quality Gates
+
+Run these checks before merge:
+
+```bash
+npm run content:crosscheck
+npm run content:crosscheck:strict
+```
+
+- `content:crosscheck` prints warnings and writes `docs/qa/content-source-crosscheck-report.json`.
+- `content:crosscheck:strict` fails the build when structural quality issues are found.
 
 ---
 
