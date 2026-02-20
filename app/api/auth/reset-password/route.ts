@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +21,8 @@ export async function POST(request: Request) {
       );
     }
 
+    const tokenDigest = crypto.createHash('sha256').update(token).digest('hex');
+
     // Find valid token
     const tokens = await query<{
       id: string;
@@ -27,8 +30,8 @@ export async function POST(request: Request) {
     }>(
       `SELECT id, user_id
        FROM password_reset_tokens
-       WHERE token = $1 AND expires_at > NOW() AND used_at IS NULL`,
-      [token]
+       WHERE token_digest = $1 AND expires_at > NOW() AND used_at IS NULL`,
+      [tokenDigest]
     );
 
     if (tokens.length === 0) {
