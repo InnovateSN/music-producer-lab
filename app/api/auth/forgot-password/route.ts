@@ -32,6 +32,7 @@ export async function POST(request: Request) {
     if (user && user.is_active) {
       // Generate secure token
       const token = crypto.randomBytes(32).toString('hex');
+      const tokenDigest = crypto.createHash('sha256').update(token).digest('hex');
       const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
       // Delete any existing tokens for this user
@@ -42,8 +43,8 @@ export async function POST(request: Request) {
 
       // Insert new token
       await query(
-        'INSERT INTO password_reset_tokens (user_id, token, expires_at) VALUES ($1, $2, $3)',
-        [user.id, token, expiresAt.toISOString()]
+        'INSERT INTO password_reset_tokens (user_id, token_digest, expires_at) VALUES ($1, $2, $3)',
+        [user.id, tokenDigest, expiresAt.toISOString()]
       );
 
       // Send email
