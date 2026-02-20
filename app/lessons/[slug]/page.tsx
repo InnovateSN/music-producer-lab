@@ -105,12 +105,12 @@ export default function LessonPage() {
 
     const initEngine = async () => {
       try {
-        const module = await import(/* webpackIgnore: true */ '/lesson-engine.js');
-        if (module && module.initLessonFromConfig) {
+        const lessonEngineModule = await import(/* webpackIgnore: true */ '/lesson-engine.js');
+        if (lessonEngineModule && lessonEngineModule.initLessonFromConfig) {
           const sequencerContainer = document.getElementById('mpl-sequencer-collection');
           if (sequencerContainer) sequencerContainer.innerHTML = '';
 
-          module.initLessonFromConfig(config);
+          lessonEngineModule.initLessonFromConfig(config);
           initializedRef.current = true;
 
           await import(/* webpackIgnore: true */ '/theme-registry.js');
