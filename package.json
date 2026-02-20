@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint app components lib --ext .js,.ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -16,7 +16,9 @@
     "db:migrate": "node database/execute-migration.js",
     "content:align-sources": "node scripts/align-lesson-sources.js",
     "content:crosscheck": "node scripts/content-source-crosscheck.js",
-    "content:crosscheck:strict": "node scripts/content-source-crosscheck.js --strict"
+    "content:crosscheck:strict": "node scripts/content-source-crosscheck.js --strict",
+    "typecheck": "tsc --noEmit",
+    "ci:check": "npm run lint && npm run typecheck"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

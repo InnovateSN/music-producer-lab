@@ -95,9 +95,9 @@ export default function TestLessonPage() {
 
     const loadEngine = async () => {
       try {
-        const module = await import(/* webpackIgnore: true */ '/lesson-engine.js');
-        if (module && module.initLessonFromConfig) {
-          module.initLessonFromConfig(lessonConfig);
+        const lessonEngineModule = await import(/* webpackIgnore: true */ '/lesson-engine.js');
+        if (lessonEngineModule && lessonEngineModule.initLessonFromConfig) {
+          lessonEngineModule.initLessonFromConfig(lessonConfig);
           // Load styles
           await import(/* webpackIgnore: true */ '/theme-registry.js');
           await import(/* webpackIgnore: true */ '/theme-manager.js');
