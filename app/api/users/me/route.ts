@@ -42,21 +42,29 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const {
-      first_name,
-      last_name,
-      email_notifications,
-      progress_emails,
-      marketing_emails,
-    } = body;
+    const updatableFields = [
+      'first_name',
+      'last_name',
+      'email_notifications',
+      'progress_emails',
+      'marketing_emails',
+    ] as const;
 
-    const updatedUser = await db.updateUser(user.id, {
-      first_name,
-      last_name,
-      email_notifications,
-      progress_emails,
-      marketing_emails,
-    });
+    const updates = updatableFields.reduce<Record<string, unknown>>((acc, field) => {
+      if (Object.prototype.hasOwnProperty.call(body, field)) {
+        acc[field] = body[field];
+      }
+      return acc;
+    }, {});
+
+    if (Object.keys(updates).length === 0) {
+      return NextResponse.json(
+        { error: 'No updatable fields were provided in the request body' },
+        { status: 400 }
+      );
+    }
+
+    const updatedUser = await db.updateUser(user.id, updates);
 
     return NextResponse.json({ user: updatedUser });
   } catch (error) {

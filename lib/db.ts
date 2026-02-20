@@ -179,7 +179,12 @@ export const db = {
   },
 
   async updateUser(userId: string, data: Partial<User>): Promise<User> {
-    const fields = Object.keys(data).filter((k) => k !== 'id');
+    const fields = Object.keys(data).filter((k) => k !== 'id' && (data as any)[k] !== undefined);
+
+    if (fields.length === 0) {
+      throw new Error('No valid fields provided for user update');
+    }
+
     const values = fields.map((k) => (data as any)[k]);
     const setClause = fields.map((k, i) => `${k} = $${i + 2}`).join(', ');
 
