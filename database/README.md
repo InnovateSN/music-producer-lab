@@ -22,6 +22,13 @@ Music Producer Lab uses Neon PostgreSQL (serverless) for data persistence.
 
 ## Schema Files
 
+## Schema Source of Truth
+
+`database/schema.sql` is the canonical schema definition (SQL-first).
+
+When `database/schema.sql` changes, update `prisma/schema.prisma` in the same PR so table/column names, nullability, and relations stay aligned.
+Run `npm run db:schema:check` before merging; CI enforces this parity check.
+
 - `schema.sql` - Main database schema
 - `add-password-hash.sql` - Add password_hash column
 - `add-password-hint.sql` - Add password_hint column

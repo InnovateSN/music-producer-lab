@@ -1,4 +1,4 @@
-// This is your Prisma schema file
+// Canonical SQL-first schema mirrored from database/schema.sql
 
 datasource db {
   provider = "postgresql"
@@ -9,115 +9,211 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id                        String    @id @default(cuid())
-  email                     String    @unique
-  password_hash             String?
-  password_hint             String?
-  first_name                String?
-  last_name                 String?
-  role                      String    @default("student")
-  is_active                 Boolean   @default(true)
-  clerk_id                  String?   @unique
-  last_login                DateTime?
-  created_at                DateTime  @default(now())
-  updated_at                DateTime  @updatedAt
-  gdpr_consent              Boolean   @default(false)
-  gdpr_consent_date         DateTime?
-  data_processing_agreement Boolean   @default(false)
-
-  lessonProgress    LessonProgress[]
-  savedPatterns     SavedPattern[]
-  certificates      Certificate[]
-  teacherClasses    Class[]         @relation("TeacherClasses")
-  studentClasses    ClassStudent[]
-  school            School?         @relation(fields: [schoolId], references: [id])
-  schoolId          String?
-
-  @@map("users")
-}
-
 model School {
-  id                     String    @id @default(cuid())
-  name                   String
-  contact_email          String
-  license_tier           String?
-  license_expires        DateTime?
-  max_students           Int?
-  max_teachers           Int?
-  created_at             DateTime  @default(now())
-  updated_at             DateTime  @updatedAt
+  id                String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name              String           @db.VarChar(255)
+  domain            String?          @db.VarChar(255)
+  country           String?          @default("GB") @db.VarChar(2)
+  license_tier      String           @default("small") @db.VarChar(20)
+  max_students      Int              @default(50)
+  license_start     DateTime         @db.Date
+  license_end       DateTime         @db.Date
+  status            String?          @default("active") @db.VarChar(20)
+  monthly_price_gbp Decimal?         @db.Decimal(10, 2)
+  billing_email     String?          @db.VarChar(255)
+  billing_address   String?
+  vat_number        String?          @db.VarChar(50)
+  created_at        DateTime?        @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?        @default(now()) @db.Timestamp(6)
+  notes             String?
 
-  users                  User[]
-  classes                Class[]
+  users             User[]
+  classes           Class[]
+  analytics_events  AnalyticsEvent[]
+  invoices          Invoice[]
+  support_tickets   SupportTicket[]
 
   @@map("schools")
 }
 
-model LessonProgress {
-  id                String    @id @default(cuid())
-  user_id           String
-  lesson_id         String
-  module_name       String?
-  status            String    @default("not_started")
-  progress_percent  Int       @default(0)
-  completed_at      DateTime?
-  created_at        DateTime  @default(now())
-  updated_at        DateTime  @updatedAt
+model User {
+  id                        String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  clerk_id                  String            @unique @db.VarChar(255)
+  email                     String            @unique @db.VarChar(255)
+  first_name                String?           @db.VarChar(100)
+  last_name                 String?           @db.VarChar(100)
+  avatar_url                String?
+  role                      String            @default("student") @db.VarChar(20)
+  school_id                 String?           @db.Uuid
+  email_notifications       Boolean?          @default(true)
+  progress_emails           Boolean?          @default(true)
+  marketing_emails          Boolean?          @default(false)
+  created_at                DateTime?         @default(now()) @db.Timestamp(6)
+  last_login                DateTime?         @db.Timestamp(6)
+  is_active                 Boolean?          @default(true)
+  gdpr_consent              Boolean?          @default(false)
+  gdpr_consent_date         DateTime?         @db.Timestamp(6)
+  data_processing_agreement Boolean?          @default(false)
 
-  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  school                    School?           @relation(fields: [school_id], references: [id], onDelete: SetNull)
+  classes_as_teacher        Class[]           @relation("ClassTeacher")
+  class_enrollments         ClassEnrollment[]
+  lesson_progress           LessonProgress[]
+  saved_patterns            SavedPattern[]
+  certificates              Certificate[]
+  analytics_events          AnalyticsEvent[]
+  assigned_tickets          SupportTicket[]   @relation("SupportTicketAssignee")
+  created_tickets           SupportTicket[]   @relation("SupportTicketRequester")
 
-  @@unique([user_id, lesson_id])
-  @@map("lesson_progress")
+  @@map("users")
 }
 
 model Class {
-  id                String    @id @default(cuid())
-  name              String
-  teacher_id        String
-  school_id         String?
-  created_at        DateTime  @default(now())
-  updated_at        DateTime  @updatedAt
+  id               String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  school_id        String            @db.Uuid
+  teacher_id       String            @db.Uuid
+  name             String            @db.VarChar(255)
+  description      String?
+  class_code       String            @unique @db.VarChar(20)
+  max_students     Int?              @default(30)
+  is_archived      Boolean?          @default(false)
+  created_at       DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?         @default(now()) @db.Timestamp(6)
+  academic_year    String?           @db.VarChar(20)
 
-  teacher           User              @relation("TeacherClasses", fields: [teacher_id], references: [id], onDelete: Cascade)
-  school            School?           @relation(fields: [school_id], references: [id])
-  students          ClassStudent[]
+  school           School            @relation(fields: [school_id], references: [id], onDelete: Cascade)
+  teacher          User              @relation("ClassTeacher", fields: [teacher_id], references: [id], onDelete: Cascade)
+  enrollments      ClassEnrollment[]
 
   @@map("classes")
 }
 
-model ClassStudent {
-  class_id          String
-  student_id        String
-  joined_at         DateTime  @default(now())
+model ClassEnrollment {
+  id               String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  class_id         String    @db.Uuid
+  student_id       String    @db.Uuid
+  enrolled_at      DateTime? @default(now()) @db.Timestamp(6)
+  status           String?   @default("active") @db.VarChar(20)
 
-  class             Class     @relation(fields: [class_id], references: [id], onDelete: Cascade)
-  student           User      @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  class            Class     @relation(fields: [class_id], references: [id], onDelete: Cascade)
+  student          User      @relation(fields: [student_id], references: [id], onDelete: Cascade)
 
-  @@id([class_id, student_id])
-  @@map("class_students")
+  @@unique([class_id, student_id])
+  @@map("class_enrollments")
+}
+
+model LessonProgress {
+  id                    String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id               String    @db.Uuid
+  lesson_key            String    @db.VarChar(100)
+  status                String?   @default("not_started") @db.VarChar(20)
+  completion_percentage Int?      @default(0)
+  time_spent_seconds    Int?      @default(0)
+  started_at            DateTime? @db.Timestamp(6)
+  completed_at          DateTime? @db.Timestamp(6)
+  last_accessed         DateTime? @default(now()) @db.Timestamp(6)
+  module_name           String?   @db.VarChar(100)
+  lesson_number         Int?
+
+  user                  User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, lesson_key])
+  @@map("lesson_progress")
 }
 
 model SavedPattern {
-  id                String    @id @default(cuid())
-  user_id           String
-  pattern_name      String
-  pattern_data      String    @db.Text
-  created_at        DateTime  @default(now())
+  id            String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id       String    @db.Uuid
+  pattern_type  String    @db.VarChar(50)
+  pattern_name  String?   @db.VarChar(255)
+  pattern_data  Json      @db.JsonB
+  lesson_key    String?   @db.VarChar(100)
+  is_favorite   Boolean?  @default(false)
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at    DateTime? @default(now()) @db.Timestamp(6)
 
-  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("saved_patterns")
 }
 
 model Certificate {
-  id                String    @id @default(cuid())
-  user_id           String
-  certificate_type  String
-  issued_date       DateTime  @default(now())
-  certificate_url   String?
+  id                 String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id            String    @db.Uuid
+  certificate_type   String    @db.VarChar(50)
+  module_name        String?   @db.VarChar(100)
+  certificate_url    String?
+  certificate_code   String    @unique @db.VarChar(50)
+  issued_at          DateTime? @default(now()) @db.Timestamp(6)
+  completed_lessons  Int?
+  total_time_hours   Decimal?  @db.Decimal(10, 2)
 
-  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user               User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("certificates")
+}
+
+model AnalyticsEvent {
+  id            String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id       String?   @db.Uuid
+  school_id     String?   @db.Uuid
+  event_type    String    @db.VarChar(100)
+  event_data    Json?     @db.JsonB
+  lesson_key    String?   @db.VarChar(100)
+  session_id    String?   @db.VarChar(255)
+  user_agent    String?
+  ip_address    String?   @db.Inet
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+
+  user          User?     @relation(fields: [user_id], references: [id], onDelete: SetNull)
+  school        School?   @relation(fields: [school_id], references: [id], onDelete: SetNull)
+
+  @@map("analytics_events")
+}
+
+model Invoice {
+  id                    String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  school_id             String    @db.Uuid
+  invoice_number        String    @unique @db.VarChar(50)
+  amount_gbp            Decimal   @db.Decimal(10, 2)
+  vat_amount_gbp        Decimal?  @default(0) @db.Decimal(10, 2)
+  total_amount_gbp      Decimal   @db.Decimal(10, 2)
+  status                String?   @default("pending") @db.VarChar(20)
+  due_date              DateTime  @db.Date
+  paid_date             DateTime? @db.Date
+  billing_period_start  DateTime  @db.Date
+  billing_period_end    DateTime  @db.Date
+  payment_method        String?   @db.VarChar(50)
+  payment_reference     String?   @db.VarChar(255)
+  invoice_pdf_url       String?
+  created_at            DateTime? @default(now()) @db.Timestamp(6)
+  updated_at            DateTime? @default(now()) @db.Timestamp(6)
+  notes                 String?
+
+  school                School    @relation(fields: [school_id], references: [id], onDelete: Cascade)
+
+  @@map("invoices")
+}
+
+model SupportTicket {
+  id               String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id          String?   @db.Uuid
+  school_id        String?   @db.Uuid
+  contact_email    String    @db.VarChar(255)
+  subject          String    @db.VarChar(255)
+  description      String
+  category         String?   @db.VarChar(50)
+  priority         String?   @default("medium") @db.VarChar(20)
+  status           String?   @default("open") @db.VarChar(20)
+  assigned_to      String?   @db.Uuid
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @default(now()) @db.Timestamp(6)
+  resolved_at      DateTime? @db.Timestamp(6)
+  closed_at        DateTime? @db.Timestamp(6)
+
+  requester        User?     @relation("SupportTicketRequester", fields: [user_id], references: [id], onDelete: SetNull)
+  school           School?   @relation(fields: [school_id], references: [id], onDelete: SetNull)
+  assignee         User?     @relation("SupportTicketAssignee", fields: [assigned_to], references: [id], onDelete: SetNull)
+
+  @@map("support_tickets")
 }
