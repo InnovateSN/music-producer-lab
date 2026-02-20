@@ -44,3 +44,6 @@ _BACKUPS
 # Heavy Media (Generated)
 public/audio/lessons/
 .github/workflows/
+!.github/workflows/schema-parity.yml
+
+!.github/workflows/
