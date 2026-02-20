@@ -58,6 +58,7 @@ model User {
   school                    School?           @relation(fields: [school_id], references: [id], onDelete: SetNull)
   classes_as_teacher        Class[]           @relation("ClassTeacher")
   class_enrollments         ClassEnrollment[]
+  password_reset_tokens     PasswordResetToken[]
   lesson_progress           LessonProgress[]
   saved_patterns            SavedPattern[]
   certificates              Certificate[]
@@ -66,6 +67,19 @@ model User {
   created_tickets           SupportTicket[]   @relation("SupportTicketRequester")
 
   @@map("users")
+}
+
+model PasswordResetToken {
+  id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id      String    @db.Uuid
+  token_digest String    @unique @db.Char(64)
+  expires_at   DateTime  @db.Timestamp(6)
+  used_at      DateTime? @db.Timestamp(6)
+  created_at   DateTime? @default(now()) @db.Timestamp(6)
+
+  user         User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
 }
 
 model Class {
