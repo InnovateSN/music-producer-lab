@@ -19,6 +19,7 @@ Music Producer Lab uses Neon PostgreSQL (serverless) for data persistence.
 | `invoices` | B2B billing |
 | `support_tickets` | Support system |
 | `password_reset_tokens` | Password reset flow |
+| `auth_rate_limits` | Persistent auth endpoint throttling |
 
 ## Schema Files
 
@@ -32,7 +33,8 @@ Run `npm run db:schema:check` before merging; CI enforces this parity check.
 - `schema.sql` - Main database schema
 - `add-password-hash.sql` - Add password_hash column
 - `add-password-hint.sql` - Add password_hint column
-- `password-reset-tokens.sql` - Password reset tokens table
+- `add-password-reset-tokens.sql` - Password reset tokens table
+- `add-auth-rate-limits.sql` - Persistent auth rate-limit table
 
 ## Setup
 
@@ -59,7 +61,8 @@ psql $DATABASE_URL -f schema.sql
 # Migrations (run in order if needed)
 psql $DATABASE_URL -f add-password-hash.sql
 psql $DATABASE_URL -f add-password-hint.sql
-psql $DATABASE_URL -f password-reset-tokens.sql
+psql $DATABASE_URL -f add-password-reset-tokens.sql
+psql $DATABASE_URL -f add-auth-rate-limits.sql
 ```
 
 ## User Roles
@@ -76,13 +79,13 @@ psql $DATABASE_URL -f password-reset-tokens.sql
 
 - Passwords hashed with bcrypt (12 rounds)
 - Sessions stored as JWT in httpOnly cookie
-- Optional password hint for recovery
+- Password reset via secure token email flow
 
 ## Security Notes
 
 - Never commit `.env.local` or credentials
 - Use environment variables for connection strings
-- Row Level Security (RLS) available but not enforced
+- Row Level Security (RLS) enabled with tenant-aware policies (requires `SET app.current_user_id = <uuid>` context)
 
 ## Verification
 
@@ -95,3 +98,8 @@ WHERE table_schema = 'public' ORDER BY table_name;
 SELECT column_name FROM information_schema.columns
 WHERE table_name = 'users';
 ```
+
+
+## RLS Verification
+
+Use `database/rls-verification.sql` in staging to verify tenant isolation with representative users from different schools.
