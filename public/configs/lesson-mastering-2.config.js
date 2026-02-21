@@ -3,12 +3,21 @@
  * Lesson: Mastering 2 - Metering & Analysis
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 2
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-2-progress",
   lessonNumber: 2,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-3.html",
   prevLessonUrl: "lesson-mastering-1.html",
@@ -326,10 +335,9 @@ Use your ears first, meters second. If your meters say it's right but it sounds 
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

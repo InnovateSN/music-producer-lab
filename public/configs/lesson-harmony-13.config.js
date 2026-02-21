@@ -3,7 +3,12 @@
  * Lesson: Harmony 13 - Hip-Hop Minor Loop: Dark but Catchy
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Genre Application",
+  lessonNumber: 13
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-13-progress",

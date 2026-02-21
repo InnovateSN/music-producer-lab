@@ -3,7 +3,12 @@
  * Lesson: Bass 11 - Funk Bass: Slap, Pop & Groove
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 11
+});
 
 export const lessonConfig = {
   // ====================

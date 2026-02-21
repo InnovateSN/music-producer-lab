@@ -6,12 +6,21 @@
  * Master theme and variation, motivic development, and melodic callbacks.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 16
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-16-progress",
   lessonNumber: 16,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
 
   nextLessonUrl: "lesson-arrangement-17.html",
@@ -953,10 +962,9 @@ In Lesson 17, you'll learn **advanced transition techniques**—how to move betw
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -3,12 +3,21 @@
  * Lesson: Mixing 11 - Automation Basics
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 11
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-11-progress",
   lessonNumber: 11,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-12.html",
   prevLessonUrl: "lesson-mixing-10.html",
@@ -202,10 +211,9 @@ After a major automation pass:
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Vocals",
+  lessonNumber: 13
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-13-progress",
   lessonNumber: 13,
   lessonCategory: "Vocals",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-vocals-14.html",
@@ -144,10 +153,9 @@ Standard vocal FX chain order:
     "Master parallel processing to maintain vocal intelligibility while adding creative effects",
     "Apply genre-specific vocal FX chains for pop, hip-hop, EDM, and lo-fi productions"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

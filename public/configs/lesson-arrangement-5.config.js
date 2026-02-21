@@ -6,7 +6,12 @@
  * pre-chorus techniques, and bridge placement.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   // ====================
@@ -15,6 +20,10 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-5-progress",
   lessonNumber: 5,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
   
   // ====================
@@ -429,10 +438,9 @@ The goal is to deliver a satisfying listening experience that hooks quickly, mai
     "Position bridges for maximum impact",
     "Use instrumental breaks strategically"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

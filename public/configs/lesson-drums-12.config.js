@@ -6,7 +6,12 @@
  * cymbal work, tom fills, and dynamic expression.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drums & Rhythm",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   // ====================

@@ -3,7 +3,12 @@
  * Lesson: Bass 19 - Bass Expression & Automation
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 19
+});
 
 export const lessonConfig = {
   // ====================

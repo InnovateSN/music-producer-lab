@@ -3,7 +3,12 @@
  * Lesson: Harmony 17 - Dorian Mode: The Cool Minor Sound
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Modal Harmony",
+  lessonNumber: 17
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-17-progress",

@@ -3,7 +3,12 @@
  * Lesson: Harmony 1 - Build Your First Chord: Major Triad
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Chord Fundamentals",
+  lessonNumber: 1
+});
 
 export const lessonConfig = {
   // ====================

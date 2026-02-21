@@ -6,7 +6,12 @@
  * clashes, muddiness, or overcrowding. Master the art of sonic space.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 9
+});
 
 export const lessonConfig = {
   // ====================
@@ -15,6 +20,10 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-9-progress",
   lessonNumber: 9,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 3,
 
   // ====================
@@ -585,10 +594,9 @@ Stacking three saw-wave synths with similar frequency content just makes one lou
     "Layer instruments for fullness without muddiness",
     "Identify and resolve frequency conflicts in arrangements"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

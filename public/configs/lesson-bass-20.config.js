@@ -3,7 +3,12 @@
  * Lesson: Bass 20 - Masterclass: Complete Bass Production
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 20
+});
 
 export const lessonConfig = {
   // ====================

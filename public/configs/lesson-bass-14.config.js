@@ -3,7 +3,12 @@
  * Lesson: Bass 14 - R&B Bass: Smooth & Syncopated
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 14
+});
 
 export const lessonConfig = {
   // ====================

@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 20
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-20-progress",
   lessonNumber: 20,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 10,
   
   nextLessonUrl: "labs.html",
@@ -205,10 +214,9 @@ Generate sound algorithmically:
     "Master game audio: adaptive layers, one-shots, looping ambiences, procedural synthesis",
     "Implement spatial audio: stereo, surround, binaural, and ambisonics for immersive experiences"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

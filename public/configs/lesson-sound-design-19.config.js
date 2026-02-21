@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 19
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-19-progress",
   lessonNumber: 19,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 10,
   
   nextLessonUrl: "lesson-sound-design-20.html",
@@ -155,10 +164,9 @@ Advanced FFT-based vocoder:
     "Master vocoding: carrier/modulator analysis, band splitting, envelope following",
     "Use cross-synthesis: spectral morphing, filtering, and convolution for hybrid sounds"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

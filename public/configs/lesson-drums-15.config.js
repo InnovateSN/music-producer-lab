@@ -6,7 +6,12 @@
  * for dynamic, expressive grooves.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drums & Rhythm",
+  lessonNumber: 15
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-drums-15-progress",

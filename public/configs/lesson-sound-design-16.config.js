@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 16
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-16-progress",
   lessonNumber: 16,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-sound-design-17.html",
@@ -214,10 +223,9 @@ Use audio-rate signals as modulators (not just LFOs):
     "Apply professional techniques: West Coast synthesis, LPGs, waveshaping, Karplus-Strong",
     "Master audio-rate modulation for AM, FM, and formant synthesis"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

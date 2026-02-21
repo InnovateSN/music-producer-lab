@@ -3,7 +3,12 @@
  * Lesson: Harmony 15 - Add9 Color: Make Chords Glow
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Advanced Harmony",
+  lessonNumber: 15
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-15-progress",

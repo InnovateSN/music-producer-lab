@@ -6,12 +6,21 @@
  * Master frequency space, dynamic range, and mix-ready arrangements.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 19
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-19-progress",
   lessonNumber: 19,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 5,
 
   nextLessonUrl: "lesson-arrangement-20.html",
@@ -1275,10 +1284,9 @@ In Lesson 20 (Final Capstone), you'll apply ALL arrangement techniques (lessons 
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

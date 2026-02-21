@@ -6,12 +6,21 @@
  * to create a professional, radio-ready arrangement from scratch.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 20
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-20-progress",
   lessonNumber: 20,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 5,
 
   nextLessonUrl: null,
@@ -721,10 +730,9 @@ Go create something incredible. Apply these 19 techniques. Build a track that sh
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

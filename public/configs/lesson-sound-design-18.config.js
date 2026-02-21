@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 18
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-18-progress",
   lessonNumber: 18,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 10,
   
   nextLessonUrl: "lesson-sound-design-19.html",
@@ -152,10 +161,9 @@ Emulate magnetic tape behavior:
     "Emulate analog circuits: transistors, tubes, transformers, vintage synths",
     "Apply analog compressor and tape saturation emulation for color and character"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -3,7 +3,12 @@
  * Lesson: Drums 3 - Hi-hats in 1/8 (Feel Subdivisions)
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drum pattern",
+  lessonNumber: 3
+});
 
 export const lessonConfig = {
   // ====================

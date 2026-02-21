@@ -6,7 +6,12 @@
  * Foundation, Pad, Rhythm, Lead, and Fills.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 4
+});
 
 export const lessonConfig = {
   // ====================
@@ -15,6 +20,10 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-4-progress",
   lessonNumber: 4,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 3,
   
   // ====================
@@ -325,10 +334,9 @@ But regardless of genre, the principle holds: 4-5 clear elements, each with a di
     reference: "The Mixing Engineer's Handbook",
     concept: "5 Elements of a Great Arrangement"
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

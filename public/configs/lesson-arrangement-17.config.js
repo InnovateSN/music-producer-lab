@@ -6,12 +6,21 @@
  * Master reverse effects, noise sweeps, automation, and creative transitions.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 17
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-17-progress",
   lessonNumber: 17,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 5,
 
   nextLessonUrl: "lesson-arrangement-18.html",
@@ -1155,10 +1164,9 @@ In Lesson 18, you'll learn **genre blending**—how to combine elements from dif
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

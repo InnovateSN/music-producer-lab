@@ -3,7 +3,12 @@
  * Lesson: Bass 18 - Bass EQ & Frequency Management
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 18
+});
 
 export const lessonConfig = {
   // ====================

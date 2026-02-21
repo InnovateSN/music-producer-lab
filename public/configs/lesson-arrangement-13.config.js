@@ -6,12 +6,21 @@
  * Master sparse verses, full choruses, and strategic emptiness.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 13
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-13-progress",
   lessonNumber: 13,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
 
   nextLessonUrl: "lesson-arrangement-14.html",
@@ -576,10 +585,9 @@ In Lesson 14, you'll learn **frequency-based arrangement**—thinking vertically
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

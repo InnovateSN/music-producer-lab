@@ -6,12 +6,21 @@
  * variation (for interest). Master when to repeat and when to evolve.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 11
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-11-progress",
   lessonNumber: 11,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 3,
 
   nextLessonUrl: "lesson-arrangement-12.html",
@@ -428,10 +437,9 @@ In Lesson 12, you'll learn how to create **tension and release** cycles—buildi
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

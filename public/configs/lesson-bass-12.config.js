@@ -3,7 +3,12 @@
  * Lesson: Bass 12 - Jazz Walking Bass: Advanced Techniques
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   // ====================

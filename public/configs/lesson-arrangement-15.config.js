@@ -6,12 +6,21 @@
  * Master groove changes, beat switches, and rhythmic development.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 15
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-15-progress",
   lessonNumber: 15,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
 
   nextLessonUrl: "lesson-arrangement-16.html",
@@ -721,10 +730,9 @@ In Lesson 16, you'll learn **melodic development**—how to evolve a simple melo
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

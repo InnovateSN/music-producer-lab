@@ -3,7 +3,12 @@
  * Lesson: Bass 6 - Walking Basslines
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   // ====================

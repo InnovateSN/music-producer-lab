@@ -3,12 +3,21 @@
  * Lesson: Mixing 5 - Compression Fundamentals
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-5-progress",
   lessonNumber: 5,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-6.html",
   prevLessonUrl: "lesson-mixing-4.html",
@@ -187,10 +196,9 @@ It is common to reduce peak energy with compression, then add too much makeup ga
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

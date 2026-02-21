@@ -3,12 +3,21 @@
  * Lesson: Vocals 9 - Creative Vocal Production
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Vocals",
+  lessonNumber: 9
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-9-progress",
   lessonNumber: 9,
   lessonCategory: "Vocals",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   nextLessonUrl: "lesson-vocals-10.html",
   prevLessonUrl: "lesson-vocals-8.html",
@@ -126,10 +135,9 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

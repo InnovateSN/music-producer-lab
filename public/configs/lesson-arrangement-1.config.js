@@ -6,7 +6,12 @@
  * drum sequencer. The config provides metadata and navigation info.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 1
+});
 
 export const lessonConfig = {
   // ====================
@@ -15,6 +20,10 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-1-progress",
   lessonNumber: 1,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   // ====================
   // NAVIGATION
@@ -227,10 +236,9 @@ Play your arrangement and ask: "If I were at a club/concert, would this keep me 
     "Create a complete arrangement with proper structure",
     "Understand the 5 elements of arrangement: Foundation, Pad, Rhythm, Lead, Fills"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

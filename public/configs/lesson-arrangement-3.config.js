@@ -6,7 +6,12 @@
  * arrangement using everything learned in the module.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 3
+});
 
 export const lessonConfig = {
   // ====================
@@ -15,6 +20,10 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-3-progress",
   lessonNumber: 3,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   // ====================
   // NAVIGATION
@@ -311,10 +320,9 @@ The goal isn't to make the most unique arrangement ever—it's to make an arrang
       { slug: "mixing", title: "Mixing" }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

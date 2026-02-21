@@ -3,12 +3,21 @@
  * Lesson: Mastering 8 - Stem Mastering
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 8
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-8-progress",
   lessonNumber: 8,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-9.html",
   prevLessonUrl: "lesson-mastering-7.html",
@@ -284,10 +293,9 @@ When in doubt, ask: "Would this change be better made in the mix?" If yes, commu
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

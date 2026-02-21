@@ -3,7 +3,12 @@
  * Lesson: Drums 6 - Syncopated Kick (Break from 4/4)
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drum pattern",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   // ====================

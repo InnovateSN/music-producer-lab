@@ -3,7 +3,12 @@
  * Lesson: Harmony 18 - Cinematic Lift: Pedal Tone + Chord Changes
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Advanced Techniques",
+  lessonNumber: 18
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-18-progress",

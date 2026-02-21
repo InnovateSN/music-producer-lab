@@ -3,12 +3,21 @@
  * Lesson: Arrangement 7 - Hip-Hop & Urban Structures
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 7
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-7-progress",
   lessonNumber: 7,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 5,
   
   nextLessonUrl: "lesson-arrangement-8.html",
@@ -369,10 +378,9 @@ Hip-hop arrangement is about restraint, space, and serving the vocals. Master th
     "Use interludes and bridges strategically",
     "Build momentum through hip-hop tracks"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

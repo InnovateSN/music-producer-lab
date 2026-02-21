@@ -6,12 +6,21 @@
  * Master suspense, anticipation, and satisfying resolution.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-12-progress",
   lessonNumber: 12,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 3,
 
   nextLessonUrl: "lesson-arrangement-13.html",
@@ -506,10 +515,9 @@ In Lesson 13, you'll learn how to use **section density** (sparse to full) to cr
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

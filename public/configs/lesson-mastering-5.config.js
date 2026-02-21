@@ -3,12 +3,21 @@
  * Lesson: Mastering 5 - Stereo Enhancement & Width
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-5-progress",
   lessonNumber: 5,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-6.html",
   prevLessonUrl: "lesson-mastering-4.html",
@@ -354,10 +363,9 @@ Many stereo problems originate in the mix and can't be fully fixed in mastering.
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

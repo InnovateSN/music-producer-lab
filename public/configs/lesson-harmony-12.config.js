@@ -3,7 +3,12 @@
  * Lesson: Harmony 12 - Motif Magic: Repeat with Variation
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Melody Writing",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-12-progress",

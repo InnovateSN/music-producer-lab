@@ -3,12 +3,21 @@
  * Lesson: Mastering 3 - Mastering EQ
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 3
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-3-progress",
   lessonNumber: 3,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-4.html",
   prevLessonUrl: "lesson-mastering-2.html",
@@ -293,10 +302,9 @@ If someone else can immediately hear that your master was EQ'd, you may have don
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

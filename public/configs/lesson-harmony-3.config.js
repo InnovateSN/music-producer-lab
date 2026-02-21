@@ -3,7 +3,12 @@
  * Lesson: Harmony 3 - Feel Tension: I to V
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Chord Fundamentals",
+  lessonNumber: 3
+});
 
 export const lessonConfig = {
   // ====================

@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 17
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-17-progress",
   lessonNumber: 17,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-mixing-18.html",
@@ -265,10 +274,9 @@ You don't need to widen everything equally:
     "Master safe stereo widening techniques: M/S balance, double-tracking, frequency-specific width",
     "Test mono compatibility to avoid phase cancellation and ensure mixes translate to all playback systems"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

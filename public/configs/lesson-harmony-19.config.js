@@ -3,7 +3,12 @@
  * Lesson: Harmony 19 - Reharmonize a Melody: 3 Different Backings
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Expert Techniques",
+  lessonNumber: 19
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-19-progress",

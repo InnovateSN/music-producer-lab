@@ -3,7 +3,12 @@
  * Lesson: Harmony 7 - Stepwise Melody: Use the Scale
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Melody Fundamentals",
+  lessonNumber: 7
+});
 
 export const lessonConfig = {
   // ====================
