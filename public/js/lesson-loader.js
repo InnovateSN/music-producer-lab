@@ -51,6 +51,40 @@ function renderSequencerShell(root, initialMessage, nextLessonUrl) {
   }
 }
 
+function renderProgressionMeta(root, config) {
+  const progression = config?.progression;
+  if (!root || !progression) return;
+
+  const prerequisites = Array.isArray(progression.prerequisites)
+    ? progression.prerequisites
+    : [];
+  const outcomes = Array.isArray(progression.outcomes) ? progression.outcomes : [];
+
+  const lessonPrefix = (config.nextLessonUrl || '')
+    .replace('lesson-', '')
+    .replace('.html', '')
+    .split('-')[0] || 'lesson';
+
+  const recommendation = prerequisites.length
+    ? `Consigliato completare prima: ${prerequisites
+        .map((slug) => `lesson-${slug}.html`)
+        .join(', ')}`
+    : `Nessun prerequisito formale. Ti consigliamo comunque di seguire l'ordine del modulo ${lessonPrefix}.`;
+
+  const box = document.createElement('aside');
+  box.className = 'lesson-progression-meta';
+  box.style.cssText = 'margin-top:1rem;padding:0.75rem 1rem;border:1px solid rgba(255,255,255,0.18);border-radius:0.5rem;background:rgba(255,255,255,0.03);';
+  box.innerHTML = `
+    <h3 style="margin:0 0 0.5rem 0;font-size:1rem;">Progressione didattica</h3>
+    <p style="margin:0 0 0.5rem 0;"><strong>Difficoltà:</strong> ${progression.difficulty || 'n/d'}</p>
+    <p style="margin:0 0 0.5rem 0;"><strong>Prerequisiti:</strong> ${prerequisites.length ? prerequisites.join(', ') : 'Nessuno'}</p>
+    <p style="margin:0 0 0.5rem 0;"><strong>Raccomandazione:</strong> ${recommendation}</p>
+    ${outcomes.length ? `<ul style="margin:0;padding-left:1.25rem;">${outcomes.map((item) => `<li>${item}</li>`).join('')}</ul>` : ''}
+  `;
+
+  root.appendChild(box);
+}
+
 function normalizeInstruments(configInstruments = []) {
   return configInstruments.map((instrument) => ({
     ...instrument,
@@ -89,6 +123,7 @@ function buildSequencerOptions(config) {
 
   const initialMessage = config.messages?.initial || 'Complete the exercise to unlock the next lesson.';
   renderSequencerShell(root, initialMessage, config.nextLessonUrl);
+  renderProgressionMeta(root, config);
 
   const instruments = normalizeInstruments(config.instruments);
   const options = buildSequencerOptions(config);

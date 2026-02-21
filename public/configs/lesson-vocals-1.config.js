@@ -3,20 +3,17 @@
  * Lesson: Vocals 1 - Vocal Recording Setup
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 1
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-1-progress",
   lessonNumber: 1,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["vocals-0"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-1","Consolidare competenze beginner nel modulo vocals"]
   },
   
   nextLessonUrl: "lesson-vocals-2.html",
@@ -135,9 +132,10 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 16
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-16-progress",
   lessonNumber: 16,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-15","mixing-14"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-16","Consolidare competenze advanced nel modulo mixing"]
   },
   depthLevel: 9,
   
@@ -248,9 +245,10 @@ Automate parallel send levels for dynamic impact:
     "Balance clean and processed signals with proper blending ratios and frequency management",
     "Automate parallel processing for dynamic impact across different song sections"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -5,20 +5,17 @@
  * Research sources: AES Pro Audio Reference, Logic Pro Documentation, FabFilter
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 3
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-3-progress",
   lessonNumber: 3,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["mixing-2"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-3","Consolidare competenze beginner nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-4.html",
@@ -217,9 +214,10 @@ Reduces loudness bias and helps manage ear fatigue over long sessions. Match lev
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

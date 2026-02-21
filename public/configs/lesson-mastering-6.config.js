@@ -7,6 +7,12 @@ import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "
 
 const lessonQualityPreset = buildLessonQualityPreset({
   lessonCategory: "Mastering",
+
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["mastering-5"],
+    outcomes: ["Completare gli obiettivi pratici di mastering-6","Consolidare competenze beginner nel modulo mastering"]
+  },
   lessonNumber: 6
 });
 

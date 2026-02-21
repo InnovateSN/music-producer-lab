@@ -3,20 +3,17 @@
  * Lesson: Mixing 14 - Reference Tracks & Critical Listening
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 14
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-14-progress",
   lessonNumber: 14,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-13","mixing-12"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-14","Consolidare competenze advanced nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-15.html",
@@ -282,9 +279,10 @@ If any box can't be checked confidently, that's your next mix adjustment.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -5,6 +5,12 @@ export const lessonConfig = {
   lessonNumber: 1,
   lessonCategory: "Ear Training",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["ear-0"],
+    outcomes: ["Completare gli obiettivi pratici di ear-1","Consolidare competenze beginner nel modulo ear"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Sound Design",
-  lessonNumber: 18
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-18-progress",
   lessonNumber: 18,
   lessonCategory: "Sound Design",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["sound-design-17","sound-design-16"],
+    outcomes: ["Completare gli obiettivi pratici di sound-design-18","Consolidare competenze advanced nel modulo sound-design"]
   },
   depthLevel: 10,
   
@@ -161,9 +158,10 @@ Emulate magnetic tape behavior:
     "Emulate analog circuits: transistors, tubes, transformers, vintage synths",
     "Apply analog compressor and tape saturation emulation for color and character"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

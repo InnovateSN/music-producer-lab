@@ -3,20 +3,17 @@
  * Lesson: Vocals 12 - Masterclass: Complete Vocal Production
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 12
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-12-progress",
   lessonNumber: 12,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["vocals-11","vocals-10"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-12","Consolidare competenze intermediate nel modulo vocals"]
   },
   
   nextLessonUrl: "lesson-mastering-1.html",
@@ -135,9 +132,10 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

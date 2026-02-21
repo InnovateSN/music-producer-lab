@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 20
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-20-progress",
   lessonNumber: 20,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["mixing-19","mixing-18"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-20","Consolidare competenze expert nel modulo mixing"]
   },
   depthLevel: 10,
   
@@ -430,9 +427,10 @@ Some DAWs support multiple automation lanes:
     "Use automation to fix mix issues: de-masking, dynamic sidechain, and frequency management over time",
     "Refine automation: smooth curves, thin automation points, A/B testing, and genre-specific techniques"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

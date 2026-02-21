@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 19
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-19-progress",
   lessonNumber: 19,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["mixing-18","mixing-17"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-19","Consolidare competenze expert nel modulo mixing"]
   },
   depthLevel: 10,
   
@@ -444,9 +441,10 @@ Automate bus levels for dynamic mixing:
     "Organize sessions with color coding, naming conventions, and hierarchical bus structures",
     "Export stems for mastering: proper specs (24-bit WAV), headroom (-6dB), and file organization"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

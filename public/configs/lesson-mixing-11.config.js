@@ -3,20 +3,17 @@
  * Lesson: Mixing 11 - Automation Basics
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 11
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-11-progress",
   lessonNumber: 11,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["mixing-10","mixing-9"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-11","Consolidare competenze intermediate nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-12.html",
@@ -211,9 +208,10 @@ After a major automation pass:
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -18,6 +18,12 @@ export const lessonConfig = {
   lessonNumber: 6,
   lessonCategory: "Drum pattern",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["drums-5"],
+    outcomes: ["Completare gli obiettivi pratici di drums-6","Consolidare competenze beginner nel modulo drums"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

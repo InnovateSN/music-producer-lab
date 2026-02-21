@@ -3,20 +3,17 @@
  * Lesson: Mixing 9 - Panning and Stereo Width
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 9
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-9-progress",
   lessonNumber: 9,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["mixing-8"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-9","Consolidare competenze intermediate nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-10.html",
@@ -223,9 +220,10 @@ These conventions work because they reduce competition for the phantom centre wh
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

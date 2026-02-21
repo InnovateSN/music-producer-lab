@@ -3,20 +3,17 @@
  * Lesson: Vocals 3 - Vocal Editing Fundamentals
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 3
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-3-progress",
   lessonNumber: 3,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["vocals-2"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-3","Consolidare competenze beginner nel modulo vocals"]
   },
   
   nextLessonUrl: "lesson-vocals-4.html",
@@ -135,9 +132,10 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

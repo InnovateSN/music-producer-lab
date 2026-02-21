@@ -7,6 +7,12 @@ import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "
 
 const lessonQualityPreset = buildLessonQualityPreset({
   lessonCategory: "Arrangement",
+
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["arrangement-5"],
+    outcomes: ["Completare gli obiettivi pratici di arrangement-6","Consolidare competenze beginner nel modulo arrangement"]
+  },
   lessonNumber: 6
 });
 

@@ -3,20 +3,17 @@
  * Lesson: Mixing 7 - Reverb Types and Uses
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 7
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-7-progress",
   lessonNumber: 7,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["mixing-6"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-7","Consolidare competenze intermediate nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-8.html",
@@ -196,9 +193,10 @@ Returns add energy and can reduce master headroom. Verify peaks after adding rev
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

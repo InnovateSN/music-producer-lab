@@ -3,20 +3,17 @@
  * Lesson: Mixing 4 - EQ Techniques - Surgical vs Musical
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 4
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-4-progress",
   lessonNumber: 4,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["mixing-3"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-4","Consolidare competenze beginner nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-5.html",
@@ -238,9 +235,10 @@ When you use serial EQ or steep slopes, re-run your verification:
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

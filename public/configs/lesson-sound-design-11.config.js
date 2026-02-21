@@ -3,12 +3,7 @@
  * Lesson: Sound Design 11 - Foley & Sound Effects
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Sound Design",
-  lessonNumber: 11
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   // ====================
@@ -18,8 +13,10 @@ export const lessonConfig = {
   lessonNumber: 11,
   lessonCategory: "Sound Design",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["sound-design-10","sound-design-9"],
+    outcomes: ["Completare gli obiettivi pratici di sound-design-11","Consolidare competenze intermediate nel modulo sound-design"]
   },
   
   // ====================
@@ -142,9 +139,10 @@ Study professional productions and reverse-engineer the sounds you admire.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

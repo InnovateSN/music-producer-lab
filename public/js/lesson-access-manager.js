@@ -58,14 +58,45 @@ function findLessonByPath(pathname) {
   return null;
 }
 
+
+function inferExplicitPrerequisites(lesson) {
+  if (!lesson?.slug) return [];
+
+  const normalizedSlug = lesson.slug.replace(/^lesson-/, '');
+  const match = normalizedSlug.match(/^(.*)-(\d+)$/);
+  if (!match) return [];
+
+  const categorySlug = match[1];
+  const lessonNumber = Number(match[2]);
+
+  if (categorySlug === 'harmony' && lessonNumber === 11) {
+    return ['mpl-harmony-8-progress', 'mpl-harmony-9-progress'];
+  }
+
+  const prerequisites = [];
+  if (lessonNumber > 0) prerequisites.push(`mpl-${categorySlug}-${lessonNumber - 1}-progress`);
+  if (lessonNumber >= 10) prerequisites.push(`mpl-${categorySlug}-${lessonNumber - 2}-progress`);
+
+  return prerequisites;
+}
+
 function getLessonState(lesson, previousLesson) {
+  const explicitPrerequisites = Array.isArray(lesson.prerequisites) && lesson.prerequisites.length
+    ? lesson.prerequisites
+    : inferExplicitPrerequisites(lesson);
+  const unmetExplicitPrerequisites = explicitPrerequisites.filter((lessonKey) => !isLessonCompleted(lessonKey));
   const completed = isLessonCompleted(lesson.lessonKey);
-  const locked = Boolean(previousLesson?.lessonKey) && !isLessonCompleted(previousLesson.lessonKey);
+  const sequentialLock = Boolean(previousLesson?.lessonKey) && !isLessonCompleted(previousLesson.lessonKey);
+  const locked = sequentialLock || unmetExplicitPrerequisites.length > 0;
 
   return {
     completed,
     locked,
     available: !locked,
+    unmetExplicitPrerequisites,
+    recommendation: unmetExplicitPrerequisites.length
+      ? `Completa prima: ${unmetExplicitPrerequisites.join(', ')}`
+      : 'Progressione consigliata rispettata.',
   };
 }
 

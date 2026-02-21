@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Sound Design",
-  lessonNumber: 16
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-16-progress",
   lessonNumber: 16,
   lessonCategory: "Sound Design",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["sound-design-15","sound-design-14"],
+    outcomes: ["Completare gli obiettivi pratici di sound-design-16","Consolidare competenze advanced nel modulo sound-design"]
   },
   depthLevel: 9,
   
@@ -223,9 +220,10 @@ Use audio-rate signals as modulators (not just LFOs):
     "Apply professional techniques: West Coast synthesis, LPGs, waveshaping, Karplus-Strong",
     "Master audio-rate modulation for AM, FM, and formant synthesis"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

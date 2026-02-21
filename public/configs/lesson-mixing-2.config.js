@@ -6,20 +6,17 @@
  * Ableton Live Manual, Logic Pro Documentation
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 2
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-2-progress",
   lessonNumber: 2,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["mixing-1"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-2","Consolidare competenze beginner nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-3.html",
@@ -206,9 +203,10 @@ Always compare processed vs bypassed at matched levels. Our ears perceive louder
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',
