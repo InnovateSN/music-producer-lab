@@ -10,6 +10,12 @@ export const lessonConfig = {
   lessonNumber: 8,
   lessonCategory: "Mixing",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["mixing-7"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-8","Consolidare competenze intermediate nel modulo mixing"]
+  },
+
   nextLessonUrl: "lesson-mixing-9.html",
   prevLessonUrl: "lesson-mixing-7.html",
   overviewUrl: "labs.html",

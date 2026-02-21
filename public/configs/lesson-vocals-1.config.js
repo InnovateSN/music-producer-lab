@@ -9,6 +9,12 @@ export const lessonConfig = {
   lessonKey: "mpl-vocals-1-progress",
   lessonNumber: 1,
   lessonCategory: "Vocals",
+
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["vocals-0"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-1","Consolidare competenze beginner nel modulo vocals"]
+  },
   
   nextLessonUrl: "lesson-vocals-2.html",
   prevLessonUrl: "lesson-mixing-15.html",

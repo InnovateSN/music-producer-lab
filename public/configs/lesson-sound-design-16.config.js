@@ -4,6 +4,12 @@ export const lessonConfig = {
   lessonKey: "mpl-sound-design-16-progress",
   lessonNumber: 16,
   lessonCategory: "Sound Design",
+
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["sound-design-15","sound-design-14"],
+    outcomes: ["Completare gli obiettivi pratici di sound-design-16","Consolidare competenze advanced nel modulo sound-design"]
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-sound-design-17.html",

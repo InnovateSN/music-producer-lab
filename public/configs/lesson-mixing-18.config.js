@@ -4,6 +4,12 @@ export const lessonConfig = {
   lessonKey: "mpl-mixing-18-progress",
   lessonNumber: 18,
   lessonCategory: "Mixing",
+
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-17","mixing-16"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-18","Consolidare competenze advanced nel modulo mixing"]
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-mixing-19.html",

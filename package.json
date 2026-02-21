@@ -19,7 +19,8 @@
     "content:crosscheck:strict": "node scripts/content-source-crosscheck.js --strict",
     "typecheck": "tsc --noEmit",
     "ci:check": "npm run lint && npm run typecheck",
-    "db:schema:check": "node scripts/check-schema-parity.js"
+    "db:schema:check": "node scripts/check-schema-parity.js",
+    "qa:didactic-jumps": "node scripts/check-didactic-progression.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

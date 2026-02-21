@@ -13,6 +13,12 @@ export const lessonConfig = {
   lessonNumber: 1,
   lessonCategory: "Chord Fundamentals",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["harmony-0"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-1","Consolidare competenze beginner nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

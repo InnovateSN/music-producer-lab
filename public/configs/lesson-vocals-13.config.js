@@ -4,6 +4,12 @@ export const lessonConfig = {
   lessonKey: "mpl-vocals-13-progress",
   lessonNumber: 13,
   lessonCategory: "Vocals",
+
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["vocals-12","vocals-11"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-13","Consolidare competenze advanced nel modulo vocals"]
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-vocals-14.html",

@@ -10,6 +10,12 @@ export const lessonConfig = {
   lessonNumber: 11,
   lessonCategory: "Voice Leading",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["harmony-8","harmony-9"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-11","Consolidare competenze intermediate nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

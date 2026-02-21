@@ -4,6 +4,12 @@ export const lessonConfig = {
   lessonKey: "mpl-mixing-20-progress",
   lessonNumber: 20,
   lessonCategory: "Mixing",
+
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["mixing-19","mixing-18"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-20","Consolidare competenze expert nel modulo mixing"]
+  },
   depthLevel: 10,
   
   nextLessonUrl: "labs.html",

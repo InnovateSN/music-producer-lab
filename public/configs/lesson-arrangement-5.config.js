@@ -15,6 +15,12 @@ export const lessonConfig = {
   lessonKey: "mpl-arrangement-5-progress",
   lessonNumber: 5,
   lessonCategory: "Arrangement",
+
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["arrangement-4"],
+    outcomes: ["Completare gli obiettivi pratici di arrangement-5","Consolidare competenze beginner nel modulo arrangement"]
+  },
   depthLevel: 4,
   
   // ====================

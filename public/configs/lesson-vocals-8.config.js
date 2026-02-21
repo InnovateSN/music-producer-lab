@@ -9,6 +9,12 @@ export const lessonConfig = {
   lessonKey: "mpl-vocals-8-progress",
   lessonNumber: 8,
   lessonCategory: "Vocals",
+
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["vocals-7"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-8","Consolidare competenze intermediate nel modulo vocals"]
+  },
   
   nextLessonUrl: "lesson-vocals-9.html",
   prevLessonUrl: "lesson-vocals-7.html",

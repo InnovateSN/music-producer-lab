@@ -10,6 +10,12 @@ export const lessonConfig = {
   lessonNumber: 6,
   lessonCategory: "Mastering",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["mastering-5"],
+    outcomes: ["Completare gli obiettivi pratici di mastering-6","Consolidare competenze beginner nel modulo mastering"]
+  },
+
   nextLessonUrl: "lesson-mastering-7.html",
   prevLessonUrl: "lesson-mastering-5.html",
   overviewUrl: "labs.html",

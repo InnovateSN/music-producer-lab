@@ -10,6 +10,12 @@ export const lessonConfig = {
   lessonNumber: 12,
   lessonCategory: "Melody Writing",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["harmony-11","harmony-10"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-12","Consolidare competenze intermediate nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

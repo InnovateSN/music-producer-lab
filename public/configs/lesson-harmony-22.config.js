@@ -5,6 +5,12 @@ export const lessonConfig = {
   lessonNumber: 22,
   lessonCategory: "Harmony & Melody",
 
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["harmony-21","harmony-20"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-22","Consolidare competenze expert nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

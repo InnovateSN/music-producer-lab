@@ -13,6 +13,12 @@ export const lessonConfig = {
   lessonNumber: 16,
   lessonCategory: "Bass & Low End",
 
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["bass-15","bass-14"],
+    outcomes: ["Completare gli obiettivi pratici di bass-16","Consolidare competenze advanced nel modulo bass"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

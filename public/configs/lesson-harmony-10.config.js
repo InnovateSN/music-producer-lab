@@ -10,6 +10,12 @@ export const lessonConfig = {
   lessonNumber: 10,
   lessonCategory: "Genre Application",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["harmony-9","harmony-8"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-10","Consolidare competenze intermediate nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

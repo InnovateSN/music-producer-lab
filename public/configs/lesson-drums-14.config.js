@@ -16,6 +16,12 @@ export const lessonConfig = {
   lessonNumber: 14,
   lessonCategory: "Drums & Rhythm",
 
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["drums-13","drums-12"],
+    outcomes: ["Completare gli obiettivi pratici di drums-14","Consolidare competenze advanced nel modulo drums"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

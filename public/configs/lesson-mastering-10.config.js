@@ -9,6 +9,12 @@ export const lessonConfig = {
   lessonKey: "mpl-mastering-10-progress",
   lessonNumber: 10,
   lessonCategory: "Mastering",
+
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["mastering-9","mastering-8"],
+    outcomes: ["Completare gli obiettivi pratici di mastering-10","Consolidare competenze intermediate nel modulo mastering"]
+  },
   
   nextLessonUrl: "labs.html",
   prevLessonUrl: "lesson-mastering-9.html",

@@ -13,6 +13,12 @@ export const lessonConfig = {
   lessonNumber: 6,
   lessonCategory: "Melody Fundamentals",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["harmony-5"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-6","Consolidare competenze beginner nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",
