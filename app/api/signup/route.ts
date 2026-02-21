@@ -21,10 +21,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { email, password, firstName, lastName, passwordHint } = validation.data;
+    const { email, password, firstName, lastName } = validation.data;
 
     // Create user
-    const user = await createUser(email, password, firstName, lastName, passwordHint);
+    const user = await createUser(email, password, firstName, lastName);
 
     const response = NextResponse.json({
       success: true,

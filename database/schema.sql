@@ -335,9 +335,260 @@ ALTER TABLE analytics_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE invoices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE support_tickets ENABLE ROW LEVEL SECURITY;
 
--- Note: RLS policies will be implemented based on Clerk user metadata
--- For now, we'll manage access control at the application layer
--- Full RLS policies will be added once Clerk integration is complete
+-- Context helpers for RLS
+CREATE OR REPLACE FUNCTION current_app_user_id()
+RETURNS UUID AS $$
+DECLARE
+    value_text TEXT;
+BEGIN
+    value_text := current_setting('app.current_user_id', true);
+    IF value_text IS NULL OR value_text = '' THEN
+        RETURN NULL;
+    END IF;
+    RETURN value_text::UUID;
+EXCEPTION WHEN OTHERS THEN
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
+CREATE OR REPLACE FUNCTION current_app_role()
+RETURNS VARCHAR AS $$
+    SELECT u.role
+    FROM users u
+    WHERE u.id = current_app_user_id();
+$$ LANGUAGE sql STABLE;
+
+CREATE OR REPLACE FUNCTION current_app_school_id()
+RETURNS UUID AS $$
+    SELECT u.school_id
+    FROM users u
+    WHERE u.id = current_app_user_id();
+$$ LANGUAGE sql STABLE;
+
+CREATE OR REPLACE FUNCTION is_super_admin()
+RETURNS BOOLEAN AS $$
+    SELECT COALESCE(current_app_role() = 'super_admin', FALSE);
+$$ LANGUAGE sql STABLE;
+
+CREATE OR REPLACE FUNCTION can_manage_school_data()
+RETURNS BOOLEAN AS $$
+    SELECT COALESCE(current_app_role() IN ('teacher', 'school_admin', 'super_admin'), FALSE);
+$$ LANGUAGE sql STABLE;
+
+-- SCHOOLS
+DROP POLICY IF EXISTS schools_select_policy ON schools;
+CREATE POLICY schools_select_policy ON schools
+FOR SELECT USING (
+    is_super_admin() OR id = current_app_school_id()
+);
+
+DROP POLICY IF EXISTS schools_update_policy ON schools;
+CREATE POLICY schools_update_policy ON schools
+FOR UPDATE USING (
+    is_super_admin() OR id = current_app_school_id()
+)
+WITH CHECK (
+    is_super_admin() OR id = current_app_school_id()
+);
+
+-- USERS
+DROP POLICY IF EXISTS users_select_policy ON users;
+CREATE POLICY users_select_policy ON users
+FOR SELECT USING (
+    is_super_admin()
+    OR id = current_app_user_id()
+    OR school_id = current_app_school_id()
+);
+
+DROP POLICY IF EXISTS users_update_policy ON users;
+CREATE POLICY users_update_policy ON users
+FOR UPDATE USING (
+    is_super_admin()
+    OR id = current_app_user_id()
+    OR (can_manage_school_data() AND school_id = current_app_school_id())
+)
+WITH CHECK (
+    is_super_admin()
+    OR id = current_app_user_id()
+    OR (can_manage_school_data() AND school_id = current_app_school_id())
+);
+
+-- CLASSES
+DROP POLICY IF EXISTS classes_select_policy ON classes;
+CREATE POLICY classes_select_policy ON classes
+FOR SELECT USING (
+    is_super_admin()
+    OR school_id = current_app_school_id()
+    OR teacher_id = current_app_user_id()
+);
+
+DROP POLICY IF EXISTS classes_write_policy ON classes;
+CREATE POLICY classes_write_policy ON classes
+FOR ALL USING (
+    is_super_admin()
+    OR (can_manage_school_data() AND school_id = current_app_school_id())
+)
+WITH CHECK (
+    is_super_admin()
+    OR (can_manage_school_data() AND school_id = current_app_school_id())
+);
+
+-- CLASS ENROLLMENTS
+DROP POLICY IF EXISTS class_enrollments_select_policy ON class_enrollments;
+CREATE POLICY class_enrollments_select_policy ON class_enrollments
+FOR SELECT USING (
+    is_super_admin()
+    OR student_id = current_app_user_id()
+    OR EXISTS (
+      SELECT 1
+      FROM classes c
+      WHERE c.id = class_enrollments.class_id
+        AND c.school_id = current_app_school_id()
+    )
+);
+
+DROP POLICY IF EXISTS class_enrollments_write_policy ON class_enrollments;
+CREATE POLICY class_enrollments_write_policy ON class_enrollments
+FOR ALL USING (
+    is_super_admin()
+    OR EXISTS (
+      SELECT 1
+      FROM classes c
+      WHERE c.id = class_enrollments.class_id
+        AND c.school_id = current_app_school_id()
+        AND can_manage_school_data()
+    )
+)
+WITH CHECK (
+    is_super_admin()
+    OR EXISTS (
+      SELECT 1
+      FROM classes c
+      WHERE c.id = class_enrollments.class_id
+        AND c.school_id = current_app_school_id()
+        AND can_manage_school_data()
+    )
+);
+
+-- LESSON PROGRESS / PATTERNS / CERTIFICATES
+DROP POLICY IF EXISTS lesson_progress_policy ON lesson_progress;
+CREATE POLICY lesson_progress_policy ON lesson_progress
+FOR ALL USING (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = lesson_progress.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+)
+WITH CHECK (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = lesson_progress.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+);
+
+DROP POLICY IF EXISTS saved_patterns_policy ON saved_patterns;
+CREATE POLICY saved_patterns_policy ON saved_patterns
+FOR ALL USING (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = saved_patterns.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+)
+WITH CHECK (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = saved_patterns.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+);
+
+DROP POLICY IF EXISTS certificates_policy ON certificates;
+CREATE POLICY certificates_policy ON certificates
+FOR ALL USING (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = certificates.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+)
+WITH CHECK (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR (
+      can_manage_school_data()
+      AND EXISTS (
+        SELECT 1 FROM users u
+        WHERE u.id = certificates.user_id
+          AND u.school_id = current_app_school_id()
+      )
+    )
+);
+
+-- ANALYTICS / INVOICES / SUPPORT
+DROP POLICY IF EXISTS analytics_events_policy ON analytics_events;
+CREATE POLICY analytics_events_policy ON analytics_events
+FOR ALL USING (
+    is_super_admin()
+    OR school_id = current_app_school_id()
+    OR user_id = current_app_user_id()
+)
+WITH CHECK (
+    is_super_admin()
+    OR school_id = current_app_school_id()
+    OR user_id = current_app_user_id()
+);
+
+DROP POLICY IF EXISTS invoices_policy ON invoices;
+CREATE POLICY invoices_policy ON invoices
+FOR ALL USING (
+    is_super_admin()
+    OR school_id = current_app_school_id()
+)
+WITH CHECK (
+    is_super_admin()
+    OR school_id = current_app_school_id()
+);
+
+DROP POLICY IF EXISTS support_tickets_policy ON support_tickets;
+CREATE POLICY support_tickets_policy ON support_tickets
+FOR ALL USING (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR school_id = current_app_school_id()
+)
+WITH CHECK (
+    is_super_admin()
+    OR user_id = current_app_user_id()
+    OR school_id = current_app_school_id()
+);
 
 -- ============================================
 -- HELPER FUNCTIONS
@@ -427,7 +678,7 @@ GROUP BY t.id, t.email, c.id, c.name, c.class_code;
 -- ============================================
 -- SCHEMA COMPLETE
 -- ============================================
--- Total tables: 10
+-- Total tables: 11
 -- Total indexes: 30+
 -- Total views: 3
 -- Status: Ready for production deployment

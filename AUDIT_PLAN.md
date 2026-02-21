@@ -8,6 +8,8 @@
 
 ---
 
+> **Status clarification (2026-02-20):** This document captures a point-in-time automated audit view. It should not be used alone as procurement evidence. For current institutional gap closure priorities, see `docs/INSTITUTIONAL_READINESS_RESPONSE.md`.
+
 ## Executive Summary
 
 | Metric | Value |

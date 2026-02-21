@@ -1,8 +1,20 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { validateOrigin } from '@/lib/security';
+import { getRequestKey, isRateLimited } from '@/lib/rate-limit';
 import crypto from 'crypto';
 
 export async function POST(request: Request) {
+  const originError = validateOrigin(request);
+  if (originError) {
+    return originError;
+  }
+
+  const rateLimitKey = getRequestKey(request, 'verify-reset-token');
+  if (await isRateLimited(rateLimitKey, 20, 15 * 60 * 1000)) {
+    return NextResponse.json({ valid: false }, { status: 429 });
+  }
+
   try {
     const { token } = await request.json();
 
@@ -12,7 +24,6 @@ export async function POST(request: Request) {
 
     const tokenDigest = crypto.createHash('sha256').update(token).digest('hex');
 
-    // Find token that is not expired and not used
     const tokens = await query<{
       id: string;
       user_id: string;

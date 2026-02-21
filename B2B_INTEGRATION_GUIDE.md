@@ -1,5 +1,7 @@
 # Music Producer Lab - B2B Platform Integration Guide
 
+> **Important status note (2026-02-20):** This guide is a legacy integration snapshot and is **not a turnkey enterprise deployment runbook**. It contains manual steps and older Clerk-based paths that must be reconciled with the current NextAuth implementation before institutional rollout. Track closure in `docs/INSTITUTIONAL_READINESS_RESPONSE.md`.
+
 ## 🎉 What's Been Built
 
 ### ✅ Completed Infrastructure
@@ -44,15 +46,16 @@
    - 4 roles: student, teacher, school_admin, super_admin
    - Protected routes for dashboards
 
-## 📋 What Still Needs to Be Done
+## 📋 What Still Needs to Be Done (blocking for enterprise launch)
 
 ### 🔴 Critical (Must do before launch)
 
-1. **Execute Database Schema**
+1. **Execute Database Schema + Security Migrations**
    - See `database/README.md` for instructions
+   - Run `database/schema.sql` first, then `database/add-auth-rate-limits.sql`
    - Use Neon web console (easiest method)
    - Or use AI agent with provided prompt
-   - Verify all 10 tables are created
+   - Verify all 10 core tables + `auth_rate_limits` are created
 
 2. **Update Environment Variables on Vercel**
    - Go to Vercel project settings
@@ -78,7 +81,11 @@
      - Sign-up: `/index.html`
      - After sign-out: `/index.html`
 
-4. **Add Clerk UI to HTML Pages**
+4. **Verify RLS Isolation in Staging**
+   - Execute `database/rls-verification.sql` with real tenant users
+   - Capture evidence that cross-school reads are denied
+
+5. **Add Clerk UI to HTML Pages**
    - Add Clerk script to existing HTML pages
    - Add sign-in/sign-up buttons
    - Show user profile when logged in
@@ -86,26 +93,26 @@
 
 ### 🟡 Medium Priority (Week 1-2)
 
-5. **Teacher Dashboard**
+6. **Teacher Dashboard**
    - Create `/app/teacher/page.tsx`
    - Show teacher's classes
    - Student progress tracking
    - Class management UI
 
-6. **School Admin Panel**
+7. **School Admin Panel**
    - Create `/app/admin/page.tsx`
    - License management
    - User management
    - Reports and analytics
 
-7. **Super Admin Panel**
+8. **Super Admin Panel**
    - Create `/app/superadmin/page.tsx`
    - Manage all schools
    - Create/edit schools
    - Invoicing system
    - Global analytics
 
-8. **Email Templates**
+9. **Email Templates**
    - Welcome email
    - Progress reports
    - Certificate emails
@@ -114,24 +121,24 @@
 
 ### 🟢 Low Priority (Week 3-4)
 
-9. **Certificate Generation**
+10. **Certificate Generation**
    - PDF generation with certificate design
    - Unique verification codes
    - Downloadable certificates
    - Email delivery
 
-10. **Advanced Analytics**
+11. **Advanced Analytics**
     - Time spent tracking
     - Popular lessons
     - Completion rates
     - Engagement metrics
 
-11. **MIDI Export Enhancement**
+12. **MIDI Export Enhancement**
     - Save to cloud (not just download)
     - Pattern library
     - Share patterns between users
 
-12. **Real-time Features**
+13. **Real-time Features
     - Live teacher dashboard updates
     - Real-time progress notifications
 

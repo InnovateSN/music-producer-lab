@@ -1,9 +1,24 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { validateOrigin } from '@/lib/security';
+import { getRequestKey, isRateLimited } from '@/lib/rate-limit';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
 export async function POST(request: Request) {
+  const originError = validateOrigin(request);
+  if (originError) {
+    return originError;
+  }
+
+  const rateLimitKey = getRequestKey(request, 'reset-password');
+  if (await isRateLimited(rateLimitKey, 10, 15 * 60 * 1000)) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const { token, password } = await request.json();
 
@@ -23,7 +38,6 @@ export async function POST(request: Request) {
 
     const tokenDigest = crypto.createHash('sha256').update(token).digest('hex');
 
-    // Find valid token
     const tokens = await query<{
       id: string;
       user_id: string;
@@ -42,17 +56,13 @@ export async function POST(request: Request) {
     }
 
     const resetToken = tokens[0];
-
-    // Hash new password
     const passwordHash = await bcrypt.hash(password, 12);
 
-    // Update user password
     await query(
       'UPDATE users SET password_hash = $1 WHERE id = $2',
       [passwordHash, resetToken.user_id]
     );
 
-    // Mark token as used
     await query(
       'UPDATE password_reset_tokens SET used_at = NOW() WHERE id = $1',
       [resetToken.id]

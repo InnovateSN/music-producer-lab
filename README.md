@@ -21,22 +21,24 @@ Interactive music production education platform. Learn to produce music through 
 
 ## Project Status (Updated: February 2026)
 
+> **Procurement note:** The project is currently in product/security hardening and is **not yet positioned as procurement-ready** for high-value institutional contracts. See `docs/INSTITUTIONAL_READINESS_RESPONSE.md`.
+
 ### Educational Content Inventory: 174 Lessons
 
-| Category | Lessons | Delivery Status |
-|----------|---------|------------------|
-| **Drums & Rhythm** | 23 (0-22) | Published |
-| **Harmony & Melody** | 28 (1-28) | Published |
-| **Bass & Low End** | 20 (1-20) | Published |
-| **Arrangement & Songwriting** | 20 (1-20) | Published |
-| **Mixing** | 20 (1-20) | Published |
-| **Mastering** | 10 (1-10) | Published |
-| **Sound Design** | 20 (1-20) | Published |
-| **Ear Training** | 10 (1-10) | Published |
-| **Music Theory** | 8 (1-8) | Published |
-| **Vocals & Production** | 15 (1-15) | Published |
+| Category | Lessons | Catalog Status |
+|----------|---------|----------------|
+| **Drums & Rhythm** | 23 (0-22) | Cataloged |
+| **Harmony & Melody** | 28 (1-28) | Cataloged |
+| **Bass & Low End** | 20 (1-20) | Cataloged |
+| **Arrangement & Songwriting** | 20 (1-20) | Cataloged |
+| **Mixing** | 20 (1-20) | Cataloged |
+| **Mastering** | 10 (1-10) | Cataloged |
+| **Sound Design** | 20 (1-20) | Cataloged |
+| **Ear Training** | 10 (1-10) | Cataloged |
+| **Music Theory** | 8 (1-8) | Cataloged |
+| **Vocals & Production** | 15 (1-15) | Cataloged |
 
-**Total: 174 lesson pages**
+**Total: 174 lesson pages in catalog. Quality/completeness validation is tracked separately in audit docs.**
 
 ### Current Improvement Focus
 
@@ -89,7 +91,7 @@ See also: `docs/workflow/NEXT_STEP_PLAN.md`.
 │       │   ├── signin-custom/  # Custom login
 │       │   ├── session/        # Session check
 │       │   ├── signout/        # Logout
-│       │   ├── get-hint/       # Password hint
+│       │   ├── get-hint/       # Deprecated (returns 410)
 │       │   └── reset-password/ # Password reset
 │       ├── signup/             # User registration
 │       ├── admin/users/        # Admin panel API
@@ -165,9 +167,9 @@ RESEND_API_KEY=re_...
 
 The platform uses a custom NextAuth.js setup with credentials provider:
 
-- **Registration:** Email, password, name, optional password hint
+- **Registration:** Email, password, name
 - **Login:** Email + password, JWT session stored in cookie
-- **Password Recovery:** Password hint system (no email required)
+- **Password Recovery:** Secure reset-token flow via email link
 - **Admin Panel:** Role-based access (admin/super_admin)
 
 ---
@@ -180,7 +182,6 @@ The platform uses a custom NextAuth.js setup with credentials provider:
 | `/api/auth/signin-custom` | POST | Login |
 | `/api/auth/session` | GET | Check session |
 | `/api/auth/signout` | POST | Logout |
-| `/api/auth/get-hint` | POST | Get password hint |
 | `/api/admin/users` | GET | List users (admin only) |
 | `/api/health` | GET | Health check |
 
@@ -213,3 +214,5 @@ npm run content:crosscheck:strict
 ## License
 
 All rights reserved.
+
+For institutional use, a separate commercial agreement is required. See `docs/INSTITUTIONAL_READINESS_RESPONSE.md` for current procurement-readiness status and gating requirements.
