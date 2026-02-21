@@ -1,4 +1,9 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drums & Rhythm",
+  lessonNumber: 16
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-drums-16-progress",

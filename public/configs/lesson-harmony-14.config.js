@@ -3,7 +3,12 @@
  * Lesson: Harmony 14 - Borrow One Chord: Instant Emotion Shift
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Modal Interchange",
+  lessonNumber: 14
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-14-progress",

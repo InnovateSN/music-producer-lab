@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Vocals",
+  lessonNumber: 14
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-14-progress",
   lessonNumber: 14,
   lessonCategory: "Vocals",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-vocals-15.html",
@@ -190,10 +199,9 @@ Listen to all takes and select the best moments from each:
     "Apply timing correction and editing techniques: breath control, crossfades, de-essing",
     "Design multi-layer vocal stacks: lead, double, harmony, ad-libs, and vocal pads for dynamic arrangements"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

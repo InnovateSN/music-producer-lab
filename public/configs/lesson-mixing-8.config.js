@@ -3,12 +3,21 @@
  * Lesson: Mixing 8 - Delay and Time-Based Effects
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 8
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-8-progress",
   lessonNumber: 8,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-9.html",
   prevLessonUrl: "lesson-mixing-7.html",
@@ -196,10 +205,9 @@ If your delay offers different transition modes (repitch vs fade/jump), changing
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

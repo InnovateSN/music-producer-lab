@@ -3,12 +3,21 @@
  * Lesson: Arrangement 6 - EDM & Electronic Structures
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-6-progress",
   lessonNumber: 6,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
   
   nextLessonUrl: "lesson-arrangement-7.html",
@@ -344,10 +353,9 @@ Master the build-drop-breakdown cycle, and you've mastered the core of EDM produ
     "Use breakdowns for contrast and rest",
     "Structure DJ-friendly tracks in 8/16/32 bar phrases"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

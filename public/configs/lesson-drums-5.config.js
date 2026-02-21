@@ -6,7 +6,12 @@
  * by the lesson template to generate a fully functional lesson page.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drum pattern",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   // ====================

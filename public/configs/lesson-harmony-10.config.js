@@ -3,7 +3,12 @@
  * Lesson: Harmony 10 - House Loop: Minor to Major Movement
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Genre Application",
+  lessonNumber: 10
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-10-progress",

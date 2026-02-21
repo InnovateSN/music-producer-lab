@@ -6,12 +6,21 @@
  * Ableton Live Manual, Logic Pro Documentation
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 2
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-2-progress",
   lessonNumber: 2,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-3.html",
   prevLessonUrl: "lesson-mixing-1.html",
@@ -197,10 +206,9 @@ Always compare processed vs bypassed at matched levels. Our ears perceive louder
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

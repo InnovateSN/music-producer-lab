@@ -3,7 +3,12 @@
  * Lesson: Harmony 11 - Smooth the Jumps: Chord Inversions
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Voice Leading",
+  lessonNumber: 11
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-11-progress",

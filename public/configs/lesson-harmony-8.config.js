@@ -3,7 +3,12 @@
  * Lesson: Harmony 8 - Upgrade to 7ths: Maj7 & Min7
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Advanced Harmony",
+  lessonNumber: 8
+});
 
 export const lessonConfig = {
   // ====================

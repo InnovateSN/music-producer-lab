@@ -3,7 +3,12 @@
  * Lesson: Bass 3 - Simple Bassline:
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 3
+});
 
 export const lessonConfig = {
   // ====================

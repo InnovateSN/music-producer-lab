@@ -3,12 +3,21 @@
  * Lesson: Vocals 5 - Vocal Chain Essentials
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Vocals",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-5-progress",
   lessonNumber: 5,
   lessonCategory: "Vocals",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   nextLessonUrl: "lesson-vocals-6.html",
   prevLessonUrl: "lesson-vocals-4.html",
@@ -126,10 +135,9 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

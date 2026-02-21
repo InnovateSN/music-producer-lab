@@ -3,12 +3,21 @@
  * Lesson: Mastering 9 - Genre-Specific Mastering
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 9
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-9-progress",
   lessonNumber: 9,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-10.html",
   prevLessonUrl: "lesson-mastering-8.html",
@@ -296,10 +305,9 @@ These guidelines are starting points, not laws. A lo-fi hip-hop track might want
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

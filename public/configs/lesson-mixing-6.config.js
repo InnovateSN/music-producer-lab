@@ -3,12 +3,21 @@
  * Lesson: Mixing 6 - Compression Techniques - Attack & Release
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-6-progress",
   lessonNumber: 6,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-7.html",
   prevLessonUrl: "lesson-mixing-5.html",
@@ -193,10 +202,9 @@ Remember where compression sits in your chain. If you change attack dramatically
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

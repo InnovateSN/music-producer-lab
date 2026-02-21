@@ -3,12 +3,21 @@
  * Lesson: Mastering 1 - Mastering Fundamentals
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 1
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-1-progress",
   lessonNumber: 1,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-2.html",
   prevLessonUrl: "lesson-mixing-15.html",
@@ -316,10 +325,9 @@ If you've touched more than 3-4 plugins, you might be over-processing. A great m
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

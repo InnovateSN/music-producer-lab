@@ -3,7 +3,12 @@
  * Lesson: Harmony 20 - Pro Voicing Pack: Spread, Stack, and Control
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Expert Techniques",
+  lessonNumber: 20
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-harmony-20-progress",

@@ -3,7 +3,12 @@
  * Lesson: Sound Design 12 - Audio for Video Games
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   // ====================
@@ -12,6 +17,10 @@ export const lessonConfig = {
   lessonKey: "mpl-sound-design-12-progress",
   lessonNumber: 12,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   // ====================
   // NAVIGATION
@@ -133,10 +142,9 @@ Study professional productions and reverse-engineer the sounds you admire.`
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

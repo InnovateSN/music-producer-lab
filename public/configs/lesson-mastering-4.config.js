@@ -3,12 +3,21 @@
  * Lesson: Mastering 4 - Mastering Compression & Dynamics
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 4
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-4-progress",
   lessonNumber: 4,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-5.html",
   prevLessonUrl: "lesson-mastering-3.html",
@@ -323,10 +332,9 @@ Play for someone who doesn't know you added compression. If they notice compress
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

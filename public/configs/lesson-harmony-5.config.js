@@ -3,7 +3,12 @@
  * Lesson: Harmony 5 - Write the Pop Loop: I–V–vi–IV
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Chord Fundamentals",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   // ====================

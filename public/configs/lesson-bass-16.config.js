@@ -3,7 +3,12 @@
  * Lesson: Bass 16 - UK Garage & Grime Bass
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 16
+});
 
 export const lessonConfig = {
   // ====================

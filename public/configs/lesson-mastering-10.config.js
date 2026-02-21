@@ -3,12 +3,21 @@
  * Lesson: Mastering 10 - Masterclass: Professional Mastering Project
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 10
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-10-progress",
   lessonNumber: 10,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   nextLessonUrl: "labs.html",
   prevLessonUrl: "lesson-mastering-9.html",
@@ -134,10 +143,9 @@ Always deliver masters at -14 LUFS integrated for streaming, and provide alterna
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

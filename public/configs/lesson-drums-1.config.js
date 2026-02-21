@@ -3,7 +3,12 @@
  * Lesson: Drums 1 - 4 on the floor
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drum pattern",
+  lessonNumber: 1
+});
 
 export const lessonConfig = {
   // ====================

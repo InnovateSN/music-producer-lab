@@ -3,7 +3,12 @@
  * Lesson: Bass 15 - Reggae & Dub Bass: Heavy Low End
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 15
+});
 
 export const lessonConfig = {
   // ====================

@@ -3,7 +3,12 @@
  * Lesson: Drums 19 - Professional Drum Mixing
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drums & Rhythm",
+  lessonNumber: 19
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-drums-19-progress",

@@ -3,12 +3,21 @@
  * Lesson: Mastering 6 - Limiting & Loudness Maximization
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-6-progress",
   lessonNumber: 6,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-7.html",
   prevLessonUrl: "lesson-mastering-5.html",
@@ -329,10 +338,9 @@ Before limiting, decide on your loudness target:
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

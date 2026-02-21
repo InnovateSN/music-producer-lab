@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Vocals",
+  lessonNumber: 15
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-15-progress",
   lessonNumber: 15,
   lessonCategory: "Vocals",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 10,
   
   nextLessonUrl: "labs.html",
@@ -250,10 +259,9 @@ Use **spectrum analyzer** to ensure vocal occupies its frequency range (1-5 kHz)
     "Implement volume automation: syllable-level adjustments, section dynamics, effect automation for emotional impact",
     "Polish final mix: reference mixing, mono compatibility, headroom, frequency masking for professional sound"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

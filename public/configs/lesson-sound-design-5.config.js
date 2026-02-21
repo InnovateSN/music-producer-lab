@@ -3,7 +3,12 @@
  * Lesson: Sound Design 5 - Sampling Fundamentals
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 5
+});
 
 export const lessonConfig = {
   // ====================
@@ -12,6 +17,10 @@ export const lessonConfig = {
   lessonKey: "mpl-sound-design-5-progress",
   lessonNumber: 5,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   
   // ====================
   // NAVIGATION
@@ -133,10 +142,9 @@ Study professional productions and reverse-engineer the sounds you admire.`
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

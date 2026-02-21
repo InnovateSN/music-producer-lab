@@ -3,7 +3,12 @@
  * Lesson: Drums 2 - Adding the Snare (Backbeat)
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drum pattern",
+  lessonNumber: 2
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-lesson2-progress",

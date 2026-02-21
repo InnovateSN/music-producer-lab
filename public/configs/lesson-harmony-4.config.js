@@ -3,7 +3,12 @@
  * Lesson: Harmony 4 - Build a Classic: I–IV–V
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Chord Fundamentals",
+  lessonNumber: 4
+});
 
 export const lessonConfig = {
   // ====================

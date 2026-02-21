@@ -6,12 +6,21 @@
  * Master cross-genre arrangement, fusion techniques, and hybrid styles.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 18
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-18-progress",
   lessonNumber: 18,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 5,
 
   nextLessonUrl: "lesson-arrangement-19.html",
@@ -1099,10 +1108,9 @@ In Lesson 19, you'll learn **arranging for the mix**—how to create arrangement
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

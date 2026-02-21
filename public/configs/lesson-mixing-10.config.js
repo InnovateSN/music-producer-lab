@@ -3,12 +3,21 @@
  * Lesson: Mixing 10 - Bus Processing and Grouping
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 10
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-10-progress",
   lessonNumber: 10,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-11.html",
   prevLessonUrl: "lesson-mixing-9.html",
@@ -213,10 +222,9 @@ This architecture scales: as arrangements grow, you can add sub-buses (e.g., "Sy
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

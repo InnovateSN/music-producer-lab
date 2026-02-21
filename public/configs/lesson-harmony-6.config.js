@@ -3,7 +3,12 @@
  * Lesson: Harmony 6 - Melody from Chord Tones
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Melody Fundamentals",
+  lessonNumber: 6
+});
 
 export const lessonConfig = {
   // ====================

@@ -6,7 +6,12 @@
  * four-on-the-floor, off-beat hi-hats, and minimal techno rhythms.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Drums & Rhythm",
+  lessonNumber: 8
+});
 
 export const lessonConfig = {
   // ====================

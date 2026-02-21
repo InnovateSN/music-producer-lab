@@ -3,12 +3,21 @@
  * Lesson: Mastering 7 - Mastering for Streaming Platforms
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mastering",
+  lessonNumber: 7
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mastering-7-progress",
   lessonNumber: 7,
   lessonCategory: "Mastering",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mastering-8.html",
   prevLessonUrl: "lesson-mastering-6.html",
@@ -315,10 +324,9 @@ For albums/EPs, ensure:
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -3,12 +3,21 @@
  * Lesson: Mixing 12 - Vocal Mixing in Context
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Mixing",
+  lessonNumber: 12
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-12-progress",
   lessonNumber: 12,
   lessonCategory: "Mixing",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
 
   nextLessonUrl: "lesson-mixing-13.html",
   prevLessonUrl: "lesson-mixing-11.html",
@@ -245,10 +254,9 @@ Mute the vocal and listen to the lead. Does it occupy the "vocal zone" (1–5 kH
     showContent: true,
     enableInteractive: false
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -3,7 +3,12 @@
  * Lesson: Bass 13 - Blues Bass: Turnarounds & Patterns
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 13
+});
 
 export const lessonConfig = {
   // ====================

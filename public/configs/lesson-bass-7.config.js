@@ -3,7 +3,12 @@
  * Lesson: Bass 7 - Sidechain Compression Basics
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 7
+});
 
 export const lessonConfig = {
   // ====================

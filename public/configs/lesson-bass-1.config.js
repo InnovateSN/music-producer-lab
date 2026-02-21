@@ -3,7 +3,12 @@
  * Lesson: Bass 1 - Bass Fundamentals: Root Notes
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Bass & Low End",
+  lessonNumber: 1
+});
 
 export const lessonConfig = {
   // ====================

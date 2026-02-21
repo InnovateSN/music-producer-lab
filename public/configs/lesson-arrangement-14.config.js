@@ -6,12 +6,21 @@
  * Think vertically: low, mid, and high frequency content per section.
  */
 
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Arrangement",
+  lessonNumber: 14
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-arrangement-14-progress",
   lessonNumber: 14,
   lessonCategory: "Arrangement",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 4,
 
   nextLessonUrl: "lesson-arrangement-15.html",
@@ -634,10 +643,9 @@ In Lesson 15, you'll learn **rhythmic variation**—how to evolve grooves while 
       }
     ]
   },
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

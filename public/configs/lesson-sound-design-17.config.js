@@ -1,9 +1,18 @@
-import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
+import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
+
+const lessonQualityPreset = buildLessonQualityPreset({
+  lessonCategory: "Sound Design",
+  lessonNumber: 17
+});
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-17-progress",
   lessonNumber: 17,
   lessonCategory: "Sound Design",
+
+  reviewMetadata: {
+    ...lessonQualityPreset.reviewMetadata
+  },
   depthLevel: 9,
   
   nextLessonUrl: "lesson-sound-design-18.html",
@@ -144,10 +153,9 @@ Apply effects to individual grains before reassembly:
     "Master time-stretching and pitch-shifting without artifacts",
     "Apply advanced techniques: asynchronous grains, multi-stream granular, grain-level effects"
   ],
-
-  // ====================
-  // REFERENCE SOURCES
-  // ====================
+  assessmentRubric: {
+    ...lessonQualityPreset.assessmentRubric
+  },
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',
