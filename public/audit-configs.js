@@ -1,7 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const configsDir = '/home/user/music-producer-lab/configs';
+const configsDir = path.join(__dirname, 'configs');
+
+const BASELINE = {
+  minTheorySections: 2,
+  minLearningObjectives: 4,
+  maxLearningObjectives: 5,
+  minExerciseSteps: 4,
+};
 
 // Helper function to count words in a string
 function countWords(text) {
@@ -38,20 +45,37 @@ function extractField(text, fieldName) {
   return { exists: false };
 }
 
-// Extract theory content for word count
-function extractTheoryContent(text) {
-  const theoryMatch = text.match(/theory:\s*{[\s\S]*?sections:\s*\[[\s\S]*?content:\s*`([\s\S]*?)`/);
-  if (theoryMatch) {
-    return theoryMatch[1];
+function extractTheoryInfo(text) {
+  const theorySectionsMatch = text.match(/theory:\s*{[\s\S]*?sections:\s*\[([\s\S]*?)\][\s\S]*?}\s*,/m);
+  if (!theorySectionsMatch) {
+    return { sectionCount: 0, totalWordCount: 0 };
   }
 
-  // Check for simple content field
-  const simpleMatch = text.match(/theory:\s*{[\s\S]*?content:\s*["`]([\s\S]*?)["`]/);
-  if (simpleMatch) {
-    return simpleMatch[1];
-  }
+  const sectionsBlock = theorySectionsMatch[1];
+  const sectionCount = (sectionsBlock.match(/title\s*:/g) || []).length;
+  const contentMatches = [...sectionsBlock.matchAll(/content:\s*[`"']([\s\S]*?)[`"']/g)];
+  const totalWordCount = contentMatches.reduce((sum, match) => sum + countWords(match[1]), 0);
 
-  return null;
+  return { sectionCount, totalWordCount };
+}
+
+function extractLearningObjectivesCount(text) {
+  const learningObjectivesMatch = text.match(/learningObjectives:\s*\[([\s\S]*?)\]\s*,/m);
+  if (!learningObjectivesMatch) return 0;
+
+  const objectiveList = learningObjectivesMatch[1];
+  return (objectiveList.match(/^[	 ]*["']/gm) || []).length;
+}
+
+function extractExerciseStepCount(text) {
+  const stepsMatch = text.match(/exercise:\s*{[\s\S]*?steps:\s*\[([\s\S]*?)\][\s\S]*?}\s*,/m);
+  if (!stepsMatch) return 0;
+
+  const stepsBlock = stepsMatch[1];
+  const objectSteps = (stepsBlock.match(/\{\s*text\s*:/g) || []).length;
+  const stringSteps = (stepsBlock.match(/^[	 ]*["']/gm) || []).length;
+
+  return objectSteps + stringSteps;
 }
 
 // Get mode value
@@ -113,8 +137,11 @@ function analyzeConfig(filePath) {
   const learningObjectives = extractField(configText, 'learningObjectives');
 
   const modeValue = getModeValue(configText);
-  const theoryContent = extractTheoryContent(configText);
-  const theoryWordCount = theoryContent ? countWords(theoryContent) : 0;
+  const theoryInfo = extractTheoryInfo(configText);
+  const theorySectionCount = theoryInfo.sectionCount;
+  const theoryWordCount = theoryInfo.totalWordCount;
+  const learningObjectivesCount = extractLearningObjectivesCount(configText);
+  const exerciseStepCount = extractExerciseStepCount(configText);
 
   // Check mode configuration
   if (!mode.exists) {
@@ -122,17 +149,23 @@ function analyzeConfig(filePath) {
   }
 
   // Check theory section
-  if (!theory.exists || !theoryContent) {
+  if (!theory.exists || theorySectionCount === 0) {
     issues.push('No theory content');
   } else if (theoryWordCount < 200) {
     issues.push(`Theory content too short (${theoryWordCount} words, need 200+)`);
   }
 
+  if (theorySectionCount < BASELINE.minTheorySections) {
+    issues.push(`Baseline not met: only ${theorySectionCount} theory sections (need ${BASELINE.minTheorySections}+)`);
+  }
+
   // Check learning objectives
   if (!learningObjectives.exists) {
     issues.push('No learningObjectives array');
-  } else if (learningObjectives.length && learningObjectives.length < 3) {
-    issues.push(`Only ${learningObjectives.length} learning objectives (need 3+)`);
+  } else if (learningObjectivesCount < BASELINE.minLearningObjectives) {
+    issues.push(`Baseline not met: only ${learningObjectivesCount} learning objectives (need ${BASELINE.minLearningObjectives}-${BASELINE.maxLearningObjectives})`);
+  } else if (learningObjectivesCount > BASELINE.maxLearningObjectives) {
+    issues.push(`Baseline overflow: ${learningObjectivesCount} learning objectives (target ${BASELINE.minLearningObjectives}-${BASELINE.maxLearningObjectives})`);
   }
 
   // Check exercise section (should exist for all lessons)
@@ -148,6 +181,8 @@ function analyzeConfig(filePath) {
     }
     if (!hasSteps) {
       issues.push('No exercise steps');
+    } else if (exerciseStepCount < BASELINE.minExerciseSteps) {
+      issues.push(`Baseline not met: only ${exerciseStepCount} exercise steps (need ${BASELINE.minExerciseSteps}+ with verifiable actions)`);
     }
   }
 
@@ -165,7 +200,9 @@ function analyzeConfig(filePath) {
     issues,
     mode: modeValue || (mode.exists ? 'interactive' : 'unknown'),
     theoryWordCount,
-    learningObjectivesCount: learningObjectives.length || 0,
+    learningObjectivesCount,
+    theorySectionCount,
+    exerciseStepCount,
     hasExercise: exercise.exists,
     hasValidation: validation.exists,
     hasTheory: theory.exists
@@ -237,6 +274,8 @@ function runAudit() {
       console.log(`- **Mode:** ${lesson.mode}`);
       console.log(`- **Theory Words:** ${lesson.theoryWordCount}`);
       console.log(`- **Learning Objectives:** ${lesson.learningObjectivesCount}`);
+      console.log(`- **Theory Sections:** ${lesson.theorySectionCount}`);
+      console.log(`- **Exercise Steps:** ${lesson.exerciseStepCount}`);
       console.log(`- **Has Theory:** ${lesson.hasTheory ? 'Yes' : 'No'}`);
       console.log(`- **Has Exercise:** ${lesson.hasExercise ? 'Yes' : 'No'}`);
       console.log(`- **Has Validation:** ${lesson.hasValidation ? 'Yes' : 'No'}`);

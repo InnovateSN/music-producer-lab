@@ -131,25 +131,26 @@ export const lessonConfig = {
     enableExport: false,
     sequencerType: "piano-roll"
   },
-
-
   learningObjectives: [
-    "Understand core concepts in harmony 20",
-    "Program the target pattern with timing accuracy",
-    "Apply this pattern in a full track context"
+    "Programmare con precisione il voicing target di questa lezione nel piano roll",
+    "Riconoscere all'ascolto il carattere sonoro di Fmaj9",
+    "Verificare timing, simultaneità e registro delle note con una checklist tecnica",
+    "Trasporre il pattern in almeno due tonalità mantenendo la stessa funzione armonica",
+    "Applicare il materiale della lezione in una progressione di 4-8 battute pronta per il beat"
   ],
-
-
   theory: {
     sections: [
       {
-        title: "Core Theory: Harmony 20",
-        content: `
-This lesson focuses on practical workflow and musical intent.
-Use the target pattern as a repeatable building block, then adapt it to your genre and arrangement needs.
+        title: "Concetto armonico: Pro Voicing Pack: Spread, Stack, and Control",
+        content: `Questa lezione sviluppa un blocco armonico concreto da usare subito in produzione. L'obiettivo non è solo "sapere" la teoria, ma tradurla in una decisione musicale verificabile: note corrette, posizione corretta nel registro e funzione armonica coerente con il contesto del brano.
 
-When practicing, prioritize timing consistency first, then refine tone, dynamics, and variation.
-        `
+Quando programmi Fmaj9, ascolta tre elementi: stabilità della fondamentale, qualità emotiva dell'intervallo caratteristico e bilanciamento tra le voci. Se una voce domina troppo, il voicing perde chiarezza. In pratica, la teoria qui serve a controllare intenzione e risultato: stessa idea armonica, suono più pulito, scelta più consapevole.`
+      },
+      {
+        title: "Workflow in DAW e controlli di qualità",
+        content: `Usa un workflow in 4 passaggi: (1) inserisci il pattern richiesto dalla lezione, (2) controlla che le note partano insieme o con lo spacing previsto, (3) confronta root position e inversioni per scegliere il voicing più leggibile nel mix, (4) trasponi il pattern in due tonalità per confermare che hai capito la logica e non solo memorizzato le note.
+
+Checklist di verifica rapida: nessuna nota fuori scala rispetto al contesto, nessun overlap ritmico involontario, dinamica omogenea tra le voci, e ascolto A/B dentro una mini progressione di 4-8 battute. Se questi controlli passano, la lezione è realmente acquisita e pronta per essere riutilizzata nel tuo progetto.`
       }
     ]
   },
