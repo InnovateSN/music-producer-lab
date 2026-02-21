@@ -115,22 +115,44 @@ export const lessonConfig = {
     "Apply interval knowledge to scales and chords"
   ],
 
+  mode: {
+    type: "educational",
+    sandbox: false,
+    showContent: true,
+    enableInteractive: true
+  },
+
+  practicalActivity: {
+    minimumPracticeRequirement: "Capitolo Music Theory Fundamentals: almeno il 60% delle lezioni deve includere pratica guidata o challenge verificabile.",
+    task: "Suona 8 intervalli (2 minori, 2 maggiori, 2 giusti, 2 a scelta) e annota nome + numero di semitoni.",
+    checklist: [
+      "Completato il task pratico nel DAW/strumento o su notazione.",
+      "Verificato il risultato con regole teoriche del capitolo.",
+      "Annotati errori e correzioni in 2-3 righe."
+    ],
+    verificationChallenge: "Riconosci correttamente almeno 6 intervalli su 8 in ascolto cieco e spiega il conteggio in semitoni.",
+    completionFeedback: {
+      pass: "Ottimo: hai soddisfatto il target minimo pratico del capitolo.",
+      retry: "Riprova il challenge: completa checklist e correzioni prima di proseguire."
+    }
+  },
+
   assessmentRubric: {
-    accuracy: {
+    theoryAccuracy: {
       target: ">= 80%",
-      evidence: "Quiz answers and concept checks inside the lesson"
+      evidence: "Risposte corrette su nomenclatura, formule e analisi teorica"
     },
-    timing: {
-      target: "<= ±25 ms on guided rhythmic tasks",
-      evidence: "Metronome-aligned exercise submissions"
+    practicalExecution: {
+      target: "Checklist pratica completata al 100%",
+      evidence: "Task svolto con consegna verificabile (audio, notazione o screenshot progetto)"
     },
-    mixClarity: {
-      target: "No uncontrolled clipping and clear element separation",
-      evidence: "A/B playback checks with level-matched references"
+    challengeVerification: {
+      target: ">= 70% di esiti positivi nel challenge",
+      evidence: "Tentativo registrato con auto-valutazione errori/correzioni"
     },
-    arrangementFlow: {
-      target: "Transitions preserve groove and perceived energy",
-      evidence: "Section-to-section transition checklist"
+    reflectionQuality: {
+      target: "Almeno 2 miglioramenti concreti identificati",
+      evidence: "Note di retrospettiva su cosa mantenere/correggere nel prossimo esercizio"
     }
   },
 
