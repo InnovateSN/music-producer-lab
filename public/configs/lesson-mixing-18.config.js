@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 18
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-18-progress",
   lessonNumber: 18,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-17","mixing-16"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-18","Consolidare competenze advanced nel modulo mixing"]
   },
   depthLevel: 9,
   
@@ -339,9 +336,10 @@ Measures the difference between loudest and quietest parts:
     "Master format and delivery: 24-bit WAV, -1 dBTP true peak, proper sample rates for streaming",
     "Apply final checklist: LUFS metering, mono compatibility, reference comparison, metadata embedding"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

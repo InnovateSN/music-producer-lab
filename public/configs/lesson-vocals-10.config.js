@@ -3,20 +3,17 @@
  * Lesson: Vocals 10 - Genre-Specific Vocal Production
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 10
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-10-progress",
   lessonNumber: 10,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["vocals-9","vocals-8"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-10","Consolidare competenze intermediate nel modulo vocals"]
   },
   
   nextLessonUrl: "lesson-vocals-11.html",
@@ -135,9 +132,10 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

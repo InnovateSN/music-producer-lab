@@ -13,6 +13,12 @@ export const lessonConfig = {
   lessonNumber: 2,
   lessonCategory: "Bass & Low End",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["bass-1"],
+    outcomes: ["Completare gli obiettivi pratici di bass-2","Consolidare competenze beginner nel modulo bass"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

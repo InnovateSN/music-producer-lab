@@ -3,20 +3,17 @@
  * Lesson: Vocals 4 - Pitch Correction & Tuning
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 4
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-4-progress",
   lessonNumber: 4,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["vocals-3"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-4","Consolidare competenze beginner nel modulo vocals"]
   },
   
   nextLessonUrl: "lesson-vocals-5.html",
@@ -135,9 +132,10 @@ Study vocal productions in your genre and understand what makes them work.`
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

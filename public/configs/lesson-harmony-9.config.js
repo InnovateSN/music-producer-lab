@@ -18,6 +18,12 @@ export const lessonConfig = {
   lessonNumber: 9,
   lessonCategory: "Advanced Harmony",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["harmony-8"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-9","Consolidare competenze intermediate nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

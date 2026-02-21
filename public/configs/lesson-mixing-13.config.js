@@ -3,20 +3,17 @@
  * Lesson: Mixing 13 - Genre-Specific Mixing
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 13
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-13-progress",
   lessonNumber: 13,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-12","mixing-11"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-13","Consolidare competenze advanced nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mixing-14.html",
@@ -225,9 +222,10 @@ export const lessonConfig = {
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

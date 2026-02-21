@@ -16,6 +16,12 @@ export const lessonConfig = {
   lessonNumber: 2,
   lessonCategory: "Arrangement",
 
+  progression: {
+    difficulty: "beginner",
+    prerequisites: ["arrangement-1"],
+    outcomes: ["Completare gli obiettivi pratici di arrangement-2","Consolidare competenze beginner nel modulo arrangement"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

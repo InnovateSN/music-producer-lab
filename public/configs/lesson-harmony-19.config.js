@@ -15,6 +15,12 @@ export const lessonConfig = {
   lessonNumber: 19,
   lessonCategory: "Expert Techniques",
 
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["harmony-18","harmony-17"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-19","Consolidare competenze expert nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

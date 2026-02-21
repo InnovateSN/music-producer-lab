@@ -5,6 +5,12 @@ export const lessonConfig = {
   lessonNumber: 7,
   lessonCategory: "Music Theory Fundamentals",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["theory-6"],
+    outcomes: ["Completare gli obiettivi pratici di theory-7","Consolidare competenze intermediate nel modulo theory"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

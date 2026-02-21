@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Vocals",
-  lessonNumber: 13
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-vocals-13-progress",
   lessonNumber: 13,
   lessonCategory: "Vocals",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["vocals-12","vocals-11"],
+    outcomes: ["Completare gli obiettivi pratici di vocals-13","Consolidare competenze advanced nel modulo vocals"]
   },
   depthLevel: 9,
   
@@ -153,9 +150,10 @@ Standard vocal FX chain order:
     "Master parallel processing to maintain vocal intelligibility while adding creative effects",
     "Apply genre-specific vocal FX chains for pop, hip-hop, EDM, and lo-fi productions"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

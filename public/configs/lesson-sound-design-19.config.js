@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Sound Design",
-  lessonNumber: 19
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-sound-design-19-progress",
   lessonNumber: 19,
   lessonCategory: "Sound Design",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "expert",
+    prerequisites: ["sound-design-18","sound-design-17"],
+    outcomes: ["Completare gli obiettivi pratici di sound-design-19","Consolidare competenze expert nel modulo sound-design"]
   },
   depthLevel: 10,
   
@@ -164,9 +161,10 @@ Advanced FFT-based vocoder:
     "Master vocoding: carrier/modulator analysis, band splitting, envelope following",
     "Use cross-synthesis: spectral morphing, filtering, and convolution for hybrid sounds"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

@@ -1,17 +1,14 @@
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 17
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-17-progress",
   lessonNumber: 17,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-16","mixing-15"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-17","Consolidare competenze advanced nel modulo mixing"]
   },
   depthLevel: 9,
   
@@ -274,9 +271,10 @@ You don't need to widen everything equally:
     "Master safe stereo widening techniques: M/S balance, double-tracking, frequency-specific width",
     "Test mono compatibility to avoid phase cancellation and ensure mixes translate to all playback systems"
   ],
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

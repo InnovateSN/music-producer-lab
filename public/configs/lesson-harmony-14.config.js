@@ -15,6 +15,12 @@ export const lessonConfig = {
   lessonNumber: 14,
   lessonCategory: "Modal Interchange",
 
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["harmony-13","harmony-12"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-14","Consolidare competenze advanced nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

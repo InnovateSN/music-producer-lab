@@ -3,20 +3,17 @@
  * Lesson: Mixing 15 - Masterclass: Complete Mix Project
  */
 
-import { applyMessagePreset, buildHeroEyebrow, buildLessonQualityPreset } from "./config-presets.js";
-
-const lessonQualityPreset = buildLessonQualityPreset({
-  lessonCategory: "Mixing",
-  lessonNumber: 15
-});
+import { applyMessagePreset, buildHeroEyebrow } from "./config-presets.js";
 
 export const lessonConfig = {
   lessonKey: "mpl-mixing-15-progress",
   lessonNumber: 15,
   lessonCategory: "Mixing",
 
-  reviewMetadata: {
-    ...lessonQualityPreset.reviewMetadata
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["mixing-14","mixing-13"],
+    outcomes: ["Completare gli obiettivi pratici di mixing-15","Consolidare competenze advanced nel modulo mixing"]
   },
 
   nextLessonUrl: "lesson-mastering-1.html",
@@ -340,9 +337,10 @@ Create a text file or PDF with:
     showContent: true,
     enableInteractive: false
   },
-  assessmentRubric: {
-    ...lessonQualityPreset.assessmentRubric
-  },
+
+  // ====================
+  // REFERENCE SOURCES
+  // ====================
   sourceReferences: [
     {
       name: 'AES (Audio Engineering Society)',

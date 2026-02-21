@@ -21,6 +21,12 @@ export const lessonConfig = {
   lessonNumber: 8,
   lessonCategory: "Drums & Rhythm",
 
+  progression: {
+    difficulty: "intermediate",
+    prerequisites: ["drums-7"],
+    outcomes: ["Completare gli obiettivi pratici di drums-8","Consolidare competenze intermediate nel modulo drums"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",

@@ -15,6 +15,12 @@ export const lessonConfig = {
   lessonNumber: 13,
   lessonCategory: "Genre Application",
 
+  progression: {
+    difficulty: "advanced",
+    prerequisites: ["harmony-12","harmony-11"],
+    outcomes: ["Completare gli obiettivi pratici di harmony-13","Consolidare competenze advanced nel modulo harmony"]
+  },
+
 
   reviewMetadata: {
     lastReviewed: "2026-02-19",
